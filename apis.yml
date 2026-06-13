@@ -1,0 +1,101 @@
+name: Dotdigital
+description: Marketing automation platform with a REST API for managing contacts, email campaigns, SMS, automation programs, pages, and accessing engagement data.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/dotdigital/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+type: Index
+tags:
+  - Marketing Automation
+  - Email Marketing
+  - SMS
+  - WhatsApp
+  - Contacts
+  - Campaigns
+  - Push Notifications
+  - Transactional Email
+  - Engagement
+  - Automation
+apis:
+  - name: Dotdigital v2 API
+    description: The legacy v2 REST API providing access to contacts, campaigns, SMS, programs, pages, forms, data fields, and engagement reporting.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developer.dotdigital.com/docs/getting-started-with-the-api
+    baseURL: https://r1-api.dotdigital.com/v2
+    tags:
+      - Contacts
+      - Campaigns
+      - Email
+      - SMS
+      - Automation
+      - Programs
+      - Data Fields
+      - Reporting
+    properties:
+      - type: Documentation
+        url: https://developer.dotdigital.com/docs/getting-started-with-the-api
+      - type: OpenAPI
+        url: https://r1-api.dotdigital.com/swagger.json
+  - name: Dotdigital v3 API
+    description: The newer v3 REST API framework with unified contacts, improved REST practices, omnichannel communications, and advanced marketing automation features.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developer.dotdigital.com/docs/api-end-points
+    baseURL: https://r1-api.dotdigital.com/v3
+    tags:
+      - Contacts
+      - Email
+      - SMS
+      - WhatsApp
+      - Push Notifications
+      - App Messaging
+      - Facebook Messenger
+      - Events
+      - Insight Data
+      - Automation
+    properties:
+      - type: Documentation
+        url: https://developer.dotdigital.com/docs/api-end-points
+      - type: OpenAPI
+        url: https://r1-api.dotdigital.com/swagger.json
+  - name: Dotdigital CPaaS API
+    description: Communications Platform as a Service API for omnichannel messaging including SMS, MMS, WhatsApp, and push notifications via the Dotdigital Global platform.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.cpaas.dotdigital.com/
+    baseURL: https://r1-api.dotdigital.com
+    tags:
+      - SMS
+      - MMS
+      - WhatsApp
+      - Push Notifications
+      - Omnichannel
+      - Messaging
+    properties:
+      - type: Documentation
+        url: https://docs.cpaas.dotdigital.com/
+common:
+  - type: Website
+    url: https://dotdigital.com
+  - type: Documentation
+    url: https://developer.dotdigital.com/
+  - type: GitHubOrg
+    url: https://github.com/dotmailer
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/dotdigital
+  - type: Blog
+    url: https://dotdigital.com/blog/
+  - type: Pricing
+    url: https://dotdigital.com/pricing/
+  - type: StatusPage
+    url: https://dotdigitalstatus.com
+  - type: X
+    url: https://x.com/dotdigital
+  - type: Plans
+    url: plans/dotdigital-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/dotdigital-rate-limits.yml
+  - type: FinOps
+    url: finops/dotdigital-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

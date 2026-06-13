@@ -1,0 +1,76 @@
+name: Dotdigital FinOps
+description: FinOps Framework FOCUS-aligned cost and usage guidance for Dotdigital marketing automation API consumption. Dotdigital uses custom quote-based pricing, so cost visibility requires direct vendor engagement and internal tracking.
+specificationVersion: '1.0'
+url: https://dotdigital.com/pricing/
+pricingModel:
+  type: custom-quote
+  description: Dotdigital does not publish public pricing tiers. All pricing is negotiated directly with the sales team based on contact volume, send volume, channels enabled, and contractual terms.
+  billingCycles:
+    - annual
+  currencies:
+    - USD
+    - GBP
+    - EUR
+costDrivers:
+  - name: Contact Database Size
+    description: The primary cost driver; pricing scales with the total number of addressable contacts stored in the platform.
+    unit: contacts
+    category: volume
+  - name: Email Send Volume
+    description: Monthly or annual email send volume is a significant factor in custom pricing negotiations.
+    unit: emails-sent
+    category: volume
+  - name: SMS / MMS Sends
+    description: Outbound SMS and MMS messages are typically metered separately from email sends.
+    unit: messages-sent
+    category: usage
+  - name: WhatsApp Messages
+    description: WhatsApp Business API messages are charged per session or per message as defined by Meta's pricing model, passed through Dotdigital.
+    unit: messages-sent
+    category: usage
+  - name: Push Notifications
+    description: Mobile push notification volume may contribute to per-message or per-device costs depending on the account agreement.
+    unit: notifications-sent
+    category: usage
+  - name: API Call Volume
+    description: API call volume is subject to tiered rate limits per account package; exceeding agreed limits may result in throttling. Overage charges, if any, are account-specific.
+    unit: api-calls
+    category: usage
+  - name: Data Firehose
+    description: Real-time data streaming (Data Firehose) may carry additional enablement or volume-based fees depending on the contract.
+    unit: events-streamed
+    category: usage
+  - name: Add-on Channels
+    description: Each channel (WhatsApp, SMS, App Messaging, Facebook Messenger) may be individually licensed or bundled into the contract.
+    unit: channels-enabled
+    category: feature
+costOptimization:
+  - name: Right-size Contact Database
+    description: Regularly prune inactive or unsubscribed contacts to minimize the contact count that drives pricing at renewal.
+    category: waste-reduction
+  - name: Monitor API Tier Usage
+    description: Use X-RateLimit-Remaining and X-RateLimit-Reset response headers to track per-tier consumption and avoid throttling without upgrading unnecessarily.
+    category: efficiency
+  - name: Use Unlimited-Tier Calls for Sends
+    description: Message-sending calls (email, SMS, push) fall in the Unlimited tier and do not count against bounded rate limits; batch sends via the API are cost-neutral from a rate-limit perspective.
+    category: efficiency
+  - name: Leverage Demo / Trial Account
+    description: Use the Dotdigital demo account ([email protected]/demo) or a free trial account for development and testing to avoid consuming production quota and live send credits.
+    category: waste-reduction
+  - name: Regional Endpoint Alignment
+    description: Ensure integrations point to the correct regional endpoint (r1/r2/r3) to prevent failed requests that still count against quotas or require costly retries.
+    category: efficiency
+  - name: Negotiate Volume Discounts at Renewal
+    description: Annual send volume and contact growth forecasts should be shared with the Dotdigital sales team to lock in favorable per-unit rates before contract renewal.
+    category: procurement
+visibility:
+  - name: Rate Limit Headers
+    description: X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, and X-RateLimit-Scope headers provide real-time usage visibility at the API tier level.
+  - name: Account Dashboard
+    description: In-platform reporting covers campaign send volumes, engagement metrics, and contact counts that proxy cost drivers.
+  - name: Status Page
+    description: https://dotdigitalstatus.com provides uptime and incident data relevant to SLA cost management.
+notes:
+  - Dotdigital's pricing is fully opaque publicly; all cost modeling requires direct vendor engagement
+  - WhatsApp message costs are partially pass-through from Meta infrastructure pricing
+  - Legacy flat-rate API limiting (HTTP 400 throttle) does not provide header-based usage visibility; tiered limiting is preferred for FinOps observability

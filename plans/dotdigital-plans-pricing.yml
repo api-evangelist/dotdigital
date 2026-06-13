@@ -1,0 +1,37 @@
+name: Dotdigital Plans and Pricing
+description: Pricing and plans for the Dotdigital marketing automation platform and API. Dotdigital uses a custom quote-based model; specific tier costs are not publicly listed and must be obtained directly from sales.
+specificationVersion: '0.1'
+url: https://dotdigital.com/pricing/
+plans:
+  - name: Custom / Quote-Based
+    description: Dotdigital does not publish fixed-price tiers. Pricing is customized based on contact database size, email send volume, channels used, and other factors. Customers request a personalized quote via the website.
+    url: https://dotdigital.com/pricing/
+    price: custom
+    currency: USD
+    billingCycle: annual
+    features:
+      - name: Marketing Automation
+        description: Full access to email, SMS, WhatsApp, push, and omnichannel automation programs
+      - name: Contacts Management
+        description: Unified contact management with consent and preference tracking
+      - name: Email Campaigns
+        description: Drag-and-drop email builder, A/B testing, and deliverability tools
+      - name: SMS & WhatsApp
+        description: Two-way SMS, MMS, and WhatsApp messaging
+      - name: API Access
+        description: REST API v2 and v3 access for programmatic integration; rate limits vary by account package
+      - name: Mobile SDKs
+        description: iOS and Android SDKs for mobile push notifications and in-app messaging
+      - name: Data Firehose
+        description: Real-time data streaming for engagement and behavioral analytics
+      - name: Insight Data
+        description: Product catalog and behavioral data integration for personalization
+      - name: Regional Endpoints
+        description: API endpoints in Europe (r1), North America (r2), and Asia-Pacific (r3)
+      - name: Integrations
+        description: Native integrations with Magento, WooCommerce, WordPress, Shopware, and Shopify
+notes:
+  - Dotdigital routes all pricing inquiries through a sales team contact form
+  - API rate limits are account-package dependent and set per performance tier (low/medium/high/unlimited)
+  - A free trial or demo account is available on request for testing
+  - Legacy flat-rate API limiting (per rolling hour) is deprecated in favor of tiered per-minute limits
