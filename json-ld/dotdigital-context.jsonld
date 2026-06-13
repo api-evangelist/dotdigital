@@ -1,0 +1,260 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "dotdigital": "https://api-evangelist.github.io/dotdigital/vocab#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Contact": {
+      "@id": "schema:Person",
+      "@context": {
+        "id": "dcterms:identifier",
+        "email": "schema:email",
+        "optInType": "dotdigital:optInType",
+        "emailType": "dotdigital:emailType",
+        "status": "dotdigital:contactStatus",
+        "dataFields": {
+          "@id": "dotdigital:dataField",
+          "@container": "@set"
+        },
+        "lists": {
+          "@id": "dotdigital:addressBook",
+          "@container": "@set"
+        },
+        "firstName": "schema:givenName",
+        "lastName": "schema:familyName",
+        "fullName": "schema:name",
+        "gender": "schema:gender",
+        "dateOfBirth": {
+          "@id": "schema:birthDate",
+          "@type": "xsd:date"
+        },
+        "mobileNumber": "schema:telephone",
+        "suppressedAt": {
+          "@id": "dotdigital:suppressedAt",
+          "@type": "xsd:dateTime"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "modifiedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "AddressBook": {
+      "@id": "dotdigital:AddressBook",
+      "@context": {
+        "id": "dcterms:identifier",
+        "name": "schema:name",
+        "visibility": "dotdigital:visibility",
+        "contactCount": "dotdigital:contactCount",
+        "createdDate": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Campaign": {
+      "@id": "schema:CreativeWork",
+      "@context": {
+        "id": "dcterms:identifier",
+        "name": "schema:name",
+        "subject": "schema:about",
+        "fromName": "dotdigital:fromName",
+        "fromAddress": "dotdigital:fromAddress",
+        "htmlContent": "schema:text",
+        "plainTextContent": "schema:description",
+        "replyAction": "dotdigital:replyAction",
+        "replyToAddress": "dotdigital:replyToAddress",
+        "status": "dotdigital:campaignStatus",
+        "type": "dotdigital:campaignType",
+        "isSplitTest": "dotdigital:isSplitTest",
+        "tags": {
+          "@id": "schema:keywords",
+          "@container": "@set"
+        },
+        "createdDate": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "CampaignSend": {
+      "@id": "dotdigital:CampaignSend",
+      "@context": {
+        "id": "dcterms:identifier",
+        "campaignId": {
+          "@id": "dotdigital:campaign",
+          "@type": "xsd:string"
+        },
+        "contactIds": {
+          "@id": "dotdigital:contact",
+          "@container": "@set"
+        },
+        "addressBookIds": {
+          "@id": "dotdigital:addressBook",
+          "@container": "@set"
+        },
+        "scheduledDate": {
+          "@id": "schema:scheduledTime",
+          "@type": "xsd:dateTime"
+        },
+        "splitTestOptions": "dotdigital:splitTestOptions"
+      }
+    },
+
+    "CampaignSummary": {
+      "@id": "schema:Report",
+      "@context": {
+        "id": "dcterms:identifier",
+        "campaignId": {
+          "@id": "dotdigital:campaign",
+          "@type": "xsd:string"
+        },
+        "dateSent": {
+          "@id": "dotdigital:dateSent",
+          "@type": "xsd:dateTime"
+        },
+        "numUniqueOpens": "dotdigital:uniqueOpens",
+        "numUniqueTextOpens": "dotdigital:uniqueTextOpens",
+        "numTotalUniqueOpens": "dotdigital:totalUniqueOpens",
+        "numOpens": "dotdigital:opens",
+        "numTextOpens": "dotdigital:textOpens",
+        "numTotalOpens": "dotdigital:totalOpens",
+        "numClicks": "dotdigital:clicks",
+        "numTextClicks": "dotdigital:textClicks",
+        "numTotalClicks": "dotdigital:totalClicks",
+        "numPageViews": "dotdigital:pageViews",
+        "numTotalPageViews": "dotdigital:totalPageViews",
+        "numTextPageViews": "dotdigital:textPageViews",
+        "numForwards": "dotdigital:forwards",
+        "numTextForwards": "dotdigital:textForwards",
+        "numEstimatedForwards": "dotdigital:estimatedForwards",
+        "numTextEstimatedForwards": "dotdigital:textEstimatedForwards",
+        "numTotalEstimatedForwards": "dotdigital:totalEstimatedForwards",
+        "numReplies": "dotdigital:replies",
+        "numHardBounces": "dotdigital:hardBounces",
+        "numSoftBounces": "dotdigital:softBounces",
+        "numUnsubscribes": "dotdigital:unsubscribes",
+        "numIspComplaints": "dotdigital:ispComplaints",
+        "numMailBlocks": "dotdigital:mailBlocks",
+        "numSent": "dotdigital:sent",
+        "percentageDelivered": "dotdigital:percentageDelivered",
+        "percentageUniqueOpens": "dotdigital:percentageUniqueOpens",
+        "percentageOpens": "dotdigital:percentageOpens",
+        "percentageUnsubscribes": "dotdigital:percentageUnsubscribes",
+        "percentageReplies": "dotdigital:percentageReplies",
+        "percentageHardBounces": "dotdigital:percentageHardBounces",
+        "percentageSoftBounces": "dotdigital:percentageSoftBounces",
+        "percentageUsersClicked": "dotdigital:percentageUsersClicked",
+        "percentageClicksToOpens": "dotdigital:percentageClicksToOpens"
+      }
+    },
+
+    "Program": {
+      "@id": "dotdigital:AutomationProgram",
+      "@context": {
+        "id": "dcterms:identifier",
+        "name": "schema:name",
+        "status": "dotdigital:programStatus",
+        "dateCreated": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "dateModified": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "DataField": {
+      "@id": "dotdigital:DataField",
+      "@context": {
+        "name": "schema:name",
+        "type": "dotdigital:dataFieldType",
+        "visibility": "dotdigital:visibility",
+        "defaultValue": "schema:defaultValue"
+      }
+    },
+
+    "SmsMessage": {
+      "@id": "schema:Message",
+      "@context": {
+        "id": "dcterms:identifier",
+        "name": "schema:name",
+        "message": "schema:text",
+        "status": "dotdigital:messageStatus",
+        "from": "schema:sender",
+        "to": "schema:recipient",
+        "dateSent": {
+          "@id": "dotdigital:dateSent",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "TransactionalEmail": {
+      "@id": "dotdigital:TransactionalEmail",
+      "@context": {
+        "toAddresses": {
+          "@id": "schema:toRecipient",
+          "@container": "@set"
+        },
+        "ccAddresses": {
+          "@id": "schema:ccRecipient",
+          "@container": "@set"
+        },
+        "bccAddresses": {
+          "@id": "schema:bccRecipient",
+          "@container": "@set"
+        },
+        "fromAddress": {
+          "@id": "schema:sender",
+          "@type": "@id"
+        },
+        "subject": "schema:about",
+        "htmlContent": "schema:text",
+        "plainTextContent": "schema:description",
+        "attachments": {
+          "@id": "schema:attachments",
+          "@container": "@set"
+        },
+        "metadata": "dotdigital:metadata",
+        "tags": {
+          "@id": "schema:keywords",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "WebhookSubscription": {
+      "@id": "dotdigital:WebhookSubscription",
+      "@context": {
+        "id": "dcterms:identifier",
+        "url": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "events": {
+          "@id": "dotdigital:webhookEvent",
+          "@container": "@set"
+        },
+        "payloadFormat": "dotdigital:payloadFormat",
+        "status": "dotdigital:webhookStatus",
+        "secretKey": "dotdigital:secretKey",
+        "createdDate": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    }
+  }
+}
