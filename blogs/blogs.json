@@ -2,13 +2,20 @@
   "repo": "dotdigital",
   "feeds": [
     {
-      "source": "https://dotdigital.com/blog/",
+      "source": "https://dotdigital.com/feed/",
       "feed_url": "https://dotdigital.com/feed/",
-      "title": "Dotdigital Blog",
-      "saved": 0,
+      "title": "",
+      "saved": 2,
       "method": "feed"
+    },
+    {
+      "source": "https://www.linkedin.com/company/dotdigital",
+      "feed_url": "https://www.linkedin.com/company/dotdigital",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-06-13T00:00:00Z"
+  "post_count": 2,
+  "fetched": "2026-06-14T20:42:17Z"
 }
