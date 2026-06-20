@@ -1,6 +1,6 @@
 name: Dotdigital
 description: Marketing automation platform with a REST API for managing contacts, email campaigns, SMS, automation programs, pages, and accessing engagement data.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/dotdigital/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -20,7 +20,7 @@ tags:
 apis:
   - name: Dotdigital v2 API
     description: The legacy v2 REST API providing access to contacts, campaigns, SMS, programs, pages, forms, data fields, and engagement reporting.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.dotdigital.com/docs/getting-started-with-the-api
     baseURL: https://r1-api.dotdigital.com/v2
     tags:
@@ -39,7 +39,7 @@ apis:
         url: https://r1-api.dotdigital.com/swagger.json
   - name: Dotdigital v3 API
     description: The newer v3 REST API framework with unified contacts, improved REST practices, omnichannel communications, and advanced marketing automation features.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.dotdigital.com/docs/api-end-points
     baseURL: https://r1-api.dotdigital.com/v3
     tags:
@@ -60,7 +60,7 @@ apis:
         url: https://r1-api.dotdigital.com/swagger.json
   - name: Dotdigital CPaaS API
     description: Communications Platform as a Service API for omnichannel messaging including SMS, MMS, WhatsApp, and push notifications via the Dotdigital Global platform.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://docs.cpaas.dotdigital.com/
     baseURL: https://r1-api.dotdigital.com
     tags:
