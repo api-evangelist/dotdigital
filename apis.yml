@@ -74,6 +74,10 @@ apis:
       - type: Documentation
         url: https://docs.cpaas.dotdigital.com/
 common:
+  - type: VulnerabilityDisclosure
+    url: security/dotdigital-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/dotdigital-domain-security.yml
   - type: Website
     url: https://dotdigital.com
   - type: Documentation
