@@ -1,5 +1,18 @@
 name: Dotdigital
-description: Marketing automation platform with a REST API for managing contacts, email campaigns, SMS, automation programs, pages, and accessing engagement data.
+description: >-
+  Dotdigital is a UK-headquartered customer engagement platform (LSE: DOTD) whose Marketing
+  product combines email, SMS, MMS, WhatsApp, push, app messaging, chat and web personalization
+  behind one contact database. Its API estate is unusually large and unusually well published:
+  42 OpenAPI descriptions are served from a public catalog at developer.dotdigital.com/openapi
+  and enumerated in an RFC 9727 api-catalog linkset, spanning contacts, lists, segments,
+  preferences and consent, email and SMS campaigns, transactional email, programs, pages and
+  forms, insight data, ecommerce, product recommendations, scoring, and the whole CPaaS
+  omnichannel messaging stack. Two frameworks run side by side — legacy v2 at /v2/* and the
+  current v3 services at /<service>/v3/* built around unified contacts — and most integrations
+  need both. Everything authenticates with HTTP Basic API-user credentials against a mandatory
+  regional host (r1 Europe, r2 North America, r3 Asia Pacific). Dotdigital also runs a remote
+  MCP server over its developer hub and publishes webhooks, a durable Events in/out API and a
+  Data Firehose for streaming engagement data to cloud storage.
 accessModel:
   pricing: enterprise
   onboarding: unknown
@@ -15,13 +28,14 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/dotdigital.png
 url: https://raw.githubusercontent.com/api-evangelist/dotdigital/refs/heads/main/apis.yml
 created: '2026-06-13'
-modified: '2026-06-13'
+modified: '2026-08-13'
 specificationVersion: '0.19'
 type: Index
 tags:
   - Marketing Automation
   - Email Marketing
   - SMS
+  - MMS
   - WhatsApp
   - Contacts
   - Campaigns
@@ -29,11 +43,25 @@ tags:
   - Transactional Email
   - Engagement
   - Automation
+  - CPaaS
+  - Omnichannel
+  - Customer Data
+  - Consent Management
+  - Personalization
+  - Loyalty
+  - Ecommerce
+  - Events
+  - Webhooks
 apis:
   - name: Dotdigital v2 API
-    description: The legacy v2 REST API providing access to contacts, campaigns, SMS, programs, pages, forms, data fields, and engagement reporting.
+    description: >-
+      The legacy v2 REST framework, still the only home for many capabilities — email and SMS
+      campaigns, programs and enrolments, pages and forms, documents and images, segments, data
+      fields, preferences and consent, ecommerce orders, product recommendations, scoring and
+      transactional email. Contact and transactional-data operations here are marked deprecated
+      in favour of the v3 services.
     image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://developer.dotdigital.com/docs/getting-started-with-the-api
+    humanURL: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
     baseURL: https://r1-api.dotdigital.com/v2
     tags:
       - Contacts
@@ -43,38 +71,98 @@ apis:
       - Automation
       - Programs
       - Data Fields
+      - Preferences
       - Reporting
     properties:
       - type: Documentation
-        url: https://developer.dotdigital.com/docs/getting-started-with-the-api
+        url: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
+      - type: APIReference
+        url: https://marketing.developer.dotdigital.com/reference/
       - type: OpenAPI
-        url: https://r1-api.dotdigital.com/swagger.json
+        url: openapi/dotdigital-v2-api-full-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-accounts-and-utilities-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-email-contacts-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-lists-address-books-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-segments-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-contact-data-fields-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-preferences-and-subscriptions-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-email-campaigns-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-sms-campaigns-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-campaign-templates-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-transactional-email-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-programs-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-pages-and-forms-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-documents-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-images-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-ecommerce-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-product-recommendations-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-scoring-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-insight-and-transactional-data-openapi.yml
+      - type: Overlay
+        url: overlays/dotdigital-v2-api-full-overlay.yaml
   - name: Dotdigital v3 API
-    description: The newer v3 REST API framework with unified contacts, improved REST practices, omnichannel communications, and advanced marketing automation features.
+    description: >-
+      The current v3 REST framework, designed around unified contacts. Per-service paths
+      (/contacts/v3, /insightData/v3, /events/v3, /data-firehose/v3, /configuration,
+      /marketing-email) with seek pagination, a structured error envelope, and contacts
+      addressable by contact id, email or mobile number. Each v3 service also serves its own
+      generated description at <service>/v3/swagger.json on the API host.
     image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://developer.dotdigital.com/docs/api-end-points
-    baseURL: https://r1-api.dotdigital.com/v3
+    humanURL: https://marketing.developer.dotdigital.com/reference/unified-contacts
+    baseURL: https://r1-api.dotdigital.com
     tags:
       - Contacts
-      - Email
-      - SMS
-      - WhatsApp
-      - Push Notifications
-      - App Messaging
-      - Facebook Messenger
-      - Events
       - Insight Data
+      - Events
+      - Data Firehose
+      - Marketing Email
       - Automation
     properties:
       - type: Documentation
-        url: https://developer.dotdigital.com/docs/api-end-points
+        url: https://marketing.developer.dotdigital.com/docs/api-end-points
+      - type: APIReference
+        url: https://marketing.developer.dotdigital.com/reference/unified-contacts
       - type: OpenAPI
-        url: https://r1-api.dotdigital.com/swagger.json
+        url: openapi/dotdigital-contacts-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-insight-data-service-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-events-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-data-firehose-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-configuration-service-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-marketing-email-openapi.yml
+      - type: Overlay
+        url: overlays/dotdigital-contacts-overlay.yaml
   - name: Dotdigital CPaaS API
-    description: Communications Platform as a Service API for omnichannel messaging including SMS, MMS, WhatsApp, and push notifications via the Dotdigital Global platform.
+    description: >-
+      The Communications Platform as a Service estate under /cpaas — omnichannel outbound and
+      inbound messaging across SMS, MMS, WhatsApp, push, Facebook Messenger and app messaging,
+      plus chat, conversations, sessions, profiles, message rules, message history, phone number
+      validation, content, templates, analytics and the webhook registration service.
     image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.cpaas.dotdigital.com/
-    baseURL: https://r1-api.dotdigital.com
+    humanURL: https://marketing.developer.dotdigital.com/reference/omnichannel-api
+    baseURL: https://r1-api.dotdigital.com/cpaas
     tags:
       - SMS
       - MMS
@@ -82,40 +170,168 @@ apis:
       - Push Notifications
       - Omnichannel
       - Messaging
+      - Chat
+      - Webhooks
     properties:
       - type: Documentation
-        url: https://docs.cpaas.dotdigital.com/
+        url: https://marketing.developer.dotdigital.com/reference/omnichannel-api
+      - type: OpenAPI
+        url: openapi/dotdigital-omnichannel-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-cpaas-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-whatsapp-channel-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-message-rules-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-message-history-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-phone-number-validation-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-profile-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-session-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-chat-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-chat-config-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-chat-message-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-chat-presence-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-conversation-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-conversation-message-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-content-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-templates-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-analytics-openapi.yml
+      - type: OpenAPI
+        url: openapi/dotdigital-webhook-openapi.yml
+      - type: Overlay
+        url: overlays/dotdigital-omnichannel-overlay.yaml
+  - name: Dotdigital Marketing Developer Hub MCP Server
+    description: >-
+      A remote MCP server that exposes the Dotdigital OpenAPI corpus and the developer-hub
+      documentation to AI coding tools. Seven read-only tools (list-specs, list-endpoints,
+      get-endpoint, search-endpoints, get-server-variables, search, fetch). tools/list answered
+      anonymously on probe. It is a discovery surface over the contract, not a data-plane API —
+      an agent can find the right Dotdigital endpoint with it but cannot call the platform
+      through it.
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    humanURL: https://marketing.developer.dotdigital.com/docs/mcp
+    baseURL: https://marketing.developer.dotdigital.com/mcp
+    tags:
+      - MCP
+      - Agents
+      - Documentation
+      - Discovery
+    properties:
+      - type: Documentation
+        url: https://marketing.developer.dotdigital.com/docs/mcp
+      - type: MCPServer
+        url: mcp/dotdigital-mcp.yml
+      - type: ToolCrosswalk
+        url: mcp/dotdigital-tool-crosswalk.yml
 common:
-  - type: VulnerabilityDisclosure
-    url: security/dotdigital-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/dotdigital-domain-security.yml
   - type: Website
     url: https://dotdigital.com
-  - type: Documentation
+  - type: DeveloperPortal
     url: https://developer.dotdigital.com/
+  - type: Documentation
+    url: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
+  - type: APIReference
+    url: https://marketing.developer.dotdigital.com/reference/
+  - type: GettingStarted
+    url: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
+  - type: Support
+    url: https://support.dotdigital.com/en/
+  - type: HelpCenter
+    url: https://support.dotdigital.com/en/
+  - type: GitHubOrganization
+    url: https://github.com/dotmailer
   - type: GitHubOrg
     url: https://github.com/dotmailer
   - type: LinkedIn
     url: https://www.linkedin.com/company/dotdigital
-  - type: Blog
-    url: https://dotdigital.com/blog/
-  - type: Pricing
-    url: https://dotdigital.com/pricing/
-  - type: StatusPage
-    url: https://dotdigitalstatus.com
   - type: X
     url: https://x.com/dotdigital
+  - type: Blog
+    url: https://dotdigital.com/blog/
+  - type: BlogFeed
+    url: blogs/blogs.json
+  - type: Login
+    url: https://login.dotdigital.com/login.aspx
+  - type: TermsOfService
+    url: https://dotdigital.com/terms/
+  - type: PrivacyPolicy
+    url: https://dotdigital.com/privacy-policy/
+  - type: StatusPage
+    url: https://dotdigitalstatus.com
   - type: Plans
     url: plans/dotdigital-plans-pricing.yml
   - type: RateLimits
     url: rate-limits/dotdigital-rate-limits.yml
   - type: FinOps
     url: finops/dotdigital-finops.yml
-  - type: BlogFeed
-    url: blogs/blogs.json
   - type: JSONLDContext
     url: json-ld/dotdigital-context.jsonld
+  - type: OpenAPICatalog
+    url: https://developer.dotdigital.com/openapi
+  - type: Authentication
+    url: authentication/dotdigital-authentication.yml
+  - type: Conventions
+    url: conventions/dotdigital-conventions.yml
+  - type: ErrorCatalog
+    url: errors/dotdigital-error-codes.yml
+  - type: ErrorCodes
+    url: errors/dotdigital-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/dotdigital-lifecycle.yml
+  - type: ChangeLog
+    url: changelog/dotdigital-changelog.yml
+  - type: DataModel
+    url: data-model/dotdigital-data-model.yml
+  - type: Conformance
+    url: conformance/dotdigital-conformance.yml
+  - type: Compliance
+    url: https://dotdigital.com/trust-center/
+  - type: TrustCenter
+    url: security/dotdigital-trust-center.yml
+  - type: Security
+    url: https://dotdigital.com/trust-center/
+  - type: VulnerabilityDisclosure
+    url: security/dotdigital-vulnerability-disclosure.yml
+  - type: SecurityTxt
+    url: well-known/dotdigital-security.txt
+  - type: DomainSecurity
+    url: security/dotdigital-domain-security.yml
+  - type: WellKnown
+    url: well-known/dotdigital-well-known.yml
+  - type: APICatalog
+    url: well-known/dotdigital-api-catalog.json
+  - type: Packages
+    url: packages/dotdigital-packages.yml
+  - type: SDKs
+    url: packages/dotdigital-packages.yml
+  - type: Components
+    url: components/dotdigital-components.yml
+  - type: Webhooks
+    url: asyncapi/dotdigital-webhooks.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: AgenticAccess
+    url: agentic-access/dotdigital-agentic-access.yml
+  - type: LLMsTxt
+    url: llms/dotdigital-llms.txt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 155
+  pass: local-v1
