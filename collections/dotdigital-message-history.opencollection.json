@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Message History API",
+    "version": "1.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Retrieves message history for the specified profile.  Messages retrieved from the date spacified (default now), in descending time order.",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/profiles/:profileId/messages",
+        "params": [
+          {
+            "name": "profileId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the profile"
+          },
+          {
+            "name": "channelId",
+            "value": "",
+            "type": "query",
+            "description": "The id of the channel the message was sent or received on"
+          },
+          {
+            "name": "direction",
+            "value": "",
+            "type": "query",
+            "description": "The direction of the message"
+          },
+          {
+            "name": "from",
+            "value": "",
+            "type": "query",
+            "description": "The date (in UTC, ISO 8601 format) to query backwards from"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Maximum number of results to return"
+          }
+        ]
+      },
+      "docs": "Retrieves message history for the specified profile.  Messages retrieved from the date spacified (default now), in descending time order."
+    }
+  ],
+  "bundled": true
+}

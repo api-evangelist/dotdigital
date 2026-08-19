@@ -1,0 +1,174 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Webhook API",
+    "version": "1.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/webhooks",
+            "params": [
+              {
+                "name": "includeDeleted",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether deleted webhooks should be returned, default is `false` only active webhook configurations."
+              }
+            ]
+          },
+          "docs": "Retrieves the configured webhook configurations for the account."
+        },
+        {
+          "info": {
+            "name": "Create webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/cpaas/webhooks",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new webhook configuration, and start streaming events. We strongly encourage using batching, where we will send a batch of events whenever the number of events hits `macBatchSize` or events have been waitng for the `batchTimeout` in seconds, whichever occurs first will trigger the next batch to be sent.\n<br><br>\n_**Note**: Use the batching options, and only subscribe to the event types you require to maximise efficency_\n"
+        },
+        {
+          "info": {
+            "name": "Retrieves available webhook events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/webhooks/availableevents",
+            "params": [
+              {
+                "name": "includeSchemas",
+                "value": "",
+                "type": "query",
+                "description": "When set to true, schema information for each event will also be returned"
+              }
+            ]
+          },
+          "docs": "Retrieves the events you can subscribe to in a webhook and the optional filters you can use to refine event selection further."
+        },
+        {
+          "info": {
+            "name": "Get event templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/webhooks/availabletemplates"
+          },
+          "docs": "Gets a list of available events templates that the caller can use when creating webhook. Event templates are pre-defined groups of events that meet common use-cases.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieves webhook configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The webhook id"
+              },
+              {
+                "name": "includeDeleted",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether deleted webhooks should be returned"
+              }
+            ]
+          },
+          "docs": "Retrieves a single webhook configuration."
+        },
+        {
+          "info": {
+            "name": "Update webhook configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{region}-api.dotdigital.com/cpaas/webhooks/:webhookId",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The webhook id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an individual webhook configuration."
+        },
+        {
+          "info": {
+            "name": "Deletes webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{region}-api.dotdigital.com/cpaas/webhooks/:webhookId",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The webhook id"
+              }
+            ]
+          },
+          "docs": "Deletes an individual webhook."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

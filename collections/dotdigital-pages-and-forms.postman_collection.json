@@ -1,0 +1,911 @@
+{
+  "item": [
+    {
+      "id": "dd3f9bc4-2c16-4eaa-a81b-d7ef12e86073",
+      "name": "Pages and forms",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c87661f9-d4c2-4bc9-bc91-180d9cb203dd",
+          "name": "Get forms",
+          "request": {
+            "name": "Get forms",
+            "description": {
+              "content": "Gets a list of all forms in the account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "surveys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "assignedToAddressBookOnly",
+                  "value": "<boolean>",
+                  "description": "Set to true to only get surveys assigned from an address book. Set to false to only retrieve surveys that aren't assigned to an address book."
+                },
+                {
+                  "disabled": false,
+                  "key": "select",
+                  "value": "<integer>",
+                  "description": "Enter a number between 1 and 500 (0 is not a valid number). You can select a maximum of 500 results in a single request."
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "This is the number of records you want to skip."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9fb92dc3-901b-4e77-9b5b-061168dfae0d",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "surveys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assignedToAddressBookOnly",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "select",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"Event Registration Form\",\n  \"url\": \"https://r1.dotdigital-pages.com/001ln562-3411pu49\",\n  \"dateSurveyCreated\": \"2020-01-01 09:40:18.527000+00:00\",\n  \"dateSurveyModified\": \"2020-01-02 09:40:18.527000+00:00\",\n  \"state\": \"Active\",\n  \"firstActiveDate\": \"2020-01-01 09:40:18.527000+00:00\",\n  \"lastInactiveDate\": null,\n  \"scheduledStartDate\": null,\n  \"scheduledEndDate\": null,\n  \"confirmationMode\": \"Text\",\n  \"submissionMode\": \"Single\",\n  \"fieldCount\": 10,\n  \"notifyCreatorOnResponse\": false,\n  \"respondentNotificationType\": \"None\",\n  \"respondentNotificationCampaignId\": null,\n  \"isAssignedToAddressBook\": false,\n  \"assignedAddressBookTarget\": \"AllContacts\",\n  \"assignedSpecificAddressBookId\": null,\n  \"firstResponseDate\": \"2020-01-02 09:40:18.527000+00:00\",\n  \"lastResponseDate\": \"2020-01-06 09:40:18.527000+00:00\",\n  \"totalCompleteResponses\": 18,\n  \"totalCompleteResponsesInLastDay\": 1,\n  \"totalCompleteResponsesInLastWeek\": 1,\n  \"totalIncompleteResponses\": 0,\n  \"totalViews\": 19,\n  \"totalBounces\": 1,\n  \"timeToCompleteMax\": 12430747,\n  \"timeToCompleteMin\": 1,\n  \"timeToCompleteTotal\": 12432973,\n  \"sourceDirectTotal\": 0,\n  \"sourceEmailTotal\": 20,\n  \"sourceEmbeddedTotal\": 0,\n  \"sourcePopoverTotal\": 0,\n  \"sourceFacebookTotal\": 0,\n  \"sourceTwitterTotal\": 0,\n  \"sourceGooglePlusTotal\": 0,\n  \"sourceOtherTotal\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "597bae61-cdac-4073-a62b-d8024c0fec3e",
+          "name": "Get form by ID",
+          "request": {
+            "name": "Get form by ID",
+            "description": {
+              "content": "Gets a single form by its ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "surveys",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of the form, which needs to be included within the URL"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "84e55749-0bec-498e-9da3-6feee54a7a7c",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "surveys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the form, which needs to be included within the URL"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"Event Registration Form\",\n  \"url\": \"https://r1.dotdigital-pages.com/001ln562-3411pu49\",\n  \"dateSurveyCreated\": \"2020-01-01 09:40:18.527000+00:00\",\n  \"dateSurveyModified\": \"2020-01-02 09:40:18.527000+00:00\",\n  \"state\": \"Active\",\n  \"firstActiveDate\": \"2020-01-01 09:40:18.527000+00:00\",\n  \"lastInactiveDate\": null,\n  \"scheduledStartDate\": null,\n  \"scheduledEndDate\": null,\n  \"confirmationMode\": \"Text\",\n  \"submissionMode\": \"Single\",\n  \"fieldCount\": 10,\n  \"notifyCreatorOnResponse\": false,\n  \"respondentNotificationType\": \"None\",\n  \"respondentNotificationCampaignId\": null,\n  \"isAssignedToAddressBook\": false,\n  \"assignedAddressBookTarget\": \"AllContacts\",\n  \"assignedSpecificAddressBookId\": null,\n  \"firstResponseDate\": \"2020-01-01 09:40:18.527000+00:00\",\n  \"lastResponseDate\": \"2020-01-06 09:40:18.527000+00:00\",\n  \"totalCompleteResponses\": 18,\n  \"totalCompleteResponsesInLastDay\": 1,\n  \"totalCompleteResponsesInLastWeek\": 1,\n  \"totalIncompleteResponses\": 0,\n  \"totalViews\": 19,\n  \"totalBounces\": 1,\n  \"timeToCompleteMax\": 12430747,\n  \"timeToCompleteMin\": 1,\n  \"timeToCompleteTotal\": 12432973,\n  \"sourceDirectTotal\": 0,\n  \"sourceEmailTotal\": 20,\n  \"sourceEmbeddedTotal\": 0,\n  \"sourcePopoverTotal\": 0,\n  \"sourceFacebookTotal\": 0,\n  \"sourceTwitterTotal\": 0,\n  \"sourceGooglePlusTotal\": 0,\n  \"sourceOtherTotal\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a3b089b5-a95e-4bc8-b10c-09e96cd891fd",
+          "name": "Get forms with activity since date",
+          "request": {
+            "name": "Get forms with activity since date",
+            "description": {
+              "content": "Gets a list of forms in the account that have changed since the specified date",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "surveys",
+                "with-activity-since",
+                ":date"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "assignedToAddressBookOnly",
+                  "value": "<boolean>",
+                  "description": "Set to true to only get surveys assigned from an address book. Set to false to only retrieve surveys that aren't assigned to an address book."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "date",
+                  "description": "(Required) The date from which any forms with activity are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13aab66f-8bb0-4cb0-b684-49002389ea36",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "surveys",
+                    "with-activity-since",
+                    ":date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assignedToAddressBookOnly",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "date",
+                      "description": "(Required) The date from which any forms with activity are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"Event Registration Form\",\n  \"url\": \"https://r1.dotdigital-pages.com/001ln562-3411pu49\",\n  \"dateSurveyCreated\": \"2020-01-01 09:40:18.527000+00:00\",\n  \"dateSurveyModified\": \"2020-01-02 09:40:18.527000+00:00\",\n  \"state\": \"Active\",\n  \"firstActiveDate\": \"2020-01-01 09:40:18.527000+00:00\",\n  \"lastInactiveDate\": null,\n  \"scheduledStartDate\": null,\n  \"scheduledEndDate\": null,\n  \"confirmationMode\": \"Text\",\n  \"submissionMode\": \"Single\",\n  \"fieldCount\": 10,\n  \"notifyCreatorOnResponse\": false,\n  \"respondentNotificationType\": \"None\",\n  \"respondentNotificationCampaignId\": null,\n  \"isAssignedToAddressBook\": false,\n  \"assignedAddressBookTarget\": \"AllContacts\",\n  \"assignedSpecificAddressBookId\": null,\n  \"firstResponseDate\": \"2020-01-01 12:40:18.527000+00:00\",\n  \"lastResponseDate\": \"2020-01-10 09:40:18.527000+00:00\",\n  \"totalCompleteResponses\": 18,\n  \"totalCompleteResponsesInLastDay\": 1,\n  \"totalCompleteResponsesInLastWeek\": 1,\n  \"totalIncompleteResponses\": 0,\n  \"totalViews\": 19,\n  \"totalBounces\": 1,\n  \"timeToCompleteMax\": 12430747,\n  \"timeToCompleteMin\": 1,\n  \"timeToCompleteTotal\": 12432973,\n  \"sourceDirectTotal\": 0,\n  \"sourceEmailTotal\": 20,\n  \"sourceEmbeddedTotal\": 0,\n  \"sourcePopoverTotal\": 0,\n  \"sourceFacebookTotal\": 0,\n  \"sourceTwitterTotal\": 0,\n  \"sourceGooglePlusTotal\": 0,\n  \"sourceOtherTotal\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4857f167-ebdc-41ef-afd6-b6f2ae4022c0",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "surveys",
+                    "with-activity-since",
+                    ":date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assignedToAddressBookOnly",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "date",
+                      "description": "(Required) The date from which any forms with activity are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce0ac419-d4d3-4a7a-8eb7-f478616a797c",
+          "name": "Get form fields",
+          "request": {
+            "name": "Get form fields",
+            "description": {
+              "content": "Gets a list of a form's pages, each containing a list of the fields on that page",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "surveys",
+                ":id",
+                "fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of the form you want to get the fields from."
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "146b6b46-f251-424b-aff1-1fd8ce455ebb",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "surveys",
+                    ":id",
+                    "fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the form you want to get the fields from."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"name\": null,\n    \"fields\": [\n      {\n        \"id\": 15,\n        \"type\": \"email\",\n        \"text\": \"Email address\",\n        \"isRequired\": true,\n        \"defaultValue\": null,\n        \"mode\": \"singleline\",\n        \"choices\": [],\n        \"subFields\": [],\n        \"hasOtherOption\": false,\n        \"otherOptionChoiceId\": 0,\n        \"otherOptionSubFieldId\": 0,\n        \"otherOptionTextFieldId\": 0,\n        \"isAssignedToContactDataField\": true,\n        \"assignedContactDataFieldName\": \"Email\",\n        \"assignedContactDataExistsAction\": \"OverwriteData\"\n      },\n      {\n        \"id\": 9,\n        \"type\": \"radiolist\",\n        \"text\": \"Please could you select your age range from the list below:\",\n        \"isRequired\": false,\n        \"defaultValue\": null,\n        \"mode\": null,\n        \"choices\": [\n          {\n            \"id\": 2,\n            \"text\": \"Under 18\"\n          },\n          {\n            \"id\": 3,\n            \"text\": \"18-24\"\n          },\n          {\n            \"id\": 4,\n            \"text\": \"25-34\"\n          },\n          {\n            \"id\": 5,\n            \"text\": \"35-44\"\n          },\n          {\n            \"id\": 6,\n            \"text\": \"45-54\"\n          },\n          {\n            \"id\": 7,\n            \"text\": \"55-64\"\n          },\n          {\n            \"id\": 8,\n            \"text\": \"65 or Above\"\n          }\n        ],\n        \"subFields\": [],\n        \"hasOtherOption\": false,\n        \"otherOptionChoiceId\": 0,\n        \"otherOptionSubFieldId\": 0,\n        \"otherOptionTextFieldId\": 0,\n        \"isAssignedToContactDataField\": false,\n        \"assignedContactDataFieldName\": null,\n        \"assignedContactDataExistsAction\": \"OverwriteData\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16db98ca-396f-477c-800d-4763ff516f23",
+          "name": "Get form responses",
+          "request": {
+            "name": "Get form responses",
+            "description": {
+              "content": "Gets a list of all responses for a specified form",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "surveys",
+                ":id",
+                "responses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of the form to get responses from."
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dec7160b-282a-408b-8c89-1bbda996076d",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "surveys",
+                    ":id",
+                    "responses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the form to get responses from."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"email\": \"john.smith@example.com\",\n    \"started\": true,\n    \"dateStarted\": \"2020-01-01 09:40:18.527000+00:00\",\n    \"complete\": true,\n    \"dateCompleted\": \"2020-01-01 10:40:18.527000+00:00\",\n    \"givenAnswers\": [\n      {\n        \"fieldId\": 15,\n        \"subFieldId\": null,\n        \"value\": \"john.smith@example.com\"\n      },\n      {\n        \"fieldId\": 9,\n        \"subFieldId\": null,\n        \"value\": 6\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3236b3f6-95a5-420e-9384-c667ad58ca6c",
+          "name": "Get form responses with activity since date",
+          "request": {
+            "name": "Get form responses with activity since date",
+            "description": {
+              "content": "Gets a list of responses that have changed since the specified date",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "surveys",
+                ":id",
+                "responses",
+                "with-activity-since",
+                ":date"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of the form to get responses from."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "date",
+                  "description": "(Required) The date from which responses with activity are returned. Format: ISO 8601."
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f11299c7-9895-4efd-bc36-e1dbf0244278",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "surveys",
+                    ":id",
+                    "responses",
+                    "with-activity-since",
+                    ":date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the form to get responses from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "date",
+                      "description": "(Required) The date from which responses with activity are returned. Format: ISO 8601."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"email\": \"john.smith@example.com\",\n  \"started\": true,\n  \"dateStarted\": \"2020-01-01 09:40:18.527000+00:00\",\n  \"complete\": true,\n  \"dateCompleted\": \"2020-01-01 09:40:18.527000+00:00\",\n  \"givenAnswers\": [\n    {\n      \"fieldId\": 15,\n      \"subFieldId\": null,\n      \"value\": \"john.smith@example.com\"\n    },\n    {\n      \"fieldId\": 9,\n      \"subFieldId\": null,\n      \"value\": 6\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "24b0c80c-cc9c-4502-bcec-c5ae179ca32d",
+    "name": "Pages and forms",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Retrieve pages and forms created in the account. Use this API to list all forms, retrieve a single form by ID, fetch forms updated since a given date, inspect a form's field structure, and retrieve responses — either all responses for a form or those updated since a specific date.\n",
+      "type": "text/plain"
+    }
+  }
+}

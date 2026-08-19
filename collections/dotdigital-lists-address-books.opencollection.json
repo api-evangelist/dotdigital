@@ -1,0 +1,696 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lists / Address books",
+    "version": "2.0.2"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Lists / Address books",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get campaigns sent to address book or segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/address-books/:id/campaigns",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The ID of the address book or segment"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "he select parameter requires a number between 1 and 1000 (0 is not a valid number). You may only select a maximum of 1000 results in a single request. This parameter goes within the URL."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The skip parameter should be used in tandem with the select parameter when wanting to iterate through a whole data set. If you want to select the next 1000 records you should set the select parameter to 1000 and the skip parameter to 1000, which will return records 1001 to 2000. You should continue to do this until 0 records are returned to retrieve the whole data set."
+              }
+            ]
+          },
+          "docs": "Gets any campaigns that have been sent to an address book or a segment"
+        },
+        {
+          "info": {
+            "name": "Get lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/address-books",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set"
+              }
+            ]
+          },
+          "docs": "Gets all lists / address books"
+        },
+        {
+          "info": {
+            "name": "Create list",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/address-books",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an list / address book"
+        },
+        {
+          "info": {
+            "name": "Get list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/address-books/:id",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The ID of the list / address book"
+              }
+            ]
+          },
+          "docs": "This operation retrieves an list / address book by its id"
+        },
+        {
+          "info": {
+            "name": "Update list",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{region}-api.dotdigital.com/v2/address-books/:id",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The ID of the address book"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an list / address book by id"
+        },
+        {
+          "info": {
+            "name": "Delete list",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{region}-api.dotdigital.com/v2/address-books/:id",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The ID of the list / address book"
+              }
+            ]
+          },
+          "docs": "Deletes an list / address book by id"
+        },
+        {
+          "info": {
+            "name": "Get private lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/address-books/private",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set"
+              }
+            ]
+          },
+          "docs": "Gets all private lists / address books"
+        },
+        {
+          "info": {
+            "name": "Get public lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/address-books/public",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set"
+              }
+            ]
+          },
+          "docs": "Gets all public lists / address books"
+        },
+        {
+          "info": {
+            "name": "Get unsubscribed from list since date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/address-books/:id/contacts/unsubscribed-since/:date",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The id of the list / address book"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "The date from which any unsubscribed contacts are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set"
+              }
+            ]
+          },
+          "docs": "Gets a list of contacts who have unsubscribed since a given date from a given list / address book"
+        },
+        {
+          "info": {
+            "name": "Unsubscribe contact from list",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/address-books/:id/contacts/unsubscribe",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The id of the list / address book"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unsubscribes contact from a given list / address book"
+        },
+        {
+          "info": {
+            "name": "Resubscribe contact to list",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/address-books/:id/contacts/resubscribe",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The id of the list / address book"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resubscribes a previously unsubscribed contact to a given list / address book"
+        },
+        {
+          "info": {
+            "name": "Resubscribe contact to list with no challenge",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/address-books/:id/contacts/resubscribe-with-no-challenge",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The ID of the list / address book, which needs to be included within the URL"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resubscribes a previously unsubscribed contact to a specific list / address book without sending a challenge email"
+        },
+        {
+          "info": {
+            "name": "Delete contact from list",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{region}-api.dotdigital.com/v2/address-books/:addressBookId/contacts/:contactId",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "addressBookId",
+                "value": "0",
+                "type": "path",
+                "description": "The id of the list / address book"
+              },
+              {
+                "name": "contactId",
+                "value": "0",
+                "type": "path",
+                "description": "The id of the contact"
+              }
+            ]
+          },
+          "docs": "Deletes a contact from a given list / address book"
+        },
+        {
+          "info": {
+            "name": "Delete contacts from list",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/address-books/:addressBookId/contacts/delete",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "addressBookId",
+                "value": "0",
+                "type": "path",
+                "description": "The id of the list / address book"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes multiple contacts from an list / address book"
+        },
+        {
+          "info": {
+            "name": "Delete all contacts from list",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/address-books/:addressBookId/contacts/delete-all",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "addressBookId",
+                "value": "0",
+                "type": "path",
+                "description": "The id of the list / address book"
+              }
+            ]
+          },
+          "docs": "Deletes all contacts from a given list / address book"
+        },
+        {
+          "info": {
+            "name": "Get contacts opted into a preference and an address book",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/address-books/:addressBookId/contacts/with-preference/:preferenceId",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "addressBookId",
+                "value": "0",
+                "type": "path",
+                "description": "The ID of the address book to which contacts must belong."
+              },
+              {
+                "name": "preferenceId",
+                "value": "0",
+                "type": "path",
+                "description": "The ID of the preference to which contacts must be opted in."
+              },
+              {
+                "name": "minContactID",
+                "value": "",
+                "type": "query",
+                "description": "The minimum contact ID to query on, starting from 0"
+              }
+            ]
+          },
+          "docs": "Gets contacts who are opted into a given preference and a given address book"
+        },
+        {
+          "info": {
+            "name": "Get contacts with modified preference opt-in in address book since date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/address-books/:addressBookId/contacts/with-preference/:preferenceId/opt-ins-since/:date",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "addressBookId",
+                "value": "0",
+                "type": "path",
+                "description": "The ID of the address book to which contacts must belong."
+              },
+              {
+                "name": "preferenceId",
+                "value": "0",
+                "type": "path",
+                "description": "The ID of the preference to which contacts must be opted in."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "The earliest date that returned contacts must have modified their opt-in status for the preference in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+              },
+              {
+                "name": "minContactID",
+                "value": "",
+                "type": "query",
+                "description": "The minimum contact ID to query on, starting from 0"
+              }
+            ]
+          },
+          "docs": "Gets the top 1000 contacts who have had a specific preference opt-in status modified since a given date, in a given address book"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Lists / Address books - Deprecated",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bulk import contacts in address book with merge option",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/address-books/:id/contacts/import/with-merge-option/:mergeOption",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The address book id"
+              },
+              {
+                "name": "mergeOption",
+                "value": "",
+                "type": "path",
+                "description": "For Merge options: you can update all data fields by entering ''0'', avoid updating data fields that contain blank values by entering ''1'', or you can choose not to update data fields that contain values by entering ''2''"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk creates, or bulk updates, contacts in an address book with merge option"
+        },
+        {
+          "info": {
+            "name": "Get modified contacts in address book since date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/address-books/:id/contacts/modified-since/:date",
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The ID of the address book or segment"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "The date from which any modified contacts are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+              },
+              {
+                "name": "withFullData",
+                "value": "",
+                "type": "query",
+                "description": "Can be set to 'true' to retrieve the contacts along with their full contact data fields"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "he select parameter requires a number between 1 and 1000 (0 is not a valid number). You may only select a maximum of 1000 results in a single request. This parameter goes within the URL."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The skip parameter should be used in tandem with the select parameter when wanting to iterate through a whole data set. If you want to select the next 1000 records you should set the select parameter to 1000 and the skip parameter to 1000, which will return records 1001 to 2000. You should continue to do this until 0 records are returned to retrieve the whole data set."
+              }
+            ]
+          },
+          "docs": "Gets a list of contacts who were modified since a given date, in a given address book or segment"
+        },
+        {
+          "info": {
+            "name": "Get contacts from address book",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/address-books/:id/contacts",
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The ID of the address book or segment"
+              },
+              {
+                "name": "withFullData",
+                "value": "",
+                "type": "query",
+                "description": "Can be set to 'true' to retrieve the contacts along with their full contact data fields"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "he select parameter requires a number between 1 and 1000 (0 is not a valid number). You may only select a maximum of 1000 results in a single request. This parameter goes within the URL."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The skip parameter should be used in tandem with the select parameter when wanting to iterate through a whole data set. If you want to select the next 1000 records you should set the select parameter to 1000 and the skip parameter to 1000, which will return records 1001 to 2000. You should continue to do this until 0 records are returned to retrieve the whole data set."
+              }
+            ]
+          },
+          "docs": "Gets a list of contacts in a given address book or segment by id"
+        },
+        {
+          "info": {
+            "name": "Add contact to address book",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/address-books/:id/contacts",
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The id of the address book"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a contact to a given address book."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

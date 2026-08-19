@@ -1,0 +1,737 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Insight data service",
+    "version": "3.3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bulk imports Insight data",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{region}-api.dotdigital.com/insightData/v3/import",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Imports a batch of Insight data records into a collection and upserts them. This either creates new records or updates already existing records. This is an asynchronous operation and you need to check when it is complete by calling **getImportStatus**\n\n*Notes:*\n* *If the Insight data collection does not exist it will be created*\n* *If targeting a **contact** scoped Insight collection, then you **must** provide a **contactIdentity** on each record*"
+    },
+    {
+      "info": {
+        "name": "Retrieve the status of a Insight data import request",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/insightData/v3/import/:importId",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "importId",
+            "value": "",
+            "type": "path",
+            "description": "The import id you want the status for"
+          }
+        ]
+      },
+      "docs": "Retrieves the status of a Insight data import request and the results if available."
+    },
+    {
+      "info": {
+        "name": "Retrieve the status of an asynchronous request",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/insightData/v3/async/:jobId",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "jobId",
+            "value": "",
+            "type": "path",
+            "description": "The async job id you want the status for"
+          }
+        ]
+      },
+      "docs": "Retrieves the status of an asynchronous request and the results if available, such as emptying or deleting collections."
+    },
+    {
+      "info": {
+        "name": "Lists all Insight data collections",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/insightData/v3/collections",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ]
+      },
+      "docs": "Retrieves a list of Insight data collections used at both account and contact level"
+    },
+    {
+      "info": {
+        "name": "Creates an Insight data collection",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{region}-api.dotdigital.com/insightData/v3/collections/:collectionName",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "collectionName",
+            "value": "",
+            "type": "path",
+            "description": "Insight data collection name"
+          },
+          {
+            "name": "collectionScope",
+            "value": "",
+            "type": "query",
+            "description": "The scope the collection applies to, either account level or contact level"
+          },
+          {
+            "name": "collectionType",
+            "value": "",
+            "type": "query",
+            "description": "Type of data the collection holds; **custom** must be used when adding custom data"
+          }
+        ]
+      },
+      "docs": "Creates an empty Insight data collection. If the collection already exists a successful result will be returned.<br/><br/>\n**Note:** You can create a maximum of 1000 Insight data collections."
+    },
+    {
+      "info": {
+        "name": "Deletes an Insight data collection",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/insightData/v3/collections/:collectionName",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "collectionName",
+            "value": "",
+            "type": "path",
+            "description": "Insight data collection name"
+          }
+        ]
+      },
+      "docs": "Requests a delete of a specified Insight data collection and all records for either an account scoped collection or for all contacts when referencing an contact scoped collection.<br/><br/>\n**Notes:**\n* The deletion is asynchronous progress can be monitored by calling [getAsyncStatus](/reference/getasyncstatus)\n* If you delete a contact scoped Insight data collection then it is deleted for all contacts!"
+    },
+    {
+      "info": {
+        "name": "Deletes multiple records from an account scoped Insight Data collection.",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/insightData/v3/accounts/:collectionName/deleteRecords",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "collectionName",
+            "value": "",
+            "type": "path",
+            "description": "The Insight data collection name."
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Delete from 1 to 5000 records from a single account scoped Insight Data collection in a single call. This call can be used when you need to remove many records from a collection but not all.\n"
+    },
+    {
+      "info": {
+        "name": "Empties an Insight data collection",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/insightData/v3/collections/:collectionName/empty",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "collectionName",
+            "value": "",
+            "type": "path",
+            "description": "Insight data collection name"
+          }
+        ]
+      },
+      "docs": "Deletes all records from the specified Insight data collection but not the collection itself, so further data can be added without removing dependencies to product recommendations, campaigns, or segments. <br/><br/>\n**Notes:**\n* The deletion is asynchronous progress can be monitored by calling [getAsyncStatus](/reference/getasyncstatus)\n* If you empty a contact scoped Insight data collection then all data for all contacts in that collection will be removed"
+    },
+    {
+      "info": {
+        "name": "Gets the JSON schema for an Insight data collection",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/insightData/v3/collections/:collectionName/schema",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "collectionName",
+            "value": "",
+            "type": "path",
+            "description": "Insight data collection name"
+          }
+        ]
+      },
+      "docs": "Gets the schema for an Insight data collection.\n\n*Note: All records added to the collection must adhere to this schema, but are allowed to extend it.*"
+    },
+    {
+      "info": {
+        "name": "List account Insight data collections",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/insightData/v3/account",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ]
+      },
+      "docs": "Retrieves a list of all Insight data collections for an account"
+    },
+    {
+      "info": {
+        "name": "Retrieves records from an accounts Insight data collection",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/insightData/v3/account/:collectionName",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "collectionName",
+            "value": "",
+            "type": "path",
+            "description": "Insight data collection name"
+          },
+          {
+            "name": "~modified",
+            "value": "",
+            "type": "query",
+            "description": "Filter by last modified date.<br/>\n***Note:***\n* The date must be in ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601))"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Maximum number of records to retrieve per page"
+          },
+          {
+            "name": "marker",
+            "value": "",
+            "type": "query",
+            "description": "Pagination marker to retrieve the data from"
+          }
+        ]
+      },
+      "docs": "Retrieve all records from an Insight data collection<br><br>*Note: All data is returned in ascending order*"
+    },
+    {
+      "info": {
+        "name": "Retrieve single record from an account Insight data collection",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/insightData/v3/account/:collectionName/:recordId",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "collectionName",
+            "value": "",
+            "type": "path",
+            "description": "Insight data collection name"
+          },
+          {
+            "name": "recordId",
+            "value": "",
+            "type": "path",
+            "description": "Unique ID for the Insight data record"
+          }
+        ]
+      },
+      "docs": "Retrieve single record from an account Insight data collection"
+    },
+    {
+      "info": {
+        "name": "Upsert record into an account Insight data collection",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{region}-api.dotdigital.com/insightData/v3/account/:collectionName/:recordId",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "collectionName",
+            "value": "",
+            "type": "path",
+            "description": "Insight data collection name"
+          },
+          {
+            "name": "recordId",
+            "value": "",
+            "type": "path",
+            "description": "Unique ID for the Insight data record"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Updates or creates a record in a specified Insight data collection"
+    },
+    {
+      "info": {
+        "name": "Delete record from an account Insight data collection",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/insightData/v3/account/:collectionName/:recordId",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "collectionName",
+            "value": "",
+            "type": "path",
+            "description": "Insight data collection name"
+          },
+          {
+            "name": "recordId",
+            "value": "",
+            "type": "path",
+            "description": "Unique ID for the Insight data record"
+          }
+        ]
+      },
+      "docs": "Deletes a single record from a specified Insight data collection"
+    },
+    {
+      "info": {
+        "name": "Retrieve data for contact-scoped Insight data collection",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/insightData/v3/contacts/:collectionName",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "collectionName",
+            "value": "",
+            "type": "path",
+            "description": "Insight data collection name"
+          },
+          {
+            "name": "~modified",
+            "value": "",
+            "type": "query",
+            "description": "Filter by last modified date.<br/>\n***Note:***\n* The date must be in ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601))"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Maximum number of records to retrieve per page"
+          },
+          {
+            "name": "marker",
+            "value": "",
+            "type": "query",
+            "description": "Pagination marker to retrieve the data from"
+          }
+        ]
+      },
+      "docs": "Retrieves records from across all contacts for a contacts scoped Insight data collection<br><br>\n***Note:** All data is returned in ascending order*"
+    },
+    {
+      "info": {
+        "name": "List Insight data collections for a contact",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/insightData/v3/contacts/:identifier/:value",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "identifier",
+            "value": "",
+            "type": "path",
+            "description": "The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+          },
+          {
+            "name": "value",
+            "value": "",
+            "type": "path",
+            "description": "The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+          }
+        ]
+      },
+      "docs": "Retrieves a list of Insight Data collections for a contact using a specific identifier"
+    },
+    {
+      "info": {
+        "name": "Retrieve records for a contact from Insight data collection",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/insightData/v3/contacts/:identifier/:value/:collectionName",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "identifier",
+            "value": "",
+            "type": "path",
+            "description": "The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+          },
+          {
+            "name": "value",
+            "value": "",
+            "type": "path",
+            "description": "The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+          },
+          {
+            "name": "collectionName",
+            "value": "",
+            "type": "path",
+            "description": "Insight data collection name"
+          },
+          {
+            "name": "~modified",
+            "value": "",
+            "type": "query",
+            "description": "Filter by last modified date.<br/>\n***Note:***\n* The date must be in ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601))"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Maximum number of records to retrieve per page"
+          },
+          {
+            "name": "marker",
+            "value": "",
+            "type": "query",
+            "description": "Pagination marker to retrieve the data from"
+          }
+        ]
+      },
+      "docs": "Retrieves records from a specified Insight data collection for a contact<br><br>*Note: All data is returned in ascending order*"
+    },
+    {
+      "info": {
+        "name": "Deletes multiple records from an contact scoped Insight Data collection.",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/insightData/v3/contacts/:identifier/:value/:collectionName/deleteRecords",
+        "params": [
+          {
+            "name": "identifier",
+            "value": "",
+            "type": "path",
+            "description": "The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+          },
+          {
+            "name": "value",
+            "value": "",
+            "type": "path",
+            "description": "The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+          },
+          {
+            "name": "collectionName",
+            "value": "",
+            "type": "path",
+            "description": "The Insight data collection name."
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Delete from 1 to 5000 records from a single contact scoped Insight Data collection in a single call. This call can be used when you need to remove many records from a collection but not all.\n"
+    },
+    {
+      "info": {
+        "name": "Empty Insight data collection for a contact",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/insightData/v3/contacts/:identifier/:value/:collectionName/empty",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "identifier",
+            "value": "",
+            "type": "path",
+            "description": "The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+          },
+          {
+            "name": "value",
+            "value": "",
+            "type": "path",
+            "description": "The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+          },
+          {
+            "name": "collectionName",
+            "value": "",
+            "type": "path",
+            "description": "Insight data collection name"
+          }
+        ]
+      },
+      "docs": "Deletes all records from a specified Insight data collection for a single contact. The collection itself is not deleted; this allows new data to be added without affecting data dependencies.<br/><br/>\n**Notes:**\n* The deletion is asynchronous progress can be monitored by calling [getAsyncStatus](/reference/getasyncstatus)"
+    },
+    {
+      "info": {
+        "name": "Retrieve Insight data record for a contact",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/insightData/v3/contacts/:identifier/:value/:collectionName/:recordId",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "identifier",
+            "value": "",
+            "type": "path",
+            "description": "The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+          },
+          {
+            "name": "value",
+            "value": "",
+            "type": "path",
+            "description": "The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+          },
+          {
+            "name": "collectionName",
+            "value": "",
+            "type": "path",
+            "description": "Insight data collection name"
+          },
+          {
+            "name": "recordId",
+            "value": "",
+            "type": "path",
+            "description": "Unique ID for the Insight data record"
+          }
+        ]
+      },
+      "docs": "Retrieves a single record from a specified Insight data collection for a contact"
+    },
+    {
+      "info": {
+        "name": "Upsert record into Insight data collection for a contact",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{region}-api.dotdigital.com/insightData/v3/contacts/:identifier/:value/:collectionName/:recordId",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "identifier",
+            "value": "",
+            "type": "path",
+            "description": "The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+          },
+          {
+            "name": "value",
+            "value": "",
+            "type": "path",
+            "description": "The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+          },
+          {
+            "name": "collectionName",
+            "value": "",
+            "type": "path",
+            "description": "Insight data collection name"
+          },
+          {
+            "name": "recordId",
+            "value": "",
+            "type": "path",
+            "description": "Unique ID for the Insight data record"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Updates or creates a record in a specified Insight data collection for a contact"
+    },
+    {
+      "info": {
+        "name": "Delete record from Insight data collection for a contact",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/insightData/v3/contacts/:identifier/:value/:collectionName/:recordId",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "identifier",
+            "value": "",
+            "type": "path",
+            "description": "The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+          },
+          {
+            "name": "value",
+            "value": "",
+            "type": "path",
+            "description": "The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+          },
+          {
+            "name": "collectionName",
+            "value": "",
+            "type": "path",
+            "description": "Insight data collection name"
+          },
+          {
+            "name": "recordId",
+            "value": "",
+            "type": "path",
+            "description": "Unique ID for the Insight data record"
+          }
+        ]
+      },
+      "docs": "Deletes a single record from a specified Insight data collection for a contact"
+    }
+  ],
+  "bundled": true
+}

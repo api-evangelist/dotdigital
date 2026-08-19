@@ -1,0 +1,445 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Preferences and subscriptions",
+    "version": "2.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Preferences and subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Unsubscribe contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/unsubscribe",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unsubscribes contact from account"
+        },
+        {
+          "info": {
+            "name": "Bulk suppress contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/suppress-contacts",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Suppresses a batch of contacts from an account"
+        },
+        {
+          "info": {
+            "name": "Resubscribe contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/resubscribe",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resubscribes a previously unsubscribed contact"
+        },
+        {
+          "info": {
+            "name": "Resubscribe contact with no challenge",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/resubscribe-with-no-challenge",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resubscribes a previously unsubscribed contact without sending a challenge email"
+        },
+        {
+          "info": {
+            "name": "Get suppressed contacts since date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/suppressed-since/:date",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "The date from which any suppressed contacts are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set"
+              }
+            ]
+          },
+          "docs": "Gets a list of suppressed contacts after a given date along with the reason for suppression"
+        },
+        {
+          "info": {
+            "name": "Get subscriptions for contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/:email/subscriptions",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path",
+                "description": "The email address of the contact"
+              }
+            ]
+          },
+          "docs": "Gets all subscriptions for a contact"
+        },
+        {
+          "info": {
+            "name": "Get unsubscribed contacts since date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/unsubscribed-since/:date",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "The date from which any suppressed contacts are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set"
+              }
+            ]
+          },
+          "docs": "Gets a list of unsubscribed contacts who unsubscribed after a given date"
+        },
+        {
+          "info": {
+            "name": "Get preferences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/preferences",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Gets all preferences and preference categories"
+        },
+        {
+          "info": {
+            "name": "Create preference",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/preferences",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new preference or a new preference category"
+        },
+        {
+          "info": {
+            "name": "Update preference",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{region}-api.dotdigital.com/v2/preferences/:id",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a preference or preference category by id"
+        },
+        {
+          "info": {
+            "name": "Delete preference",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{region}-api.dotdigital.com/v2/preferences/:id",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a preference or preference category by id"
+        },
+        {
+          "info": {
+            "name": "Get modified preferences since date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/preferences/modified-since/:date",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "The start date from which you want to get modified preferences in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+              }
+            ]
+          },
+          "docs": "Gets all the preferences and preference categories that have been modified since a given date"
+        },
+        {
+          "info": {
+            "name": "Get preferences for contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/:contactIdentifier/preferences",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "contactIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "Either the contact id or email address of the contact"
+              }
+            ]
+          },
+          "docs": "Gets all preferences for the account and indicates those that a given contact is opted into"
+        },
+        {
+          "info": {
+            "name": "Set preferences for contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/:contactIdentifier/preferences",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "contactIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "Either the contact id or email address of the contact"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Opts in a given contact to preferences, or opts out a given contact from preferences"
+        },
+        {
+          "info": {
+            "name": "Get contacts opted into a preference",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/with-preference/:preferenceId",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "preferenceId",
+                "value": "0",
+                "type": "path",
+                "description": "The ID of the preference to which contacts must be opted in."
+              },
+              {
+                "name": "minContactID",
+                "value": "",
+                "type": "query",
+                "description": "The minimum contact ID to query on, starting from 0"
+              }
+            ]
+          },
+          "docs": "Gets contacts who are opted into a given preference"
+        },
+        {
+          "info": {
+            "name": "Get contacts with modified preference opt-in since date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/with-preference/:preferenceId/opt-ins-since/:date",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "preferenceId",
+                "value": "0",
+                "type": "path",
+                "description": "The ID of the preference to which contacts must be opted in."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "The earliest date that returned contacts must have modified their opt-in status for the preference in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+              },
+              {
+                "name": "minContactID",
+                "value": "",
+                "type": "query",
+                "description": "The minimum contact ID to query on, starting from 0"
+              }
+            ]
+          },
+          "docs": "Gets the top 1000 contacts who have had their specified preference opt-in status modified since a given date"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

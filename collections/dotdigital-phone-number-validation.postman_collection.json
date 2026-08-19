@@ -1,0 +1,1033 @@
+{
+  "item": [
+    {
+      "id": "ef6f7a6d-62f8-41e8-8650-c64b8de73d48",
+      "name": "Single number",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cc584aa2-4a84-4ce9-a0c5-e964d3e7e70e",
+          "name": "Validate a single number",
+          "request": {
+            "name": "Validate a single number",
+            "description": {
+              "content": "Validates a single phone number.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cpaas",
+                "phonevalidation",
+                "single"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "phoneNumber",
+                  "value": "<string>",
+                  "description": "(Required) Number of phone to validate. This can be in local format if the 'country' parameter is also supplied."
+                },
+                {
+                  "disabled": false,
+                  "key": "countryCode",
+                  "value": "<string>",
+                  "description": "Optional ISO 3166-1 alpha-2 or aplha-3 country code in CAPITALS. You must provide this if the number is in local format."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "652d6f5b-1e0f-4a8e-b3cf-3fde40dcce35",
+              "name": "Validation result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "phonevalidation",
+                    "single"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "phoneNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countryCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"countryIdd\": \"44\",\n  \"phoneNumber\": \"string\",\n  \"status\": \"CountryMismatch\",\n  \"networkDetails\": {\n    \"isPorted\": true,\n    \"mccmnc\": \"23430\",\n    \"networkName\": \"3\",\n    \"networkPrefix\": \"7770\",\n    \"portedFromNetworkName\": \"O2 (Telefonica UK Ltd)\",\n    \"roaming\": {\n      \"countryCode\": \"GB\",\n      \"countryIdd\": \"44\",\n      \"countryName\": \"United Kingdom\",\n      \"networkName\": \"Vodafone UK\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "142729a2-d837-4bae-80f5-93e63be4aa10",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "phonevalidation",
+                    "single"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "phoneNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countryCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4feaa1f8-a9ef-47c3-965b-537917715231",
+      "name": "Bulk validation",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "99103ed2-fc22-4194-afde-e2312746affc",
+          "name": "List bulk validation jobs.",
+          "request": {
+            "name": "List bulk validation jobs.",
+            "description": {
+              "content": "Gets a list of bulk phone number validation jobs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cpaas",
+                "phonevalidation",
+                "bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22f823fa-6c91-4fe0-a622-84e19cedb6db",
+              "name": "Validation result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "phonevalidation",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"apiSpaceId\": \"1344aba6-a68d-4ebe-9010-5567e7ba3b25\",\n    \"chargeableLiveInfoCount\": 0,\n    \"countryIsoCode\": \"gbr\",\n    \"created\": \"2025-08-04T13:43:13.91Z\",\n    \"csvDelimiter\": \",\",\n    \"filePath\": \"https://content-cpaas.dotdigital.com/apispaces/1344aba6-a68d-4ebe-9010-5567e7ba3b25/content/5ef36c96-15d2-4b44-a92c-34ac98187ff9\",\n    \"filename\": \"Contacts - Example.csv\",\n    \"hasHeader\": true,\n    \"invalidCount\": 0,\n    \"jobId\": 12547,\n    \"liveInfoCount\": 0,\n    \"minRetention\": \"2025-09-03T13:43:13.9Z\",\n    \"numberColumnName\": \"Mobile\",\n    \"percentComplete\": 100,\n    \"phoneNumberCount\": 0,\n    \"status\": \"Failed\",\n    \"statusFlag\": \"NotDefined\",\n    \"updated\": \"2025-08-04T13:43:15.41Z\",\n    \"userId\": 0\n  },\n  {\n    \"apiSpaceId\": \"1344aba6-a68d-4ebe-9010-5567e7ba3b25\",\n    \"chargeableLiveInfoCount\": 0,\n    \"countryIsoCode\": \"gbr\",\n    \"created\": \"2025-08-04T13:43:13.91Z\",\n    \"csvDelimiter\": \",\",\n    \"filePath\": \"https://content-cpaas.dotdigital.com/apispaces/1344aba6-a68d-4ebe-9010-5567e7ba3b25/content/5ef36c96-15d2-4b44-a92c-34ac98187ff9\",\n    \"filename\": \"Contacts - Example.csv\",\n    \"hasHeader\": true,\n    \"invalidCount\": 0,\n    \"jobId\": 12547,\n    \"liveInfoCount\": 0,\n    \"minRetention\": \"2025-09-03T13:43:13.9Z\",\n    \"numberColumnName\": \"Mobile\",\n    \"percentComplete\": 100,\n    \"phoneNumberCount\": 0,\n    \"status\": \"Failed\",\n    \"statusFlag\": \"NotDefined\",\n    \"updated\": \"2025-08-04T13:43:15.41Z\",\n    \"userId\": 0\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38195936-21e8-4747-a6bb-1a8cd80aabe3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "phonevalidation",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ef2824b-cb8c-47a8-8264-45f16d5bbc58",
+          "name": "Bulk validate numbers",
+          "request": {
+            "name": "Bulk validate numbers",
+            "description": {
+              "content": "Queues a bulk phone number validation request with a CSV file containing the numbers to be validated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cpaas",
+                "phonevalidation",
+                "bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "country",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) The country for the bulk validation in ISO 3166-1 alpha-3 format."
+                },
+                {
+                  "key": "csv",
+                  "type": "file",
+                  "description": "(Required) The CSV file with mobile numbers to be validated."
+                },
+                {
+                  "key": "isHeader",
+                  "value": "<boolean>",
+                  "type": "text",
+                  "description": "(Required) `true` if the CSV file has a header row."
+                },
+                {
+                  "key": "isInternational",
+                  "value": "<boolean>",
+                  "type": "text",
+                  "description": "(Required) `true` if all numbers in the file are in international format."
+                },
+                {
+                  "key": "phoneField",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) The name of the field that contains the mobile number to be validated."
+                },
+                {
+                  "key": "separator",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) The separator used between fields in the CSV. (This can only be one of comma,semicolon,tab)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "13777f68-c678-498d-ae40-32c500140985",
+              "name": "Job accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "phonevalidation",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The country for the bulk validation in ISO 3166-1 alpha-3 format.",
+                        "type": "text/plain"
+                      },
+                      "key": "country",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The CSV file with mobile numbers to be validated.",
+                        "type": "text/plain"
+                      },
+                      "key": "csv",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) `true` if the CSV file has a header row.",
+                        "type": "text/plain"
+                      },
+                      "key": "isHeader",
+                      "value": "<boolean>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) `true` if all numbers in the file are in international format.",
+                        "type": "text/plain"
+                      },
+                      "key": "isInternational",
+                      "value": "<boolean>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The name of the field that contains the mobile number to be validated.",
+                        "type": "text/plain"
+                      },
+                      "key": "phoneField",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The separator used between fields in the CSV. (This can only be one of comma,semicolon,tab)",
+                        "type": "text/plain"
+                      },
+                      "key": "separator",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "4523",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d25192f9-f3bd-4e79-993d-80e01a5354cf",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "phonevalidation",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The country for the bulk validation in ISO 3166-1 alpha-3 format.",
+                        "type": "text/plain"
+                      },
+                      "key": "country",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The CSV file with mobile numbers to be validated.",
+                        "type": "text/plain"
+                      },
+                      "key": "csv",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) `true` if the CSV file has a header row.",
+                        "type": "text/plain"
+                      },
+                      "key": "isHeader",
+                      "value": "<boolean>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) `true` if all numbers in the file are in international format.",
+                        "type": "text/plain"
+                      },
+                      "key": "isInternational",
+                      "value": "<boolean>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The name of the field that contains the mobile number to be validated.",
+                        "type": "text/plain"
+                      },
+                      "key": "phoneField",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The separator used between fields in the CSV. (This can only be one of comma,semicolon,tab)",
+                        "type": "text/plain"
+                      },
+                      "key": "separator",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "15feca04-7cbf-4dd9-90ff-6470e07dad75",
+          "name": "Get bulk job details",
+          "request": {
+            "name": "Get bulk job details",
+            "description": {
+              "content": "Gets the details and status of a bulk phone number validation job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cpaas",
+                "phonevalidation",
+                "bulk",
+                ":jobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "jobId",
+                  "description": "(Required) The unqiue job identifier for the async bulk phone number validation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6b8c1f65-e410-44aa-adc2-d2dfbaba065e",
+              "name": "Validation result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "phonevalidation",
+                    "bulk",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "jobId",
+                      "description": "(Required) The unqiue job identifier for the async bulk phone number validation"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiSpaceId\": \"1344aba6-a68d-4ebe-9010-5567e7ba3b25\",\n  \"chargeableLiveInfoCount\": 0,\n  \"countryIsoCode\": \"gbr\",\n  \"created\": \"2025-08-04T13:43:13.91Z\",\n  \"csvDelimiter\": \",\",\n  \"filePath\": \"https://content-cpaas.dotdigital.com/apispaces/1344aba6-a68d-4ebe-9010-5567e7ba3b25/content/5ef36c96-15d2-4b44-a92c-34ac98187ff9\",\n  \"filename\": \"Contacts - Example.csv\",\n  \"hasHeader\": true,\n  \"invalidCount\": 0,\n  \"jobId\": 12547,\n  \"liveInfoCount\": 0,\n  \"minRetention\": \"2025-09-03T13:43:13.9Z\",\n  \"numberColumnName\": \"Mobile\",\n  \"percentComplete\": 100,\n  \"phoneNumberCount\": 0,\n  \"status\": \"Failed\",\n  \"statusFlag\": \"NotDefined\",\n  \"updated\": \"2025-08-04T13:43:15.41Z\",\n  \"userId\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74c58458-3196-4726-b5f2-f793009320e0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "phonevalidation",
+                    "bulk",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "jobId",
+                      "description": "(Required) The unqiue job identifier for the async bulk phone number validation"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "433c5d51-283b-43b0-bd52-ebd36aec5950",
+          "name": "Get bulk job results",
+          "request": {
+            "name": "Get bulk job results",
+            "description": {
+              "content": "Gets the results file of a successful bulk phone number validation job.\n\n*Note: Failed or incomplete jobs will return no data!*\n\nOutput CSV file includes:\n* Phone Number\n* Original Phone Number\n* Status\n* MCCMNC\n* Network Name\n* Network Prefix\n* Country IDD\n* Is Ported\n* Ported From Network Name\n* Roaming Network Name\n* Roaming Network Prefix\n* Roaming Country IsoCode\n* Roaming Country IDD\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cpaas",
+                "phonevalidation",
+                "bulk",
+                ":jobId",
+                "result"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "jobId",
+                  "description": "(Required) The unqiue job identifier for the async bulk phone number validation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/csv"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "68add97b-de5c-4ddd-bfa5-8c8809ead34d",
+              "name": "Validation result file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "phonevalidation",
+                    "bulk",
+                    ":jobId",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "jobId",
+                      "description": "(Required) The unqiue job identifier for the async bulk phone number validation"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/csv"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "results.csv",
+                  "key": "Content-Disposition",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/csv"
+                }
+              ],
+              "body": "Phone Number,Original Phone Number,Status,MCCMNC,Network Name,Network Prefix,Country IDD,Is Ported,Ported From Network Name,Roaming Network Name,Roaming Network Prefix,Roaming Country IsoCode,Roaming Country IDD\n447123123123,447123123123,On,23420,MNO - 3 (Hutchison 3G UK Ltd),79907,44,True,MNO - Vodafone UK,,,,\n447234234234,447234234234,Bad Number,,,,,False,,,,,\n",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6ee6c57a-1d08-4b62-a528-5f4e54695b4e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "phonevalidation",
+                    "bulk",
+                    ":jobId",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "jobId",
+                      "description": "(Required) The unqiue job identifier for the async bulk phone number validation"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e79f1046-5ba6-4240-80f0-b5bf0ab0506b",
+    "name": "Phone Number Validation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Provides methods for validating phone numbers against mobile network data.\nSupports single-number validation as well as bulk validation jobs, with\nendpoints to create a job, check its processing status, and retrieve the\nfull results once complete.",
+      "type": "text/plain"
+    }
+  }
+}

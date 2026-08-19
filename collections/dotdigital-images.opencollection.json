@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Images",
+    "version": "2.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Images",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get image folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/image-folders",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Gets the accounts image folders tree structure."
+        },
+        {
+          "info": {
+            "name": "Get image folders by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/image-folders/:id",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The image folder id.\n**Note** The root folder id is `0`\n"
+              }
+            ]
+          },
+          "docs": "Gets an image folder by id"
+        },
+        {
+          "info": {
+            "name": "Create image folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/image-folders/:id",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The image folder id.\n**Note** The root folder id is `0`\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This operation can be used to create a new image folder within an existing image folder, whilst child folders can also be created to nest within it.\n\n**Note:** The accounts root folder id is `0`\n"
+        },
+        {
+          "info": {
+            "name": "Get images in folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/image-folders/:id/images",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The image folder id.\n**Note** The root folder id is `0`\n"
+              }
+            ]
+          },
+          "docs": "Gets the images details contained within the specified image folder. Details include:\n* Full URL to image\n* Name\n* MIME Type\n* Dimensions in pixels\n* Size in bytes\n* Image content tags\n"
+        },
+        {
+          "info": {
+            "name": "Upload image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/image-folders/:id/images",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The image folder id.\n**Note** The root folder id is `0`\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Uploads a new image to the specified image folder.\n\nThe permitted file types are as follows:\n\n| File extension | MIME type     | File type    |\n| :------------- | :------------ | :----------- |\n| .gif           | image/gif     | GIF Image    |\n| .jpeg          | image/jpeg    | JPEG Image   |\n| .jpg           | image/jpeg    | JPEG Image   |\n| .png           | image/png     | PNG image    |\n\nIt can accept either a file uploaded using form data or a JSON body with the filename and file data in Ba"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

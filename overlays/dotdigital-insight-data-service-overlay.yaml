@@ -1,0 +1,30 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Dotdigital Insight data service
+  version: 1.0.0
+extends: openapi/dotdigital-insight-data-service-openapi.yml
+x-generated: '2026-08-13'
+x-method: generated
+actions:
+- target: $.info
+  update:
+    x-apievangelist-source: https://developer.dotdigital.com/openapi
+    x-apievangelist-harvested: '2026-08-13'
+    x-apievangelist-provider: dotdigital
+    x-apievangelist-artifacts:
+      authentication: authentication/dotdigital-authentication.yml
+      conventions: conventions/dotdigital-conventions.yml
+      errors: errors/dotdigital-error-codes.yml
+      rate_limits: rate-limits/dotdigital-rate-limits.yml
+      lifecycle: lifecycle/dotdigital-lifecycle.yml
+      data_model: data-model/dotdigital-data-model.yml
+- target: $.servers[*]
+  update:
+    x-apievangelist-regions:
+      r1: Europe
+      r2: North America
+      r3: Asia Pacific
+    x-apievangelist-note: The {region} variable is mandatory; calling the wrong region returns 403.
+- target: $.info
+  update:
+    x-apievangelist-untagged-operations: 22

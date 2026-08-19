@@ -1,0 +1,489 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Analytics API",
+    "version": "1.1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "App Messaging",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves conversation message analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/analytics/conversationmessages",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The date time to query from in ISO 8601 format UTC"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The date time to query up to (but not including) in ISO 8601 format UTC"
+              },
+              {
+                "name": "by",
+                "value": "",
+                "type": "query",
+                "description": "The time period to aggregate by"
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "The localtimezone to report the data out for if not specified, UTC is defaulted"
+              }
+            ]
+          },
+          "docs": "Retrieves conversation message analytics"
+        },
+        {
+          "info": {
+            "name": "Retrieves session analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/analytics/sessions",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The date time to query from in ISO 8601 format UTC"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The date time to query up to (but not including) in ISO 8601 format UTC"
+              },
+              {
+                "name": "by",
+                "value": "",
+                "type": "query",
+                "description": "The time period to aggregate by"
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "The localtimezone to report the data out for if not specified, UTC is defaulted"
+              }
+            ]
+          },
+          "docs": "Retrieves session analytics"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Chat",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves chat analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/analytics/chats",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The date time to query from in ISO 8601 format UTC"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The date time to query up to (but not including) in ISO 8601 format UTC"
+              },
+              {
+                "name": "by",
+                "value": "",
+                "type": "query",
+                "description": "The aggregation criteria. Can be one time based value and any combination of non time values"
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "The localtimezone to report the data out for if not specified, UTC is defaulted"
+              },
+              {
+                "name": "teamId",
+                "value": "",
+                "type": "query",
+                "description": "The id of the team to retrieve analytics for"
+              },
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "query",
+                "description": "The id of the agent to retrieve analytics for"
+              }
+            ]
+          },
+          "docs": "Retrieves chat analytics"
+        },
+        {
+          "info": {
+            "name": "Retrieves live chat analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/analytics/chats/live",
+            "params": [
+              {
+                "name": "teamId",
+                "value": "",
+                "type": "query",
+                "description": "The id of the team to retrieve analytics for"
+              },
+              {
+                "name": "by",
+                "value": "",
+                "type": "query",
+                "description": "The aggregation criteria"
+              }
+            ]
+          },
+          "docs": "Retrieves live chat analytics"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Messaging",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves message analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/analytics/messages",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The date time to query from in ISO 8601 format UTC"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The date time to query up to (but not including) in ISO 8601 format UTC"
+              },
+              {
+                "name": "by",
+                "value": "",
+                "type": "query",
+                "description": "The time period to aggregate by"
+              },
+              {
+                "name": "system",
+                "value": "",
+                "type": "query",
+                "description": "The system that triggered an analytical event"
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "The localtimezone to report the data out for if not specified, UTC is defaulted"
+              }
+            ]
+          },
+          "docs": "Retrieves message analytics"
+        },
+        {
+          "info": {
+            "name": "Retrieves message metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/analytics/messages/metrics",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The date time to query from in ISO 8601 format UTC"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The date time to query up to (but not including) in ISO 8601 format UTC"
+              },
+              {
+                "name": "by",
+                "value": "",
+                "type": "query",
+                "description": "The time period to aggregate by"
+              },
+              {
+                "name": "system",
+                "value": "",
+                "type": "query",
+                "description": "The system that triggered an analytical event"
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "The localtimezone to report the data out for if not specified, UTC is defaulted"
+              }
+            ]
+          },
+          "docs": "Retrieves message metrics"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SMS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves url tracking analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/analytics/sms/tracking",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The date time to query from in ISO 8601 format UTC"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The date time to query up to (but not including) in ISO 8601 format UTC"
+              },
+              {
+                "name": "by",
+                "value": "",
+                "type": "query",
+                "description": "The time period to aggregate by"
+              }
+            ]
+          },
+          "docs": "Retrieves url tracking analytics"
+        },
+        {
+          "info": {
+            "name": "Retrieves sms verify analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/analytics/sms/verify",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The date time to query from in ISO 8601 format UTC"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The date time to query up to (but not including) in ISO 8601 format UTC"
+              },
+              {
+                "name": "by",
+                "value": "",
+                "type": "query",
+                "description": "The time period to aggregate by"
+              }
+            ]
+          },
+          "docs": "Retrieves sms verify analytics"
+        },
+        {
+          "info": {
+            "name": "Retrieves inbound SMS analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/analytics/sms/inbound",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The date time to query from in ISO 8601 format UTC"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The date time to query up to (but not including) in ISO 8601 format UTC"
+              },
+              {
+                "name": "by",
+                "value": "",
+                "type": "query",
+                "description": "The time period to aggregate by"
+              }
+            ]
+          },
+          "docs": "Retrieves inbound SMS analytics"
+        },
+        {
+          "info": {
+            "name": "Retrieves outbound SMS analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/analytics/sms/outbound",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The date time to query from in ISO 8601 format UTC"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The date time to query up to (but not including) in ISO 8601 format UTC"
+              },
+              {
+                "name": "by",
+                "value": "",
+                "type": "query",
+                "description": "The time period to aggregate by"
+              }
+            ]
+          },
+          "docs": "Retrieves outbound SMS analytics"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "WhatsApp",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves WhatsApp conversation analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/analytics/whatsapp/conversations",
+            "params": [
+              {
+                "name": "wabaIds",
+                "value": "",
+                "type": "query",
+                "description": "The ids of the WhatsApp Business Account to get conversation analytics for"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The date time to query up to (but not including) in ISO 8601 format UTC"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The date time to query from in ISO 8601 format UTC"
+              },
+              {
+                "name": "by",
+                "value": "",
+                "type": "query",
+                "description": "The time period to aggregate by"
+              },
+              {
+                "name": "phoneNumbers",
+                "value": "",
+                "type": "query",
+                "description": "An array of phone numbers for which to retrieve analytics. If not provided, all phone numbers added to the WABA are included"
+              },
+              {
+                "name": "conversationCategories",
+                "value": "",
+                "type": "query",
+                "description": "A list of conversation categories. If not provided, results for all conversation categories are retrieved."
+              },
+              {
+                "name": "dimensions",
+                "value": "",
+                "type": "query",
+                "description": "A list of breakdowns to apply to metrics. If not provided, results are retrieved without any breakdowns"
+              }
+            ]
+          },
+          "docs": "Retrieves WhatsApp conversation analytics"
+        },
+        {
+          "info": {
+            "name": "Retrieves WhatsApp business-initiated conversation analytics for the last 24 hours (Daily message usage)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/analytics/whatsapp/dailymessagingusage",
+            "params": [
+              {
+                "name": "wabaIds",
+                "value": "",
+                "type": "query",
+                "description": "The ids of the WhatsApp Business Account to get conversation analytics for"
+              }
+            ]
+          },
+          "docs": "Retrieves WhatsApp business-initiated conversation analytics for the last 24 hours (Daily message usage)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

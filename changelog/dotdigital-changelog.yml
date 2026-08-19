@@ -1,0 +1,69 @@
+generated: '2026-08-13'
+method: searched
+source: https://dotdigital.com/whats-new/
+description: >-
+  Dotdigital publishes product release notes as a dated "What's new" feed on the marketing site.
+  It is a genuine dated changelog, but it is a PRODUCT changelog, not an API changelog: entries
+  describe platform features, not endpoint additions, breaking changes or spec version bumps.
+  The developer hub has a Changelog module enabled at
+  https://marketing.developer.dotdigital.com/changelog and it is EMPTY (the page's own SSR
+  payload reports changelogs.total = 0, and changelog.rss returns a channel with zero items).
+  API-level change is therefore only visible by diffing info.version across the 42 published
+  specs, which nothing on the hub summarises.
+surfaces:
+  - name: What's new (product releases)
+    url: https://dotdigital.com/whats-new/
+    kind: dated product release notes
+    populated: true
+    cadence: irregular, roughly quarterly
+  - name: Developer hub changelog
+    url: https://marketing.developer.dotdigital.com/changelog
+    kind: developer changelog
+    populated: false
+    evidence: 'SSR payload: {"changelogs":{"total":0,...,"data":[]}}; changelog.rss has 0 items'
+  - name: Per-spec versions
+    url: https://developer.dotdigital.com/openapi
+    kind: version strings inside each published OpenAPI
+    populated: true
+    note: >-
+      The catalog page is titled "All OpenAPI Files for v3.5" and each spec carries its own
+      info.version — e.g. Contacts 3.4.3, Insight data service 3.3.1, Events 3.1.1, CPaaS 3.5.1,
+      Email campaigns 2.1.1. There is no release note attached to any of these numbers.
+scheme:
+  api_versioning: uri-path (v2 / <service>/v3)
+  spec_versioning: semver per service, in info.version
+  hub_version: '3.5'
+  breaking_change_policy: not published
+entries:
+  - date: '2026-07-15'
+    title: 'What''s new: Dotdigital Loyalty, AI agents, and scalable personalization'
+    url: https://dotdigital.com/blog/whats-new-dotdigital-loyalty-and-ai-agents/
+    breaking: false
+    highlights: [Dotdigital Loyalty, AI agents, scalable personalization]
+  - date: '2025-11-05'
+    title: 'What''s new: smarter campaign optimization'
+    url: https://dotdigital.com/blog/whats-new-smarter-campaign-optimization/
+    breaking: false
+  - date: '2025-02-26'
+    title: 'What''s new: smarter marketing, data improvements, and WhatsApp'
+    url: https://dotdigital.com/blog/whats-new-smarter-marketing-data-whatsapp/
+    breaking: false
+  - date: '2024-05-22'
+    title: 'What''s new: cross-channel personalization, webhooks, reporting'
+    url: https://dotdigital.com/blog/whats-new-cross-channel-personalization-webhooks-reporting/
+    breaking: false
+  - date: '2022-11-08'
+    title: 'What''s new in Dotdigital: improved analytics and insights'
+    url: https://dotdigital.com/blog/whats-new-in-dotdigital-improved-analytics-and-insights/
+    breaking: false
+other_entries:
+  - https://dotdigital.com/blog/whats-new-winstonai-updates-sms-in-seconds-and-the-new-dotdigital-app/
+  - https://dotdigital.com/blog/whats-new-tiktok-enhanced-reporting-seamless-integrations/
+  - https://dotdigital.com/blog/whats-new-the-dotdigital-academy-shopline-integration-and-mms-success/
+  - https://dotdigital.com/blog/whats-new-mobile-messaging-social-media-integrations-and-enhanced-ecommerce-reporting/
+  - https://dotdigital.com/blog/whats-new-introducing-mms-and-generative-ai-updates/
+  - https://dotdigital.com/blog/whats-new-in-dotdigital-improved-ux-and-ai-powered-insights/
+gaps:
+  - The developer-hub changelog module is enabled but has never been populated.
+  - No API-level release notes; a spec version bump ships with no note describing what changed.
+  - No breaking-change or notice-period policy — see lifecycle/dotdigital-lifecycle.yml.

@@ -1,0 +1,167 @@
+openapi: 3.0.1
+info:
+  title: Content API
+  description: 'APIs for uploading, retrieving, and deleting hosted content files. Supports
+
+    binary file upload and provides a hosted URL for use in messaging payloads,
+
+    along with operations to retrieve or remove previously uploaded files by
+
+    their file ID.'
+  version: 1.0.2
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      description: The Dotdigital region id your account belongs to
+      enum:
+      - r1
+      - r2
+      - r3
+      default: r1
+- url: http://{region}-api.dotdigital.com/v2
+  variables:
+    region:
+      description: The Dotdigital region id your account belongs to
+      enum:
+      - r1
+      - r2
+      - r3
+      default: r1
+security:
+- basicAuth: []
+paths:
+  /cpaas/content:
+    post:
+      summary: Upload a file
+      requestBody:
+        description: The details and data for the file
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/cpaas_content_body'
+        required: true
+      responses:
+        '200':
+          description: The file was successfully uploaded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadedFile'
+        '404':
+          description: The file was not found
+          content: {}
+      x-codegen-request-body-name: File details
+  /cpaas/content/{fileId}:
+    get:
+      summary: Retrieve a file
+      parameters:
+      - name: fileId
+        in: path
+        description: The id of the file
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The requested file
+          content: {}
+        '404':
+          description: The file was not found
+          content: {}
+    delete:
+      summary: Delete a file
+      parameters:
+      - name: fileId
+        in: path
+        description: The id of the file
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The file was deleted
+          content: {}
+        '404':
+          description: The file was not found
+          content: {}
+components:
+  schemas:
+    UploadedFile:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The file's unique identifier - used to GET
+        url:
+          type: string
+          description: A unique url that can be used to retrieve the content
+        name:
+          type: string
+          description: The file name of the content
+        type:
+          type: string
+          description: The file's content.type
+        folder:
+          type: string
+          description: The folder in which the content was stored
+        size:
+          type: integer
+          description: The size in bytes of the content uploaded
+        _createdOn:
+          type: string
+          description: The date (in UTC, ISO 8601 format) that the content was created
+          format: date-time
+          readOnly: true
+        _createdBy:
+          type: string
+          description: The identity that created the content
+        _updatedOn:
+          type: string
+          description: The date (in UTC, ISO 8601 format) that the content was last updated
+          format: date-time
+          readOnly: true
+        _updatedBy:
+          type: string
+          description: The identity that created the content
+          readOnly: true
+    cpaas_content_body:
+      required:
+      - data
+      - name
+      - type
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the file
+        type:
+          type: string
+          description: The files MIME type
+        data:
+          type: string
+          description: The Base64 file data
+  parameters:
+    fileIdPathParameter:
+      name: fileId
+      in: path
+      description: The id of the file
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+x-readme:
+  samples-languages:
+  - curl
+  - csharp
+  - java
+  - node
+  - php
+  - python
+  - ruby
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

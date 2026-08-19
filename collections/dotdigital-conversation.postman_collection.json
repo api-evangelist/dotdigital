@@ -1,0 +1,2098 @@
+{
+  "item": [
+    {
+      "id": "ca224e47-d15e-48f2-aeed-823993975af5",
+      "name": "Retrieves a conversation",
+      "request": {
+        "name": "Retrieves a conversation",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "conversations",
+            ":conversationId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "includeDeleted",
+              "value": "<boolean>",
+              "description": "Indicates whether deleted conversations should be returned"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "conversationId",
+              "description": "(Required) The id of the conversation"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "55eaa2a7-9a45-4445-b495-a14ad9379f0d",
+          "name": "The requested conversation",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "includeDeleted",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "disabled": false,
+              "description": "A unique value representing the version of the conversation, optionally used for optimistic concurrency control on PUT and DELETE",
+              "key": "ETag",
+              "value": "string"
+            },
+            {
+              "disabled": false,
+              "description": "The date the conversation was last updated in ISO 8601 format",
+              "key": "Last-Modified",
+              "value": "1982-10-22T13:49:31.884Z"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"roles\": {\n    \"owner\": {\n      \"canAddParticipants\": false,\n      \"canRemoveParticipants\": false,\n      \"canSend\": false\n    },\n    \"participant\": {\n      \"canAddParticipants\": true,\n      \"canRemoveParticipants\": true,\n      \"canSend\": false\n    }\n  },\n  \"isPublic\": false,\n  \"messageScope\": \"p2p\",\n  \"_createdOn\": \"2000-05-14T04:04:46.216Z\",\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1991-01-16T00:10:43.260Z\",\n  \"_updatedBy\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "d8cad6e0-a80e-4554-81a4-e58c6d488ab8",
+          "name": "The conversation was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "includeDeleted",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "75fa4624-a055-40b8-a3e1-83e7d3cf3317",
+      "name": "Updates a conversation",
+      "request": {
+        "name": "Updates a conversation",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "conversations",
+            ":conversationId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "conversationId",
+              "description": "(Required) The id of the conversation"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "An optional ETag for optimistic concurrency control",
+            "key": "if-match",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"<string>\",\n  \"roles\": {\n    \"owner\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    },\n    \"participant\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    }\n  },\n  \"description\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "2b369c04-c286-4db0-b4f7-a079cf7d6133",
+          "name": "The updated conversation",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"roles\": {\n    \"owner\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    },\n    \"participant\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    }\n  },\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "disabled": false,
+              "description": "A unique value representing the version of the conversation, optionally used for optimistic concurrency control on PUT and DELETE",
+              "key": "ETag",
+              "value": "string"
+            },
+            {
+              "disabled": false,
+              "description": "The date the conversation was last updated in ISO 8601 format",
+              "key": "Last-Modified",
+              "value": "1982-10-22T13:49:31.884Z"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"roles\": {\n    \"owner\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    },\n    \"participant\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    }\n  },\n  \"isPublic\": true,\n  \"messageScope\": \"p2p\",\n  \"_createdOn\": \"1979-02-15T15:30:36.108Z\",\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1975-02-25T10:29:10.767Z\",\n  \"_updatedBy\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "51e38337-d4c2-45b5-b0c5-d62146595bef",
+          "name": "Validation issues were found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"roles\": {\n    \"owner\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    },\n    \"participant\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    }\n  },\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "4b00e458-2c86-4fd1-b193-44a68a5d08cc",
+          "name": "The conversation was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"roles\": {\n    \"owner\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    },\n    \"participant\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    }\n  },\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "2fc9a055-0e50-4dfb-b470-8b5cd11c9e8c",
+          "name": "A conncurrency issue occured updating the conversation",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"roles\": {\n    \"owner\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    },\n    \"participant\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    }\n  },\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "876737b3-ec1b-4055-a065-dccd139a58e0",
+          "name": "The specified 'if-match' header was not valid, refresh and retry",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"roles\": {\n    \"owner\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    },\n    \"participant\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    }\n  },\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Precondition Failed",
+          "code": 412,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "b3ceb655-5cc7-40d7-8e49-f993d66541a7",
+      "name": "Deletes a conversation",
+      "request": {
+        "name": "Deletes a conversation",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "conversations",
+            ":conversationId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "conversationId",
+              "description": "(Required) The id of the conversation"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "An optional ETag for optimistic concurrency control",
+            "key": "if-match",
+            "value": "<string>"
+          }
+        ],
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "98d19b7f-a910-439a-86e8-6509cdc18977",
+          "name": "Indicates successful deletetion of an conversation",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "27638711-7332-48ce-ae94-eee4d927e460",
+          "name": "The conversation was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "970d6009-2f70-45e4-9f78-5616810769c8",
+          "name": "A conncurrency issue occured deleting the conversation",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "0c903c77-d67a-4292-ad7a-5262978234b7",
+          "name": "The specified 'if-match' header was not valid, refresh and retry",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Precondition Failed",
+          "code": 412,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e2e228aa-cd02-45c7-92f9-2055d6f705de",
+      "name": "Retrieves a list of conversations",
+      "request": {
+        "name": "Retrieves a list of conversations",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "conversations"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "scope",
+              "value": "<string>",
+              "description": "Defines the scope of the conversations to be returned - either all public conversations, "
+            },
+            {
+              "disabled": false,
+              "key": "profileId",
+              "value": "<string>",
+              "description": "Indicates whether only conversations the profile is a participant of should be returned"
+            },
+            {
+              "disabled": false,
+              "key": "includeDeleted",
+              "value": "<boolean>",
+              "description": "Indicates whether deleted conversations should be returned"
+            }
+          ],
+          "variable": [
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "b141443b-f43b-4a6d-bcb7-de67b1fd4276",
+          "name": "A list of matching conversations",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "scope",
+                  "value": "<string>"
+                },
+                {
+                  "key": "profileId",
+                  "value": "<string>"
+                },
+                {
+                  "key": "includeDeleted",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"roles\": {\n      \"owner\": {\n        \"canAddParticipants\": \"<boolean>\",\n        \"canRemoveParticipants\": \"<boolean>\",\n        \"canSend\": \"<boolean>\"\n      },\n      \"participant\": {\n        \"canAddParticipants\": \"<boolean>\",\n        \"canRemoveParticipants\": \"<boolean>\",\n        \"canSend\": \"<boolean>\"\n      }\n    },\n    \"isPublic\": false,\n    \"participantCount\": 5738,\n    \"latestSentEventId\": 653,\n    \"messageScope\": \"a2p\",\n    \"_createdOn\": \"2012-07-28T22:02:20.097Z\",\n    \"_createdBy\": \"string\",\n    \"_updatedOn\": \"1983-08-25T04:05:47.576Z\",\n    \"_updatedBy\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"roles\": {\n      \"owner\": {\n        \"canAddParticipants\": \"<boolean>\",\n        \"canRemoveParticipants\": \"<boolean>\",\n        \"canSend\": \"<boolean>\"\n      },\n      \"participant\": {\n        \"canAddParticipants\": \"<boolean>\",\n        \"canRemoveParticipants\": \"<boolean>\",\n        \"canSend\": \"<boolean>\"\n      }\n    },\n    \"isPublic\": true,\n    \"participantCount\": 1581,\n    \"latestSentEventId\": 4952,\n    \"messageScope\": \"p2p\",\n    \"_createdOn\": \"1958-06-15T06:51:54.897Z\",\n    \"_createdBy\": \"string\",\n    \"_updatedOn\": \"1950-02-04T20:48:26.193Z\",\n    \"_updatedBy\": \"string\"\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e734bdc3-edd2-4205-85eb-e822f06f5852",
+      "name": "Creates a new conversation",
+      "request": {
+        "name": "Creates a new conversation",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "conversations"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"<string>\",\n  \"isPublic\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"roles\": {\n    \"owner\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    },\n    \"participant\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    }\n  },\n  \"description\": \"<string>\",\n  \"participants\": [\n    {\n      \"id\": \"<string>\",\n      \"role\": \"participant\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"role\": \"participant\"\n    }\n  ],\n  \"messageScope\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "724e2c65-a8b0-41f8-be2a-8b57266612a5",
+          "name": "The conversation was successfully created",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"isPublic\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"roles\": {\n    \"owner\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    },\n    \"participant\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    }\n  },\n  \"description\": \"<string>\",\n  \"participants\": [\n    {\n      \"id\": \"<string>\",\n      \"role\": \"participant\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"role\": \"participant\"\n    }\n  ],\n  \"messageScope\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "disabled": false,
+              "description": "A unique value representing the version of the conversation, optionally used for optimistic concurrency control on PUT and DELETE",
+              "key": "ETag",
+              "value": "string"
+            },
+            {
+              "disabled": false,
+              "description": "The date the conversation was last updated in ISO 8601 format",
+              "key": "Last-Modified",
+              "value": "1982-10-22T13:49:31.884Z"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"roles\": {\n    \"owner\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    },\n    \"participant\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    }\n  },\n  \"isPublic\": true,\n  \"messageScope\": \"p2p\",\n  \"_createdOn\": \"1979-02-15T15:30:36.108Z\",\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1975-02-25T10:29:10.767Z\",\n  \"_updatedBy\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "e6bd275b-7670-4dad-85e6-799f892bb7de",
+          "name": "Validation issues were found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"isPublic\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"roles\": {\n    \"owner\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    },\n    \"participant\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    }\n  },\n  \"description\": \"<string>\",\n  \"participants\": [\n    {\n      \"id\": \"<string>\",\n      \"role\": \"participant\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"role\": \"participant\"\n    }\n  ],\n  \"messageScope\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "dff57db8-c149-4d8f-ac25-7c6fb093887f",
+          "name": "The conversation already exists",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"isPublic\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"roles\": {\n    \"owner\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    },\n    \"participant\": {\n      \"canAddParticipants\": \"<boolean>\",\n      \"canRemoveParticipants\": \"<boolean>\",\n      \"canSend\": \"<boolean>\"\n    }\n  },\n  \"description\": \"<string>\",\n  \"participants\": [\n    {\n      \"id\": \"<string>\",\n      \"role\": \"participant\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"role\": \"participant\"\n    }\n  ],\n  \"messageScope\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "2b2d5878-c4d7-487f-a952-aed0671d5793",
+      "name": "Indicates that the caller is typing in this conversation",
+      "request": {
+        "name": "Indicates that the caller is typing in this conversation",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "conversations",
+            ":conversationId",
+            "typing"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "conversationId",
+              "description": "(Required) The id of the conversation"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "method": "POST",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "36e99af4-80e5-4846-b76a-7f469294a1da",
+          "name": "The request was accepted",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId",
+                "typing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "ffc3fbae-e65e-48c0-9b83-cadf864e432a",
+      "name": "Indicates that the caller has stopped typing in this conversation",
+      "request": {
+        "name": "Indicates that the caller has stopped typing in this conversation",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "conversations",
+            ":conversationId",
+            "typing"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "conversationId",
+              "description": "(Required) The id of the conversation"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "91746238-f8fe-43d2-ba52-fcdac5ffaf6c",
+          "name": "The request was accepted",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId",
+                "typing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "890c9c53-db07-4514-b65f-10d5998dc417",
+      "name": "Retrieves the conversation participants",
+      "request": {
+        "name": "Retrieves the conversation participants",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "conversations",
+            ":conversationId",
+            "participants"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "conversationId",
+              "description": "(Required) The id of the conversation"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "45b2e1be-91f8-4b67-a33f-419ed0af24b1",
+          "name": "The requested conversation",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId",
+                "participants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"id\": \"<string>\",\n    \"role\": \"participant\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"role\": \"participant\"\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "85c5b04f-1c4d-48db-ad86-26e8a22ae9cf",
+          "name": "The conversation was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId",
+                "participants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "ffc1f18b-c52e-49bb-ac8a-9efd348ef69f",
+      "name": "Adds a list of participants to a conversation",
+      "request": {
+        "name": "Adds a list of participants to a conversation",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "conversations",
+            ":conversationId",
+            "participants"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "conversationId",
+              "description": "(Required) The id of the conversation"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "[\n  {\n    \"id\": \"<string>\",\n    \"role\": \"participant\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"role\": \"participant\"\n  }\n]",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "2e63970c-6086-44d8-8b70-224e173122e4",
+          "name": "The participants were added",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId",
+                "participants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"id\": \"<string>\",\n    \"role\": \"participant\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"role\": \"participant\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "f9449cdb-e0da-468f-8959-063e6df8b647",
+          "name": "Validation issues were found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId",
+                "participants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"id\": \"<string>\",\n    \"role\": \"participant\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"role\": \"participant\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "687983ad-3dfb-4a76-8f7e-107cd376506c",
+          "name": "The conversation was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId",
+                "participants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"id\": \"<string>\",\n    \"role\": \"participant\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"role\": \"participant\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d69fd968-663c-415b-abd1-f8d98222bdb3",
+      "name": "Deletes a list of participants from a conversation",
+      "request": {
+        "name": "Deletes a list of participants from a conversation",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "conversations",
+            ":conversationId",
+            "participants"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "id",
+              "value": "<string>,<string>",
+              "description": "(Required) The profile ids of participants to remove from the conversation"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "conversationId",
+              "description": "(Required) The id of the conversation"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "9c4a1f26-8267-4f11-8cbf-60ae27e4b532",
+          "name": "The list was accepted and valid participants will be removed",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId",
+                "participants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "<string>,<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "21557ebf-cab9-49e1-8a39-652341595c50",
+          "name": "The conversation was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId",
+                "participants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "<string>,<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "198f934a-a5c9-4e00-b208-ef29d83ef0a3",
+    "name": "Conversation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Provides methods for creating, retrieving, updating, and deleting\nconversations. Supports management of conversation participants—adding and\nremoving members—and typing indicators to signal real-time interaction\nwithin a conversation.",
+      "type": "text/plain"
+    }
+  }
+}

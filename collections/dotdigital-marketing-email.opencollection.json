@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Marketing Email API",
+    "version": "3.0.2"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Marketing Emails",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send marketing email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/marketing-email/v3/send",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a marketing email. <br><br>\n**Note:** \n* _Email marketing status will be checked for known email addresses and email not sent if unsubscribed or suppressed._ \n* _Contacts will be created for unknown email addresses._"
+        },
+        {
+          "info": {
+            "name": "Send batch marketing emails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/marketing-email/v3/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a batch of marketing emails. <br><br>\n**Note:** \n* _Email marketing status will be checked for known email addresses and email not sent if unsubscribed or suppressed._ \n* _Contacts will be created for unknown email addresses._"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

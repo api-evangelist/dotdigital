@@ -1,0 +1,261 @@
+{
+  "item": [
+    {
+      "id": "5c30fdd0-4264-4ac5-b02a-c35f5cfe6aaf",
+      "name": "Retrieves the presence for a list of agent's profileIds",
+      "request": {
+        "name": "Retrieves the presence for a list of agent's profileIds",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "presence"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "id",
+              "value": "<string>",
+              "description": "(Required) The id of a profile to retrieve presence settings for"
+            },
+            {
+              "disabled": false,
+              "key": "status",
+              "value": "<string>",
+              "description": "The current status of the profile"
+            }
+          ],
+          "variable": [
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "7ae8bb5b-a554-49a7-b5e1-e58f9eb3d74a",
+          "name": "The presence for each profile requested",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "presence"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"profileId\": \"string\",\n    \"status\": \"away\",\n    \"isAway\": false,\n    \"isConnected\": true,\n    \"lastUpdatedOn\": \"1951-10-27T03:48:57.603Z\"\n  },\n  {\n    \"profileId\": \"string\",\n    \"status\": \"offline\",\n    \"isAway\": false,\n    \"isConnected\": false,\n    \"lastUpdatedOn\": \"1956-08-23T08:57:26.399Z\"\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "1b1c3d39-5bf4-4613-abd6-57e68f766a85",
+      "name": "Retrieves the presence for a list of user's profileIds",
+      "request": {
+        "name": "Retrieves the presence for a list of user's profileIds",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "presence",
+            "appmessaging"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "id",
+              "value": "<string>",
+              "description": "(Required) The id of a profile to retrieve presence settings for"
+            }
+          ],
+          "variable": [
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "eb6e71c2-163f-4a93-b071-393fd06f40cc",
+          "name": "The presence for each profile requested",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "presence",
+                "appmessaging"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"profileId\": \"string\",\n    \"status\": \"online\",\n    \"lastUpdatedOn\": \"1999-02-06T05:27:34.021Z\",\n    \"createdOn\": \"1962-05-25T06:41:45.176Z\"\n  },\n  {\n    \"profileId\": \"string\",\n    \"status\": \"online\",\n    \"lastUpdatedOn\": \"1972-03-10T03:27:39.481Z\",\n    \"createdOn\": \"2008-01-11T04:16:11.471Z\"\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "33ec5f8c-c823-462a-a840-14a3260d713d",
+    "name": "Chat Presence API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Provides methods for retrieving the presence status of agents and users\nwithin the chat platform. Supports querying presence by profile IDs for both\nchat agents and App Messaging users.",
+      "type": "text/plain"
+    }
+  }
+}

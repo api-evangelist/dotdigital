@@ -1,0 +1,70 @@
+generated: '2026-08-13'
+method: probed
+status: published
+source: https://marketing.developer.dotdigital.com/docs/mcp
+description: >-
+  Dotdigital hosts a remote MCP server for the Marketing Developer Hub. It is a
+  documentation-and-specification discovery server, not a data-plane server: the seven tools
+  read the published OpenAPI descriptions and the docs corpus so a coding agent can find the
+  right endpoint and write the call. Actual API calls are still made over REST with Basic auth
+  API-user credentials. tools/list answered anonymously on probe (HTTP 200, SSE transport).
+deployment:
+  mode: remote
+  endpoint: https://marketing.developer.dotdigital.com/mcp
+  auth: none
+  verified: probed
+  note: >-
+    No stdio package is published. The provider's own configuration snippets for Cursor,
+    Windsurf and Claude Desktop all set "url" to the hosted endpoint. The docs note that
+    headers may be passed by the client where an API requires authentication.
+server:
+  name: dotdigital-api
+  transport: http
+  protocol: 'streamable-http (Accept: application/json, text/event-stream)'
+  url: https://marketing.developer.dotdigital.com/mcp
+  vendor_platform: ReadMe developer hub MCP
+tools_source: mcp/dotdigital-mcp-tools-list.json
+tools:
+  - name: list-endpoints
+    title: List API Endpoints
+    description: Lists all API paths and their HTTP methods with summaries, organized by path.
+    input: [title]
+    read_only: true
+  - name: get-endpoint
+    title: Get Endpoint Details
+    description: Gets detailed information about a specific API endpoint, including security schemes and servers.
+    input: [path, method, title]
+    read_only: true
+  - name: search-endpoints
+    title: Search API Endpoints
+    description: Deep search through paths, operations and parameters to discover relevant API endpoints.
+    input: [pattern]
+    read_only: true
+  - name: list-specs
+    title: List OpenAPI Specs
+    description: Lists all available OpenAPI specs; the title selects a spec.
+    input: []
+    read_only: true
+  - name: get-server-variables
+    title: Get Server Variables
+    description: Gets the server variables for each server within a specific OpenAPI spec.
+    input: [title]
+    read_only: true
+  - name: search
+    title: Search Documentation
+    description: Searches documentation, returning results with ID, title and URL.
+    input: [query]
+    read_only: true
+  - name: fetch
+    title: Fetch Documentation Page
+    description: Gets detailed content for documentation by ID returned from the search tool.
+    input: [id]
+    read_only: true
+x-evidence:
+  fetched: '2026-08-13'
+  url: https://marketing.developer.dotdigital.com/mcp
+  method: 'POST {"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+  http_status: 200
+  content_type: text/event-stream
+  tool_count: 7
+  authenticated: false

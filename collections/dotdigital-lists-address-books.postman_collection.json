@@ -1,0 +1,3061 @@
+{
+  "item": [
+    {
+      "id": "ee7895ef-b50f-48ac-ba2e-8bc405a6e70d",
+      "name": "Lists / Address books",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "387fd971-1d09-4c50-8acf-9f13828281bf",
+          "name": "Get campaigns sent to address book or segment",
+          "request": {
+            "name": "Get campaigns sent to address book or segment",
+            "description": {
+              "content": "Gets any campaigns that have been sent to an address book or a segment",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-books",
+                ":id",
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "select",
+                  "value": "<integer>",
+                  "description": "he select parameter requires a number between 1 and 1000 (0 is not a valid number). You may only select a maximum of 1000 results in a single request. This parameter goes within the URL."
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "The skip parameter should be used in tandem with the select parameter when wanting to iterate through a whole data set. If you want to select the next 1000 records you should set the select parameter to 1000 and the skip parameter to 1000, which will return records 1001 to 2000. You should continue to do this until 0 records are returned to retrieve the whole data set."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of the address book or segment"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bdc5ba13-7bcc-4863-84d5-5b302869f9fd",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-books",
+                    ":id",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "select",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the address book or segment"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Monthly newsletter Dec 2015\",\n    \"subject\": \"Monthly newsletter\",\n    \"fromName\": \"Company name\",\n    \"fromAddress\": {\n      \"id\": 1,\n      \"email\": \"demo@apiconnector.com\"\n    },\n    \"htmlContent\": null,\n    \"plainTextContent\": null,\n    \"replyAction\": \"Unset\",\n    \"replyToAddress\": null,\n    \"isSplitTest\": false,\n    \"status\": \"Sent\"\n  },\n  {\n    \"id\": 4,\n    \"name\": \"New product promotion\",\n    \"subject\": \"New product!\",\n    \"fromName\": \"Company name\",\n    \"fromAddress\": {\n      \"id\": 1,\n      \"email\": \"demo@apiconnector.com\"\n    },\n    \"htmlContent\": null,\n    \"plainTextContent\": null,\n    \"replyAction\": \"WebMailForward\",\n    \"replyToAddress\": \"demo@apiconnector.com\",\n    \"isSplitTest\": false,\n    \"status\": \"Sent\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dbb0adf6-2416-4742-8ac4-84defee7bbbc",
+          "name": "Create list",
+          "request": {
+            "name": "Create list",
+            "description": {
+              "content": "Creates an list / address book",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-books"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"visibility\": \"Private\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4659625d-933e-4517-bb91-34424249dfc0",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-books"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"visibility\": \"Private\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"My Address Book\",\n  \"visibility\": \"Public\",\n  \"contacts\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67f3abed-1162-4bda-bf42-549ffb82f4c7",
+          "name": "Get lists",
+          "request": {
+            "name": "Get lists",
+            "description": {
+              "content": "Gets all lists / address books",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-books"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "select",
+                  "value": "<integer>",
+                  "description": "The number of records to select between 1 and 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<string>",
+                  "description": "The numbers of records to skip in the result set"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1bf32427-44d2-4600-8e05-1daf693d93e0",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-books"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "select",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Address book 1\",\n    \"visibility\": \"Private\",\n    \"contacts\": 5\n  },\n  {\n    \"id\": 2,\n    \"name\": \"Address book 2\",\n    \"visibility\": \"Public\",\n    \"contacts\": 7\n  },\n  {\n    \"id\": 3,\n    \"name\": \"Address book 3\",\n    \"visibility\": \"Private\",\n    \"contacts\": 7\n  },\n  {\n    \"id\": 4,\n    \"name\": \"Address book 4\",\n    \"visibility\": \"Public\",\n    \"contacts\": 6\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ae1e445e-ca0c-472c-8144-c77bb2a90ea6",
+          "name": "Delete list",
+          "request": {
+            "name": "Delete list",
+            "description": {
+              "content": "Deletes an list / address book by id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-books",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of the list / address book"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1149b5e1-c6f6-44f3-beaa-fdd144a41b35",
+              "name": "204",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-books",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the list / address book"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0abe858-94b5-49d0-8ca1-06b60a7b83e6",
+          "name": "Update list",
+          "request": {
+            "name": "Update list",
+            "description": {
+              "content": "Updates an list / address book by id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-books",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of the address book"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"visibility\": \"Private\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "230f5493-9884-4857-aa06-fc0c8b970ed3",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-books",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the address book"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"visibility\": \"Private\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"My Updated Address Book\",\n  \"visibility\": \"Private\",\n  \"contacts\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56368994-df2a-4ef5-b82a-8d860f6315e0",
+          "name": "Get list",
+          "request": {
+            "name": "Get list",
+            "description": {
+              "content": "This operation retrieves an list / address book by its id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-books",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of the list / address book"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "93aee369-716f-4c9d-84ad-4d0272fb4965",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-books",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the list / address book"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2,\n  \"name\": \"Address book 2\",\n  \"visibility\": \"Private\",\n  \"contacts\": 5\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d60e8e0-8443-4bb8-84a9-a197ad96a7f6",
+          "name": "Get private lists",
+          "request": {
+            "name": "Get private lists",
+            "description": {
+              "content": "Gets all private lists / address books",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-books",
+                "private"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "The number of records to select between 1 and 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "The numbers of records to skip in the result set"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d81547ff-3010-49ea-8b2b-0152dbb80cda",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-books",
+                    "private"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2,\n    \"name\": \"Address book 2\",\n    \"visibility\": \"Private\",\n    \"contacts\": 5\n  },\n  {\n    \"id\": 3,\n    \"name\": \"Address book 3\",\n    \"visibility\": \"Private\",\n    \"contacts\": 7\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c061f91e-b51b-4311-955b-8da09dcf8fac",
+          "name": "Get public lists",
+          "request": {
+            "name": "Get public lists",
+            "description": {
+              "content": "Gets all public lists / address books",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-books",
+                "public"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "select",
+                  "value": "<integer>",
+                  "description": "The number of records to select between 1 and 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "The numbers of records to skip in the result set"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "307cedc7-e691-490f-99d9-2505463387c3",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-books",
+                    "public"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "select",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2,\n    \"name\": \"Address book 2\",\n    \"visibility\": \"Private\",\n    \"contacts\": 5\n  },\n  {\n    \"id\": 3,\n    \"name\": \"Address book 3\",\n    \"visibility\": \"Private\",\n    \"contacts\": 7\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "939bca20-8485-4cc9-8b1f-2f13f31a08d3",
+          "name": "Get unsubscribed from list since date",
+          "request": {
+            "name": "Get unsubscribed from list since date",
+            "description": {
+              "content": "Gets a list of contacts who have unsubscribed since a given date from a given list / address book",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-books",
+                ":id",
+                "contacts",
+                "unsubscribed-since",
+                ":date"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "select",
+                  "value": "<integer>",
+                  "description": "The number of records to select between 1 and 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "The numbers of records to skip in the result set"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The id of the list / address book"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "date",
+                  "description": "(Required) The date from which any unsubscribed contacts are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "64ce9dc9-a899-4e72-aba0-17e0380456f6",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-books",
+                    ":id",
+                    "contacts",
+                    "unsubscribed-since",
+                    ":date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "select",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The id of the list / address book"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "date",
+                      "description": "(Required) The date from which any unsubscribed contacts are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"[\\n{\\n\\\"suppressedContact\\\": {\\n\\\"id\\\": 1,\\n\\\"email\\\": \\\"nelson.redeker@example.com\\\",\\n\\\"optInType\\\": \\\"Unknown\\\",\\n\\\"emailType\\\": \\\"PlainText\\\",\\n\\\"dataFields\\\": null,\\n\\\"status\\\": \\\"Unsubscribed\\\"\\n},\\n\\\"dateRemoved\\\": \\\"2020-01-01T09:40:18.527Z\\\",\\n\\\"reason\\\": \\\"Unsubscribed\\\"\\n},\\n{\\n\\\"suppressedContact\\\": {\\n\\\"id\\\": 25,\\n\\\"email\\\": \\\"terry.mccarthy@example.com\\\",\\n\\\"optInType\\\": \\\"VerifiedDouble\\\",\\n\\\"emailType\\\": \\\"Html\\\",\\n\\\"dataFields\\\": null,\\n\\\"status\\\": \\\"Unsubscribed\\\"\\n},\\n\\\"dateRemoved\\\": \\\"2020-01-01T09:40:18.527Z\\\",\\n\\\"reason\\\": \\\"Unsubscribed\\\"\\n},\\n]\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc22675a-9117-4945-9e4a-d3b1db811655",
+          "name": "Unsubscribe contact from list",
+          "request": {
+            "name": "Unsubscribe contact from list",
+            "description": {
+              "content": "Unsubscribes contact from a given list / address book",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-books",
+                ":id",
+                "contacts",
+                "unsubscribe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The id of the list / address book"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "52850d82-5420-486d-867b-43a8d310bf82",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-books",
+                    ":id",
+                    "contacts",
+                    "unsubscribe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The id of the list / address book"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"suppressedContact\": {\n    \"id\": 123456,\n    \"email\": \"example@emailsim.io\",\n    \"optInType\": \"Unknown\",\n    \"emailType\": \"Html\",\n    \"dataFields\": null,\n    \"status\": \"Subscribed\"\n  },\n  \"dateRemoved\": \"2025-07-23 11:01:55.433000+00:00\",\n  \"reason\": \"Unsubscribed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff9ab73a-2934-4313-a917-f848096d5ad3",
+          "name": "Resubscribe contact to list",
+          "request": {
+            "name": "Resubscribe contact to list",
+            "description": {
+              "content": "Resubscribes a previously unsubscribed contact to a given list / address book",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-books",
+                ":id",
+                "contacts",
+                "resubscribe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The id of the list / address book"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unsubscribedContact\": {\n    \"email\": \"<string>\",\n    \"dataFields\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  },\n  \"preferredLocale\": \"<string>\",\n  \"returnUrlToUseIfChallenged\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9a36eda0-b251-4be0-b018-f59e32c71afa",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-books",
+                    ":id",
+                    "contacts",
+                    "resubscribe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The id of the list / address book"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unsubscribedContact\": {\n    \"email\": \"john.smith@emailsim.io\",\n    \"dataFields\": [\n      {\n        \"key\": \"FIRSTNAME\",\n        \"value\": \"Nelson\"\n      },\n      {\n        \"key\": \"LASTNAME\",\n        \"value\": \"Redeker\"\n      }\n    ]\n  },\n  \"preferredLocale\": \"de-DE\",\n  \"returnUrlToUseIfChallenged\": \"https://www.mywebsite.com/news\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contact\": {\n    \"id\": 23,\n    \"email\": \"john.smith@emailsim.io\",\n    \"optInType\": \"Unknown\",\n    \"emailType\": \"PlainText\",\n    \"dataFields\": null,\n    \"status\": \"Unsubscribed\"\n  },\n  \"status\": \"ContactChallenged\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a08bf4a2-5f6e-4887-aec4-91c3efece176",
+          "name": "Resubscribe contact to list with no challenge",
+          "request": {
+            "name": "Resubscribe contact to list with no challenge",
+            "description": {
+              "content": "Resubscribes a previously unsubscribed contact to a specific list / address book without sending a challenge email",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-books",
+                ":id",
+                "contacts",
+                "resubscribe-with-no-challenge"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of the list / address book, which needs to be included within the URL"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unsubscribedContact\": {\n    \"email\": \"<string>\",\n    \"dataFields\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7168d0f7-dcf7-43b8-8f2c-4a1f30ffbfd7",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-books",
+                    ":id",
+                    "contacts",
+                    "resubscribe-with-no-challenge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the list / address book, which needs to be included within the URL"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unsubscribedContact\": {\n    \"email\": \"<string>\",\n    \"dataFields\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contact\": {\n    \"id\": 24,\n    \"email\": \"john.smith@emailsim.io\",\n    \"optInType\": \"Unknown\",\n    \"emailType\": \"PlainText\",\n    \"dataFields\": null,\n    \"status\": \"Subscribed\"\n  },\n  \"status\": \"ContactAdded\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "693b5f47-5c83-40d0-b3d0-1b049bcd02d4",
+          "name": "Delete contact from list",
+          "request": {
+            "name": "Delete contact from list",
+            "description": {
+              "content": "Deletes a contact from a given list / address book",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-books",
+                ":addressBookId",
+                "contacts",
+                ":contactId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "addressBookId",
+                  "description": "(Required) The id of the list / address book"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "contactId",
+                  "description": "(Required) The id of the contact"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "db505d69-0d41-49d9-8902-afd74c3a22e5",
+              "name": "204",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-books",
+                    ":addressBookId",
+                    "contacts",
+                    ":contactId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "addressBookId",
+                      "description": "(Required) The id of the list / address book"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "contactId",
+                      "description": "(Required) The id of the contact"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09f32f91-ea8e-4d9c-982d-5b9ad5d61041",
+          "name": "Delete contacts from list",
+          "request": {
+            "name": "Delete contacts from list",
+            "description": {
+              "content": "Deletes multiple contacts from an list / address book",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-books",
+                ":addressBookId",
+                "contacts",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "addressBookId",
+                  "description": "(Required) The id of the list / address book"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"RAW_BODY\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f976e580-a1ae-459b-b23f-1bbf3d003bae",
+              "name": "202",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-books",
+                    ":addressBookId",
+                    "contacts",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "addressBookId",
+                      "description": "(Required) The id of the list / address book"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  684095989,\n  1182927244\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"13e7b388-2060-4f58-b3dc-2885badf80ee\",\n  \"status\": \"Started\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f75f92ce-bcba-45fb-9358-ca2bc220ec78",
+          "name": "Delete all contacts from list",
+          "request": {
+            "name": "Delete all contacts from list",
+            "description": {
+              "content": "Deletes all contacts from a given list / address book",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-books",
+                ":addressBookId",
+                "contacts",
+                "delete-all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "addressBookId",
+                  "description": "(Required) The id of the list / address book"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "31a25190-59b0-4cc8-bc71-2a976c0a65fb",
+              "name": "202",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-books",
+                    ":addressBookId",
+                    "contacts",
+                    "delete-all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "addressBookId",
+                      "description": "(Required) The id of the list / address book"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"13e7b388-2060-4f58-b3dc-2885badf80ee\",\n  \"status\": \"Started\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00ebad7c-b500-449a-9206-14039b3dd060",
+          "name": "Get contacts opted into a preference and an address book",
+          "request": {
+            "name": "Get contacts opted into a preference and an address book",
+            "description": {
+              "content": "Gets contacts who are opted into a given preference and a given address book",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-books",
+                ":addressBookId",
+                "contacts",
+                "with-preference",
+                ":preferenceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "minContactID",
+                  "value": "<integer>",
+                  "description": "The minimum contact ID to query on, starting from 0"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "addressBookId",
+                  "description": "(Required) The ID of the address book to which contacts must belong."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "preferenceId",
+                  "description": "(Required) The ID of the preference to which contacts must be opted in."
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b212a03-fd0a-495c-9803-caf0cd801b0e",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-books",
+                    ":addressBookId",
+                    "contacts",
+                    "with-preference",
+                    ":preferenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "minContactID",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "addressBookId",
+                      "description": "(Required) The ID of the address book to which contacts must belong."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "preferenceId",
+                      "description": "(Required) The ID of the preference to which contacts must be opted in."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"[\\n{\\n\\\"id\\\": 279,\\n\\\"email\\\": \\\"joe.bloggs@emailsim.io\\\"\\n},\\n{\\n\\\"id\\\": 99123,\\n\\\"email\\\": \\\"joanne.bloggs@emailsim.io\\\"\\n},\\n]\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "340d74f3-386f-4909-a5aa-683bddca4624",
+          "name": "Get contacts with modified preference opt-in in address book since date",
+          "request": {
+            "name": "Get contacts with modified preference opt-in in address book since date",
+            "description": {
+              "content": "Gets the top 1000 contacts who have had a specific preference opt-in status modified since a given date, in a given address book",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-books",
+                ":addressBookId",
+                "contacts",
+                "with-preference",
+                ":preferenceId",
+                "opt-ins-since",
+                ":date"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "minContactID",
+                  "value": "<integer>",
+                  "description": "The minimum contact ID to query on, starting from 0"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "addressBookId",
+                  "description": "(Required) The ID of the address book to which contacts must belong."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "preferenceId",
+                  "description": "(Required) The ID of the preference to which contacts must be opted in."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "date",
+                  "description": "(Required) The earliest date that returned contacts must have modified their opt-in status for the preference in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4c5e372f-bd5c-4063-99f6-fdc533b3e9bb",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-books",
+                    ":addressBookId",
+                    "contacts",
+                    "with-preference",
+                    ":preferenceId",
+                    "opt-ins-since",
+                    ":date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "minContactID",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "addressBookId",
+                      "description": "(Required) The ID of the address book to which contacts must belong."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "preferenceId",
+                      "description": "(Required) The ID of the preference to which contacts must be opted in."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "date",
+                      "description": "(Required) The earliest date that returned contacts must have modified their opt-in status for the preference in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"contact\": {\n      \"id\": 5,\n      \"email\": \"darryl.netherland@example.com\",\n      \"optInType\": \"Single\",\n      \"emailType\": \"Html\",\n      \"dataFields\": null,\n      \"status\": \"Subscribed\"\n    },\n    \"marketingPreferenceOptIns\": [\n      {\n        \"marketingPreferenceId\": 2,\n        \"addressBookId\": 421,\n        \"isOptedIn\": false,\n        \"dateModifed\": \"2020-01-01 09:40:18.527000+00:00\"\n      }\n    ]\n  },\n  {\n    \"contact\": {\n      \"id\": 12,\n      \"email\": \"dora.judge@example.com\",\n      \"optInType\": \"Unknown\",\n      \"emailType\": \"Html\",\n      \"dataFields\": null,\n      \"status\": \"Subscribed\"\n    },\n    \"marketingPreferenceOptIns\": [\n      {\n        \"marketingPreferenceId\": 5,\n        \"addressBookId\": 395,\n        \"isOptedIn\": true,\n        \"dateModifed\": \"2020-01-01 09:40:18.527000+00:00\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "22f563cd-a0c2-4397-b78e-2d2462e8494a",
+      "name": "Lists / Address books - Deprecated",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f665eaad-4993-40df-9494-68bfc79815a5",
+          "name": "Bulk import contacts in address book with merge option",
+          "request": {
+            "name": "Bulk import contacts in address book with merge option",
+            "description": {
+              "content": "Bulk creates, or bulk updates, contacts in an address book with merge option",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-books",
+                ":id",
+                "contacts",
+                "import",
+                "with-merge-option",
+                ":mergeOption"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The address book id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "mergeOption",
+                  "description": "(Required) For Merge options: you can update all data fields by entering ''0'', avoid updating data fields that contain blank values by entering ''1'', or you can choose not to update data fields that contain values by entering ''2''"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filename\": \"<string>\",\n  \"data\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1229f63f-580f-43ae-9430-33a6e29b6b2c",
+              "name": "202",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-books",
+                    ":id",
+                    "contacts",
+                    "import",
+                    "with-merge-option",
+                    ":mergeOption"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The address book id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mergeOption",
+                      "description": "(Required) For Merge options: you can update all data fields by entering ''0'', avoid updating data fields that contain blank values by entering ''1'', or you can choose not to update data fields that contain values by entering ''2''"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filename\": \"<string>\",\n  \"data\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"af4ac4bc-e1e7-4817-8a66-73fb59e91ce6\",\n  \"status\": \"NotFinished\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3124945b-ebb7-4af8-9ae9-45a086ed68b2",
+          "name": "Get modified contacts in address book since date",
+          "request": {
+            "name": "Get modified contacts in address book since date",
+            "description": {
+              "content": "Gets a list of contacts who were modified since a given date, in a given address book or segment",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-books",
+                ":id",
+                "contacts",
+                "modified-since",
+                ":date"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "withFullData",
+                  "value": "false",
+                  "description": "Can be set to 'true' to retrieve the contacts along with their full contact data fields"
+                },
+                {
+                  "disabled": false,
+                  "key": "select",
+                  "value": "<integer>",
+                  "description": "he select parameter requires a number between 1 and 1000 (0 is not a valid number). You may only select a maximum of 1000 results in a single request. This parameter goes within the URL."
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "The skip parameter should be used in tandem with the select parameter when wanting to iterate through a whole data set. If you want to select the next 1000 records you should set the select parameter to 1000 and the skip parameter to 1000, which will return records 1001 to 2000. You should continue to do this until 0 records are returned to retrieve the whole data set."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of the address book or segment"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "date",
+                  "description": "(Required) The date from which any modified contacts are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8aabf8f4-71f5-4cab-aa7a-f7167d6880fe",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-books",
+                    ":id",
+                    "contacts",
+                    "modified-since",
+                    ":date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "withFullData",
+                      "value": "false"
+                    },
+                    {
+                      "key": "select",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the address book or segment"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "date",
+                      "description": "(Required) The date from which any modified contacts are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 5,\n    \"email\": \"darryl.netherland@example.com\",\n    \"optInType\": \"Single\",\n    \"emailType\": \"PlainText\",\n    \"dataFields\": null,\n    \"status\": \"Subscribed\"\n  },\n  {\n    \"id\": 17,\n    \"email\": \"dora.judge@example.com\",\n    \"optInType\": \"Single\",\n    \"emailType\": \"PlainText\",\n    \"dataFields\": null,\n    \"status\": \"Subscribed\"\n  },\n  {\n    \"id\": 21,\n    \"email\": \"deonna.medine@example.com\",\n    \"optInType\": \"Single\",\n    \"emailType\": \"PlainText\",\n    \"dataFields\": null,\n    \"status\": \"Subscribed\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7a5ffd7-63ad-4943-9dbf-474facc16026",
+          "name": "Get contacts from address book",
+          "request": {
+            "name": "Get contacts from address book",
+            "description": {
+              "content": "Gets a list of contacts in a given address book or segment by id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-books",
+                ":id",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "withFullData",
+                  "value": "false",
+                  "description": "Can be set to 'true' to retrieve the contacts along with their full contact data fields"
+                },
+                {
+                  "disabled": false,
+                  "key": "select",
+                  "value": "<integer>",
+                  "description": "he select parameter requires a number between 1 and 1000 (0 is not a valid number). You may only select a maximum of 1000 results in a single request. This parameter goes within the URL."
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "The skip parameter should be used in tandem with the select parameter when wanting to iterate through a whole data set. If you want to select the next 1000 records you should set the select parameter to 1000 and the skip parameter to 1000, which will return records 1001 to 2000. You should continue to do this until 0 records are returned to retrieve the whole data set."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of the address book or segment"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c774a89-5724-48d1-85a3-0166f51c2c6c",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-books",
+                    ":id",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "withFullData",
+                      "value": "false"
+                    },
+                    {
+                      "key": "select",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the address book or segment"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 5,\n    \"email\": \"darryl.netherland@example.com\",\n    \"optInType\": \"Single\",\n    \"emailType\": \"PlainText\",\n    \"dataFields\": null,\n    \"status\": \"Subscribed\"\n  },\n  {\n    \"id\": 17,\n    \"email\": \"dora.judge@example.com\",\n    \"optInType\": \"Single\",\n    \"emailType\": \"PlainText\",\n    \"dataFields\": null,\n    \"status\": \"Subscribed\"\n  },\n  {\n    \"id\": 21,\n    \"email\": \"deonna.medine@example.com\",\n    \"optInType\": \"Single\",\n    \"emailType\": \"PlainText\",\n    \"dataFields\": null,\n    \"status\": \"Subscribed\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "174e01d5-9b54-415b-bd00-3b1bf1882ffe",
+          "name": "Add contact to address book",
+          "request": {
+            "name": "Add contact to address book",
+            "description": {
+              "content": "Adds a contact to a given address book.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-books",
+                ":id",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The id of the address book"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\",\n  \"optInType\": \"<string>\",\n  \"emailType\": \"<string>\",\n  \"dataFields\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "73897306-734f-450e-ab8f-d4426f25179f",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-books",
+                    ":id",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The id of the address book"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"john.smith@example.com\",\n  \"optInType\": \"Single\",\n  \"emailType\": \"Html\",\n  \"dataFields\": [\n    {\n      \"key\": \"FIRSTNAME\",\n      \"value\": \"John\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"email\": \"john.smith@example.com\",\n  \"optInType\": \"Single\",\n  \"emailType\": \"Html\",\n  \"dataFields\": [\n    {\n      \"key\": \"FIRSTNAME\",\n      \"value\": \"John\"\n    },\n    {\n      \"key\": \"FULLNAME\",\n      \"value\": \"John Smith\"\n    },\n    {\n      \"key\": \"GENDER\",\n      \"value\": \"Male\"\n    },\n    {\n      \"key\": \"LASTNAME\",\n      \"value\": \"Smith\"\n    },\n    {\n      \"key\": \"LASTSUBSCRIBED\",\n      \"value\": \"2020-01-01 09:40:18.527000+00:00\"\n    },\n    {\n      \"key\": \"POSTCODE\",\n      \"value\": \"N5 1DP\"\n    }\n  ],\n  \"status\": \"Subscribed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "226651b3-6c8c-4451-b376-7b6529366063",
+    "name": "Lists / Address books",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage contact lists (address books) and their memberships. Use this API to create, update, and delete lists; retrieve all, public, or private lists; bulk-import contacts; remove individual or multiple contacts; manage subscription status (unsubscribe and resubscribe); and query contacts within a list by preference opt-in status or unsubscribe date.\n",
+      "type": "text/plain"
+    }
+  }
+}

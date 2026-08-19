@@ -1,0 +1,1074 @@
+{
+  "item": [
+    {
+      "id": "569aec74-6a89-4e25-a30a-598e208c053d",
+      "name": "Retrieves a list of all available templates",
+      "request": {
+        "name": "Retrieves a list of all available templates",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "templates"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "3513f1d2-b8b2-48cd-80ba-e73bfe1365f0",
+          "name": "A list of templates",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"id\": \"a-zA-Z7-_\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"_createdOn\": \"1970-05-30T07:53:26.654Z\",\n    \"_createdBy\": \"string\",\n    \"_updatedOn\": \"1966-01-25T12:59:33.276Z\",\n    \"_updatedBy\": \"string\"\n  },\n  {\n    \"id\": \"a-zA-Z6-_\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"_createdOn\": \"2025-08-22T07:33:11.093Z\",\n    \"_createdBy\": \"string\",\n    \"_updatedOn\": \"1988-09-09T09:26:18.097Z\",\n    \"_updatedBy\": \"string\"\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "fa4fbca6-9f7c-4208-bd05-8ab3159a58f5",
+          "name": "The template was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c237907e-8b03-4fdb-abdb-4d67fbf72d57",
+      "name": "Create a template",
+      "request": {
+        "name": "Create a template",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "templates"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"messageParts\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "8ed5c56b-8e55-4553-9763-80eddf15b154",
+          "name": "The created template",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messageParts\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "disabled": false,
+              "description": "A unique value representing the version of the template, optionally used for optimistic concurrency control on PUT and DELETE",
+              "key": "ETag",
+              "value": "string"
+            },
+            {
+              "disabled": false,
+              "description": "The date the template was last updated in ISO 8601 format",
+              "key": "Last-Modified",
+              "value": "1998-06-02T20:19:54.878Z"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"a-zA-Z9-_\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"messageParts\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"_createdOn\": \"1952-09-26T22:55:27.662Z\",\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1977-07-28T12:02:51.052Z\",\n  \"_updatedBy\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "cb5a9b3a-fef7-482e-ba76-9427f6cc5392",
+          "name": "The template was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messageParts\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "9704ee43-c1a7-42ab-b698-5a3c06e7aeb6",
+      "name": "Retrieves a template",
+      "request": {
+        "name": "Retrieves a template",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "templates",
+            ":templateId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "includeDeleted",
+              "value": "<boolean>",
+              "description": "Indicates whether deleted templates should be returned"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "templateId",
+              "description": "(Required) The template id"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "a552f5f1-83c4-422c-a700-1f1c13ac5f13",
+          "name": "The requested template",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "templates",
+                ":templateId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "includeDeleted",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "templateId",
+                  "description": "(Required) The template id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "disabled": false,
+              "description": "A unique value representing the version of the template, optionally used for optimistic concurrency control on PUT and DELETE",
+              "key": "ETag",
+              "value": "string"
+            },
+            {
+              "disabled": false,
+              "description": "The date the template was last updated in ISO 8601 format",
+              "key": "Last-Modified",
+              "value": "1998-06-02T20:19:54.878Z"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"a-zA-Z9-_\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"messageParts\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"_createdOn\": \"1952-09-26T22:55:27.662Z\",\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1977-07-28T12:02:51.052Z\",\n  \"_updatedBy\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "1cd6215f-a09f-4d27-95af-743bd3d13806",
+          "name": "The template was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "templates",
+                ":templateId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "includeDeleted",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "templateId",
+                  "description": "(Required) The template id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "b901bd2e-95fc-4bf7-b259-0cc0b0fa800f",
+      "name": "Updates a template",
+      "request": {
+        "name": "Updates a template",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "templates",
+            ":templateId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "templateId",
+              "description": "(Required) The template id"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "An optional ETag for optimistic concurrency control",
+            "key": "if-match",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"messageParts\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "ab1cd2a4-30fe-4c62-b0ba-7189db68092a",
+          "name": "The updated template",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "templates",
+                ":templateId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "templateId",
+                  "description": "(Required) The template id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messageParts\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "disabled": false,
+              "description": "A unique value representing the version of the template, optionally used for optimistic concurrency control on PUT and DELETE",
+              "key": "ETag",
+              "value": "string"
+            },
+            {
+              "disabled": false,
+              "description": "The date the template was last updated in ISO 8601 format",
+              "key": "Last-Modified",
+              "value": "1998-06-02T20:19:54.878Z"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"a-zA-Z9-_\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"messageParts\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"_createdOn\": \"1952-09-26T22:55:27.662Z\",\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1977-07-28T12:02:51.052Z\",\n  \"_updatedBy\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "9fe99cbf-95b6-4692-acfa-d31a03b85813",
+          "name": "The template was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "templates",
+                ":templateId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "templateId",
+                  "description": "(Required) The template id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messageParts\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "9067dc55-80e0-4f1b-951c-16f0a69334de",
+          "name": "The ETag supplied did not match, another update may have taken place",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "templates",
+                ":templateId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "templateId",
+                  "description": "(Required) The template id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messageParts\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Precondition Failed",
+          "code": 412,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "f99c560d-5661-4a5d-b40b-9eee59a2f964",
+      "name": "Deletes a template",
+      "request": {
+        "name": "Deletes a template",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "templates",
+            ":templateId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "templateId",
+              "description": "(Required) The template id"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "An optional ETag for optimistic concurrency control",
+            "key": "if-match",
+            "value": "<string>"
+          }
+        ],
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "a1d7ca92-91b5-4728-8a07-5c212561d25c",
+          "name": "Indicates successful deletion of an template",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "templates",
+                ":templateId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "templateId",
+                  "description": "(Required) The template id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "ce6ca230-09d3-4c4e-b1e7-968e772c9f29",
+          "name": "The template was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "templates",
+                ":templateId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "templateId",
+                  "description": "(Required) The template id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "0b45fc4b-0128-4b3b-b991-23438d4d5c0c",
+          "name": "The ETag supplied did not match, another update may have taken place",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "templates",
+                ":templateId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "templateId",
+                  "description": "(Required) The template id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Precondition Failed",
+          "code": 412,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "af76be63-f9c8-4ebc-9d6b-be733ebe97b1",
+    "name": "Templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Allows the maintenance of templates for use with messaging APIs.",
+      "type": "text/plain"
+    }
+  }
+}

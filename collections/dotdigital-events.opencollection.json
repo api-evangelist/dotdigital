@@ -1,0 +1,261 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Events",
+    "version": "3.1.1-Events-in-out"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Import events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import a collection of events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/events/v3/import",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Imports a batch of events associated to contacts."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Export events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/events/v3/export/:subscriptionId",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The events subscription id you want to interact with."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of records to return in the results, note it could be fewer."
+              },
+              {
+                "name": "checkPoint",
+                "value": "",
+                "type": "query",
+                "description": "Provide the `checkPoint` value from your previous call to indicate you have received the events successfully."
+              }
+            ]
+          },
+          "docs": "Gets a set of events for a events subscription. If starting to retrieve events then do not pass a `checkPoint` and the earliest events queued for the subscription will be retrieved, and on subsequent calls pass the `checkPoint` value from the previous call to indicate you have received that page of events successfully.<br><br>\n**Note:**\n* Ensure you pass the returned `checkPoint` to ensure you only get events after the last time you called.\n* You must ensure that you pick up the latest events fo"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/events/v3/export/subscriptions",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of records to return in the results, note it could be fewer."
+              },
+              {
+                "name": "marker",
+                "value": "",
+                "type": "query",
+                "description": "Pagination marker to retrieve the data from"
+              }
+            ]
+          },
+          "docs": "Lists all events subscriptions and their details."
+        },
+        {
+          "info": {
+            "name": "Create subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/events/v3/export/subscriptions",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              },
+              {
+                "name": "x-ddg-calling-system",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a events subscription. \n\nThe `name` passed must be unique within the accounts subscriptions\n\nIf you apply filters to your event subscription then **all filters must match** (logical AND) for the event to be captured.\n\nIf you want to match the same event type on multiple different sets of filters (logical OR) then add the event type multiple time to the subscription with differing filters."
+        },
+        {
+          "info": {
+            "name": "Gets subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/events/v3/export/subscriptions/:subscriptionId",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The events subscription id you want to interact with."
+              }
+            ]
+          },
+          "docs": "Gets a events subscription details."
+        },
+        {
+          "info": {
+            "name": "Update subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{region}-api.dotdigital.com/events/v3/export/subscriptions/:subscriptionId",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The events subscription id you want to interact with."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a events subscription with new details.\n\nIf you apply filters to your event subscription then **all filters must match** (logical AND) for the event to be captured.\n\nIf you want to match the same event type on multiple different sets of filters (logical OR) then add the event type multiple time to the subscription with differing filters."
+        },
+        {
+          "info": {
+            "name": "Deletes subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{region}-api.dotdigital.com/events/v3/export/subscriptions/:subscriptionId",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The events subscription id you want to interact with."
+              }
+            ]
+          },
+          "docs": "Deletes a events subscription.<br><br> \n**Note:** once deleted it cannot be restored, this is a destructive call."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Large objects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve large object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/events/v3/lob/:lobId",
+            "params": [
+              {
+                "name": "lobId",
+                "value": "",
+                "type": "path",
+                "description": "The unique id for the large object to retrieve."
+              }
+            ]
+          },
+          "docs": "Gets the data for a large object (LOB) referred to in some events when the data for the field would be too large to be transferred in the event data itself, and so needs downloading seperately."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

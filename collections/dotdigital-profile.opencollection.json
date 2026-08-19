@@ -1,0 +1,490 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Profile API",
+    "version": "1.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Exports the result of a profile query in a formatted file for download",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{region}-api.dotdigital.com/cpaas/profiles/export",
+        "params": [
+          {
+            "name": "query",
+            "value": "",
+            "type": "query",
+            "description": "See https://www.npmjs.com/package/mongo-querystring for export query syntax."
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "For format=csv, due to the flat file format, only primitive types will be exported. Non-primitive type will be exported with \"--INVALID-TYPE--\" as the data. Nested data should be referred to explicitly: \"address.line1\""
+    },
+    {
+      "info": {
+        "name": "Creates or updates the supplied profiles with the supplied data",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "https://{region}-api.dotdigital.com/cpaas/profiles/bulk",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Creates or updates the supplied profiles with the supplied data"
+    },
+    {
+      "info": {
+        "name": "Deletes the requested profiles",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/cpaas/profiles/bulk",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "query",
+            "description": "The ids of the profiles to delete, e.g. ?id=profile1&id=profile2"
+          }
+        ]
+      },
+      "docs": "Deletes the requested profiles"
+    },
+    {
+      "info": {
+        "name": "Retrieves a Profile",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/profiles/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The id of the profile"
+          },
+          {
+            "name": "includeDeleted",
+            "value": "",
+            "type": "query",
+            "description": "Indicates whether deleted profiles should be returned"
+          }
+        ]
+      },
+      "docs": "Retrieves a Profile"
+    },
+    {
+      "info": {
+        "name": "Updates or undeletes a Profile",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{region}-api.dotdigital.com/cpaas/profiles/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The id of the profile"
+          },
+          {
+            "name": "undelete",
+            "value": "",
+            "type": "query",
+            "description": "When set to true (and no payload is present) a deleted profile can be un-deleted"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Updates or undeletes a Profile"
+    },
+    {
+      "info": {
+        "name": "Patches a Profile",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "https://{region}-api.dotdigital.com/cpaas/profiles/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The id of the profile"
+          },
+          {
+            "name": "allowcreate",
+            "value": "",
+            "type": "query",
+            "description": "Indicates whether this patch request create a new profile if there is no profile to patch"
+          },
+          {
+            "name": "deletes",
+            "value": "",
+            "type": "query",
+            "description": "List of properties that should be deleted from profile during patch"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Patches a Profile"
+    },
+    {
+      "info": {
+        "name": "Deletes a Profile",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/cpaas/profiles/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The id of the profile"
+          },
+          {
+            "name": "forget",
+            "value": "",
+            "type": "query",
+            "description": "Indicates whether this delete shoudl ripple out to all services to delete their data relating to the profile"
+          }
+        ]
+      },
+      "docs": "Deletes a Profile"
+    },
+    {
+      "info": {
+        "name": "Set profile opt in for specified channels",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{region}-api.dotdigital.com/cpaas/profiles/:id/optin",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The id of the profile"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Set profile opt in for specified channels"
+    },
+    {
+      "info": {
+        "name": "Set profile opt in for specified channels",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/cpaas/profiles/:id/optin",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The id of the profile"
+          },
+          {
+            "name": "channel",
+            "value": "",
+            "type": "query",
+            "description": "Channel to opt profile out"
+          }
+        ]
+      },
+      "docs": "Set profile opt in for specified channels"
+    },
+    {
+      "info": {
+        "name": "Creates a relationship where the linked profile is the primary and this profile is a child",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{region}-api.dotdigital.com/cpaas/profiles/:id/rels/primary/:linkedId",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The id of the profile"
+          },
+          {
+            "name": "linkedId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the profile to link with"
+          }
+        ]
+      },
+      "docs": "Creates a relationship where the linked profile is the primary and this profile is a child"
+    },
+    {
+      "info": {
+        "name": "Deletes the profile's relationship to a primary profile",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/cpaas/profiles/:id/rels/primary/:linkedId",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The id of the profile"
+          },
+          {
+            "name": "linkedId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the profile to link with"
+          }
+        ]
+      },
+      "docs": "Deletes the profile's relationship to a primary profile"
+    },
+    {
+      "info": {
+        "name": "Creates a relationship where this profile is the primary and the linked profile is a child",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{region}-api.dotdigital.com/cpaas/profiles/:id/rels/link/:linkedId",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The id of the profile"
+          },
+          {
+            "name": "linkedId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the profile to link with"
+          }
+        ]
+      },
+      "docs": "Creates a relationship where this profile is the primary and the linked profile is a child"
+    },
+    {
+      "info": {
+        "name": "Deletes the primary profile's relationship to a linked Profile",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/cpaas/profiles/:id/rels/link/:linkedId",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The id of the profile"
+          },
+          {
+            "name": "linkedId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the profile to link with"
+          }
+        ]
+      },
+      "docs": "Deletes the primary profile's relationship to a linked Profile"
+    },
+    {
+      "info": {
+        "name": "Removes device from profile and closes related opened sessions",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/apispaces/:apiSpaceId/profiles/:id/devices/:deviceId",
+        "params": [
+          {
+            "name": "apiSpaceId",
+            "value": "",
+            "type": "path",
+            "description": "The API space id"
+          },
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The id of the profile"
+          },
+          {
+            "name": "deviceId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the device"
+          }
+        ]
+      },
+      "docs": "Removes device from profile and closes related opened sessions"
+    },
+    {
+      "info": {
+        "name": "Retrieves push capabilities summary",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{region}-api.dotdigital.com/apispaces/:apiSpaceId/profiles/devices/push/validation",
+        "params": [
+          {
+            "name": "apiSpaceId",
+            "value": "",
+            "type": "path",
+            "description": "The API space id"
+          }
+        ]
+      },
+      "docs": "Retrieves push capabilities summary"
+    },
+    {
+      "info": {
+        "name": "Query profiles",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/profiles",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "query",
+            "description": "The profile id to be retrieved"
+          },
+          {
+            "name": "$includeDevices",
+            "value": "",
+            "type": "query",
+            "description": "Retrieves the device details associated with the profile, such as browsers and mobile devices"
+          },
+          {
+            "name": "$includeSessions",
+            "value": "",
+            "type": "query",
+            "description": "Includes details of the App Messaging sessions that the profile has"
+          },
+          {
+            "name": "$fields",
+            "value": "",
+            "type": "query",
+            "description": "Limits the fields returned by the query to one or more specific field names"
+          },
+          {
+            "name": "$includeDeleted",
+            "value": "",
+            "type": "query",
+            "description": "Includes deleted profiles in the result"
+          },
+          {
+            "name": "$includeSystem",
+            "value": "",
+            "type": "query",
+            "description": "Includes system profiles in the result"
+          },
+          {
+            "name": "$limit",
+            "value": "",
+            "type": "query",
+            "description": "Limits the number of results returned"
+          },
+          {
+            "name": "$schemaOnly",
+            "value": "",
+            "type": "query",
+            "description": "Returns the schema of a sample of profiles"
+          },
+          {
+            "name": "$skip",
+            "value": "",
+            "type": "query",
+            "description": "Starts results at a specific record index"
+          }
+        ]
+      },
+      "docs": "See https://www.npmjs.com/package/mongo-querystring for query syntax. If you need to search for strings that are numeric, they can be wrapped in single quotes to prevent them being interpretted as numbers."
+    },
+    {
+      "info": {
+        "name": "Creates a new Profile",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{region}-api.dotdigital.com/cpaas/profiles",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Creates a new Profile"
+    },
+    {
+      "info": {
+        "name": "Gets default profiles opt in/out options for each channel in channel service",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/profiles/optin"
+      },
+      "docs": "Gets default profiles opt in/out options for each channel in channel service"
+    },
+    {
+      "info": {
+        "name": "Set default profiles opt in/out options for each channel in channel service",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{region}-api.dotdigital.com/cpaas/profiles/optin"
+      },
+      "docs": "Set default profiles opt in/out options for each channel in channel service"
+    }
+  ],
+  "bundled": true
+}

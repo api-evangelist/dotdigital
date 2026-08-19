@@ -1,0 +1,194 @@
+{
+  "item": [
+    {
+      "id": "7881e4ed-2c4e-4d77-ba59-971e447365a4",
+      "name": "Retrieves message history for the specified profile.  Messages retrieved from the date spacified (default now), in descending time order.",
+      "request": {
+        "name": "Retrieves message history for the specified profile.  Messages retrieved from the date spacified (default now), in descending time order.",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "profiles",
+            ":profileId",
+            "messages"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "channelId",
+              "value": "<string>",
+              "description": "The id of the channel the message was sent or received on"
+            },
+            {
+              "disabled": false,
+              "key": "direction",
+              "value": "<string>",
+              "description": "The direction of the message"
+            },
+            {
+              "disabled": false,
+              "key": "from",
+              "value": "<dateTime>",
+              "description": "The date (in UTC, ISO 8601 format) to query backwards from"
+            },
+            {
+              "disabled": false,
+              "key": "limit",
+              "value": "<integer>",
+              "description": "Maximum number of results to return"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "profileId",
+              "description": "(Required) The id of the profile"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "0638b846-16ae-4173-b5f9-ed3060139a1d",
+          "name": "List of messages matching the criteria",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":profileId",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "channelId",
+                  "value": "<string>"
+                },
+                {
+                  "key": "direction",
+                  "value": "<string>"
+                },
+                {
+                  "key": "from",
+                  "value": "<dateTime>"
+                },
+                {
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profileId",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"messageId\": \"string\",\n    \"submittedOn\": \"string\",\n    \"profileId\": \"string\",\n    \"channelId\": \"string\",\n    \"direction\": \"inbound\",\n    \"status\": \"sent\",\n    \"message\": {\n      \"title\": \"string\",\n      \"body\": \"string\",\n      \"channelData\": {}\n    }\n  },\n  {\n    \"messageId\": \"string\",\n    \"submittedOn\": \"string\",\n    \"profileId\": \"string\",\n    \"channelId\": \"string\",\n    \"direction\": \"inbound\",\n    \"status\": \"read\",\n    \"message\": {\n      \"title\": \"string\",\n      \"body\": \"string\",\n      \"channelData\": {}\n    }\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7bf858f5-18cf-40bb-8e06-434be46f44ce",
+    "name": "Message History API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Provides methods for querying the message history for a given profile.\nReturns messages in descending chronological order from a specified date,\nallowing callers to page through the full history of messages sent to or\nfrom that profile across all channels.",
+      "type": "text/plain"
+    }
+  }
+}

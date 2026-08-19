@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Transactional email",
+    "version": "2.1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transactional email",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send transactional email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/email",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a transactional email to one recipient"
+        },
+        {
+          "info": {
+            "name": "Send batch transactional email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/email/batch",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a transactional email to multiple recipients"
+        },
+        {
+          "info": {
+            "name": "Send transactional email using a triggered campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/email/triggered-campaign",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a transactional email using a triggered campaign"
+        },
+        {
+          "info": {
+            "name": "Send batch transactional email using a triggered campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/email/triggered-campaign/batch",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send batch transactional email using a triggered campaign"
+        },
+        {
+          "info": {
+            "name": "Get transactional email statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/email/stats/since-date/:date",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "The UTC date (yyyy-mm-dd) from which transactional email reporting statistics will be returned"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "The UTC end date (yyyy-mm-dd) up to which transactional email reporting statistics will be returned (inclusive)"
+              },
+              {
+                "name": "aggregatedBy",
+                "value": "",
+                "type": "query",
+                "description": "The data aggregation period for transactional email reporting statistics"
+              }
+            ]
+          },
+          "docs": "Gets transactional email reporting statistics for a specified time period"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

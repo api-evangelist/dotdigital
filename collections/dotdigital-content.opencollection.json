@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Content API",
+    "version": "1.0.2"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Upload a file",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{region}-api.dotdigital.com/cpaas/content",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Upload a file"
+    },
+    {
+      "info": {
+        "name": "Retrieve a file",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/content/:fileId",
+        "params": [
+          {
+            "name": "fileId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the file"
+          }
+        ]
+      },
+      "docs": "Retrieve a file"
+    },
+    {
+      "info": {
+        "name": "Delete a file",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/cpaas/content/:fileId",
+        "params": [
+          {
+            "name": "fileId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the file"
+          }
+        ]
+      },
+      "docs": "Delete a file"
+    }
+  ],
+  "bundled": true
+}

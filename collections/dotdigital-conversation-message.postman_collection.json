@@ -1,0 +1,559 @@
+{
+  "item": [
+    {
+      "id": "f974e3bd-bd8f-4eb4-b4a3-5635032ff062",
+      "name": "Retrieves a conversation's events",
+      "request": {
+        "name": "Retrieves a conversation's events",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "conversations",
+            ":conversationId",
+            "events"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "from",
+              "value": "<integer>",
+              "description": "(Required) The event id to start from"
+            },
+            {
+              "disabled": false,
+              "key": "limit",
+              "value": "<integer>",
+              "description": "(Required) The number of events to read forward"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "conversationId",
+              "description": "(Required) The id of the conversation"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "a4b8b1d6-3a22-480a-8317-6e7cc297adb1",
+          "name": "A list of conversation events",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"id\": 5697,\n    \"data\": {}\n  },\n  {\n    \"id\": 1223,\n    \"data\": {}\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "578770f3-07a1-4900-8c32-43fc1f238eeb",
+      "name": "Retrieves a conversation's messages from an point (event) in time and works backwards",
+      "request": {
+        "name": "Retrieves a conversation's messages from an point (event) in time and works backwards",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "conversations",
+            ":conversationId",
+            "messages"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "from",
+              "value": "<integer>",
+              "description": "The event id to work backwards from"
+            },
+            {
+              "disabled": false,
+              "key": "limit",
+              "value": "<integer>",
+              "description": "(Required) The number of messages to return"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "conversationId",
+              "description": "(Required) The id of the conversation"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "d120b0a2-30d0-438c-9df1-a5c97417003a",
+          "name": "A list of partial and the requested number of complete messages, aggregated from the conversation events",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"earliestEventId\": 8719,\n  \"latestEventId\": 3916,\n  \"messages\": [\n    {\n      \"id\": \"903523dd-d5e0-28cc-a1fb-7abbd4fc22fa\",\n      \"sentEventId\": 4768,\n      \"metadata\": {},\n      \"context\": {\n        \"from\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"avatarUrl\": \"string\"\n        },\n        \"conversationId\": \"string\",\n        \"sentBy\": \"string\",\n        \"sentOn\": \"1960-05-23T02:48:25.835Z\",\n        \"scope\": \"p2p\",\n        \"direction\": \"outbound\"\n      },\n      \"parts\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"string\",\n          \"data\": \"string\",\n          \"size\": 4485\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"string\",\n          \"data\": \"string\",\n          \"size\": 1644\n        }\n      ],\n      \"statusUpdates\": {}\n    },\n    {\n      \"id\": \"feda5adc-17a7-236f-6474-3332bacbcf99\",\n      \"sentEventId\": 1337,\n      \"metadata\": {},\n      \"context\": {\n        \"from\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"avatarUrl\": \"string\"\n        },\n        \"conversationId\": \"string\",\n        \"sentBy\": \"string\",\n        \"sentOn\": \"1985-11-28T04:05:02.283Z\",\n        \"scope\": \"p2p\",\n        \"direction\": \"outbound\"\n      },\n      \"parts\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"string\",\n          \"data\": \"string\",\n          \"size\": 5153\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"string\",\n          \"data\": \"string\",\n          \"size\": 6313\n        }\n      ],\n      \"statusUpdates\": {}\n    }\n  ],\n  \"orphanedEvents\": [\n    {\n      \"id\": 8097,\n      \"data\": {}\n    },\n    {\n      \"id\": 4195,\n      \"data\": {}\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c347beb7-cf1e-41c4-b190-5b7c74b15872",
+      "name": "Sends a message to conversation",
+      "request": {
+        "name": "Sends a message to conversation",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "conversations",
+            ":conversationId",
+            "messages"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "conversationId",
+              "description": "(Required) The id of the conversation"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"parts\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    }\n  ],\n  \"from\": {\n    \"profileId\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"metadata\": {},\n  \"alert\": {\n    \"title\": \"<string>\",\n    \"body\": \"<string>\",\n    \"platforms\": {\n      \"apns\": {\n        \"badge\": \"<integer>\",\n        \"sound\": \"<string>\",\n        \"alert\": \"<string>\",\n        \"payload\": {}\n      },\n      \"fcm\": {\n        \"collapse_key\": \"<string>\",\n        \"data\": {},\n        \"notification\": {\n          \"title\": \"<string>\",\n          \"body\": \"<string>\",\n          \"icon\": \"<string>\"\n        }\n      }\n    }\n  },\n  \"direction\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "dfd1e5a5-7831-4c4e-a34f-d67c05bc2a10",
+          "name": "The message was successfully sent",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"parts\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    }\n  ],\n  \"from\": {\n    \"profileId\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"metadata\": {},\n  \"alert\": {\n    \"title\": \"<string>\",\n    \"body\": \"<string>\",\n    \"platforms\": {\n      \"apns\": {\n        \"badge\": \"<integer>\",\n        \"sound\": \"<string>\",\n        \"alert\": \"<string>\",\n        \"payload\": {}\n      },\n      \"fcm\": {\n        \"collapse_key\": \"<string>\",\n        \"data\": {},\n        \"notification\": {\n          \"title\": \"<string>\",\n          \"body\": \"<string>\",\n          \"icon\": \"<string>\"\n        }\n      }\n    }\n  },\n  \"direction\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"eventId\": 4324\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "984e3a79-4726-4667-a231-87bcbe88a28e",
+      "name": "Posts message updates back",
+      "request": {
+        "name": "Posts message updates back",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "conversations",
+            ":conversationId",
+            "messages",
+            "statusupdates"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "conversationId",
+              "description": "(Required) The id of the conversation"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "[\n  {\n    \"messageIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"status\": \"<string>\",\n    \"timestamp\": \"<dateTime>\"\n  },\n  {\n    \"messageIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"status\": \"<string>\",\n    \"timestamp\": \"<dateTime>\"\n  }\n]",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "5982ea51-93f9-493c-8967-e05bb2de0f1d",
+          "name": "The status updates were successfully received",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "conversations",
+                ":conversationId",
+                "messages",
+                "statusupdates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The id of the conversation"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"messageIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"status\": \"<string>\",\n    \"timestamp\": \"<dateTime>\"\n  },\n  {\n    \"messageIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"status\": \"<string>\",\n    \"timestamp\": \"<dateTime>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "693ae7f0-5d49-4240-97af-4bf5130e2973",
+    "name": "Conversation Message API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Send and retrieve messages in conversations. Use this API to retrieve\nconversation events, retrieve messages working backwards from a point in\ntime, send new messages to a conversation, and post delivery and read\nstatus updates for messages.",
+      "type": "text/plain"
+    }
+  }
+}

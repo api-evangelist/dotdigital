@@ -1,0 +1,634 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#Dotdigital-dotdigital-campaign-templates-2.0.0-resolved.yaml",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/Dotdigital-dotdigital-campaign-templates-2.0.0-resolved.yaml",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#Dotdigital-dotdigital-contact-data-fields-2.0.0-resolved (1).yaml",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/Dotdigital-dotdigital-contact-data-fields-2.0.0-resolved (1).yaml",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#Dotdigital-dotdigital-documents-2.0.0-resolved.yaml",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/Dotdigital-dotdigital-documents-2.0.0-resolved.yaml",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#Dotdigital-dotdigital-email-contacts-2.0.0-resolved.yaml",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/Dotdigital-dotdigital-email-contacts-2.0.0-resolved.yaml",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#Dotdigital-dotdigital-insight-and-transactional-data-2.0.0-resolved.yaml",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/Dotdigital-dotdigital-insight-and-transactional-data-2.0.0-resolved.yaml",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#Dotdigital-dotdigital-lists-address-books-2.0.0-resolved.yaml",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/Dotdigital-dotdigital-lists-address-books-2.0.0-resolved.yaml",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#Dotdigital-dotdigital-pages-and-forms-2.0.0-resolved.yaml",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/Dotdigital-dotdigital-pages-and-forms-2.0.0-resolved.yaml",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#Dotdigital-dotdigital-preferences-and-subscriptions-2.0.0-resolved.yaml",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/Dotdigital-dotdigital-preferences-and-subscriptions-2.0.0-resolved.yaml",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#Dotdigital-whatsapp-channel-api-1.0.0-resolved (1).yaml",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/Dotdigital-whatsapp-channel-api-1.0.0-resolved (1).yaml",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#accounts-and-utilities.yaml",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/accounts-and-utilities.yaml",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#analytics-api.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/analytics-api.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#chat-api.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/chat-api.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#chat-config-api.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/chat-config-api.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#chat-message-api.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/chat-message-api.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#chat-presence-api.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/chat-presence-api.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#content-api.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/content-api.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#conversation-api.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/conversation-api.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#conversation-message-api.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/conversation-message-api.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#cpaas-api.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/cpaas-api.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#data-firehose.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/data-firehose.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#dotdigital-configuration-service.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/dotdigital-configuration-service.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#dotdigital-contacts-service.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/dotdigital-contacts-service.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#dotdigital-insight-data-service.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/dotdigital-insight-data-service.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#ecommerce.yaml",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/ecommerce.yaml",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#email-campaigns.yaml",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/email-campaigns.yaml",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#events.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/events.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#images.yaml",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/images.yaml",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#marketing-email-api.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/marketing-email-api.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#message-history-api.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/message-history-api.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#message-rules-api.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/message-rules-api.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#omnichannel-api.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/omnichannel-api.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#phone-number-validation-api.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/phone-number-validation-api.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#product-recommendations.yaml",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/product-recommendations.yaml",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#profile-api.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/profile-api.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#programs.yaml",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/programs.yaml",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#scoring.yaml",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/scoring.yaml",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#segments.yaml",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/segments.yaml",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#session-api.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/session-api.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#sms-campaigns.yaml",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/sms-campaigns.yaml",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#templates-api.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/templates-api.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#transactional-email.yaml",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/transactional-email.yaml",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://marketing.developer.dotdigital.com/reference#webhook-api.json",
+      "service-desc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/openapi/webhook-api.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://marketing.developer.dotdigital.com/reference",
+          "type": "text/html"
+        }
+      ]
+    }
+  ]
+}

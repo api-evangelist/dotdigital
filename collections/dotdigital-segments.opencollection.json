@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Segments",
+    "version": "2.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Segments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get segments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/segments",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Gets all segments"
+        },
+        {
+          "info": {
+            "name": "Get refresh progress for segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/segments/refresh/:id",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The ID of the segment you want to get the refresh progress for."
+              }
+            ]
+          },
+          "docs": "Gets the refresh progress for a segment"
+        },
+        {
+          "info": {
+            "name": "Refresh segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/segments/refresh/:id",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The ID of the segment you want to refresh."
+              }
+            ]
+          },
+          "docs": "Refreshes a segment by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

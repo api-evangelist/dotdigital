@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Campaign Templates",
+    "version": "2.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Campaign Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/templates",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set"
+              }
+            ]
+          },
+          "docs": "Gets a list of all email campaign templates"
+        },
+        {
+          "info": {
+            "name": "Create template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/templates",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an email campaign template"
+        },
+        {
+          "info": {
+            "name": "Get template by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/templates/:id",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The id of the email campaign template"
+              }
+            ]
+          },
+          "docs": "Gets an email campaign template by id"
+        },
+        {
+          "info": {
+            "name": "Update template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{region}-api.dotdigital.com/v2/templates/:id",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The id of the template being updated"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an email campaign template"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

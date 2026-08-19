@@ -1,0 +1,479 @@
+openapi: 3.0.1
+info:
+  title: Webhook API
+  description: 'Provides methods for creating, retrieving, updating, and deleting webhook
+
+    configurations. Also exposes endpoints to list all available webhook event
+
+    types and their associated payload templates, enabling callers to set up
+
+    event-driven integrations.'
+  version: 1.0.1
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      description: The Dotdigital region id your account belongs to
+      enum:
+      - r1
+      - r2
+      - r3
+      default: r1
+security:
+- basicAuth: []
+paths:
+  /cpaas/webhooks:
+    get:
+      tags:
+      - Webhooks API
+      summary: Get webhooks
+      description: Retrieves the configured webhook configurations for the account.
+      parameters:
+      - name: includeDeleted
+        in: query
+        description: Indicates whether deleted webhooks should be returned, default is `false` only active webhook configurations.
+        required: false
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: The configured webhook configurations
+          headers:
+            ETag:
+              description: A unique value representing the version of the webhook configuration, optionally used for optimistic concurrency control on PUT and DELETE
+              schema:
+                type: string
+            Last-Modified:
+              description: The date the webhook configuration was last updated in ISO 8601 format
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                type: array
+                description: Webhook configurations
+                items:
+                  $ref: '#/components/schemas/WebhookConfiguration'
+        '404':
+          description: The webhookconfiguration was not found
+          content: {}
+    post:
+      tags:
+      - Webhooks API
+      summary: Create webhook
+      description: 'Create a new webhook configuration, and start streaming events. We strongly encourage using batching, where we will send a batch of events whenever the number of events hits `macBatchSize` or events have been waitng for the `batchTimeout` in seconds, whichever occurs first will trigger the next batch to be sent.
+
+        <br><br>
+
+        _**Note**: Use the batching options, and only subscribe to the event types you require to maximise efficency_
+
+        '
+      parameters:
+      - name: if-match
+        in: header
+        description: An optional ETag for optimistic concurrency control
+        required: false
+        schema:
+          type: string
+      requestBody:
+        description: Detail of the webhook configuration to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookConfigurationCreateUpdate'
+        required: true
+      responses:
+        '201':
+          description: The created webhook configuration
+          headers:
+            ETag:
+              description: A unique value representing the version of the webhook configuration, optionally used for optimistic concurrency control on PUT and DELETE
+              schema:
+                type: string
+            Last-Modified:
+              description: The date the webhook configuration was last updated in ISO 8601 format
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookConfiguration'
+        '404':
+          description: The webhook configuration was not found
+          content: {}
+      x-codegen-request-body-name: webhookData
+  /cpaas/webhooks/availableevents:
+    get:
+      tags:
+      - Webhooks API
+      summary: Retrieves available webhook events
+      description: Retrieves the events you can subscribe to in a webhook and the optional filters you can use to refine event selection further.
+      parameters:
+      - name: includeSchemas
+        in: query
+        description: When set to true, schema information for each event will also be returned
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: The available webhook events
+          headers:
+            ETag:
+              description: A unique value representing the version of the webhook configuration, optionally used for optimistic concurrency control on PUT and DELETE
+              schema:
+                type: string
+            Last-Modified:
+              description: The date the webhook configuration was last updated in ISO 8601 format
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvailbleEvents'
+        '404':
+          description: The webhook configuration was not found
+          content: {}
+  /cpaas/webhooks/availabletemplates:
+    get:
+      tags:
+      - Webhooks API
+      summary: Get event templates
+      description: 'Gets a list of available events templates that the caller can use when creating webhook. Event templates are pre-defined groups of events that meet common use-cases.
+
+        '
+      responses:
+        '200':
+          description: The available templates
+          content:
+            application/json:
+              schema:
+                type: array
+                example:
+                - name: Message events
+                  description: All messaging-related events
+                  events:
+                  - message.sent
+                  - message.delivered
+                  - message.read
+                  - message.expired
+                  - message.failed
+                  - message.inbound
+                - name: Message and Profile events
+                  description: All message and profile-related events
+                  events:
+                  - message.sent
+                  - message.delivered
+                  - message.read
+                  - message.expired
+                  - message.failed
+                  - message.inbound
+                  - profile.create
+                  - profile.update
+                  - profile.delete
+                  - profile.undelete
+                  - profile.devicesUpdated
+                items:
+                  $ref: '#/components/schemas/inline_response_200'
+  /cpaas/webhooks/{webhookId}:
+    get:
+      tags:
+      - Webhooks API
+      summary: Retrieves webhook configuration
+      description: Retrieves a single webhook configuration.
+      parameters:
+      - name: webhookId
+        in: path
+        description: The webhook id
+        required: true
+        schema:
+          type: string
+      - name: includeDeleted
+        in: query
+        description: Indicates whether deleted webhooks should be returned
+        required: false
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: The requested webhook configuration
+          headers:
+            ETag:
+              description: A unique value representing the version of the webhook configuration, optionally used for optimistic concurrency control on PUT and DELETE
+              schema:
+                type: string
+            Last-Modified:
+              description: The date the webhook configuration was last updated in ISO 8601 format
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookConfiguration'
+        '404':
+          description: The webhook configuration was not found
+          content: {}
+    put:
+      tags:
+      - Webhooks API
+      summary: Update webhook configuration
+      description: Updates an individual webhook configuration.
+      parameters:
+      - name: webhookId
+        in: path
+        description: The webhook id
+        required: true
+        schema:
+          type: string
+      - name: if-match
+        in: header
+        description: An optional ETag for optimistic concurrency control
+        required: false
+        schema:
+          type: string
+      requestBody:
+        description: Detail of the webhook configuration to update
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookConfigurationCreateUpdate'
+        required: true
+      responses:
+        '200':
+          description: The updated webhook configuration
+          headers:
+            ETag:
+              description: A unique value representing the version of the webhook configuration, optionally used for optimistic concurrency control on PUT and DELETE
+              schema:
+                type: string
+            Last-Modified:
+              description: The date the webhook configuration was last updated in ISO 8601 format
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookConfiguration'
+        '404':
+          description: The webhook configuration was not found
+          content: {}
+      x-codegen-request-body-name: webhookData
+    delete:
+      tags:
+      - Webhooks API
+      summary: Deletes webhook
+      description: Deletes an individual webhook.
+      parameters:
+      - name: webhookId
+        in: path
+        description: The webhook id
+        required: true
+        schema:
+          type: string
+      - name: if-match
+        in: header
+        description: An optional ETag for optimistic concurrency control
+        required: false
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Indicates successful deletetion of an webhook configuration
+          content: {}
+        '404':
+          description: The webhook configuration was not found
+          content: {}
+components:
+  schemas:
+    AvailbleEvents:
+      type: array
+      items:
+        $ref: '#/components/schemas/AvailbleEvents_inner'
+    AvailableEventsFilters:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of filter
+          example: channel
+        path:
+          type: string
+          description: Path of filter - used when type=path
+        required:
+          type: boolean
+          description: Is filter setting required
+          example: false
+        description:
+          type: string
+          description: Description of filter
+          example: Channel that the event relates to e.g `sms`
+    EventFilters:
+      type: object
+      properties:
+        name:
+          type: string
+          description: name of filter
+          example: channel
+        value:
+          type: string
+          description: value to watch
+          example: sms
+    WebhookEvents:
+      type: object
+      properties:
+        type:
+          type: string
+          description: type of event
+          example: message.delivered
+        filters:
+          type: array
+          description: Array of used filters
+          items:
+            $ref: '#/components/schemas/EventFilters'
+      example:
+      - type: message.sent
+        filters: []
+      - type: message.delivered
+        filters: []
+      - type: message.expired
+        filters: []
+      - type: message.failed
+        filters: []
+      - type: message.inbound
+        filters: []
+      - type: message.read
+        filters: []
+    WebhookConfigurationCreateUpdate:
+      required:
+      - name
+      - url
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the webhook configuration
+          example: crm_system
+        url:
+          type: string
+          description: The target url of the webhook
+          example: https://mycrm.example.com/webhooksReceive
+        secret:
+          type: string
+          description: The secret used to create HMAC secure hash
+          example: f946b0e7-5fe9-4f57-9d8f-62b3ac0b4a13
+        subscriptions:
+          type: array
+          description: Events for webhook
+          items:
+            $ref: '#/components/schemas/WebhookEvents'
+        batch:
+          type: boolean
+          description: Whether to use event batching, or send single events
+          example: true
+        maxBatchSize:
+          maximum: 500
+          minimum: 1
+          type: number
+          description: Maximum number of events to batch before it is sent
+          example: 100
+        batchTimeout:
+          maximum: 60
+          minimum: 1
+          type: number
+          description: Maximum duration in seconds to wait before a batch is sent
+          example: 60
+    WebhookConfiguration:
+      allOf:
+      - type: object
+        properties:
+          id:
+            pattern: ^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})|[a-f0-9]{32}$
+            type: string
+            description: The Api Space's unique identifier
+          _createdOn:
+            type: string
+            description: The date (in UTC, ISO 8601 format) that the webhook was created
+            format: date-time
+            readOnly: true
+          _createdBy:
+            type: string
+            description: The identity that created the webhook
+          _updatedOn:
+            type: string
+            description: The date (in UTC, ISO 8601 format) that the webhook was last updated
+            format: date-time
+            readOnly: true
+          _updatedBy:
+            type: string
+            description: The identity that created the webhook
+            readOnly: true
+      - $ref: '#/components/schemas/WebhookConfigurationCreateUpdate'
+    inline_response_200:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the events template
+        description:
+          type: string
+          description: Describes the template
+        events:
+          type: array
+          items:
+            type: string
+            description: The event id
+    AvailbleEvents_inner:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Event type
+          example: message.delivered
+        description:
+          type: string
+          description: Description of event type
+          example: Details of any outbound message \"delivered\" status updates.
+        filters:
+          type: array
+          description: Filters for event
+          items:
+            $ref: '#/components/schemas/AvailableEventsFilters'
+  parameters:
+    webhookIdParameter:
+      name: webhookId
+      in: path
+      description: The webhook id
+      required: true
+      schema:
+        type: string
+    includeDeletedQueryParameter:
+      name: includeDeleted
+      in: query
+      description: Indicates whether deleted conversations should be returned
+      required: false
+      schema:
+        type: boolean
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+x-readme.samples-languages:
+- curl
+- csharp
+- java
+- javascript
+- node
+- python
+- php
+- ruby
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

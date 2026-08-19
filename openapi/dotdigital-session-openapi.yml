@@ -1,0 +1,205 @@
+openapi: 3.0.1
+info:
+  title: Session API
+  description: APIs for authenticating and managing SDK sessions.
+  version: '1.0'
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      default: r1
+      enum:
+      - r1
+      - r2
+      - r3
+      description: The Dotdigital region id your account belongs to
+security:
+- basicAuth: []
+paths:
+  /cpaas/sessions/tokens/anon:
+    get:
+      summary: Gets a token that can be used to start an anonymous session
+      parameters:
+      - name: id
+        in: query
+        description: The ID to use for the anonymous user (will be prefixed by the system)
+        required: true
+        schema:
+          type: string
+      - name: nonce
+        in: query
+        description: The cryptographic nonce to be added to the token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Anonymous auth token details
+          content:
+            application/json:
+              schema:
+                required:
+                - token
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: The token to use to validate a session
+        '404':
+          description: ApiSpace not found
+          content: {}
+  /cpaas/sessions/{id}:
+    get:
+      summary: Retrieves details about a session
+      parameters:
+      - name: id
+        in: path
+        description: The id of the session to retrieve
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The requested session
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sessionFull'
+        '404':
+          description: The session was not found
+          content: {}
+    delete:
+      summary: Ends a session, revoking access to services.
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the session to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Indicates successful deletetion of an session
+          content: {}
+        '404':
+          description: The session was not found
+          content: {}
+        '409':
+          description: A conncurrency issue occured deleting the session
+          content: {}
+components:
+  schemas:
+    sessionFull:
+      required:
+      - deviceId
+      - expiresOn
+      - id
+      - isActive
+      - platform
+      - platformVersion
+      - profileId
+      - sdkType
+      - sdkVersion
+      - sourceIp
+      - startedOn
+      type: object
+      properties:
+        id:
+          type: string
+          description: The session's unique identifier
+        profileId:
+          type: string
+          description: Id of the associated user profile
+        deviceId:
+          type: string
+          description: Unique identifier for the calling device.
+        platform:
+          type: string
+          description: The device platform.
+          enum:
+          - android
+          - iOS
+          - javascript
+        platformVersion:
+          type: string
+          description: The platform (e.g. operating system) version
+        sdkType:
+          type: string
+          description: The type of sdk.
+          enum:
+          - native
+          - cordova
+        sdkVersion:
+          type: string
+          description: The SDK version.
+        sourceIp:
+          type: string
+          description: The IP address of the device that started the session.
+        isActive:
+          type: boolean
+          description: Indicates whether the session is still active.
+        startedOn:
+          type: string
+          description: The date/time this session started, in ISO 8601 format.
+          format: date-time
+        expiresOn:
+          type: string
+          description: The date/time this session expires, in ISO 8601 format.
+          format: date-time
+        push:
+          $ref: '#/components/schemas/sessionPushConfig'
+    sessionPushConfig:
+      type: object
+      properties:
+        apns:
+          $ref: '#/components/schemas/sessionPushConfigApns'
+        fcm:
+          $ref: '#/components/schemas/sessionPushConfigFcm'
+    sessionPushConfigApns:
+      required:
+      - bundleId
+      - environment
+      - token
+      type: object
+      properties:
+        bundleId:
+          type: string
+          description: The APNS bundleId.
+        environment:
+          type: string
+          description: The APNS environment.
+          enum:
+          - development
+          - production
+        token:
+          type: string
+          description: The APNS token.
+      description: The APNS push configuration for the session
+    sessionPushConfigFcm:
+      required:
+      - package
+      - registrationId
+      type: object
+      properties:
+        package:
+          type: string
+          description: The FCM package name.
+        registrationId:
+          type: string
+          description: The FCM registration id for the session.
+      description: The FCM push configuration for the session
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+x-readme:
+  samples-languages:
+  - curl
+  - csharp
+  - java
+  - node
+  - php
+  - python
+  - ruby
+  explorer-enabled: true
+  proxy-enabled: true

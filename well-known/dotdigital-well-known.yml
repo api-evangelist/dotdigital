@@ -1,0 +1,98 @@
+generated: '2026-08-13'
+method: probed
+source: live GET of /.well-known/* on every Dotdigital host named in apis.yml and in the OpenAPI servers[]
+description: >-
+  Well-known discovery probe across the Dotdigital website, developer hub and regional API hosts.
+  Two documents are genuinely served: an RFC 9116 security.txt on the marketing site, and an
+  RFC 9727 api-catalog linkset on the developer hub that enumerates all 42 published OpenAPI
+  descriptions. Everything else 404s (or, on dotdigital.com, is answered with a 403 HTML block
+  page by the edge, which is NOT a document).
+hosts:
+  - host: https://dotdigital.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        content_type: text/plain; charset=UTF-8
+        file: dotdigital-security.txt
+      - path: /.well-known/openid-configuration
+        status: 403
+        note: HTML block page from the edge, not a document
+      - path: /.well-known/oauth-authorization-server
+        status: 403
+        note: HTML block page from the edge, not a document
+      - path: /.well-known/oauth-protected-resource
+        status: 403
+        note: HTML block page from the edge, not a document
+      - path: /.well-known/api-catalog
+        status: 403
+        note: HTML block page from the edge, not a document
+      - path: /.well-known/ai-plugin.json
+        status: 403
+      - path: /.well-known/agent-card.json
+        status: 403
+      - path: /.well-known/agent.json
+        status: 403
+  - host: https://developer.dotdigital.com
+    documents:
+      - path: /.well-known/api-catalog
+        status: 200
+        content_type: application/linkset+json
+        file: dotdigital-api-catalog.json
+        spec: RFC 9727 (API Catalog / linkset)
+        note: >-
+          42 linkset anchors, one per published OpenAPI description, each with a
+          service-desc href to the raw spec and a service-doc href to the reference page.
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://marketing.developer.dotdigital.com
+    documents:
+      - path: /.well-known/api-catalog
+        status: 200
+        content_type: application/linkset+json
+        note: same linkset document as developer.dotdigital.com (docs host alias)
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+  - host: https://r1-api.dotdigital.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+summary:
+  documents_served: 2
+  security_txt: true
+  api_catalog: true
+  oauth_metadata: false
+  agent_card: false

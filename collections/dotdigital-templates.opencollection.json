@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Templates API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Retrieves a list of all available templates",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/templates"
+      },
+      "docs": "Retrieves a list of all available templates"
+    },
+    {
+      "info": {
+        "name": "Create a template",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{region}-api.dotdigital.com/cpaas/templates",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Create a template"
+    },
+    {
+      "info": {
+        "name": "Retrieves a template",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/templates/:templateId",
+        "params": [
+          {
+            "name": "templateId",
+            "value": "",
+            "type": "path",
+            "description": "The template id"
+          },
+          {
+            "name": "includeDeleted",
+            "value": "",
+            "type": "query",
+            "description": "Indicates whether deleted templates should be returned"
+          }
+        ]
+      },
+      "docs": "Retrieves a template"
+    },
+    {
+      "info": {
+        "name": "Updates a template",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{region}-api.dotdigital.com/cpaas/templates/:templateId",
+        "headers": [
+          {
+            "name": "if-match",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "templateId",
+            "value": "",
+            "type": "path",
+            "description": "The template id"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Updates a template"
+    },
+    {
+      "info": {
+        "name": "Deletes a template",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/cpaas/templates/:templateId",
+        "headers": [
+          {
+            "name": "if-match",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "templateId",
+            "value": "",
+            "type": "path",
+            "description": "The template id"
+          }
+        ]
+      },
+      "docs": "Deletes a template"
+    }
+  ],
+  "bundled": true
+}

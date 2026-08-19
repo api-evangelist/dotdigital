@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chat Presence API",
+    "version": "1.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Retrieves the presence for a list of agent's profileIds",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/presence",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "query",
+            "description": "The id of a profile to retrieve presence settings for"
+          },
+          {
+            "name": "status",
+            "value": "",
+            "type": "query",
+            "description": "The current status of the profile"
+          }
+        ]
+      },
+      "docs": "Retrieves the presence for a list of agent's profileIds"
+    },
+    {
+      "info": {
+        "name": "Retrieves the presence for a list of user's profileIds",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/presence/appmessaging",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "query",
+            "description": "The id of a profile to retrieve presence settings for"
+          }
+        ]
+      },
+      "docs": "Retrieves the presence for a list of user's profileIds"
+    }
+  ],
+  "bundled": true
+}

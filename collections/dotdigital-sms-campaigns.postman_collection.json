@@ -1,0 +1,1106 @@
+{
+  "item": [
+    {
+      "id": "b527147f-854e-4eea-b5d5-a2d83d7e376c",
+      "name": "SMS campaigns",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c1cf00ea-7438-4298-ad1a-aad0356dcaf4",
+          "name": "Create SMS campaign",
+          "request": {
+            "name": "Create SMS campaign",
+            "description": {
+              "content": "Creates a new SMS campaign",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "sms",
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"sendingIdentity\": \"<string>\",\n  \"toggleShortLinks\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0b47e24a-a70d-4801-b36a-20ca265221db",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sms",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"SMS test campaign\",\n  \"message\": \"Test SMS campaign message content\",\n  \"sendingIdentity\": \"dotdigital\",\n  \"toggleShortLinks\": \"false\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"SMS Test Campaign\",\n  \"message\": \"Test SMS campaign message content\",\n  \"sendingIdentity\": \"dotdigital\",\n  \"sendingIdentityId\": 1,\n  \"toggleShortLinks\": false,\n  \"status\": \"unsent\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf4d75c4-aac8-4d66-9cb7-7a829227f64b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sms",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"SMS test campaign\",\n  \"message\": \"Test SMS campaign message content\",\n  \"sendingIdentity\": \"dotdigital\",\n  \"toggleShortLinks\": \"false\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The Name field is required.The Message field is required. ERROR_SMS_INVALID\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97083a65-c15d-429c-99a3-c9abc2307465",
+          "name": "Get SMS campaigns",
+          "request": {
+            "name": "Get SMS campaigns",
+            "description": {
+              "content": "Returns existing SMS campaigns",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "sms",
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "select",
+                  "value": "1000",
+                  "description": "The number of records to select between 1 and 1000 to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "The numbers of records to skip in the result set."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8d1c3582-ea03-4e74-b7d1-1f32a3ed890d",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sms",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "select",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"SMS Test Campaign\",\n    \"message\": \"\",\n    \"sendingIdentityId\": 123,\n    \"sendingIdentity\": \"dotdigital\",\n    \"status\": \"Sent\",\n    \"toggleShortLinks\": false\n  },\n  {\n    \"id\": 2,\n    \"name\": \"SMS Test Campaign 2\",\n    \"message\": \"\",\n    \"sendingIdentityId\": 123,\n    \"sendingIdentity\": \"dotdigital\",\n    \"status\": \"Sent\",\n    \"toggleShortLinks\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea2a3557-0cf5-48e9-a2bd-758baeb57b7c",
+          "name": "Copy SMS campaign",
+          "request": {
+            "name": "Copy SMS campaign",
+            "description": {
+              "content": "Create a copy of an existing SMS campaign",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "sms",
+                "campaigns",
+                "copy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"campaignId\": \"<integer>\",\n  \"copyName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9e75f888-3350-4ca8-955f-573c023e21a0",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sms",
+                    "campaigns",
+                    "copy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"campaignId\": \"1\",\n  \"copyName\": \"API Copy SMS Campaign\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"API Copied SMS\",\n  \"message\": \"Message Copied from existing Campaign\",\n  \"sendingIdentityId\": 1,\n  \"sendingIdentity\": \"dotdigital\",\n  \"toggleShortLinks\": true,\n  \"status\": \"Unsent\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8dac1bce-1b67-4b8d-b2ed-78889e6ff58f",
+          "name": "Get SMS campaign",
+          "request": {
+            "name": "Get SMS campaign",
+            "description": {
+              "content": "Returns an existing SMS campaign",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "sms",
+                "campaigns",
+                ":campaignId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "campaignId",
+                  "description": "(Required) The ID of the campaign."
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0358f90-7eeb-4308-9f0f-debf8a988f15",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sms",
+                    "campaigns",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "campaignId",
+                      "description": "(Required) The ID of the campaign."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"SMS Test Campaign\",\n  \"message\": \"Test SMS campaign message content\",\n  \"sendingIdentityId\": 123,\n  \"sendingIdentity\": \"dotdigital\",\n  \"status\": \"Sent\",\n  \"toggleShortLinks\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d6aad1d-df66-4a84-b333-33974428a335",
+          "name": "Update SMS campaign",
+          "request": {
+            "name": "Update SMS campaign",
+            "description": {
+              "content": "Updates an existing SMS campaign, as long as the campaign has not been sent.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "sms",
+                "campaigns",
+                ":campaignId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "campaignId",
+                  "description": "(Required) The ID of the campaign."
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"sendingIdentity\": \"<string>\",\n  \"toggleShortLinks\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "736a8cd8-d83d-466e-82ba-e3fb7b038fc9",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sms",
+                    "campaigns",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "campaignId",
+                      "description": "(Required) The ID of the campaign."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"sendingIdentity\": \"<string>\",\n  \"toggleShortLinks\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 10240,\n  \"name\": \"An updated name\",\n  \"sendingIdentityId\": 4623,\n  \"sendingIdentity\": \"dotdigital\",\n  \"toggleShortLinks\": true,\n  \"status\": \"Unsent\",\n  \"message\": \"An updated message\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6197fe7-dfc2-4072-8f45-3e7ae0d6fd4d",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sms",
+                    "campaigns",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "campaignId",
+                      "description": "(Required) The ID of the campaign."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"sendingIdentity\": \"<string>\",\n  \"toggleShortLinks\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The Name field is required.The Message field is required. ERROR_SMS_INVALID\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d7ba34c-7cf3-4f79-b5df-d813877c3a1b",
+          "name": "Delete SMS campaign",
+          "request": {
+            "name": "Delete SMS campaign",
+            "description": {
+              "content": "Marks an existing SMS campaign as deleted",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "sms",
+                "campaigns",
+                ":campaignId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "campaignId",
+                  "description": "(Required) The ID of the campaign."
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "24f7a15d-858a-433f-b4cf-870534349168",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sms",
+                    "campaigns",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "campaignId",
+                      "description": "(Required) The ID of the campaign."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "973c1aff-6945-4e16-8a6d-69d5bd05302a",
+          "name": "Send SMS message",
+          "request": {
+            "name": "Send SMS message",
+            "description": {
+              "content": "Sends a single SMS message",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "sms-messages",
+                "send-to",
+                ":telephoneNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "telephoneNumber",
+                  "description": "(Required) The mobile number of the contact in E.164 format."
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f1d93332-dbcc-4250-ac5e-7b7f7e818a38",
+              "name": "SMS send accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sms-messages",
+                    "send-to",
+                    ":telephoneNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "telephoneNumber",
+                      "description": "(Required) The mobile number of the contact in E.164 format."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Hello. We're pleased to tell you that your order has now been dispatched.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dcbe7e27-9c79-428b-a0fb-5948ccdfa8ba",
+    "name": "SMS campaigns",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Create and manage SMS campaigns. Use this API to create, retrieve, update, copy,\nand delete SMS campaigns, and to send individual SMS messages to a specified\ntelephone number.",
+      "type": "text/plain"
+    }
+  }
+}

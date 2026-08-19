@@ -1,58 +1,70 @@
+generated: '2026-08-13'
+method: searched
+source: https://marketing.developer.dotdigital.com/docs/call-rate-limits
 name: Dotdigital API Rate Limits
-description: Rate limiting policies for the Dotdigital REST API. Dotdigital uses a tiered rate limiting scheme with per-minute windows tracked separately per tier. Actual numeric limits are account-package dependent.
+description: Rate limiting policies for the Dotdigital REST API. Dotdigital uses a tiered rate limiting scheme with per-minute windows tracked
+  separately per tier. Actual numeric limits are account-package dependent.
 specificationVersion: '0.1'
 url: https://developer.dotdigital.com/docs/call-rate-limits
 schemes:
-  - name: Tiered Rate Limiting (Current)
-    description: The preferred and current rate limiting scheme. API calls are organized into four performance tiers, each with its own per-minute call limit tracked independently.
-    window: minute
-    tiers:
-      - name: Low
-        description: Data-heavy operations such as bulk imports and large data returns. Lowest call limit per minute.
-        operations:
-          - Bulk contact imports
-          - Large data exports
-          - Batch record retrieval
-      - name: Medium
-        description: Single record updates and operations returning moderately complex data.
-        operations:
-          - Single contact update
-          - Campaign retrieval
-          - Segment queries
-      - name: High
-        description: Single record lightweight operations; the highest per-minute throughput of the bounded tiers.
-        operations:
-          - Single contact lookup
-          - Account info retrieval
-          - Status checks
-      - name: Unlimited
-        description: Message-sending and polling calls are not subject to the tiered rate cap.
-        operations:
-          - Send email
-          - Send SMS
-          - Send push notification
-          - Polling / webhook receipt
-    headers:
-      - name: X-RateLimit-Limit
-        description: Maximum number of calls allowed in the current one-minute window for the applicable tier
-      - name: X-RateLimit-Remaining
-        description: Number of calls remaining in the current one-minute window for the applicable tier
-      - name: X-RateLimit-Reset
-        description: UTC epoch timestamp when the current window resets and the full limit becomes available again
-      - name: X-RateLimit-Scope
-        description: Identifies which tier (low/medium/high) applies to the current request
-    throttleResponse:
-      statusCode: 429
-      message: Too Many Requests
-  - name: Flat Rate Limiting (Deprecated)
-    description: Legacy scheme based on a rolling hourly call count. New accounts use tiered limiting; this scheme is being phased out.
-    window: hour
-    throttleResponse:
-      statusCode: 400
-      message: Your account has generated excess API activity and is being temporarily capped.
+- name: Tiered Rate Limiting (Current)
+  description: The preferred and current rate limiting scheme. API calls are organized into four performance tiers, each with its own per-minute
+    call limit tracked independently.
+  window: minute
+  tiers:
+  - name: Low
+    description: Data-heavy operations such as bulk imports and large data returns. Lowest call limit per minute.
+    operations:
+    - Bulk contact imports
+    - Large data exports
+    - Batch record retrieval
+  - name: Medium
+    description: Single record updates and operations returning moderately complex data.
+    operations:
+    - Single contact update
+    - Campaign retrieval
+    - Segment queries
+  - name: High
+    description: Single record lightweight operations; the highest per-minute throughput of the bounded tiers.
+    operations:
+    - Single contact lookup
+    - Account info retrieval
+    - Status checks
+  - name: Unlimited
+    description: Message-sending and polling calls are not subject to the tiered rate cap.
+    operations:
+    - Send email
+    - Send SMS
+    - Send push notification
+    - Polling / webhook receipt
+  headers:
+  - name: X-RateLimit-Limit
+    description: Maximum number of calls allowed in the current one-minute window for the applicable tier
+  - name: X-RateLimit-Remaining
+    description: Number of calls remaining in the current one-minute window for the applicable tier
+  - name: X-RateLimit-Reset
+    description: UTC epoch timestamp when the current window resets and the full limit becomes available again
+  - name: X-RateLimit-Scope
+    description: Identifies which tier (low/medium/high) applies to the current request
+  throttleResponse:
+    statusCode: 429
+    message: Too Many Requests
+- name: Flat Rate Limiting (Deprecated)
+  description: Legacy scheme based on a rolling hourly call count. New accounts use tiered limiting; this scheme is being phased out.
+  window: hour
+  throttleResponse:
+    statusCode: 400
+    message: Your account has generated excess API activity and is being temporarily capped.
 notes:
-  - Actual numeric limits per tier are not publicly disclosed; they vary by account package and any agreed custom limits
-  - Tiers are tracked independently — exhausting one tier does not affect limits in other tiers
-  - The timeout for API calls is 121 seconds before a client should consider the request failed
-  - TLS 1.2 or higher is required for all API connections
-  - Regional endpoints (r1/r2/r3) are separate and clients must use the endpoint for their provisioned region
+- Actual numeric limits per tier are not publicly disclosed; they vary by account package and any agreed custom limits
+- Tiers are tracked independently — exhausting one tier does not affect limits in other tiers
+- The timeout for API calls is 121 seconds before a client should consider the request failed
+- TLS 1.2 or higher is required for all API connections
+- Regional endpoints (r1/r2/r3) are separate and clients must use the endpoint for their provisioned region
+limit_count: 0
+limit_count_note: 'Dotdigital publishes the SCHEME and the response headers in full but not the numeric limits: "The actual rate limits for each
+  tier varies based on your account package or any other agreed limits you have." The numbers are visible only in-app under Settings > Access
+  > API rate limits. The docs example shows X-RateLimit-Limit: 150 for lowCallRate, which is an illustration, not a published limit.'
+headers_published: true
+numeric_limits_published: false
+scope: per account, tracked per tier, across the entire API estate

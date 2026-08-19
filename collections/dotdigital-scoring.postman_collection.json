@@ -1,0 +1,604 @@
+{
+  "item": [
+    {
+      "id": "013302d2-d7ea-46ce-a41b-3bb830fe7c18",
+      "name": "Scoring",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "73ecce32-3545-4222-8116-280658f02c00",
+          "name": "Get scoring for contacts",
+          "request": {
+            "name": "Get scoring for contacts",
+            "description": {
+              "content": "Gets contact scoring for all contacts in the account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                "score"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "select",
+                  "value": "1000",
+                  "description": "The number of records to select between 1 and 1000 to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "The numbers of records to skip in the result set."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7381d925-c852-47f2-b408-acb9572650d9",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    "score"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "select",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"contactId\": 1,\n    \"email\": \"sara.holst@example.com\",\n    \"dateModified\": \"2020-01-01 09:40:18.527000+00:00\",\n    \"scoreLabel\": \"Cool\",\n    \"score\": 20,\n    \"engagement\": 10,\n    \"suitability\": 30\n  },\n  {\n    \"contactId\": 2,\n    \"email\": \"tiffany.valverde@example.com\",\n    \"dateModified\": \"2020-01-01 09:40:18.527000+00:00\",\n    \"scoreLabel\": \"Cold\",\n    \"score\": 2,\n    \"engagement\": 1,\n    \"suitability\": 3\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96f38d3e-4d34-443f-9592-8b89175f6209",
+          "name": "Get scoring modified since date for contacts",
+          "request": {
+            "name": "Get scoring modified since date for contacts",
+            "description": {
+              "content": "Gets contacts whose contact scoring data has been modified since a given UTC date-time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                "score",
+                "modified-since",
+                ":date"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "select",
+                  "value": "1000",
+                  "description": "The number of records to select between 1 and 1000 to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "The numbers of records to skip in the result set."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<dateTime>",
+                  "key": "date",
+                  "description": "(Required) The date from which any modified contact scoring data will be returned as UTC time in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e72b17e1-5086-46e7-a637-9908c5df8c52",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    "score",
+                    "modified-since",
+                    ":date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "select",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<dateTime>",
+                      "key": "date",
+                      "description": "(Required) The date from which any modified contact scoring data will be returned as UTC time in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"contactId\": 1,\n    \"email\": \"sara.holst@example.com\",\n    \"dateModified\": \"2020-01-01 09:40:18.527000+00:00\",\n    \"scoreLabel\": \"Cool\",\n    \"score\": 20,\n    \"engagement\": 10,\n    \"suitability\": 30\n  },\n  {\n    \"contactId\": 2,\n    \"email\": \"tiffany.valverde@example.com\",\n    \"dateModified\": \"2020-01-01 09:40:18.527000+00:00\",\n    \"scoreLabel\": \"Cold\",\n    \"score\": 2,\n    \"engagement\": 1,\n    \"suitability\": 3\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "060c01d2-43a9-45a5-9328-7ca3b6d0f020",
+          "name": "Get scoring for contact",
+          "request": {
+            "name": "Get scoring for contact",
+            "description": {
+              "content": "Gets contact scoring for a contact",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                ":contactIdentifier",
+                "score"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<email>",
+                  "key": "contactIdentifier",
+                  "description": "(Required) Either the contact id or email address of the contact"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd98005e-5515-40a5-a2ce-daeaab5e351e",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    ":contactIdentifier",
+                    "score"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<email>",
+                      "key": "contactIdentifier",
+                      "description": "(Required) Either the contact id or email address of the contact"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contactId\": 3,\n  \"email\": \"nelson.redeker@example.com\",\n  \"dateModified\": \"2020-01-01 09:40:18.527000+00:00\",\n  \"scoreLabel\": \"Hot\",\n  \"score\": 80,\n  \"engagement\": 70,\n  \"suitability\": 90\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f12d7586-e52f-44a6-b3d8-d3300478c947",
+          "name": "Get scoring for contacts in address book",
+          "request": {
+            "name": "Get scoring for contacts in address book",
+            "description": {
+              "content": "Gets contact scoring for contacts within a specific address book or segment",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-books",
+                ":id",
+                "contacts",
+                "score"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "select",
+                  "value": "1000",
+                  "description": "The number of records to select between 1 and 1000 to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "The numbers of records to skip in the result set."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The id of the address book"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7dc23905-b95f-4954-9856-a21e30580cc5",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-books",
+                    ":id",
+                    "contacts",
+                    "score"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "select",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The id of the address book"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"contactId\": 1,\n    \"email\": \"sara.holst@example.com\",\n    \"dateModified\": \"2020-01-01 09:40:18.527000+00:00\",\n    \"scoreLabel\": \"Cool\",\n    \"score\": 20,\n    \"engagement\": 10,\n    \"suitability\": 30\n  },\n  {\n    \"contactId\": 2,\n    \"email\": \"tiffany.valverde@example.com\",\n    \"dateModified\": \"2020-01-01 09:40:18.527000+00:00\",\n    \"scoreLabel\": \"Cold\",\n    \"score\": 2,\n    \"engagement\": 1,\n    \"suitability\": 3\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8ce2c2df-2cff-4bec-b98b-4dbb509d30e9",
+    "name": "Scoring",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Retrieve contact scoring data. Use this API to get scores for all contacts in\nyour account, scores modified since a given date, the score for a specific\ncontact by ID or email, and scores for contacts within a specific address book\nor segment.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chat Config API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Retrieves the chat configuration for an apiSpace",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chat/config"
+      },
+      "docs": "Retrieves the chat configuration for an apiSpace"
+    },
+    {
+      "info": {
+        "name": "Retrieves the members of a team",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chat/config/teams/:teamId",
+        "params": [
+          {
+            "name": "teamId",
+            "value": "",
+            "type": "path",
+            "description": "The Team id"
+          }
+        ]
+      },
+      "docs": "Retrieves the members of a team"
+    },
+    {
+      "info": {
+        "name": "Removes the config for a team",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chat/config/teams/:teamId",
+        "headers": [
+          {
+            "name": "if-match",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "teamId",
+            "value": "",
+            "type": "path",
+            "description": "The Team ID"
+          }
+        ]
+      },
+      "docs": "Removes the config for a team"
+    },
+    {
+      "info": {
+        "name": "Update the App Messaging config for a team",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chat/config/teams/:teamId/appMessaging",
+        "headers": [
+          {
+            "name": "if-match",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "teamId",
+            "value": "",
+            "type": "path",
+            "description": "The Team id"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Update the App Messaging config for a team"
+    },
+    {
+      "info": {
+        "name": "Removes the App Messaging config for a team",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chat/config/teams/:teamId/appMessaging",
+        "headers": [
+          {
+            "name": "if-match",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "teamId",
+            "value": "",
+            "type": "path",
+            "description": "The Team ID"
+          }
+        ]
+      },
+      "docs": "Removes the App Messaging config for a team"
+    },
+    {
+      "info": {
+        "name": "Update general settings for a team",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chat/config/teams/:teamId/settings",
+        "headers": [
+          {
+            "name": "if-match",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "teamId",
+            "value": "",
+            "type": "path",
+            "description": "The Team id"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Update general settings for a team"
+    },
+    {
+      "info": {
+        "name": "Removes the settings for a team",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chat/config/teams/:teamId/settings",
+        "headers": [
+          {
+            "name": "if-match",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "teamId",
+            "value": "",
+            "type": "path",
+            "description": "The Team ID"
+          }
+        ]
+      },
+      "docs": "Removes the settings for a team"
+    }
+  ],
+  "bundled": true
+}

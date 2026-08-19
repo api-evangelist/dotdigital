@@ -1,0 +1,1759 @@
+openapi: 3.1.0
+info:
+  title: Preferences and subscriptions
+  version: 2.0.1
+  description: 'Manage contact subscriptions, suppressions, and marketing preferences. Use this
+
+    API to unsubscribe or resubscribe contacts (with or without a challenge email),
+
+    bulk-suppress contacts, and query suppressed or unsubscribed contacts since a
+
+    given date. Also provides full CRUD for preference categories and individual
+
+    preferences, and endpoints to get or set the preference opt-in status for a
+
+    specific contact.'
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true
+x-samples-languages:
+- curl
+- csharp
+- java
+- javascript
+- node
+- python
+- php
+- ruby
+externalDocs:
+  description: Learn more about Dotdigital APIs
+  url: https://developer.dotdigital.com
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      default: r1
+      enum:
+      - r1
+      - r2
+      - r3
+      description: The Dotdigital region id your account belongs to
+security:
+- basicAuth: []
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+paths:
+  /v2/contacts/unsubscribe:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    post:
+      summary: Unsubscribe contact
+      deprecated: false
+      description: Unsubscribes contact from account
+      operationId: unsubscribe-contact
+      tags:
+      - Preferences and subscriptions
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - email
+              properties:
+                email:
+                  type: string
+                  description: The email address of the contact to unsubscribe
+            examples:
+              Request Example:
+                value:
+                  email: john.smith@emailsim.io
+                summary: Request Example
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  suppressedContact:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        default: 0
+                        examples:
+                        - 1
+                      email:
+                        type: string
+                        examples:
+                        - john.smith@emailsim.io
+                      optInType:
+                        type: string
+                        examples:
+                        - Unknown
+                      emailType:
+                        type: string
+                        examples:
+                        - PlainText
+                      dataFields: {}
+                      status:
+                        type: string
+                        examples:
+                        - Unsubscribed
+                  dateRemoved:
+                    type: string
+                    examples:
+                    - '2020-01-01 09:40:18.527000+00:00'
+                  reason:
+                    type: string
+                    examples:
+                    - Unsubscribed
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                    suppressedContact:
+                      id: 1
+                      email: john.smith@emailsim.io
+                      optInType: Unknown
+                      emailType: PlainText
+                      dataFields: null
+                      status: Unsubscribed
+                    dateRemoved: '2020-01-01 09:40:18.527000+00:00'
+                    reason: Unsubscribed
+  /v2/contacts/suppress-contacts:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    put:
+      summary: Bulk suppress contacts
+      deprecated: false
+      description: Suppresses a batch of contacts from an account
+      operationId: bulk-suppress-contacts
+      tags:
+      - Preferences and subscriptions
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                RAW_BODY:
+                  type: array
+                  description: The contacts to be unsubscribed, identify them with either id or email address
+                  items:
+                    properties:
+                      id:
+                        type: integer
+                        description: The unique id of the contact
+                        format: int32
+                      email:
+                        type: string
+                        description: The email address of the contact
+                    type: object
+            examples:
+              Request Example:
+                value:
+                - id: 123
+                - email: bob.smith@emailsim.co
+                - email: unknown@emailsim.co
+                summary: Request Example
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  suppressed:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          default: 0
+                          examples:
+                          - 123
+                        email: {}
+                  notFound:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          default: 0
+                          examples:
+                          - 0
+                        email:
+                          type: string
+                          examples:
+                          - unknown@emailsim.co
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                    suppressed:
+                    - id: 123
+                      email: null
+                    - id: 0
+                      email: bob.smith@emailsim.co
+                    notFound:
+                    - id: 0
+                      email: unknown@emailsim.co
+  /v2/contacts/resubscribe:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    post:
+      summary: Resubscribe contact
+      deprecated: false
+      description: Resubscribes a previously unsubscribed contact
+      operationId: resubscribe-contact
+      tags:
+      - Preferences and subscriptions
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - unsubscribedContact
+              properties:
+                unsubscribedContact:
+                  type: object
+                  description: Details of the contact to be resubscribed
+                  required:
+                  - email
+                  properties:
+                    email:
+                      type: string
+                      description: The email address of the contact
+                    dataFields:
+                      type: array
+                      description: The data fields for the contact
+                      items:
+                        properties:
+                          key:
+                            type: string
+                            description: The key name
+                          value:
+                            type: string
+                            description: The value associated with the key
+                        required:
+                        - key
+                        - value
+                        type: object
+                preferredLocale:
+                  type: string
+                  description: The language code for the language you would like the resubscribe request email to be sent to the contact in
+                  enum:
+                  - cs-CS
+                  - da-DA
+                  - de-DE
+                  - el-EL
+                  - en-EN
+                  - es-ES
+                  - es
+                  - fi-FI
+                  - fr-FR
+                  - hu-HU
+                  - it-IT
+                  - nl-NL
+                  - nb-NO
+                  - pl-PL
+                  - pt-PT
+                  - ru-RU
+                  - se-SE
+                  - sk-SK
+                  - tr-TR
+                  - zh-CN
+                returnUrlToUseIfChallenged:
+                  type: string
+                  description: The URL you would like to redirect challenged contacts to after they have completed their resubscription
+            examples:
+              Request Example:
+                value:
+                  unsubscribedContact:
+                    email: john.smith@emailsim.io
+                    dataFields:
+                    - key: FIRSTNAME
+                      value: Nelson
+                    - key: LASTNAME
+                      value: Redeker
+                  preferredLocale: de-DE
+                  returnUrlToUseIfChallenged: https://www.mywebsite.com/news
+                summary: Request Example
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contact:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        default: 0
+                        examples:
+                        - 23
+                      email:
+                        type: string
+                        examples:
+                        - john.smith@emailsim.io
+                      optInType:
+                        type: string
+                        examples:
+                        - Unknown
+                      emailType:
+                        type: string
+                        examples:
+                        - PlainText
+                      dataFields: {}
+                      status:
+                        type: string
+                        examples:
+                        - Unsubscribed
+                  status:
+                    type: string
+                    examples:
+                    - ContactChallenged
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                    contact:
+                      id: 23
+                      email: john.smith@emailsim.io
+                      optInType: Unknown
+                      emailType: PlainText
+                      dataFields: null
+                      status: Unsubscribed
+                    status: ContactChallenged
+  /v2/contacts/resubscribe-with-no-challenge:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    post:
+      summary: Resubscribe contact with no challenge
+      deprecated: false
+      description: Resubscribes a previously unsubscribed contact without sending a challenge email
+      operationId: resubscribe-contact-with-no-challenge
+      tags:
+      - Preferences and subscriptions
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - unsubscribedContact
+              properties:
+                unsubscribedContact:
+                  type: object
+                  description: Details of the contact to be resubscribed
+                  required:
+                  - email
+                  properties:
+                    email:
+                      type: string
+                      description: The email address of the contact
+                    dataFields:
+                      type: array
+                      description: The data fields for the contact
+                      items:
+                        properties:
+                          key:
+                            type: string
+                            description: The key name
+                          value:
+                            type: string
+                            description: The value associated with the key
+                        required:
+                        - key
+                        - value
+                        type: object
+            examples:
+              Request Example:
+                value:
+                  unsubscribedContact:
+                    email: john.smith@emailsim.io
+                    dataFields:
+                    - key: FIRSTNAME
+                      value: Nelson
+                    - key: LASTNAME
+                      value: Redeker
+                summary: Request Example
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contact:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        default: 0
+                        examples:
+                        - 23
+                      email:
+                        type: string
+                        examples:
+                        - john.smith@emailsim.io
+                      optInType:
+                        type: string
+                        examples:
+                        - Unknown
+                      emailType:
+                        type: string
+                        examples:
+                        - PlainText
+                      dataFields: {}
+                      status:
+                        type: string
+                        examples:
+                        - Unsubscribed
+                  status:
+                    type: string
+                    examples:
+                    - ContactAdded
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                    contact:
+                      id: 23
+                      email: john.smith@emailsim.io
+                      optInType: Unknown
+                      emailType: PlainText
+                      dataFields: null
+                      status: Unsubscribed
+                    status: ContactAdded
+  /v2/contacts/suppressed-since/{date}:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    get:
+      summary: Get suppressed contacts since date
+      deprecated: false
+      description: Gets a list of suppressed contacts after a given date along with the reason for suppression
+      operationId: get-suppressed-contacts-since-date
+      tags:
+      - Preferences and subscriptions
+      parameters:
+      - name: date
+        in: path
+        description: The date from which any suppressed contacts are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)
+        required: true
+        example: ''
+        schema:
+          type: string
+          format: date
+      - name: select
+        in: query
+        description: The number of records to select between 1 and 1000
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: skip
+        in: query
+        description: The numbers of records to skip in the result set
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    suppressedContact:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          default: 0
+                          examples:
+                          - 25
+                        email:
+                          type: string
+                          examples:
+                          - terry.mccarthy@example.com
+                        optInType:
+                          type: string
+                          examples:
+                          - VerifiedDouble
+                        emailType:
+                          type: string
+                          examples:
+                          - Html
+                        dataFields: {}
+                        status:
+                          type: string
+                          examples:
+                          - Unsubscribed
+                    dateRemoved:
+                      type: string
+                      examples:
+                      - '2020-01-01 09:40:18.527000+00:00'
+                    reason:
+                      type: string
+                      examples:
+                      - Unsubscribed
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                  - suppressedContact:
+                      id: 25
+                      email: terry.mccarthy@example.com
+                      optInType: VerifiedDouble
+                      emailType: Html
+                      dataFields: null
+                      status: Unsubscribed
+                    dateRemoved: '2020-01-01 09:40:18.527000+00:00'
+                    reason: Unsubscribed
+                  - suppressedContact:
+                      id: 38
+                      email: eleanor.halloran@example.com
+                      optInType: Unknown
+                      emailType: PlainText
+                      dataFields: null
+                      status: HardBounced
+                    dateRemoved: '2020-01-01 09:40:18.527000+00:00'
+                    reason: HardBounced
+  /v2/contacts/{email}/subscriptions:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    get:
+      summary: Get subscriptions for contact
+      deprecated: false
+      description: Gets all subscriptions for a contact
+      operationId: get-subscriptions-for-contact
+      tags:
+      - Preferences and subscriptions
+      parameters:
+      - name: email
+        in: path
+        description: The email address of the contact
+        required: true
+        example: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contact:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        default: 0
+                        examples:
+                        - 1
+                      email:
+                        type: string
+                        examples:
+                        - john.doe@example.com
+                      optInType:
+                        type: string
+                        examples:
+                        - Unknown
+                      emailType:
+                        type: string
+                        examples:
+                        - Html
+                      dataFields: {}
+                      status:
+                        type: string
+                        examples:
+                        - Subscribed
+                  marketingPreferenceOptIns:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        marketingPreferenceId:
+                          type: integer
+                          default: 0
+                          examples:
+                          - 5
+                        addressBookId:
+                          type: integer
+                          default: 0
+                          examples:
+                          - 1
+                        isOptedIn:
+                          type: boolean
+                          default: true
+                          examples:
+                          - false
+                        dateModifed:
+                          type: string
+                          examples:
+                          - '2020-01-01 09:40:18.527000+00:00'
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                    contact:
+                      id: 1
+                      email: john.doe@example.com
+                      optInType: Unknown
+                      emailType: Html
+                      dataFields: null
+                      status: Subscribed
+                    marketingPreferenceOptIns:
+                    - marketingPreferenceId: 5
+                      addressBookId: 1
+                      isOptedIn: false
+                      dateModifed: '2020-01-01 09:40:18.527000+00:00'
+                    - marketingPreferenceId: 1002
+                      addressBookId: 3
+                      isOptedIn: false
+                      dateModifed: '2020-01-01 09:40:18.527000+00:00'
+                    - marketingPreferenceId: 1003
+                      addressBookId: 2
+                      isOptedIn: true
+                      dateModifed: '2020-01-01 09:40:18.527000+00:00'
+                    - marketingPreferenceId: 1004
+                      addressBookId: 3
+                      isOptedIn: false
+                      dateModifed: '2020-01-01 09:40:18.527000+00:00'
+  /v2/contacts/unsubscribed-since/{date}:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    get:
+      summary: Get unsubscribed contacts since date
+      deprecated: false
+      description: Gets a list of unsubscribed contacts who unsubscribed after a given date
+      operationId: get-unsubscribed-contacts-since-date
+      tags:
+      - Preferences and subscriptions
+      parameters:
+      - name: date
+        in: path
+        description: The date from which any suppressed contacts are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)
+        required: true
+        example: ''
+        schema:
+          type: string
+          format: date
+      - name: select
+        in: query
+        description: The number of records to select between 1 and 1000
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: skip
+        in: query
+        description: The numbers of records to skip in the result set
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    suppressedContact:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          default: 0
+                          examples:
+                          - 23
+                        email:
+                          type: string
+                          examples:
+                          - nelson.redeker@example.com
+                        optInType:
+                          type: string
+                          examples:
+                          - Unknown
+                        emailType:
+                          type: string
+                          examples:
+                          - PlainText
+                        dataFields: {}
+                        status:
+                          type: string
+                          examples:
+                          - Unsubscribed
+                    dateRemoved:
+                      type: string
+                      examples:
+                      - '2020-01-01 09:40:18.527000+00:00'
+                    reason:
+                      type: string
+                      examples:
+                      - Unsubscribed
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                  - suppressedContact:
+                      id: 23
+                      email: nelson.redeker@example.com
+                      optInType: Unknown
+                      emailType: PlainText
+                      dataFields: null
+                      status: Unsubscribed
+                    dateRemoved: '2020-01-01 09:40:18.527000+00:00'
+                    reason: Unsubscribed
+                  - suppressedContact:
+                      id: 25
+                      email: terry.mccarthy@example.com
+                      optInType: VerifiedDouble
+                      emailType: Html
+                      dataFields: null
+                      status: Unsubscribed
+                    dateRemoved: '2020-01-01 09:40:18.527000+00:00'
+                    reason: Unsubscribed
+  /v2/preferences:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    post:
+      summary: Create preference
+      deprecated: false
+      description: Creates a new preference or a new preference category
+      operationId: create-preference
+      tags:
+      - Preferences and subscriptions
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - publicName
+              - privateName
+              properties:
+                publicName:
+                  type: string
+                  description: The public name of the preference or the preference category. Contacts can see the public names of preferences in preference centres and signup forms.
+                privateName:
+                  type: string
+                  description: The private name of the preference or the preference category. Contacts can't see private names in the preference centre or in signup forms.
+                isPreference:
+                  type: boolean
+                  description: If this value is true, a new preference is created. If this value is false, a new preference category is created.
+                  default: false
+                order:
+                  type: string
+                  description: The position that you want the preference or the preference category to appear on the 'Contact preferences' page, starting from 0. Specify either an integer for absolute position, alternatively use "top" or "bottom"
+                isPublic:
+                  type: boolean
+                  description: For preferences, if this value is true, the preference is visible in signup forms and preference centres.
+                  default: true
+                categoryID:
+                  type: integer
+                  description: 'For preferences, the unique ID of the preference category that you want to add the preference to. Default for preferences: 0. Default for preference categories: null'
+                  format: int32
+            examples:
+              Request Example:
+                value:
+                  publicName: Preferred contact method
+                  privateName: Preferred contact method
+                  isPreference: true
+                  isPublic: true
+                  order: 0
+                  categoryId: null
+                summary: Request Example
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                Result:
+                  summary: Result
+                  value: '{ id: 23,
+
+                    publicName: ''Preferred contact method'',
+
+                    privateName: ''Preferred contact method'',
+
+                    isPreference: false,
+
+                    order: 0,
+
+                    isPublic: true,
+
+                    categoryId: 0,
+
+                    preferenceCount: 0,
+
+                    created: ''2020-01-01T09:40:18.527Z'',
+
+                    lastModified: ''2020-01-01T09:40:18.527Z''
+
+                    }'
+    get:
+      summary: Get preferences
+      deprecated: false
+      description: Gets all preferences and preference categories
+      operationId: get-preferences
+      tags:
+      - Preferences and subscriptions
+      parameters: []
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      default: 0
+                      examples:
+                      - 8
+                    publicName:
+                      type: string
+                      examples:
+                      - Preferred contact method
+                    privateName:
+                      type: string
+                      examples:
+                      - Preferred contact method
+                    isPreference:
+                      type: boolean
+                      default: true
+                      examples:
+                      - false
+                    order:
+                      type: string
+                      examples:
+                      - '0'
+                    isPublic:
+                      type: boolean
+                      default: true
+                      examples:
+                      - true
+                    categoryId:
+                      type: integer
+                      default: 0
+                      examples:
+                      - 0
+                    preferenceCount:
+                      type: integer
+                      default: 0
+                      examples:
+                      - 2
+                    created:
+                      type: string
+                      examples:
+                      - '2020-01-01 09:40:18.527000+00:00'
+                    lastModified:
+                      type: string
+                      examples:
+                      - '2020-01-01 09:40:18.527000+00:00'
+                    preferences:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            default: 0
+                            examples:
+                            - 9
+                          publicName:
+                            type: string
+                            examples:
+                            - Email
+                          privateName:
+                            type: string
+                            examples:
+                            - Email
+                          isPreference:
+                            type: boolean
+                            default: true
+                            examples:
+                            - true
+                          order:
+                            type: string
+                            examples:
+                            - '0'
+                          isPublic:
+                            type: boolean
+                            default: true
+                            examples:
+                            - true
+                          categoryId:
+                            type: integer
+                            default: 0
+                            examples:
+                            - 8
+                          preferenceCount:
+                            type: integer
+                            default: 0
+                            examples:
+                            - 0
+                          created:
+                            type: string
+                            examples:
+                            - '2020-01-01 09:40:18.527000+00:00'
+                          lastModified:
+                            type: string
+                            examples:
+                            - '2020-01-01 09:40:18.527000+00:00'
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                  - id: 8
+                    publicName: Preferred contact method
+                    privateName: Preferred contact method
+                    isPreference: false
+                    order: '0'
+                    isPublic: true
+                    categoryId: 0
+                    preferenceCount: 2
+                    created: '2020-01-01 09:40:18.527000+00:00'
+                    lastModified: '2020-01-01 09:40:18.527000+00:00'
+                    preferences:
+                    - id: 9
+                      publicName: Email
+                      privateName: Email
+                      isPreference: true
+                      order: '0'
+                      isPublic: true
+                      categoryId: 8
+                      preferenceCount: 0
+                      created: '2020-01-01 09:40:18.527000+00:00'
+                      lastModified: '2020-01-01 09:40:18.527000+00:00'
+                    - id: 10
+                      publicName: Push notifications
+                      privateName: Push notifications
+                      isPreference: true
+                      order: '1'
+                      isPublic: true
+                      categoryId: 8
+                      preferenceCount: 0
+                      created: '2020-01-01 09:40:18.527000+00:00'
+                      lastModified: '2020-01-01 09:40:18.527000+00:00'
+                  - id: 21
+                    publicName: Football
+                    privateName: Football
+                    isPreference: true
+                    order: '2'
+                    isPublic: true
+                    categoryId: 0
+                    preferenceCount: 0
+                    created: '2020-01-01 09:40:18.527000+00:00'
+                    lastModified: '2020-01-01 09:40:18.527000+00:00'
+  /v2/preferences/{id}:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    put:
+      summary: Update preference
+      deprecated: false
+      description: Updates a preference or preference category by id
+      operationId: update-preference
+      tags:
+      - Preferences and subscriptions
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        example: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - id
+              - publicName
+              - privateName
+              properties:
+                id:
+                  type: integer
+                  description: The id of the preference or preference category that you want to update
+                  format: int32
+                publicName:
+                  type: string
+                  description: The public name of the preference or the preference category. Contacts can see the public names of preferences in preference centres and signup forms.
+                privateName:
+                  type: string
+                  description: The private name of the preference or the preference category. Contacts can't see private names in the preference centre or in signup forms.
+                isPreference:
+                  type: boolean
+                  description: If this value is true, a new preference is created. If this value is false, a new preference category is created.
+                  default: false
+                order:
+                  type: string
+                  description: The position that you want the preference or the preference category to appear on the 'Contact preferences' page, starting from 0. Specify either an integer for absolute position, alternatively use "top" or "bottom"
+                isPublic:
+                  type: boolean
+                  description: For preferences, if this value is true, the preference is visible in signup forms and preference centres.
+                  default: true
+                categoryID:
+                  type: integer
+                  description: 'For preferences, the unique ID of the preference category that you want to add the preference to. Default for preferences: 0. Default for preference categories: null'
+                  format: int32
+            examples:
+              Request Example:
+                value:
+                  id: 2
+                  privateName: Preference name
+                  publicName: Preference name
+                  order: 1
+                  isPublic: false
+                  categoryId: 14
+                summary: Request Example
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                Result:
+                  summary: Result
+                  value: "{ \nid: 2,\npublicName: 'Preference name',\nprivateName: 'Preference name',\nisPreference: true,\norder: 1,\nisPublic: false,\ncategoryId: 14,\nlastModified: '2020-01-01T09:40:18.527Z'\n}"
+    delete:
+      summary: Delete preference
+      deprecated: false
+      description: Deletes a preference or preference category by id
+      operationId: delete-preference
+      tags:
+      - Preferences and subscriptions
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        example: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            text/plain:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                Result:
+                  summary: Result
+                  value: Preference or category (and preferences) were deleted successfully
+  /v2/preferences/modified-since/{date}:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    get:
+      summary: Get modified preferences since date
+      deprecated: false
+      description: Gets all the preferences and preference categories that have been modified since a given date
+      operationId: get-modified-preferences-since-date
+      tags:
+      - Preferences and subscriptions
+      parameters:
+      - name: date
+        in: path
+        description: The start date from which you want to get modified preferences in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)
+        required: true
+        example: ''
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      default: 0
+                      examples:
+                      - 8
+                    publicName:
+                      type: string
+                      examples:
+                      - Preferred contact method
+                    privateName:
+                      type: string
+                      examples:
+                      - Preferred contact method
+                    isPreference2:
+                      type: boolean
+                      default: true
+                      examples:
+                      - false
+                    order:
+                      type: string
+                      examples:
+                      - '0'
+                    isPublic:
+                      type: boolean
+                      default: true
+                      examples:
+                      - true
+                    categoryId:
+                      type: integer
+                      default: 0
+                      examples:
+                      - 0
+                    preferenceCount:
+                      type: integer
+                      default: 0
+                      examples:
+                      - 2
+                    created:
+                      type: string
+                      examples:
+                      - '2020-01-01 09:40:18.527000+00:00'
+                    lastModified:
+                      type: string
+                      examples:
+                      - '2020-01-01 09:40:18.527000+00:00'
+                    preferences:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            default: 0
+                            examples:
+                            - 9
+                          publicName:
+                            type: string
+                            examples:
+                            - Email
+                          privateName:
+                            type: string
+                            examples:
+                            - Email
+                          isPreference:
+                            type: boolean
+                            default: true
+                            examples:
+                            - true
+                          order:
+                            type: string
+                            examples:
+                            - '0'
+                          isPublic:
+                            type: boolean
+                            default: true
+                            examples:
+                            - true
+                          categoryId:
+                            type: integer
+                            default: 0
+                            examples:
+                            - 8
+                          preferenceCount:
+                            type: integer
+                            default: 0
+                            examples:
+                            - 0
+                          created:
+                            type: string
+                            examples:
+                            - '2020-01-01 09:40:18.527000+00:00'
+                          lastModified:
+                            type: string
+                            examples:
+                            - '2020-01-01 09:40:18.527000+00:00'
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                  - id: 8
+                    publicName: Preferred contact method
+                    privateName: Preferred contact method
+                    isPreference2: false
+                    order: '0'
+                    isPublic: true
+                    categoryId: 0
+                    preferenceCount: 2
+                    created: '2020-01-01 09:40:18.527000+00:00'
+                    lastModified: '2020-01-01 09:40:18.527000+00:00'
+                    preferences:
+                    - id: 9
+                      publicName: Email
+                      privateName: Email
+                      isPreference: true
+                      order: '0'
+                      isPublic: true
+                      categoryId: 8
+                      preferenceCount: 0
+                      created: '2020-01-01 09:40:18.527000+00:00'
+                      lastModified: '2020-01-01 09:40:18.527000+00:00'
+                    - id: 10
+                      publicName: Push notifications
+                      privateName: Push notifications
+                      isPreference: true
+                      order: '1'
+                      isPublic: true
+                      categoryId: 8
+                      preferenceCount: 0
+                      created: '2020-01-01 09:40:18.527000+00:00'
+                      lastModified: '2020-01-01 09:40:18.527000+00:00'
+                  - id: 21
+                    publicName: Football
+                    privateName: Football
+                    isPreference: true
+                    order: '2'
+                    isPublic: true
+                    categoryId: 0
+                    preferenceCount: 0
+                    created: '2020-01-01 09:40:18.527000+00:00'
+                    lastModified: '2020-01-01 09:40:18.527000+00:00'
+  /v2/contacts/{contactIdentifier}/preferences:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    put:
+      summary: Set preferences for contact
+      deprecated: false
+      description: Opts in a given contact to preferences, or opts out a given contact from preferences
+      operationId: set-preferences-for-contact
+      tags:
+      - Preferences and subscriptions
+      parameters:
+      - name: contactIdentifier
+        in: path
+        description: Either the contact id or email address of the contact
+        required: true
+        example: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                RAW_BODY:
+                  type: array
+                  description: An array of preference and preference category objects
+                  items:
+                    properties:
+                      id:
+                        type: integer
+                        description: The id of the preference
+                        format: int32
+                      isPreference:
+                        type: boolean
+                        description: Boolean indicating if this is preference value or group of preference values
+                      isOptedIn:
+                        type: boolean
+                        description: Whether the contact is opted into this preference or not
+                    required:
+                    - id
+                    - isPreference
+                    - isOptedIn
+                    type: object
+            examples:
+              Request Example:
+                value:
+                - id: 14
+                  isPreference: false
+                  preferences:
+                  - id: 26
+                    isPreference: true
+                    isOptedIn: true
+                  - id: 19
+                    isPreference: true
+                    isOptedIn: false
+                - id: 1027
+                  isPreference: true
+                  isOptedIn: true
+                summary: Request Example
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                    value: ''
+    get:
+      summary: Get preferences for contact
+      deprecated: false
+      description: Gets all preferences for the account and indicates those that a given contact is opted into
+      operationId: get-preferences-for-contact
+      tags:
+      - Preferences and subscriptions
+      parameters:
+      - name: contactIdentifier
+        in: path
+        description: Either the contact id or email address of the contact
+        required: true
+        example: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      default: 0
+                      examples:
+                      - 279
+                    publicName:
+                      type: string
+                      examples:
+                      - Camping
+                    privateName:
+                      type: string
+                      examples:
+                      - Camping
+                    isPreference:
+                      type: boolean
+                      default: true
+                      examples:
+                      - false
+                    order:
+                      type: string
+                      examples:
+                      - '0'
+                    isPublic:
+                      type: boolean
+                      default: true
+                      examples:
+                      - true
+                    categoryId:
+                      type: integer
+                      default: 0
+                      examples:
+                      - 0
+                    preferenceCount:
+                      type: integer
+                      default: 0
+                      examples:
+                      - 2
+                    created:
+                      type: string
+                      examples:
+                      - '2020-01-01 09:40:18.527000+00:00'
+                    lastModified:
+                      type: string
+                      examples:
+                      - '2020-01-01 09:40:18.527000+00:00'
+                    preferences:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            default: 0
+                            examples:
+                            - 278
+                          publicName:
+                            type: string
+                            examples:
+                            - Tents
+                          privateName:
+                            type: string
+                            examples:
+                            - Tents
+                          isPreference:
+                            type: boolean
+                            default: true
+                            examples:
+                            - true
+                          order:
+                            type: string
+                            examples:
+                            - '0'
+                          isPublic:
+                            type: boolean
+                            default: true
+                            examples:
+                            - true
+                          categoryId:
+                            type: integer
+                            default: 0
+                            examples:
+                            - 279
+                          preferenceCount:
+                            type: integer
+                            default: 0
+                            examples:
+                            - 0
+                          created:
+                            type: string
+                            examples:
+                            - '2020-01-01 09:40:18.527000+00:00'
+                          lastModified:
+                            type: string
+                            examples:
+                            - '2020-01-01 09:40:18.527000+00:00'
+                          isOptedIn:
+                            type: boolean
+                            default: true
+                            examples:
+                            - true
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                  - id: 279
+                    publicName: Camping
+                    privateName: Camping
+                    isPreference: false
+                    order: '0'
+                    isPublic: true
+                    categoryId: 0
+                    preferenceCount: 2
+                    created: '2020-01-01 09:40:18.527000+00:00'
+                    lastModified: '2020-01-01 09:40:18.527000+00:00'
+                    preferences:
+                    - id: 278
+                      publicName: Tents
+                      privateName: Tents
+                      isPreference: true
+                      order: '0'
+                      isPublic: true
+                      categoryId: 279
+                      preferenceCount: 0
+                      created: '2020-01-01 09:40:18.527000+00:00'
+                      lastModified: '2020-01-01 09:40:18.527000+00:00'
+                      isOptedIn: true
+                    - id: 281
+                      publicName: Rucksacks
+                      privateName: Rucksacks
+                      isPreference: true
+                      order: '1'
+                      isPublic: true
+                      categoryId: 279
+                      preferenceCount: 0
+                      created: '2020-01-01 09:40:18.527000+00:00'
+                      lastModified: '2020-01-01 09:40:18.527000+00:00'
+                      isOptedIn: false
+  /v2/contacts/with-preference/{preferenceId}:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    get:
+      summary: Get contacts opted into a preference
+      deprecated: false
+      description: Gets contacts who are opted into a given preference
+      operationId: get-contacts-opted-into-a-preference
+      tags:
+      - Preferences and subscriptions
+      parameters:
+      - name: preferenceId
+        in: path
+        description: The ID of the preference to which contacts must be opted in.
+        required: true
+        example: 0
+        schema:
+          type: integer
+          format: int32
+      - name: minContactID
+        in: query
+        description: The minimum contact ID to query on, starting from 0
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      default: 0
+                      examples:
+                      - 5
+                    email:
+                      type: string
+                      examples:
+                      - darryl.netherland@example.com
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                  - id: 5
+                    email: darryl.netherland@example.com
+                  - id: 17
+                    email: dora.judge@example.com
+  /v2/contacts/with-preference/{preferenceId}/opt-ins-since/{date}:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    get:
+      summary: Get contacts with modified preference opt-in since date
+      deprecated: false
+      description: Gets the top 1000 contacts who have had their specified preference opt-in status modified since a given date
+      operationId: get-contacts-with-modified-preference-opt-in-since-date
+      tags:
+      - Preferences and subscriptions
+      parameters:
+      - name: preferenceId
+        in: path
+        description: The ID of the preference to which contacts must be opted in.
+        required: true
+        example: 0
+        schema:
+          type: integer
+          format: int32
+      - name: date
+        in: path
+        description: The earliest date that returned contacts must have modified their opt-in status for the preference in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)
+        required: true
+        example: ''
+        schema:
+          type: string
+          format: date
+      - name: minContactID
+        in: query
+        description: The minimum contact ID to query on, starting from 0
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    contact:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          default: 0
+                          examples:
+                          - 5
+                        email:
+                          type: string
+                          examples:
+                          - darryl.netherland@example.com
+                        optInType:
+                          type: string
+                          examples:
+                          - Single
+                        emailType:
+                          type: string
+                          examples:
+                          - Html
+                        dataFields: {}
+                        status:
+                          type: string
+                          examples:
+                          - Subscribed
+                    marketingPreferenceOptIns:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          marketingPreferenceId:
+                            type: integer
+                            default: 0
+                            examples:
+                            - 2
+                          addressBookId:
+                            type: integer
+                            default: 0
+                            examples:
+                            - 421
+                          isOptedIn:
+                            type: boolean
+                            default: true
+                            examples:
+                            - false
+                          dateModifed:
+                            type: string
+                            examples:
+                            - '2020-01-01 09:40:18.527000+00:00'
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                  - contact:
+                      id: 5
+                      email: darryl.netherland@example.com
+                      optInType: Single
+                      emailType: Html
+                      dataFields: null
+                      status: Subscribed
+                    marketingPreferenceOptIns:
+                    - marketingPreferenceId: 2
+                      addressBookId: 421
+                      isOptedIn: false
+                      dateModifed: '2020-01-01 09:40:18.527000+00:00'
+                  - contact:
+                      id: 12
+                      email: dora.judge@example.com
+                      optInType: Unknown
+                      emailType: Html
+                      dataFields: null
+                      status: Subscribed
+                    marketingPreferenceOptIns:
+                    - marketingPreferenceId: 5
+                      addressBookId: 395
+                      isOptedIn: true
+                      dateModifed: '2020-01-01 09:40:18.527000+00:00'

@@ -1,0 +1,489 @@
+openapi: 3.1.0
+x-samples-languages:
+- curl
+- csharp
+- java
+- javascript
+- node
+- python
+- php
+- ruby
+info:
+  version: 2.0.1
+  title: Images
+  description: 'Manage image folders and upload images. Use this API to retrieve the full image
+
+    folder tree, get a specific folder by ID, create new folders within existing
+
+    folders, list images within a folder including URL, dimensions, file size, and
+
+    content tags, and upload new images via Base64-encoded JSON or binary form data.'
+externalDocs:
+  description: Learn more about Dotdigital APIs
+  url: https://developer.dotdigital.com
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      default: r1
+      enum:
+      - r1
+      - r2
+      - r3
+      description: The Dotdigital region id your account belongs to
+security:
+- basicAuth: []
+paths:
+  /v2/image-folders:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    get:
+      summary: Get image folders
+      deprecated: false
+      description: Gets the accounts image folders tree structure.
+      operationId: get-image-folders
+      tags:
+      - Images
+      parameters: []
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      default: 0
+                      examples:
+                      - 1
+                    name:
+                      type: string
+                      examples:
+                      - Banners
+                    childFolders:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            default: 0
+                            examples:
+                            - 2
+                          name:
+                            type: string
+                            examples:
+                            - Big
+                          childFolders:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  default: 0
+                                  examples:
+                                  - 3
+                                name:
+                                  type: string
+                                  examples:
+                                  - Small
+                                childFolders:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: integer
+                                        default: 0
+                                        examples:
+                                        - 4
+                                      name:
+                                        type: string
+                                        examples:
+                                        - Logos
+                                      childFolders: {}
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                  - id: 1
+                    name: Banners
+                    childFolders:
+                    - id: 2
+                      name: Big
+                      childFolders:
+                      - id: 3
+                        name: Small
+                        childFolders:
+                        - id: 4
+                          name: Logos
+                          childFolders: null
+  /v2/image-folders/{id}:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    post:
+      summary: Create image folder
+      deprecated: false
+      description: 'This operation can be used to create a new image folder within an existing image folder, whilst child folders can also be created to nest within it.
+
+
+        **Note:** The accounts root folder id is `0`
+
+        '
+      operationId: create-image-folder
+      tags:
+      - Images
+      parameters:
+      - name: id
+        in: path
+        description: 'The image folder id.
+
+          **Note** The root folder id is `0`
+
+          '
+        required: true
+        example: 0
+        schema:
+          type: integer
+          minimum: 0
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              properties:
+                name:
+                  type: string
+                  maxLength: 20
+                  pattern: '[a-zA-Z0-9_-]{1,20}'
+                  description: The name of the folder being created, which can only be up to 20 characters in length and must consist of alphanumeric characters only, with hyphens and underscores if required
+            examples:
+              Request Example:
+                value:
+                  name: Product-images
+                summary: Request example
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    default: 0
+                    examples:
+                    - 6
+                  name:
+                    type: string
+                    examples:
+                    - Product images
+                  childFolders: {}
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                    id: 6
+                    name: Product images
+                    childFolders: null
+    get:
+      summary: Get image folders by id
+      deprecated: false
+      description: Gets an image folder by id
+      operationId: get-image-folders-by-id
+      tags:
+      - Images
+      parameters:
+      - name: id
+        in: path
+        description: 'The image folder id.
+
+          **Note** The root folder id is `0`
+
+          '
+        required: true
+        example: 0
+        schema:
+          type: integer
+          minimum: 0
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    default: 0
+                    examples:
+                    - 3
+                  name:
+                    type: string
+                    examples:
+                    - Small
+                  childFolders:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          default: 0
+                          examples:
+                          - 4
+                        name:
+                          type: string
+                          examples:
+                          - Logos
+                        childFolders: {}
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                    id: 3
+                    name: Small
+                    childFolders:
+                    - id: 4
+                      name: Logos
+                      childFolders: null
+  /v2/image-folders/{id}/images:
+    parameters:
+    - name: id
+      in: path
+      description: 'The image folder id.
+
+        **Note** The root folder id is `0`
+
+        '
+      required: true
+      example: 0
+      schema:
+        type: integer
+        minimum: 0
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    get:
+      summary: Get images in folder
+      deprecated: false
+      operationId: get-folder-images
+      tags:
+      - Images
+      description: 'Gets the images details contained within the specified image folder. Details include:
+
+        * Full URL to image
+
+        * Name
+
+        * MIME Type
+
+        * Dimensions in pixels
+
+        * Size in bytes
+
+        * Image content tags
+
+        '
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: array
+                description: Details of the images.
+                items:
+                  type: object
+                  required:
+                  - url
+                  - filename
+                  - mimeType
+                  - sizeInBytes
+                  - widthInPixels
+                  - heightInPixels
+                  - contentTags
+                  properties:
+                    url:
+                      type: string
+                      format: uri
+                      description: The full URI to the image.
+                      examples:
+                      - https://i.emlfiles4.com/cmpimg/9/5/9/2/4/2/files/2227353_cookware-zoom.png
+                    filename:
+                      type: string
+                      description: The filename of the image
+                      examples:
+                      - product_1245.png
+                    mimeType:
+                      type: string
+                      description: The MIME type of the image file.
+                      examples:
+                      - image/gif
+                      - image/png
+                      - image/jpg
+                    sizeInBytes:
+                      type: integer
+                      minimum: 0
+                      description: The file size in bytes.
+                      examples:
+                      - 1024
+                    widthInPixels:
+                      type: integer
+                      minimum: 0
+                      description: The width of the image in pixels.
+                      examples:
+                      - 800
+                    heightInPixels:
+                      type: integer
+                      minimum: 0
+                      description: The height of the image in pixels.
+                      examples:
+                      - 600
+                    contentTags:
+                      type: array
+                      description: The tags to describe the content of the image.
+                      items:
+                        type: string
+                      examples:
+                      - - Cookware
+                        - Frying pan
+                        - Close up
+    post:
+      summary: Upload image
+      deprecated: false
+      description: 'Uploads a new image to the specified image folder.
+
+
+        The permitted file types are as follows:
+
+
+        | File extension | MIME type     | File type    |
+
+        | :------------- | :------------ | :----------- |
+
+        | .gif           | image/gif     | GIF Image    |
+
+        | .jpeg          | image/jpeg    | JPEG Image   |
+
+        | .jpg           | image/jpeg    | JPEG Image   |
+
+        | .png           | image/png     | PNG image    |
+
+
+        It can accept either a file uploaded using form data or a JSON body with the filename and file data in Base64. You can choose which method works best for you.'
+      operationId: upload-image
+      tags:
+      - Images
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - fileName
+              - data
+              properties:
+                fileName:
+                  type: string
+                  description: The filename of the image
+                data:
+                  type: string
+                  description: The image file data in [Base64](https://en.wikipedia.org/wiki/Base64)
+            examples:
+              Example:
+                summary: Uploading an image using JSON and Base64 data.
+                value:
+                  fileName: dotdigital.png
+                  data: iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADc0lEQVQ4T12TbUyVZRjH/9d9389zXjp2OG4xw7Mm4KJQKzQ30RVZ9EKbpRZIW6tDqRM+IAU0UmBnGgZEan1gJrSFX1Ko7MVpBUlr0yzXiwFZgcCK3LQFW0fgHM7zXFeDLce6vv236/+7vlw/wv8mZ0/OnbbR2ywj641GujEgpWTEUtxLOnn4xI6BC/Mr9F8Iv5DrCwb5oKWx1TY8Zmn5xGj5zVIs2uBWW8tjlpKw1tyO2ERF14tj07PdOcBs2ePDZ7aWlVpzVT++bU8ZPR6gG2W5oxXFRPoK126K8fjybcZQi1L43glMPNxVNDY9B0irXtdmNIqV5eb/3V865Avq19m2nhKvsdkycG0z41rm3UmvrixeVL7UKNWjwcc6Ij9vpWDFmpW2ss4TSak1XPw+jP+M6zELXY/dMO1X3bBtwOvJh0fXimXGJ4XXRcI7NyvCIQGvplD5Pa1EVDB++ault8Ra32bLPDpjmTX7Tx2c8VHoGR/7yRf3dRREy2zym3Ni1MkN4XufDyWzhwT4lG4oy/tFFD73fF1QFwwFrjBQU322qdOrF/wQ5JCV4obgdwJJv+PPyd1fUgilmhM+T2rpgqf3QtFDtKX9jviVCVP102jtd4lwytnAj2Mrjn748SMQqf/dM5B+W+x2GB0aVqJeyTlQcso21Mdary1d+OwqAbVQY0/m1OzVXbGT5wD+Bkk353LR0TwG7VPg7DjiiNPMAIRrs9ueO225zoUkS+7O1MjdIniNXu3O7CPBmRr5oBJT9lUQGsY2HnlLoM8DstiBgySSf7pIrF7WXrJdidQ5M9dSKxbtaBahPGrszjggoC2Jmy8tiQ5ebIFIBCx5I0+2jRj4nkhCiBB/L70jkq7AX8KVI/WBVZXXrKwRAbqo6XR6FrPuJ8jumvGPWmHoCwiWAXgTkG44ANh9kFwpB8uAxKwHqtM2lYFUAzuJFXOP1NiT2cRMFcK8eXeysxcJfz2EtwMIEQuEZQLgw/jH2fNyWtF9EOu4K/xG8+ODL80Bor0wtpN5DKANAt6XNLGWKDrj+Ct1yZwrN10djaLIy1PBKhdql7CcsAODRdH1cK7LVNgJfVcwow5ENQDirlAPRH7lOQJliSCfhbwk0nhxcmhvVxHc6zLN1zPauzhsHG8EjPtFkDHrGwPDLkuvO4N3GjZe+mP+/r9/Xogj35RiigAAAABJRU5ErkJggg==
+          image/png:
+            schema:
+              type: string
+              format: binary
+          image/jpeg:
+            schema:
+              type: string
+              format: binary
+          image/jpg:
+            schema:
+              type: string
+              format: binary
+          image/gif:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    default: 0
+                    examples:
+                    - 1
+                  name:
+                    type: string
+                    examples:
+                    - Conference_venue.jpg
+                  path:
+                    type: string
+                    examples:
+                    - Folders/Events/Conference_venue.jpg
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                    id: 1
+                    name: Conference_venue.jpg
+                    path: Folders/Events/Conference_venue.jpg
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+  parameters:
+    folderId:
+      name: id
+      in: path
+      description: 'The image folder id.
+
+        **Note** The root folder id is `0`
+
+        '
+      required: true
+      example: 0
+      schema:
+        type: integer
+        minimum: 0

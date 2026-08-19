@@ -1,0 +1,318 @@
+generated: '2026-08-13'
+method: searched
+source: https://marketing.developer.dotdigital.com/docs/error-response-types
+format: proprietary
+description: 'Dotdigital''s published error-code registry for the v2 API framework. These string codes are returned in the
+  body of 4xx responses. Dotdigital does NOT use RFC 9457 application/problem+json: the v2 framework returns a message string
+  carrying an ERROR_* code, and the v3 framework returns a different, structured envelope (errorCode / description / details[])
+  documented separately below. Both are captured here because a client calling the estate will meet both.'
+envelopes:
+- framework: v2
+  shape: message string containing an ERROR_* token
+  docs: https://marketing.developer.dotdigital.com/docs/error-response-types
+  example: ERROR_CONTACT_NOT_FOUND
+- framework: v3
+  shape: JSON object
+  docs: https://marketing.developer.dotdigital.com/docs/error-handling
+  fields:
+  - name: errorCode
+    type: string
+    required: true
+    notes: Unique code per error raised by the service, namespaced by service (e.g. contacts:invalidContacts)
+  - name: description
+    type: string
+    required: true
+    notes: Human readable description in American English
+  - name: details
+    type: array of error objects
+    required: false
+    notes: Optional per-item errors; each has item + description
+  example:
+    errorCode: contacts:invalidContacts
+    description: Invalid contact data
+    details:
+    - item: email
+      error: You must specify a value
+    - item: firstName
+      error: Cannot exceed 256 characters
+status_classes:
+- range: 2xx
+  meaning: Successful request
+- range: 4xx
+  meaning: Failed request — missing parameter, object not found, validation failure
+- status: 429
+  meaning: Tiered rate limit exceeded for the call tier (see rate-limits/)
+- status: 400
+  meaning: Flat rate limit exceeded — ERROR_APIUSAGE_EXCEEDED (deprecated scheme)
+- range: 5xx
+  meaning: Server-side error; documented as rare
+error_codes:
+- code: ERROR_ACCOUNT_INVALID
+  description: The account is not valid. This means you are trying to reference an account that doesn’t exist or has certain
+    restrictions placed upon it. Please contact our support department if you require assistance.
+- code: ERROR_ADDRESSBOOK_DUPLICATE
+  description: There is already an address book or segment with that name in the account. Please make sure that the name of
+    the address book you are using is unique and not one of the reserved address book names such as 'Test' or 'All Contacts'.
+- code: ERROR_ADDRESSBOOK_INVALID
+  description: This address book is not valid. This means that there is something incorrect with the address book object you
+    are sending to the method/operation, or you are referring to a non-existent address book. Check that your address book
+    object is valid by checking the definition in the documentation.
+- code: ERROR_ADDRESSBOOK_IN_USE
+  description: The address book you are attempting to use in your request is in use – retrying later may succeed.
+- code: ERROR_ADDRESSBOOK_LIMITEXCEEDED
+  description: Your account will have a limited number of address books, which depends on the level of account you're using.
+    You have currently exceeded this limit. Please delete some of your unused address books.
+- code: ERROR_ADDRESSBOOK_NOTWRITABLE
+  description: The address book you have specified with the addressBookId argument relates to an address book which cannot
+    be written to. For example, you cannot upload contacts to the 'Test' address book via the API.
+- code: ERROR_ADDRESSBOOK_NOT_FOUND
+  description: The address book you have specified with the addressBookId argument does not relate to an address book which
+    exists in the account you are currently connected to.
+- code: ERROR_ADDRESSBOOK_TOOMANY
+  description: You have requested program enrolment from too many address books. Please reduce the number of address books
+    in your array.
+- code: ERROR_APIUSAGE_EXCEEDED
+  description: The last method/operation call you made exceeded the cut-off of 2000 API calls in a one hour period. You will
+    be unable to make any further API calls until the number of API calls made in the last hour goes below this figure. Please
+    review your code to determine what is causing this excess usage.
+- code: ERROR_APIUSER_INVALID
+  description: The API user credentials that you have used in the request are invalid. You may have entered them incorrectly.
+    Please check that your credentials are being entered correctly.
+- code: ERROR_BODY_DOES_NOT_MATCH_CONTENT_TYPE
+  description: The body of your request does not match the content type. Please check that the content type is set correctly.
+- code: ERROR_CAMPAIGN_CONTAINS_UNSUPPORTED_BLOCKS
+  description: The campaign you're attempting to send can't be sent because it contains unsupported EasyEditor building blocks
+    and links.
+- code: ERROR_CAMPAIGN_INVALID
+  description: The campaign that you are attempting to create has some invalid properties. Please check the settings you are
+    using for this campaign.
+- code: ERROR_CAMPAIGN_NOT_FOUND
+  description: The campaign you are trying to get could not be found within the account. It is likely that you are using the
+    incorrect ID number.
+- code: ERROR_CAMPAIGN_READONLY
+  description: The campaign you are trying to update cannot be updated - please check that you have the right ID.
+- code: ERROR_CAMPAIGN_SENDNOTPERMITTED
+  description: We cannot permit you to send this campaign. This will most likely be because your account is not fully enabled.
+- code: ERROR_CAMPAIGN_SEND_INVALID
+  description: The campaign send is not valid. This means that there is something incorrect with the campaign send object
+    you are sending to the method/operation. Check that your campaign send object is valid by checking the definition in the
+    documentation.
+- code: ERROR_CANNOT_PERFORM_OPERATION_ON_ACCOUNT
+  description: The operation that your request is trying to perform can’t be executed on your account.
+- code: ERROR_CONTACTS_ARE_NOT_SPECIFIED
+  description: The request you are making is not specifying the contacts that are required. Make sure you have included these
+    in your request.
+- code: ERROR_CONTACT_INVALID
+  description: The contact you are trying to add is not valid. This means that there is something incorrect with the contact
+    object you are sending to the method/operation. Check that your contact object is valid by checking the definition in
+    the documentation.
+- code: ERROR_CONTACT_NOT_FOUND
+  description: The ID of the contact you have selected is not present within the account.
+- code: ERROR_CONTACT_RESUBSCRIPTION_INVALID
+  description: The contact resubscription is not valid. This means that there is something incorrect with the contact resubscription
+    object you are sending to the method/operation. Check that your contact resubscription object is valid by checking the
+    definition in the documentation.
+- code: ERROR_CONTACT_SUPPRESSED
+  description: The contact you are trying to add to the address book has been suppressed. This means that you cannot add the
+    contact back into the address book or the account.
+- code: ERROR_CONTACT_SUPPRESSEDFORADDRESSBOOK
+  description: The contact you are attempting to add is suppressed for this address book.
+- code: ERROR_CONTACT_TOOMANY
+  description: You have exceeded the number of contacts permitted for your account type. Please consider upgrading your account.
+- code: ERROR_CONTENT_TYPE_IS_NOT_SUPPORTED
+  description: The content type is not supported. Please check that you have set a supported content type for your request.
+- code: ERROR_DATAFIELD_INVALID
+  description: The data field is not valid. This means that there is something incorrect with the data field object you are
+    sending to the method/operation, or you are referring to a non-existent data field. Check that your data field object
+    is valid by checking the definition in the documentation.
+- code: ERROR_DATAFIELD_LIMITEXCEEDED
+  description: You currently have more than the allowed contact data fields in your account, despite the fact that we advertise
+    unlimited contact data fields per account for some account levels. Please delete some of your unused contact data fields
+    in order to create more.
+- code: ERROR_DATAFIELD_NOTFOUND
+  description: One or more of the contact data fields you are trying to set for the contact does not exist. Please make sure
+    that you create any required contact data fields before attempting to assign values to them.
+- code: ERROR_DATAFIELD_VALUE_OVERFLOW
+  description: There has been a data field value overflow.
+- code: ERROR_DOCUMENT_ALREADYATTACHED
+  description: You are attempting to attach a document object that is already attached to this campaign.
+- code: ERROR_DOCUMENT_ATTACHMENTSTOOLARGE
+  description: Your attachments are too large. They have reached the maximum limit. Please reduce the size.
+- code: ERROR_DOCUMENT_DATAEMPTY
+  description: There is no data supplied for this document object. Please ensure this document exists in your account and
+    has valid data.
+- code: ERROR_DOCUMENT_FOLDER_INVALID
+  description: The document folder is not valid. This means that there is something incorrect with the document folder object
+    you are sending to the method/operation. Check that your document folder object is valid by checking the definition in
+    the documentation.
+- code: ERROR_DOCUMENT_FOLDER_NOT_FOUND
+  description: The document folder could not be found within the account. Either it has been deleted or it is likely that
+    you are using the incorrect ID number.
+- code: ERROR_DOCUMENT_INVALID
+  description: The document is not valid. This means that there is something incorrect with the document object you are sending
+    to the method/operation. Check that your document object is valid by checking the definition in the documentation.
+- code: ERROR_DOCUMENT_NAMEINVALID
+  description: The document provided has an invalid name. Please check that the name is correct.
+- code: ERROR_DOCUMENT_NOT_FOUND
+  description: The document object could not be found within the account. Either it has been deleted or it is likely that
+    you are using the incorrect ID number.
+- code: ERROR_DOCUMENT_TOOLARGE
+  description: The document that you're attempting to add is too large. It exceeds the maximum size of 10MB.
+- code: ERROR_DOCUMENT_TOOMANYATTACHMENTS
+  description: Your campaign has reached the maximum amount of attachments it is allowed to have. Please reduce this amount.
+- code: ERROR_DOCUMENT_UNSUPPORTEDFORMAT
+  description: The document is not in a supported format. Please ensure you use the correct format.
+- code: ERROR_EMAIL_BANNED
+  description: You are attempting to add an email address that is banned from the system.
+- code: ERROR_ENROLMENT_ALLOWANCE_EXCEEDED
+  description: You have exceeded the limit of 20 calls per hour for creating program enrolments across all programs. You will
+    be unable to make any further calls to create program enrolments until the number made in the last hour goes below this
+    figure.
+- code: ERROR_ENROLMENT_INVALID
+  description: The program enrolment you are trying to create or retrieve is not valid. This means that there is something
+    incorrect with the enrolment object you are sending to the method/operation. Check that your enrolment object is valid
+    by checking the definition in the documentation.
+- code: ERROR_ENROLMENT_IS_PROCESSING
+  description: The program enrolment faults report in your request can’t be retrieved because the enrolment is still processing.
+- code: ERROR_ENROLMENT_NOT_FOUND
+  description: The program enrolment you are trying to retrieve or reference in your call does not exist. Please make sure
+    that the program enrolment ID (GUID) you are using is correct.
+- code: ERROR_FEATURENOTACTIVE
+  description: The feature your call is referencing is not active on your account (e.g. transactional email). Please make
+    sure this feature is enabled before calling it again.
+- code: ERROR_IMAGE_DATAEMPTY
+  description: There is no data supplied for this image object. Please ensure this image exists in your account and has valid
+    data.
+- code: ERROR_IMAGE_FOLDER_DELETED
+  description: The image folder you have selected has been deleted.
+- code: ERROR_IMAGE_FOLDER_INVALID
+  description: The image folder is not valid. This means that there is something incorrect with the image folder object you
+    are sending to the method/operation. Check that your image folder object is valid by checking the definition in the documentation.
+- code: ERROR_IMAGE_FOLDER_NOT_FOUND
+  description: The ID of the image folder could not be found within the account. Either it has been deleted or it is likely
+    that you are using the incorrect ID number.
+- code: ERROR_IMAGE_INVALID
+  description: The image is not valid. This means that there is something incorrect with the image object you are sending
+    to the method/operation. Check that your image object is valid by checking the definition in the documentation.
+- code: ERROR_IMAGE_NAMEINVALID
+  description: The image object provided has an invalid name. Please check that the name is correct.
+- code: ERROR_IMAGE_PARENTFOLDERISFULL
+  description: The parent image folder that you are attempting to add the child folder to is now full.
+- code: ERROR_IMAGE_UNSUPPORTEDFORMAT
+  description: The image object is not in a supported format. Please ensure you use the correct format.
+- code: ERROR_IMPORT_NOT_FOUND
+  description: The GUID you have provided does not relate to an import in our system. Please check that you are entering the
+    correct GUID.
+- code: ERROR_IMPORT_REPORT_NOT_FOUND
+  description: The import report object could not be found within the account. Please check that you are entering the correct
+    GUID.
+- code: ERROR_IMPORT_TOOMANYACTIVEIMPORTS
+  description: You currently have more than 25 imports running at the same time.
+- code: ERROR_IMPORT_UNSUPPORTED_FORMAT
+  description: The import object is not in a supported format. Please ensure you use the correct format.
+- code: ERROR_INVALID_APIUSEREXISTS
+  description: You cannot attempt to recreate an API user which already exists.
+- code: ERROR_INVALID_EMAIL
+  description: The email address of the contact you are adding is invalid. Each contact object must contain a valid email
+    address.
+- code: ERROR_INVALID_LOGIN
+  description: The username or password you are attempting to authenticate your method call with is invalid. Please make sure
+    you have used the correct details. If your login attempt is still unsuccessful please follow the steps to reset your username
+    and password as set out in the documentation. This error is also returned if the account you are attempting to connect
+    to is turned off or disabled.
+- code: ERROR_INVALID_PERSONALISATION_VALUES
+  description: The personalisation values you've used aren't valid JSON strings and aren't escaped properly (especially when
+    an HTML string is provided in the 'Value').
+- code: ERROR_MALFORMED_REQUEST
+  description: Your request is not formed correctly. Please check our documentation to make sure you have included all of
+    the required parameters in your request and that it is formed correctly.
+- code: ERROR_MANAGED_USER_INVALID
+  description: The API managed user credentials that you have used in the request are invalid. You may have entered them incorrectly.
+    Please check that the managed user credentials are being entered correctly.
+- code: ERROR_MISSING_SETUPKEYVALUES
+  description: You have not included all setup keys.
+- code: ERROR_MULTI_FILE_UPLOAD_NOT_ALLOWED
+  description: You have attempted to upload multiple files in a call, which isn’t allowed. Please upload one file per call.
+- code: ERROR_NON_UNIQUE_DATAFIELD
+  description: The data field you are trying to create already exists within the account you are connected to. Please either
+    use the existing data field or choose a different name.
+- code: ERROR_NON_UNIQUE_EMAIL
+  description: The email address that you are trying to use is not unique.
+- code: ERROR_NO_EMAIL_COLUMN
+  description: The data file you are attempting to import does not contain an Email column. This column is required when importing
+    a file of data.
+- code: ERROR_OAUTH_TOKEN_INVALID
+  description: The OAuth token being entered with the call is invalid. You may have entered it incorrectly. Please check that
+    the OAuth token is being entered correctly.
+- code: ERROR_PARAMETER_INVALID
+  description: One of the method/operation arguments you are sending is invalid.
+- code: ERROR_PREFERENCE_INVALID
+  description: 'One of the preferences or preference categories is invalid. Possible reasons for this error message include
+    the following: Not including private name for a preference, and assigning a preference category to another preference
+    category.'
+- code: ERROR_PREFERENCE_NOT_FOUND
+  description: A preference or preference category with the given ID does not exist.
+- code: ERROR_PROGRAM_NOT_ACTIVE
+  description: You are attempting to create a program enrolment for a program that isn’t yet active. A program must be active
+    before it can enrol.
+- code: ERROR_PROGRAM_NOT_FOUND
+  description: The program you are trying to retrieve or reference in your call does not exist. Please make sure that the
+    program ID you are using is correct.
+- code: ERROR_SEGMENT_NOT_FOUND
+  description: The segment object could not be found within the account. Either it has been deleted or it is likely that you
+    are using the incorrect ID number.
+- code: ERROR_SEND_LIMITEXCEEDED
+  description: You have exceeded the amount of sends your account is allowed this month. Please contact your account manager
+    if you wish to send more.
+- code: ERROR_SMS_INVALID
+  description: The SMS is not valid. This means that there is something incorrect with the SMS object you are sending to the
+    method/operation. Check that your SMS object is valid by checking the definition in the documentation.
+- code: ERROR_SMS_INVALIDPHONENUMBER
+  description: The phone number you have attempted to send to is invalid.
+- code: ERROR_SMS_SENDNOTPERMITTED
+  description: You do not have sufficient credit within your account for this SMS send. Please contact your account manager
+    if you need more sending credits.
+- code: ERROR_SURVEY_NOT_FOUND
+  description: The survey you are trying to retrieve or reference in your call does not exist. Please make sure that the survey
+    ID you are using is correct.
+- code: ERROR_SYSTEM_SERVICETEMPORARILYUNAVAILABLE
+  description: The API is temporarily down, most likely for scheduled maintenance, for which you should have received notification;
+    if you did not please subscribe to our user warning list to be notified of these updates in future.
+- code: ERROR_TEMPLATE_INVALID
+  description: The template is not valid. This means that there is something incorrect with the template object you are sending
+    to the method/operation. Check that your template object is valid by checking the definition in the documentation.
+- code: ERROR_TEMPLATE_NOT_FOUND
+  description: The template object could not be found within the account. Either it has been deleted or it is likely that
+    you are using the incorrect ID number.
+- code: ERROR_THEME_INVALID
+  description: You are attempting to set up an account with an invalid theme. Please check that the theme is correct.
+- code: ERROR_TRANSACTIONAL_DATA_COLLECTION_DOES_NOT_EXIST
+  description: The transactional data collection you are trying to retrieve or reference in your call does not exist. Please
+    make sure that the collection name you are using is correct.
+- code: ERROR_TRANSACTIONAL_DATA_DOES_NOT_EXIST
+  description: This piece of transactional data does not exist. Either it has been deleted or it is likely that you are using
+    the incorrect collection name or key.
+- code: ERROR_TRANSACTIONAL_DATA_INVALID_COLLECTION_NAME
+  description: The transactional data collection name you are trying to create isn't valid. Valid transactional data collection
+    names can only contain alphanumeric characters (A-Z, a-z, 0-9), dashes ( - ) and underscores ( \_ ), they can't start
+    with a number and they can't exceed 255 characters in length. Please make sure that the collection name you are creating
+    is valid.
+- code: ERROR_TRANSACTIONAL_DATA_STORAGE_ALLOWANCE_EXCEEDED
+  description: You have exceeded your transactional data storage allowance.
+- code: ERROR_TRANSACTIONAL_DATA_VALIDATION_FAILED
+  description: The validation of the transactional data failed. This means that there is something incorrect with the transactional
+    data object you are sending to the method/operation. Check that your transactional data object is valid by checking the
+    definition in the documentation.
+- code: ERROR_UNKNOWN
+  description: We don't know what went wrong. Please contact our support department if you require assistance.
+- code: ERROR_UNKNOWN_ACCOUNT
+  description: The account is unknown. This means you are trying to reference an account that isn’t recognised. Please contact
+    our support department if you require assistance.
+- code: ERROR_USERACCOUNT_UNKNOWN
+  description: This user account is not known. Please check the details you are using are valid.
+- code: ERROR_WEAK_PASSWORD
+  description: The password set for your API credentials is too weak.
+summary:
+  v2_error_codes: 95
+  rfc9457: false
+  machine_readable_code_field: v3 only (errorCode)

@@ -1,0 +1,143 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://marketing.developer.dotdigital.com/reference/webhooks,
+  https://marketing.developer.dotdigital.com/reference/message-events,
+  https://marketing.developer.dotdigital.com/reference/profile-events,
+  https://marketing.developer.dotdigital.com/reference/chat-events,
+  openapi/dotdigital-webhook-openapi.yml, openapi/dotdigital-events-openapi.yml,
+  openapi/dotdigital-data-firehose-openapi.yml
+spec_type: none
+asyncapi_published: false
+description: >-
+  Dotdigital has a substantial, well-documented event surface across three distinct mechanisms —
+  outbound webhooks (CPaaS), an Events in/out API with durable subscriptions, and Data Firehose
+  batch streaming to cloud storage — but publishes NO AsyncAPI document for any of them. This
+  artifact captures the webhook contract so the event surface is machine-readable somewhere.
+  Probes for /asyncapi.yaml and /asyncapi.json on the developer and API hosts returned 404.
+mechanisms:
+  - name: Webhooks
+    kind: push
+    management_api: openapi/dotdigital-webhook-openapi.yml
+    docs: https://marketing.developer.dotdigital.com/reference/webhooks
+    discovery_operations:
+      - 'GET /cpaas/webhooks/availableevents  — retrieves the available webhook event types'
+      - 'GET /cpaas/webhooks/availabletemplates — retrieves the event payload templates'
+    note: >-
+      The authoritative event-type list is served by the API itself (availableevents), which is
+      account-scoped and therefore requires credentials to enumerate. The event families below
+      are read from the public documentation.
+  - name: Events API (in/out)
+    kind: pull with durable subscription
+    management_api: openapi/dotdigital-events-openapi.yml
+    docs: https://marketing.developer.dotdigital.com/reference/events-overview
+    note: >-
+      Create a subscription with filters (filters are ANDed; repeat the event type to OR), then
+      poll exportEvents with a checkPoint cursor. A subscription not read within 30 days is
+      automatically set inactive. Large payload fields are fetched separately via retrieveLob.
+  - name: Data Firehose
+    kind: batch stream to cloud storage
+    management_api: openapi/dotdigital-data-firehose-openapi.yml
+    docs: https://marketing.developer.dotdigital.com/docs/dotdigital-data-firehose-developer-reference
+    targets: [Amazon S3, Azure Blob Storage, FTPS, SFTP, Google Cloud Storage]
+    status: private preview
+    note: The spec's own description says it is in private preview and should not be used.
+transport:
+  protocol: HTTPS POST to a caller-supplied URL
+  content_type: application/json
+  batching:
+    supported: true
+    recommended: true
+    max_events_per_batch: 500
+    min_events_per_batch: 1
+    batch_timeout_seconds: {min: 1, max: 60}
+    shape: JSON array of envelopes
+  receiver_response_contract:
+    - {status: '200/201/2xx', meaning: Data accepted}
+    - {status: 400, meaning: Could not process the data sent — this will NOT be retried}
+    - {status: 401, meaning: Sender authentication failed or HMAC not valid}
+    - {status: other, meaning: Failed to accept — will be retried}
+  receiver_timeout_seconds: 10
+security:
+  signing: HMAC
+  algorithm: SHA-1
+  header: X-Comapi-Signature
+  encoding: hex (NOT base64 — the docs call this out explicitly)
+  computed_over: the raw HTTP body, UTF-8
+  secret: caller-configured on the webhook registration
+  secret_guidance: at least 16 characters, 36 or more recommended
+  note: >-
+    A mismatch must be answered with HTTP 401. The header name retains the `Comapi` prefix from
+    the acquired platform, which is a discoverability trap for anyone searching for
+    "X-Dotdigital-Signature".
+delivery:
+  retry: exponential-ish fixed backoff schedule
+  max_retry_window_hours: 24
+  drop_after_window: true
+  schedule_seconds: [5, 10, 30, 60, 120, 300, 600, 900, 1800, 3600, 7200, 14400, 14400, 14400, 14400, 14400]
+envelope:
+  fields:
+    - {name: eventId, type: string, required: true, description: Unique identifier for this event}
+    - {name: accountId, type: integer, required: true, description: The account the event belongs to}
+    - {name: apiSpaceId, type: string, required: true, description: The API Space the event came from}
+    - {name: name, type: string, required: true, description: The event type name, e.g. message.sent}
+    - {name: payload, type: object, required: true, description: Event-type-specific body}
+    - {name: revision, type: integer, required: true, description: Increments with each event for the entity}
+    - {name: etag, type: string, required: true, description: HTTP ETag entity hash for change detection}
+    - {name: timestamp, type: string, format: date-time, required: true, description: UTC ISO 8601 time the event occurred}
+  routing_field: name
+  note: One registration can carry many event types; dispatch on `name`.
+event_families:
+  - family: message
+    docs: https://marketing.developer.dotdigital.com/reference/message-events
+    events:
+      - {name: message.sent, description: Message has been sent on the channel}
+      - {name: message.sentRequest, description: Send request accepted for the channel}
+      - {name: message.delivered, description: Message delivered}
+      - {name: message.read, description: Message read/opened, on channels that support it}
+      - {name: message.expired, description: Not delivered within expiresOn or the channel default window}
+      - {name: message.failed, description: Message failed to be delivered}
+  - family: interaction
+    events:
+      - {name: interaction.click, description: 'Trackable link clicked; supported on transactional email links and shortened SMS links'}
+  - family: profile
+    docs: https://marketing.developer.dotdigital.com/reference/profile-events
+    scope: Omnichannel API profiles (not Marketing contacts)
+    events:
+      - {name: profile.create}
+      - {name: profile.update}
+      - {name: profile.delete}
+      - {name: profile.undelete}
+      - {name: profile.devicesUpdated, description: Devices associated with a profile changed}
+  - family: chat
+    docs: https://marketing.developer.dotdigital.com/reference/chat-events
+    events:
+      - {name: chat.create}
+      - {name: chat.channelUpdated, description: Chat switched channel, e.g. web chat to email}
+      - {name: chat.closed}
+      - {name: chat.delete}
+  - family: app-messaging conversation
+    docs: https://marketing.developer.dotdigital.com/reference/app-messaging-conversation-events
+  - family: app-messaging message
+    docs: https://marketing.developer.dotdigital.com/reference/app-messaging-message-events
+  - family: app-messaging session
+    docs: https://marketing.developer.dotdigital.com/reference/app-messaging-session-events
+  - family: chat message
+    docs: https://marketing.developer.dotdigital.com/reference/chat-message-events
+  - family: chat presence
+    docs: https://marketing.developer.dotdigital.com/reference/chat-presence-events
+  - family: facebook
+    docs: https://marketing.developer.dotdigital.com/reference/facebook-events
+correlation:
+  mechanism: metadata echo
+  note: >-
+    Values passed in the `metadata` facility on a send are included on the resulting webhook
+    events; the docs recommend this for reconciling receipts back to sends.
+gaps:
+  - No AsyncAPI (or CloudEvents) document for any of the three mechanisms.
+  - >-
+    HMAC-SHA1 is the only signing option; SHA-256 is not offered, and the signature is not
+    timestamped, so replay protection is left to the receiver.
+  - >-
+    The complete event-type list is only obtainable from an authenticated call to
+    GET /cpaas/webhooks/availableevents; there is no public enumeration.

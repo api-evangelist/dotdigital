@@ -1,0 +1,1286 @@
+{
+  "item": [
+    {
+      "id": "b54aff34-0d08-4fe6-b798-1ed9eef18b8e",
+      "name": "Webhooks API",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7140bf5e-8a48-446a-82cc-ff4455ba2d09",
+          "name": "Get webhooks",
+          "request": {
+            "name": "Get webhooks",
+            "description": {
+              "content": "Retrieves the configured webhook configurations for the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cpaas",
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeDeleted",
+                  "value": "false",
+                  "description": "Indicates whether deleted webhooks should be returned, default is `false` only active webhook configurations."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8acfa6ab-ecae-4318-a7c1-25502972aad8",
+              "name": "The configured webhook configurations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeDeleted",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A unique value representing the version of the webhook configuration, optionally used for optimistic concurrency control on PUT and DELETE",
+                  "key": "ETag",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The date the webhook configuration was last updated in ISO 8601 format",
+                  "key": "Last-Modified",
+                  "value": "1969-12-14T20:06:15.726Z"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"crm_system\",\n    \"url\": \"https://mycrm.example.com/webhooksReceive\",\n    \"id\": \"d196e997c6eb75f86a928d34620a78c0\",\n    \"_createdOn\": \"2000-02-14T09:09:44.929Z\",\n    \"_createdBy\": \"string\",\n    \"_updatedOn\": \"1982-01-20T11:38:46.529Z\",\n    \"_updatedBy\": \"string\",\n    \"secret\": \"f946b0e7-5fe9-4f57-9d8f-62b3ac0b4a13\",\n    \"subscriptions\": [\n      {\n        \"type\": \"message.delivered\",\n        \"filters\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      {\n        \"type\": \"message.delivered\",\n        \"filters\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    ],\n    \"batch\": true,\n    \"maxBatchSize\": 100,\n    \"batchTimeout\": 60\n  },\n  {\n    \"name\": \"crm_system\",\n    \"url\": \"https://mycrm.example.com/webhooksReceive\",\n    \"id\": \"c3e2e511-01fd-7d47-8733-9eb50e5fab96\",\n    \"_createdOn\": \"1948-07-18T21:28:57.555Z\",\n    \"_createdBy\": \"string\",\n    \"_updatedOn\": \"1978-12-06T04:40:58.206Z\",\n    \"_updatedBy\": \"string\",\n    \"secret\": \"f946b0e7-5fe9-4f57-9d8f-62b3ac0b4a13\",\n    \"subscriptions\": [\n      {\n        \"type\": \"message.delivered\",\n        \"filters\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      {\n        \"type\": \"message.delivered\",\n        \"filters\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    ],\n    \"batch\": true,\n    \"maxBatchSize\": 100,\n    \"batchTimeout\": 60\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "723a9053-35aa-4c0a-96ee-b87e40e63ad3",
+              "name": "The webhookconfiguration was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeDeleted",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7610d4c-beec-4a80-9c05-2312d5b7dcd7",
+          "name": "Create webhook",
+          "request": {
+            "name": "Create webhook",
+            "description": {
+              "content": "Create a new webhook configuration, and start streaming events. We strongly encourage using batching, where we will send a batch of events whenever the number of events hits `macBatchSize` or events have been waitng for the `batchTimeout` in seconds, whichever occurs first will trigger the next batch to be sent.\n<br><br>\n_**Note**: Use the batching options, and only subscribe to the event types you require to maximise efficency_\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cpaas",
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"secret\": \"<string>\",\n  \"subscriptions\": [\n    {\n      \"type\": \"<string>\",\n      \"filters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"type\": \"<string>\",\n      \"filters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"batch\": \"<boolean>\",\n  \"maxBatchSize\": \"<number>\",\n  \"batchTimeout\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3287a512-b0a2-493b-9f6f-9b8cc8c5add1",
+              "name": "The created webhook configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An optional ETag for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"crm_system\",\n  \"url\": \"https://mycrm.example.com/webhooksReceive\",\n  \"secret\": \"f946b0e7-5fe9-4f57-9d8f-62b3ac0b4a13\",\n  \"subscriptions\": [\n    {\n      \"type\": \"message.delivered\",\n      \"filters\": [\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        },\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        }\n      ]\n    },\n    {\n      \"type\": \"message.delivered\",\n      \"filters\": [\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        },\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        }\n      ]\n    }\n  ],\n  \"batch\": true,\n  \"maxBatchSize\": 100,\n  \"batchTimeout\": 60\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A unique value representing the version of the webhook configuration, optionally used for optimistic concurrency control on PUT and DELETE",
+                  "key": "ETag",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The date the webhook configuration was last updated in ISO 8601 format",
+                  "key": "Last-Modified",
+                  "value": "1969-12-14T20:06:15.726Z"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"crm_system\",\n  \"url\": \"https://mycrm.example.com/webhooksReceive\",\n  \"id\": \"7e296c7cf86f24710b58bf20881e1fc3\",\n  \"_createdOn\": \"1956-01-29T19:14:17.956Z\",\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1987-03-25T04:33:23.850Z\",\n  \"_updatedBy\": \"string\",\n  \"secret\": \"f946b0e7-5fe9-4f57-9d8f-62b3ac0b4a13\",\n  \"subscriptions\": [\n    {\n      \"type\": \"message.delivered\",\n      \"filters\": [\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        },\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        }\n      ]\n    },\n    {\n      \"type\": \"message.delivered\",\n      \"filters\": [\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        },\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        }\n      ]\n    }\n  ],\n  \"batch\": true,\n  \"maxBatchSize\": 100,\n  \"batchTimeout\": 60\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c42dec03-eb9a-42d5-b4d0-94532410b2c4",
+              "name": "The webhook configuration was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An optional ETag for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"crm_system\",\n  \"url\": \"https://mycrm.example.com/webhooksReceive\",\n  \"secret\": \"f946b0e7-5fe9-4f57-9d8f-62b3ac0b4a13\",\n  \"subscriptions\": [\n    {\n      \"type\": \"message.delivered\",\n      \"filters\": [\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        },\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        }\n      ]\n    },\n    {\n      \"type\": \"message.delivered\",\n      \"filters\": [\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        },\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        }\n      ]\n    }\n  ],\n  \"batch\": true,\n  \"maxBatchSize\": 100,\n  \"batchTimeout\": 60\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0bfab11-ab56-427f-a9da-0a4f155dcd74",
+          "name": "Retrieves available webhook events",
+          "request": {
+            "name": "Retrieves available webhook events",
+            "description": {
+              "content": "Retrieves the events you can subscribe to in a webhook and the optional filters you can use to refine event selection further.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cpaas",
+                "webhooks",
+                "availableevents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeSchemas",
+                  "value": "<boolean>",
+                  "description": "When set to true, schema information for each event will also be returned"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e1d467bf-d042-4c11-8f69-cda774c12a1f",
+              "name": "The available webhook events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "webhooks",
+                    "availableevents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeSchemas",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A unique value representing the version of the webhook configuration, optionally used for optimistic concurrency control on PUT and DELETE",
+                  "key": "ETag",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The date the webhook configuration was last updated in ISO 8601 format",
+                  "key": "Last-Modified",
+                  "value": "1969-12-14T20:06:15.726Z"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"type\": \"message.delivered\",\n    \"description\": \"Details of any outbound message \\\\\\\"delivered\\\\\\\" status updates.\",\n    \"filters\": [\n      {\n        \"name\": \"channel\",\n        \"path\": \"string\",\n        \"required\": false,\n        \"description\": \"Channel that the event relates to e.g `sms`\"\n      },\n      {\n        \"name\": \"channel\",\n        \"path\": \"string\",\n        \"required\": false,\n        \"description\": \"Channel that the event relates to e.g `sms`\"\n      }\n    ]\n  },\n  {\n    \"type\": \"message.delivered\",\n    \"description\": \"Details of any outbound message \\\\\\\"delivered\\\\\\\" status updates.\",\n    \"filters\": [\n      {\n        \"name\": \"channel\",\n        \"path\": \"string\",\n        \"required\": false,\n        \"description\": \"Channel that the event relates to e.g `sms`\"\n      },\n      {\n        \"name\": \"channel\",\n        \"path\": \"string\",\n        \"required\": false,\n        \"description\": \"Channel that the event relates to e.g `sms`\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "212a0205-8853-4935-9de3-ce417359c14a",
+              "name": "The webhook configuration was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "webhooks",
+                    "availableevents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeSchemas",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1735bc91-0032-4a28-a4f6-2ddd904bff6b",
+          "name": "Get event templates",
+          "request": {
+            "name": "Get event templates",
+            "description": {
+              "content": "Gets a list of available events templates that the caller can use when creating webhook. Event templates are pre-defined groups of events that meet common use-cases.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cpaas",
+                "webhooks",
+                "availabletemplates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "09fccc46-ff68-40e7-974e-7794d1125b9f",
+              "name": "The available templates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "webhooks",
+                    "availabletemplates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"events\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"events\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa768d0c-8d8a-444f-95c0-1d55287a4ccb",
+          "name": "Retrieves webhook configuration",
+          "request": {
+            "name": "Retrieves webhook configuration",
+            "description": {
+              "content": "Retrieves a single webhook configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cpaas",
+                "webhooks",
+                ":webhookId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeDeleted",
+                  "value": "false",
+                  "description": "Indicates whether deleted webhooks should be returned"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "webhookId",
+                  "description": "(Required) The webhook id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba76c97a-854b-4018-b4ba-9b9c8766a961",
+              "name": "The requested webhook configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeDeleted",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The webhook id"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A unique value representing the version of the webhook configuration, optionally used for optimistic concurrency control on PUT and DELETE",
+                  "key": "ETag",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The date the webhook configuration was last updated in ISO 8601 format",
+                  "key": "Last-Modified",
+                  "value": "1969-12-14T20:06:15.726Z"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"crm_system\",\n  \"url\": \"https://mycrm.example.com/webhooksReceive\",\n  \"id\": \"7e296c7cf86f24710b58bf20881e1fc3\",\n  \"_createdOn\": \"1956-01-29T19:14:17.956Z\",\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1987-03-25T04:33:23.850Z\",\n  \"_updatedBy\": \"string\",\n  \"secret\": \"f946b0e7-5fe9-4f57-9d8f-62b3ac0b4a13\",\n  \"subscriptions\": [\n    {\n      \"type\": \"message.delivered\",\n      \"filters\": [\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        },\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        }\n      ]\n    },\n    {\n      \"type\": \"message.delivered\",\n      \"filters\": [\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        },\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        }\n      ]\n    }\n  ],\n  \"batch\": true,\n  \"maxBatchSize\": 100,\n  \"batchTimeout\": 60\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3a4b497-614c-4e22-a8e8-3a7490d5c5fd",
+              "name": "The webhook configuration was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeDeleted",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The webhook id"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff1ec815-9e2a-44ce-a953-be8445abb517",
+          "name": "Update webhook configuration",
+          "request": {
+            "name": "Update webhook configuration",
+            "description": {
+              "content": "Updates an individual webhook configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cpaas",
+                "webhooks",
+                ":webhookId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "webhookId",
+                  "description": "(Required) The webhook id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"secret\": \"<string>\",\n  \"subscriptions\": [\n    {\n      \"type\": \"<string>\",\n      \"filters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"type\": \"<string>\",\n      \"filters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"batch\": \"<boolean>\",\n  \"maxBatchSize\": \"<number>\",\n  \"batchTimeout\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0818e30e-1e90-43a3-81fe-64365c613108",
+              "name": "The updated webhook configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The webhook id"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An optional ETag for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"crm_system\",\n  \"url\": \"https://mycrm.example.com/webhooksReceive\",\n  \"secret\": \"f946b0e7-5fe9-4f57-9d8f-62b3ac0b4a13\",\n  \"subscriptions\": [\n    {\n      \"type\": \"message.delivered\",\n      \"filters\": [\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        },\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        }\n      ]\n    },\n    {\n      \"type\": \"message.delivered\",\n      \"filters\": [\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        },\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        }\n      ]\n    }\n  ],\n  \"batch\": true,\n  \"maxBatchSize\": 100,\n  \"batchTimeout\": 60\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A unique value representing the version of the webhook configuration, optionally used for optimistic concurrency control on PUT and DELETE",
+                  "key": "ETag",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The date the webhook configuration was last updated in ISO 8601 format",
+                  "key": "Last-Modified",
+                  "value": "1969-12-14T20:06:15.726Z"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"crm_system\",\n  \"url\": \"https://mycrm.example.com/webhooksReceive\",\n  \"id\": \"7e296c7cf86f24710b58bf20881e1fc3\",\n  \"_createdOn\": \"1956-01-29T19:14:17.956Z\",\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1987-03-25T04:33:23.850Z\",\n  \"_updatedBy\": \"string\",\n  \"secret\": \"f946b0e7-5fe9-4f57-9d8f-62b3ac0b4a13\",\n  \"subscriptions\": [\n    {\n      \"type\": \"message.delivered\",\n      \"filters\": [\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        },\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        }\n      ]\n    },\n    {\n      \"type\": \"message.delivered\",\n      \"filters\": [\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        },\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        }\n      ]\n    }\n  ],\n  \"batch\": true,\n  \"maxBatchSize\": 100,\n  \"batchTimeout\": 60\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64aea8e2-2b35-4bad-92fe-3eab517bfd7e",
+              "name": "The webhook configuration was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The webhook id"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An optional ETag for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"crm_system\",\n  \"url\": \"https://mycrm.example.com/webhooksReceive\",\n  \"secret\": \"f946b0e7-5fe9-4f57-9d8f-62b3ac0b4a13\",\n  \"subscriptions\": [\n    {\n      \"type\": \"message.delivered\",\n      \"filters\": [\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        },\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        }\n      ]\n    },\n    {\n      \"type\": \"message.delivered\",\n      \"filters\": [\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        },\n        {\n          \"name\": \"channel\",\n          \"value\": \"sms\"\n        }\n      ]\n    }\n  ],\n  \"batch\": true,\n  \"maxBatchSize\": 100,\n  \"batchTimeout\": 60\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00e4a153-af97-4d9a-908b-2ef6aa077a1a",
+          "name": "Deletes webhook",
+          "request": {
+            "name": "Deletes webhook",
+            "description": {
+              "content": "Deletes an individual webhook.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cpaas",
+                "webhooks",
+                ":webhookId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "webhookId",
+                  "description": "(Required) The webhook id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7f8cbab-b6d6-414b-a647-54d00bc35825",
+              "name": "Indicates successful deletetion of an webhook configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The webhook id"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An optional ETag for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a89a5643-dab7-4d6b-98d2-39159f3fb98a",
+              "name": "The webhook configuration was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The webhook id"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An optional ETag for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d77c8679-3275-4d7b-b55a-2c3d8a246794",
+    "name": "Webhook API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Provides methods for creating, retrieving, updating, and deleting webhook\nconfigurations. Also exposes endpoints to list all available webhook event\ntypes and their associated payload templates, enabling callers to set up\nevent-driven integrations.",
+      "type": "text/plain"
+    }
+  }
+}

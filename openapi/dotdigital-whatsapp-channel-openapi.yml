@@ -1,0 +1,803 @@
+openapi: 3.0.1
+info:
+  title: WhatsApp Channel API
+  description: 'Provides methods for configuring and managing WhatsApp Cloud API channels
+
+    within an API Space. Supports creating and retrieving WhatsApp
+
+    configurations, registering and removing phone numbers, and retrieving
+
+    WhatsApp message templates from a given WhatsApp Business Account.'
+  version: 1.0.1
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      description: The Dotdigital region id your account belongs to
+      enum:
+      - r1
+      - r2
+      - r3
+      default: r1
+security:
+- basicAuth: []
+paths:
+  /cpaas/channels/whatsapp/cloud:
+    get:
+      tags:
+      - WhatsApp configurations
+      summary: Get WhatsApp configuration for API Space
+      description: Retrieves all Cloud WhatsApp Channel configuration for an API Space
+      parameters:
+      - name: includeDeleted
+        in: query
+        description: Indicates whether deleted channels should be returned.
+        required: false
+        schema:
+          type: boolean
+      - name: configurationStatus
+        in: query
+        description: Indicates the current configuration status of the configurations to be returned.
+        required: false
+        schema:
+          type: string
+      - name: wabaIds
+        in: query
+        description: The list of wabaIds to filter by
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: phoneNumbers
+        in: query
+        description: An array of phone numbers for which to to filter by. If not provided, all phone numbers added to the WABA are included
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            pattern: ^\+?[1-9]\d{1,14}$
+            type: string
+      responses:
+        '200':
+          description: The WhatsApp channel configuration
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/whatsAppCloudConfiguration'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+    post:
+      tags:
+      - WhatsApp configurations
+      summary: Creates WhatsApp configuration
+      description: Creates a new Cloud WhatsApp configuration.
+      requestBody:
+        description: Details of the WhatsApp Cloud Channel configuration to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/whatsAppCloudConfigurationCreate'
+        required: true
+      responses:
+        '202':
+          description: The request to create a WhatsApp Cloud Channel configuration was accepted
+        '400':
+          description: Validation errors were found
+        '401':
+          description: Unauthorized
+        '409':
+          description: The Cloud configuration already exists
+        '500':
+          description: Internal server error
+  /cpaas/channels/whatsapp/cloud/{phoneNumber}:
+    get:
+      tags:
+      - WhatsApp numbers
+      summary: Get WhatsApp number
+      description: Retrieves the WhatsApp configuration for a number.
+      parameters:
+      - name: phoneNumber
+        in: path
+        description: A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The WhatsApp channel configuration
+          headers:
+            ETag:
+              description: A unique value representing the version of the WhatsApp configuration, optionally used for optimistic concurrency control on PUT and DELETE
+              schema:
+                type: string
+            Last-Modified:
+              description: The date the WhatsApp channel configuration was last updated in ISO 8601 format
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/whatsAppCloudConfiguration'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: The WhatsApp channel configuration was not found
+        '500':
+          description: Internal server error
+    delete:
+      tags:
+      - WhatsApp numbers
+      summary: Removes WhatsApp number
+      description: 'Removes a WhatsApp number configuration permaently.
+
+        <br><br>
+
+        **Warning: This action cannot be undone!**'
+      parameters:
+      - name: phoneNumber
+        in: path
+        description: A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Indicates successful removal of a cloud originator number
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: The cloud originator number was not found
+        '500':
+          description: Internal server error
+  /cpaas/channels/whatsapp/cloud/register/{phoneNumber}:
+    post:
+      tags:
+      - WhatsApp numbers
+      summary: Registers WhatsApp number
+      description: Registers a WhatsApp configuration for a number.
+      parameters:
+      - name: phoneNumber
+        in: path
+        description: A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A Cloud registration attempt was made for the WhatsApp phone number
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/registrationResult'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: The WhatsApp channel configuration for the phone number was not found
+        '500':
+          description: Internal server error
+  /cpaas/channels/whatsapp/businessaccounts/{wabaId}/templates:
+    get:
+      tags:
+      - WhatsApp templates
+      summary: Get WhatsApp templates
+      description: Retrieves the WhatsApp templates for a specific WABA.
+      parameters:
+      - name: wabaId
+        in: path
+        description: The unique WhatsApp Business Account (WABA) identifier.
+        required: true
+        schema:
+          $ref: '#/components/schemas/wabaId'
+      responses:
+        '200':
+          description: The WhatsApp templates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+  /cpaas/channels/whatsapp/businessaccounts/{wabaId}/templates/{templateId}:
+    get:
+      tags:
+      - WhatsApp templates
+      summary: Get WhatsApp template
+      description: Retrieves a WhatsApp template for a specific WABA.
+      parameters:
+      - name: wabaId
+        in: path
+        description: The unique WhatsApp Business Account (WABA) identifier.
+        required: true
+        schema:
+          $ref: '#/components/schemas/wabaId'
+      - name: templateId
+        in: path
+        description: The unique WhatsApp template identifier.
+        required: true
+        schema:
+          $ref: '#/components/schemas/wabaId'
+      responses:
+        '200':
+          description: The WhatsApp templates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/whatsAppTemplate'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: The WhatsApp template was not found.
+        '500':
+          description: Internal server error
+components:
+  schemas:
+    whatsAppCloudConfiguration:
+      type: object
+      properties:
+        expiresOn:
+          type: string
+          description: The UTC date the configuration expires.
+          format: date-time
+          example: '2100-01-01T00:00:00Z'
+        messagingLimitTier:
+          type: string
+          description: The daily messaging tier limit.
+          example: TIER_1K
+        phoneNumberId:
+          type: string
+          description: The unique id for the number.
+          example: '1234567890123456'
+        phoneNumber:
+          type: string
+          description: The number in [E164 format](https://en.wikipedia.org/wiki/E.164).
+          example: '16315555555'
+        phoneNumberName:
+          type: string
+          description: The friendly display name for the number.
+          example: Brand A
+        phoneNumberNameStatus:
+          type: string
+          description: The friendly name for a number review status.
+          example: CONNECTED
+        phoneNumberStatus:
+          type: string
+          description: The numbers status.
+          example: ONBOARDING
+        phoneNumberQuality:
+          type: string
+          description: The messaging quality rating for the number.
+          example: GREEN
+        wabaId:
+          $ref: '#/components/schemas/wabaId'
+        wabaReviewStatus:
+          type: string
+          description: The status of the WABA review by Meta.
+          example: APPROVED
+        systemUserWabaAssignmentStatus:
+          type: string
+          description: User WABA assignment status.
+          example: success
+          enum:
+          - failed
+          - inProgress
+          - success
+        creditLineSharedStatus:
+          type: string
+          description: Shared credit line status.
+          example: success
+          enum:
+          - failed
+          - inProgress
+          - success
+        webhookSubscriptionStatus:
+          type: string
+          description: WhatsApp webhook subscription status.
+          example: success
+          enum:
+          - failed
+          - inProgress
+          - success
+        phoneNumberRegistrationStatus:
+          type: string
+          description: WhatsApp number registration status.
+          example: success
+          enum:
+          - failed
+          - inProgress
+          - success
+        configurationStatus:
+          type: string
+          description: WhatsApp configuration status.
+          example: success
+          enum:
+          - failed
+          - inProgress
+          - success
+        createdOn:
+          type: string
+          description: The UTC date time of when the configuration was created.
+          format: date-time
+          example: '2025-01-01T00:00:00Z'
+    whatsAppCloudConfigurationCreate:
+      required:
+      - phoneNumberId
+      - wabaId
+      type: object
+      properties:
+        phoneNumberId:
+          type: string
+          description: Originator phone number id.
+        wabaId:
+          type: string
+          description: WhatsApp Business account id.
+    registrationResult:
+      type: boolean
+    wabaId:
+      type: string
+      description: The unique WhatsApp Business Account (WABA) identifier.
+      example: '226114410888722'
+    whatsAppComponent:
+      title: WhatsApp template component
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of the component.
+          enum:
+          - BODY
+          - FOOTER
+          - HEADER
+          - BUTTONS
+        text:
+          type: string
+          description: The text for the component.
+          example: My text
+        format:
+          type: string
+          example: TEXT
+          enum:
+          - TEXT
+          - IMAGE
+          - VIDEO
+          - GIF
+          - DOCUMENT
+          - LOCATION
+        parameters:
+          type: array
+          description: Additional component parameters.
+          items:
+            oneOf:
+            - title: Location details
+              required:
+              - location
+              - type
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                  - location
+                location:
+                  required:
+                  - address
+                  - latitude
+                  - longitude
+                  - name
+                  type: object
+                  properties:
+                    latitude:
+                      type: string
+                      example: '37.44211676562361'
+                    longitude:
+                      type: string
+                      example: '122.16155960083124'
+                    name:
+                      type: string
+                      description: The locations description.
+                      example: Philz Coffee
+                    address:
+                      type: string
+                      description: Location address.
+                      example: 101 Forest Ave, Palo Alto, CA 94301
+              description: Location details
+            - title: Any other parameters
+              type: object
+              description: Any other template parameters.
+        example:
+          oneOf:
+          - title: Named parameters
+            required:
+            - body_text_named_params
+            type: object
+            properties:
+              body_text_named_params:
+                minItems: 1
+                type: array
+                description: Create an example of each parameter.
+                items:
+                  required:
+                  - example
+                  - param_name
+                  type: object
+                  properties:
+                    param_name:
+                      type: string
+                      description: The parameters name.
+                      example: booking_date
+                    example:
+                      type: string
+                      description: An example value for the parameter.
+                      example: 2nd February
+            description: Example of the parameter(s) usage when using **named** parameters
+          - title: Positional parameters
+            required:
+            - body_text
+            type: object
+            properties:
+              body_text:
+                minItems: 1
+                type: array
+                description: Create an example of each parameter in the order they appear in the template.
+                items:
+                  type: string
+                  description: An example value for the parameter.
+            description: Example of the parameter(s) usage when using **positional** parameters
+        buttons:
+          minItems: 1
+          type: array
+          description: Buttons definitions for the template.
+          items:
+            oneOf:
+            - title: Other button definiton.
+              type: object
+            - title: OTP buttons
+              required:
+              - otp_type
+              - type
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: The type of button based on it's action.
+                  enum:
+                  - OTP
+                otp_type:
+                  type: string
+                  description: The type of OTP.
+                  enum:
+                  - ONE_TAP
+                  - ZERO_TAP
+                  - COPY_CODE
+                supported_apps:
+                  minItems: 1
+                  type: array
+                  description: The apps that can use the OTP, needed only for One-tap and zero-tap buttons only.
+                  items:
+                    required:
+                    - package_name
+                    - signature_hash
+                    type: object
+                    properties:
+                      package_name:
+                        type: string
+                        description: The apps package name.
+                        example: com.example.luckyshrub
+                      signature_hash:
+                        type: string
+                        description: The signature hash for the app.
+                        example: K8a/AINcGX7
+              additionalProperties: true
+            - title: Copy code buttons
+              required:
+              - example
+              - type
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: The type of button based on it's action.
+                  enum:
+                  - COPY_CODE
+                example:
+                  oneOf:
+                  - minItems: 1
+                    type: array
+                    description: If using parameter(s) in your URL then you must provide an example value here.
+                    items:
+                      maxLength: 2000
+                      type: string
+                      description: Parameter example value
+                  - maxLength: 15
+                    type: string
+                    description: For `COPY_CODE` buttons provide the value to be copied.
+                    example: 250FF
+              additionalProperties: true
+            - title: Phone number buttons
+              required:
+              - phone_number
+              - text
+              - type
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: The type of button based on it's action.
+                  enum:
+                  - PHONE_NUMBER
+                text:
+                  maxLength: 25
+                  type: string
+                  description: The text to show on the button.
+                  example: Yes, sign me up
+                phone_number:
+                  maxLength: 20
+                  type: string
+                  description: The phone number to dial in [E164 format](https://en.wikipedia.org/wiki/E.164).
+              additionalProperties: true
+            - title: Single product view buttons
+              required:
+              - text
+              - type
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: The type of button based on it's action.
+                  enum:
+                  - SPM
+                text:
+                  maxLength: 25
+                  type: string
+                  description: The text to show on the button.
+                  example: View
+              additionalProperties: true
+            - title: Multi product view buttons
+              required:
+              - text
+              - type
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: The type of button based on it's action.
+                  enum:
+                  - MPM
+                text:
+                  maxLength: 25
+                  type: string
+                  description: The text to show on the button.
+                  example: View products
+              additionalProperties: true
+            - title: Quick reply buttons
+              required:
+              - text
+              - type
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: The type of button based on it's action.
+                  enum:
+                  - QUICK_REPLY
+                text:
+                  maxLength: 25
+                  type: string
+                  description: The text to show on the button.
+                  example: Unsubscribe
+              additionalProperties: true
+            - title: URL buttons
+              required:
+              - text
+              - type
+              - url
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: The type of button based on it's action.
+                  enum:
+                  - URL
+                text:
+                  maxLength: 25
+                  type: string
+                  description: The text to show on the button.
+                  example: Yes, sign me up
+                url:
+                  maxLength: 2000
+                  type: string
+                  description: URL of website that loads in the device’s default web browser when the button is tapped by the user. Supports 1 variable, appended to the end of the URL string e.g. {{1}}
+                  format: uri
+                example:
+                  oneOf:
+                  - minItems: 1
+                    type: array
+                    description: If using parameter(s) in your URL then you must provide an example value here.
+                    items:
+                      maxLength: 2000
+                      type: string
+                      description: Parameter example value
+                  - maxLength: 15
+                    type: string
+                    description: For `COPY_CODE` buttons provide the value to be copied.
+                    example: 250FF
+              additionalProperties: true
+    whatsAppTemplate:
+      required:
+      - category
+      - components
+      - id
+      - language
+      - name
+      - parameter_format
+      - status
+      - sub_category
+      type: object
+      properties:
+        name:
+          type: string
+          description: The templates name.
+          example: 2025_april_promo
+        parameter_format:
+          type: string
+          description: Whether the parameters for the template use positonal references or named references.
+          example: POSITIONAL
+          enum:
+          - POSITIONAL
+          - NAMED
+        components:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/whatsAppComponent'
+            - title: Carousel card
+              required:
+              - cards
+              - type
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: The type of the component.
+                  enum:
+                  - CAROUSEL
+                cards:
+                  minItems: 1
+                  type: array
+                  description: Cards for the carousel.
+                  items:
+                    required:
+                    - components
+                    type: object
+                    properties:
+                      components:
+                        $ref: '#/components/schemas/whatsAppComponent'
+              description: Carousel card content
+            - title: Other component
+              type: object
+              description: A different type of component.
+        language:
+          type: string
+          description: The language code for the template.
+          example: en_US
+        status:
+          type: string
+          description: The Meta review status of the template.
+          example: APPROVED
+          enum:
+          - PENDING
+          - APPROVED
+          - REJECTED
+          - PAUSED
+          - DISABLED
+        category:
+          type: string
+          description: The templates category.
+          example: MARKETING
+          enum:
+          - MARKETING
+          - UTILITY
+          - AUTHENTICATION
+        sub_category:
+          type: string
+          description: The sub category for the template.
+          example: CUSTOM
+        id:
+          type: string
+          description: The unique id for the template.
+          example: '920070352646140'
+      description: WhatsApp templates
+    inline_response_200:
+      required:
+      - data
+      - paging
+      type: object
+      properties:
+        data:
+          type: array
+          description: WhatsApp registered templates
+          items:
+            $ref: '#/components/schemas/whatsAppTemplate'
+        paging:
+          $ref: '#/components/schemas/inline_response_200_paging'
+    inline_response_200_paging_cursors:
+      required:
+      - after
+      - before
+      type: object
+      properties:
+        before:
+          type: string
+          description: Continuation token for the previous page.
+          example: QVFIU1pNYzBEY2dNM0pjNlQ5Mm0wS1FSNnRBbkJSS0hhcTdka1FXdDBCV1kxYmMyMS1DZADBZAMTd1aHhRaWEta0RXVFNSQXFKVENYQWhyVW50bndDMUEwbXhn
+        after:
+          type: string
+          description: Continuation token for the next page.
+          example: QVFIU2RLSVkwNzNaSkpGYjk0YnhGWE1iMHpJS0tTRzFpRzNMRzFhVUVfUHVjd0UwYUdOSFpCOC1qOGtlTWNlSnktTEk2enhyWnV6YWItSDZANV0xIbVJCVk1n
+    inline_response_200_paging:
+      type: object
+      properties:
+        cursors:
+          $ref: '#/components/schemas/inline_response_200_paging_cursors'
+      description: Pagination cursors
+  parameters:
+    phoneNumberPathParameter:
+      name: phoneNumber
+      in: path
+      description: A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account.
+      required: true
+      schema:
+        type: string
+    includeDeletedQueryParameter:
+      name: includeDeleted
+      in: query
+      description: Indicates whether deleted channels should be returned.
+      required: false
+      schema:
+        type: boolean
+    configurationStatusQueryParameter:
+      name: configurationStatus
+      in: query
+      description: Indicates the current configuration status of the configurations to be returned.
+      required: false
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+x-readme:
+  samples-languages:
+  - curl
+  - csharp
+  - java
+  - node
+  - php
+  - python
+  - ruby
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

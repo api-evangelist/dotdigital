@@ -1,0 +1,3591 @@
+{
+  "item": [
+    {
+      "id": "568a6bf4-b80f-4269-85fa-4172422f44a7",
+      "name": "Exports the result of a profile query in a formatted file for download",
+      "request": {
+        "name": "Exports the result of a profile query in a formatted file for download",
+        "description": {
+          "content": "For format=csv, due to the flat file format, only primitive types will be exported. Non-primitive type will be exported with \"--INVALID-TYPE--\" as the data. Nested data should be referred to explicitly: \"address.line1\"",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "cpaas",
+            "profiles",
+            "export"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "query",
+              "value": "<string>",
+              "description": "See https://www.npmjs.com/package/mongo-querystring for export query syntax."
+            }
+          ],
+          "variable": [
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"format\": \"<string>\",\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fieldSeparator\": \"<string>\",\n  \"includeHeaders\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "f0032d53-64b7-4938-9148-f359e2ec00c8",
+          "name": "Data exported in the required format",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"format\": \"<string>\",\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fieldSeparator\": \"<string>\",\n  \"includeHeaders\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "b4f08ed6-6027-4d1c-9e22-3ebe5876deda",
+      "name": "Deletes the requested profiles",
+      "request": {
+        "name": "Deletes the requested profiles",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "profiles",
+            "bulk"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "id",
+              "value": "<string>,<string>",
+              "description": "(Required) The ids of the profiles to delete, e.g. ?id=profile1&id=profile2"
+            }
+          ],
+          "variable": [
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "12bca499-31df-4b9b-a282-7618b0058e74",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                "bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "<string>,<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "32dc3110-5b02-42a9-a409-724a5133dd16",
+      "name": "Creates or updates the supplied profiles with the supplied data",
+      "request": {
+        "name": "Creates or updates the supplied profiles with the supplied data",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "profiles",
+            "bulk"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "PATCH",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "[\n  {\n    \"id\": \"<string>\",\n    \"_systemProfile\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"_systemProfile\": \"<boolean>\"\n  }\n]",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "c1f40ce0-c151-41ab-89a0-6ae2eb8515eb",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                "bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"id\": \"<string>\",\n    \"_systemProfile\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"_systemProfile\": \"<boolean>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d9a75474-dbb6-4d7a-8ff3-c098a0b9481b",
+      "name": "Retrieves a Profile",
+      "request": {
+        "name": "Retrieves a Profile",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "profiles",
+            ":id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "includeDeleted",
+              "value": "<boolean>",
+              "description": "Indicates whether deleted profiles should be returned"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "id",
+              "description": "(Required) The id of the profile"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "bc95113a-359e-4ff0-9e1b-22ea2700c6e4",
+          "name": "The requested Profile",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "includeDeleted",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"_createdOn\": \"1963-12-17T16:16:50.883Z\",\n  \"_systemProfile\": false,\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1982-03-15T12:20:30.874Z\",\n  \"_updatedBy\": \"string\",\n  \"_lastActivityOn\": \"1952-11-18T14:51:07.880Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "f465363c-dc33-4cfc-83c5-b365d6e8fc4b",
+          "name": "The Profile was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "includeDeleted",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e8d49a0a-6cd8-49ba-a881-742998f50385",
+      "name": "Updates or undeletes a Profile",
+      "request": {
+        "name": "Updates or undeletes a Profile",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "profiles",
+            ":id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "undelete",
+              "value": "<boolean>",
+              "description": "When set to true (and no payload is present) a deleted profile can be un-deleted"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "id",
+              "description": "(Required) The id of the profile"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "<object>",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "f3acf5d8-e33c-4a11-89e9-733a6b474760",
+          "name": "The updated Profile",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "undelete",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"_createdOn\": \"1963-12-17T16:16:50.883Z\",\n  \"_systemProfile\": false,\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1982-03-15T12:20:30.874Z\",\n  \"_updatedBy\": \"string\",\n  \"_lastActivityOn\": \"1952-11-18T14:51:07.880Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "348fd0f6-9a8e-4726-823f-340379bb15d4",
+          "name": "The Profile was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "undelete",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "5ac06657-b9d4-4d04-9ba1-ad977526ab67",
+          "name": "A conncurrency issue occured updating the Profile",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "undelete",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "2e62b355-e22e-453b-95ff-c9ac6dd30c60",
+      "name": "Deletes a Profile",
+      "request": {
+        "name": "Deletes a Profile",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "profiles",
+            ":id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "forget",
+              "value": "<boolean>",
+              "description": "Indicates whether this delete shoudl ripple out to all services to delete their data relating to the profile"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "id",
+              "description": "(Required) The id of the profile"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "f85d712b-c022-4b1e-a48e-51ae7feff268",
+          "name": "Indicates successful deletetion of a Profile",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "forget",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "4e5b0a62-f5c3-4882-93eb-8019529da10c",
+          "name": "The Profile was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "forget",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "745255d3-ec8b-4547-a8f4-8aa7ddb32245",
+          "name": "A concurrency issue occured deleting the Profile",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "forget",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "a5915ecf-1476-4b1e-bb04-183c85b8ba78",
+      "name": "Patches a Profile",
+      "request": {
+        "name": "Patches a Profile",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "profiles",
+            ":id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "allowcreate",
+              "value": "<boolean>",
+              "description": "Indicates whether this patch request create a new profile if there is no profile to patch"
+            },
+            {
+              "disabled": false,
+              "key": "deletes",
+              "value": "<string>,<string>",
+              "description": "List of properties that should be deleted from profile during patch"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "id",
+              "description": "(Required) The id of the profile"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PATCH",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "<object>",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "d9165d78-abb7-4f16-a30d-9d1c64ca7971",
+          "name": "The updated Profile",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "allowcreate",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "deletes",
+                  "value": "<string>,<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"_createdOn\": \"1963-12-17T16:16:50.883Z\",\n  \"_systemProfile\": false,\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1982-03-15T12:20:30.874Z\",\n  \"_updatedBy\": \"string\",\n  \"_lastActivityOn\": \"1952-11-18T14:51:07.880Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "07d4a62d-79a9-46a8-87a3-fb6902e58e21",
+          "name": "The Profile was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "allowcreate",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "deletes",
+                  "value": "<string>,<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "29bf51c1-f0b4-47ed-aeff-bfa42fa51658",
+          "name": "A concurrency issue occured updating the Profile",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "allowcreate",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "deletes",
+                  "value": "<string>,<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "adfa0cda-7cd3-4584-af53-2ab3c3a27619",
+      "name": "Set profile opt in for specified channels",
+      "request": {
+        "name": "Set profile opt in for specified channels",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "profiles",
+            ":id",
+            "optin"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "id",
+              "description": "(Required) The id of the profile"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"channels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "c04e8b66-3d6b-4c89-a132-0a8b9a70f3be",
+          "name": "The full Profile with new optin settings",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id",
+                "optin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"_createdOn\": \"1963-12-17T16:16:50.883Z\",\n  \"_systemProfile\": false,\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1982-03-15T12:20:30.874Z\",\n  \"_updatedBy\": \"string\",\n  \"_lastActivityOn\": \"1952-11-18T14:51:07.880Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "f38a60b9-0c5f-4a27-9f97-c0a3ec38395b",
+          "name": "The Profile was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id",
+                "optin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "82617ffd-de43-47c6-bb39-7c9ee75ce3f5",
+      "name": "Set profile opt in for specified channels",
+      "request": {
+        "name": "Set profile opt in for specified channels",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "profiles",
+            ":id",
+            "optin"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "channel",
+              "value": "<string>,<string>",
+              "description": "Channel to opt profile out"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "id",
+              "description": "(Required) The id of the profile"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "ff2d3cd8-fa2e-44d4-b766-5f95f4b09da3",
+          "name": "The full Profile with new optin settings",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id",
+                "optin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "channel",
+                  "value": "<string>,<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"_createdOn\": \"1963-12-17T16:16:50.883Z\",\n  \"_systemProfile\": false,\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1982-03-15T12:20:30.874Z\",\n  \"_updatedBy\": \"string\",\n  \"_lastActivityOn\": \"1952-11-18T14:51:07.880Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "552f5fe3-1394-4bd1-97f5-7d13f4d66201",
+          "name": "The Profile was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id",
+                "optin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "channel",
+                  "value": "<string>,<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "acf0e3fe-358c-4a98-b03c-0f15eeefb9e6",
+      "name": "Creates a relationship where the linked profile is the primary and this profile is a child",
+      "request": {
+        "name": "Creates a relationship where the linked profile is the primary and this profile is a child",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "profiles",
+            ":id",
+            "rels",
+            "primary",
+            ":linkedId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "id",
+              "description": "(Required) The id of the profile"
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "linkedId",
+              "description": "(Required) The id of the profile to link with"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "3de33960-336e-4b90-926d-cddb713bffb5",
+          "name": "The updated Profile",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id",
+                "rels",
+                "primary",
+                ":linkedId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "linkedId",
+                  "description": "(Required) The id of the profile to link with"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"_createdOn\": \"1963-12-17T16:16:50.883Z\",\n  \"_systemProfile\": false,\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1982-03-15T12:20:30.874Z\",\n  \"_updatedBy\": \"string\",\n  \"_lastActivityOn\": \"1952-11-18T14:51:07.880Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "59aa9262-e7c6-441c-b085-063d8611b02d",
+          "name": "The Profile was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id",
+                "rels",
+                "primary",
+                ":linkedId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "linkedId",
+                  "description": "(Required) The id of the profile to link with"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "PUT",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "8b7b9aff-dcb3-4de4-a0b6-3f1154009642",
+          "name": "A concurrency issue occured updating the Profile",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id",
+                "rels",
+                "primary",
+                ":linkedId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "linkedId",
+                  "description": "(Required) The id of the profile to link with"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "PUT",
+            "body": {}
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "2dfa34f4-e33c-4d97-9533-d2b9489c24bb",
+      "name": "Deletes the profile's relationship to a primary profile",
+      "request": {
+        "name": "Deletes the profile's relationship to a primary profile",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "profiles",
+            ":id",
+            "rels",
+            "primary",
+            ":linkedId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "id",
+              "description": "(Required) The id of the profile"
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "linkedId",
+              "description": "(Required) The id of the profile to link with"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "8c8242f8-be12-48fe-83b7-bacefdd0faf1",
+          "name": "The updated Profile",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id",
+                "rels",
+                "primary",
+                ":linkedId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "linkedId",
+                  "description": "(Required) The id of the profile to link with"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"_createdOn\": \"1963-12-17T16:16:50.883Z\",\n  \"_systemProfile\": false,\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1982-03-15T12:20:30.874Z\",\n  \"_updatedBy\": \"string\",\n  \"_lastActivityOn\": \"1952-11-18T14:51:07.880Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "d74958b0-03de-4e90-a0eb-c762f7d5d19b",
+          "name": "The Profile was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id",
+                "rels",
+                "primary",
+                ":linkedId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "linkedId",
+                  "description": "(Required) The id of the profile to link with"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "dced4fd3-6d00-4912-8e99-af01c1e51f3f",
+          "name": "A concurrency issue occured deleting the Profile",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id",
+                "rels",
+                "primary",
+                ":linkedId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "linkedId",
+                  "description": "(Required) The id of the profile to link with"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "30ad7c47-37df-41d5-9ca3-1b49f084b13e",
+      "name": "Creates a relationship where this profile is the primary and the linked profile is a child",
+      "request": {
+        "name": "Creates a relationship where this profile is the primary and the linked profile is a child",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "profiles",
+            ":id",
+            "rels",
+            "link",
+            ":linkedId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "id",
+              "description": "(Required) The id of the profile"
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "linkedId",
+              "description": "(Required) The id of the profile to link with"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "0bd8be8a-47bd-4a8a-873d-b84c6a99fc00",
+          "name": "The updated Profile",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id",
+                "rels",
+                "link",
+                ":linkedId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "linkedId",
+                  "description": "(Required) The id of the profile to link with"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"_createdOn\": \"1963-12-17T16:16:50.883Z\",\n  \"_systemProfile\": false,\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1982-03-15T12:20:30.874Z\",\n  \"_updatedBy\": \"string\",\n  \"_lastActivityOn\": \"1952-11-18T14:51:07.880Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "15c3eae7-1215-4dc1-b943-dc2f169a7d79",
+          "name": "The Profile was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id",
+                "rels",
+                "link",
+                ":linkedId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "linkedId",
+                  "description": "(Required) The id of the profile to link with"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "PUT",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "53338e00-7540-4523-84c5-46c7005b640c",
+          "name": "A concurrency issue occured updating the Profile",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id",
+                "rels",
+                "link",
+                ":linkedId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "linkedId",
+                  "description": "(Required) The id of the profile to link with"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "PUT",
+            "body": {}
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "f36e400d-c353-425b-8ab6-fc551d76cbf1",
+      "name": "Deletes the primary profile's relationship to a linked Profile",
+      "request": {
+        "name": "Deletes the primary profile's relationship to a linked Profile",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "profiles",
+            ":id",
+            "rels",
+            "link",
+            ":linkedId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "id",
+              "description": "(Required) The id of the profile"
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "linkedId",
+              "description": "(Required) The id of the profile to link with"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "877b22c5-ab59-41ab-be65-8b207d0e95cf",
+          "name": "The updated Profile",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id",
+                "rels",
+                "link",
+                ":linkedId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "linkedId",
+                  "description": "(Required) The id of the profile to link with"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"_createdOn\": \"1963-12-17T16:16:50.883Z\",\n  \"_systemProfile\": false,\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1982-03-15T12:20:30.874Z\",\n  \"_updatedBy\": \"string\",\n  \"_lastActivityOn\": \"1952-11-18T14:51:07.880Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "f37f007c-d0ea-4beb-bff1-234a16bc3e0c",
+          "name": "The Profile was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id",
+                "rels",
+                "link",
+                ":linkedId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "linkedId",
+                  "description": "(Required) The id of the profile to link with"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "ad742a82-8115-43f1-b25d-9e67c4cd0944",
+          "name": "A concurrency issue occured deleting the Profile",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                ":id",
+                "rels",
+                "link",
+                ":linkedId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "linkedId",
+                  "description": "(Required) The id of the profile to link with"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "29610d34-dd79-4ebb-9f36-7642d8175e81",
+      "name": "Removes device from profile and closes related opened sessions",
+      "request": {
+        "name": "Removes device from profile and closes related opened sessions",
+        "description": {},
+        "url": {
+          "path": [
+            "apispaces",
+            ":apiSpaceId",
+            "profiles",
+            ":id",
+            "devices",
+            ":deviceId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "apiSpaceId",
+              "description": "(Required) The API space id"
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "id",
+              "description": "(Required) The id of the profile"
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "deviceId",
+              "description": "(Required) The id of the device"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "b7cca21c-c246-4da2-bec1-ec593d7c9da9",
+          "name": "Device sucessfully removed from profile",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "apispaces",
+                ":apiSpaceId",
+                "profiles",
+                ":id",
+                "devices",
+                ":deviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiSpaceId",
+                  "description": "(Required) The API space id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceId",
+                  "description": "(Required) The id of the device"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "2de1d764-dd30-4a39-a699-742916ff2781",
+          "name": "Device with specified id not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "apispaces",
+                ":apiSpaceId",
+                "profiles",
+                ":id",
+                "devices",
+                ":deviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiSpaceId",
+                  "description": "(Required) The API space id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the profile"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceId",
+                  "description": "(Required) The id of the device"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c68b72d5-8b68-4e81-b30e-ba83743c94e9",
+      "name": "Retrieves push capabilities summary",
+      "request": {
+        "name": "Retrieves push capabilities summary",
+        "description": {},
+        "url": {
+          "path": [
+            "apispaces",
+            ":apiSpaceId",
+            "profiles",
+            "devices",
+            "push",
+            "validation"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "apiSpaceId",
+              "description": "(Required) The API space id"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "*/*"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
+        }
+      },
+      "response": [
+        {
+          "id": "63a2819f-115a-45c6-854d-daf4ad5dc213",
+          "name": "The requested push capabilities summary",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "apispaces",
+                ":apiSpaceId",
+                "profiles",
+                "devices",
+                "push",
+                "validation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiSpaceId",
+                  "description": "(Required) The API space id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"id\": \"string\",\n    \"pushDevicesCount\": 5262.015158537097,\n    \"fcm\": [\n      \"string\",\n      \"string\"\n    ],\n    \"apns\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"pushDevicesCount\": 7712.4200770952,\n    \"fcm\": [\n      \"string\",\n      \"string\"\n    ],\n    \"apns\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "6516bb6a-efd1-4060-92f1-977b4fd4088f",
+      "name": "Query profiles",
+      "request": {
+        "name": "Query profiles",
+        "description": {
+          "content": "See https://www.npmjs.com/package/mongo-querystring for query syntax. If you need to search for strings that are numeric, they can be wrapped in single quotes to prevent them being interpretted as numbers.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "cpaas",
+            "profiles"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "id",
+              "value": "<string>",
+              "description": "The profile id to be retrieved"
+            },
+            {
+              "disabled": false,
+              "key": "$includeDevices",
+              "value": "<boolean>",
+              "description": "Retrieves the device details associated with the profile, such as browsers and mobile devices"
+            },
+            {
+              "disabled": false,
+              "key": "$includeSessions",
+              "value": "<boolean>",
+              "description": "Includes details of the App Messaging sessions that the profile has"
+            },
+            {
+              "disabled": false,
+              "key": "$fields",
+              "value": "<string>",
+              "description": "Limits the fields returned by the query to one or more specific field names"
+            },
+            {
+              "disabled": false,
+              "key": "$includeDeleted",
+              "value": "<boolean>",
+              "description": "Includes deleted profiles in the result"
+            },
+            {
+              "disabled": false,
+              "key": "$includeSystem",
+              "value": "<boolean>",
+              "description": "Includes system profiles in the result"
+            },
+            {
+              "disabled": false,
+              "key": "$limit",
+              "value": "<integer>",
+              "description": "Limits the number of results returned"
+            },
+            {
+              "disabled": false,
+              "key": "$schemaOnly",
+              "value": "<boolean>",
+              "description": "Returns the schema of a sample of profiles"
+            },
+            {
+              "disabled": false,
+              "key": "$skip",
+              "value": "<integer>",
+              "description": "Starts results at a specific record index"
+            }
+          ],
+          "variable": [
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "03d60e3f-1f56-480e-929a-ab2e1e74e36b",
+          "name": "List of profiles matching the search criteria",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "$includeDevices",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "$includeSessions",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "$fields",
+                  "value": "<string>"
+                },
+                {
+                  "key": "$includeDeleted",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "$includeSystem",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "$limit",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "$schemaOnly",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "$skip",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"id\": \"string\",\n    \"_createdOn\": \"1976-12-11T15:18:02.006Z\",\n    \"_systemProfile\": true,\n    \"_createdBy\": \"string\",\n    \"_updatedOn\": \"1947-03-19T18:29:48.508Z\",\n    \"_updatedBy\": \"string\",\n    \"_lastActivityOn\": \"2022-03-25T05:42:09.968Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"_createdOn\": \"1993-07-13T23:41:50.475Z\",\n    \"_systemProfile\": true,\n    \"_createdBy\": \"string\",\n    \"_updatedOn\": \"1958-03-10T22:27:48.832Z\",\n    \"_updatedBy\": \"string\",\n    \"_lastActivityOn\": \"1951-10-09T22:37:38.898Z\"\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d4c437e8-1335-4243-9288-4faf0f95f440",
+      "name": "Creates a new Profile",
+      "request": {
+        "name": "Creates a new Profile",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "profiles"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"<string>\",\n  \"_systemProfile\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "725e0e44-621f-4717-a98c-d38ba228dc88",
+          "name": "The Profile was successfully created",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"_systemProfile\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"_createdOn\": \"1963-12-17T16:16:50.883Z\",\n  \"_systemProfile\": false,\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1982-03-15T12:20:30.874Z\",\n  \"_updatedBy\": \"string\",\n  \"_lastActivityOn\": \"1952-11-18T14:51:07.880Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "c3d8f851-a3bd-449f-be87-c073120b562b",
+          "name": "The Profile already exists",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"_systemProfile\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "1ff66cd0-97e2-4faf-923f-f5742749d9de",
+      "name": "Gets default profiles opt in/out options for each channel in channel service",
+      "request": {
+        "name": "Gets default profiles opt in/out options for each channel in channel service",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "profiles",
+            "optin"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "e1c6553b-f249-4f59-9119-e978d41eb0e9",
+          "name": "List of all channels with true for default opt in and false for default opt out",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                "optin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "2414c90d-f116-425e-86fe-b5062a5d2e08",
+      "name": "Set default profiles opt in/out options for each channel in channel service",
+      "request": {
+        "name": "Set default profiles opt in/out options for each channel in channel service",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "profiles",
+            "optin"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "method": "PUT",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "5169203d-c52d-4659-8a21-d4d4133001eb",
+          "name": "List of all channels with true for default opt in and false for default opt out",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "profiles",
+                "optin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "PUT",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8f374f1f-5fc5-4fe3-aaae-6b65e07552cb",
+    "name": "Profile API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Provides methods for creating, retrieving, updating, patching, and deleting\ncustomer profiles. Also supports bulk create/update and bulk delete\noperations, profile opt-in management by channel, profile relationship\nlinking, device management, and push capability validation.",
+      "type": "text/plain"
+    }
+  }
+}

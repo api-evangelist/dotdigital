@@ -1,0 +1,1252 @@
+openapi: 3.0.1
+info:
+  title: Analytics API
+  description: 'Provides methods for retrieving analytics data across the Dotdigital
+
+    omnichannel platform. Covers conversation message analytics, chat analytics
+
+    (including live), message metrics, session analytics, SMS tracking,
+
+    verification, inbound/outbound SMS analytics, and WhatsApp conversation and
+
+    daily messaging usage reports. All endpoints accept date-range and
+
+    aggregation parameters and return time-series data suitable for reporting
+
+    dashboards.'
+  version: 1.1.1
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      description: The Dotdigital region id your account belongs to
+      enum:
+      - r1
+      - r2
+      - r3
+      default: r1
+security:
+- basicAuth: []
+paths:
+  /cpaas/analytics/conversationmessages:
+    get:
+      tags:
+      - App Messaging
+      summary: Retrieves conversation message analytics
+      parameters:
+      - name: from
+        in: query
+        description: The date time to query from in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: The date time to query up to (but not including) in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: by
+        in: query
+        description: The time period to aggregate by
+        required: false
+        schema:
+          type: string
+          enum:
+          - hour
+          - day
+          - month
+          - year
+      - name: timezone
+        in: query
+        description: The localtimezone to report the data out for if not specified, UTC is defaulted
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The count of sent, delivered and read messages for a specific period
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/conversationMessageAnalytics'
+        '400':
+          description: Validation errors were found
+        '404':
+          description: The API Space was not found
+  /cpaas/analytics/chats:
+    get:
+      tags:
+      - Chat
+      summary: Retrieves chat analytics
+      parameters:
+      - name: from
+        in: query
+        description: The date time to query from in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: The date time to query up to (but not including) in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: by
+        in: query
+        description: The aggregation criteria. Can be one time based value and any combination of non time values
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - hour
+            - day
+            - month
+            - year
+            - alltime
+            - team
+            - agent
+      - name: timezone
+        in: query
+        description: The localtimezone to report the data out for if not specified, UTC is defaulted
+        required: false
+        schema:
+          type: string
+      - name: teamId
+        in: query
+        description: The id of the team to retrieve analytics for
+        required: false
+        schema:
+          type: string
+      - name: agentId
+        in: query
+        description: The id of the agent to retrieve analytics for
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The chat analytics for a specific period
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/chatAnalytics'
+        '400':
+          description: Validation errors were found
+        '404':
+          description: The API Space was not
+  /cpaas/analytics/chats/live:
+    get:
+      tags:
+      - Chat
+      summary: Retrieves live chat analytics
+      parameters:
+      - name: teamId
+        in: query
+        description: The id of the team to retrieve analytics for
+        required: false
+        schema:
+          type: string
+      - name: by
+        in: query
+        description: The aggregation criteria
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - team
+            - agent
+      responses:
+        '200':
+          description: The live chat analytics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/liveChatAnalytics'
+        '400':
+          description: Validation errors were found
+        '404':
+          description: The API Space was not
+  /cpaas/analytics/messages:
+    get:
+      tags:
+      - Messaging
+      summary: Retrieves message analytics
+      parameters:
+      - name: from
+        in: query
+        description: The date time to query from in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: The date time to query up to (but not including) in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: by
+        in: query
+        description: The time period to aggregate by
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - hour
+            - day
+            - month
+            - year
+            - alltime
+            - system
+            - recipientCountryCode
+      - name: system
+        in: query
+        description: The system that triggered an analytical event
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - api
+            - broadcast
+            - chat
+      - name: timezone
+        in: query
+        description: The localtimezone to report the data out for if not specified, UTC is defaulted
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The count of sent, delivered, read, inbound and failed messages for a specific period, including segments used
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/messageAnalytics'
+        '400':
+          description: Validation errors were found
+        '404':
+          description: The API Space was not
+  /cpaas/analytics/messages/metrics:
+    get:
+      tags:
+      - Messaging
+      summary: Retrieves message metrics
+      parameters:
+      - name: from
+        in: query
+        description: The date time to query from in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: The date time to query up to (but not including) in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: by
+        in: query
+        description: The time period to aggregate by
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - hour
+            - day
+            - month
+            - year
+            - alltime
+            - system
+            - recipientCountryCode
+      - name: system
+        in: query
+        description: The system that triggered an analytical event
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - api
+            - broadcast
+            - chat
+      - name: timezone
+        in: query
+        description: The localtimezone to report the data out for if not specified, UTC is defaulted
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Metrics relating to the messages sent for a specific period
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiProfilingAnalytics'
+        '400':
+          description: Validation errors were found
+        '404':
+          description: The API Space was not
+  /cpaas/analytics/sessions:
+    get:
+      tags:
+      - App Messaging
+      summary: Retrieves session analytics
+      parameters:
+      - name: from
+        in: query
+        description: The date time to query from in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: The date time to query up to (but not including) in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: by
+        in: query
+        description: The time period to aggregate by
+        required: false
+        schema:
+          type: string
+          enum:
+          - hour
+          - day
+          - month
+          - year
+      - name: timezone
+        in: query
+        description: The localtimezone to report the data out for if not specified, UTC is defaulted
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The count of started and explicitly ended sessions for a specific period
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/sessionAnalytics'
+        '400':
+          description: Validation errors were found
+        '404':
+          description: The API Space was not
+  /cpaas/analytics/sms/tracking:
+    get:
+      tags:
+      - SMS
+      summary: Retrieves url tracking analytics
+      parameters:
+      - name: from
+        in: query
+        description: The date time to query from in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: The date time to query up to (but not including) in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: by
+        in: query
+        description: The time period to aggregate by
+        required: false
+        schema:
+          type: string
+          enum:
+          - hour
+          - day
+          - month
+          - year
+      responses:
+        '200':
+          description: The count of sent urls and clicks for a specific period
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/smsTrackingAnalytics'
+        '400':
+          description: Validation errors were found
+        '404':
+          description: The API Space was not
+  /cpaas/analytics/sms/verify:
+    get:
+      tags:
+      - SMS
+      summary: Retrieves sms verify analytics
+      parameters:
+      - name: from
+        in: query
+        description: The date time to query from in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: The date time to query up to (but not including) in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: by
+        in: query
+        description: The time period to aggregate by
+        required: false
+        schema:
+          type: string
+          enum:
+          - hour
+          - day
+          - month
+          - year
+      responses:
+        '200':
+          description: The count of notVerified, verified, expired and locked verify calls
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/smsVerifyAnalytics'
+        '400':
+          description: Validation errors were found
+        '404':
+          description: The API Space was not
+  /cpaas/analytics/sms/inbound:
+    get:
+      tags:
+      - SMS
+      summary: Retrieves inbound SMS analytics
+      parameters:
+      - name: from
+        in: query
+        description: The date time to query from in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: The date time to query up to (but not including) in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: by
+        in: query
+        description: The time period to aggregate by
+        required: false
+        schema:
+          type: string
+          enum:
+          - hour
+          - day
+          - month
+          - year
+      responses:
+        '200':
+          description: The count of received messages for a specific period
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/smsInboundAnalytics'
+        '400':
+          description: Validation errors were found
+        '404':
+          description: The API Space was not
+  /cpaas/analytics/sms/outbound:
+    get:
+      tags:
+      - SMS
+      summary: Retrieves outbound SMS analytics
+      parameters:
+      - name: from
+        in: query
+        description: The date time to query from in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: The date time to query up to (but not including) in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: by
+        in: query
+        description: The time period to aggregate by
+        required: false
+        schema:
+          type: string
+          enum:
+          - hour
+          - day
+          - month
+          - year
+      responses:
+        '200':
+          description: The count of submitted, delivered, filtered and undeliverable messages for a specific period
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/smsOutboundAnalytics'
+        '400':
+          description: Validation errors were found
+        '404':
+          description: The API Space was not
+  /cpaas/analytics/whatsapp/conversations:
+    get:
+      tags:
+      - WhatsApp
+      summary: Retrieves WhatsApp conversation analytics
+      parameters:
+      - name: wabaIds
+        in: query
+        description: The ids of the WhatsApp Business Account to get conversation analytics for
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: to
+        in: query
+        description: The date time to query up to (but not including) in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: from
+        in: query
+        description: The date time to query from in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: by
+        in: query
+        description: The time period to aggregate by
+        required: false
+        schema:
+          type: string
+          enum:
+          - half_hour
+          - daily
+          - monthly
+      - name: phoneNumbers
+        in: query
+        description: An array of phone numbers for which to retrieve analytics. If not provided, all phone numbers added to the WABA are included
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: conversationCategories
+        in: query
+        description: A list of conversation categories. If not provided, results for all conversation categories are retrieved.
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - marketing
+            - utility
+            - authentication
+            - service
+      - name: dimensions
+        in: query
+        description: A list of breakdowns to apply to metrics. If not provided, results are retrieved without any breakdowns
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - conversation_category
+            - conversation_direction
+            - conversation_type
+            - country
+            - phone
+      responses:
+        '200':
+          description: The count of whatsApp conversations for a specific period
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/whatsAppConversationAnalytics'
+        '400':
+          description: Validation errors were found
+        '404':
+          description: The API Space was not
+  /cpaas/analytics/whatsapp/dailymessagingusage:
+    get:
+      tags:
+      - WhatsApp
+      summary: Retrieves WhatsApp business-initiated conversation analytics for the last 24 hours (Daily message usage)
+      parameters:
+      - name: wabaIds
+        in: query
+        description: The ids of the WhatsApp Business Account to get conversation analytics for
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: The count of business-initiated(marketing, utility and authentication) conversations for the last 24 hours
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/whatsAppDailyMessagingUsage'
+        '400':
+          description: Validation errors were found
+        '404':
+          description: The API Space was not
+components:
+  schemas:
+    ApiProfilingAnalytics:
+      required:
+      - date
+      - dateUtc
+      type: object
+      properties:
+        date:
+          type: string
+          description: The date of the analytics data in ISO 8601 format.
+          format: date-time
+          example: '2025-04-01T00:00:00Z'
+        dateUtc:
+          type: string
+          description: The UTC date of the analytics data in ISO 8601 format.
+          format: date-time
+          example: '2025-04-01T00:00:00Z'
+        appMessaging:
+          $ref: '#/components/schemas/ChannelProfiling'
+        whatsApp:
+          $ref: '#/components/schemas/ChannelProfiling'
+        sms:
+          $ref: '#/components/schemas/ChannelProfiling'
+      description: 'API profiling analytics data, including delivery times for different messaging channels on a specific date.
+
+        '
+    ChannelProfiling:
+      required:
+      - timeToDelivered
+      type: object
+      properties:
+        timeToDelivered:
+          $ref: '#/components/schemas/TimeToDeliveredMetrics'
+      description: 'Profiling data for a specific messaging channel, including delivery time metrics.
+
+        '
+    TimeToDeliveredMetrics:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/DeliveryTimeMetric'
+      description: 'Delivery time metrics, keyed by delivery time thresholds (in seconds).
+
+        '
+      example:
+        '10':
+          count: 5
+          value: 4680
+        '30':
+          count: 2
+          value: 46494
+    DeliveryTimeMetric:
+      required:
+      - count
+      - value
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Number of messages delivered within the threshold.
+          example: 5
+        value:
+          type: integer
+          description: Total time (in milliseconds) for all messages delivered within the threshold.
+          example: 4680
+      description: 'Metric for messages delivered within a specific time threshold.
+
+        '
+    conversationMessageAnalytics:
+      type: object
+      properties:
+        date:
+          type: string
+          description: The start date and time for the period in the timezone passed in
+        dateUtc:
+          type: string
+          description: The start date and time for the period in UTC
+        sent:
+          type: integer
+          description: The number of messages sent in the period
+          format: int64
+        delivered:
+          type: integer
+          description: The number of messages delivered in the period
+          format: int64
+        read:
+          type: integer
+          description: The number of messages read in the period
+          format: int64
+    chatAnalytics:
+      type: object
+      properties:
+        date:
+          type: string
+          description: The start date and time for the period in the timezone passed in
+        dateUtc:
+          type: string
+          description: The start date and time for the period in UTC
+        teamId:
+          type: string
+          description: The team allocated
+        agentId:
+          type: string
+          description: The agent allocated
+        inbounds:
+          type: integer
+          description: The number of inbound messages for the period
+          format: int64
+        outbounds:
+          type: integer
+          description: The number of agent-send messages for the period
+          format: int64
+        responses:
+          type: integer
+          description: The number of agent replies for the period
+          format: int64
+        timeToRespondSeconds:
+          type: integer
+          description: The total time to reply to all inbound messages for the period in seconds
+          format: int64
+        initialResponses:
+          type: integer
+          description: The number of initial inbound message replies for the period
+          format: int64
+        timeToInitialResponseSeconds:
+          type: integer
+          description: The total time to reply to initial inbound messages for the period in seconds
+          format: int64
+        closed:
+          type: integer
+          description: The number of closed chats for the period
+          format: int64
+        timeToCloseSeconds:
+          type: integer
+          description: The total time to close chats closed in this period
+          format: int64
+        transitionsToNew:
+          type: integer
+          description: The total number of times chats were transitioned to 'New'
+          format: int64
+        transitionsToReplied:
+          type: integer
+          description: The total number of times chats were transitioned to 'Replied'
+          format: int64
+    liveChatAnalytics:
+      type: object
+      properties:
+        teamId:
+          type: string
+          description: The live count of 'new' chats
+        new:
+          type: integer
+          description: The live count of 'new' chats
+        replied:
+          type: integer
+          description: The live count of 'replied' chats
+        closed:
+          type: integer
+          description: The live count of 'closed' chats
+    smsInboundAnalytics:
+      type: object
+      properties:
+        date:
+          type: string
+          description: The start date and time for the period
+        received:
+          type: integer
+          description: The number of messages received in the period
+          format: int64
+    smsOutboundAnalytics:
+      type: object
+      properties:
+        date:
+          type: string
+          description: The start date and time for the period
+        submitted:
+          type: integer
+          description: The number of messages submitted in the period
+          format: int64
+        delivered:
+          type: integer
+          description: The number of messages delivered to handsets in the period
+          format: int64
+        filtered:
+          type: integer
+          description: The number of messages filtered out in the messaging platform in the period
+          format: int64
+        undeliverable:
+          type: integer
+          description: The number of messages deemed undeliverable in the period
+          format: int64
+    messageAnalytics:
+      type: object
+      properties:
+        date:
+          type: string
+          description: The start date and time for the period in the timezone passesd in
+        dateUtc:
+          type: string
+          description: The start date and time for the period in UTC
+        attempted:
+          type: integer
+          description: The number of message sends that were attempted in the period
+          format: int64
+        queued:
+          $ref: '#/components/schemas/messageAnalytics_queued'
+        queuedSegments:
+          $ref: '#/components/schemas/messageAnalytics_queuedSegments'
+        success:
+          $ref: '#/components/schemas/messageAnalytics_success'
+        successSegements:
+          $ref: '#/components/schemas/messageAnalytics_successSegements'
+        delivered:
+          $ref: '#/components/schemas/messageAnalytics_delivered'
+        deliveredSegements:
+          $ref: '#/components/schemas/messageAnalytics_deliveredSegements'
+        read:
+          $ref: '#/components/schemas/messageAnalytics_read'
+        readSegements:
+          $ref: '#/components/schemas/messageAnalytics_readSegements'
+        undeliverable:
+          $ref: '#/components/schemas/messageAnalytics_undeliverable'
+        undeliverableSegements:
+          $ref: '#/components/schemas/messageAnalytics_undeliverableSegements'
+        expired:
+          $ref: '#/components/schemas/messageAnalytics_expired'
+        expiredSegements:
+          $ref: '#/components/schemas/messageAnalytics_expiredSegements'
+        failed:
+          type: integer
+          description: The number of message sends that failed in the period
+          format: int64
+        inbound:
+          $ref: '#/components/schemas/messageAnalytics_inbound'
+    sessionAnalytics:
+      type: object
+      properties:
+        date:
+          type: string
+          description: The start date and time for the period in the timezone passesd in
+        dateUtc:
+          type: string
+          description: The start date and time for the period in UTC
+        started:
+          $ref: '#/components/schemas/sessionAnalytics_started'
+        ended:
+          type: integer
+          description: The number of session that were explicitly ended in the period
+          format: int64
+    smsTrackingAnalytics:
+      type: object
+      properties:
+        date:
+          type: string
+          description: The start date and time for the period
+        sent:
+          type: integer
+          description: The number of trackings urls sent
+          format: int64
+        clicks:
+          type: integer
+          description: The number of clicks recorded for the url
+          format: int64
+        uniqueClicks:
+          type: integer
+          description: The number of clicks recorded by unique individuals
+          format: int64
+    smsVerifyAnalytics:
+      type: object
+      properties:
+        date:
+          type: string
+          description: The start date and time for the period
+        notVerifed:
+          type: integer
+          description: The number of verify calls that were not verified
+          format: int64
+        verified:
+          type: integer
+          description: The number of verify calls that were successfully verified
+          format: int64
+        expired:
+          type: integer
+          description: The number of verify calls that expired
+          format: int64
+        locked:
+          type: integer
+          description: The number of verify calls that locked out
+          format: int64
+    whatsAppConversationAnalytics:
+      type: object
+      properties:
+        start:
+          type: integer
+          description: The start date unix timestamp
+          format: int64
+        end:
+          type: integer
+          description: The end date unix timestamp
+          format: int64
+        conversation:
+          type: integer
+          description: The number of conversations for that specific date and time
+          format: int64
+        conversationDirection:
+          type: string
+          description: The conversation direction, i.e. business-initiated, user-initiated or unknown
+        conversationCategory:
+          type: string
+          description: The conversation category, i.e. marketing, utility, authentication or service
+        conversationTypes:
+          type: string
+          description: The conversation type, i.e. free tier, free entry, or regular
+        country:
+          type: string
+          description: The country code of the user
+        phone:
+          type: string
+          description: The phone number that was used to for the conversation
+        cost:
+          type: integer
+          description: The cost of the conversations
+          format: int64
+    whatsAppDailyMessagingUsage:
+      type: object
+      properties:
+        usageInTheLast24Hours:
+          type: integer
+          description: The daily messaging usage (business-initiated conversations) for the waba for the last 24 hours
+          format: int64
+        messagingLimitTier:
+          type: string
+          description: The current messaging limit tier for the WABA
+    messageAnalytics_queued:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The count of queued messages for each channel
+    messageAnalytics_queuedSegments:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The segment count of queued messages on each channel
+    messageAnalytics_success:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The count of messages sent for each channel
+    messageAnalytics_successSegements:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The segment count of sent messages on each channel
+    messageAnalytics_delivered:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The count of messages delivered for each channel
+    messageAnalytics_deliveredSegements:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The segment count of delivered messages on each channel
+    messageAnalytics_read:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The count of messages read for each channel
+    messageAnalytics_readSegements:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The segment count of read messages on each channel
+    messageAnalytics_undeliverable:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The count of undeliverable messages for each channel
+    messageAnalytics_undeliverableSegements:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The segment count of undeliverable messages on each channel
+    messageAnalytics_expired:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The count of expired messages for each channel
+    messageAnalytics_expiredSegements:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The segment count of expired messages on each channel
+    messageAnalytics_inbound:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The count of messages received from each channel
+    sessionAnalytics_started:
+      type: object
+      properties:
+        additionalProperties:
+          type: string
+      description: The number of sessions started in the period, broken down by platform and sdkType
+  parameters:
+    apiSpacePathParameter:
+      name: apiSpaceId
+      in: path
+      description: The api space id
+      required: true
+      schema:
+        pattern: ^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})|[a-f0-9]{32}$
+        type: string
+    fromQueryParameter:
+      name: from
+      in: query
+      description: The date time to query from
+      required: true
+      schema:
+        type: string
+        format: date-time
+    toQueryParameter:
+      name: to
+      in: query
+      description: The date time to query up to (but not including)
+      required: true
+      schema:
+        type: string
+        format: date-time
+    systemQueryParameter:
+      name: system
+      in: query
+      description: The system that triggered an analytical event
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+          - api
+          - broadcast
+          - chat
+    byQueryParameter:
+      name: by
+      in: query
+      description: The time period to aggregate by
+      required: false
+      schema:
+        type: string
+        enum:
+        - hour
+        - day
+        - month
+        - year
+    multiByMessageQueryParameter:
+      name: by
+      in: query
+      description: The time period to aggregate by
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+          - hour
+          - day
+          - month
+          - year
+          - alltime
+          - system
+          - recipientCountryCode
+    multiByQueryParameter:
+      name: by
+      in: query
+      description: The aggregation criteria. Can be one time based value and any combination of non time values
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+          - hour
+          - day
+          - month
+          - year
+          - accountId
+          - apiSpaceId
+    teamQueryParameter:
+      name: teamId
+      in: query
+      description: The id of the team to retrieve analytics for
+      required: false
+      schema:
+        type: string
+    agentQueryParameter:
+      name: agentId
+      in: query
+      description: The id of the agent to retrieve analytics for
+      required: false
+      schema:
+        type: string
+    timezoneQueryParameter:
+      name: timezone
+      in: query
+      description: The localtimezone to report the data out for if not specified, UTC is defaulted
+      required: false
+      schema:
+        type: string
+    accountIdQueryParameter:
+      name: accountId
+      in: query
+      description: The id of the account to report the data out for
+      required: false
+      schema:
+        type: integer
+    wabaIdsQueryParameter:
+      name: wabaIds
+      in: query
+      description: The ids of the WhatsApp Business Account to get conversation analytics for
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: array
+        items:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+x-readme:
+  samples-languages:
+  - curl
+  - csharp
+  - java
+  - node
+  - php
+  - python
+  - ruby
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

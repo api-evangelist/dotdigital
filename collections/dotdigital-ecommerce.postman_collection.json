@@ -1,0 +1,503 @@
+{
+  "item": [
+    {
+      "id": "6ed4a8d0-223b-4a54-99f8-934ba1909504",
+      "name": "Ecommerce",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0d030dd3-e522-48db-9889-e0c2ca19d13b",
+          "name": "Get orders since date",
+          "request": {
+            "name": "Get orders since date",
+            "description": {
+              "content": "Gets a list of all orders since a specified date.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "ecommerce",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fromDate",
+                  "value": "<date>",
+                  "description": "(Required) The date from which any orders are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime), note the time component is ignored — only the date part is used."
+                },
+                {
+                  "disabled": false,
+                  "key": "select",
+                  "value": "1000",
+                  "description": "The number of records to select between 1 and 1000 to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "The numbers of records to skip in the result set."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c102b0c-953b-4a48-9389-bffca019f69b",
+              "name": "A list of orders matching the specified date range.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ecommerce",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fromDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "select",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"200273\",\n    \"email\": \"christine.olson@emailsim.io\",\n    \"contactId\": \"14544\",\n    \"items\": [\n      {\n        \"sku\": \"wedze-all-mountain-xlander-900-downhill-skiing-skis-blue\",\n        \"name\": \"WED'ZE ALL MOUNTAIN XLANDER 900 DOWNHILL SKIING SKIS - BLUE\",\n        \"price\": 259.99,\n        \"quantity\": 1,\n        \"imagePath\": null\n      }\n    ],\n    \"orderTotal\": 2056.6375,\n    \"orderDate\": \"2022-08-01 05:42:00+00:00\",\n    \"subtotal\": 1645.31,\n    \"payment\": null,\n    \"status\": null,\n    \"discount\": 456616,\n    \"deliveryTotal\": 144284,\n    \"deliveryMethod\": \"post\",\n    \"deliveryAddress\": {\n      \"address1\": \"\",\n      \"address2\": \"\",\n      \"city\": \"\",\n      \"country\": \"\",\n      \"postCode\": \"\"\n    },\n    \"currency\": \"EUR\",\n    \"billingAddress\": {\n      \"address1\": \"\",\n      \"address2\": \"\",\n      \"city\": \"\",\n      \"country\": \"\",\n      \"postCode\": \"\"\n    },\n    \"baseSubtotalInclTax\": 295822,\n    \"couponCode\": null,\n    \"quoteId\": \"727036\",\n    \"retailValue\": 1727.316363675\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5aae91b-f8da-44e8-a75b-beaac0a538b3",
+              "name": "Invalid paging parameters (`ERROR_PARAMETER_INVALID`). `select` must be between 1 and 1000. `skip` must not be negative.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ecommerce",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fromDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "select",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8255e41e-c7da-47dc-8f0f-d15d13d46a23",
+              "name": "Invalid or missing credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ecommerce",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fromDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "select",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2ea460b2-e6b3-4c55-9c3b-49633e5b7ca9",
+              "name": "The ecommerce feature is not active on this account (`ERROR_FEATURENOTACTIVE`).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ecommerce",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fromDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "select",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Error: ERROR_FEATURENOTACTIVE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33eef7b0-ce7a-4a74-a359-3807ac0640d9",
+              "name": "No orders collection exists for this account (`ERROR_TRANSACTIONAL_DATA_COLLECTION_DOES_NOT_EXIST`).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ecommerce",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fromDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "select",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Error: ERROR_TRANSACTIONAL_DATA_COLLECTION_DOES_NOT_EXIST\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58532580-c3a8-4a17-a2f2-b7c76166c2e7",
+              "name": "The orders collection is currently being restored (`ERROR_TRANSACTIONAL_DATA_COLLECTION_IS_RESTORING`).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ecommerce",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fromDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "select",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Error: ERROR_TRANSACTIONAL_DATA_COLLECTION_IS_RESTORING\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "aae695bc-7385-428b-b1da-95e9d816934c",
+    "name": "Ecommerce",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Deprecated v2 endpoint for retrieving ecommerce order records by date. Use this\nAPI to retrieve a paginated list of orders since a specified date, including line\nitems, pricing totals, delivery and billing addresses, payment method, and coupon\ncodes. New integrations should use the Insight Data Service API instead.",
+      "type": "text/plain"
+    }
+  }
+}

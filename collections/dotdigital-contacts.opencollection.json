@@ -1,0 +1,323 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Contacts",
+    "version": "3.4.3"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Get contacts based on your criteria",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/contacts/v3",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "data-fields",
+            "value": "",
+            "type": "query",
+            "description": "Contact data is returned with a minimum of **contactId** and any associated **identifiers**. Use this field to specify any additional data fields you want to return. Enter a pipe delimited string of the contact data fields required or **[[ALL]]** to Get all data fields."
+          },
+          {
+            "name": "include",
+            "value": "",
+            "type": "query",
+            "description": "Specify additional data sets associated with the contact to include in the returned data."
+          },
+          {
+            "name": "~created",
+            "value": "",
+            "type": "query",
+            "description": "Filter by created date.<br/>\n***Note:***\n* The date must be in ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601))\n* Can't be used in conjunction with the **~modified** parameter."
+          },
+          {
+            "name": "~modified",
+            "value": "",
+            "type": "query",
+            "description": "Filter by last modified date.<br/>\n***Note:***\n* The date must be in ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601))"
+          },
+          {
+            "name": "~listId",
+            "value": "54321",
+            "type": "query",
+            "description": "Filter by a specific list.<br/>\n***Note:***\n* Can't be used in conjunction with the **~segmentId** parameter."
+          },
+          {
+            "name": "~segmentId",
+            "value": "12345",
+            "type": "query",
+            "description": "Filter by a specific segment.<br/>\n***Note:***\n* Can't be used in conjunction with the **~listId** parameter."
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Maximum number of records to retrieve per page"
+          },
+          {
+            "name": "marker",
+            "value": "",
+            "type": "query",
+            "description": "Pagination marker to retrieve the data from"
+          }
+        ]
+      },
+      "docs": "Get contacts based on criteria you specify. Contacts are returned with full data, specified data fields, or key information and identifiers only.<br/><br/>\n\n*Note: All data is returned in ascending order*"
+    },
+    {
+      "info": {
+        "name": "Create a contact",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{region}-api.dotdigital.com/contacts/v3",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Creates a contact if the identifiers passed are unique in the account then a new contact will be created, otherwise it will fail the call with a 409."
+    },
+    {
+      "info": {
+        "name": "Delete multiple contacts",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{region}-api.dotdigital.com/contacts/v3/delete",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Async deletes multiple contacts using whichever identifier you wish."
+    },
+    {
+      "info": {
+        "name": "Get the status of a delete contacts job",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/contacts/v3/delete/:deleteId",
+        "params": [
+          {
+            "name": "deleteId",
+            "value": "",
+            "type": "path",
+            "description": "The delete job id you want the status for"
+          }
+        ]
+      },
+      "docs": "Gets the status of a delete contacts job and the results if complete."
+    },
+    {
+      "info": {
+        "name": "Import contact collection",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{region}-api.dotdigital.com/contacts/v3/import",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Imports a collection of contacts. Creates contacts if they do not exist and updates contacts if they do. This is an async operation and you will need to check when it is complete by calling **getImportStatus** <br><br>**Note:** It isn't possible to specify the value for the **contactId** field when creating a contact, so it is only used to check for a matching contact when specified"
+    },
+    {
+      "info": {
+        "name": "Get the status of a contacts import request",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/contacts/v3/import/:importId",
+        "params": [
+          {
+            "name": "importId",
+            "value": "",
+            "type": "path",
+            "description": "The import id you want the status for"
+          }
+        ]
+      },
+      "docs": "Gets the status of a contacts import request and the results if available.<br><br>**Note:** When importing, contacts are created or updated but if any associated data sets fail to import then details of these are included in the **failures** results"
+    },
+    {
+      "info": {
+        "name": "Get a contact by an identifier",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/contacts/v3/:identifier/:value",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "identifier",
+            "value": "",
+            "type": "path",
+            "description": "The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+          },
+          {
+            "name": "value",
+            "value": "",
+            "type": "path",
+            "description": "The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+          }
+        ]
+      },
+      "docs": "Get a contact's details using a specific identifier"
+    },
+    {
+      "info": {
+        "name": "Replace a contact",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{region}-api.dotdigital.com/contacts/v3/:identifier/:value",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "identifier",
+            "value": "",
+            "type": "path",
+            "description": "The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+          },
+          {
+            "name": "value",
+            "value": "",
+            "type": "path",
+            "description": "The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Replaces a contact entirly with the data passed in the request.<br><br>\n  **Note:**\n  * This call will **replace the entire contact** when updating with the data passed; if would like to change just select fields then use the PATCH call."
+    },
+    {
+      "info": {
+        "name": "Import a single contact",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "https://{region}-api.dotdigital.com/contacts/v3/:identifier/:value",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "identifier",
+            "value": "",
+            "type": "path",
+            "description": "The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+          },
+          {
+            "name": "value",
+            "value": "",
+            "type": "path",
+            "description": "The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+          },
+          {
+            "name": "merge-option",
+            "value": "",
+            "type": "query",
+            "description": "Set the behavior of how the new data should be merged into existing contacts."
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Imports a single contact; if it is an existing contact it updates the contact with just the fields passed in the request with a choice of how to handle the merging of data, otherwise it create a new contact."
+    },
+    {
+      "info": {
+        "name": "Deletes a contact using a specific identifier",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/contacts/v3/:identifier/:value",
+        "headers": [
+          {
+            "name": "x-ddg-integration-token",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "identifier",
+            "value": "",
+            "type": "path",
+            "description": "The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+          },
+          {
+            "name": "value",
+            "value": "",
+            "type": "path",
+            "description": "The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+          }
+        ]
+      },
+      "docs": "Delete a contact using a specific identifier"
+    }
+  ],
+  "bundled": true
+}

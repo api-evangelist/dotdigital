@@ -1,0 +1,189 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Omnichannel API",
+    "version": "1.3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Omnichannel API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Posts a status for a message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/cpaas/messages/:messageId/statuses/:status",
+            "params": [
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the message"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "path",
+                "description": "The status of the message"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Posts a status for a message"
+        },
+        {
+          "info": {
+            "name": "Retrieves the current state of a specific message.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/messages/:messageId",
+            "params": [
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the message"
+              }
+            ]
+          },
+          "docs": "Retrieves the current state of a specific message."
+        },
+        {
+          "info": {
+            "name": "Patches a Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{region}-api.dotdigital.com/cpaas/messages/:messageId",
+            "params": [
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the message"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patches a Message"
+        },
+        {
+          "info": {
+            "name": "Deletes a Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{region}-api.dotdigital.com/cpaas/messages/:messageId",
+            "params": [
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the message"
+              }
+            ]
+          },
+          "docs": "Deletes a Message"
+        },
+        {
+          "info": {
+            "name": "Send a new message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/cpaas/messages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a new message"
+        },
+        {
+          "info": {
+            "name": "Send a batch of new messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/cpaas/messages/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a batch of new messages"
+        },
+        {
+          "info": {
+            "name": "Posts an inbound message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/cpaas/messages/inbounds",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Posts an inbound message"
+        },
+        {
+          "info": {
+            "name": "Posts a status for an inbound",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/cpaas/messages/inbounds/:inboundMessageId/statuses/:status",
+            "params": [
+              {
+                "name": "inboundMessageId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the inbound message"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "path",
+                "description": "The status of the inbound message"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Posts a status for an inbound"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

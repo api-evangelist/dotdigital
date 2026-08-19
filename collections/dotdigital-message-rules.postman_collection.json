@@ -1,0 +1,916 @@
+{
+  "item": [
+    {
+      "id": "1bed257f-56d5-499f-beaa-685fb544fe67",
+      "name": "Retrieves a message rules configuration list",
+      "request": {
+        "name": "Retrieves a message rules configuration list",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "automation",
+            "inboundrules"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "af615510-4dfe-4110-8cfd-dc05ad7a6219",
+          "name": "The requested message rules  configuration list",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "automation",
+                "inboundrules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "disabled": false,
+              "description": "A unique value representing the version of the inbound rules configuration, optionally used for optimistic concurrency control on PUT and DELETE",
+              "key": "ETag",
+              "value": "string"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"id\": \"c83d5927-a239-787a-8fc1-3ac4e53f590a\",\n    \"channel\": \"sms\",\n    \"inbound\": \"string\",\n    \"keyword\": \"string\",\n    \"action\": \"replyMessage\",\n    \"actionData\": {\n      \"chatTeamId\": \"string\",\n      \"messageParts\": [\n        {\n          \"type\": \"string\",\n          \"name\": \"string\",\n          \"url\": \"string\",\n          \"data\": \"string\",\n          \"size\": 8581\n        },\n        {\n          \"type\": \"string\",\n          \"name\": \"string\",\n          \"url\": \"string\",\n          \"data\": \"string\",\n          \"size\": 1554\n        }\n      ],\n      \"profileUpdate\": [\n        {\n          \"propertyName\": \"string\",\n          \"propertyValue\": \"string\"\n        },\n        {\n          \"propertyName\": \"string\",\n          \"propertyValue\": \"string\"\n        }\n      ]\n    }\n  },\n  {\n    \"id\": \"1695f6994974613c2d795bd46fe27126\",\n    \"channel\": \"whatsApp\",\n    \"inbound\": \"string\",\n    \"keyword\": \"string\",\n    \"action\": \"profileUpdate\",\n    \"actionData\": {\n      \"chatTeamId\": \"string\",\n      \"messageParts\": [\n        {\n          \"type\": \"string\",\n          \"name\": \"string\",\n          \"url\": \"string\",\n          \"data\": \"string\",\n          \"size\": 8913\n        },\n        {\n          \"type\": \"string\",\n          \"name\": \"string\",\n          \"url\": \"string\",\n          \"data\": \"string\",\n          \"size\": 6968\n        }\n      ],\n      \"profileUpdate\": [\n        {\n          \"propertyName\": \"string\",\n          \"propertyValue\": \"string\"\n        },\n        {\n          \"propertyName\": \"string\",\n          \"propertyValue\": \"string\"\n        }\n      ]\n    }\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "8d10f89d-f27a-42d5-a9c5-06bb2129fc4a",
+          "name": "The  was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "automation",
+                "inboundrules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "80a936e2-db6d-4596-b938-fd0b5305acad",
+      "name": "Create a message rule configuration",
+      "request": {
+        "name": "Create a message rule configuration",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "automation",
+            "inboundrules"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "An optional ETag for optimistic concurrency control",
+            "key": "if-match",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"inbound\": \"<string>\",\n  \"keyword\": \"<string>\",\n  \"action\": \"<string>\",\n  \"actionData\": {\n    \"chatTeamId\": \"<string>\",\n    \"messageParts\": [\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      }\n    ],\n    \"profileUpdate\": [\n      {\n        \"propertyName\": \"<string>\",\n        \"propertyValue\": \"<string>\"\n      },\n      {\n        \"propertyName\": \"<string>\",\n        \"propertyValue\": \"<string>\"\n      }\n    ]\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "0b34ddb0-3867-4274-a4a9-842429f5ae9a",
+          "name": "The created inbound rules  configuration",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "automation",
+                "inboundrules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"inbound\": \"<string>\",\n  \"keyword\": \"<string>\",\n  \"action\": \"<string>\",\n  \"actionData\": {\n    \"chatTeamId\": \"<string>\",\n    \"messageParts\": [\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      }\n    ],\n    \"profileUpdate\": [\n      {\n        \"propertyName\": \"<string>\",\n        \"propertyValue\": \"<string>\"\n      },\n      {\n        \"propertyName\": \"<string>\",\n        \"propertyValue\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "disabled": false,
+              "description": "A unique value representing the version of the inbound rules configuration, optionally used for optimistic concurrency control on PUT and DELETE",
+              "key": "ETag",
+              "value": "string"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"inbound\": \"<string>\",\n  \"keyword\": \"<string>\",\n  \"action\": \"<string>\",\n  \"actionData\": {\n    \"chatTeamId\": \"<string>\",\n    \"messageParts\": [\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      }\n    ],\n    \"profileUpdate\": [\n      {\n        \"propertyName\": \"<string>\",\n        \"propertyValue\": \"<string>\"\n      },\n      {\n        \"propertyName\": \"<string>\",\n        \"propertyValue\": \"<string>\"\n      }\n    ]\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "e1343305-38fa-4f4a-97ca-ea50b7b72143",
+          "name": "The inbound rules configuration was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "automation",
+                "inboundrules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"inbound\": \"<string>\",\n  \"keyword\": \"<string>\",\n  \"action\": \"<string>\",\n  \"actionData\": {\n    \"chatTeamId\": \"<string>\",\n    \"messageParts\": [\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      }\n    ],\n    \"profileUpdate\": [\n      {\n        \"propertyName\": \"<string>\",\n        \"propertyValue\": \"<string>\"\n      },\n      {\n        \"propertyName\": \"<string>\",\n        \"propertyValue\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "62eb03d7-40e4-4b4f-8cfc-277ddf32d9e6",
+      "name": "Retrieves single message rule configuration",
+      "request": {
+        "name": "Retrieves single message rule configuration",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "automation",
+            "inboundrules",
+            ":messageRulesId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "messageRulesId",
+              "description": "(Required) The message rule id"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "d6813be9-c5b7-4a54-8d78-778641a9a71a",
+          "name": "The requested message rule configuration",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "automation",
+                "inboundrules",
+                ":messageRulesId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "messageRulesId",
+                  "description": "(Required) The message rule id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"inbound\": \"<string>\",\n  \"keyword\": \"<string>\",\n  \"action\": \"<string>\",\n  \"actionData\": {\n    \"chatTeamId\": \"<string>\",\n    \"messageParts\": [\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      }\n    ],\n    \"profileUpdate\": [\n      {\n        \"propertyName\": \"<string>\",\n        \"propertyValue\": \"<string>\"\n      },\n      {\n        \"propertyName\": \"<string>\",\n        \"propertyValue\": \"<string>\"\n      }\n    ]\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "59ae2cef-149b-4534-9777-d67e011b5c73",
+          "name": "The message rule configuration was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "automation",
+                "inboundrules",
+                ":messageRulesId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "messageRulesId",
+                  "description": "(Required) The message rule id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "2d12f14d-818a-4480-a5e6-a60a12757d28",
+      "name": "Update single message rule configuration",
+      "request": {
+        "name": "Update single message rule configuration",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "automation",
+            "inboundrules",
+            ":messageRulesId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "messageRulesId",
+              "description": "(Required) The message rule id"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "An optional ETag for optimistic concurrency control",
+            "key": "if-match",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"inbound\": \"<string>\",\n  \"keyword\": \"<string>\",\n  \"action\": \"<string>\",\n  \"actionData\": {\n    \"chatTeamId\": \"<string>\",\n    \"messageParts\": [\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      }\n    ],\n    \"profileUpdate\": [\n      {\n        \"propertyName\": \"<string>\",\n        \"propertyValue\": \"<string>\"\n      },\n      {\n        \"propertyName\": \"<string>\",\n        \"propertyValue\": \"<string>\"\n      }\n    ]\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "6cd7e4f8-0471-4671-a03a-2003cc458e4b",
+          "name": "The message rule configuration",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "automation",
+                "inboundrules",
+                ":messageRulesId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "messageRulesId",
+                  "description": "(Required) The message rule id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"inbound\": \"<string>\",\n  \"keyword\": \"<string>\",\n  \"action\": \"<string>\",\n  \"actionData\": {\n    \"chatTeamId\": \"<string>\",\n    \"messageParts\": [\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      }\n    ],\n    \"profileUpdate\": [\n      {\n        \"propertyName\": \"<string>\",\n        \"propertyValue\": \"<string>\"\n      },\n      {\n        \"propertyName\": \"<string>\",\n        \"propertyValue\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"inbound\": \"<string>\",\n  \"keyword\": \"<string>\",\n  \"action\": \"<string>\",\n  \"actionData\": {\n    \"chatTeamId\": \"<string>\",\n    \"messageParts\": [\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      }\n    ],\n    \"profileUpdate\": [\n      {\n        \"propertyName\": \"<string>\",\n        \"propertyValue\": \"<string>\"\n      },\n      {\n        \"propertyName\": \"<string>\",\n        \"propertyValue\": \"<string>\"\n      }\n    ]\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "3e79798f-9e8a-4460-bd3f-61e706bb20ec",
+          "name": "The message rule configuration was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "automation",
+                "inboundrules",
+                ":messageRulesId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "messageRulesId",
+                  "description": "(Required) The message rule id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"inbound\": \"<string>\",\n  \"keyword\": \"<string>\",\n  \"action\": \"<string>\",\n  \"actionData\": {\n    \"chatTeamId\": \"<string>\",\n    \"messageParts\": [\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      }\n    ],\n    \"profileUpdate\": [\n      {\n        \"propertyName\": \"<string>\",\n        \"propertyValue\": \"<string>\"\n      },\n      {\n        \"propertyName\": \"<string>\",\n        \"propertyValue\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "2c5e9af8-ead2-41f2-9be9-df3fe5abd8dc",
+      "name": "Delete single message rule configuration",
+      "request": {
+        "name": "Delete single message rule configuration",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "automation",
+            "inboundrules",
+            ":messageRulesId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "messageRulesId",
+              "description": "(Required) The message rule id"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "1603995e-a128-427f-bb35-05265d46c937",
+          "name": "Indicates successful deletion of an message rule configuration",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "automation",
+                "inboundrules",
+                ":messageRulesId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "messageRulesId",
+                  "description": "(Required) The message rule id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "d94e87ce-3944-42dc-8406-2f814bbdd341",
+          "name": "The message rule configuration was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "automation",
+                "inboundrules",
+                ":messageRulesId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "messageRulesId",
+                  "description": "(Required) The message rule id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "48826ef8-bfb7-414d-a269-ba23e958cb1e",
+    "name": "Message Rules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Provides methods for creating, retrieving, updating, and deleting inbound\nmessage rule configurations. Rules define how inbound messages are routed or\nprocessed automatically, supporting both bulk retrieval of all configured\nrules and individual rule management.",
+      "type": "text/plain"
+    }
+  }
+}

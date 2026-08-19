@@ -1,0 +1,576 @@
+{
+  "item": [
+    {
+      "id": "07388e1e-3437-42fa-9286-1a7dcf4d663c",
+      "name": "Marketing Emails",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "274d8e6b-9477-4f7c-b717-f84d1e982221",
+          "name": "Send marketing email",
+          "request": {
+            "name": "Send marketing email",
+            "description": {
+              "content": "Send a marketing email. <br><br>\n**Note:** \n* _Email marketing status will be checked for known email addresses and email not sent if unsubscribed or suppressed._ \n* _Contacts will be created for unknown email addresses._",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "marketing-email",
+                "v3",
+                "send"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": {\n    \"htmlContent\": \"<string>\",\n    \"source\": \"<string>\",\n    \"subject\": \"<string>\"\n  },\n  \"to\": \"<email>\",\n  \"from\": \"<email>\",\n  \"attachments\": [\n    {\n      \"content\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"mimeType\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": 9280.642939269856,\n    \"key_1\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "087bceac-becd-4a3f-8dbc-aabde4aa8c5f",
+              "name": "Email accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketing-email",
+                    "v3",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": \"myCustomer1@emailsim.io\",\n  \"from\": \"noreply@acme.com\",\n  \"content\": {\n    \"source\": \"html\",\n    \"subject\": \"An offer just for you\",\n    \"htmlContent\": \"<!DOCTYPE html>\\n<html>\\n<head>\\n  <title>My Email</title>\\n</head>\\n<body>\\n  <h1>Hello, World!</h1>\\n  <p>This is a paragraph in my email.</p>\\n  <a href=\\\"https://www.example.com\\\">Click here</a>\\n</body>\\n</html>\\n\"\n  },\n  \"metadata\": {\n    \"customerId\": 12345,\n    \"reportingSegement\": \"3Y25\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "faed5724-8117-4d9e-b01c-a0c8598bec38",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketing-email",
+                    "v3",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": \"myCustomer1@emailsim.io\",\n  \"from\": \"noreply@acme.com\",\n  \"content\": {\n    \"source\": \"html\",\n    \"subject\": \"An offer just for you\",\n    \"htmlContent\": \"<!DOCTYPE html>\\n<html>\\n<head>\\n  <title>My Email</title>\\n</head>\\n<body>\\n  <h1>Hello, World!</h1>\\n  <p>This is a paragraph in my email.</p>\\n  <a href=\\\"https://www.example.com\\\">Click here</a>\\n</body>\\n</html>\\n\"\n  },\n  \"metadata\": {\n    \"customerId\": 12345,\n    \"reportingSegement\": \"3Y25\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"marketingemail:badRequest\",\n  \"description\": \"Bad request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "850d2719-bc21-43a3-bc77-266d0cdc49ef",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketing-email",
+                    "v3",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": \"myCustomer1@emailsim.io\",\n  \"from\": \"noreply@acme.com\",\n  \"content\": {\n    \"source\": \"html\",\n    \"subject\": \"An offer just for you\",\n    \"htmlContent\": \"<!DOCTYPE html>\\n<html>\\n<head>\\n  <title>My Email</title>\\n</head>\\n<body>\\n  <h1>Hello, World!</h1>\\n  <p>This is a paragraph in my email.</p>\\n  <a href=\\\"https://www.example.com\\\">Click here</a>\\n</body>\\n</html>\\n\"\n  },\n  \"metadata\": {\n    \"customerId\": 12345,\n    \"reportingSegement\": \"3Y25\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "72dbc817-0045-42f0-8f47-7bc2090f8658",
+              "name": "Opted out / uncontactable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketing-email",
+                    "v3",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": \"myCustomer1@emailsim.io\",\n  \"from\": \"noreply@acme.com\",\n  \"content\": {\n    \"source\": \"html\",\n    \"subject\": \"An offer just for you\",\n    \"htmlContent\": \"<!DOCTYPE html>\\n<html>\\n<head>\\n  <title>My Email</title>\\n</head>\\n<body>\\n  <h1>Hello, World!</h1>\\n  <p>This is a paragraph in my email.</p>\\n  <a href=\\\"https://www.example.com\\\">Click here</a>\\n</body>\\n</html>\\n\"\n  },\n  \"metadata\": {\n    \"customerId\": 12345,\n    \"reportingSegement\": \"3Y25\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"marketingEmail:unsubscribed\",\n  \"description\": \"Recipient 'bob@acme.com' is unsubscribed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "973c4e3e-c3ec-4f4b-9f12-7e84ad0cbe44",
+          "name": "Send batch marketing emails",
+          "request": {
+            "name": "Send batch marketing emails",
+            "description": {
+              "content": "Send a batch of marketing emails. <br><br>\n**Note:** \n* _Email marketing status will be checked for known email addresses and email not sent if unsubscribed or suppressed._ \n* _Contacts will be created for unknown email addresses._",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "marketing-email",
+                "v3",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"content\": {\n      \"htmlContent\": \"<string>\",\n      \"source\": \"<string>\",\n      \"subject\": \"<string>\"\n    },\n    \"to\": \"<email>\",\n    \"from\": \"<email>\",\n    \"attachments\": [\n      {\n        \"content\": \"<string>\",\n        \"fileName\": \"<string>\",\n        \"mimeType\": \"<string>\"\n      }\n    ],\n    \"metadata\": {\n      \"key_0\": 7235\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "78faacb0-e09d-4b44-9e16-31f1c6ffe38f",
+              "name": "Email batch accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketing-email",
+                    "v3",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"content\": {\n      \"htmlContent\": \"<h1>Example email</h1>\\n<p>Blah blah blah...</p>\\n\",\n      \"source\": \"<string>\",\n      \"subject\": \"Special Offer Just for You!\"\n    },\n    \"to\": \"recipient@example.com\",\n    \"from\": \"recipient@example.com\",\n    \"attachments\": [\n      {\n        \"content\": \"VGhpcyBpcyBhbiBleGFtcGxlIEJhc2U2NCBlbmNvZGVkIGVtYWlsLg==\",\n        \"fileName\": \"orderSummary.pdf\",\n        \"mimeType\": \"application/pdf\"\n      }\n    ],\n    \"metadata\": {\n      \"myUserId\": \"abc1234\",\n      \"emailRef\": 4564637238,\n      \"shard\": 1\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": {\n    \"failed\": 1,\n    \"sent\": 8,\n    \"uncontactable\": 1\n  },\n  \"results\": [\n    {\n      \"index\": 0,\n      \"status\": \"uncontactable\",\n      \"failures\": [\n        {\n          \"description\": \"Invalid email of 'invalid@email'\",\n          \"failureCode\": \"marketingEmail:invalidEmailAddress\"\n        },\n        {\n          \"description\": \"Invalid email of 'invalid@email'\",\n          \"failureCode\": \"marketingEmail:invalidEmailAddress\"\n        }\n      ]\n    },\n    {\n      \"index\": 0,\n      \"status\": \"uncontactable\",\n      \"failures\": [\n        {\n          \"description\": \"Invalid email of 'invalid@email'\",\n          \"failureCode\": \"marketingEmail:invalidEmailAddress\"\n        },\n        {\n          \"description\": \"Invalid email of 'invalid@email'\",\n          \"failureCode\": \"marketingEmail:invalidEmailAddress\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ac484b8-bcfd-4d2a-9bc0-45711c78102a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketing-email",
+                    "v3",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"content\": {\n      \"htmlContent\": \"<h1>Example email</h1>\\n<p>Blah blah blah...</p>\\n\",\n      \"source\": \"<string>\",\n      \"subject\": \"Special Offer Just for You!\"\n    },\n    \"to\": \"recipient@example.com\",\n    \"from\": \"recipient@example.com\",\n    \"attachments\": [\n      {\n        \"content\": \"VGhpcyBpcyBhbiBleGFtcGxlIEJhc2U2NCBlbmNvZGVkIGVtYWlsLg==\",\n        \"fileName\": \"orderSummary.pdf\",\n        \"mimeType\": \"application/pdf\"\n      }\n    ],\n    \"metadata\": {\n      \"myUserId\": \"abc1234\",\n      \"emailRef\": 4564637238,\n      \"shard\": 1\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"marketingEmail:invalidRequest\",\n  \"description\": \"No email send requests found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2cf5a0b5-e3c3-4892-b042-e1e7ef85ca61",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketing-email",
+                    "v3",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"content\": {\n      \"htmlContent\": \"<h1>Example email</h1>\\n<p>Blah blah blah...</p>\\n\",\n      \"source\": \"<string>\",\n      \"subject\": \"Special Offer Just for You!\"\n    },\n    \"to\": \"recipient@example.com\",\n    \"from\": \"recipient@example.com\",\n    \"attachments\": [\n      {\n        \"content\": \"VGhpcyBpcyBhbiBleGFtcGxlIEJhc2U2NCBlbmNvZGVkIGVtYWlsLg==\",\n        \"fileName\": \"orderSummary.pdf\",\n        \"mimeType\": \"application/pdf\"\n      }\n    ],\n    \"metadata\": {\n      \"myUserId\": \"abc1234\",\n      \"emailRef\": 4564637238,\n      \"shard\": 1\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "65441be6-a264-452b-b39a-3298234e3d32",
+    "name": "Marketing Email API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The marketing email API can be used to send marketing emails directly to recipients without the need to create a campaign. Email marketing status will be checked for known email addresses and email not sent if unsubscribed or suppressed.",
+      "type": "text/plain"
+    }
+  }
+}

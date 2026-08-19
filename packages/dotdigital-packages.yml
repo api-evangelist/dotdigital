@@ -1,0 +1,229 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  Packagist, npm registry, Maven Central, CocoaPods trunk, github.com/dotmailer, and the
+  Dotdigital developer hub SDK tutorials (android-sdk-new, ios-sdk-new, javascript-sdk-new).
+description: >-
+  Dotdigital's first-party distribution is unusual: there is ONE general-purpose server SDK
+  (PHP), a set of App Messaging / push SDKs inherited from the Comapi acquisition and still
+  published under the `comapi` namespace, and a large fleet of ecommerce-platform extensions
+  (Adobe Commerce / Magento 2, WooCommerce, WordPress, Shopware, Shopify Hydrogen). There is no
+  first-party Python, Ruby, Go, Java or .NET client for the REST API — the .NET presence is a
+  samples repository, not a package. Version and published date are read from each registry's
+  metadata endpoint on the generated date.
+packages:
+  - language: php
+    registry: packagist
+    name: dotdigital/dotdigital-php
+    url: https://packagist.org/packages/dotdigital/dotdigital-php
+    source: https://github.com/dotmailer/dotdigital-php
+    install: composer require dotdigital/dotdigital-php
+    official: true
+    version: 2.9.0
+    published: '2026-03-20'
+    note: The only first-party general-purpose REST client library. ~520k installs.
+  - language: javascript
+    registry: npm
+    name: '@comapi/sdk-js-foundation'
+    url: https://www.npmjs.com/package/@comapi/sdk-js-foundation
+    install: npm install @comapi/sdk-js-foundation --save
+    official: true
+    version: 1.4.1
+    published: '2026-07-02'
+    note: >-
+      The JavaScript App Messaging / push SDK the Dotdigital docs instruct you to install.
+      Published under the legacy `@comapi` scope (Comapi was acquired by Dotdigital), not
+      under a `@dotdigital` scope — a naming discontinuity a consumer has to be told about.
+  - language: java
+    registry: maven-central
+    name: com.comapi:foundation
+    url: https://central.sonatype.com/artifact/com.comapi/foundation
+    source: https://github.com/comapi/comapi-sdk-android
+    install: implementation 'com.comapi:foundation:1.5.1'
+    official: true
+    version: 1.5.1
+    published: '2025-01-29'
+    note: Android App Messaging SDK. Requires Java 11, minSdk 21; async via callbacks or RxJava 1.
+  - language: java
+    registry: maven-central
+    name: com.comapi:chat
+    url: https://central.sonatype.com/artifact/com.comapi/chat
+    install: implementation 'com.comapi:chat:1.1.1'
+    official: true
+    version: 1.1.1
+    published: '2019-02-08'
+    note: Android chat layer over the foundation SDK. Last release 2019 — effectively dormant.
+  - language: swift
+    registry: cocoapods
+    name: CMPComapiFoundation
+    url: https://cocoapods.org/pods/CMPComapiFoundation
+    source: https://github.com/comapi/comapi-sdk-ios-objc
+    install: pod 'CMPComapiFoundation'
+    official: true
+    version: 2.2.0
+    published: '2026-06-29'
+    note: iOS App Messaging / push SDK. Also distributed via Swift Package Manager.
+  - language: swift
+    registry: spm
+    name: comapi-sdk-ios-objc-spm
+    url: https://github.com/comapi/comapi-sdk-ios-objc-spm
+    install: 'Xcode > Add Package Dependencies > https://github.com/comapi/comapi-sdk-ios-objc-spm'
+    official: true
+    version: null
+    published: null
+    note: >-
+      Swift Package Manager distribution has no registry metadata endpoint; resolution is
+      against git tags in the repository, so no single "latest published" record exists to read.
+  - language: php
+    registry: packagist
+    name: dotdigital/dotdigital-magento2-extension
+    url: https://packagist.org/packages/dotdigital/dotdigital-magento2-extension
+    source: https://github.com/dotmailer/dotmailer-magento2-extension
+    install: composer require dotdigital/dotdigital-magento2-extension
+    official: true
+    version: 4.35.1
+    published: '2026-07-29'
+    kind: platform-extension
+    note: Adobe Commerce / Magento 2 core extension. The most actively maintained package.
+  - language: php
+    registry: packagist
+    name: dotdigital/dotdigital-magento2-extension-sms
+    url: https://packagist.org/packages/dotdigital/dotdigital-magento2-extension-sms
+    install: composer require dotdigital/dotdigital-magento2-extension-sms
+    official: true
+    version: 3.0.3
+    published: '2026-07-29'
+    kind: platform-extension
+  - language: php
+    registry: packagist
+    name: dotdigital/dotdigital-magento2-extension-chat
+    url: https://packagist.org/packages/dotdigital/dotdigital-magento2-extension-chat
+    install: composer require dotdigital/dotdigital-magento2-extension-chat
+    official: true
+    version: 2.0.0
+    published: '2025-11-04'
+    kind: platform-extension
+  - language: php
+    registry: packagist
+    name: dotdigital/dotdigital-magento2-extension-graph-ql
+    url: https://packagist.org/packages/dotdigital/dotdigital-magento2-extension-graph-ql
+    install: composer require dotdigital/dotdigital-magento2-extension-graph-ql
+    official: true
+    version: 2.0.2
+    published: '2025-04-08'
+    kind: platform-extension
+  - language: php
+    registry: packagist
+    name: dotdigital/dotdigital-magento2-extension-b2b
+    url: https://packagist.org/packages/dotdigital/dotdigital-magento2-extension-b2b
+    install: composer require dotdigital/dotdigital-magento2-extension-b2b
+    official: true
+    version: 1.9.0
+    published: '2025-07-15'
+    kind: platform-extension
+  - language: php
+    registry: packagist
+    name: dotdigital/dotdigital-magento2-extension-enterprise
+    url: https://packagist.org/packages/dotdigital/dotdigital-magento2-extension-enterprise
+    install: composer require dotdigital/dotdigital-magento2-extension-enterprise
+    official: true
+    version: 2.0.0
+    published: '2024-03-12'
+    kind: platform-extension
+  - language: php
+    registry: packagist
+    name: dotdigital/dotdigital-for-shopware-flowbuilder
+    url: https://packagist.org/packages/dotdigital/dotdigital-for-shopware-flowbuilder
+    install: composer require dotdigital/dotdigital-for-shopware-flowbuilder
+    official: true
+    version: 2.3.0
+    published: '2025-08-11'
+    kind: platform-extension
+  - language: javascript
+    registry: npm
+    name: '@dotdigital/pwa-studio-tracking'
+    url: https://www.npmjs.com/package/@dotdigital/pwa-studio-tracking
+    install: npm install @dotdigital/pwa-studio-tracking
+    official: true
+    version: 1.1.1
+    published: '2023-06-07'
+    kind: platform-extension
+    note: Magento PWA Studio tracking module. No release since June 2023.
+  - language: javascript
+    registry: npm
+    name: '@dotdigital/pwa-studio-chat'
+    url: https://www.npmjs.com/package/@dotdigital/pwa-studio-chat
+    install: npm install @dotdigital/pwa-studio-chat
+    official: true
+    version: 1.0.3
+    published: '2023-06-07'
+    kind: platform-extension
+  - language: javascript
+    registry: npm
+    name: '@dotdigital/pwa-studio-page-builder'
+    url: https://www.npmjs.com/package/@dotdigital/pwa-studio-page-builder
+    install: npm install @dotdigital/pwa-studio-page-builder
+    official: true
+    version: 1.0.1
+    published: '2023-06-07'
+    kind: platform-extension
+  - language: javascript
+    registry: npm
+    name: '@dotdigital/pwa-studio-email-capture'
+    url: https://www.npmjs.com/package/@dotdigital/pwa-studio-email-capture
+    install: npm install @dotdigital/pwa-studio-email-capture
+    official: true
+    version: 1.0.2
+    published: '2023-06-07'
+    kind: platform-extension
+source_only:
+  - name: dotdigital-for-woocommerce
+    url: https://github.com/dotmailer/dotdigital-for-woocommerce
+    official: true
+    registry: wordpress.org / github
+    note: WooCommerce plugin distributed as a WordPress plugin, not via a code registry.
+  - name: dotdigital-for-wordpress
+    url: https://github.com/dotmailer/dotdigital-for-wordpress
+    official: true
+    registry: wordpress.org / github
+  - name: dotdigital-for-shopware
+    url: https://github.com/dotmailer/dotdigital-for-shopware
+    official: true
+    registry: shopware store / github
+  - name: dotdigital-shopify-hydrogen
+    url: https://github.com/dotmailer/dotdigital-shopify-hydrogen
+    official: true
+    registry: github
+  - name: dotdigital-adobe-commerce-app
+    url: https://github.com/dotmailer/dotdigital-adobe-commerce-app
+    official: true
+    registry: adobe commerce marketplace / github
+  - name: apiSamples-CS
+    url: https://github.com/dotmailer/apiSamples-CS
+    official: true
+    registry: none
+    note: .NET C# API samples — a samples repository, NOT a published NuGet client library.
+  - name: ec-cpaas-quickstarts
+    url: https://github.com/dotmailer/ec-cpaas-quickstarts
+    official: true
+    registry: none
+    note: CPaaS quick-start samples.
+gaps:
+  - language: python
+    note: No first-party client. `dotdigital` is not registered on PyPI (404 on 2026-08-13).
+  - language: dotnet
+    note: No first-party NuGet client library; only the apiSamples-CS samples repository.
+  - language: go
+    note: No first-party module.
+  - language: ruby
+    note: No first-party gem.
+  - language: java
+    note: >-
+      The only Maven artifacts are the Comapi App Messaging SDKs. There is no Java client for
+      the Marketing REST API.
+summary:
+  official_packages: 17
+  registries: [packagist, npm, maven-central, cocoapods, spm]
+  general_purpose_rest_sdks: 1
+  most_recent_release: '2026-07-29'
+  oldest_still_advertised_release: '2019-02-08'

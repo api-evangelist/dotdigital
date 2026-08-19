@@ -1,0 +1,131 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/ (43 harvested specs), well-known/dotdigital-well-known.yml,
+  security/dotdigital-trust-center.yml, and the Dotdigital developer hub convention docs
+description: >-
+  Which cross-cutting and industry standards the Dotdigital API estate genuinely conforms to,
+  asserted only where there is evidence in a published artifact. The estate is a plain
+  Basic-auth REST surface: strong on OpenAPI and on the newer discovery RFCs (9116, 9727),
+  absent on OAuth/OIDC, RFC 9457 problem details and RFC 8594 sunset signalling.
+standards:
+  - id: openapi-3.1
+    conforms: true
+    evidence: 15 published descriptions declare openapi 3.1.0
+  - id: openapi-3.0
+    conforms: true
+    evidence: 28 published descriptions declare openapi 3.0.0/3.0.1/3.0.3
+  - id: rfc9727-api-catalog
+    conforms: true
+    evidence: >-
+      https://developer.dotdigital.com/.well-known/api-catalog returns application/linkset+json
+      with 42 anchors, each carrying service-desc and service-doc links
+  - id: rfc9116-security-txt
+    conforms: true
+    evidence: >-
+      https://dotdigital.com/.well-known/security.txt returns 200 with Contact, Expires,
+      Preferred-Languages, Policy and Hiring fields
+  - id: rfc8615-well-known
+    conforms: true
+    evidence: security.txt and api-catalog served under /.well-known/
+  - id: http-basic-auth-rfc7617
+    conforms: true
+    evidence: securitySchemes type http scheme basic in all 43 specs
+  - id: oauth2
+    conforms: false
+    evidence: >-
+      No oauth2 securityScheme in any published spec. The v2 API does expose
+      ApiAccount_CreateOAuthToken for account provisioning, but no authorization-server
+      metadata, no scopes, and no OAuth flow is documented for API access.
+  - id: oidc
+    conforms: false
+    evidence: /.well-known/openid-configuration 404s on every host
+  - id: rfc8414-oauth-metadata
+    conforms: false
+    evidence: /.well-known/oauth-authorization-server 404s on every host
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      No response in any spec declares application/problem+json. v3 uses a proprietary
+      {errorCode, description, details[]} envelope; v2 uses ERROR_* strings.
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: No Sunset or Deprecation response header documented; deprecation is spec-flag only
+  - id: rfc9110-conditional-requests
+    conforms: true
+    evidence: >-
+      ETag on responses and If-Match on updates across the CPaaS-family services; 412 declared
+      on 16 operations across 6 specs
+  - id: rfc6585-429
+    conforms: true
+    evidence: 429 returned on tiered rate-limit exhaustion
+  - id: draft-ietf-httpapi-ratelimit-headers
+    conforms: false
+    evidence: >-
+      Dotdigital emits the legacy X-RateLimit-* family (Limit/Remaining/Reset/Scope), not the
+      standardised RateLimit / RateLimit-Policy fields
+  - id: idempotency-key
+    conforms: false
+    evidence: No idempotency key header or parameter anywhere in the estate
+  - id: json-api
+    conforms: false
+    evidence: Responses are plain JSON, not JSON:API documents
+  - id: cursor-pagination
+    conforms: true
+    evidence: v3 seek pagination with limit/marker/sort and _links/_items envelope
+  - id: offset-pagination
+    conforms: true
+    evidence: v2 select/skip pagination
+  - id: iso8601-datetimes
+    conforms: true
+    evidence: Documented UTC ISO 8601 across the estate, with a server-time operation
+  - id: asyncapi
+    conforms: false
+    evidence: >-
+      Real event surface (webhooks, events in/out, Data Firehose) but no AsyncAPI document
+      published — see asyncapi/dotdigital-webhooks.yml
+  - id: mcp
+    conforms: true
+    evidence: >-
+      Remote MCP server at https://marketing.developer.dotdigital.com/mcp answered tools/list
+      anonymously with 7 tools over streamable HTTP
+  - id: a2a
+    conforms: false
+    evidence: No agent card at /.well-known/agent-card.json or /.well-known/agent.json on any host
+  - id: hmac-webhook-signing
+    conforms: true
+    evidence: >-
+      HMAC-SHA1 over the raw body using a caller-configured secret, delivered in the
+      X-Comapi-Signature header (not base64 encoded)
+  - id: tls-1.2-minimum
+    conforms: true
+    evidence: TLS 1.0/1.1 refused; probe observed TLSv1.3 on dotdigital.com, developer.dotdigital.com and r1-api.dotdigital.com
+  - id: iso-27001
+    conforms: true
+    evidence: 'certified ISMS, Alcumus ISOQAR, certificate 18479 — security/dotdigital-trust-center.yml'
+  - id: iso-27701
+    conforms: true
+    evidence: 'certified PIMS, Alcumus ISOQAR (UKAS-accredited)'
+  - id: cyber-essentials-plus
+    conforms: true
+    evidence: UK NCSC scheme certification stated on the Trust Center
+  - id: csa-star
+    conforms: true
+    evidence: Listed on the CSA STAR registry per the Trust Center
+  - id: gdpr
+    conforms: true
+    evidence: DPAs and EU Model Contract Clauses in place; named DPO; published DPA
+  - id: soc2
+    conforms: false
+    evidence: Not claimed on the Trust Center
+  - id: pci-dss
+    conforms: false
+    evidence: Not claimed; not a payments provider
+  - id: hipaa
+    conforms: false
+    evidence: Not claimed
+summary:
+  conforms: 19
+  does_not_conform: 12
+  strongest: [openapi-3.1, rfc9727-api-catalog, rfc9116-security-txt, mcp, iso-27001]
+  weakest: [oauth2, rfc9457-problem-details, rfc8594-sunset-header, asyncapi, a2a]

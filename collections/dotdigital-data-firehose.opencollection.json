@@ -1,0 +1,156 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Data Firehose",
+    "version": "3.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Firehose",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/data-firehose/v3/configurations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "1234",
+                "type": "path",
+                "description": "The Data Firehose configuration id to delete"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Gets a Data Firehose configuration. \n"
+        },
+        {
+          "info": {
+            "name": "Update configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{region}-api.dotdigital.com/data-firehose/v3/configurations/:id",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": "54639c53-af3f-4e81-843d-d2486fc76fff"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "1234",
+                "type": "path",
+                "description": "The Data Firehose configuration id you want to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Updates a Data Firehose configuration with new details."
+        },
+        {
+          "info": {
+            "name": "Delete configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{region}-api.dotdigital.com/data-firehose/v3/configurations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "1234",
+                "type": "path",
+                "description": "The Data Firehose configuration id to delete"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Deletes a Data Firehose configuration. \nIf data sync is in progress returns 409.\n\n_Note: Once a configuration deleted it cannot be restored, this is a destructive call!_"
+        },
+        {
+          "info": {
+            "name": "Update configuration status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{region}-api.dotdigital.com/data-firehose/v3/configurations/:id/status/:newStatus",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": "54639c53-af3f-4e81-843d-d2486fc76fff"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "1234",
+                "type": "path",
+                "description": "The Data Firehose configuration id you want to update."
+              },
+              {
+                "name": "newStatus",
+                "value": "enabled",
+                "type": "path",
+                "description": "The new status for the configuration."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Updates the status of a Data Firehose configuration."
+        },
+        {
+          "info": {
+            "name": "Add configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/data-firehose/v3/configurations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Adds a new Data Firehose configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

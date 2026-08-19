@@ -1,0 +1,1697 @@
+{
+  "item": [
+    {
+      "id": "e1f7311b-c1cc-4e29-ad1e-2e4dd0cb7a61",
+      "name": "Insight and transactional data",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d5604fdd-94c5-4212-a4e5-cc7fe656685b",
+          "name": "Add transactional data to contact",
+          "request": {
+            "name": "Add transactional data to contact",
+            "description": {
+              "content": "Adds a single piece of transactional/insight data to a contact or account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                "transactional-data",
+                ":collectionName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "collectionName",
+                  "description": "(Required) The name of the transactional data collection"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"contactIdentifier\": \"<string>\",\n  \"json\": \"<json>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "53dea84a-f2f1-416e-843e-75fc747ce59c",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    "transactional-data",
+                    ":collectionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collectionName",
+                      "description": "(Required) The name of the transactional data collection"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"Order-123\",\n  \"contactIdentifier\": \"myCustomer@emailsim.io\",\n  \"json\": {\n    \"id\": \"Order-123\",\n    \"currency\": \"GBP\",\n    \"order_status\": \"completed\",\n    \"purchase_date\": \"2020-11-03 13:03:32+00:00\",\n    \"order_total\": 99,\n    \"order_subtotal\": 99,\n    \"products\": [\n      {\n        \"name\": \"Product Name\",\n        \"price\": 99,\n        \"sku\": \"68694\",\n        \"qty\": 1\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key\": \"P00000001\",\n  \"contactIdentifier\": \"23\",\n  \"json\": \"{\\r\\n\\\"id\\\": \\\"Order-123\\\",\\r\\n\\\"currency\\\": \\\"GBP\\\",\\r\\n\\\"order_status\\\": \\\"completed\\\",\\r\\n\\\"PurchaseDate\\\": \\\"2012-11-19T10:01:21Z\\\",\\r\\n\\\"order_total\\\": 111.2000000000,\\r\\n\\\"order_subtotal\\\": 133.4400000000,\\r\\n\\\"Products\\\": [\\r\\n{\\r\\n\\\"Name\\\": \\\"Long unlined leather gloves\\\",\\r\\n\\\"Price\\\": 111.2000000000,\\r\\n\\\"sku\\\": \\\"24920\\\",\\r\\n\\\"qty\\\": 2\\r\\n}\\r\\n]\\r\\n}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "940ce87c-d6a2-429a-90cf-0ef599c25499",
+          "name": "Bulk add transactional data to contacts",
+          "request": {
+            "name": "Bulk add transactional data to contacts",
+            "description": {
+              "content": "Adds multiple pieces of transactional/insight data to contacts asynchronously",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                "transactional-data",
+                "import",
+                ":collectionName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "collectionName",
+                  "description": "(Required) The name of the transactional data collection"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"RAW_BODY\": [\n    {\n      \"key\": \"<string>\",\n      \"contactIdentifier\": \"<string>\",\n      \"json\": \"<json>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"contactIdentifier\": \"<string>\",\n      \"json\": \"<json>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e26cd1d7-f983-4597-9fff-83e5fccca64a",
+              "name": "202",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    "transactional-data",
+                    "import",
+                    ":collectionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collectionName",
+                      "description": "(Required) The name of the transactional data collection"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"key\": \"Order-123\",\n    \"contactIdentifier\": \"myCustomer@emailsim.io\",\n    \"json\": {\n      \"id\": \"Order-123\",\n      \"currency\": \"GBP\",\n      \"order_status\": \"completed\",\n      \"purchase_date\": \"2020-11-03 13:03:32+00:00\",\n      \"order_total\": 99,\n      \"order_subtotal\": 99,\n      \"products\": [\n        {\n          \"name\": \"Big BBQ\",\n          \"price\": 99,\n          \"sku\": \"68694\",\n          \"qty\": 1\n        }\n      ]\n    }\n  },\n  {\n    \"key\": \"Order-124\",\n    \"contactIdentifier\": \"myOtherCustomer@emailsim.io\",\n    \"json\": {\n      \"id\": \"Order-124\",\n      \"currency\": \"USD\",\n      \"order_status\": \"completed\",\n      \"purchase_date\": \"2020-11-03 13:03:32+00:00\",\n      \"order_total\": 129,\n      \"order_subtotal\": 129,\n      \"products\": [\n        {\n          \"name\": \"Baseball bat\",\n          \"price\": 99,\n          \"sku\": \"BB-123\",\n          \"qty\": 1\n        },\n        {\n          \"name\": \"Baseball glove\",\n          \"price\": 30,\n          \"sku\": \"BB-912\",\n          \"qty\": 1\n        }\n      ]\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"842d81e8-c619-457f-bb77-ab6c4a17da39\",\n  \"status\": \"NotStarted\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8fc7c63-7aad-4258-a302-891eeffd9694",
+          "name": "Replace transactional data by key",
+          "request": {
+            "name": "Replace transactional data by key",
+            "description": {
+              "content": "Replaces a piece of transactional/insight data by key",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                "transactional-data",
+                ":collectionName",
+                ":key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "collectionName",
+                  "description": "(Required) The name of the transactional data collection"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "key",
+                  "description": "(Required) The key for the piece of data"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"json\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "187dd3bc-a3ba-43fa-a7f5-67319a5e4265",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    "transactional-data",
+                    ":collectionName",
+                    ":key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collectionName",
+                      "description": "(Required) The name of the transactional data collection"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) The key for the piece of data"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"P00000001\",\n  \"contactIdentifier\": \"986710407\",\n  \"json\": \"{\\r\\n\\\"PurchaseDate\\\": \\\"2012-11-19T10:01:21Z\\\",\\r\\n\\\"TotalExTax\\\": 111.2000000000,\\r\\n\\\"TotalIncTax\\\": 133.4400000000,\\r\\n\\\"Product\\\": [\\r\\n{\\r\\n\\\"Name\\\": \\\"Long unlined leather gloves\\\",\\r\\n\\\"Brand\\\": \\\"Dents\\\",\\r\\n\\\"Department\\\": \\\"Womenswear\\\",\\r\\n\\\"Category\\\": \\\"Gloves\\\",\\r\\n\\\"PriceExTax\\\": 111.2000000000,\\r\\n\\\"ProductID\\\": \\\"24920\\\"\\r\\n}\\r\\n],\\r\\n\\\"SalesChannel\\\": \\\"Online\\\",\\r\\n\\\"SalesSubChannel\\\": \\\"myshop.com\\\"\\r\\n}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key\": \"P00000001\",\n  \"contactIdentifier\": \"23\",\n  \"json\": \"{\\r\\n\\\"PurchaseDate\\\": \\\"2012-11-19T10:01:21Z\\\",\\r\\n\\\"TotalExTax\\\": 111.2000000000,\\r\\n\\\"TotalIncTax\\\": 133.4400000000,\\r\\n\\\"Product\\\": [\\r\\n{\\r\\n\\\"Name\\\": \\\"Long unlined leather gloves\\\",\\r\\n\\\"Brand\\\": \\\"Dents\\\",\\r\\n\\\"Department\\\": \\\"Womenswear\\\",\\r\\n\\\"Category\\\": \\\"Gloves\\\",\\r\\n\\\"PriceExTax\\\": 111.2000000000,\\r\\n\\\"ProductID\\\": \\\"24920\\\"\\r\\n}\\r\\n],\\r\\n\\\"SalesChannel\\\": \\\"In store\\\",\\r\\n\\\"SalesSubChannel\\\": \\\"London - One New Change\\\"\\r\\n}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68c9cf08-fbbb-4d2e-8b4c-cce13ee5387f",
+          "name": "Get transactional data by key",
+          "request": {
+            "name": "Get transactional data by key",
+            "description": {
+              "content": "Gets a piece of transactional/insight data by key",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                "transactional-data",
+                ":collectionName",
+                ":key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "key",
+                  "description": "(Required) The key for the piece of transactional data"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "collectionName",
+                  "description": "(Required) The name of the transactional data collection"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a86322e-0faa-4434-9b09-2b448efa1ef0",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    "transactional-data",
+                    ":collectionName",
+                    ":key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) The key for the piece of transactional data"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collectionName",
+                      "description": "(Required) The name of the transactional data collection"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key\": \"P00000110\",\n  \"contactIdentifier\": \"23\",\n  \"json\": \"{\\r\\n\\\"PurchaseDate\\\": \\\"2020-01-01T09:40:18.527Z\\\",\\r\\n\\\"TotalExTax\\\": 111.2000000000,\\r\\n\\\"TotalIncTax\\\": 133.4400000000,\\r\\n\\\"Product\\\": [\\r\\n{\\r\\n\\\"Name\\\": \\\"Long unlined leather gloves\\\",\\r\\n\\\"Brand\\\": \\\"Dents\\\",\\r\\n\\\"Department\\\": \\\"Womenswear\\\",\\r\\n\\\"Category\\\": \\\"Gloves\\\",\\r\\n\\\"PriceExTax\\\": 111.2000000000,\\r\\n\\\"ProductID\\\": \\\"24920\\\"\\r\\n}\\r\\n],\\r\\n\\\"SalesChannel\\\": \\\"In store\\\",\\r\\n\\\"SalesSubChannel\\\": \\\"London - One New Change\\\"\\r\\n}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7bd17658-d7d3-42d6-ad21-b97f37dd3774",
+          "name": "Delete transactional data by key",
+          "request": {
+            "name": "Delete transactional data by key",
+            "description": {
+              "content": "Deletes a piece of transactional/insight data by key",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                "transactional-data",
+                ":collectionName",
+                ":key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "collectionName",
+                  "description": "(Required) The name of the transactional data collection"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "key",
+                  "description": "(Required) The key for the piece of transactional data"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b1a2afef-92b9-49b8-b16a-337203111822",
+              "name": "204",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    "transactional-data",
+                    ":collectionName",
+                    ":key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collectionName",
+                      "description": "(Required) The name of the transactional data collection"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) The key for the piece of transactional data"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04c3a6e0-9e95-4348-9f89-228dd3c8934c",
+          "name": "Get transactional data import status",
+          "request": {
+            "name": "Get transactional data import status",
+            "description": {
+              "content": "Gets the import status of a previously started transactional/insight data import",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                "transactional-data",
+                "import",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The import ID (GUID) of the transactional data import"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7eb130ca-c287-4a56-9b55-e17d0b64ecd7",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    "transactional-data",
+                    "import",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The import ID (GUID) of the transactional data import"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"842d81e8-c619-457f-bb77-ab6c4a17da39\",\n  \"status\": \"Finished\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c205e29-501f-46a9-a662-b0a07b939d72",
+          "name": "Get transactional data import report",
+          "request": {
+            "name": "Get transactional data import report",
+            "description": {
+              "content": "Gets a report with statistics about what transactional/insight data was successfully imported, and what was unable to be imported",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                "transactional-data",
+                "import",
+                ":id",
+                "report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The import ID (GUID) of the transactional data import"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "683396b2-cad5-4e72-9d5d-5aeb43d9b7d3",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    "transactional-data",
+                    "import",
+                    ":id",
+                    "report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The import ID (GUID) of the transactional data import"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n\\\"totalItems\\\": 6,\\n\\\"totalImported\\\": 5,\\n\\\"totalRejected\\\": 1,\\n\\\"faults\\\": [\\n\\\"key\\\": \\\"1234AB\\\",\\n\\\"reason\\\": \\\"InvalidJson\\\"\\n]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92fd155f-3435-4467-99d5-be260ba733fc",
+          "name": "Get transactional data collection for contact by email",
+          "request": {
+            "name": "Get transactional data collection for contact by email",
+            "description": {
+              "content": "Gets a list of up to 100 pieces of transactional data records for a contact in a collection by their email address, sorted by the transactional record key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                ":selector",
+                "transactional-data",
+                ":collectionName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<email>",
+                  "key": "selector",
+                  "description": "(Required) The email address or contact ID of the contact."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "collectionName",
+                  "description": "(Required) The name of the transactional data collection"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "31b921d9-2931-4ed5-8c6a-b49f662acb45",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    ":selector",
+                    "transactional-data",
+                    ":collectionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<email>",
+                      "key": "selector",
+                      "description": "(Required) The email address or contact ID of the contact."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collectionName",
+                      "description": "(Required) The name of the transactional data collection"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key\": \"P00000113\",\n    \"contactIdentifier\": \"23\",\n    \"json\": \"{\\r\\n\\\"PurchaseDate\\\": \\\"2020-01-01T09:40:18.527Z\\\",\\r\\n\\\"TotalExTax\\\": 92.0000000000,\\r\\n\\\"TotalIncTax\\\": 110.4000000000,\\r\\n\\\"Product\\\": [\\r\\n{\\r\\n\\\"Name\\\": \\\"Cashmere cable-knit beanie\\\",\\r\\n\\\"Brand\\\": \\\"Paul Smith\\\",\\r\\n\\\"Department\\\": \\\"Menswear\\\",\\r\\n\\\"Category\\\": \\\"Hat\\\",\\r\\n\\\"PriceExTax\\\": 88.0000000000,\\r\\n\\\"ProductID\\\": \\\"24937\\\"\\r\\n},\\r\\n{\\r\\n\\\"Name\\\": \\\"Armani Jeans beanie hat\\\",\\r\\n\\\"Brand\\\": \\\"Armani Jeans\\\",\\r\\n\\\"Department\\\": \\\"Menswear\\\",\\r\\n\\\"Category\\\": \\\"Hat\\\",\\r\\n\\\"PriceExTax\\\": 56.0000000000,\\r\\n\\\"ProductID\\\": \\\"24938\\\"\\r\\n}\\r\\n],\\r\\n\\\"SalesChannel\\\": \\\"Online\\\",\\r\\n\\\"SalesSubChannel\\\": \\\"myshop.com\\\"\\r\\n}\"\n  },\n  {\n    \"key\": \"P00000114\",\n    \"contactIdentifier\": \"23\",\n    \"json\": \"{\\r\\n\\\"PurchaseDate\\\": \\\"2020-01-01T09:40:18.527Z\\\",\\r\\n\\\"TotalExTax\\\": 56.0000000000,\\r\\n\\\"TotalIncTax\\\": 67.2000000000,\\r\\n\\\"Product\\\": [\\r\\n{\\r\\n\\\"Name\\\": \\\"Armani Jeans beanie hat\\\",\\r\\n\\\"Brand\\\": \\\"Armani Jeans\\\",\\r\\n\\\"Department\\\": \\\"Menswear\\\",\\r\\n\\\"Category\\\": \\\"Hat\\\",\\r\\n\\\"PriceExTax\\\": 56.0000000000,\\r\\n\\\"ProductID\\\": \\\"24938\\\"\\r\\n}\\r\\n],\\r\\n\\\"SalesChannel\\\": \\\"In store\\\",\\r\\n\\\"SalesSubChannel\\\": \\\"Manchester\\\"\\r\\n}\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "001435ae-8715-446a-9a87-8a1d82187be0",
+          "name": "Delete transactional data collection for contact",
+          "request": {
+            "name": "Delete transactional data collection for contact",
+            "description": {
+              "content": "Deletes all transactional/insight data for a contact in a collection identified by either their email or contact ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                ":selector",
+                "transactional-data",
+                ":collectionName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<email>",
+                  "key": "selector",
+                  "description": "(Required) The email address or contact ID of the contact."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "collectionName",
+                  "description": "(Required) The name of the transactional data collection"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "db16154e-94b7-4ce8-aca8-d05c669771be",
+              "name": "204",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    ":selector",
+                    "transactional-data",
+                    ":collectionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<email>",
+                      "key": "selector",
+                      "description": "(Required) The email address or contact ID of the contact."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collectionName",
+                      "description": "(Required) The name of the transactional data collection"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba95507e-5686-441a-be46-84143908a587",
+          "name": "Get account scoped transactional data",
+          "request": {
+            "name": "Get account scoped transactional data",
+            "description": {
+              "content": "Gets transactional/insight data in a collection at account level",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "transactional-data",
+                ":collectionName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "select",
+                  "value": "<integer>",
+                  "description": "The number of records to select between 1 and 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "The numbers of records to skip in the result set"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "collectionName",
+                  "description": "(Required) The name of the transactional data collection"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f5bab6a6-069d-417a-9ffb-a8791f12a421",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transactional-data",
+                    ":collectionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "select",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collectionName",
+                      "description": "(Required) The name of the transactional data collection"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key\": \"Resort001\",\n    \"contactIdentifier\": \"-1\",\n    \"json\": \"{\\r\\n\\\"Name\\\": \\\"Playa del Fun\\\",\\r\\n\\\"Country\\\": \\\"Spain\\\",\\r\\n\\\"Stars\\\": 3.0000000000,\\r\\n\\\"Category\\\": \\\"Family beach\\\",\\r\\n\\\"Image\\\": \\\"https://www.123holidays.com/resorts/1/9/7/9/3/1/files/imagecache/63595/w20_124720_beachresort1.jpg\\\",\\r\\n\\\"Short_desc\\\": \\\"Close to three water parks and the best beach around, this resort is a favourite with families.\\\",\\r\\n\\\"From_price\\\": 412.0000000000,\\r\\n\\\"Link\\\": \\\"https://www.123holidays.com/resorts/playa_del_fun\\\"\\r\\n}\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2a02cd9-36cf-408d-ab55-45e60f033e4b",
+          "name": "Get transactional data collections",
+          "request": {
+            "name": "Get transactional data collections",
+            "description": {
+              "content": "Gets transactional/insight data collections at account and contact level",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                "transactional-data-collections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "select",
+                  "value": "<integer>",
+                  "description": "The number of records to select between 1 and 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "The numbers of records to skip in the result set"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9f345c66-6f84-4a9a-9ed2-11f71fb6d654",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    "transactional-data-collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "select",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"[\\n{\\n\\\"Id\\\": \\\"1\\\",\\n\\\"Name\\\": \\\"Catalog\\\",\\n},\\n{\\n\\\"Id\\\": \\\"2\\\",\\n\\\"Name\\\": \\\"Orders\\\",\\n},\\n{\\n\\\"Id\\\": \\\"3\\\",\\n\\\"Name\\\": \\\"ProductRecommendations\\\",\\n},\\n{\\n\\\"Id\\\": \\\"4\\\",\\n\\\"Name\\\": \\\"ProductRecommendations_2\\\",\\n}\\n]\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "74e346df-207d-4bd9-b530-72281bba86bd",
+          "name": "Empty transactional data collection",
+          "request": {
+            "name": "Empty transactional data collection",
+            "description": {
+              "content": "Removes all transactional data from the specified collection",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                "transactional-data",
+                ":collectionName",
+                "empty"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "collectionName",
+                  "description": "(Required) The name of the transactional data collection to be emptied"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e420bd07-4b94-4196-98e8-ea00a39ee148",
+              "name": "204",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    "transactional-data",
+                    ":collectionName",
+                    "empty"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collectionName",
+                      "description": "(Required) The name of the transactional data collection to be emptied"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n\"value\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3171d983-c345-4597-8bd5-4eba8f20009f",
+    "name": "Insight and transactional data",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Deprecated v2 endpoints for managing transactional and insight data. Use this\nAPI to add, replace, retrieve, and delete individual records within named\ncollections; bulk-import records asynchronously; check import status and retrieve\nimport reports; query all records in a collection at account level; list available\ncollections; and empty a collection. All endpoints in this spec are deprecated —\nnew integrations should use the Insight Data Service API instead.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,636 @@
+openapi: 3.1.0
+info:
+  title: SMS campaigns
+  version: 2.0.1
+  description: 'Create and manage SMS campaigns. Use this API to create, retrieve, update, copy,
+
+    and delete SMS campaigns, and to send individual SMS messages to a specified
+
+    telephone number.'
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true
+x-samples-languages:
+- curl
+- csharp
+- java
+- javascript
+- node
+- python
+- php
+- ruby
+externalDocs:
+  description: Learn more about Dotdigital APIs
+  url: https://developer.dotdigital.com
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      default: r1
+      enum:
+      - r1
+      - r2
+      - r3
+      description: The Dotdigital region id your account belongs to
+security:
+- basicAuth: []
+paths:
+  /v2/sms/campaigns:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    post:
+      summary: Create SMS campaign
+      deprecated: false
+      description: Creates a new SMS campaign
+      operationId: create-sms-campaign
+      tags:
+      - SMS campaigns
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - message
+              properties:
+                name:
+                  type: string
+                  maxLength: 255
+                  description: 'The name of the SMS campaign that is being created. Maximum: 255 characters.'
+                message:
+                  type: string
+                  maxLength: 1600
+                  description: The message content of the SMS campaign that is being created.
+                sendingIdentity:
+                  type: string
+                  maxLength: 15
+                  description: 'The sending identity (From name) to use in the SMS campaign. If a sending identity is specified, it must exist on your account as a sending identity (found in ''''SMS from names''''). If you don''''t specify a sending identity, the default identity from your account is used for this SMS campaign. Maximum: 15 characters.'
+                toggleShortLinks:
+                  type: boolean
+                  description: Defines whether or not the new campaign is going to shorten links within the SMS content. If specified as true, it validates all links in the SMS message to look for any formatting errors. If errors are found, an error is returned.
+            examples:
+              Request Example:
+                value:
+                  name: SMS test campaign
+                  message: Test SMS campaign message content
+                  sendingIdentity: dotdigital
+                  toggleShortLinks: 'false'
+                summary: Request Example
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: The SMS camapigns unique id.
+                    default: 0
+                    examples:
+                    - 1
+                  name:
+                    type: string
+                    description: The SMS campaigns name.
+                    examples:
+                    - SMS Test Campaign
+                  message:
+                    type: string
+                    description: The SMS message.
+                    examples:
+                    - Test SMS campaign message content
+                  sendingIdentity:
+                    type: string
+                    description: Who the SMS is sent from.
+                    examples:
+                    - dotdigital
+                  sendingIdentityId:
+                    description: The unique id for the sending identity.
+                    type: integer
+                    examples:
+                    - 1234
+                  toggleShortLinks:
+                    description: Whether link shortening is enabled or not.
+                    type: boolean
+                    examples:
+                    - true
+                  status:
+                    description: The SMS campaigns status.
+                    type: string
+                    examples:
+                    - unsent
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                    id: 1
+                    name: SMS Test Campaign
+                    message: Test SMS campaign message content
+                    sendingIdentity: dotdigital
+                    sendingIdentityId: 1
+                    toggleShortLinks: false
+                    status: unsent
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    examples:
+                    - The Name field is required.The Message field is required. ERROR_SMS_INVALID
+    get:
+      summary: Get SMS campaigns
+      deprecated: false
+      description: Returns existing SMS campaigns
+      operationId: get-sms-campaigns
+      tags:
+      - SMS campaigns
+      parameters:
+      - name: select
+        in: query
+        description: The number of records to select between 1 and 1000 to retrieve.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 1000
+          default: 1000
+      - name: skip
+        in: query
+        description: The numbers of records to skip in the result set.
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: The SMS camapigns unique id.
+                      default: 0
+                      examples:
+                      - 1
+                    name:
+                      type: string
+                      description: The SMS campaigns name.
+                      examples:
+                      - SMS Test Campaign
+                    message:
+                      type: string
+                      description: The SMS message.
+                      examples:
+                      - Test SMS campaign message content
+                    sendingIdentity:
+                      type: string
+                      description: Who the SMS is sent from.
+                      examples:
+                      - dotdigital
+                    sendingIdentityId:
+                      description: The unique id for the sending identity.
+                      type: integer
+                      examples:
+                      - 1234
+                    toggleShortLinks:
+                      description: Whether link shortening is enabled or not.
+                      type: boolean
+                      examples:
+                      - true
+                    status:
+                      description: The SMS campaigns status.
+                      type: string
+                      examples:
+                      - unsent
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                  - id: 1
+                    name: SMS Test Campaign
+                    message: ''
+                    sendingIdentityId: 123
+                    sendingIdentity: dotdigital
+                    status: Sent
+                    toggleShortLinks: false
+                  - id: 2
+                    name: SMS Test Campaign 2
+                    message: ''
+                    sendingIdentityId: 123
+                    sendingIdentity: dotdigital
+                    status: Sent
+                    toggleShortLinks: true
+  /v2/sms/campaigns/copy:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    post:
+      summary: Copy SMS campaign
+      deprecated: false
+      description: Create a copy of an existing SMS campaign
+      operationId: copy-sms-campaign
+      tags:
+      - SMS campaigns
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - campaignId
+              - copyName
+              properties:
+                campaignId:
+                  type: integer
+                  description: The ID of the SMS campaign to copy. Must be a valid campaign. Deleted campaigns can't be copied.
+                  format: int32
+                copyName:
+                  type: string
+                  maxLength: 255
+                  description: 'The name of the new SMS campaign created from the copy. Maximum: 255 characters.'
+            examples:
+              Request Example:
+                value:
+                  campaignId: '1'
+                  copyName: API Copy SMS Campaign
+                summary: Request Example
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: The SMS camapigns unique id.
+                    default: 0
+                    examples:
+                    - 1
+                  name:
+                    type: string
+                    description: The SMS campaigns name.
+                    examples:
+                    - SMS Test Campaign
+                  message:
+                    type: string
+                    description: The SMS message.
+                    examples:
+                    - Test SMS campaign message content
+                  sendingIdentity:
+                    type: string
+                    description: Who the SMS is sent from.
+                    examples:
+                    - dotdigital
+                  sendingIdentityId:
+                    description: The unique id for the sending identity.
+                    type: integer
+                    examples:
+                    - 1234
+                  toggleShortLinks:
+                    description: Whether link shortening is enabled or not.
+                    type: boolean
+                    examples:
+                    - true
+                  status:
+                    description: The SMS campaigns status.
+                    type: string
+                    examples:
+                    - unsent
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                    id: 1
+                    name: API Copied SMS
+                    message: Message Copied from existing Campaign
+                    sendingIdentityId: 1
+                    sendingIdentity: dotdigital
+                    toggleShortLinks: true
+                    status: Unsent
+  /v2/sms/campaigns/{campaignId}:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    - name: campaignId
+      in: path
+      description: The ID of the campaign.
+      required: true
+      example: 12345
+      schema:
+        type: integer
+    get:
+      summary: Get SMS campaign
+      deprecated: false
+      description: Returns an existing SMS campaign
+      operationId: get-sms-campaign
+      tags:
+      - SMS campaigns
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: The SMS camapigns unique id.
+                    default: 0
+                    examples:
+                    - 1
+                  name:
+                    type: string
+                    description: The SMS campaigns name.
+                    examples:
+                    - SMS Test Campaign
+                  message:
+                    type: string
+                    description: The SMS message.
+                    examples:
+                    - Test SMS campaign message content
+                  sendingIdentity:
+                    type: string
+                    description: Who the SMS is sent from.
+                    examples:
+                    - dotdigital
+                  sendingIdentityId:
+                    description: The unique id for the sending identity.
+                    type: integer
+                    examples:
+                    - 1234
+                  toggleShortLinks:
+                    description: Whether link shortening is enabled or not.
+                    type: boolean
+                    examples:
+                    - true
+                  status:
+                    description: The SMS campaigns status.
+                    type: string
+                    examples:
+                    - unsent
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                    id: 1
+                    name: SMS Test Campaign
+                    message: Test SMS campaign message content
+                    sendingIdentityId: 123
+                    sendingIdentity: dotdigital
+                    status: Sent
+                    toggleShortLinks: false
+    put:
+      summary: Update SMS campaign
+      deprecated: false
+      description: Updates an existing SMS campaign, as long as the campaign has not been sent.
+      operationId: update-sms-campaign
+      tags:
+      - SMS campaigns
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - message
+              properties:
+                name:
+                  type: string
+                  maxLength: 255
+                  description: 'The name of the SMS campaign that is being created. Maximum: 255 characters.'
+                message:
+                  type: string
+                  maxLength: 1600
+                  description: The message content of the SMS campaign that is being created.
+                sendingIdentity:
+                  type: string
+                  maxLength: 15
+                  description: 'The sending identity (From name) to use in the SMS campaign. If a sending identity is specified, it must exist on your account as a sending identity (found in ''''SMS from names''''). If you don''''t specify a sending identity, the default identity from your account is used for this SMS campaign. Maximum: 15 characters.'
+                toggleShortLinks:
+                  type: boolean
+                  description: Defines whether or not the new campaign is going to shorten links within the SMS content. If specified as true, it validates all links in the SMS message to look for any formatting errors. If errors are found, an error is returned.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: The SMS camapigns unique id.
+                    default: 0
+                    examples:
+                    - 1
+                  name:
+                    type: string
+                    description: The SMS campaigns name.
+                    examples:
+                    - SMS Test Campaign
+                  message:
+                    type: string
+                    description: The SMS message.
+                    examples:
+                    - Test SMS campaign message content
+                  sendingIdentity:
+                    type: string
+                    description: Who the SMS is sent from.
+                    examples:
+                    - dotdigital
+                  sendingIdentityId:
+                    description: The unique id for the sending identity.
+                    type: integer
+                    examples:
+                    - 1234
+                  toggleShortLinks:
+                    description: Whether link shortening is enabled or not.
+                    type: boolean
+                    examples:
+                    - true
+                  status:
+                    description: The SMS campaigns status.
+                    type: string
+                    examples:
+                    - unsent
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                    id: 10240
+                    name: An updated name
+                    sendingIdentityId: 4623
+                    sendingIdentity: dotdigital
+                    toggleShortLinks: true
+                    status: Unsent
+                    message: An updated message
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    examples:
+                    - The Name field is required.The Message field is required. ERROR_SMS_INVALID
+    delete:
+      summary: Delete SMS campaign
+      deprecated: false
+      description: Marks an existing SMS campaign as deleted
+      operationId: delete-sms-campaign
+      tags:
+      - SMS campaigns
+      responses:
+        '200':
+          description: Deleted
+  /v2/sms-messages/send-to/{telephoneNumber}:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    post:
+      summary: Send SMS message
+      deprecated: false
+      description: Sends a single SMS message
+      operationId: send-sms-message
+      tags:
+      - SMS campaigns
+      parameters:
+      - name: telephoneNumber
+        in: path
+        description: The mobile number of the contact in E.164 format.
+        required: true
+        example: '447123123123'
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  maxLength: 1600
+                  description: The SMS message you want to send.
+            examples:
+              Request Example:
+                value:
+                  message: Hello. We're pleased to tell you that your order has now been dispatched.
+                summary: Request Example
+      responses:
+        '204':
+          description: SMS send accepted
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    smsCampaignDetails:
+      type: object
+      required:
+      - name
+      - message
+      properties:
+        name:
+          type: string
+          maxLength: 255
+          description: 'The name of the SMS campaign that is being created. Maximum: 255 characters.'
+        message:
+          type: string
+          maxLength: 1600
+          description: The message content of the SMS campaign that is being created.
+        sendingIdentity:
+          type: string
+          maxLength: 15
+          description: 'The sending identity (From name) to use in the SMS campaign. If a sending identity is specified, it must exist on your account as a sending identity (found in ''''SMS from names''''). If you don''''t specify a sending identity, the default identity from your account is used for this SMS campaign. Maximum: 15 characters.'
+        toggleShortLinks:
+          type: boolean
+          description: Defines whether or not the new campaign is going to shorten links within the SMS content. If specified as true, it validates all links in the SMS message to look for any formatting errors. If errors are found, an error is returned.
+    smsCampaign:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The SMS camapigns unique id.
+          default: 0
+          examples:
+          - 1
+        name:
+          type: string
+          description: The SMS campaigns name.
+          examples:
+          - SMS Test Campaign
+        message:
+          type: string
+          description: The SMS message.
+          examples:
+          - Test SMS campaign message content
+        sendingIdentity:
+          type: string
+          description: Who the SMS is sent from.
+          examples:
+          - dotdigital
+        sendingIdentityId:
+          description: The unique id for the sending identity.
+          type: integer
+          examples:
+          - 1234
+        toggleShortLinks:
+          description: Whether link shortening is enabled or not.
+          type: boolean
+          examples:
+          - true
+        status:
+          description: The SMS campaigns status.
+          type: string
+          examples:
+          - unsent

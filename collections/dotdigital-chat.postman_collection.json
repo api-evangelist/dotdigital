@@ -1,0 +1,3247 @@
+{
+  "item": [
+    {
+      "id": "8503ffa4-d0ab-4697-93ae-47ec7af0d9c4",
+      "name": "Retrieves a chat",
+      "request": {
+        "name": "Retrieves a chat",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chats",
+            ":chatId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "includeDeleted",
+              "value": "<boolean>",
+              "description": "Indicates whether deleted chats should be returned"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "chatId",
+              "description": "(Required) The id of the chat"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "a7501531-eb8f-4ab4-b5f2-712e452c0314",
+          "name": "The requested chat",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "includeDeleted",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "disabled": false,
+              "description": "A unique value representing the version of the chat, optionally used for optimistic concurrency control on PUT and DELETE",
+              "key": "ETag",
+              "value": "string"
+            },
+            {
+              "disabled": false,
+              "description": "The date the chat was last updated in ISO 8601 format",
+              "key": "Last-Modified",
+              "value": "1966-07-25T14:54:47.245Z"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"teamId\": \"string\",\n  \"originalTeamId\": \"string\",\n  \"channelId\": \"string\",\n  \"status\": \"replied\",\n  \"participants\": [\n    {\n      \"id\": \"string\",\n      \"role\": \"participant\"\n    },\n    {\n      \"id\": \"string\",\n      \"role\": \"participant\"\n    }\n  ],\n  \"context\": {\n    \"conversationId\": \"string\"\n  },\n  \"_createdOn\": \"1998-05-03T12:50:34.915Z\",\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1968-01-26T10:03:06.359Z\",\n  \"_updatedBy\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "255f64e7-d40e-4fd8-bdc7-5b3fc1c3b771",
+          "name": "The chat was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "includeDeleted",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d0d470f3-132c-4716-821d-b69fee87f4a4",
+      "name": "Updates a chat",
+      "request": {
+        "name": "Updates a chat",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chats",
+            ":chatId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "chatId",
+              "description": "(Required) The id of the chat"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "An optional ETag for optimistic concurrency control",
+            "key": "if-match",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "6bd58df3-68b9-4a67-8f8e-d86473c948c0",
+          "name": "The updated chat",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "disabled": false,
+              "description": "A unique value representing the version of the chat, optionally used for optimistic concurrency control on PUT and DELETE",
+              "key": "ETag",
+              "value": "string"
+            },
+            {
+              "disabled": false,
+              "description": "The date the chat was last updated in ISO 8601 format",
+              "key": "Last-Modified",
+              "value": "1966-07-25T14:54:47.245Z"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"teamId\": \"string\",\n  \"originalTeamId\": \"string\",\n  \"channelId\": \"string\",\n  \"status\": \"new\",\n  \"participants\": [\n    {\n      \"id\": \"string\",\n      \"role\": \"participant\"\n    },\n    {\n      \"id\": \"string\",\n      \"role\": \"participant\"\n    }\n  ],\n  \"context\": {\n    \"conversationId\": \"string\"\n  },\n  \"_createdOn\": \"1970-10-17T03:26:12.498Z\",\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1992-08-28T05:45:26.304Z\",\n  \"_updatedBy\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "33eb7858-a0ec-452c-96e2-e90c22aac894",
+          "name": "Validation issues were found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "86fe5af8-8254-45a3-8b3b-3032a55cf535",
+          "name": "The chat was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "4f7f60b8-0d56-4e9d-863c-818d6d56a35a",
+          "name": "A conncurrency issue occured updating the chat",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "1cf00af4-a89c-46ed-9c41-95264f033802",
+          "name": "The specified 'if-match' header was not valid, refresh and retry",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Precondition Failed",
+          "code": 412,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "7fdd8a23-e8ab-43c3-8e71-442e36bf3497",
+      "name": "Deletes a chat",
+      "request": {
+        "name": "Deletes a chat",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chats",
+            ":chatId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "chatId",
+              "description": "(Required) The id of the chat"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "An optional ETag for optimistic concurrency control",
+            "key": "if-match",
+            "value": "<string>"
+          }
+        ],
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "eb00d58c-ccc2-4ca4-bd4c-3474718a5ce3",
+          "name": "Indicates successful deletetion of an chat",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "b6e226d1-e305-4109-92a3-122d2f7f1a80",
+          "name": "The chat was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "dd7c39e9-9043-435e-9937-2bee1f5969b2",
+          "name": "A conncurrency issue occured deleting the chat",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "4f6dd770-fe25-419b-8d9a-79bf1717633e",
+          "name": "The specified 'if-match' header was not valid, refresh and retry",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Precondition Failed",
+          "code": 412,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "1fc20317-ce76-4709-a2eb-2762b3037a8d",
+      "name": "Assigns a chat",
+      "request": {
+        "name": "Assigns a chat",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chats",
+            ":chatId",
+            "assign"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "chatId",
+              "description": "(Required) The id of the chat"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "An optional ETag for optimistic concurrency control",
+            "key": "if-match",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"teamId\": \"<string>\",\n  \"agentId\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "804cc0b3-cff3-4135-b6ca-e6cdea15643c",
+          "name": "The updated chat",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "assign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teamId\": \"<string>\",\n  \"agentId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "disabled": false,
+              "description": "A unique value representing the version of the chat, optionally used for optimistic concurrency control on PUT and DELETE",
+              "key": "ETag",
+              "value": "string"
+            },
+            {
+              "disabled": false,
+              "description": "The date the chat was last updated in ISO 8601 format",
+              "key": "Last-Modified",
+              "value": "1966-07-25T14:54:47.245Z"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"teamId\": \"string\",\n  \"originalTeamId\": \"string\",\n  \"channelId\": \"string\",\n  \"status\": \"new\",\n  \"participants\": [\n    {\n      \"id\": \"string\",\n      \"role\": \"participant\"\n    },\n    {\n      \"id\": \"string\",\n      \"role\": \"participant\"\n    }\n  ],\n  \"context\": {\n    \"conversationId\": \"string\"\n  },\n  \"_createdOn\": \"1970-10-17T03:26:12.498Z\",\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1992-08-28T05:45:26.304Z\",\n  \"_updatedBy\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "1adb1b26-a0d8-4931-843d-dccf9c299f7b",
+          "name": "Validation issues were found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "assign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teamId\": \"<string>\",\n  \"agentId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "3a069cfd-3dca-4988-b1d1-b367e91c9a66",
+          "name": "The chat was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "assign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teamId\": \"<string>\",\n  \"agentId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "ebc86157-a936-4b26-b4f8-5ea18ad6e54e",
+          "name": "A conncurrency issue occured updating the chat",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "assign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teamId\": \"<string>\",\n  \"agentId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "383919ac-9432-4bd6-a219-097de62b0233",
+          "name": "The specified 'if-match' header was not valid, refresh and retry",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "assign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teamId\": \"<string>\",\n  \"agentId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Precondition Failed",
+          "code": 412,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "147ebe66-4909-4957-ac87-8460c5b9cb9a",
+      "name": "Closes a chat",
+      "request": {
+        "name": "Closes a chat",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chats",
+            ":chatId",
+            "close"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "chatId",
+              "description": "(Required) The id of the chat"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "An optional ETag for optimistic concurrency control",
+            "key": "if-match",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"bypassMessage\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "ba3cc3a2-780f-40cb-916f-e9947c7f685c",
+          "name": "The updated chat",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "close"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bypassMessage\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "disabled": false,
+              "description": "A unique value representing the version of the chat, optionally used for optimistic concurrency control on PUT and DELETE",
+              "key": "ETag",
+              "value": "string"
+            },
+            {
+              "disabled": false,
+              "description": "The date the chat was last updated in ISO 8601 format",
+              "key": "Last-Modified",
+              "value": "1966-07-25T14:54:47.245Z"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"teamId\": \"string\",\n  \"originalTeamId\": \"string\",\n  \"channelId\": \"string\",\n  \"status\": \"new\",\n  \"participants\": [\n    {\n      \"id\": \"string\",\n      \"role\": \"participant\"\n    },\n    {\n      \"id\": \"string\",\n      \"role\": \"participant\"\n    }\n  ],\n  \"context\": {\n    \"conversationId\": \"string\"\n  },\n  \"_createdOn\": \"1970-10-17T03:26:12.498Z\",\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1992-08-28T05:45:26.304Z\",\n  \"_updatedBy\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "27582bda-76ca-463c-9393-fe3ad5e9ea7c",
+          "name": "Validation issues were found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "close"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bypassMessage\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "c042cc18-178d-45c0-8cf9-1668e78bf25c",
+          "name": "The chat was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "close"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bypassMessage\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "d1f1068f-141f-4cf3-8bfc-0ba661e92842",
+          "name": "A conncurrency issue occured updating the chat",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "close"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bypassMessage\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "0fbfd978-8992-405b-9acb-a064063e0266",
+          "name": "The specified 'if-match' header was not valid, refresh and retry",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "close"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bypassMessage\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Precondition Failed",
+          "code": 412,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "1c5bb2ed-ebe4-4e48-bc7c-35dab38fec5e",
+      "name": "Changes the channel for an existing chat",
+      "request": {
+        "name": "Changes the channel for an existing chat",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chats",
+            ":chatId",
+            "channel"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "chatId",
+              "description": "(Required) The id of the chat"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "An optional ETag for optimistic concurrency control",
+            "key": "if-match",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"channelId\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "7cac6043-cde3-48c7-b965-4821c613468d",
+          "name": "The updated chat",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "channel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channelId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "disabled": false,
+              "description": "A unique value representing the version of the chat, optionally used for optimistic concurrency control on PUT and DELETE",
+              "key": "ETag",
+              "value": "string"
+            },
+            {
+              "disabled": false,
+              "description": "The date the chat was last updated in ISO 8601 format",
+              "key": "Last-Modified",
+              "value": "1966-07-25T14:54:47.245Z"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"teamId\": \"string\",\n  \"originalTeamId\": \"string\",\n  \"channelId\": \"string\",\n  \"status\": \"new\",\n  \"participants\": [\n    {\n      \"id\": \"string\",\n      \"role\": \"participant\"\n    },\n    {\n      \"id\": \"string\",\n      \"role\": \"participant\"\n    }\n  ],\n  \"context\": {\n    \"conversationId\": \"string\"\n  },\n  \"_createdOn\": \"1970-10-17T03:26:12.498Z\",\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1992-08-28T05:45:26.304Z\",\n  \"_updatedBy\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "fb88b5a9-9e03-41eb-ad6a-37e619abbf21",
+          "name": "Validation issues were found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "channel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channelId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "74bd2bb0-e145-43ac-8239-44c7ba4c9868",
+          "name": "The chat was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "channel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channelId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "c8c73390-7141-4d20-b841-c7a73bb30c3c",
+          "name": "A conncurrency issue occured updating the chat",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "channel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channelId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "ba1803b6-c210-46fd-a3bc-3c2adff45df7",
+          "name": "The specified 'if-match' header was not valid, refresh and retry",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "channel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channelId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Precondition Failed",
+          "code": 412,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c99205fe-5f1d-41a9-84ba-37c69bd353ca",
+      "name": "Sends a form to a chat",
+      "request": {
+        "name": "Sends a form to a chat",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chats",
+            ":chatId",
+            "form"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "chatId",
+              "description": "(Required) The id of the chat"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"formTemplateId\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "7cb65271-bbeb-4263-8890-8ffbdbed1bfb",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "form"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"formTemplateId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "48a137d5-8aea-4c77-ab7c-c57b4ee990a9",
+          "name": "Validation issues were found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "form"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"formTemplateId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "451a38fe-1c99-4f4d-b7b1-b7f427218927",
+          "name": "The chat was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "form"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"formTemplateId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "0e3cb6ec-79f9-4e34-8fbe-11022a6f3f22",
+      "name": "Retrieves a list of chats",
+      "request": {
+        "name": "Retrieves a list of chats",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chats"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "profileId",
+              "value": "<string>",
+              "description": "Indicates whether only chats the profile is a participant of should be returned"
+            },
+            {
+              "disabled": false,
+              "key": "scope",
+              "value": "profile",
+              "description": "The scope of the query."
+            },
+            {
+              "disabled": false,
+              "key": "includeClosed",
+              "value": "<boolean>",
+              "description": "Indicates whether closed chats should be returned"
+            },
+            {
+              "disabled": false,
+              "key": "includeDeleted",
+              "value": "<boolean>",
+              "description": "Indicates whether deleted chats should be returned"
+            },
+            {
+              "disabled": false,
+              "key": "idsOnly",
+              "value": "<boolean>",
+              "description": "Indicates whether just the ids should be returned"
+            }
+          ],
+          "variable": [
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "b0532992-99bf-4f21-8cf1-c4456571eba9",
+          "name": "A list of matching chats",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "profileId",
+                  "value": "<string>"
+                },
+                {
+                  "key": "scope",
+                  "value": "profile"
+                },
+                {
+                  "key": "includeClosed",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "includeDeleted",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "idsOnly",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"teamId\": \"string\",\n    \"originalTeamId\": \"string\",\n    \"channelId\": \"string\",\n    \"status\": \"closed\",\n    \"participants\": [\n      {\n        \"id\": \"string\",\n        \"role\": \"participant\"\n      },\n      {\n        \"id\": \"string\",\n        \"role\": \"participant\"\n      }\n    ],\n    \"context\": {\n      \"conversationId\": \"string\"\n    },\n    \"_createdOn\": \"1967-07-09T15:17:25.260Z\",\n    \"_createdBy\": \"string\",\n    \"_updatedOn\": \"1953-05-20T08:58:35.464Z\",\n    \"_updatedBy\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"teamId\": \"string\",\n    \"originalTeamId\": \"string\",\n    \"channelId\": \"string\",\n    \"status\": \"closed\",\n    \"participants\": [\n      {\n        \"id\": \"string\",\n        \"role\": \"participant\"\n      },\n      {\n        \"id\": \"string\",\n        \"role\": \"participant\"\n      }\n    ],\n    \"context\": {\n      \"conversationId\": \"string\"\n    },\n    \"_createdOn\": \"1967-10-12T22:13:17.983Z\",\n    \"_createdBy\": \"string\",\n    \"_updatedOn\": \"2005-01-19T10:33:27.971Z\",\n    \"_updatedBy\": \"string\"\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "89f255ff-9916-4b0e-bcf6-34f6955b5eab",
+      "name": "Creates a new chat",
+      "request": {
+        "name": "Creates a new chat",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chats"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"channelId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"teamId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"participants\": [\n    {\n      \"id\": \"<string>\",\n      \"role\": \"participant\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"role\": \"participant\"\n    }\n  ],\n  \"context\": {\n    \"conversationId\": \"<string>\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "d3625820-cde4-4569-83dd-4fd7f437725b",
+          "name": "The chat was successfully created",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channelId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"teamId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"participants\": [\n    {\n      \"id\": \"<string>\",\n      \"role\": \"participant\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"role\": \"participant\"\n    }\n  ],\n  \"context\": {\n    \"conversationId\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "disabled": false,
+              "description": "A unique value representing the version of the chat, optionally used for optimistic concurrency control on PUT and DELETE",
+              "key": "ETag",
+              "value": "string"
+            },
+            {
+              "disabled": false,
+              "description": "The date the chat was last updated in ISO 8601 format",
+              "key": "Last-Modified",
+              "value": "1966-07-25T14:54:47.245Z"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"teamId\": \"string\",\n  \"originalTeamId\": \"string\",\n  \"channelId\": \"string\",\n  \"status\": \"closed\",\n  \"participants\": [\n    {\n      \"id\": \"<string>\",\n      \"role\": \"participant\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"role\": \"participant\"\n    }\n  ],\n  \"context\": {\n    \"conversationId\": \"<string>\"\n  },\n  \"_createdOn\": \"1962-05-23T12:12:32.776Z\",\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1972-05-10T07:40:45.708Z\",\n  \"_updatedBy\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "411a188e-affa-4405-9568-45e4e7c8177b",
+          "name": "Validation issues were found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channelId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"teamId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"participants\": [\n    {\n      \"id\": \"<string>\",\n      \"role\": \"participant\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"role\": \"participant\"\n    }\n  ],\n  \"context\": {\n    \"conversationId\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "132be78c-2aec-4821-a2ab-ef5ba94b051c",
+          "name": "The chat already exists",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channelId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"teamId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"participants\": [\n    {\n      \"id\": \"<string>\",\n      \"role\": \"participant\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"role\": \"participant\"\n    }\n  ],\n  \"context\": {\n    \"conversationId\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "0b11d900-e7d7-4a8f-8847-1d44649af98c",
+      "name": "Indicates that the caller is typing in this chat",
+      "request": {
+        "name": "Indicates that the caller is typing in this chat",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chats",
+            ":chatId",
+            "typing"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "chatId",
+              "description": "(Required) The id of the chat"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "method": "POST",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "45055225-6c96-4870-b850-c7e83f49eb54",
+          "name": "The request was accepted",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "typing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "887c061e-1a87-45de-87e0-346d8b21eb8b",
+      "name": "Indicates that the caller has stopped typing in this chat",
+      "request": {
+        "name": "Indicates that the caller has stopped typing in this chat",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chats",
+            ":chatId",
+            "typing"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "chatId",
+              "description": "(Required) The id of the chat"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "10d4671f-83b9-4ff8-8dc0-e2fcec85281a",
+          "name": "The request was accepted",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "typing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "8e5b6151-27c1-40ef-a612-0e258d2acadf",
+      "name": "Retrieves the chat participants",
+      "request": {
+        "name": "Retrieves the chat participants",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chats",
+            ":chatId",
+            "participants"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "chatId",
+              "description": "(Required) The id of the chat"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "63b06a77-cf7d-49e4-826f-bf22076d9e9a",
+          "name": "The requested chat",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "participants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"id\": \"<string>\",\n    \"role\": \"participant\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"role\": \"participant\"\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "96b67f82-16d4-4f09-a294-9959f58e2443",
+          "name": "The chat was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "participants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3e4fdb6f-b543-455e-8ff7-46bae27592c4",
+    "name": "Chat API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Provides methods for creating, retrieving, updating, and deleting chat\nsessions. Supports operations to assign or close a chat, change its channel,\nsend forms to a chat, manage typing indicators, and retrieve the list of\nchat participants.",
+      "type": "text/plain"
+    }
+  }
+}

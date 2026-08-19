@@ -1,0 +1,321 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chat API",
+    "version": "1.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Retrieves a chat",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chats/:chatId",
+        "params": [
+          {
+            "name": "chatId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the chat"
+          },
+          {
+            "name": "includeDeleted",
+            "value": "",
+            "type": "query",
+            "description": "Indicates whether deleted chats should be returned"
+          }
+        ]
+      },
+      "docs": "Retrieves a chat"
+    },
+    {
+      "info": {
+        "name": "Updates a chat",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chats/:chatId",
+        "headers": [
+          {
+            "name": "if-match",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "chatId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the chat"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Updates a chat"
+    },
+    {
+      "info": {
+        "name": "Deletes a chat",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chats/:chatId",
+        "headers": [
+          {
+            "name": "if-match",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "chatId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the chat"
+          }
+        ]
+      },
+      "docs": "Deletes a chat"
+    },
+    {
+      "info": {
+        "name": "Assigns a chat",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chats/:chatId/assign",
+        "headers": [
+          {
+            "name": "if-match",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "chatId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the chat"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Assigns a chat"
+    },
+    {
+      "info": {
+        "name": "Closes a chat",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chats/:chatId/close",
+        "headers": [
+          {
+            "name": "if-match",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "chatId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the chat"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Closes a chat"
+    },
+    {
+      "info": {
+        "name": "Changes the channel for an existing chat",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chats/:chatId/channel",
+        "headers": [
+          {
+            "name": "if-match",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "chatId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the chat"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Changes the channel for an existing chat"
+    },
+    {
+      "info": {
+        "name": "Sends a form to a chat",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chats/:chatId/form",
+        "params": [
+          {
+            "name": "chatId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the chat"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Sends a form to a chat"
+    },
+    {
+      "info": {
+        "name": "Retrieves a list of chats",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chats",
+        "params": [
+          {
+            "name": "profileId",
+            "value": "",
+            "type": "query",
+            "description": "Indicates whether only chats the profile is a participant of should be returned"
+          },
+          {
+            "name": "scope",
+            "value": "",
+            "type": "query",
+            "description": "The scope of the query."
+          },
+          {
+            "name": "includeClosed",
+            "value": "",
+            "type": "query",
+            "description": "Indicates whether closed chats should be returned"
+          },
+          {
+            "name": "includeDeleted",
+            "value": "",
+            "type": "query",
+            "description": "Indicates whether deleted chats should be returned"
+          },
+          {
+            "name": "idsOnly",
+            "value": "",
+            "type": "query",
+            "description": "Indicates whether just the ids should be returned"
+          }
+        ]
+      },
+      "docs": "Retrieves a list of chats"
+    },
+    {
+      "info": {
+        "name": "Creates a new chat",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chats",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Creates a new chat"
+    },
+    {
+      "info": {
+        "name": "Indicates that the caller is typing in this chat",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chats/:chatId/typing",
+        "params": [
+          {
+            "name": "chatId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the chat"
+          }
+        ]
+      },
+      "docs": "Indicates that the caller is typing in this chat"
+    },
+    {
+      "info": {
+        "name": "Indicates that the caller has stopped typing in this chat",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chats/:chatId/typing",
+        "params": [
+          {
+            "name": "chatId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the chat"
+          }
+        ]
+      },
+      "docs": "Indicates that the caller has stopped typing in this chat"
+    },
+    {
+      "info": {
+        "name": "Retrieves the chat participants",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chats/:chatId/participants",
+        "params": [
+          {
+            "name": "chatId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the chat"
+          }
+        ]
+      },
+      "docs": "Retrieves the chat participants"
+    }
+  ],
+  "bundled": true
+}

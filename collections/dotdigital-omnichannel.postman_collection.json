@@ -1,0 +1,1823 @@
+{
+  "item": [
+    {
+      "id": "57fbfa9c-662e-4ae4-90ef-1b9a6d3604d9",
+      "name": "Omnichannel API",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "30c218ee-6698-4611-91f2-61b5a486a630",
+          "name": "Posts a status for a message",
+          "request": {
+            "name": "Posts a status for a message",
+            "description": {},
+            "url": {
+              "path": [
+                "cpaas",
+                "messages",
+                ":messageId",
+                "statuses",
+                ":status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "messageId",
+                  "description": "(Required) The id of the message"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "status",
+                  "description": "(Required) The status of the message"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channel\": \"<string>\",\n  \"channelStatus\": {\n    \"key_0\": false\n  },\n  \"timestamp\": \"<dateTime>\",\n  \"failureReason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4635a111-327b-4779-ac7d-935cdcbb087e",
+              "name": "The status was received",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "messages",
+                    ":messageId",
+                    "statuses",
+                    ":status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "messageId",
+                      "description": "(Required) The id of the message"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status",
+                      "description": "(Required) The status of the message"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channel\": \"<string>\",\n  \"channelStatus\": {\n    \"key_0\": \"string\",\n    \"key_1\": 6844,\n    \"key_2\": false,\n    \"key_3\": true\n  },\n  \"timestamp\": \"<dateTime>\",\n  \"failureReason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"channel\": \"<string>\",\n  \"channelStatus\": {\n    \"key_0\": \"string\",\n    \"key_1\": 6844,\n    \"key_2\": false,\n    \"key_3\": true\n  },\n  \"timestamp\": \"<dateTime>\",\n  \"failureReason\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91768a84-4add-43f2-ba25-e934624582ab",
+              "name": "Validation issues were found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "messages",
+                    ":messageId",
+                    "statuses",
+                    ":status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "messageId",
+                      "description": "(Required) The id of the message"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status",
+                      "description": "(Required) The status of the message"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channel\": \"<string>\",\n  \"channelStatus\": {\n    \"key_0\": \"string\",\n    \"key_1\": 6844,\n    \"key_2\": false,\n    \"key_3\": true\n  },\n  \"timestamp\": \"<dateTime>\",\n  \"failureReason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3da0a013-e07c-46eb-b000-621bbf6ebcd9",
+              "name": "The message was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "messages",
+                    ":messageId",
+                    "statuses",
+                    ":status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "messageId",
+                      "description": "(Required) The id of the message"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status",
+                      "description": "(Required) The status of the message"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channel\": \"<string>\",\n  \"channelStatus\": {\n    \"key_0\": \"string\",\n    \"key_1\": 6844,\n    \"key_2\": false,\n    \"key_3\": true\n  },\n  \"timestamp\": \"<dateTime>\",\n  \"failureReason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "553fd617-127a-4888-bcdb-424614f1868a",
+          "name": "Retrieves the current state of a specific message.",
+          "request": {
+            "name": "Retrieves the current state of a specific message.",
+            "description": {},
+            "url": {
+              "path": [
+                "cpaas",
+                "messages",
+                ":messageId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "messageId",
+                  "description": "(Required) The id of the message"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "64fb18fc-4360-4eb9-9af8-be60fc3ecc94",
+              "name": "The message details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "messages",
+                    ":messageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "messageId",
+                      "description": "(Required) The id of the message"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messageId\": \"string\",\n  \"sentOn\": \"1977-12-01T16:38:33.815Z\",\n  \"status\": \"sent\",\n  \"statusDetails\": {},\n  \"_createdOn\": \"1965-09-08T03:45:45.368Z\",\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1992-03-21T17:59:55.764Z\",\n  \"_updatedBy\": \"string\",\n  \"metadata\": {\n    \"key_0\": \"string\"\n  },\n  \"to\": {\n    \"phoneNumber\": \"string\",\n    \"email\": \"string\",\n    \"profileId\": \"string\",\n    \"fbMessengerId\": \"string\",\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  },\n  \"title\": \"string\",\n  \"body\": \"string\",\n  \"customBody\": {\n    \"appMessaging\": {\n      \"key_0\": \"string\"\n    },\n    \"sms\": {\n      \"key_0\": 6966.943964643468,\n      \"key_1\": 3409.788455017927\n    },\n    \"mms\": {\n      \"key_0\": 4576.301670188953,\n      \"key_1\": 7835\n    },\n    \"fbMessenger\": {\n      \"key_0\": \"string\"\n    },\n    \"nativePush\": {\n      \"key_0\": 6322\n    },\n    \"whatsApp\": {\n      \"key_0\": 5699.921625342582,\n      \"key_1\": 9956\n    },\n    \"rcs\": {\n      \"key_0\": \"string\"\n    },\n    \"key_0\": 1463,\n    \"key_1\": 9572,\n    \"key_2\": \"string\"\n  },\n  \"overrides\": {\n    \"appMessaging\": {\n      \"conversation\": {\n        \"key_0\": 2422,\n        \"key_1\": true\n      }\n    }\n  },\n  \"channelOptions\": {\n    \"appMessaging\": {\n      \"from\": {\n        \"profileId\": \"string\",\n        \"name\": \"string\",\n        \"avatarUrl\": \"string\"\n      }\n    },\n    \"sms\": {\n      \"from\": \"string\",\n      \"allowUnicode\": true,\n      \"unicodeConversion\": {\n        \"convertUnicodeToGsm\": true,\n        \"customReplacements\": [\n          {\n            \"from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"to\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"to\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"mms\": {\n      \"from\": \"string\",\n      \"allowUnicode\": false,\n      \"unicodeConversion\": {\n        \"convertUnicodeToGsm\": true,\n        \"customReplacements\": [\n          {\n            \"from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"to\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"to\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"fbMessenger\": {\n      \"messageTag\": \"string\",\n      \"messagingType\": \"string\"\n    },\n    \"whatsApp\": {\n      \"phoneNumber\": \"string\",\n      \"enableUrlPreview\": true\n    },\n    \"rcs\": {\n      \"agentId\": \"string\"\n    },\n    \"nativePush\": {\n      \"data\": {\n        \"fcm\": {},\n        \"apns\": {},\n        \"isSilent\": false\n      },\n      \"deepLink\": {\n        \"trackingLink\": \"string\",\n        \"fcm\": {\n          \"url\": \"string\"\n        },\n        \"apns\": {\n          \"url\": \"string\"\n        }\n      }\n    }\n  },\n  \"conversationId\": \"string\",\n  \"expiresOn\": \"1965-06-19T12:58:52.797Z\",\n  \"rules\": [\n    \"sms\",\n    \"sms\"\n  ],\n  \"messageParts\": [\n    {\n      \"type\": \"string\",\n      \"channels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"data\": \"string\",\n      \"size\": 1195\n    },\n    {\n      \"type\": \"string\",\n      \"channels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"data\": \"string\",\n      \"size\": 6516\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e5d17da-7618-45fd-8cad-dfe299781752",
+              "name": "The message was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "messages",
+                    ":messageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "messageId",
+                      "description": "(Required) The id of the message"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "44dce30e-255b-4d97-b3b0-4ef5e7fe4b0c",
+          "name": "Deletes a Message",
+          "request": {
+            "name": "Deletes a Message",
+            "description": {},
+            "url": {
+              "path": [
+                "cpaas",
+                "messages",
+                ":messageId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "messageId",
+                  "description": "(Required) The id of the message"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "15fbac74-b662-4e5d-8427-7ff754f746d9",
+              "name": "Indicates successful deletetion of a Message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "messages",
+                    ":messageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "messageId",
+                      "description": "(Required) The id of the message"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dc931dbf-914b-4148-9723-938e29acb344",
+              "name": "The Message was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "messages",
+                    ":messageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "messageId",
+                      "description": "(Required) The id of the message"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2605b97a-cfa2-418b-ad7a-3ccb6634ee12",
+              "name": "A concurrency issue occured deleting the Message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "messages",
+                    ":messageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "messageId",
+                      "description": "(Required) The id of the message"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c9fbfd7-114d-462f-8c57-70597c0b501c",
+          "name": "Patches a Message",
+          "request": {
+            "name": "Patches a Message",
+            "description": {},
+            "url": {
+              "path": [
+                "cpaas",
+                "messages",
+                ":messageId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "messageId",
+                  "description": "(Required) The id of the message"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"redact\": \"<boolean>\",\n  \"redactSource\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c3b3321e-e49c-44f1-8fb1-92f4ead42f4f",
+              "name": "Indicates successful patch of a Message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "messages",
+                    ":messageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "messageId",
+                      "description": "(Required) The id of the message"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"redact\": \"<boolean>\",\n  \"redactSource\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d0e59a37-5b61-4465-b4c0-a4af3564bb72",
+              "name": "Validation issues were found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "messages",
+                    ":messageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "messageId",
+                      "description": "(Required) The id of the message"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"redact\": \"<boolean>\",\n  \"redactSource\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d7c2fe87-0b21-4b15-a1d4-d2484e115826",
+              "name": "The Message was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "messages",
+                    ":messageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "messageId",
+                      "description": "(Required) The id of the message"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"redact\": \"<boolean>\",\n  \"redactSource\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8c5edd1f-681a-4d50-b25c-968313e8cec4",
+              "name": "A concurrency issue occured",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "messages",
+                    ":messageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "messageId",
+                      "description": "(Required) The id of the message"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"redact\": \"<boolean>\",\n  \"redactSource\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "44e759ae-3537-43c4-8300-a1058d4f0275",
+          "name": "Send a new message",
+          "request": {
+            "name": "Send a new message",
+            "description": {},
+            "url": {
+              "path": [
+                "cpaas",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rules\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"to\": {\n    \"phoneNumber\": \"<string>\",\n    \"email\": \"<string>\",\n    \"profileId\": \"<string>\",\n    \"fbMessengerId\": \"<string>\"\n  },\n  \"metadata\": {\n    \"key_0\": true,\n    \"key_1\": true\n  },\n  \"title\": \"<string>\",\n  \"body\": \"<string>\",\n  \"templateId\": \"<string>\",\n  \"customBody\": {\n    \"appMessaging\": {\n      \"key_0\": true,\n      \"key_1\": 6538.6976089768505,\n      \"key_2\": 9979\n    },\n    \"sms\": {\n      \"key_0\": true,\n      \"key_1\": false,\n      \"key_2\": \"string\",\n      \"key_3\": true\n    },\n    \"mms\": {\n      \"key_0\": 4239.671603923911,\n      \"key_1\": false,\n      \"key_2\": false\n    },\n    \"fbMessenger\": {\n      \"key_0\": false,\n      \"key_1\": false,\n      \"key_2\": \"string\"\n    },\n    \"nativePush\": {\n      \"key_0\": \"string\"\n    },\n    \"whatsApp\": {\n      \"key_0\": \"string\"\n    },\n    \"rcs\": {\n      \"key_0\": \"string\"\n    }\n  },\n  \"overrides\": {\n    \"appMessaging\": {\n      \"conversation\": {\n        \"key_0\": 7753,\n        \"key_1\": 2756.7655834936886,\n        \"key_2\": \"string\"\n      }\n    }\n  },\n  \"channelOptions\": {\n    \"appMessaging\": {\n      \"from\": {\n        \"profileId\": \"<string>\",\n        \"name\": \"<string>\",\n        \"avatarUrl\": \"<string>\"\n      }\n    },\n    \"sms\": {\n      \"from\": \"<string>\",\n      \"allowUnicode\": \"<boolean>\",\n      \"unicodeConversion\": {\n        \"convertUnicodeToGsm\": \"<boolean>\",\n        \"customReplacements\": [\n          {\n            \"from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"to\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"to\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"mms\": {\n      \"from\": \"<string>\",\n      \"allowUnicode\": \"<boolean>\",\n      \"unicodeConversion\": {\n        \"convertUnicodeToGsm\": \"<boolean>\",\n        \"customReplacements\": [\n          {\n            \"from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"to\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"to\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"fbMessenger\": {\n      \"messageTag\": \"<string>\",\n      \"messagingType\": \"<string>\"\n    },\n    \"whatsApp\": {\n      \"phoneNumber\": \"<string>\",\n      \"enableUrlPreview\": \"<boolean>\"\n    },\n    \"rcs\": {\n      \"agentId\": \"<string>\"\n    },\n    \"nativePush\": {\n      \"data\": {\n        \"fcm\": {},\n        \"apns\": {},\n        \"isSilent\": \"<boolean>\"\n      },\n      \"deepLink\": {\n        \"trackingLink\": \"<string>\",\n        \"fcm\": {\n          \"url\": \"<string>\"\n        },\n        \"apns\": {\n          \"url\": \"<string>\"\n        }\n      }\n    }\n  },\n  \"conversationId\": \"<string>\",\n  \"expiresOn\": \"<dateTime>\",\n  \"messageParts\": [\n    {\n      \"type\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    }\n  ],\n  \"requireOptIn\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7ac78269-9ed8-407e-8481-1e8d0f72329d",
+              "name": "The message was accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rules\": [\n    \"sms\",\n    \"sms\"\n  ],\n  \"to\": {\n    \"phoneNumber\": \"<string>\",\n    \"email\": \"<string>\",\n    \"profileId\": \"<string>\",\n    \"fbMessengerId\": \"<string>\"\n  },\n  \"metadata\": {\n    \"key_0\": 1493\n  },\n  \"title\": \"<string>\",\n  \"body\": \"<string>\",\n  \"templateId\": \"<string>\",\n  \"customBody\": {\n    \"appMessaging\": {\n      \"key_0\": 5298,\n      \"key_1\": 3509\n    },\n    \"sms\": {\n      \"key_0\": 1093.63579266453,\n      \"key_1\": 2107.3001888248245\n    },\n    \"mms\": {\n      \"key_0\": 6930\n    },\n    \"fbMessenger\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"nativePush\": {\n      \"key_0\": 7140.924178167549,\n      \"key_1\": 3383,\n      \"key_2\": \"string\",\n      \"key_3\": false\n    },\n    \"whatsApp\": {\n      \"key_0\": \"string\"\n    },\n    \"rcs\": {\n      \"key_0\": false,\n      \"key_1\": 210\n    },\n    \"key_0\": 2425.5356176817645,\n    \"key_1\": true\n  },\n  \"overrides\": {\n    \"appMessaging\": {\n      \"conversation\": {\n        \"key_0\": 3175,\n        \"key_1\": true,\n        \"key_2\": \"string\"\n      }\n    }\n  },\n  \"channelOptions\": {\n    \"appMessaging\": {\n      \"from\": {\n        \"profileId\": \"<string>\",\n        \"name\": \"<string>\",\n        \"avatarUrl\": \"<string>\"\n      }\n    },\n    \"sms\": {\n      \"from\": \"<string>\",\n      \"allowUnicode\": \"<boolean>\",\n      \"unicodeConversion\": {\n        \"convertUnicodeToGsm\": \"<boolean>\",\n        \"customReplacements\": [\n          {\n            \"from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"to\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"to\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"mms\": {\n      \"from\": \"<string>\",\n      \"allowUnicode\": \"<boolean>\",\n      \"unicodeConversion\": {\n        \"convertUnicodeToGsm\": \"<boolean>\",\n        \"customReplacements\": [\n          {\n            \"from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"to\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"to\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"fbMessenger\": {\n      \"messageTag\": \"<string>\",\n      \"messagingType\": \"<string>\"\n    },\n    \"whatsApp\": {\n      \"phoneNumber\": \"<string>\",\n      \"enableUrlPreview\": \"<boolean>\"\n    },\n    \"rcs\": {\n      \"agentId\": \"<string>\"\n    },\n    \"nativePush\": {\n      \"data\": {\n        \"fcm\": {},\n        \"apns\": {},\n        \"isSilent\": \"<boolean>\"\n      },\n      \"deepLink\": {\n        \"trackingLink\": \"<string>\",\n        \"fcm\": {\n          \"url\": \"<string>\"\n        },\n        \"apns\": {\n          \"url\": \"<string>\"\n        }\n      }\n    },\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"conversationId\": \"<string>\",\n  \"expiresOn\": \"<dateTime>\",\n  \"messageParts\": [\n    {\n      \"type\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    }\n  ],\n  \"requireOptIn\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messageId\": \"string\",\n  \"sentOn\": \"1983-01-19T03:03:42.210Z\",\n  \"status\": \"failed\",\n  \"statusDetails\": {},\n  \"_createdOn\": \"1955-12-08T20:50:45.736Z\",\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"2013-10-11T10:23:05.324Z\",\n  \"_updatedBy\": \"string\",\n  \"metadata\": {\n    \"key_0\": 5722.87475160356\n  },\n  \"to\": {\n    \"phoneNumber\": \"<string>\",\n    \"email\": \"<string>\",\n    \"profileId\": \"<string>\",\n    \"fbMessengerId\": \"<string>\",\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"title\": \"string\",\n  \"body\": \"string\",\n  \"customBody\": {\n    \"appMessaging\": {\n      \"key_0\": false\n    },\n    \"sms\": {\n      \"key_0\": 5792,\n      \"key_1\": 4861\n    },\n    \"mms\": {\n      \"key_0\": \"string\",\n      \"key_1\": 5265\n    },\n    \"fbMessenger\": {\n      \"key_0\": \"string\"\n    },\n    \"nativePush\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"whatsApp\": {\n      \"key_0\": 7184\n    },\n    \"rcs\": {\n      \"key_0\": \"string\",\n      \"key_1\": 9309.252160484444,\n      \"key_2\": 4477,\n      \"key_3\": 6906,\n      \"key_4\": 4384.269298577686\n    }\n  },\n  \"overrides\": {\n    \"appMessaging\": {\n      \"conversation\": {\n        \"key_0\": 5977.470711907245\n      }\n    }\n  },\n  \"channelOptions\": {\n    \"appMessaging\": {\n      \"from\": {\n        \"profileId\": \"<string>\",\n        \"name\": \"<string>\",\n        \"avatarUrl\": \"<string>\"\n      }\n    },\n    \"sms\": {\n      \"from\": \"<string>\",\n      \"allowUnicode\": \"<boolean>\",\n      \"unicodeConversion\": {\n        \"convertUnicodeToGsm\": \"<boolean>\",\n        \"customReplacements\": [\n          {\n            \"from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"to\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"to\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"mms\": {\n      \"from\": \"<string>\",\n      \"allowUnicode\": \"<boolean>\",\n      \"unicodeConversion\": {\n        \"convertUnicodeToGsm\": \"<boolean>\",\n        \"customReplacements\": [\n          {\n            \"from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"to\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"to\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"fbMessenger\": {\n      \"messageTag\": \"<string>\",\n      \"messagingType\": \"<string>\"\n    },\n    \"whatsApp\": {\n      \"phoneNumber\": \"<string>\",\n      \"enableUrlPreview\": \"<boolean>\"\n    },\n    \"rcs\": {\n      \"agentId\": \"<string>\"\n    },\n    \"nativePush\": {\n      \"data\": {\n        \"fcm\": {},\n        \"apns\": {},\n        \"isSilent\": \"<boolean>\"\n      },\n      \"deepLink\": {\n        \"trackingLink\": \"<string>\",\n        \"fcm\": {\n          \"url\": \"<string>\"\n        },\n        \"apns\": {\n          \"url\": \"<string>\"\n        }\n      }\n    },\n    \"key_0\": {}\n  },\n  \"conversationId\": \"string\",\n  \"expiresOn\": \"1994-11-14T10:25:58.168Z\",\n  \"rules\": [\n    \"sms\",\n    \"sms\"\n  ],\n  \"messageParts\": [\n    {\n      \"type\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a39da0c-ab71-474d-8865-6ea826e15e2f",
+              "name": "Validation issues were found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rules\": [\n    \"sms\",\n    \"sms\"\n  ],\n  \"to\": {\n    \"phoneNumber\": \"<string>\",\n    \"email\": \"<string>\",\n    \"profileId\": \"<string>\",\n    \"fbMessengerId\": \"<string>\"\n  },\n  \"metadata\": {\n    \"key_0\": 1493\n  },\n  \"title\": \"<string>\",\n  \"body\": \"<string>\",\n  \"templateId\": \"<string>\",\n  \"customBody\": {\n    \"appMessaging\": {\n      \"key_0\": 5298,\n      \"key_1\": 3509\n    },\n    \"sms\": {\n      \"key_0\": 1093.63579266453,\n      \"key_1\": 2107.3001888248245\n    },\n    \"mms\": {\n      \"key_0\": 6930\n    },\n    \"fbMessenger\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"nativePush\": {\n      \"key_0\": 7140.924178167549,\n      \"key_1\": 3383,\n      \"key_2\": \"string\",\n      \"key_3\": false\n    },\n    \"whatsApp\": {\n      \"key_0\": \"string\"\n    },\n    \"rcs\": {\n      \"key_0\": false,\n      \"key_1\": 210\n    },\n    \"key_0\": 2425.5356176817645,\n    \"key_1\": true\n  },\n  \"overrides\": {\n    \"appMessaging\": {\n      \"conversation\": {\n        \"key_0\": 3175,\n        \"key_1\": true,\n        \"key_2\": \"string\"\n      }\n    }\n  },\n  \"channelOptions\": {\n    \"appMessaging\": {\n      \"from\": {\n        \"profileId\": \"<string>\",\n        \"name\": \"<string>\",\n        \"avatarUrl\": \"<string>\"\n      }\n    },\n    \"sms\": {\n      \"from\": \"<string>\",\n      \"allowUnicode\": \"<boolean>\",\n      \"unicodeConversion\": {\n        \"convertUnicodeToGsm\": \"<boolean>\",\n        \"customReplacements\": [\n          {\n            \"from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"to\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"to\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"mms\": {\n      \"from\": \"<string>\",\n      \"allowUnicode\": \"<boolean>\",\n      \"unicodeConversion\": {\n        \"convertUnicodeToGsm\": \"<boolean>\",\n        \"customReplacements\": [\n          {\n            \"from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"to\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"to\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"fbMessenger\": {\n      \"messageTag\": \"<string>\",\n      \"messagingType\": \"<string>\"\n    },\n    \"whatsApp\": {\n      \"phoneNumber\": \"<string>\",\n      \"enableUrlPreview\": \"<boolean>\"\n    },\n    \"rcs\": {\n      \"agentId\": \"<string>\"\n    },\n    \"nativePush\": {\n      \"data\": {\n        \"fcm\": {},\n        \"apns\": {},\n        \"isSilent\": \"<boolean>\"\n      },\n      \"deepLink\": {\n        \"trackingLink\": \"<string>\",\n        \"fcm\": {\n          \"url\": \"<string>\"\n        },\n        \"apns\": {\n          \"url\": \"<string>\"\n        }\n      }\n    },\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"conversationId\": \"<string>\",\n  \"expiresOn\": \"<dateTime>\",\n  \"messageParts\": [\n    {\n      \"type\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    }\n  ],\n  \"requireOptIn\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4a29afe-fda3-4270-b017-fe3433f56005",
+          "name": "Send a batch of new messages",
+          "request": {
+            "name": "Send a batch of new messages",
+            "description": {},
+            "url": {
+              "path": [
+                "cpaas",
+                "messages",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"rules\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"to\": {\n      \"phoneNumber\": \"<string>\",\n      \"email\": \"<string>\",\n      \"profileId\": \"<string>\",\n      \"fbMessengerId\": \"<string>\"\n    },\n    \"metadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": 2744.366586296767,\n      \"key_2\": 6810.370808015038\n    },\n    \"title\": \"<string>\",\n    \"body\": \"<string>\",\n    \"templateId\": \"<string>\",\n    \"customBody\": {\n      \"appMessaging\": {\n        \"key_0\": 746.7068229393758,\n        \"key_1\": true,\n        \"key_2\": \"string\"\n      },\n      \"sms\": {\n        \"key_0\": \"string\",\n        \"key_1\": 8385.081189551602\n      },\n      \"mms\": {\n        \"key_0\": 8717,\n        \"key_1\": 1837,\n        \"key_2\": true\n      },\n      \"fbMessenger\": {\n        \"key_0\": 6051.026670535676,\n        \"key_1\": 1848,\n        \"key_2\": \"string\"\n      },\n      \"nativePush\": {\n        \"key_0\": \"string\",\n        \"key_1\": 8692\n      },\n      \"whatsApp\": {\n        \"key_0\": 3853,\n        \"key_1\": false,\n        \"key_2\": false\n      },\n      \"rcs\": {\n        \"key_0\": 7604,\n        \"key_1\": \"string\"\n      },\n      \"key_0\": \"string\"\n    },\n    \"overrides\": {\n      \"appMessaging\": {\n        \"conversation\": {\n          \"key_0\": \"string\",\n          \"key_1\": true\n        }\n      }\n    },\n    \"channelOptions\": {\n      \"appMessaging\": {\n        \"from\": {\n          \"profileId\": \"<string>\",\n          \"name\": \"<string>\",\n          \"avatarUrl\": \"<string>\"\n        }\n      },\n      \"sms\": {\n        \"from\": \"<string>\",\n        \"allowUnicode\": \"<boolean>\",\n        \"unicodeConversion\": {\n          \"convertUnicodeToGsm\": \"<boolean>\",\n          \"customReplacements\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"mms\": {\n        \"from\": \"<string>\",\n        \"allowUnicode\": \"<boolean>\",\n        \"unicodeConversion\": {\n          \"convertUnicodeToGsm\": \"<boolean>\",\n          \"customReplacements\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"fbMessenger\": {\n        \"messageTag\": \"<string>\",\n        \"messagingType\": \"<string>\"\n      },\n      \"whatsApp\": {\n        \"phoneNumber\": \"<string>\",\n        \"enableUrlPreview\": \"<boolean>\"\n      },\n      \"rcs\": {\n        \"agentId\": \"<string>\"\n      },\n      \"nativePush\": {\n        \"data\": {\n          \"fcm\": {},\n          \"apns\": {},\n          \"isSilent\": \"<boolean>\"\n        },\n        \"deepLink\": {\n          \"trackingLink\": \"<string>\",\n          \"fcm\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"apns\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    \"conversationId\": \"<string>\",\n    \"expiresOn\": \"<dateTime>\",\n    \"messageParts\": [\n      {\n        \"type\": \"<string>\",\n        \"channels\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"channels\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      }\n    ],\n    \"requireOptIn\": \"<boolean>\"\n  },\n  {\n    \"rules\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"to\": {\n      \"phoneNumber\": \"<string>\",\n      \"email\": \"<string>\",\n      \"profileId\": \"<string>\",\n      \"fbMessengerId\": \"<string>\"\n    },\n    \"metadata\": {\n      \"key_0\": true,\n      \"key_1\": 2487.112529284342\n    },\n    \"title\": \"<string>\",\n    \"body\": \"<string>\",\n    \"templateId\": \"<string>\",\n    \"customBody\": {\n      \"appMessaging\": {\n        \"key_0\": \"string\"\n      },\n      \"sms\": {\n        \"key_0\": 7162,\n        \"key_1\": 6523.364103500399,\n        \"key_2\": false,\n        \"key_3\": 2586.7372297125225,\n        \"key_4\": false\n      },\n      \"mms\": {\n        \"key_0\": 7265\n      },\n      \"fbMessenger\": {\n        \"key_0\": true,\n        \"key_1\": \"string\",\n        \"key_2\": 5635,\n        \"key_3\": 6354.003413239095\n      },\n      \"nativePush\": {\n        \"key_0\": 9003\n      },\n      \"whatsApp\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"rcs\": {\n        \"key_0\": 1179,\n        \"key_1\": \"string\",\n        \"key_2\": false\n      }\n    },\n    \"overrides\": {\n      \"appMessaging\": {\n        \"conversation\": {\n          \"key_0\": 9229,\n          \"key_1\": 6937.724996657512\n        }\n      }\n    },\n    \"channelOptions\": {\n      \"appMessaging\": {\n        \"from\": {\n          \"profileId\": \"<string>\",\n          \"name\": \"<string>\",\n          \"avatarUrl\": \"<string>\"\n        }\n      },\n      \"sms\": {\n        \"from\": \"<string>\",\n        \"allowUnicode\": \"<boolean>\",\n        \"unicodeConversion\": {\n          \"convertUnicodeToGsm\": \"<boolean>\",\n          \"customReplacements\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"mms\": {\n        \"from\": \"<string>\",\n        \"allowUnicode\": \"<boolean>\",\n        \"unicodeConversion\": {\n          \"convertUnicodeToGsm\": \"<boolean>\",\n          \"customReplacements\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"fbMessenger\": {\n        \"messageTag\": \"<string>\",\n        \"messagingType\": \"<string>\"\n      },\n      \"whatsApp\": {\n        \"phoneNumber\": \"<string>\",\n        \"enableUrlPreview\": \"<boolean>\"\n      },\n      \"rcs\": {\n        \"agentId\": \"<string>\"\n      },\n      \"nativePush\": {\n        \"data\": {\n          \"fcm\": {},\n          \"apns\": {},\n          \"isSilent\": \"<boolean>\"\n        },\n        \"deepLink\": {\n          \"trackingLink\": \"<string>\",\n          \"fcm\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"apns\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    \"conversationId\": \"<string>\",\n    \"expiresOn\": \"<dateTime>\",\n    \"messageParts\": [\n      {\n        \"type\": \"<string>\",\n        \"channels\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"channels\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      }\n    ],\n    \"requireOptIn\": \"<boolean>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6df7828a-1139-45b1-b3d1-e782fd636a39",
+              "name": "The batch was accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "messages",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"rules\": [\n      \"sms\",\n      \"sms\"\n    ],\n    \"to\": {\n      \"phoneNumber\": \"<string>\",\n      \"email\": \"<string>\",\n      \"profileId\": \"<string>\",\n      \"fbMessengerId\": \"<string>\"\n    },\n    \"metadata\": {\n      \"key_0\": true,\n      \"key_1\": 5837,\n      \"key_2\": true\n    },\n    \"title\": \"<string>\",\n    \"body\": \"<string>\",\n    \"templateId\": \"<string>\",\n    \"customBody\": {\n      \"appMessaging\": {\n        \"key_0\": true,\n        \"key_1\": 927.591695762382\n      },\n      \"sms\": {\n        \"key_0\": 3719.115345651306\n      },\n      \"mms\": {\n        \"key_0\": \"string\"\n      },\n      \"fbMessenger\": {\n        \"key_0\": \"string\"\n      },\n      \"nativePush\": {\n        \"key_0\": true\n      },\n      \"whatsApp\": {\n        \"key_0\": true,\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": 1482\n      },\n      \"rcs\": {\n        \"key_0\": \"string\",\n        \"key_1\": 1352\n      }\n    },\n    \"overrides\": {\n      \"appMessaging\": {\n        \"conversation\": {\n          \"key_0\": 1614.0020559026925,\n          \"key_1\": false\n        }\n      }\n    },\n    \"channelOptions\": {\n      \"appMessaging\": {\n        \"from\": {\n          \"profileId\": \"<string>\",\n          \"name\": \"<string>\",\n          \"avatarUrl\": \"<string>\"\n        }\n      },\n      \"sms\": {\n        \"from\": \"<string>\",\n        \"allowUnicode\": \"<boolean>\",\n        \"unicodeConversion\": {\n          \"convertUnicodeToGsm\": \"<boolean>\",\n          \"customReplacements\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"mms\": {\n        \"from\": \"<string>\",\n        \"allowUnicode\": \"<boolean>\",\n        \"unicodeConversion\": {\n          \"convertUnicodeToGsm\": \"<boolean>\",\n          \"customReplacements\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"fbMessenger\": {\n        \"messageTag\": \"<string>\",\n        \"messagingType\": \"<string>\"\n      },\n      \"whatsApp\": {\n        \"phoneNumber\": \"<string>\",\n        \"enableUrlPreview\": \"<boolean>\"\n      },\n      \"rcs\": {\n        \"agentId\": \"<string>\"\n      },\n      \"nativePush\": {\n        \"data\": {\n          \"fcm\": {},\n          \"apns\": {},\n          \"isSilent\": \"<boolean>\"\n        },\n        \"deepLink\": {\n          \"trackingLink\": \"<string>\",\n          \"fcm\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"apns\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    \"conversationId\": \"<string>\",\n    \"expiresOn\": \"<dateTime>\",\n    \"messageParts\": [\n      {\n        \"type\": \"<string>\",\n        \"channels\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"channels\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      }\n    ],\n    \"requireOptIn\": \"<boolean>\"\n  },\n  {\n    \"rules\": [\n      \"sms\",\n      \"sms\"\n    ],\n    \"to\": {\n      \"phoneNumber\": \"<string>\",\n      \"email\": \"<string>\",\n      \"profileId\": \"<string>\",\n      \"fbMessengerId\": \"<string>\"\n    },\n    \"metadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": 9339\n    },\n    \"title\": \"<string>\",\n    \"body\": \"<string>\",\n    \"templateId\": \"<string>\",\n    \"customBody\": {\n      \"appMessaging\": {\n        \"key_0\": true,\n        \"key_1\": \"string\"\n      },\n      \"sms\": {\n        \"key_0\": 2457,\n        \"key_1\": 6877.776588910486,\n        \"key_2\": \"string\"\n      },\n      \"mms\": {\n        \"key_0\": 4517,\n        \"key_1\": 5760,\n        \"key_2\": false\n      },\n      \"fbMessenger\": {\n        \"key_0\": \"string\",\n        \"key_1\": 9788.394619572186\n      },\n      \"nativePush\": {\n        \"key_0\": \"string\",\n        \"key_1\": true,\n        \"key_2\": 9994\n      },\n      \"whatsApp\": {\n        \"key_0\": \"string\"\n      },\n      \"rcs\": {\n        \"key_0\": false,\n        \"key_1\": \"string\"\n      }\n    },\n    \"overrides\": {\n      \"appMessaging\": {\n        \"conversation\": {\n          \"key_0\": true,\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        }\n      }\n    },\n    \"channelOptions\": {\n      \"appMessaging\": {\n        \"from\": {\n          \"profileId\": \"<string>\",\n          \"name\": \"<string>\",\n          \"avatarUrl\": \"<string>\"\n        }\n      },\n      \"sms\": {\n        \"from\": \"<string>\",\n        \"allowUnicode\": \"<boolean>\",\n        \"unicodeConversion\": {\n          \"convertUnicodeToGsm\": \"<boolean>\",\n          \"customReplacements\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"mms\": {\n        \"from\": \"<string>\",\n        \"allowUnicode\": \"<boolean>\",\n        \"unicodeConversion\": {\n          \"convertUnicodeToGsm\": \"<boolean>\",\n          \"customReplacements\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"fbMessenger\": {\n        \"messageTag\": \"<string>\",\n        \"messagingType\": \"<string>\"\n      },\n      \"whatsApp\": {\n        \"phoneNumber\": \"<string>\",\n        \"enableUrlPreview\": \"<boolean>\"\n      },\n      \"rcs\": {\n        \"agentId\": \"<string>\"\n      },\n      \"nativePush\": {\n        \"data\": {\n          \"fcm\": {},\n          \"apns\": {},\n          \"isSilent\": \"<boolean>\"\n        },\n        \"deepLink\": {\n          \"trackingLink\": \"<string>\",\n          \"fcm\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"apns\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    \"conversationId\": \"<string>\",\n    \"expiresOn\": \"<dateTime>\",\n    \"messageParts\": [\n      {\n        \"type\": \"<string>\",\n        \"channels\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"channels\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      }\n    ],\n    \"requireOptIn\": \"<boolean>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"index\": 3157.3154052857176,\n    \"messageId\": \"string\"\n  },\n  {\n    \"index\": 8054.246766098138,\n    \"messageId\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03ca3b40-f8c5-4d97-b3f2-7088d42afa63",
+              "name": "Validation issues were found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "messages",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"rules\": [\n      \"sms\",\n      \"sms\"\n    ],\n    \"to\": {\n      \"phoneNumber\": \"<string>\",\n      \"email\": \"<string>\",\n      \"profileId\": \"<string>\",\n      \"fbMessengerId\": \"<string>\"\n    },\n    \"metadata\": {\n      \"key_0\": true,\n      \"key_1\": 5837,\n      \"key_2\": true\n    },\n    \"title\": \"<string>\",\n    \"body\": \"<string>\",\n    \"templateId\": \"<string>\",\n    \"customBody\": {\n      \"appMessaging\": {\n        \"key_0\": true,\n        \"key_1\": 927.591695762382\n      },\n      \"sms\": {\n        \"key_0\": 3719.115345651306\n      },\n      \"mms\": {\n        \"key_0\": \"string\"\n      },\n      \"fbMessenger\": {\n        \"key_0\": \"string\"\n      },\n      \"nativePush\": {\n        \"key_0\": true\n      },\n      \"whatsApp\": {\n        \"key_0\": true,\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": 1482\n      },\n      \"rcs\": {\n        \"key_0\": \"string\",\n        \"key_1\": 1352\n      }\n    },\n    \"overrides\": {\n      \"appMessaging\": {\n        \"conversation\": {\n          \"key_0\": 1614.0020559026925,\n          \"key_1\": false\n        }\n      }\n    },\n    \"channelOptions\": {\n      \"appMessaging\": {\n        \"from\": {\n          \"profileId\": \"<string>\",\n          \"name\": \"<string>\",\n          \"avatarUrl\": \"<string>\"\n        }\n      },\n      \"sms\": {\n        \"from\": \"<string>\",\n        \"allowUnicode\": \"<boolean>\",\n        \"unicodeConversion\": {\n          \"convertUnicodeToGsm\": \"<boolean>\",\n          \"customReplacements\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"mms\": {\n        \"from\": \"<string>\",\n        \"allowUnicode\": \"<boolean>\",\n        \"unicodeConversion\": {\n          \"convertUnicodeToGsm\": \"<boolean>\",\n          \"customReplacements\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"fbMessenger\": {\n        \"messageTag\": \"<string>\",\n        \"messagingType\": \"<string>\"\n      },\n      \"whatsApp\": {\n        \"phoneNumber\": \"<string>\",\n        \"enableUrlPreview\": \"<boolean>\"\n      },\n      \"rcs\": {\n        \"agentId\": \"<string>\"\n      },\n      \"nativePush\": {\n        \"data\": {\n          \"fcm\": {},\n          \"apns\": {},\n          \"isSilent\": \"<boolean>\"\n        },\n        \"deepLink\": {\n          \"trackingLink\": \"<string>\",\n          \"fcm\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"apns\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    \"conversationId\": \"<string>\",\n    \"expiresOn\": \"<dateTime>\",\n    \"messageParts\": [\n      {\n        \"type\": \"<string>\",\n        \"channels\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"channels\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      }\n    ],\n    \"requireOptIn\": \"<boolean>\"\n  },\n  {\n    \"rules\": [\n      \"sms\",\n      \"sms\"\n    ],\n    \"to\": {\n      \"phoneNumber\": \"<string>\",\n      \"email\": \"<string>\",\n      \"profileId\": \"<string>\",\n      \"fbMessengerId\": \"<string>\"\n    },\n    \"metadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": 9339\n    },\n    \"title\": \"<string>\",\n    \"body\": \"<string>\",\n    \"templateId\": \"<string>\",\n    \"customBody\": {\n      \"appMessaging\": {\n        \"key_0\": true,\n        \"key_1\": \"string\"\n      },\n      \"sms\": {\n        \"key_0\": 2457,\n        \"key_1\": 6877.776588910486,\n        \"key_2\": \"string\"\n      },\n      \"mms\": {\n        \"key_0\": 4517,\n        \"key_1\": 5760,\n        \"key_2\": false\n      },\n      \"fbMessenger\": {\n        \"key_0\": \"string\",\n        \"key_1\": 9788.394619572186\n      },\n      \"nativePush\": {\n        \"key_0\": \"string\",\n        \"key_1\": true,\n        \"key_2\": 9994\n      },\n      \"whatsApp\": {\n        \"key_0\": \"string\"\n      },\n      \"rcs\": {\n        \"key_0\": false,\n        \"key_1\": \"string\"\n      }\n    },\n    \"overrides\": {\n      \"appMessaging\": {\n        \"conversation\": {\n          \"key_0\": true,\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        }\n      }\n    },\n    \"channelOptions\": {\n      \"appMessaging\": {\n        \"from\": {\n          \"profileId\": \"<string>\",\n          \"name\": \"<string>\",\n          \"avatarUrl\": \"<string>\"\n        }\n      },\n      \"sms\": {\n        \"from\": \"<string>\",\n        \"allowUnicode\": \"<boolean>\",\n        \"unicodeConversion\": {\n          \"convertUnicodeToGsm\": \"<boolean>\",\n          \"customReplacements\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"mms\": {\n        \"from\": \"<string>\",\n        \"allowUnicode\": \"<boolean>\",\n        \"unicodeConversion\": {\n          \"convertUnicodeToGsm\": \"<boolean>\",\n          \"customReplacements\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"fbMessenger\": {\n        \"messageTag\": \"<string>\",\n        \"messagingType\": \"<string>\"\n      },\n      \"whatsApp\": {\n        \"phoneNumber\": \"<string>\",\n        \"enableUrlPreview\": \"<boolean>\"\n      },\n      \"rcs\": {\n        \"agentId\": \"<string>\"\n      },\n      \"nativePush\": {\n        \"data\": {\n          \"fcm\": {},\n          \"apns\": {},\n          \"isSilent\": \"<boolean>\"\n        },\n        \"deepLink\": {\n          \"trackingLink\": \"<string>\",\n          \"fcm\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"apns\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    \"conversationId\": \"<string>\",\n    \"expiresOn\": \"<dateTime>\",\n    \"messageParts\": [\n      {\n        \"type\": \"<string>\",\n        \"channels\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"channels\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"data\": \"<string>\",\n        \"size\": \"<integer>\"\n      }\n    ],\n    \"requireOptIn\": \"<boolean>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa590708-23d7-45d5-8db4-211bd5743048",
+          "name": "Posts an inbound message",
+          "request": {
+            "name": "Posts an inbound message",
+            "description": {},
+            "url": {
+              "path": [
+                "cpaas",
+                "messages",
+                "inbounds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channel\": \"<string>\",\n  \"from\": {\n    \"key_0\": true\n  },\n  \"to\": {\n    \"key_0\": \"string\"\n  },\n  \"title\": \"<string>\",\n  \"body\": \"<string>\",\n  \"conversationId\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": 6354,\n    \"key_1\": \"string\",\n    \"key_2\": 4908.38866512105\n  },\n  \"channelData\": {\n    \"body\": {\n      \"key_0\": 6639,\n      \"key_1\": 6294.689599565725\n    }\n  },\n  \"messageParts\": [\n    {\n      \"type\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    }\n  ],\n  \"correlation\": {\n    \"messageId\": \"<string>\"\n  },\n  \"_createdBy\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f804f8d8-fe53-4c92-9fff-96be18b66595",
+              "name": "The message was accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "messages",
+                    "inbounds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channel\": \"<string>\",\n  \"from\": {\n    \"key_0\": false\n  },\n  \"to\": {\n    \"key_0\": \"string\"\n  },\n  \"title\": \"<string>\",\n  \"body\": \"<string>\",\n  \"conversationId\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": true\n  },\n  \"channelData\": {\n    \"body\": {\n      \"key_0\": 3637,\n      \"key_1\": true,\n      \"key_2\": 3357.315558924958\n    }\n  },\n  \"messageParts\": [\n    {\n      \"type\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    }\n  ],\n  \"correlation\": {\n    \"messageId\": \"<string>\"\n  },\n  \"_createdBy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"channel\": \"<string>\",\n  \"from\": {\n    \"key_0\": 6716,\n    \"key_1\": true,\n    \"key_2\": 9130,\n    \"key_3\": 809\n  },\n  \"messageId\": \"string\",\n  \"receivedOn\": \"2001-04-10T10:23:46.609Z\",\n  \"status\": \"read\",\n  \"to\": {\n    \"key_0\": 1215\n  },\n  \"title\": \"<string>\",\n  \"body\": \"<string>\",\n  \"conversationId\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": true,\n    \"key_1\": true\n  },\n  \"channelData\": {\n    \"body\": {\n      \"key_0\": false,\n      \"key_1\": 7633.625151807459,\n      \"key_2\": 1364\n    }\n  },\n  \"messageParts\": [\n    {\n      \"type\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    }\n  ],\n  \"correlation\": {\n    \"messageId\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": 6174,\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": 1915.02183067782\n    }\n  },\n  \"_createdOn\": \"1988-10-25T21:14:10.211Z\",\n  \"_createdBy\": \"<string>\",\n  \"_updatedOn\": \"2017-08-22T16:31:20.183Z\",\n  \"_updatedBy\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14daa25e-8c9e-439c-a7cb-eca96bff0c66",
+              "name": "Validation issues were found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "messages",
+                    "inbounds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channel\": \"<string>\",\n  \"from\": {\n    \"key_0\": false\n  },\n  \"to\": {\n    \"key_0\": \"string\"\n  },\n  \"title\": \"<string>\",\n  \"body\": \"<string>\",\n  \"conversationId\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": true\n  },\n  \"channelData\": {\n    \"body\": {\n      \"key_0\": 3637,\n      \"key_1\": true,\n      \"key_2\": 3357.315558924958\n    }\n  },\n  \"messageParts\": [\n    {\n      \"type\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    }\n  ],\n  \"correlation\": {\n    \"messageId\": \"<string>\"\n  },\n  \"_createdBy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd74ec77-d79c-4129-af89-3242a1dfd450",
+          "name": "Posts a status for an inbound",
+          "request": {
+            "name": "Posts a status for an inbound",
+            "description": {},
+            "url": {
+              "path": [
+                "cpaas",
+                "messages",
+                "inbounds",
+                ":inboundMessageId",
+                "statuses",
+                ":status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "inboundMessageId",
+                  "description": "(Required) The id of the inbound message"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "status",
+                  "description": "(Required) The status of the inbound message"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"channelStatus\": {\n    \"key_0\": 1815,\n    \"key_1\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "940f66e4-8748-4fd2-9118-53fbb2b06eee",
+              "name": "The inbound message status was received",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "messages",
+                    "inbounds",
+                    ":inboundMessageId",
+                    "statuses",
+                    ":status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "inboundMessageId",
+                      "description": "(Required) The id of the inbound message"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status",
+                      "description": "(Required) The status of the inbound message"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"channelStatus\": {\n    \"key_0\": \"string\",\n    \"key_1\": true,\n    \"key_2\": 3532.501817234599,\n    \"key_3\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"channel\": \"<string>\",\n  \"from\": {\n    \"key_0\": 6716,\n    \"key_1\": true,\n    \"key_2\": 9130,\n    \"key_3\": 809\n  },\n  \"messageId\": \"string\",\n  \"receivedOn\": \"2001-04-10T10:23:46.609Z\",\n  \"status\": \"read\",\n  \"to\": {\n    \"key_0\": 1215\n  },\n  \"title\": \"<string>\",\n  \"body\": \"<string>\",\n  \"conversationId\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": true,\n    \"key_1\": true\n  },\n  \"channelData\": {\n    \"body\": {\n      \"key_0\": false,\n      \"key_1\": 7633.625151807459,\n      \"key_2\": 1364\n    }\n  },\n  \"messageParts\": [\n    {\n      \"type\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    }\n  ],\n  \"correlation\": {\n    \"messageId\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": 6174,\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": 1915.02183067782\n    }\n  },\n  \"_createdOn\": \"1988-10-25T21:14:10.211Z\",\n  \"_createdBy\": \"<string>\",\n  \"_updatedOn\": \"2017-08-22T16:31:20.183Z\",\n  \"_updatedBy\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98e7cde9-35e7-4413-9f41-7211c144e747",
+              "name": "Validation issues were found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "messages",
+                    "inbounds",
+                    ":inboundMessageId",
+                    "statuses",
+                    ":status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "inboundMessageId",
+                      "description": "(Required) The id of the inbound message"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status",
+                      "description": "(Required) The status of the inbound message"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"channelStatus\": {\n    \"key_0\": \"string\",\n    \"key_1\": true,\n    \"key_2\": 3532.501817234599,\n    \"key_3\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "21ded392-af36-45a7-aa83-c9477c520c93",
+              "name": "The inbound message was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "messages",
+                    "inbounds",
+                    ":inboundMessageId",
+                    "statuses",
+                    ":status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "inboundMessageId",
+                      "description": "(Required) The id of the inbound message"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status",
+                      "description": "(Required) The status of the inbound message"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"channelStatus\": {\n    \"key_0\": \"string\",\n    \"key_1\": true,\n    \"key_2\": 3532.501817234599,\n    \"key_3\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4321dc1c-6d15-407b-a7e8-377457d6d38c",
+    "name": "Omnichannel API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Provides methods for sending single and batched outbound messages to any\nconfigured channel, as well as posting inbound messages and message or\ninbound status updates. Also supports retrieval, patching, and deletion of\nindividual messages, enabling full lifecycle management of omnichannel\ncommunications.",
+      "type": "text/plain"
+    }
+  }
+}

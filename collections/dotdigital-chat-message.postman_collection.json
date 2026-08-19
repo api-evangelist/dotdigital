@@ -1,0 +1,559 @@
+{
+  "item": [
+    {
+      "id": "607cd804-1017-4e58-87ad-0442233f7e4c",
+      "name": "Retrieves a chat's events",
+      "request": {
+        "name": "Retrieves a chat's events",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chats",
+            ":chatId",
+            "events"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "from",
+              "value": "<integer>",
+              "description": "(Required) The event id to start from"
+            },
+            {
+              "disabled": false,
+              "key": "limit",
+              "value": "<integer>",
+              "description": "(Required) The number of events to read forward"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "chatId",
+              "description": "(Required) The id of the chat"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "782cee98-a827-4b0c-924b-7a22d823d787",
+          "name": "A list of chat events",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"id\": 6554,\n    \"data\": {}\n  },\n  {\n    \"id\": 4268,\n    \"data\": {}\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "0d8b83f1-5c1e-4f20-9d45-fbc6529da0ba",
+      "name": "Retrieves a chat's messages from an point (event) in time and works backwards",
+      "request": {
+        "name": "Retrieves a chat's messages from an point (event) in time and works backwards",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chats",
+            ":chatId",
+            "messages"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "from",
+              "value": "<integer>",
+              "description": "The event id to work backwards from"
+            },
+            {
+              "disabled": false,
+              "key": "limit",
+              "value": "<integer>",
+              "description": "(Required) The number of messages to return"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "chatId",
+              "description": "(Required) The id of the chat"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "9282d11a-6388-4a80-910a-d5804fce467d",
+          "name": "A list of partial and the requested number of complete messages, aggregated from the chat events",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"earliestEventId\": 2097,\n  \"latestEventId\": 1833,\n  \"messages\": [\n    {\n      \"id\": \"bc2ecf87-8d75-069e-ad70-0046afd2b493\",\n      \"sentEventId\": 174,\n      \"metadata\": {},\n      \"context\": {\n        \"from\": {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        \"chatId\": \"string\",\n        \"sentBy\": \"string\",\n        \"sentOn\": \"2009-02-20T06:43:18.454Z\",\n        \"direction\": \"inbound\"\n      },\n      \"parts\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"string\",\n          \"data\": \"string\",\n          \"size\": 3683\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"string\",\n          \"data\": \"string\",\n          \"size\": 3860\n        }\n      ],\n      \"statusUpdates\": {}\n    },\n    {\n      \"id\": \"a6f50c7f-7e33-342f-66c8-894abac81e09\",\n      \"sentEventId\": 1510,\n      \"metadata\": {},\n      \"context\": {\n        \"from\": {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        \"chatId\": \"string\",\n        \"sentBy\": \"string\",\n        \"sentOn\": \"1951-03-16T09:43:32.662Z\",\n        \"direction\": \"inbound\"\n      },\n      \"parts\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"string\",\n          \"data\": \"string\",\n          \"size\": 4562\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"string\",\n          \"data\": \"string\",\n          \"size\": 467\n        }\n      ],\n      \"statusUpdates\": {}\n    }\n  ],\n  \"orphanedEvents\": [\n    {\n      \"id\": 7666,\n      \"data\": {}\n    },\n    {\n      \"id\": 5098,\n      \"data\": {}\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e9181c46-95a4-476d-814f-140a5f4e2cdd",
+      "name": "Sends a message to chat",
+      "request": {
+        "name": "Sends a message to chat",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chats",
+            ":chatId",
+            "messages"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "chatId",
+              "description": "(Required) The id of the chat"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"parts\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    }\n  ],\n  \"from\": {\n    \"profileId\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"metadata\": {},\n  \"alert\": {\n    \"title\": \"<string>\",\n    \"body\": \"<string>\",\n    \"platforms\": {\n      \"apns\": {\n        \"badge\": \"<integer>\",\n        \"sound\": \"<string>\",\n        \"alert\": \"<string>\",\n        \"payload\": {}\n      },\n      \"fcm\": {\n        \"collapse_key\": \"<string>\",\n        \"data\": {},\n        \"notification\": {\n          \"title\": \"<string>\",\n          \"body\": \"<string>\",\n          \"icon\": \"<string>\"\n        }\n      }\n    }\n  },\n  \"direction\": \"<string>\",\n  \"isAutomatedSend\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "4b40f1d7-63a6-44e7-8995-ff4e42191156",
+          "name": "The message was successfully sent",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"parts\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"url\": \"<string>\",\n      \"data\": \"<string>\",\n      \"size\": \"<integer>\"\n    }\n  ],\n  \"from\": {\n    \"profileId\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"metadata\": {},\n  \"alert\": {\n    \"title\": \"<string>\",\n    \"body\": \"<string>\",\n    \"platforms\": {\n      \"apns\": {\n        \"badge\": \"<integer>\",\n        \"sound\": \"<string>\",\n        \"alert\": \"<string>\",\n        \"payload\": {}\n      },\n      \"fcm\": {\n        \"collapse_key\": \"<string>\",\n        \"data\": {},\n        \"notification\": {\n          \"title\": \"<string>\",\n          \"body\": \"<string>\",\n          \"icon\": \"<string>\"\n        }\n      }\n    }\n  },\n  \"direction\": \"<string>\",\n  \"isAutomatedSend\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"eventId\": 6527\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c62826b2-f866-4180-be1e-5e323d56436c",
+      "name": "Posts message updates back",
+      "request": {
+        "name": "Posts message updates back",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chats",
+            ":chatId",
+            "messages",
+            "statusupdates"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "chatId",
+              "description": "(Required) The id of the chat"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "[\n  {\n    \"messageIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"status\": \"<string>\",\n    \"timestamp\": \"<dateTime>\"\n  },\n  {\n    \"messageIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"status\": \"<string>\",\n    \"timestamp\": \"<dateTime>\"\n  }\n]",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "ede24ea5-82ef-4273-8178-c29621b08993",
+          "name": "The status updates were successfully received",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chats",
+                ":chatId",
+                "messages",
+                "statusupdates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chatId",
+                  "description": "(Required) The id of the chat"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"messageIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"status\": \"<string>\",\n    \"timestamp\": \"<dateTime>\"\n  },\n  {\n    \"messageIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"status\": \"<string>\",\n    \"timestamp\": \"<dateTime>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "245404d8-f658-4678-ab80-b462a0a94259",
+    "name": "Chat Message API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Provides methods for sending and retrieving messages within a chat session.\nSupports retrieval of chat events and message history from a given point in\ntime, sending new messages to a chat, and posting message status updates.",
+      "type": "text/plain"
+    }
+  }
+}

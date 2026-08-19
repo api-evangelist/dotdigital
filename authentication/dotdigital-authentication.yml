@@ -1,0 +1,58 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/dotdigital-accounts-and-utilities-openapi.yml, openapi/dotdigital-analytics-openapi.yml,
+  openapi/dotdigital-campaign-templates-openapi.yml, openapi/dotdigital-chat-config-openapi.yml,
+  openapi/dotdigital-chat-message-openapi.yml, openapi/dotdigital-chat-openapi.yml, openapi/dotdigital-chat-presence-openapi.yml,
+  openapi/dotdigital-configuration-service-openapi.yml, openapi/dotdigital-contact-data-fields-openapi.yml,
+  openapi/dotdigital-contacts-openapi.yml, openapi/dotdigital-content-openapi.yml, openapi/dotdigital-conversation-message-openapi.yml
+  ...
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  sources:
+  - openapi/dotdigital-accounts-and-utilities-openapi.yml
+  - openapi/dotdigital-analytics-openapi.yml
+  - openapi/dotdigital-campaign-templates-openapi.yml
+  - openapi/dotdigital-chat-config-openapi.yml
+  - openapi/dotdigital-chat-message-openapi.yml
+  - openapi/dotdigital-chat-openapi.yml
+  - openapi/dotdigital-chat-presence-openapi.yml
+  - openapi/dotdigital-configuration-service-openapi.yml
+  - openapi/dotdigital-contact-data-fields-openapi.yml
+  - openapi/dotdigital-contacts-openapi.yml
+  - openapi/dotdigital-content-openapi.yml
+  - openapi/dotdigital-conversation-message-openapi.yml
+  - openapi/dotdigital-conversation-openapi.yml
+  - openapi/dotdigital-cpaas-openapi.yml
+  - openapi/dotdigital-data-firehose-openapi.yml
+  - openapi/dotdigital-documents-openapi.yml
+  - openapi/dotdigital-ecommerce-openapi.yml
+  - openapi/dotdigital-email-campaigns-openapi.yml
+  - openapi/dotdigital-email-contacts-openapi.yml
+  - openapi/dotdigital-events-openapi.yml
+  - openapi/dotdigital-images-openapi.yml
+  - openapi/dotdigital-insight-and-transactional-data-openapi.yml
+  - openapi/dotdigital-insight-data-service-openapi.yml
+  - openapi/dotdigital-lists-address-books-openapi.yml
+  - openapi/dotdigital-marketing-email-openapi.yml
+  - openapi/dotdigital-message-history-openapi.yml
+  - openapi/dotdigital-message-rules-openapi.yml
+  - openapi/dotdigital-omnichannel-openapi.yml
+  - openapi/dotdigital-pages-and-forms-openapi.yml
+  - openapi/dotdigital-phone-number-validation-openapi.yml
+  - openapi/dotdigital-preferences-and-subscriptions-openapi.yml
+  - openapi/dotdigital-product-recommendations-openapi.yml
+  - openapi/dotdigital-profile-openapi.yml
+  - openapi/dotdigital-programs-openapi.yml
+  - openapi/dotdigital-scoring-openapi.yml
+  - openapi/dotdigital-segments-openapi.yml
+  - openapi/dotdigital-session-openapi.yml
+  - openapi/dotdigital-sms-campaigns-openapi.yml
+  - openapi/dotdigital-templates-openapi.yml
+  - openapi/dotdigital-transactional-email-openapi.yml
+  - openapi/dotdigital-webhook-openapi.yml
+  - openapi/dotdigital-whatsapp-channel-openapi.yml

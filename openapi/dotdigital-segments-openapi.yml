@@ -1,0 +1,190 @@
+openapi: 3.1.0
+info:
+  title: Segments
+  description: 'Retrieve and manage contact segments. Use this API to list all segments with
+
+    their current contact counts, trigger a refresh of a segment''s membership, and
+
+    check the progress of an in-flight refresh.'
+  version: 2.0.1
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true
+x-samples-languages:
+- curl
+- csharp
+- java
+- javascript
+- node
+- python
+- php
+- ruby
+externalDocs:
+  description: Learn more about Dotdigital APIs
+  url: https://developer.dotdigital.com
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      default: r1
+      enum:
+      - r1
+      - r2
+      - r3
+      description: The Dotdigital region id your account belongs to
+security:
+- basicAuth: []
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+paths:
+  /v2/segments:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    get:
+      summary: Get segments
+      deprecated: false
+      description: Gets all segments
+      operationId: get-segments
+      tags:
+      - Segments
+      parameters: []
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      default: 0
+                      examples:
+                      - 1
+                    name:
+                      type: string
+                      examples:
+                      - Test
+                    contacts:
+                      type: integer
+                      default: 0
+                      examples:
+                      - 5
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                  - id: 1
+                    name: Test
+                    contacts: 5
+                  - id: 2
+                    name: Contacts who opened campaign X
+                    contacts: 7
+                  - id: 3
+                    name: First Stream who have not opened a campaign
+                    contacts: 7
+                  - id: 4
+                    name: Professionals who have opened a campaign
+                    contacts: 6
+  /v2/segments/refresh/{id}:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    post:
+      summary: Refresh segment
+      deprecated: false
+      description: Refreshes a segment by ID
+      operationId: refresh-segment
+      tags:
+      - Segments
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the segment you want to refresh.
+        required: true
+        example: 0
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '202':
+          description: '202'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    default: 0
+                    examples:
+                    - 1
+                  status:
+                    type: string
+                    examples:
+                    - NotStarted
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                    id: 1
+                    status: NotStarted
+    get:
+      summary: Get refresh progress for segment
+      deprecated: false
+      description: Gets the refresh progress for a segment
+      operationId: get-refresh-progress-for-segment
+      tags:
+      - Segments
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the segment you want to get the refresh progress for.
+        required: true
+        example: 0
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    default: 0
+                    examples:
+                    - 1
+                  status:
+                    type: string
+                    examples:
+                    - Finished
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                    id: 1
+                    status: Finished

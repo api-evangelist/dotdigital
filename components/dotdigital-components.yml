@@ -1,0 +1,81 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://marketing.developer.dotdigital.com/docs/the-dotdigital-tag,
+  https://marketing.developer.dotdigital.com/docs/dotdigital-tag-api-methods,
+  https://marketing.developer.dotdigital.com/docs/extend-the-dotdigital-tag-for-abandoned-cart-and-browse,
+  https://marketing.developer.dotdigital.com/docs/easy-editor-extension-schema
+description: >-
+  Dotdigital's client-side surface is not a component library in the Stripe Elements sense —
+  there is no set of embeddable UI widgets with a package per widget. It is a single browser
+  tag (`window.ddg`) that carries tracking, chat, abandoned cart and personalization, plus an
+  authoring extension format for the EasyEditor template builder. Both are real, documented,
+  first-party client-side surfaces, and both are distinct from the server SDKs in packages/.
+families:
+  - name: Dotdigital Tag
+    kind: browser tag / client-side JS API
+    global: window.ddg
+    queue_shim: window.dmPt
+    ready_event: ddgTagLoaded
+    install: >-
+      Script tag added per the help-centre install guide; the loader routes to the account's
+      regional endpoint automatically, so there is no region parameter for the caller to set.
+    enables: [web behavior tracking, chat, abandoned cart, Dotdigital Personalization]
+    docs: https://marketing.developer.dotdigital.com/docs/the-dotdigital-tag
+    methods:
+      - {name: 'ddg.configuration(data)', purpose: Configure the tag}
+      - {name: 'ddg.track(pageData)', purpose: Record a page view with optional page data}
+      - {name: 'ddg.identify(identityDetails)', purpose: Associate the browser session with a known person}
+      - {name: 'ddg.getTrackedId()', purpose: Read the tracked identifier for this browser}
+      - {name: 'ddg.event(...)', purpose: Send a custom event}
+      - {name: 'ddg.productBrowse(product)', purpose: Record a product view, with variant and category objects}
+      - {name: 'ddg.productList([product])', purpose: Record a list/collection impression}
+      - {name: 'ddg.cartUpdate(cartDetails)', purpose: Record cart state for abandoned-cart programs}
+      - {name: 'ddg.checkout(cartDetails)', purpose: Record checkout entry}
+      - {name: 'ddg.purchaseComplete(...)', purpose: Record a completed purchase}
+      - {name: 'ddg.setCookiesConsent(...)', purpose: Set cookie consent state for the tag}
+    hazards:
+      - >-
+        The tag loads asynchronously, so window.ddg may not exist when the page runs. Either
+        wait for the ddgTagLoaded event or push through the window.dmPt queue, which buffers
+        and replays in order.
+      - >-
+        Every method is fire-and-forget. Nothing returns a Promise and nothing throws when the
+        server rejects the call — a 4xx is only visible in the browser network panel. Client-side
+        failures are therefore silent by design and cannot be alarmed on from your own code.
+  - name: EasyEditor extensions
+    kind: authoring extension / content block schema
+    docs: https://marketing.developer.dotdigital.com/docs/easy-editor-extension-schema
+    related_docs:
+      - https://marketing.developer.dotdigital.com/docs/uploading-and-updating-your-extensions
+      - https://marketing.developer.dotdigital.com/docs/testing-your-extensions
+      - https://marketing.developer.dotdigital.com/docs/template-considerations
+    note: >-
+      A JSON schema describing custom building blocks for the EasyEditor email/template builder,
+      with an upload, update and test lifecycle. This extends Dotdigital's authoring UI rather
+      than embedding Dotdigital into yours.
+  - name: Chat widget
+    kind: hosted embeddable surface
+    delivered_by: Dotdigital Tag
+    management_apis:
+      - openapi/dotdigital-chat-openapi.yml
+      - openapi/dotdigital-chat-config-openapi.yml
+      - openapi/dotdigital-chat-message-openapi.yml
+      - openapi/dotdigital-chat-presence-openapi.yml
+    note: >-
+      The visible widget ships through the Tag; its configuration, teams, presence and message
+      history are managed over the CPaaS chat APIs.
+  - name: Pages and forms
+    kind: hosted surface
+    api: openapi/dotdigital-pages-and-forms-openapi.yml
+    note: Dotdigital-hosted landing pages and signup forms, managed over the v2 API.
+platform_ui_extensions:
+  note: >-
+    The Magento/Adobe Commerce PWA Studio packages in packages/ (@dotdigital/pwa-studio-chat,
+    -tracking, -page-builder, -email-capture) are storefront-side React components, but they are
+    bound to the PWA Studio framework rather than being general web components. Last published
+    June 2023.
+not_present:
+  - No framework-agnostic web components or custom elements.
+  - No hosted payment/checkout element equivalent.
+  - No embeddable analytics dashboard.

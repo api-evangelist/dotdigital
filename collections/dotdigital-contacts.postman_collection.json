@@ -1,0 +1,3562 @@
+{
+  "item": [
+    {
+      "id": "04fbb925-c31f-42a6-bd8e-13fa09fe00c1",
+      "name": "Get contacts based on your criteria",
+      "request": {
+        "name": "Get contacts based on your criteria",
+        "description": {
+          "content": "Get contacts based on criteria you specify. Contacts are returned with full data, specified data fields, or key information and identifiers only.<br/><br/>\n\n*Note: All data is returned in ascending order*",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "contacts",
+            "v3"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "data-fields",
+              "value": "<string>|<string>",
+              "description": "Contact data is returned with a minimum of **contactId** and any associated **identifiers**. Use this field to specify any additional data fields you want to return. Enter a pipe delimited string of the contact data fields required or **[[ALL]]** to Get all data fields."
+            },
+            {
+              "disabled": false,
+              "key": "include",
+              "value": "<string>|<string>",
+              "description": "Specify additional data sets associated with the contact to include in the returned data."
+            },
+            {
+              "disabled": false,
+              "key": "~created",
+              "value": "<string>",
+              "description": "Filter by created date.<br/>\n***Note:***\n* The date must be in ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601))\n* Can't be used in conjunction with the **~modified** parameter."
+            },
+            {
+              "disabled": false,
+              "key": "~modified",
+              "value": "<string>",
+              "description": "Filter by last modified date.<br/>\n***Note:***\n* The date must be in ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601))"
+            },
+            {
+              "disabled": false,
+              "key": "~listId",
+              "value": "<integer>",
+              "description": "Filter by a specific list.<br/>\n***Note:***\n* Can't be used in conjunction with the **~segmentId** parameter."
+            },
+            {
+              "disabled": false,
+              "key": "~segmentId",
+              "value": "<integer>",
+              "description": "Filter by a specific segment.<br/>\n***Note:***\n* Can't be used in conjunction with the **~listId** parameter."
+            },
+            {
+              "disabled": false,
+              "key": "limit",
+              "value": "<integer>",
+              "description": "Maximum number of records to retrieve per page"
+            },
+            {
+              "disabled": false,
+              "key": "marker",
+              "value": "<string>",
+              "description": "Pagination marker to retrieve the data from"
+            }
+          ],
+          "variable": [
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+            "key": "x-ddg-integration-token",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "f76770a2-8bb2-45c8-bacb-e3fc021410a1",
+          "name": "Contacts retrieved",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "data-fields",
+                  "value": "FIRSTNAME|LASTNAME|FULLNAME|GENDER|POSTCODE"
+                },
+                {
+                  "key": "include",
+                  "value": "preferences|lists"
+                },
+                {
+                  "key": "~created",
+                  "value": "gte::2021-12-17T00:00:00Z"
+                },
+                {
+                  "key": "~modified",
+                  "value": "gte::2021-12-17T00:00:00Z"
+                },
+                {
+                  "key": "~listId",
+                  "value": "54321"
+                },
+                {
+                  "key": "~segmentId",
+                  "value": "12345"
+                },
+                {
+                  "key": "limit",
+                  "value": "1000"
+                },
+                {
+                  "key": "marker",
+                  "value": "RXhhbXBsZSBhbXJrZXIgdmFsdWU="
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"_items\": [\n    {\n      \"contactId\": 35212311,\n      \"created\": \"1953-10-11T20:40:13.754Z\",\n      \"identifiers\": {\n        \"email\": {},\n        \"mobileNumber\": {}\n      },\n      \"status\": \"subscribed\",\n      \"updated\": \"2004-08-10T02:35:08.554Z\",\n      \"dataFields\": {\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"gender\": \"male\"\n      },\n      \"channelProperties\": {\n        \"email\": {\n          \"emailType\": \"Html\",\n          \"optInType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"sms\": {\n          \"countryCode\": \"GB\",\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"whatsApp\": {\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"lists\": [\n        {\n          \"id\": 12345,\n          \"name\": \"Top customers\",\n          \"status\": \"subscribed\"\n        },\n        {\n          \"id\": 12345,\n          \"name\": \"Top customers\",\n          \"status\": \"subscribed\"\n        }\n      ],\n      \"preferences\": [\n        {\n          \"id\": 1,\n          \"isOptedIn\": true,\n          \"publicName\": \"Mens fashion\",\n          \"privateName\": \"mensFashion01\"\n        }\n      ],\n      \"consentRecords\": [\n        {\n          \"text\": \"Yes, I would like to receive a monthly newsletter\",\n          \"dateTimeConsented\": \"2023-01-26T21:29:00\",\n          \"url\": \"http://www.example.com/signup\",\n          \"ipAddress\": \"129.168.0.2\",\n          \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\",\n          \"dateTimeCreated\": \"2023-01-26T22:55:00\"\n        },\n        {\n          \"text\": \"Yes, I would like to receive a monthly newsletter\",\n          \"dateTimeConsented\": \"2023-01-26T21:29:00\",\n          \"url\": \"http://www.example.com/signup\",\n          \"ipAddress\": \"129.168.0.2\",\n          \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\",\n          \"dateTimeCreated\": \"2023-01-26T22:55:00\"\n        }\n      ]\n    },\n    {\n      \"contactId\": 35212311,\n      \"created\": \"2001-12-13T18:53:15.597Z\",\n      \"identifiers\": {\n        \"email\": {},\n        \"mobileNumber\": {},\n        \"key_0\": \"string\"\n      },\n      \"status\": \"subscribed\",\n      \"updated\": \"1963-06-05T20:11:57.915Z\",\n      \"dataFields\": {\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"gender\": \"male\"\n      },\n      \"channelProperties\": {\n        \"email\": {\n          \"emailType\": \"Html\",\n          \"optInType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"sms\": {\n          \"countryCode\": \"GB\",\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"whatsApp\": {\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"lists\": [\n        {\n          \"id\": 12345,\n          \"name\": \"Top customers\",\n          \"status\": \"subscribed\"\n        },\n        {\n          \"id\": 12345,\n          \"name\": \"Top customers\",\n          \"status\": \"subscribed\"\n        }\n      ],\n      \"preferences\": [\n        {\n          \"id\": 1,\n          \"isOptedIn\": false,\n          \"publicName\": \"Mens fashion\",\n          \"privateName\": \"mensFashion01\"\n        }\n      ],\n      \"consentRecords\": [\n        {\n          \"text\": \"Yes, I would like to receive a monthly newsletter\",\n          \"dateTimeConsented\": \"2023-01-26T21:29:00\",\n          \"url\": \"http://www.example.com/signup\",\n          \"ipAddress\": \"129.168.0.2\",\n          \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\",\n          \"dateTimeCreated\": \"2023-01-26T22:55:00\"\n        },\n        {\n          \"text\": \"Yes, I would like to receive a monthly newsletter\",\n          \"dateTimeConsented\": \"2023-01-26T21:29:00\",\n          \"url\": \"http://www.example.com/signup\",\n          \"ipAddress\": \"129.168.0.2\",\n          \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\",\n          \"dateTimeCreated\": \"2023-01-26T22:55:00\"\n        }\n      ]\n    }\n  ],\n  \"_links\": {\n    \"first\": {\n      \"link\": \"string\",\n      \"marker\": \"string\"\n    },\n    \"self\": {\n      \"link\": \"string\",\n      \"marker\": \"string\"\n    },\n    \"prev\": {\n      \"link\": \"string\",\n      \"marker\": \"string\"\n    },\n    \"next\": {\n      \"link\": \"string\",\n      \"marker\": \"string\"\n    },\n    \"last\": {\n      \"link\": \"string\",\n      \"marker\": \"string\"\n    }\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "cf6517b3-94d5-434a-b9f1-e9a9fe2ab12a",
+          "name": "Bad request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "data-fields",
+                  "value": "FIRSTNAME|LASTNAME|FULLNAME|GENDER|POSTCODE"
+                },
+                {
+                  "key": "include",
+                  "value": "preferences|lists"
+                },
+                {
+                  "key": "~created",
+                  "value": "gte::2021-12-17T00:00:00Z"
+                },
+                {
+                  "key": "~modified",
+                  "value": "gte::2021-12-17T00:00:00Z"
+                },
+                {
+                  "key": "~listId",
+                  "value": "54321"
+                },
+                {
+                  "key": "~segmentId",
+                  "value": "12345"
+                },
+                {
+                  "key": "limit",
+                  "value": "1000"
+                },
+                {
+                  "key": "marker",
+                  "value": "RXhhbXBsZSBhbXJrZXIgdmFsdWU="
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": \"contacts:invalidFilter\",\n  \"description\": \"The filter value '2022-08-01T00:00:00Z' is invalid\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "736c5444-6a4f-4447-9ce7-fdeb733470b5",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "data-fields",
+                  "value": "FIRSTNAME|LASTNAME|FULLNAME|GENDER|POSTCODE"
+                },
+                {
+                  "key": "include",
+                  "value": "preferences|lists"
+                },
+                {
+                  "key": "~created",
+                  "value": "gte::2021-12-17T00:00:00Z"
+                },
+                {
+                  "key": "~modified",
+                  "value": "gte::2021-12-17T00:00:00Z"
+                },
+                {
+                  "key": "~listId",
+                  "value": "54321"
+                },
+                {
+                  "key": "~segmentId",
+                  "value": "12345"
+                },
+                {
+                  "key": "limit",
+                  "value": "1000"
+                },
+                {
+                  "key": "marker",
+                  "value": "RXhhbXBsZSBhbXJrZXIgdmFsdWU="
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "63733466-b718-4c3f-b502-e253d0232d7d",
+      "name": "Create a contact",
+      "request": {
+        "name": "Create a contact",
+        "description": {
+          "content": "Creates a contact if the identifiers passed are unique in the account then a new contact will be created, otherwise it will fail the call with a 409.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "contacts",
+            "v3"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+            "key": "x-ddg-integration-token",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"identifiers\": {\n    \"email\": {},\n    \"mobileNumber\": {}\n  },\n  \"dataFields\": {\n    \"key_0\": false,\n    \"key_1\": \"string\",\n    \"key_2\": true\n  },\n  \"channelProperties\": {\n    \"email\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"sms\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"whatsApp\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    }\n  },\n  \"lists\": [\n    \"<integer>\"\n  ],\n  \"preferences\": [\n    {\n      \"id\": \"<integer>\",\n      \"isOptedIn\": \"<boolean>\"\n    }\n  ],\n  \"consentRecords\": [\n    {\n      \"dateTimeConsented\": \"<dateTime>\",\n      \"ipAddress\": \"<ipv4>\",\n      \"text\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"userAgent\": \"<string>\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "3d3bf9c5-a2d9-4801-a808-8566f5644425",
+          "name": "Contact created",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifiers\": {\n    \"email\": {},\n    \"mobileNumber\": {}\n  },\n  \"dataFields\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"gender\": \"male\"\n  },\n  \"channelProperties\": {\n    \"email\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"sms\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"whatsApp\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    }\n  },\n  \"lists\": [\n    345579\n  ],\n  \"preferences\": [\n    {\n      \"id\": 1,\n      \"isOptedIn\": \"<boolean>\"\n    }\n  ],\n  \"consentRecords\": [\n    {\n      \"dateTimeConsented\": \"2023-01-26T21:29:00Z\",\n      \"ipAddress\": \"129.168.0.2\",\n      \"text\": \"Yes, I would like to receive a monthly newsletter\",\n      \"url\": \"http://www.example.com/signup\",\n      \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"contactId\": 35212311,\n  \"created\": \"2021-11-20T09:59:05.920Z\",\n  \"identifiers\": {\n    \"email\": {},\n    \"mobileNumber\": {},\n    \"key_0\": \"<string>\"\n  },\n  \"status\": \"subscribed\",\n  \"updated\": \"2017-10-13T08:35:54.630Z\",\n  \"dataFields\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"gender\": \"male\"\n  },\n  \"channelProperties\": {\n    \"email\": {\n      \"emailType\": \"Html\",\n      \"optInType\": \"Double\",\n      \"status\": \"subscribed\"\n    },\n    \"sms\": {\n      \"countryCode\": \"GB\",\n      \"status\": \"subscribed\"\n    },\n    \"whatsApp\": {\n      \"status\": \"subscribed\"\n    }\n  },\n  \"lists\": [\n    {\n      \"id\": 12345,\n      \"name\": \"Top customers\",\n      \"status\": \"subscribed\"\n    },\n    {\n      \"id\": 12345,\n      \"name\": \"Top customers\",\n      \"status\": \"subscribed\"\n    }\n  ],\n  \"preferences\": [\n    {\n      \"id\": 1,\n      \"isOptedIn\": false,\n      \"publicName\": \"Mens fashion\",\n      \"privateName\": \"mensFashion01\"\n    }\n  ],\n  \"consentRecords\": [\n    {\n      \"text\": \"Yes, I would like to receive a monthly newsletter\",\n      \"dateTimeConsented\": \"2023-01-26T21:29:00\",\n      \"url\": \"http://www.example.com/signup\",\n      \"ipAddress\": \"129.168.0.2\",\n      \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\",\n      \"dateTimeCreated\": \"2023-01-26T22:55:00\"\n    },\n    {\n      \"text\": \"Yes, I would like to receive a monthly newsletter\",\n      \"dateTimeConsented\": \"2023-01-26T21:29:00\",\n      \"url\": \"http://www.example.com/signup\",\n      \"ipAddress\": \"129.168.0.2\",\n      \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\",\n      \"dateTimeCreated\": \"2023-01-26T22:55:00\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "2238320a-5b8f-41b6-a686-2c9b4ef687b3",
+          "name": "Bad request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifiers\": {\n    \"email\": {},\n    \"mobileNumber\": {}\n  },\n  \"dataFields\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"gender\": \"male\"\n  },\n  \"channelProperties\": {\n    \"email\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"sms\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"whatsApp\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    }\n  },\n  \"lists\": [\n    345579\n  ],\n  \"preferences\": [\n    {\n      \"id\": 1,\n      \"isOptedIn\": \"<boolean>\"\n    }\n  ],\n  \"consentRecords\": [\n    {\n      \"dateTimeConsented\": \"2023-01-26T21:29:00Z\",\n      \"ipAddress\": \"129.168.0.2\",\n      \"text\": \"Yes, I would like to receive a monthly newsletter\",\n      \"url\": \"http://www.example.com/signup\",\n      \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": \"contacts:invalidId\",\n  \"description\": \"The id value '123646' is invalid for the identifier 'email'\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "20146777-e7a9-4112-947f-55eec8c024c4",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifiers\": {\n    \"email\": {},\n    \"mobileNumber\": {}\n  },\n  \"dataFields\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"gender\": \"male\"\n  },\n  \"channelProperties\": {\n    \"email\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"sms\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"whatsApp\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    }\n  },\n  \"lists\": [\n    345579\n  ],\n  \"preferences\": [\n    {\n      \"id\": 1,\n      \"isOptedIn\": \"<boolean>\"\n    }\n  ],\n  \"consentRecords\": [\n    {\n      \"dateTimeConsented\": \"2023-01-26T21:29:00Z\",\n      \"ipAddress\": \"129.168.0.2\",\n      \"text\": \"Yes, I would like to receive a monthly newsletter\",\n      \"url\": \"http://www.example.com/signup\",\n      \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "b34df18e-cb5e-4953-be77-63a9c573f862",
+          "name": "Identifier conflict",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifiers\": {\n    \"email\": {},\n    \"mobileNumber\": {}\n  },\n  \"dataFields\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"gender\": \"male\"\n  },\n  \"channelProperties\": {\n    \"email\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"sms\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"whatsApp\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    }\n  },\n  \"lists\": [\n    345579\n  ],\n  \"preferences\": [\n    {\n      \"id\": 1,\n      \"isOptedIn\": \"<boolean>\"\n    }\n  ],\n  \"consentRecords\": [\n    {\n      \"dateTimeConsented\": \"2023-01-26T21:29:00Z\",\n      \"ipAddress\": \"129.168.0.2\",\n      \"text\": \"Yes, I would like to receive a monthly newsletter\",\n      \"url\": \"http://www.example.com/signup\",\n      \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": \"contacts:idAlreadyExists\",\n  \"description\": \"The id value 'jane.doe@emailsim.io for the identifier 'email' already exists. All identifiers must be unique!\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "29a067f1-c472-42d4-8707-30110431a465",
+      "name": "Delete multiple contacts",
+      "request": {
+        "name": "Delete multiple contacts",
+        "description": {
+          "content": "Async deletes multiple contacts using whichever identifier you wish.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "contacts",
+            "v3",
+            "delete"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+            "key": "x-ddg-integration-token",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "[\n  {\n    \"contactId\": \"<long>\"\n  }\n]",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "a14ee729-9c5a-4ebe-b05f-68f8aa82db21",
+          "name": "Delete request accepted",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"contactId\": 12345\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Accepted",
+          "code": 202,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"deleteId\": \"c4920aee-3add-44e4-b8c0-dcbfacbfee40\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "4d9d071e-9ba1-4f4e-8f99-f3ffa643e6ce",
+          "name": "Bad request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"contactId\": 12345\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": \"contacts:noContactsSpecified\",\n  \"description\": \"You must specifiy 1 or more contacts to be deleted!\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "b2ea08ac-96f0-4858-b2e9-f1549e945348",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"contactId\": 12345\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "d37ee45b-bb7a-4d5b-90ca-638f8d32bf46",
+          "name": "Too many bulk delete jobs",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"contactId\": 12345\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Too Many Requests",
+          "code": 429,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": \"contacts:tooManyBulkDeleteJobs\",\n  \"description\": \"Your bulk delete request cannot be accepted as too many bulk delete jobs are being processed for you account. Please wait for a bulk delete job to complete and then resubmit.\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "b243b582-a5c2-43d5-8f7b-bd157caae48e",
+      "name": "Get the status of a delete contacts job",
+      "request": {
+        "name": "Get the status of a delete contacts job",
+        "description": {
+          "content": "Gets the status of a delete contacts job and the results if complete.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "contacts",
+            "v3",
+            "delete",
+            ":deleteId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "deleteId",
+              "description": "(Required) The delete job id you want the status for"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "ebf6c960-a72d-42e5-824e-6ef8c7aed120",
+          "name": "Successful operation",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                "delete",
+                ":deleteId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deleteId",
+                  "description": "(Required) The delete job id you want the status for"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"deleteId\": \"c4920aee-3add-44e4-b8c0-dcbfacbfee40\",\n  \"status\": \"Finished\",\n  \"summary\": {\n    \"deletedContacts\": 95,\n    \"invalidEntries\": 1,\n    \"requestedContacts\": 100,\n    \"unknownContacts\": 4\n  },\n  \"deleted\": [\n    {\n      \"contactId\": 12345\n    },\n    {\n      \"contactId\": 12345\n    }\n  ],\n  \"failures\": [\n    {\n      \"failures\": [\n        {\n          \"failureCode\": \"invalidEmail\",\n          \"description\": \"Invalid value for 'email'\"\n        },\n        {\n          \"failureCode\": \"contactNotFound\",\n          \"description\": \"The contact could not be found\"\n        }\n      ],\n      \"identifier\": {\n        \"contactId\": 12345\n      }\n    },\n    {\n      \"failures\": [\n        {\n          \"failureCode\": \"invalidEmail\",\n          \"description\": \"Invalid value for 'email'\"\n        },\n        {\n          \"failureCode\": \"contactNotFound\",\n          \"description\": \"The contact could not be found\"\n        }\n      ],\n      \"identifier\": {\n        \"contactId\": 12345\n      }\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "43bc5b03-24b4-481b-a191-0bcf1bb6511f",
+          "name": "Bad request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                "delete",
+                ":deleteId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deleteId",
+                  "description": "(Required) The delete job id you want the status for"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": \"contacts:invalidDeleteId\",\n  \"description\": \"The id value '123646' is not a recognized deletion job identifier\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "f344f1cb-ce23-4420-b7b9-18089968742b",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                "delete",
+                ":deleteId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deleteId",
+                  "description": "(Required) The delete job id you want the status for"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "1b362c8e-2d47-4633-9b38-6fd31bd570c7",
+          "name": "Import request not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                "delete",
+                ":deleteId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deleteId",
+                  "description": "(Required) The delete job id you want the status for"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": \"contacts:importNotFound\",\n  \"description\": \"The import request 'd7de900d-d337-43f6-b1e1-c8ec73e1a434' could not be found!\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "bd338efe-682c-4753-9a20-b431fe3191de",
+      "name": "Import contact collection",
+      "request": {
+        "name": "Import contact collection",
+        "description": {
+          "content": "Imports a collection of contacts. Creates contacts if they do not exist and updates contacts if they do. This is an async operation and you will need to check when it is complete by calling **getImportStatus** <br><br>**Note:** It isn't possible to specify the value for the **contactId** field when creating a contact, so it is only used to check for a matching contact when specified",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "contacts",
+            "v3",
+            "import"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+            "key": "x-ddg-integration-token",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"contacts\": [\n    {\n      \"identifiers\": {\n        \"contactId\": \"<integer>\",\n        \"email\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"mobileNumber\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"matchIdentifier\": \"<string>\",\n      \"consentRecords\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"channelProperties\": {\n        \"email\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"mergeOption\": \"overwrite\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "fe925b06-defe-413c-97f8-c059f2c6a635",
+          "name": "Import processing",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mergeOption\": \"overwrite\",\n  \"contacts\": [\n    {\n      \"matchIdentifier\": \"email\",\n      \"identifiers\": {\n        \"email\": \"jane.doe@emailsim.io\"\n      },\n      \"dataFields\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"gender\": \"female\"\n      }\n    },\n    {\n      \"matchIdentifier\": \"mobileNumber\",\n      \"identifiers\": {\n        \"email\": \"john.doe@emailsim.io\",\n        \"mobileNumber\": \"447123123123\"\n      },\n      \"dataFields\": {\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"gender\": \"male\"\n      },\n      \"channelProperties\": {\n        \"email\": {\n          \"emailType\": \"Html\"\n        }\n      }\n    },\n    {\n      \"matchIdentifier\": \"contactId\",\n      \"identifiers\": {\n        \"contactId\": 123456,\n        \"email\": \"my-new-email@emailsim.io\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Accepted",
+          "code": 202,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"importId\": \"d7de900d-d337-43f6-b1e1-c8ec73e1a434\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "59c13b98-67d3-4cb5-9ed5-7f1b1928bc42",
+          "name": "Bad request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mergeOption\": \"overwrite\",\n  \"contacts\": [\n    {\n      \"matchIdentifier\": \"email\",\n      \"identifiers\": {\n        \"email\": \"jane.doe@emailsim.io\"\n      },\n      \"dataFields\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"gender\": \"female\"\n      }\n    },\n    {\n      \"matchIdentifier\": \"mobileNumber\",\n      \"identifiers\": {\n        \"email\": \"john.doe@emailsim.io\",\n        \"mobileNumber\": \"447123123123\"\n      },\n      \"dataFields\": {\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"gender\": \"male\"\n      },\n      \"channelProperties\": {\n        \"email\": {\n          \"emailType\": \"Html\"\n        }\n      }\n    },\n    {\n      \"matchIdentifier\": \"contactId\",\n      \"identifiers\": {\n        \"contactId\": 123456,\n        \"email\": \"my-new-email@emailsim.io\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": \"contacts:badJson\",\n  \"description\": \"The request JSON is badly formed\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "7fd0876d-763c-4e06-adc0-e35ee17bcad1",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mergeOption\": \"overwrite\",\n  \"contacts\": [\n    {\n      \"matchIdentifier\": \"email\",\n      \"identifiers\": {\n        \"email\": \"jane.doe@emailsim.io\"\n      },\n      \"dataFields\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"gender\": \"female\"\n      }\n    },\n    {\n      \"matchIdentifier\": \"mobileNumber\",\n      \"identifiers\": {\n        \"email\": \"john.doe@emailsim.io\",\n        \"mobileNumber\": \"447123123123\"\n      },\n      \"dataFields\": {\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"gender\": \"male\"\n      },\n      \"channelProperties\": {\n        \"email\": {\n          \"emailType\": \"Html\"\n        }\n      }\n    },\n    {\n      \"matchIdentifier\": \"contactId\",\n      \"identifiers\": {\n        \"contactId\": 123456,\n        \"email\": \"my-new-email@emailsim.io\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "25f4ee2b-fa19-496f-abe0-0f654e9df510",
+          "name": "Too many import requests",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mergeOption\": \"overwrite\",\n  \"contacts\": [\n    {\n      \"matchIdentifier\": \"email\",\n      \"identifiers\": {\n        \"email\": \"jane.doe@emailsim.io\"\n      },\n      \"dataFields\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"gender\": \"female\"\n      }\n    },\n    {\n      \"matchIdentifier\": \"mobileNumber\",\n      \"identifiers\": {\n        \"email\": \"john.doe@emailsim.io\",\n        \"mobileNumber\": \"447123123123\"\n      },\n      \"dataFields\": {\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"gender\": \"male\"\n      },\n      \"channelProperties\": {\n        \"email\": {\n          \"emailType\": \"Html\"\n        }\n      }\n    },\n    {\n      \"matchIdentifier\": \"contactId\",\n      \"identifiers\": {\n        \"contactId\": 123456,\n        \"email\": \"my-new-email@emailsim.io\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Too Many Requests",
+          "code": 429,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": \"contacts:tooManyActiveImports\",\n  \"description\": \"Your import request cannot be accepted as too many imports are being processed for you account. Please wait for an import to complete and then resubmit.\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c5018090-4382-4d34-b28e-1add3453421a",
+      "name": "Get the status of a contacts import request",
+      "request": {
+        "name": "Get the status of a contacts import request",
+        "description": {
+          "content": "Gets the status of a contacts import request and the results if available.<br><br>**Note:** When importing, contacts are created or updated but if any associated data sets fail to import then details of these are included in the **failures** results",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "contacts",
+            "v3",
+            "import",
+            ":importId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "importId",
+              "description": "(Required) The import id you want the status for"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "6638b62c-149e-4f29-a7ec-c961179955c6",
+          "name": "Successful operation",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                "import",
+                ":importId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "importId",
+                  "description": "(Required) The import id you want the status for"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"importId\": \"d7de900d-d337-43f6-b1e1-c8ec73e1a434\",\n  \"status\": \"Failed\",\n  \"summary\": {\n    \"newContacts\": 10,\n    \"updatedContacts\": 14,\n    \"globallySuppressed\": 0,\n    \"invalidEntries\": 2,\n    \"duplicateIdentifiers\": 2\n  },\n  \"created\": [\n    {\n      \"contactId\": 35212311,\n      \"identifiers\": {\n        \"email\": {},\n        \"mobileNumber\": {}\n      }\n    },\n    {\n      \"contactId\": 35212311,\n      \"identifiers\": {\n        \"email\": {},\n        \"mobileNumber\": {}\n      }\n    }\n  ],\n  \"updated\": [\n    {\n      \"contactId\": 35212311,\n      \"identifiers\": {\n        \"email\": {},\n        \"mobileNumber\": {}\n      }\n    },\n    {\n      \"contactId\": 35212311,\n      \"identifiers\": {\n        \"email\": {},\n        \"mobileNumber\": {},\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"failures\": [\n    {\n      \"failures\": [\n        {\n          \"description\": \"Invalid value for 'email'\",\n          \"failureCode\": \"invalidEmail\"\n        },\n        {\n          \"description\": \"Invalid value for 'email'\",\n          \"failureCode\": \"invalidEmail\"\n        }\n      ],\n      \"identifiers\": {\n        \"email\": {},\n        \"mobileNumber\": {}\n      },\n      \"matchIdentifier\": \"mobileNumber\",\n      \"contactId\": 35212311\n    },\n    {\n      \"failures\": [\n        {\n          \"description\": \"Invalid value for 'email'\",\n          \"failureCode\": \"invalidEmail\"\n        },\n        {\n          \"description\": \"Invalid value for 'email'\",\n          \"failureCode\": \"invalidEmail\"\n        }\n      ],\n      \"identifiers\": {\n        \"email\": {},\n        \"mobileNumber\": {}\n      },\n      \"matchIdentifier\": \"mobileNumber\",\n      \"contactId\": 35212311\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "562f69a0-b63c-4611-86a1-5c8651be6681",
+          "name": "Bad request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                "import",
+                ":importId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "importId",
+                  "description": "(Required) The import id you want the status for"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": \"contacts:invalidId\",\n  \"description\": \"The id value '123646' is invalid for the identifier 'email'\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "7e7f5f4e-9f6a-487f-a3a3-b832321037d5",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                "import",
+                ":importId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "importId",
+                  "description": "(Required) The import id you want the status for"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "c6238a10-ef6a-4afa-aec0-28dbd38cbcf8",
+          "name": "Import request not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                "import",
+                ":importId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "importId",
+                  "description": "(Required) The import id you want the status for"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": \"contacts:importNotFound\",\n  \"description\": \"The import request 'd7de900d-d337-43f6-b1e1-c8ec73e1a434' could not be found!\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "2e94aad9-a0d1-4276-a34a-553511cf2fd7",
+      "name": "Get a contact by an identifier",
+      "request": {
+        "name": "Get a contact by an identifier",
+        "description": {
+          "content": "Get a contact's details using a specific identifier",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "contacts",
+            "v3",
+            ":identifier",
+            ":value"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "identifier",
+              "description": "(Required) The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "value",
+              "description": "(Required) The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+            "key": "x-ddg-integration-token",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "a3c6d1bf-c253-4504-adba-ffcfe31cdb35",
+          "name": "Successful operation",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                ":identifier",
+                ":value"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "value",
+                  "description": "(Required) The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"contactId\": 35212311,\n  \"created\": \"2021-11-20T09:59:05.920Z\",\n  \"identifiers\": {\n    \"email\": {},\n    \"mobileNumber\": {},\n    \"key_0\": \"<string>\"\n  },\n  \"status\": \"subscribed\",\n  \"updated\": \"2017-10-13T08:35:54.630Z\",\n  \"dataFields\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"gender\": \"male\"\n  },\n  \"channelProperties\": {\n    \"email\": {\n      \"emailType\": \"Html\",\n      \"optInType\": \"Double\",\n      \"status\": \"subscribed\"\n    },\n    \"sms\": {\n      \"countryCode\": \"GB\",\n      \"status\": \"subscribed\"\n    },\n    \"whatsApp\": {\n      \"status\": \"subscribed\"\n    }\n  },\n  \"lists\": [\n    {\n      \"id\": 12345,\n      \"name\": \"Top customers\",\n      \"status\": \"subscribed\"\n    },\n    {\n      \"id\": 12345,\n      \"name\": \"Top customers\",\n      \"status\": \"subscribed\"\n    }\n  ],\n  \"preferences\": [\n    {\n      \"id\": 1,\n      \"isOptedIn\": false,\n      \"publicName\": \"Mens fashion\",\n      \"privateName\": \"mensFashion01\"\n    }\n  ],\n  \"consentRecords\": [\n    {\n      \"text\": \"Yes, I would like to receive a monthly newsletter\",\n      \"dateTimeConsented\": \"2023-01-26T21:29:00\",\n      \"url\": \"http://www.example.com/signup\",\n      \"ipAddress\": \"129.168.0.2\",\n      \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\",\n      \"dateTimeCreated\": \"2023-01-26T22:55:00\"\n    },\n    {\n      \"text\": \"Yes, I would like to receive a monthly newsletter\",\n      \"dateTimeConsented\": \"2023-01-26T21:29:00\",\n      \"url\": \"http://www.example.com/signup\",\n      \"ipAddress\": \"129.168.0.2\",\n      \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\",\n      \"dateTimeCreated\": \"2023-01-26T22:55:00\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "d0fa984a-daba-488b-8a40-4935c8a539b1",
+          "name": "Bad request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                ":identifier",
+                ":value"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "value",
+                  "description": "(Required) The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": \"contacts:invalidId\",\n  \"description\": \"The id value '123646' is invalid for the identifier 'email'\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "d2d80b0c-3be1-49cc-8c0f-035f1e861caf",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                ":identifier",
+                ":value"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "value",
+                  "description": "(Required) The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "74eed7a8-ac8c-417b-ae56-9495e3d63192",
+          "name": "Contact not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                ":identifier",
+                ":value"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "value",
+                  "description": "(Required) The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": \"contacts:contactNotFound\",\n  \"description\": \"The following contacts could not be found\",\n  \"details\": [\n    {\n      \"item\": \"unknown@emailsim.io\",\n      \"description\": \"Not found using the identifier 'email'\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "20ee4508-1777-4243-aed0-94f931335fa7",
+      "name": "Replace a contact",
+      "request": {
+        "name": "Replace a contact",
+        "description": {
+          "content": "Replaces a contact entirly with the data passed in the request.<br><br>\n  **Note:**\n  * This call will **replace the entire contact** when updating with the data passed; if would like to change just select fields then use the PATCH call.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "contacts",
+            "v3",
+            ":identifier",
+            ":value"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "identifier",
+              "description": "(Required) The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "value",
+              "description": "(Required) The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+            "key": "x-ddg-integration-token",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"identifiers\": {\n    \"email\": {},\n    \"mobileNumber\": {},\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"dataFields\": {\n    \"key_0\": 1668.3729423190796,\n    \"key_1\": true,\n    \"key_2\": \"string\",\n    \"key_3\": true\n  },\n  \"channelProperties\": {\n    \"email\": {\n      \"emailType\": \"<string>\",\n      \"optInType\": \"<string>\",\n      \"status\": \"<string>\",\n      \"resubscribeOptions\": {\n        \"resubscribeWithNoChallenge\": true,\n        \"preferredLocale\": \"<string>\",\n        \"redirectUrlAfterChallenge\": \"<uri>\"\n      }\n    },\n    \"sms\": {\n      \"status\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"whatsApp\": {\n      \"status\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  },\n  \"lists\": [\n    \"<integer>\"\n  ],\n  \"preferences\": [\n    {\n      \"id\": \"<integer>\",\n      \"isOptedIn\": \"<boolean>\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "2fa9f0e1-fbf7-490f-9312-e5b1d94aaec0",
+          "name": "Contact replaced",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                ":identifier",
+                ":value"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "value",
+                  "description": "(Required) The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifiers\": {\n    \"email\": {},\n    \"mobileNumber\": {},\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"dataFields\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"gender\": \"male\"\n  },\n  \"channelProperties\": {\n    \"email\": {\n      \"emailType\": \"html\",\n      \"optInType\": \"double\",\n      \"status\": \"<string>\",\n      \"resubscribeOptions\": {\n        \"resubscribeWithNoChallenge\": true,\n        \"preferredLocale\": \"<string>\",\n        \"redirectUrlAfterChallenge\": \"https://somedomain.io/some/page\"\n      }\n    },\n    \"sms\": {\n      \"status\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"whatsApp\": {\n      \"status\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  },\n  \"lists\": [\n    345579\n  ],\n  \"preferences\": [\n    {\n      \"id\": 1,\n      \"isOptedIn\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"contactId\": 35212311,\n  \"created\": \"2021-11-20T09:59:05.920Z\",\n  \"identifiers\": {\n    \"email\": {},\n    \"mobileNumber\": {},\n    \"key_0\": \"<string>\"\n  },\n  \"status\": \"subscribed\",\n  \"updated\": \"2017-10-13T08:35:54.630Z\",\n  \"dataFields\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"gender\": \"male\"\n  },\n  \"channelProperties\": {\n    \"email\": {\n      \"emailType\": \"Html\",\n      \"optInType\": \"Double\",\n      \"status\": \"subscribed\"\n    },\n    \"sms\": {\n      \"countryCode\": \"GB\",\n      \"status\": \"subscribed\"\n    },\n    \"whatsApp\": {\n      \"status\": \"subscribed\"\n    }\n  },\n  \"lists\": [\n    {\n      \"id\": 12345,\n      \"name\": \"Top customers\",\n      \"status\": \"subscribed\"\n    },\n    {\n      \"id\": 12345,\n      \"name\": \"Top customers\",\n      \"status\": \"subscribed\"\n    }\n  ],\n  \"preferences\": [\n    {\n      \"id\": 1,\n      \"isOptedIn\": false,\n      \"publicName\": \"Mens fashion\",\n      \"privateName\": \"mensFashion01\"\n    }\n  ],\n  \"consentRecords\": [\n    {\n      \"text\": \"Yes, I would like to receive a monthly newsletter\",\n      \"dateTimeConsented\": \"2023-01-26T21:29:00\",\n      \"url\": \"http://www.example.com/signup\",\n      \"ipAddress\": \"129.168.0.2\",\n      \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\",\n      \"dateTimeCreated\": \"2023-01-26T22:55:00\"\n    },\n    {\n      \"text\": \"Yes, I would like to receive a monthly newsletter\",\n      \"dateTimeConsented\": \"2023-01-26T21:29:00\",\n      \"url\": \"http://www.example.com/signup\",\n      \"ipAddress\": \"129.168.0.2\",\n      \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\",\n      \"dateTimeCreated\": \"2023-01-26T22:55:00\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "3c329ba2-d7a0-43b1-a296-023ccb680c4d",
+          "name": "Bad request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                ":identifier",
+                ":value"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "value",
+                  "description": "(Required) The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifiers\": {\n    \"email\": {},\n    \"mobileNumber\": {},\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"dataFields\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"gender\": \"male\"\n  },\n  \"channelProperties\": {\n    \"email\": {\n      \"emailType\": \"html\",\n      \"optInType\": \"double\",\n      \"status\": \"<string>\",\n      \"resubscribeOptions\": {\n        \"resubscribeWithNoChallenge\": true,\n        \"preferredLocale\": \"<string>\",\n        \"redirectUrlAfterChallenge\": \"https://somedomain.io/some/page\"\n      }\n    },\n    \"sms\": {\n      \"status\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"whatsApp\": {\n      \"status\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  },\n  \"lists\": [\n    345579\n  ],\n  \"preferences\": [\n    {\n      \"id\": 1,\n      \"isOptedIn\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": \"contacts:invalidId\",\n  \"description\": \"The id value '123646' is invalid for the identifier 'email'\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "46d35df2-4489-41f0-b994-e6d13a7fc86d",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                ":identifier",
+                ":value"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "value",
+                  "description": "(Required) The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifiers\": {\n    \"email\": {},\n    \"mobileNumber\": {},\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"dataFields\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"gender\": \"male\"\n  },\n  \"channelProperties\": {\n    \"email\": {\n      \"emailType\": \"html\",\n      \"optInType\": \"double\",\n      \"status\": \"<string>\",\n      \"resubscribeOptions\": {\n        \"resubscribeWithNoChallenge\": true,\n        \"preferredLocale\": \"<string>\",\n        \"redirectUrlAfterChallenge\": \"https://somedomain.io/some/page\"\n      }\n    },\n    \"sms\": {\n      \"status\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"whatsApp\": {\n      \"status\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  },\n  \"lists\": [\n    345579\n  ],\n  \"preferences\": [\n    {\n      \"id\": 1,\n      \"isOptedIn\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "b26604f5-0e87-4b3b-8e56-6c1ae67c4e74",
+          "name": "Contact not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                ":identifier",
+                ":value"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "value",
+                  "description": "(Required) The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifiers\": {\n    \"email\": {},\n    \"mobileNumber\": {},\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"dataFields\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"gender\": \"male\"\n  },\n  \"channelProperties\": {\n    \"email\": {\n      \"emailType\": \"html\",\n      \"optInType\": \"double\",\n      \"status\": \"<string>\",\n      \"resubscribeOptions\": {\n        \"resubscribeWithNoChallenge\": true,\n        \"preferredLocale\": \"<string>\",\n        \"redirectUrlAfterChallenge\": \"https://somedomain.io/some/page\"\n      }\n    },\n    \"sms\": {\n      \"status\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"whatsApp\": {\n      \"status\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  },\n  \"lists\": [\n    345579\n  ],\n  \"preferences\": [\n    {\n      \"id\": 1,\n      \"isOptedIn\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": \"contacts:contactNotFound\",\n  \"description\": \"The following contacts could not be found\",\n  \"details\": [\n    {\n      \"item\": \"354265\",\n      \"description\": \"Not found using the identifier 'contactId'\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "5a599382-ba46-46fa-a75d-c1f74dd78a73",
+      "name": "Deletes a contact using a specific identifier",
+      "request": {
+        "name": "Deletes a contact using a specific identifier",
+        "description": {
+          "content": "Delete a contact using a specific identifier",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "contacts",
+            "v3",
+            ":identifier",
+            ":value"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "identifier",
+              "description": "(Required) The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "value",
+              "description": "(Required) The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+            "key": "x-ddg-integration-token",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "3fb66554-cf85-4d05-babb-105f1e9c8ab7",
+          "name": "Contact deleted",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                ":identifier",
+                ":value"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "value",
+                  "description": "(Required) The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"contactId\": 35212311\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "d288ec1a-f017-4d74-a2b0-1612f2d21b6e",
+          "name": "Bad request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                ":identifier",
+                ":value"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "value",
+                  "description": "(Required) The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": \"contacts:invalidId\",\n  \"description\": \"The id value '123646' is invalid for the identifier 'email'\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "db15a817-7909-49a2-8c2f-b1400b5646f8",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                ":identifier",
+                ":value"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "value",
+                  "description": "(Required) The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "6793ea7b-30d8-4743-b591-d43ca5f582d1",
+          "name": "Contact not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                ":identifier",
+                ":value"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "value",
+                  "description": "(Required) The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": \"contacts:contactNotFound\",\n  \"description\": \"The following contacts could not be found\",\n  \"details\": [\n    {\n      \"item\": \"354265\",\n      \"description\": \"Not found using the identifier 'contactId'\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "af192dee-8a65-4c7b-bae3-72f321b41663",
+      "name": "Import a single contact",
+      "request": {
+        "name": "Import a single contact",
+        "description": {
+          "content": "Imports a single contact; if it is an existing contact it updates the contact with just the fields passed in the request with a choice of how to handle the merging of data, otherwise it create a new contact.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "contacts",
+            "v3",
+            ":identifier",
+            ":value"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "merge-option",
+              "value": "overwrite",
+              "description": "Set the behavior of how the new data should be merged into existing contacts."
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "identifier",
+              "description": "(Required) The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "value",
+              "description": "(Required) The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+            "key": "x-ddg-integration-token",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PATCH",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"identifiers\": {\n    \"email\": {},\n    \"mobileNumber\": {},\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  },\n  \"dataFields\": {\n    \"key_0\": 2038,\n    \"key_1\": \"string\"\n  },\n  \"channelProperties\": {\n    \"email\": {\n      \"resubscribeOptions\": {\n        \"resubscribeWithNoChallenge\": true,\n        \"preferredLocale\": \"<string>\",\n        \"redirectUrlAfterChallenge\": \"<uri>\"\n      }\n    },\n    \"sms\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"whatsApp\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    }\n  },\n  \"lists\": [\n    \"<integer>\"\n  ],\n  \"preferences\": [\n    {\n      \"id\": \"<integer>\",\n      \"isOptedIn\": \"<boolean>\"\n    }\n  ],\n  \"consentRecords\": [\n    {\n      \"dateTimeConsented\": \"<dateTime>\",\n      \"ipAddress\": \"<ipv4>\",\n      \"text\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"userAgent\": \"<string>\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "c07606ff-99fc-422f-96d3-f493d7f3c738",
+          "name": "Contact updated",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                ":identifier",
+                ":value"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "merge-option",
+                  "value": "overwrite"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "value",
+                  "description": "(Required) The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifiers\": {\n    \"email\": {},\n    \"mobileNumber\": {},\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"dataFields\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"gender\": \"male\"\n  },\n  \"channelProperties\": {\n    \"email\": {\n      \"resubscribeOptions\": {\n        \"resubscribeWithNoChallenge\": true,\n        \"preferredLocale\": \"<string>\",\n        \"redirectUrlAfterChallenge\": \"https://somedomain.io/some/page\"\n      }\n    },\n    \"sms\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"whatsApp\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    }\n  },\n  \"lists\": [\n    345579\n  ],\n  \"preferences\": [\n    {\n      \"id\": 1,\n      \"isOptedIn\": \"<boolean>\"\n    }\n  ],\n  \"consentRecords\": [\n    {\n      \"dateTimeConsented\": \"2023-01-26T21:29:00Z\",\n      \"ipAddress\": \"129.168.0.2\",\n      \"text\": \"Yes, I would like to receive a monthly newsletter\",\n      \"url\": \"http://www.example.com/signup\",\n      \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"contactId\": 35212311,\n  \"created\": \"2021-11-20T09:59:05.920Z\",\n  \"identifiers\": {\n    \"email\": {},\n    \"mobileNumber\": {},\n    \"key_0\": \"<string>\"\n  },\n  \"status\": \"subscribed\",\n  \"updated\": \"2017-10-13T08:35:54.630Z\",\n  \"dataFields\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"gender\": \"male\"\n  },\n  \"channelProperties\": {\n    \"email\": {\n      \"emailType\": \"Html\",\n      \"optInType\": \"Double\",\n      \"status\": \"subscribed\"\n    },\n    \"sms\": {\n      \"countryCode\": \"GB\",\n      \"status\": \"subscribed\"\n    },\n    \"whatsApp\": {\n      \"status\": \"subscribed\"\n    }\n  },\n  \"lists\": [\n    {\n      \"id\": 12345,\n      \"name\": \"Top customers\",\n      \"status\": \"subscribed\"\n    },\n    {\n      \"id\": 12345,\n      \"name\": \"Top customers\",\n      \"status\": \"subscribed\"\n    }\n  ],\n  \"preferences\": [\n    {\n      \"id\": 1,\n      \"isOptedIn\": false,\n      \"publicName\": \"Mens fashion\",\n      \"privateName\": \"mensFashion01\"\n    }\n  ],\n  \"consentRecords\": [\n    {\n      \"text\": \"Yes, I would like to receive a monthly newsletter\",\n      \"dateTimeConsented\": \"2023-01-26T21:29:00\",\n      \"url\": \"http://www.example.com/signup\",\n      \"ipAddress\": \"129.168.0.2\",\n      \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\",\n      \"dateTimeCreated\": \"2023-01-26T22:55:00\"\n    },\n    {\n      \"text\": \"Yes, I would like to receive a monthly newsletter\",\n      \"dateTimeConsented\": \"2023-01-26T21:29:00\",\n      \"url\": \"http://www.example.com/signup\",\n      \"ipAddress\": \"129.168.0.2\",\n      \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\",\n      \"dateTimeCreated\": \"2023-01-26T22:55:00\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "32015e94-7ef8-4db1-9865-c174570d5381",
+          "name": "Contact created",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                ":identifier",
+                ":value"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "merge-option",
+                  "value": "overwrite"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "value",
+                  "description": "(Required) The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifiers\": {\n    \"email\": {},\n    \"mobileNumber\": {},\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"dataFields\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"gender\": \"male\"\n  },\n  \"channelProperties\": {\n    \"email\": {\n      \"resubscribeOptions\": {\n        \"resubscribeWithNoChallenge\": true,\n        \"preferredLocale\": \"<string>\",\n        \"redirectUrlAfterChallenge\": \"https://somedomain.io/some/page\"\n      }\n    },\n    \"sms\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"whatsApp\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    }\n  },\n  \"lists\": [\n    345579\n  ],\n  \"preferences\": [\n    {\n      \"id\": 1,\n      \"isOptedIn\": \"<boolean>\"\n    }\n  ],\n  \"consentRecords\": [\n    {\n      \"dateTimeConsented\": \"2023-01-26T21:29:00Z\",\n      \"ipAddress\": \"129.168.0.2\",\n      \"text\": \"Yes, I would like to receive a monthly newsletter\",\n      \"url\": \"http://www.example.com/signup\",\n      \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"contactId\": 35212311,\n  \"created\": \"2021-11-20T09:59:05.920Z\",\n  \"identifiers\": {\n    \"email\": {},\n    \"mobileNumber\": {},\n    \"key_0\": \"<string>\"\n  },\n  \"status\": \"subscribed\",\n  \"updated\": \"2017-10-13T08:35:54.630Z\",\n  \"dataFields\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"gender\": \"male\"\n  },\n  \"channelProperties\": {\n    \"email\": {\n      \"emailType\": \"Html\",\n      \"optInType\": \"Double\",\n      \"status\": \"subscribed\"\n    },\n    \"sms\": {\n      \"countryCode\": \"GB\",\n      \"status\": \"subscribed\"\n    },\n    \"whatsApp\": {\n      \"status\": \"subscribed\"\n    }\n  },\n  \"lists\": [\n    {\n      \"id\": 12345,\n      \"name\": \"Top customers\",\n      \"status\": \"subscribed\"\n    },\n    {\n      \"id\": 12345,\n      \"name\": \"Top customers\",\n      \"status\": \"subscribed\"\n    }\n  ],\n  \"preferences\": [\n    {\n      \"id\": 1,\n      \"isOptedIn\": false,\n      \"publicName\": \"Mens fashion\",\n      \"privateName\": \"mensFashion01\"\n    }\n  ],\n  \"consentRecords\": [\n    {\n      \"text\": \"Yes, I would like to receive a monthly newsletter\",\n      \"dateTimeConsented\": \"2023-01-26T21:29:00\",\n      \"url\": \"http://www.example.com/signup\",\n      \"ipAddress\": \"129.168.0.2\",\n      \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\",\n      \"dateTimeCreated\": \"2023-01-26T22:55:00\"\n    },\n    {\n      \"text\": \"Yes, I would like to receive a monthly newsletter\",\n      \"dateTimeConsented\": \"2023-01-26T21:29:00\",\n      \"url\": \"http://www.example.com/signup\",\n      \"ipAddress\": \"129.168.0.2\",\n      \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\",\n      \"dateTimeCreated\": \"2023-01-26T22:55:00\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "6a9f16fe-df0c-439f-baee-e7f47102865a",
+          "name": "Bad request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                ":identifier",
+                ":value"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "merge-option",
+                  "value": "overwrite"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "value",
+                  "description": "(Required) The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifiers\": {\n    \"email\": {},\n    \"mobileNumber\": {},\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"dataFields\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"gender\": \"male\"\n  },\n  \"channelProperties\": {\n    \"email\": {\n      \"resubscribeOptions\": {\n        \"resubscribeWithNoChallenge\": true,\n        \"preferredLocale\": \"<string>\",\n        \"redirectUrlAfterChallenge\": \"https://somedomain.io/some/page\"\n      }\n    },\n    \"sms\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"whatsApp\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    }\n  },\n  \"lists\": [\n    345579\n  ],\n  \"preferences\": [\n    {\n      \"id\": 1,\n      \"isOptedIn\": \"<boolean>\"\n    }\n  ],\n  \"consentRecords\": [\n    {\n      \"dateTimeConsented\": \"2023-01-26T21:29:00Z\",\n      \"ipAddress\": \"129.168.0.2\",\n      \"text\": \"Yes, I would like to receive a monthly newsletter\",\n      \"url\": \"http://www.example.com/signup\",\n      \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": \"contacts:invalidId\",\n  \"description\": \"The id value '123646' is invalid for the identifier 'email'\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "959d4909-a63a-4197-93e4-3947162a9d33",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                ":identifier",
+                ":value"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "merge-option",
+                  "value": "overwrite"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "value",
+                  "description": "(Required) The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifiers\": {\n    \"email\": {},\n    \"mobileNumber\": {},\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"dataFields\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"gender\": \"male\"\n  },\n  \"channelProperties\": {\n    \"email\": {\n      \"resubscribeOptions\": {\n        \"resubscribeWithNoChallenge\": true,\n        \"preferredLocale\": \"<string>\",\n        \"redirectUrlAfterChallenge\": \"https://somedomain.io/some/page\"\n      }\n    },\n    \"sms\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"whatsApp\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    }\n  },\n  \"lists\": [\n    345579\n  ],\n  \"preferences\": [\n    {\n      \"id\": 1,\n      \"isOptedIn\": \"<boolean>\"\n    }\n  ],\n  \"consentRecords\": [\n    {\n      \"dateTimeConsented\": \"2023-01-26T21:29:00Z\",\n      \"ipAddress\": \"129.168.0.2\",\n      \"text\": \"Yes, I would like to receive a monthly newsletter\",\n      \"url\": \"http://www.example.com/signup\",\n      \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "ea8ed9d5-2e19-4f33-ae00-144c6f1a6189",
+          "name": "Identifier conflict",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "contacts",
+                "v3",
+                ":identifier",
+                ":value"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "merge-option",
+                  "value": "overwrite"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of **contactId**, **email** or **mobileNumber**"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "value",
+                  "description": "(Required) The unique value to identify the contact.<br>***Note:** Must be the same type as the **identifier***"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifiers\": {\n    \"email\": {},\n    \"mobileNumber\": {},\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"dataFields\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"gender\": \"male\"\n  },\n  \"channelProperties\": {\n    \"email\": {\n      \"resubscribeOptions\": {\n        \"resubscribeWithNoChallenge\": true,\n        \"preferredLocale\": \"<string>\",\n        \"redirectUrlAfterChallenge\": \"https://somedomain.io/some/page\"\n      }\n    },\n    \"sms\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"whatsApp\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    }\n  },\n  \"lists\": [\n    345579\n  ],\n  \"preferences\": [\n    {\n      \"id\": 1,\n      \"isOptedIn\": \"<boolean>\"\n    }\n  ],\n  \"consentRecords\": [\n    {\n      \"dateTimeConsented\": \"2023-01-26T21:29:00Z\",\n      \"ipAddress\": \"129.168.0.2\",\n      \"text\": \"Yes, I would like to receive a monthly newsletter\",\n      \"url\": \"http://www.example.com/signup\",\n      \"userAgent\": \"Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errorCode\": \"contacts:idAlreadyExists\",\n  \"description\": \"The id value 'jane.doe@emailsim.io for the identifier 'email' already exists. All identifiers must be unique!\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ef496d1a-4a0c-49e0-9418-334e2056ee9b",
+    "name": "Contacts",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Create, Get, update, and delete contacts. Use this API to look up contacts\nby identifier, perform full or partial updates on a single contact, bulk-import\ncollections of contacts asynchronously, and bulk-delete contacts. When listing\ncontacts you can filter by contact status, list subscription status, list\nmembership, segment, or creation and modification date. Each contact can carry\ndata fields, channel properties (email, SMS, WhatsApp), list memberships,\nmarketing preferences, and consent records.",
+      "type": "text/plain"
+    }
+  }
+}

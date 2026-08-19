@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Session API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Gets a token that can be used to start an anonymous session",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/sessions/tokens/anon",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "query",
+            "description": "The ID to use for the anonymous user (will be prefixed by the system)"
+          },
+          {
+            "name": "nonce",
+            "value": "",
+            "type": "query",
+            "description": "The cryptographic nonce to be added to the token"
+          }
+        ]
+      },
+      "docs": "Gets a token that can be used to start an anonymous session"
+    },
+    {
+      "info": {
+        "name": "Retrieves details about a session",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/sessions/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The id of the session to retrieve"
+          }
+        ]
+      },
+      "docs": "Retrieves details about a session"
+    },
+    {
+      "info": {
+        "name": "Ends a session, revoking access to services.",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/cpaas/sessions/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the session to delete"
+          }
+        ]
+      },
+      "docs": "Ends a session, revoking access to services."
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Conversation Message API",
+    "version": "1.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Retrieves a conversation's events",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/conversations/:conversationId/events",
+        "params": [
+          {
+            "name": "conversationId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the conversation"
+          },
+          {
+            "name": "from",
+            "value": "",
+            "type": "query",
+            "description": "The event id to start from"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "The number of events to read forward"
+          }
+        ]
+      },
+      "docs": "Retrieves a conversation's events"
+    },
+    {
+      "info": {
+        "name": "Retrieves a conversation's messages from an point (event) in time and works backwards",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/conversations/:conversationId/messages",
+        "params": [
+          {
+            "name": "conversationId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the conversation"
+          },
+          {
+            "name": "from",
+            "value": "",
+            "type": "query",
+            "description": "The event id to work backwards from"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "The number of messages to return"
+          }
+        ]
+      },
+      "docs": "Retrieves a conversation's messages from an point (event) in time and works backwards"
+    },
+    {
+      "info": {
+        "name": "Sends a message to conversation",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{region}-api.dotdigital.com/cpaas/conversations/:conversationId/messages",
+        "params": [
+          {
+            "name": "conversationId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the conversation"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Sends a message to conversation"
+    },
+    {
+      "info": {
+        "name": "Posts message updates back",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{region}-api.dotdigital.com/cpaas/conversations/:conversationId/messages/statusupdates",
+        "params": [
+          {
+            "name": "conversationId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the conversation"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Posts message updates back"
+    }
+  ],
+  "bundled": true
+}

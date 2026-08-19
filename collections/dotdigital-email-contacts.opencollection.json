@@ -1,0 +1,569 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Email contacts",
+    "version": "2.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Email contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get bulk contact deletion progress",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/deletion/:deletionRequestId",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "deletionRequestId",
+                "value": "",
+                "type": "path",
+                "description": "The deletion request id returned from a previously called bulk contact deletion request"
+              }
+            ]
+          },
+          "docs": "Get bulk contact deletion progress"
+        },
+        {
+          "info": {
+            "name": "Get contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "withFullData",
+                "value": "",
+                "type": "query",
+                "description": "Can be set to 'true' to retrieve the contacts along with their full contact data fields"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set"
+              }
+            ]
+          },
+          "docs": "Gets a list of all contacts in the account"
+        },
+        {
+          "info": {
+            "name": "Create contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates a contact"
+        },
+        {
+          "info": {
+            "name": "Create contact with consent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/with-consent",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates a contact and their consent information"
+        },
+        {
+          "info": {
+            "name": "Create contact with consent and preferences",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/with-consent-and-preferences",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates a contact with consent data and marketing preferences"
+        },
+        {
+          "info": {
+            "name": "Bulk import contacts collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/import-collection",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk creates, or bulk updates, contacts from JSON"
+        },
+        {
+          "info": {
+            "name": "Bulk import contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/import",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk creates, or bulk updates, contacts from a file"
+        },
+        {
+          "info": {
+            "name": "Get contact import status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/import/:id",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the import"
+              }
+            ]
+          },
+          "docs": "Gets the import status of a previously started contact import"
+        },
+        {
+          "info": {
+            "name": "Get contact import report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/import/:id/report",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the import"
+              }
+            ]
+          },
+          "docs": "Gets a report with statistics about what was successfully imported, and what was unable to be imported"
+        },
+        {
+          "info": {
+            "name": "Get contact import report faults",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/import/:id/report-faults",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the import"
+              }
+            ]
+          },
+          "docs": "Gets all contact import records that were not successfully imported"
+        },
+        {
+          "info": {
+            "name": "Update contact with consent and preferences",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/:id/with-consent-and-preferences",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The contacts unique id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a contact by id with their consent information and/or preferences"
+        },
+        {
+          "info": {
+            "name": "Update contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/:id",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The contacts unique id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a contact by id"
+        },
+        {
+          "info": {
+            "name": "Delete contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/:id",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The id of the contact"
+              }
+            ]
+          },
+          "docs": "Deletes a contact by ID"
+        },
+        {
+          "info": {
+            "name": "Get contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/:contactIdentifier",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "contactIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "Either the contact id or email address of the contact"
+              }
+            ]
+          },
+          "docs": "Gets a contact"
+        },
+        {
+          "info": {
+            "name": "Get contact with consent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/:contactIdentifier/with-consent",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "contactIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "Either the contact id or email address of the contact"
+              }
+            ]
+          },
+          "docs": "Gets a contact with their consent information"
+        },
+        {
+          "info": {
+            "name": "Get contact address books",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/:id/address-books",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The id of the contact"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set"
+              }
+            ]
+          },
+          "docs": "Gets any address books that a contact is in"
+        },
+        {
+          "info": {
+            "name": "Get all contacts count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/count",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Gets the total number of contacts in the account"
+        },
+        {
+          "info": {
+            "name": "Get contacts created since date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/created-since/:date",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "The date from which any created contacts are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+              },
+              {
+                "name": "withFullData",
+                "value": "",
+                "type": "query",
+                "description": "Can be set to 'true' to retrieve the contacts along with their full contact data fields"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set"
+              }
+            ]
+          },
+          "docs": "Gets a list of created contacts after a specified date"
+        },
+        {
+          "info": {
+            "name": "Get modified contacts since date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/modified-since/:date",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "The date from which any modified contacts are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+              },
+              {
+                "name": "withFullData",
+                "value": "",
+                "type": "query",
+                "description": "Can be set to 'true' to retrieve the contacts along with their full contact data fields"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set"
+              }
+            ]
+          },
+          "docs": "Gets a list of modified contacts after a specified date"
+        },
+        {
+          "info": {
+            "name": "Update contact with consent",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/:id/with-consent",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The contacts unique id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a contact by id with their consent information"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

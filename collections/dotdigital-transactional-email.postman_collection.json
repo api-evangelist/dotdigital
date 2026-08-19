@@ -1,0 +1,710 @@
+{
+  "item": [
+    {
+      "id": "ec7f71b4-bc72-484c-bec8-79e8a5ced23e",
+      "name": "Transactional email",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "12a92de2-5bd2-4e7b-a044-8dfc2b5971ac",
+          "name": "Send transactional email",
+          "request": {
+            "name": "Send transactional email",
+            "description": {
+              "content": "Send a transactional email to one recipient",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "email"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"toAddresses\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"subject\": \"<string>\",\n  \"ccAddresses\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"bccAddresses\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"fromAddress\": \"<string>\",\n  \"htmlContent\": \"<string>\",\n  \"plainTextContent\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": 6947.28115053601,\n    \"key_1\": 5819,\n    \"key_2\": true,\n    \"key_3\": true\n  },\n  \"attachments\": [\n    {\n      \"fileName\": \"<string>\",\n      \"mimeType\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"fileName\": \"<string>\",\n      \"mimeType\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "191b6837-7be5-44d9-83a1-78e79457a977",
+              "name": "Request to send transactional email accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"toAddresses\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"subject\": \"<string>\",\n  \"ccAddresses\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"bccAddresses\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"fromAddress\": \"<string>\",\n  \"htmlContent\": \"<string>\",\n  \"plainTextContent\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": 6979,\n    \"key_1\": \"string\",\n    \"key_2\": false\n  },\n  \"attachments\": [\n    {\n      \"fileName\": \"<string>\",\n      \"mimeType\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"fileName\": \"<string>\",\n      \"mimeType\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "05f0e62b-b39b-4c9f-83c2-ff4103fe1da0",
+          "name": "Send batch transactional email",
+          "request": {
+            "name": "Send batch transactional email",
+            "description": {
+              "content": "Send a transactional email to multiple recipients",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"toAddresses\": [\n      \"<email>\",\n      \"<email>\"\n    ],\n    \"subject\": \"<string>\",\n    \"ccAddresses\": [\n      \"<email>\",\n      \"<email>\"\n    ],\n    \"bccAddresses\": [\n      \"<email>\",\n      \"<email>\"\n    ],\n    \"fromAddress\": \"<string>\",\n    \"htmlContent\": \"<string>\",\n    \"plainTextContent\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": 3923,\n      \"key_2\": 3595.9689087600964\n    },\n    \"attachments\": [\n      {\n        \"fileName\": \"<string>\",\n        \"mimeType\": \"<string>\",\n        \"content\": \"<string>\"\n      },\n      {\n        \"fileName\": \"<string>\",\n        \"mimeType\": \"<string>\",\n        \"content\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"toAddresses\": [\n      \"<email>\",\n      \"<email>\"\n    ],\n    \"subject\": \"<string>\",\n    \"ccAddresses\": [\n      \"<email>\",\n      \"<email>\"\n    ],\n    \"bccAddresses\": [\n      \"<email>\",\n      \"<email>\"\n    ],\n    \"fromAddress\": \"<string>\",\n    \"htmlContent\": \"<string>\",\n    \"plainTextContent\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": 7918,\n      \"key_1\": \"string\",\n      \"key_2\": 5013.952671941271,\n      \"key_3\": 9022\n    },\n    \"attachments\": [\n      {\n        \"fileName\": \"<string>\",\n        \"mimeType\": \"<string>\",\n        \"content\": \"<string>\"\n      },\n      {\n        \"fileName\": \"<string>\",\n        \"mimeType\": \"<string>\",\n        \"content\": \"<string>\"\n      }\n    ]\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c9e2628f-459e-4b19-88fd-0be0b23bb660",
+              "name": "Request to send email accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "email",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"toAddresses\": [\n      \"test1@randomdomain.com\"\n    ],\n    \"subject\": \"Enter Subject line here\",\n    \"fromAddress\": \"tests@mycompany.com\",\n    \"htmlContent\": \"\",\n    \"plainTextContent\": \"This is an email with no associated metadata.\"\n  },\n  {\n    \"toAddresses\": [\n      \"test2@randomdomain.com\",\n      \"test3@anotherdomain.com\"\n    ],\n    \"subject\": \"Your test email is here\",\n    \"fromAddress\": \"tests@mycompany.com\",\n    \"htmlContent\": \"\",\n    \"plainTextContent\": \"This is an email with no associated metadata.\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"index\": 0\n  },\n  {\n    \"failureCode\": \"ERROR_PARAMETER_INVALID\",\n    \"failureReason\": \"ToAddresses field is empty or invalid. ERROR_PARAMETER_INVALID\",\n    \"index\": 1\n  },\n  {\n    \"index\": 2\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56b3b610-709d-42e0-86dc-a421441328dd",
+          "name": "Send transactional email using a triggered campaign",
+          "request": {
+            "name": "Send transactional email using a triggered campaign",
+            "description": {
+              "content": "Sends a transactional email using a triggered campaign",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                "triggered-campaign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"toAddresses\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"campaignId\": \"<integer>\",\n  \"ccAddresses\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"bccAddresses\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"fromAddress\": \"<string>\",\n  \"personalizationValues\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": false,\n    \"key_1\": \"string\",\n    \"key_2\": true,\n    \"key_3\": 6362.949365023245,\n    \"key_4\": false\n  },\n  \"attachments\": [\n    {\n      \"fileName\": \"<string>\",\n      \"mimeType\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"fileName\": \"<string>\",\n      \"mimeType\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "95c1162f-80d5-457f-bda5-4dd37cc51188",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "email",
+                    "triggered-campaign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"toAddresses\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"campaignId\": \"<integer>\",\n  \"ccAddresses\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"bccAddresses\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"fromAddress\": \"<string>\",\n  \"personalizationValues\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": false\n  },\n  \"attachments\": [\n    {\n      \"fileName\": \"<string>\",\n      \"mimeType\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"fileName\": \"<string>\",\n      \"mimeType\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "The result returned will be a '200 OK' with no content in the response.",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "769f1b49-7bb8-489a-8cff-8bd77872da39",
+          "name": "Send batch transactional email using a triggered campaign",
+          "request": {
+            "name": "Send batch transactional email using a triggered campaign",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                "triggered-campaign",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"toAddresses\": [\n      \"<email>\",\n      \"<email>\"\n    ],\n    \"campaignId\": \"<integer>\",\n    \"ccAddresses\": [\n      \"<email>\",\n      \"<email>\"\n    ],\n    \"bccAddresses\": [\n      \"<email>\",\n      \"<email>\"\n    ],\n    \"fromAddress\": \"<string>\",\n    \"personalizationValues\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"metadata\": {\n      \"key_0\": 3951\n    },\n    \"attachments\": [\n      {\n        \"fileName\": \"<string>\",\n        \"mimeType\": \"<string>\",\n        \"content\": \"<string>\"\n      },\n      {\n        \"fileName\": \"<string>\",\n        \"mimeType\": \"<string>\",\n        \"content\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"toAddresses\": [\n      \"<email>\",\n      \"<email>\"\n    ],\n    \"campaignId\": \"<integer>\",\n    \"ccAddresses\": [\n      \"<email>\",\n      \"<email>\"\n    ],\n    \"bccAddresses\": [\n      \"<email>\",\n      \"<email>\"\n    ],\n    \"fromAddress\": \"<string>\",\n    \"personalizationValues\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"metadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": true,\n      \"key_2\": false\n    },\n    \"attachments\": [\n      {\n        \"fileName\": \"<string>\",\n        \"mimeType\": \"<string>\",\n        \"content\": \"<string>\"\n      },\n      {\n        \"fileName\": \"<string>\",\n        \"mimeType\": \"<string>\",\n        \"content\": \"<string>\"\n      }\n    ]\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1e73e960-5420-4e44-b0d3-1511ec6383ca",
+              "name": "Request to send email accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "email",
+                    "triggered-campaign",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"toAddresses\": [\n      \"test1@example.com\"\n    ],\n    \"campaignId\": 1043\n  },\n  {\n    \"toAddresses\": [\n      \"test2@example.com\",\n      \"test3@example.com\"\n    ],\n    \"campaignId\": 456\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"index\": 0\n  },\n  {\n    \"failureCode\": \"ERROR_PARAMETER_INVALID\",\n    \"failureReason\": \"ToAddresses field is empty or invalid. ERROR_PARAMETER_INVALID\",\n    \"index\": 1\n  },\n  {\n    \"index\": 2\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97201001-354d-49cb-89f1-b7f5df17e941",
+          "name": "Get transactional email statistics",
+          "request": {
+            "name": "Get transactional email statistics",
+            "description": {
+              "content": "Gets transactional email reporting statistics for a specified time period",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                "stats",
+                "since-date",
+                ":date"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "The UTC end date (yyyy-mm-dd) up to which transactional email reporting statistics will be returned (inclusive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "aggregatedBy",
+                  "value": "<string>",
+                  "description": "The data aggregation period for transactional email reporting statistics"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "2021-01-01",
+                  "key": "date",
+                  "description": "(Required) The UTC date (yyyy-mm-dd) from which transactional email reporting statistics will be returned"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7fd9caf3-64da-4bd6-bf68-7ed69315fb69",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "email",
+                    "stats",
+                    "since-date",
+                    ":date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "aggregatedBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "2021-01-01",
+                      "key": "date",
+                      "description": "(Required) The UTC date (yyyy-mm-dd) from which transactional email reporting statistics will be returned"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"startDate\": \"2021-04-06 00:00:00+00:00\",\n    \"endDate\": \"2021-04-30 23:59:59+00:00\",\n    \"numSent\": 50,\n    \"numDelivered\": 23,\n    \"numOpens\": 40,\n    \"numClicks\": 0,\n    \"numIspComplaints\": 0,\n    \"numBounces\": 27\n  },\n  {\n    \"startDate\": \"2021-05-01 00:00:00+00:00\",\n    \"endDate\": \"2021-05-31 23:59:59+00:00\",\n    \"numSent\": 51,\n    \"numDelivered\": 37,\n    \"numOpens\": 33,\n    \"numClicks\": 0,\n    \"numIspComplaints\": 0,\n    \"numBounces\": 14\n  },\n  {\n    \"startDate\": \"2021-06-01 00:00:00+00:00\",\n    \"endDate\": \"2021-06-30 23:59:59+00:00\",\n    \"numSent\": 9,\n    \"numDelivered\": 9,\n    \"numOpens\": 10,\n    \"numClicks\": 0,\n    \"numIspComplaints\": 0,\n    \"numBounces\": 0\n  },\n  {\n    \"startDate\": \"2021-07-01 00:00:00+00:00\",\n    \"endDate\": \"2021-07-31 23:59:59+00:00\",\n    \"numSent\": 8,\n    \"numDelivered\": 8,\n    \"numOpens\": 9,\n    \"numClicks\": 0,\n    \"numIspComplaints\": 0,\n    \"numBounces\": 0\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0f2ae920-eeb6-4363-95c1-1fe0e08e0b3f",
+    "name": "Transactional email",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Send transactional emails to one or multiple recipients, using either custom\nHTML/plain-text content or a triggered campaign template. Use this API to send\nindividual or batch transactional emails, personalise content with campaign\ntemplates and personalisation values, attach files, and retrieve delivery and\nengagement statistics aggregated by day, week, month, or all time.",
+      "type": "text/plain"
+    }
+  }
+}

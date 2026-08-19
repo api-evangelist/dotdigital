@@ -1,0 +1,247 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Conversation API",
+    "version": "1.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Retrieves a conversation",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/conversations/:conversationId",
+        "params": [
+          {
+            "name": "conversationId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the conversation"
+          },
+          {
+            "name": "includeDeleted",
+            "value": "",
+            "type": "query",
+            "description": "Indicates whether deleted conversations should be returned"
+          }
+        ]
+      },
+      "docs": "Retrieves a conversation"
+    },
+    {
+      "info": {
+        "name": "Updates a conversation",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{region}-api.dotdigital.com/cpaas/conversations/:conversationId",
+        "headers": [
+          {
+            "name": "if-match",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "conversationId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the conversation"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Updates a conversation"
+    },
+    {
+      "info": {
+        "name": "Deletes a conversation",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/cpaas/conversations/:conversationId",
+        "headers": [
+          {
+            "name": "if-match",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "conversationId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the conversation"
+          }
+        ]
+      },
+      "docs": "Deletes a conversation"
+    },
+    {
+      "info": {
+        "name": "Retrieves a list of conversations",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/conversations",
+        "params": [
+          {
+            "name": "scope",
+            "value": "",
+            "type": "query",
+            "description": "Defines the scope of the conversations to be returned - either all public conversations, "
+          },
+          {
+            "name": "profileId",
+            "value": "",
+            "type": "query",
+            "description": "Indicates whether only conversations the profile is a participant of should be returned"
+          },
+          {
+            "name": "includeDeleted",
+            "value": "",
+            "type": "query",
+            "description": "Indicates whether deleted conversations should be returned"
+          }
+        ]
+      },
+      "docs": "Retrieves a list of conversations"
+    },
+    {
+      "info": {
+        "name": "Creates a new conversation",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{region}-api.dotdigital.com/cpaas/conversations",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Creates a new conversation"
+    },
+    {
+      "info": {
+        "name": "Indicates that the caller is typing in this conversation",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{region}-api.dotdigital.com/cpaas/conversations/:conversationId/typing",
+        "params": [
+          {
+            "name": "conversationId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the conversation"
+          }
+        ]
+      },
+      "docs": "Indicates that the caller is typing in this conversation"
+    },
+    {
+      "info": {
+        "name": "Indicates that the caller has stopped typing in this conversation",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/cpaas/conversations/:conversationId/typing",
+        "params": [
+          {
+            "name": "conversationId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the conversation"
+          }
+        ]
+      },
+      "docs": "Indicates that the caller has stopped typing in this conversation"
+    },
+    {
+      "info": {
+        "name": "Retrieves the conversation participants",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/conversations/:conversationId/participants",
+        "params": [
+          {
+            "name": "conversationId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the conversation"
+          }
+        ]
+      },
+      "docs": "Retrieves the conversation participants"
+    },
+    {
+      "info": {
+        "name": "Adds a list of participants to a conversation",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{region}-api.dotdigital.com/cpaas/conversations/:conversationId/participants",
+        "params": [
+          {
+            "name": "conversationId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the conversation"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Adds a list of participants to a conversation"
+    },
+    {
+      "info": {
+        "name": "Deletes a list of participants from a conversation",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/cpaas/conversations/:conversationId/participants",
+        "params": [
+          {
+            "name": "conversationId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the conversation"
+          },
+          {
+            "name": "id",
+            "value": "",
+            "type": "query",
+            "description": "The profile ids of participants to remove from the conversation"
+          }
+        ]
+      },
+      "docs": "Deletes a list of participants from a conversation"
+    }
+  ],
+  "bundled": true
+}

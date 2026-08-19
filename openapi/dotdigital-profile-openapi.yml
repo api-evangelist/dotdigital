@@ -1,0 +1,700 @@
+openapi: 3.0.1
+info:
+  title: Profile API
+  description: 'Provides methods for creating, retrieving, updating, patching, and deleting
+
+    customer profiles. Also supports bulk create/update and bulk delete
+
+    operations, profile opt-in management by channel, profile relationship
+
+    linking, device management, and push capability validation.'
+  version: 1.0.1
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      description: The Dotdigital region id your account belongs to
+      enum:
+      - r1
+      - r2
+      - r3
+      default: r1
+security:
+- basicAuth: []
+paths:
+  /cpaas/profiles/export:
+    post:
+      summary: Exports the result of a profile query in a formatted file for download
+      description: 'For format=csv, due to the flat file format, only primitive types will be exported. Non-primitive type will be exported with "--INVALID-TYPE--" as the data. Nested data should be referred to explicitly: "address.line1"'
+      parameters:
+      - name: query
+        in: query
+        description: See https://www.npmjs.com/package/mongo-querystring for export query syntax.
+        required: false
+        schema:
+          type: string
+      requestBody:
+        description: Export options
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileExportOptions'
+        required: false
+      responses:
+        '200':
+          description: Data exported in the required format
+          content: {}
+      x-codegen-request-body-name: exportOptions
+  /cpaas/profiles/bulk:
+    delete:
+      summary: Deletes the requested profiles
+      parameters:
+      - name: id
+        in: query
+        description: The ids of the profiles to delete, e.g. ?id=profile1&id=profile2
+        required: true
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content: {}
+    patch:
+      summary: Creates or updates the supplied profiles with the supplied data
+      requestBody:
+        description: The profiles to create / update
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProfileCreate'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content: {}
+      x-codegen-request-body-name: profiles
+  /cpaas/profiles/{id}:
+    get:
+      summary: Retrieves a Profile
+      parameters:
+      - name: id
+        in: path
+        description: The id of the profile
+        required: true
+        schema:
+          type: string
+      - name: includeDeleted
+        in: query
+        description: Indicates whether deleted profiles should be returned
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: The requested Profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileFull'
+        '404':
+          description: The Profile was not found
+          content: {}
+    put:
+      summary: Updates or undeletes a Profile
+      parameters:
+      - name: id
+        in: path
+        description: The id of the profile
+        required: true
+        schema:
+          type: string
+      - name: undelete
+        in: query
+        description: When set to true (and no payload is present) a deleted profile can be un-deleted
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        description: Detail of the Profile to update. Underscore (_) characters are not allowed in profile field names.
+        content:
+          application/json:
+            schema:
+              type: object
+        required: false
+      responses:
+        '200':
+          description: The updated Profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileFull'
+        '404':
+          description: The Profile was not found
+          content: {}
+        '409':
+          description: A conncurrency issue occured updating the Profile
+          content: {}
+      x-codegen-request-body-name: profile data
+    delete:
+      summary: Deletes a Profile
+      parameters:
+      - name: id
+        in: path
+        description: The id of the profile
+        required: true
+        schema:
+          type: string
+      - name: forget
+        in: query
+        description: Indicates whether this delete shoudl ripple out to all services to delete their data relating to the profile
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '204':
+          description: Indicates successful deletetion of a Profile
+          content: {}
+        '404':
+          description: The Profile was not found
+          content: {}
+        '409':
+          description: A concurrency issue occured deleting the Profile
+          content: {}
+    patch:
+      summary: Patches a Profile
+      parameters:
+      - name: id
+        in: path
+        description: The id of the profile
+        required: true
+        schema:
+          type: string
+      - name: allowcreate
+        in: query
+        description: Indicates whether this patch request create a new profile if there is no profile to patch
+        required: false
+        schema:
+          type: boolean
+      - name: deletes
+        in: query
+        description: List of properties that should be deleted from profile during patch
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      requestBody:
+        description: Properties to update on the profile.  Other properties will be left intact.
+        content:
+          application/json:
+            schema:
+              type: object
+        required: true
+      responses:
+        '200':
+          description: The updated Profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileFull'
+        '404':
+          description: The Profile was not found
+          content: {}
+        '409':
+          description: A concurrency issue occured updating the Profile
+          content: {}
+      x-codegen-request-body-name: profile data
+  /cpaas/profiles/{id}/optin:
+    put:
+      summary: Set profile opt in for specified channels
+      parameters:
+      - name: id
+        in: path
+        description: The id of the profile
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: List of channels to opt profile into
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/id_optin_body'
+        required: false
+      responses:
+        '200':
+          description: The full Profile with new optin settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileFull'
+        '404':
+          description: The Profile was not found
+          content: {}
+      x-codegen-request-body-name: name
+    delete:
+      summary: Set profile opt in for specified channels
+      parameters:
+      - name: id
+        in: path
+        description: The id of the profile
+        required: true
+        schema:
+          type: string
+      - name: channel
+        in: query
+        description: Channel to opt profile out
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: The full Profile with new optin settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileFull'
+        '404':
+          description: The Profile was not found
+          content: {}
+  /cpaas/profiles/{id}/rels/primary/{linkedId}:
+    put:
+      summary: Creates a relationship where the linked profile is the primary and this profile is a child
+      parameters:
+      - name: id
+        in: path
+        description: The id of the profile
+        required: true
+        schema:
+          type: string
+      - name: linkedId
+        in: path
+        description: The id of the profile to link with
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The updated Profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileFull'
+        '404':
+          description: The Profile was not found
+          content: {}
+        '409':
+          description: A concurrency issue occured updating the Profile
+          content: {}
+    delete:
+      summary: Deletes the profile's relationship to a primary profile
+      parameters:
+      - name: id
+        in: path
+        description: The id of the profile
+        required: true
+        schema:
+          type: string
+      - name: linkedId
+        in: path
+        description: The id of the profile to link with
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The updated Profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileFull'
+        '404':
+          description: The Profile was not found
+          content: {}
+        '409':
+          description: A concurrency issue occured deleting the Profile
+          content: {}
+  /cpaas/profiles/{id}/rels/link/{linkedId}:
+    put:
+      summary: Creates a relationship where this profile is the primary and the linked profile is a child
+      parameters:
+      - name: id
+        in: path
+        description: The id of the profile
+        required: true
+        schema:
+          type: string
+      - name: linkedId
+        in: path
+        description: The id of the profile to link with
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The updated Profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileFull'
+        '404':
+          description: The Profile was not found
+          content: {}
+        '409':
+          description: A concurrency issue occured updating the Profile
+          content: {}
+    delete:
+      summary: Deletes the primary profile's relationship to a linked Profile
+      parameters:
+      - name: id
+        in: path
+        description: The id of the profile
+        required: true
+        schema:
+          type: string
+      - name: linkedId
+        in: path
+        description: The id of the profile to link with
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The updated Profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileFull'
+        '404':
+          description: The Profile was not found
+          content: {}
+        '409':
+          description: A concurrency issue occured deleting the Profile
+          content: {}
+  /apispaces/{apiSpaceId}/profiles/{id}/devices/{deviceId}:
+    delete:
+      summary: Removes device from profile and closes related opened sessions
+      parameters:
+      - name: apiSpaceId
+        in: path
+        description: The API space id
+        required: true
+        schema:
+          pattern: ^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})|[a-f0-9]{32}$
+          type: string
+      - name: id
+        in: path
+        description: The id of the profile
+        required: true
+        schema:
+          type: string
+      - name: deviceId
+        in: path
+        description: The id of the device
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Device sucessfully removed from profile
+        '404':
+          description: Device with specified id not found
+  /apispaces/{apiSpaceId}/profiles/devices/push/validation:
+    post:
+      summary: Retrieves push capabilities summary
+      parameters:
+      - name: apiSpaceId
+        in: path
+        description: The API space id
+        required: true
+        schema:
+          pattern: ^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})|[a-f0-9]{32}$
+          type: string
+      requestBody:
+        description: ids of the profiles to query
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/push_validation_body'
+        required: true
+      responses:
+        '200':
+          description: The requested push capabilities summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PushCapabilitiesSummary'
+  /cpaas/profiles:
+    get:
+      summary: Query profiles
+      description: See https://www.npmjs.com/package/mongo-querystring for query syntax. If you need to search for strings that are numeric, they can be wrapped in single quotes to prevent them being interpretted as numbers.
+      parameters:
+      - name: id
+        in: query
+        description: The profile id to be retrieved
+        required: false
+        schema:
+          type: string
+      - name: $includeDevices
+        in: query
+        description: Retrieves the device details associated with the profile, such as browsers and mobile devices
+        required: false
+        schema:
+          type: boolean
+      - name: $includeSessions
+        in: query
+        description: Includes details of the App Messaging sessions that the profile has
+        required: false
+        schema:
+          type: boolean
+      - name: $fields
+        in: query
+        description: Limits the fields returned by the query to one or more specific field names
+        required: false
+        schema:
+          type: string
+      - name: $includeDeleted
+        in: query
+        description: Includes deleted profiles in the result
+        required: false
+        schema:
+          type: boolean
+      - name: $includeSystem
+        in: query
+        description: Includes system profiles in the result
+        required: false
+        schema:
+          type: boolean
+      - name: $limit
+        in: query
+        description: Limits the number of results returned
+        required: false
+        schema:
+          type: integer
+      - name: $schemaOnly
+        in: query
+        description: Returns the schema of a sample of profiles
+        required: false
+        schema:
+          type: boolean
+      - name: $skip
+        in: query
+        description: Starts results at a specific record index
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: List of profiles matching the search criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProfileFull'
+    post:
+      summary: Creates a new Profile
+      requestBody:
+        description: Detail of the Profile to create. Underscore (_) characters are not allowed in profile field names.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileCreate'
+        required: true
+      responses:
+        '201':
+          description: The Profile was successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileFull'
+        '409':
+          description: The Profile already exists
+          content: {}
+      x-codegen-request-body-name: profile
+  /cpaas/profiles/optin:
+    get:
+      summary: Gets default profiles opt in/out options for each channel in channel service
+      responses:
+        '200':
+          description: List of all channels with true for default opt in and false for default opt out
+          content: {}
+    put:
+      summary: Set default profiles opt in/out options for each channel in channel service
+      responses:
+        '200':
+          description: List of all channels with true for default opt in and false for default opt out
+          content: {}
+components:
+  schemas:
+    ProfileCreate:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Profile's unique identifier
+        _systemProfile:
+          type: boolean
+          description: If set to true, the profile is required for system use. Use of the this field is limited to system internals
+    ProfileFull:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Profile's unique identifier
+        _createdOn:
+          type: string
+          description: The date (in UTC, ISO 8601 format) that the profile was created
+          format: date-time
+          readOnly: true
+        _systemProfile:
+          type: boolean
+          description: Set to true if the profile was required for system use only.
+          readOnly: true
+        _createdBy:
+          type: string
+          description: The identity that created the profile
+        _updatedOn:
+          type: string
+          description: The date (in UTC, ISO 8601 format) that the profile was last updated
+          format: date-time
+          readOnly: true
+        _updatedBy:
+          type: string
+          description: The identity that created the profile
+          readOnly: true
+        _lastActivityOn:
+          type: string
+          description: The date (in UTC, ISO 8601 format) of the last visible activity involving the profile
+          format: date-time
+          readOnly: true
+    ProfileExportOptions:
+      required:
+      - format
+      type: object
+      properties:
+        format:
+          type: string
+          description: The format to export profile data in
+          enum:
+          - json
+          - csv
+        fields:
+          type: array
+          description: The list of fields to export, in order (only used for csv exports)
+          items:
+            type: string
+        fieldSeparator:
+          type: string
+          description: The character to delimit each field (only used for csv exports)
+        includeHeaders:
+          type: boolean
+          description: Whether to include the field names as a header (only used for csv exports)
+    PushCapabilitiesSummary:
+      type: array
+      description: Array with push capabilities for each queried profile
+      items:
+        $ref: '#/components/schemas/PushCapabilitiesSummary_inner'
+    id_optin_body:
+      type: object
+      properties:
+        channels:
+          type: array
+          items:
+            type: string
+    push_validation_body:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: string
+    PushCapabilitiesSummary_inner:
+      required:
+      - id
+      - pushDevicesCount
+      type: object
+      properties:
+        id:
+          type: string
+          description: Profile id
+        pushDevicesCount:
+          type: number
+          description: Count of devices that have push details
+        fcm:
+          type: array
+          description: Package names for fcm push tokens registered for this profile
+          items:
+            type: string
+        apns:
+          type: array
+          description: <bundleId>.<environment> string for apns push tokens registered for this profile
+          items:
+            type: string
+  parameters:
+    apiSpacePathParameter:
+      name: apiSpaceId
+      in: path
+      description: The API space id
+      required: true
+      schema:
+        pattern: ^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})|[a-f0-9]{32}$
+        type: string
+    profileIdPathParameter:
+      name: id
+      in: path
+      description: The id of the profile
+      required: true
+      schema:
+        type: string
+    linkedIdPathParameter:
+      name: linkedId
+      in: path
+      description: The id of the profile to link with
+      required: true
+      schema:
+        type: string
+    audienceIdPathParameter:
+      name: id
+      in: path
+      description: The id of the audience
+      required: true
+      schema:
+        type: string
+    deviceIdPathParameter:
+      name: deviceId
+      in: path
+      description: The id of the device
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+x-readme:
+  samples-languages:
+  - curl
+  - csharp
+  - java
+  - node
+  - php
+  - python
+  - ruby
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

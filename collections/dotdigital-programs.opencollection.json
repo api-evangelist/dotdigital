@@ -1,0 +1,171 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Programs",
+    "version": "2.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Programs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create program enrolment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/programs/enrolments",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a program enrolments for passed contacts and/or lists/address books. \n\n*Note: This happens asynchronously, use the `id` to track progress.*"
+        },
+        {
+          "info": {
+            "name": "Get programs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/programs",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets a list of all the programs from your account"
+        },
+        {
+          "info": {
+            "name": "Get program by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/programs/:id",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The numeric identifier of the program you want details for."
+              }
+            ]
+          },
+          "docs": "Gets a program by its ID"
+        },
+        {
+          "info": {
+            "name": "Get program enrolment report faults",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/programs/enrolments/:id/report-faults",
+            "params": [
+              {
+                "name": "id",
+                "value": "13bf8b50-6532-494c-8e2d-02f9bf22f93a",
+                "type": "path",
+                "description": "The enrolment ID in [GUID](url:http://guid.one/guid) format."
+              }
+            ]
+          },
+          "docs": "Gets all contacts that were not successfully enrolled, by enrolment ID."
+        },
+        {
+          "info": {
+            "name": "Gets an enrolment by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/programs/enrolments/:enrolmentId",
+            "params": [
+              {
+                "name": "enrolmentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the enrolment."
+              }
+            ]
+          },
+          "docs": "Gets an enrolment by ID."
+        },
+        {
+          "info": {
+            "name": "Gets enrolments by status.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/programs/enrolments/:status",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "path",
+                "description": "The enrolment status to filter by."
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets enrolments by status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,2167 @@
+{
+  "item": [
+    {
+      "id": "4123b86f-5ea8-4827-bf90-9924def2fe31",
+      "name": "Preferences and subscriptions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c9aafb04-04ce-400c-a22e-811be3e10b41",
+          "name": "Unsubscribe contact",
+          "request": {
+            "name": "Unsubscribe contact",
+            "description": {
+              "content": "Unsubscribes contact from account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                "unsubscribe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a5665a5c-7f30-4399-b9e9-339a39791a21",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    "unsubscribe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"john.smith@emailsim.io\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"suppressedContact\": {\n    \"id\": 1,\n    \"email\": \"john.smith@emailsim.io\",\n    \"optInType\": \"Unknown\",\n    \"emailType\": \"PlainText\",\n    \"dataFields\": null,\n    \"status\": \"Unsubscribed\"\n  },\n  \"dateRemoved\": \"2020-01-01 09:40:18.527000+00:00\",\n  \"reason\": \"Unsubscribed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7798959-8428-48a5-a744-909bedf31ffd",
+          "name": "Bulk suppress contacts",
+          "request": {
+            "name": "Bulk suppress contacts",
+            "description": {
+              "content": "Suppresses a batch of contacts from an account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                "suppress-contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"RAW_BODY\": [\n    {\n      \"id\": \"<integer>\",\n      \"email\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"email\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "be24dddf-0887-494f-92a7-21842527b141",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    "suppress-contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"id\": 123\n  },\n  {\n    \"email\": \"bob.smith@emailsim.co\"\n  },\n  {\n    \"email\": \"unknown@emailsim.co\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"suppressed\": [\n    {\n      \"id\": 123,\n      \"email\": null\n    },\n    {\n      \"id\": 0,\n      \"email\": \"bob.smith@emailsim.co\"\n    }\n  ],\n  \"notFound\": [\n    {\n      \"id\": 0,\n      \"email\": \"unknown@emailsim.co\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39cb0b10-a625-4a6a-9b3a-acd79b2c980e",
+          "name": "Resubscribe contact",
+          "request": {
+            "name": "Resubscribe contact",
+            "description": {
+              "content": "Resubscribes a previously unsubscribed contact",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                "resubscribe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unsubscribedContact\": {\n    \"email\": \"<string>\",\n    \"dataFields\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  },\n  \"preferredLocale\": \"<string>\",\n  \"returnUrlToUseIfChallenged\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fcc7a7fc-e2ff-4edc-a66d-e9cae4a15637",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    "resubscribe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unsubscribedContact\": {\n    \"email\": \"john.smith@emailsim.io\",\n    \"dataFields\": [\n      {\n        \"key\": \"FIRSTNAME\",\n        \"value\": \"Nelson\"\n      },\n      {\n        \"key\": \"LASTNAME\",\n        \"value\": \"Redeker\"\n      }\n    ]\n  },\n  \"preferredLocale\": \"de-DE\",\n  \"returnUrlToUseIfChallenged\": \"https://www.mywebsite.com/news\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contact\": {\n    \"id\": 23,\n    \"email\": \"john.smith@emailsim.io\",\n    \"optInType\": \"Unknown\",\n    \"emailType\": \"PlainText\",\n    \"dataFields\": null,\n    \"status\": \"Unsubscribed\"\n  },\n  \"status\": \"ContactChallenged\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd633b33-bac9-4340-8c2e-bcbf975eba63",
+          "name": "Resubscribe contact with no challenge",
+          "request": {
+            "name": "Resubscribe contact with no challenge",
+            "description": {
+              "content": "Resubscribes a previously unsubscribed contact without sending a challenge email",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                "resubscribe-with-no-challenge"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unsubscribedContact\": {\n    \"email\": \"<string>\",\n    \"dataFields\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "61d8fc98-4af3-432f-b7c5-a3eb71b19fce",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    "resubscribe-with-no-challenge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unsubscribedContact\": {\n    \"email\": \"john.smith@emailsim.io\",\n    \"dataFields\": [\n      {\n        \"key\": \"FIRSTNAME\",\n        \"value\": \"Nelson\"\n      },\n      {\n        \"key\": \"LASTNAME\",\n        \"value\": \"Redeker\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contact\": {\n    \"id\": 23,\n    \"email\": \"john.smith@emailsim.io\",\n    \"optInType\": \"Unknown\",\n    \"emailType\": \"PlainText\",\n    \"dataFields\": null,\n    \"status\": \"Unsubscribed\"\n  },\n  \"status\": \"ContactAdded\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00d97fe0-87d6-402c-a974-48fa0074d137",
+          "name": "Get suppressed contacts since date",
+          "request": {
+            "name": "Get suppressed contacts since date",
+            "description": {
+              "content": "Gets a list of suppressed contacts after a given date along with the reason for suppression",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                "suppressed-since",
+                ":date"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "select",
+                  "value": "<integer>",
+                  "description": "The number of records to select between 1 and 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "The numbers of records to skip in the result set"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "date",
+                  "description": "(Required) The date from which any suppressed contacts are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bdb93467-b0ac-4fef-85e2-76f6819e77c7",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    "suppressed-since",
+                    ":date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "select",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "date",
+                      "description": "(Required) The date from which any suppressed contacts are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"suppressedContact\": {\n      \"id\": 25,\n      \"email\": \"terry.mccarthy@example.com\",\n      \"optInType\": \"VerifiedDouble\",\n      \"emailType\": \"Html\",\n      \"dataFields\": null,\n      \"status\": \"Unsubscribed\"\n    },\n    \"dateRemoved\": \"2020-01-01 09:40:18.527000+00:00\",\n    \"reason\": \"Unsubscribed\"\n  },\n  {\n    \"suppressedContact\": {\n      \"id\": 38,\n      \"email\": \"eleanor.halloran@example.com\",\n      \"optInType\": \"Unknown\",\n      \"emailType\": \"PlainText\",\n      \"dataFields\": null,\n      \"status\": \"HardBounced\"\n    },\n    \"dateRemoved\": \"2020-01-01 09:40:18.527000+00:00\",\n    \"reason\": \"HardBounced\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7cad4fa1-8a95-49d4-a025-74ed09594cee",
+          "name": "Get subscriptions for contact",
+          "request": {
+            "name": "Get subscriptions for contact",
+            "description": {
+              "content": "Gets all subscriptions for a contact",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                ":email",
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "email",
+                  "description": "(Required) The email address of the contact"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f42cb833-e888-467c-9342-0cc722410488",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    ":email",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "email",
+                      "description": "(Required) The email address of the contact"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contact\": {\n    \"id\": 1,\n    \"email\": \"john.doe@example.com\",\n    \"optInType\": \"Unknown\",\n    \"emailType\": \"Html\",\n    \"dataFields\": null,\n    \"status\": \"Subscribed\"\n  },\n  \"marketingPreferenceOptIns\": [\n    {\n      \"marketingPreferenceId\": 5,\n      \"addressBookId\": 1,\n      \"isOptedIn\": false,\n      \"dateModifed\": \"2020-01-01 09:40:18.527000+00:00\"\n    },\n    {\n      \"marketingPreferenceId\": 1002,\n      \"addressBookId\": 3,\n      \"isOptedIn\": false,\n      \"dateModifed\": \"2020-01-01 09:40:18.527000+00:00\"\n    },\n    {\n      \"marketingPreferenceId\": 1003,\n      \"addressBookId\": 2,\n      \"isOptedIn\": true,\n      \"dateModifed\": \"2020-01-01 09:40:18.527000+00:00\"\n    },\n    {\n      \"marketingPreferenceId\": 1004,\n      \"addressBookId\": 3,\n      \"isOptedIn\": false,\n      \"dateModifed\": \"2020-01-01 09:40:18.527000+00:00\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5da6481-c5f7-49f0-a446-14fdf94425bf",
+          "name": "Get unsubscribed contacts since date",
+          "request": {
+            "name": "Get unsubscribed contacts since date",
+            "description": {
+              "content": "Gets a list of unsubscribed contacts who unsubscribed after a given date",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                "unsubscribed-since",
+                ":date"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "select",
+                  "value": "<integer>",
+                  "description": "The number of records to select between 1 and 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "The numbers of records to skip in the result set"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "date",
+                  "description": "(Required) The date from which any suppressed contacts are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "55b94dde-4569-4dc5-9dae-58d14754e15d",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    "unsubscribed-since",
+                    ":date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "select",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "date",
+                      "description": "(Required) The date from which any suppressed contacts are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"suppressedContact\": {\n      \"id\": 23,\n      \"email\": \"nelson.redeker@example.com\",\n      \"optInType\": \"Unknown\",\n      \"emailType\": \"PlainText\",\n      \"dataFields\": null,\n      \"status\": \"Unsubscribed\"\n    },\n    \"dateRemoved\": \"2020-01-01 09:40:18.527000+00:00\",\n    \"reason\": \"Unsubscribed\"\n  },\n  {\n    \"suppressedContact\": {\n      \"id\": 25,\n      \"email\": \"terry.mccarthy@example.com\",\n      \"optInType\": \"VerifiedDouble\",\n      \"emailType\": \"Html\",\n      \"dataFields\": null,\n      \"status\": \"Unsubscribed\"\n    },\n    \"dateRemoved\": \"2020-01-01 09:40:18.527000+00:00\",\n    \"reason\": \"Unsubscribed\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "850fdb97-2bee-482c-b78b-ae4277fafad2",
+          "name": "Create preference",
+          "request": {
+            "name": "Create preference",
+            "description": {
+              "content": "Creates a new preference or a new preference category",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "preferences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"publicName\": \"<string>\",\n  \"privateName\": \"<string>\",\n  \"isPreference\": false,\n  \"order\": \"<string>\",\n  \"isPublic\": true,\n  \"categoryID\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4e285c5d-282a-44d3-882f-f675a9a1e812",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "preferences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"publicName\": \"Preferred contact method\",\n  \"privateName\": \"Preferred contact method\",\n  \"isPreference\": true,\n  \"isPublic\": true,\n  \"order\": 0,\n  \"categoryId\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{ id: 23,\\npublicName: 'Preferred contact method',\\nprivateName: 'Preferred contact method',\\nisPreference: false,\\norder: 0,\\nisPublic: true,\\ncategoryId: 0,\\npreferenceCount: 0,\\ncreated: '2020-01-01T09:40:18.527Z',\\nlastModified: '2020-01-01T09:40:18.527Z'\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b9a565e-8319-4fb0-a0b0-27f4eabcbbd1",
+          "name": "Get preferences",
+          "request": {
+            "name": "Get preferences",
+            "description": {
+              "content": "Gets all preferences and preference categories",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "preferences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "17842e14-344f-4fbf-8000-d3a207b29e70",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "preferences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 8,\n    \"publicName\": \"Preferred contact method\",\n    \"privateName\": \"Preferred contact method\",\n    \"isPreference\": false,\n    \"order\": \"0\",\n    \"isPublic\": true,\n    \"categoryId\": 0,\n    \"preferenceCount\": 2,\n    \"created\": \"2020-01-01 09:40:18.527000+00:00\",\n    \"lastModified\": \"2020-01-01 09:40:18.527000+00:00\",\n    \"preferences\": [\n      {\n        \"id\": 9,\n        \"publicName\": \"Email\",\n        \"privateName\": \"Email\",\n        \"isPreference\": true,\n        \"order\": \"0\",\n        \"isPublic\": true,\n        \"categoryId\": 8,\n        \"preferenceCount\": 0,\n        \"created\": \"2020-01-01 09:40:18.527000+00:00\",\n        \"lastModified\": \"2020-01-01 09:40:18.527000+00:00\"\n      },\n      {\n        \"id\": 10,\n        \"publicName\": \"Push notifications\",\n        \"privateName\": \"Push notifications\",\n        \"isPreference\": true,\n        \"order\": \"1\",\n        \"isPublic\": true,\n        \"categoryId\": 8,\n        \"preferenceCount\": 0,\n        \"created\": \"2020-01-01 09:40:18.527000+00:00\",\n        \"lastModified\": \"2020-01-01 09:40:18.527000+00:00\"\n      }\n    ]\n  },\n  {\n    \"id\": 21,\n    \"publicName\": \"Football\",\n    \"privateName\": \"Football\",\n    \"isPreference\": true,\n    \"order\": \"2\",\n    \"isPublic\": true,\n    \"categoryId\": 0,\n    \"preferenceCount\": 0,\n    \"created\": \"2020-01-01 09:40:18.527000+00:00\",\n    \"lastModified\": \"2020-01-01 09:40:18.527000+00:00\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f17ce56-1503-4775-b8bc-c86559c36809",
+          "name": "Update preference",
+          "request": {
+            "name": "Update preference",
+            "description": {
+              "content": "Updates a preference or preference category by id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "preferences",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\",\n  \"publicName\": \"<string>\",\n  \"privateName\": \"<string>\",\n  \"isPreference\": false,\n  \"order\": \"<string>\",\n  \"isPublic\": true,\n  \"categoryID\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "48dcc968-bc70-4e92-a881-e2496f889aa5",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "preferences",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 2,\n  \"privateName\": \"Preference name\",\n  \"publicName\": \"Preference name\",\n  \"order\": 1,\n  \"isPublic\": false,\n  \"categoryId\": 14\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{ \\nid: 2,\\npublicName: 'Preference name',\\nprivateName: 'Preference name',\\nisPreference: true,\\norder: 1,\\nisPublic: false,\\ncategoryId: 14,\\nlastModified: '2020-01-01T09:40:18.527Z'\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99de7910-d4c7-48c0-8c6b-deb3d9fa8cc6",
+          "name": "Delete preference",
+          "request": {
+            "name": "Delete preference",
+            "description": {
+              "content": "Deletes a preference or preference category by id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "preferences",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "797ffce4-2b56-4f90-a838-afa64c4ff55f",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "preferences",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Preference or category (and preferences) were deleted successfully",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0ff6dcb-c183-435f-8eb3-b45f441a20bc",
+          "name": "Get modified preferences since date",
+          "request": {
+            "name": "Get modified preferences since date",
+            "description": {
+              "content": "Gets all the preferences and preference categories that have been modified since a given date",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "preferences",
+                "modified-since",
+                ":date"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "date",
+                  "description": "(Required) The start date from which you want to get modified preferences in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "71e238d4-5d49-4c6b-8bbe-aa12adaf8d1d",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "preferences",
+                    "modified-since",
+                    ":date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "date",
+                      "description": "(Required) The start date from which you want to get modified preferences in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 8,\n    \"publicName\": \"Preferred contact method\",\n    \"privateName\": \"Preferred contact method\",\n    \"isPreference2\": false,\n    \"order\": \"0\",\n    \"isPublic\": true,\n    \"categoryId\": 0,\n    \"preferenceCount\": 2,\n    \"created\": \"2020-01-01 09:40:18.527000+00:00\",\n    \"lastModified\": \"2020-01-01 09:40:18.527000+00:00\",\n    \"preferences\": [\n      {\n        \"id\": 9,\n        \"publicName\": \"Email\",\n        \"privateName\": \"Email\",\n        \"isPreference\": true,\n        \"order\": \"0\",\n        \"isPublic\": true,\n        \"categoryId\": 8,\n        \"preferenceCount\": 0,\n        \"created\": \"2020-01-01 09:40:18.527000+00:00\",\n        \"lastModified\": \"2020-01-01 09:40:18.527000+00:00\"\n      },\n      {\n        \"id\": 10,\n        \"publicName\": \"Push notifications\",\n        \"privateName\": \"Push notifications\",\n        \"isPreference\": true,\n        \"order\": \"1\",\n        \"isPublic\": true,\n        \"categoryId\": 8,\n        \"preferenceCount\": 0,\n        \"created\": \"2020-01-01 09:40:18.527000+00:00\",\n        \"lastModified\": \"2020-01-01 09:40:18.527000+00:00\"\n      }\n    ]\n  },\n  {\n    \"id\": 21,\n    \"publicName\": \"Football\",\n    \"privateName\": \"Football\",\n    \"isPreference\": true,\n    \"order\": \"2\",\n    \"isPublic\": true,\n    \"categoryId\": 0,\n    \"preferenceCount\": 0,\n    \"created\": \"2020-01-01 09:40:18.527000+00:00\",\n    \"lastModified\": \"2020-01-01 09:40:18.527000+00:00\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa0857f9-1735-4e50-adfd-d8d6c9133b50",
+          "name": "Set preferences for contact",
+          "request": {
+            "name": "Set preferences for contact",
+            "description": {
+              "content": "Opts in a given contact to preferences, or opts out a given contact from preferences",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                ":contactIdentifier",
+                "preferences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contactIdentifier",
+                  "description": "(Required) Either the contact id or email address of the contact"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"RAW_BODY\": [\n    {\n      \"id\": \"<integer>\",\n      \"isPreference\": \"<boolean>\",\n      \"isOptedIn\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"isPreference\": \"<boolean>\",\n      \"isOptedIn\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e166c34e-ea1b-41bd-acd2-3a02c088479b",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    ":contactIdentifier",
+                    "preferences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactIdentifier",
+                      "description": "(Required) Either the contact id or email address of the contact"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"id\": 14,\n    \"isPreference\": false,\n    \"preferences\": [\n      {\n        \"id\": 26,\n        \"isPreference\": true,\n        \"isOptedIn\": true\n      },\n      {\n        \"id\": 19,\n        \"isPreference\": true,\n        \"isOptedIn\": false\n      }\n    ]\n  },\n  {\n    \"id\": 1027,\n    \"isPreference\": true,\n    \"isOptedIn\": true\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35ac8ea9-b14a-4b9f-8a07-f71a6a7dfd28",
+          "name": "Get preferences for contact",
+          "request": {
+            "name": "Get preferences for contact",
+            "description": {
+              "content": "Gets all preferences for the account and indicates those that a given contact is opted into",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                ":contactIdentifier",
+                "preferences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contactIdentifier",
+                  "description": "(Required) Either the contact id or email address of the contact"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "41314b51-1665-4fe2-81a2-d029492a3b3c",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    ":contactIdentifier",
+                    "preferences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactIdentifier",
+                      "description": "(Required) Either the contact id or email address of the contact"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 279,\n    \"publicName\": \"Camping\",\n    \"privateName\": \"Camping\",\n    \"isPreference\": false,\n    \"order\": \"0\",\n    \"isPublic\": true,\n    \"categoryId\": 0,\n    \"preferenceCount\": 2,\n    \"created\": \"2020-01-01 09:40:18.527000+00:00\",\n    \"lastModified\": \"2020-01-01 09:40:18.527000+00:00\",\n    \"preferences\": [\n      {\n        \"id\": 278,\n        \"publicName\": \"Tents\",\n        \"privateName\": \"Tents\",\n        \"isPreference\": true,\n        \"order\": \"0\",\n        \"isPublic\": true,\n        \"categoryId\": 279,\n        \"preferenceCount\": 0,\n        \"created\": \"2020-01-01 09:40:18.527000+00:00\",\n        \"lastModified\": \"2020-01-01 09:40:18.527000+00:00\",\n        \"isOptedIn\": true\n      },\n      {\n        \"id\": 281,\n        \"publicName\": \"Rucksacks\",\n        \"privateName\": \"Rucksacks\",\n        \"isPreference\": true,\n        \"order\": \"1\",\n        \"isPublic\": true,\n        \"categoryId\": 279,\n        \"preferenceCount\": 0,\n        \"created\": \"2020-01-01 09:40:18.527000+00:00\",\n        \"lastModified\": \"2020-01-01 09:40:18.527000+00:00\",\n        \"isOptedIn\": false\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cdd3c45b-6ec8-40cb-b331-58e15a5f9a45",
+          "name": "Get contacts opted into a preference",
+          "request": {
+            "name": "Get contacts opted into a preference",
+            "description": {
+              "content": "Gets contacts who are opted into a given preference",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                "with-preference",
+                ":preferenceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "minContactID",
+                  "value": "<integer>",
+                  "description": "The minimum contact ID to query on, starting from 0"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "preferenceId",
+                  "description": "(Required) The ID of the preference to which contacts must be opted in."
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "551f5d86-7126-4ade-b68d-63d91278fd60",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    "with-preference",
+                    ":preferenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "minContactID",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "preferenceId",
+                      "description": "(Required) The ID of the preference to which contacts must be opted in."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 5,\n    \"email\": \"darryl.netherland@example.com\"\n  },\n  {\n    \"id\": 17,\n    \"email\": \"dora.judge@example.com\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0958e3f7-1512-4472-93f1-f65e2b7259d6",
+          "name": "Get contacts with modified preference opt-in since date",
+          "request": {
+            "name": "Get contacts with modified preference opt-in since date",
+            "description": {
+              "content": "Gets the top 1000 contacts who have had their specified preference opt-in status modified since a given date",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                "with-preference",
+                ":preferenceId",
+                "opt-ins-since",
+                ":date"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "minContactID",
+                  "value": "<integer>",
+                  "description": "The minimum contact ID to query on, starting from 0"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "preferenceId",
+                  "description": "(Required) The ID of the preference to which contacts must be opted in."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "date",
+                  "description": "(Required) The earliest date that returned contacts must have modified their opt-in status for the preference in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5430e54c-8a4b-41ce-b35c-1ab8396cdd1d",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    "with-preference",
+                    ":preferenceId",
+                    "opt-ins-since",
+                    ":date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "minContactID",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "preferenceId",
+                      "description": "(Required) The ID of the preference to which contacts must be opted in."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "date",
+                      "description": "(Required) The earliest date that returned contacts must have modified their opt-in status for the preference in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"contact\": {\n      \"id\": 5,\n      \"email\": \"darryl.netherland@example.com\",\n      \"optInType\": \"Single\",\n      \"emailType\": \"Html\",\n      \"dataFields\": null,\n      \"status\": \"Subscribed\"\n    },\n    \"marketingPreferenceOptIns\": [\n      {\n        \"marketingPreferenceId\": 2,\n        \"addressBookId\": 421,\n        \"isOptedIn\": false,\n        \"dateModifed\": \"2020-01-01 09:40:18.527000+00:00\"\n      }\n    ]\n  },\n  {\n    \"contact\": {\n      \"id\": 12,\n      \"email\": \"dora.judge@example.com\",\n      \"optInType\": \"Unknown\",\n      \"emailType\": \"Html\",\n      \"dataFields\": null,\n      \"status\": \"Subscribed\"\n    },\n    \"marketingPreferenceOptIns\": [\n      {\n        \"marketingPreferenceId\": 5,\n        \"addressBookId\": 395,\n        \"isOptedIn\": true,\n        \"dateModifed\": \"2020-01-01 09:40:18.527000+00:00\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ded12c8d-11b7-4434-bf2c-a1cd5a1d72d4",
+    "name": "Preferences and subscriptions",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage contact subscriptions, suppressions, and marketing preferences. Use this\nAPI to unsubscribe or resubscribe contacts (with or without a challenge email),\nbulk-suppress contacts, and query suppressed or unsubscribed contacts since a\ngiven date. Also provides full CRUD for preference categories and individual\npreferences, and endpoints to get or set the preference opt-in status for a\nspecific contact.",
+      "type": "text/plain"
+    }
+  }
+}

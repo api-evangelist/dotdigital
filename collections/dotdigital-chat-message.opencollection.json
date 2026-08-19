@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chat Message API",
+    "version": "1.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Retrieves a chat's events",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chats/:chatId/events",
+        "params": [
+          {
+            "name": "chatId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the chat"
+          },
+          {
+            "name": "from",
+            "value": "",
+            "type": "query",
+            "description": "The event id to start from"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "The number of events to read forward"
+          }
+        ]
+      },
+      "docs": "Retrieves a chat's events"
+    },
+    {
+      "info": {
+        "name": "Retrieves a chat's messages from an point (event) in time and works backwards",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chats/:chatId/messages",
+        "params": [
+          {
+            "name": "chatId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the chat"
+          },
+          {
+            "name": "from",
+            "value": "",
+            "type": "query",
+            "description": "The event id to work backwards from"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "The number of messages to return"
+          }
+        ]
+      },
+      "docs": "Retrieves a chat's messages from an point (event) in time and works backwards"
+    },
+    {
+      "info": {
+        "name": "Sends a message to chat",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chats/:chatId/messages",
+        "params": [
+          {
+            "name": "chatId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the chat"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Sends a message to chat"
+    },
+    {
+      "info": {
+        "name": "Posts message updates back",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{region}-api.dotdigital.com/cpaas/chats/:chatId/messages/statusupdates",
+        "params": [
+          {
+            "name": "chatId",
+            "value": "",
+            "type": "path",
+            "description": "The id of the chat"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Posts message updates back"
+    }
+  ],
+  "bundled": true
+}

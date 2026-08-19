@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ecommerce",
+    "version": "2.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ecommerce",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get orders since date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/ecommerce/orders",
+            "params": [
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query",
+                "description": "The date from which any orders are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime), note the time component is ignored — only the date part is used."
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets a list of all orders since a specified date."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

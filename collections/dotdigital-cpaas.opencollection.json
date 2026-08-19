@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CPaaS API",
+    "version": "3.5.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Get SMS phone numbers",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/sms/dedicatedNumbers"
+      },
+      "docs": "Get SMS phone numbers"
+    },
+    {
+      "info": {
+        "name": "Get SMS shortcodes",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/sms/shortcodes"
+      },
+      "docs": "Get SMS shortcodes"
+    },
+    {
+      "info": {
+        "name": "Get SMS keywords",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/sms/keywords"
+      },
+      "docs": "Get SMS keywords"
+    },
+    {
+      "info": {
+        "name": "Facebook Meta Data Service",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{region}-api.dotdigital.com/channels/facebook/state",
+        "params": [
+          {
+            "name": "apiSpaceId",
+            "value": "",
+            "type": "query",
+            "description": "The API space associated with the Facebook channel"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Used to generate meta data to help attach Facebook messenger Ids to CPaaS profiles"
+    }
+  ],
+  "bundled": true
+}

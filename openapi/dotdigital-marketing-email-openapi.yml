@@ -1,0 +1,515 @@
+openapi: 3.0.0
+info:
+  title: Marketing Email API
+  description: The marketing email API can be used to send marketing emails directly to recipients without the need to create a campaign. Email marketing status will be checked for known email addresses and email not sent if unsubscribed or suppressed.
+  version: 3.0.2
+externalDocs:
+  description: Learn more about Dotdigital APIs
+  url: https://developer.dotdigital.com
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      description: The Dotdigital region id your account belongs to
+      enum:
+      - r1
+      - r2
+      - r3
+      default: r1
+security:
+- basicAuth: []
+paths:
+  /marketing-email/v3/send:
+    post:
+      tags:
+      - Marketing Emails
+      summary: Send marketing email
+      description: "Send a marketing email. <br><br>\n**Note:** \n* _Email marketing status will be checked for known email addresses and email not sent if unsubscribed or suppressed._ \n* _Contacts will be created for unknown email addresses._"
+      operationId: sendmarketingEmail
+      requestBody:
+        description: Email details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/emailRequest'
+            examples:
+              Raw HTML:
+                summary: Sending email using your own raw HTML
+                value:
+                  to: myCustomer1@emailsim.io
+                  from: noreply@acme.com
+                  content:
+                    source: html
+                    subject: An offer just for you
+                    htmlContent: "<!DOCTYPE html>\n<html>\n<head>\n  <title>My Email</title>\n</head>\n<body>\n  <h1>Hello, World!</h1>\n  <p>This is a paragraph in my email.</p>\n  <a href=\"https://www.example.com\">Click here</a>\n</body>\n</html>\n"
+                  metadata:
+                    customerId: 12345
+                    reportingSegement: 3Y25
+              Triggered campaign:
+                summary: Sending email using a triggered campaign
+                value:
+                  to: myCustomer1@emailsim.io
+                  from: noreply@acme.com
+                  content:
+                    source: template
+                    campaignId: 3456
+                    personalizationValues:
+                    - name: OFFER_EXPIRES
+                      value: 1st June
+                    - name: OFFER_NAME
+                      value: May madness
+                    tags:
+                    - Offers
+                    - Marketing
+                  metadata:
+                    customerId: 12345
+                    reportingSegement: 3Y25
+        required: true
+      responses:
+        '201':
+          description: Email accepted
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+              examples:
+                Bad request:
+                  summary: Badly formed request
+                  value:
+                    errorCode: marketingemail:badRequest
+                    description: Bad request
+                No unsubscribe link:
+                  summary: No unsubscribe link
+                  value:
+                    errorCode: marketingemail:badRequest
+                    description: Marketing emails must contain an unsubscribe link. Include the '$UNSUB$' token in your HTML content.
+        '401':
+          description: Unauthorized
+        '409':
+          description: Opted out / uncontactable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_409'
+              example:
+                errorCode: marketingEmail:unsubscribed
+                description: Recipient 'bob@acme.com' is unsubscribed.
+  /marketing-email/v3/batch:
+    post:
+      tags:
+      - Marketing Emails
+      summary: Send batch marketing emails
+      description: "Send a batch of marketing emails. <br><br>\n**Note:** \n* _Email marketing status will be checked for known email addresses and email not sent if unsubscribed or suppressed._ \n* _Contacts will be created for unknown email addresses._"
+      operationId: sendmarketingEmailBatch
+      requestBody:
+        description: Email batch details
+        content:
+          application/json:
+            schema:
+              minItems: 1
+              type: array
+              description: Emails to send.
+              example:
+              - to: myCustomer1@emailsim.io
+                from: noreply@acme.com
+                content:
+                  source: html
+                  subject: An offer just for you
+                  htmlContent: "<!DOCTYPE html>\n<html>\n<head>\n  <title>My Email</title>\n</head>\n<body>\n  <h1>Hello, World!</h1>\n  <p>This is a paragraph in my email.</p>\n  <a href=\"https://www.example.com\">Click here</a>\n</body>\n</html>\n"
+                metadata:
+                  customerId: 12345
+                  reportingSegement: 3Y25
+              - to: myCustomer2@emailsim.io
+                from: noreply@acme.com
+                content:
+                  source: template
+                  campaignId: 3456
+                  personalizationValues:
+                  - name: OFFER_EXPIRES
+                    value: 1st June
+                  - name: OFFER_NAME
+                    value: May madness
+                  tags:
+                  - Offers
+                  - Marketing
+                metadata:
+                  customerId: 23456
+                  reportingSegement: 3Y25
+              items:
+                $ref: '#/components/schemas/emailRequest'
+        required: true
+      responses:
+        '201':
+          description: Email batch accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_201'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              examples:
+                '1':
+                  summary: Invalid request
+                  value:
+                    errorCode: marketingEmail:invalidRequest
+                    description: No email send requests found.
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    emailRequest:
+      title: Email send request
+      required:
+      - content
+      - to
+      type: object
+      properties:
+        to:
+          type: string
+          description: The email address to send the email to.
+          format: email
+          example: recipient@example.com
+        from:
+          type: string
+          description: 'The From address for your email. You can add an optional friendly name using the format: *{Friendly name}* **<***{From email address}***>**<br>
+
+            e.g. `Acme <myCfaAddress@email.acme.com>`<br><br>
+
+            **Note:** _The From address must already be added to your account. If not specified your account''s default From address is used._
+
+            '
+          format: email
+          example: recipient@example.com
+        content:
+          discriminator:
+            propertyName: source
+            mapping:
+              html: '#/components/schemas/htmlContent'
+              template: '#/components/schemas/templateContent'
+          oneOf:
+          - $ref: '#/components/schemas/htmlContent'
+          - $ref: '#/components/schemas/templateContent'
+        attachments:
+          maxItems: 50
+          minItems: 1
+          type: array
+          description: "Any attachments as Base64 encoded string. \n* All attachment types are supported. \n* Maximum file size: 15 MB\n"
+          items:
+            $ref: '#/components/schemas/emailRequest_attachments'
+        metadata:
+          type: object
+          additionalProperties: true
+          description: 'Any additional metadata to be associated with the email. This is included on any related webhooks for correlation purposes.
+
+            '
+          example:
+            myUserId: abc1234
+            emailRef: 4564637238
+            shard: 1
+      additionalProperties: false
+    SingleMarketingEmailErrorCode:
+      type: string
+      enum:
+      - marketingemail:badRequest
+      - marketingemail:badJson
+      - marketingemail:badEncodingDetected
+      - marketingemail:invalidValue
+      - marketingemail:forbidden
+      - marketingemail:internalServerError
+      - marketingemail:campaignNotFound
+      - marketingemail:duplicatePersonalizationValuesFound
+      - marketingemail:invalidFromAddress
+      - marketingemail:attachmentMimeTypeMissing
+      - marketingemail:attachmentFileNameMissing
+      - marketingemail:attachmentContentMissing
+      - marketingemail:attachmentContentInvalid
+      - marketingemail:attachmentContentTooBig
+      - marketingemail:attachmentMimeTypeInvalid
+      - marketingemail:attachmentCombinedContentTooBig
+    BatchMarketingEmailFailureCode:
+      type: string
+      enum:
+      - MISSING_REQUIRED_FIELDS
+      - INVALID_CAMPAIGN
+      - INVALID_METADATA
+      - SEND_ERROR
+      - MULTIPLE_RECIPIENTS
+      - INVALID_EMAIL
+      - MISSING_CONTENT
+      - INVALID_TAGS
+      - MISSING_UNSUB
+      - SUBJECT_NOT_ALLOWED_WHEN_SENDING_TRIGGERED_EMAIL
+      - INVALID_FROM_ADDRESS
+    emailRefusedReason:
+      type: string
+      description: Unique failure code for this failure reason
+      example: marketingEmail:invalidEmailAddress
+      enum:
+      - marketingEmail:unsubscribed
+      - marketingEmail:hardBounced
+      - marketingEmail:complaint
+      - marketingEmail:blocked
+      - marketingEmail:spamTrap
+      - marketingEmail:suppressed
+      - marketingEmail:invalidEmailAddress
+    htmlContent:
+      title: HTML content
+      required:
+      - htmlContent
+      - source
+      - subject
+      type: object
+      properties:
+        source:
+          type: string
+          description: The source the email content is created from.
+          enum:
+          - html
+        subject:
+          type: string
+          description: The subject line for the email.
+          example: Special Offer Just for You!
+        htmlContent:
+          type: string
+          description: The HTML content of the email.
+          example: '<h1>Example email</h1>
+
+            <p>Blah blah blah...</p>
+
+            '
+      additionalProperties: false
+      description: Raw HTML content.
+    templateContent:
+      title: Triggered campaign details
+      required:
+      - campaignId
+      - source
+      type: object
+      properties:
+        source:
+          type: string
+          description: The source the email content is created from.
+          enum:
+          - template
+        campaignId:
+          type: integer
+          description: The ID of the triggered campaign to use to create the content.
+          example: 12345
+        personalizationValues:
+          maxItems: 100
+          minItems: 1
+          type: array
+          description: Personalization values to be used with the campaign template.
+          items:
+            $ref: '#/components/schemas/templateContent_personalizationValues'
+        tags:
+          maxItems: 50
+          minItems: 1
+          type: array
+          description: Any custom-defined tags to filter and report on data.
+          example:
+          - FOLLOW-UP
+          - LAPSED
+          items:
+            type: string
+            description: Tag
+      additionalProperties: false
+      description: Content created from a triggered campaign.
+    errorResponse:
+      required:
+      - description
+      - errorCode
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: Unique error code
+        description:
+          type: string
+          description: Description of the issue
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/errorResponse_details'
+    inline_response_409:
+      allOf:
+      - $ref: '#/components/schemas/errorResponse'
+      - type: object
+        properties:
+          errorCode:
+            $ref: '#/components/schemas/emailRefusedReason'
+    inline_response_400:
+      allOf:
+      - $ref: '#/components/schemas/errorResponse'
+      - type: object
+        properties:
+          errorCode:
+            $ref: '#/components/schemas/SingleMarketingEmailErrorCode'
+    inline_response_201:
+      type: object
+      properties:
+        summary:
+          $ref: '#/components/schemas/inline_response_201_summary'
+        results:
+          type: array
+          description: Send results in index order as per request.
+          items:
+            $ref: '#/components/schemas/inline_response_201_results'
+      example:
+        summary:
+          sent: 1
+          uncontactable: 1
+          failed: 1
+        results:
+        - index: 0
+          status: sent
+        - index: 1
+          status: uncontactable
+        - index: 2
+          status: failed
+          failures:
+          - failureCode: marketingEmail:invalidEmailAddress
+            description: Invalid email of 'invalid@email'
+          - failureCode: marketingEmail:restrictedFromAddress
+            description: The `from` address '<The from address>' is a restricted from being used with the Email Marketing API!
+          - failureCode: marketingEmail:noUnsubscribeLink
+            description: An unsubscribe link must be included in the email by including the `$unsub$` token which injects the full URL to the Dotdigital unsubscribe page for the account.
+    emailRequest_attachments:
+      required:
+      - content
+      - fileName
+      - mimeType
+      type: object
+      properties:
+        fileName:
+          type: string
+          description: The filename of the attachment.
+          example: orderSummary.pdf
+        mimeType:
+          type: string
+          description: The MIME type of the file.
+          example: application/pdf
+        content:
+          maxLength: 15728640
+          type: string
+          description: The Base64 encoded bytes of the attachment file.
+          example: VGhpcyBpcyBhbiBleGFtcGxlIEJhc2U2NCBlbmNvZGVkIGVtYWlsLg==
+      additionalProperties: false
+      description: Attachment file
+    templateContent_personalizationValues:
+      required:
+      - name
+      - value
+      type: object
+      properties:
+        name:
+          maxLength: 20
+          minLength: 1
+          type: string
+          description: The name of the personalization field.
+          example: FAV_COLOR
+        value:
+          type: string
+          description: The value of the field.
+          example: Pink
+      description: Name value pair
+    errorResponse_details:
+      required:
+      - description
+      - item
+      type: object
+      properties:
+        item:
+          type: string
+          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
+        description:
+          type: string
+          description: Description of the error
+    inline_response_201_summary:
+      required:
+      - failed
+      - sent
+      - uncontactable
+      type: object
+      properties:
+        sent:
+          type: integer
+          description: Number successfully sent.
+          example: 8
+        uncontactable:
+          type: integer
+          description: Number of opted out or otherwise uncontactable.
+          example: 1
+        failed:
+          type: integer
+          description: Number that failed to send.
+          example: 1
+      additionalProperties: false
+      description: Summary of the batch send status.
+    inline_response_201_failures:
+      required:
+      - description
+      - failureCode
+      type: object
+      properties:
+        failureCode:
+          allOf:
+          - $ref: '#/components/schemas/BatchMarketingEmailFailureCode'
+          - $ref: '#/components/schemas/emailRefusedReason'
+        description:
+          type: string
+          description: Description of the reason for the failure
+          example: Invalid email of 'invalid@email'
+      description: A failure reason
+    inline_response_201_results:
+      required:
+      - index
+      - status
+      type: object
+      properties:
+        index:
+          type: integer
+          description: The index position of the email send in the requests batch (0 based).
+          example: 0
+        status:
+          type: string
+          description: 'The status of the send.
+
+
+            * `sent` - Successfully sent
+
+            * `uncontactable` - Opted out or otherwise uncontactable
+
+            * `failed` - Failed due to an error
+
+            '
+          enum:
+          - sent
+          - uncontactable
+          - failed
+        failures:
+          type: array
+          description: If present the send has failed, and these are the reasons.
+          items:
+            $ref: '#/components/schemas/inline_response_201_failures'
+      additionalProperties: false
+      description: Send result
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+x-samples-languages:
+- curl
+- csharp
+- java
+- javascript
+- node
+- python
+- php
+- ruby

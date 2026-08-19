@@ -1,0 +1,368 @@
+{
+  "item": [
+    {
+      "id": "8e25fc42-449b-4937-a7eb-e938074a6119",
+      "name": "Accounts and Utilities",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "238dd4b8-9bc6-4f52-b212-7e2e9024cde0",
+          "name": "Get account information",
+          "request": {
+            "name": "Get account information",
+            "description": {
+              "content": "Gets a summary of information about the current status of the account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "account-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "11190c3d-c207-4969-b4f9-e2b25b807633",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "account-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"properties\": [\n    {\n      \"name\": \"AvailableEmailSendsCredits\",\n      \"type\": \"Int\",\n      \"value\": \"153\"\n    },\n    {\n      \"name\": \"AvailableSmsSendsCredits\",\n      \"type\": \"Int\",\n      \"value\": \"276\"\n    },\n    {\n      \"name\": \"PremiumWalletBalance\",\n      \"type\": \"Decimal\",\n      \"value\": \"100.01\"\n    },\n    {\n      \"name\": \"ListManagedUsers\",\n      \"type\": \"String\",\n      \"value\": \"subaccount@example.com, subuser@example.com\"\n    },\n    {\n      \"name\": \"Name\",\n      \"type\": \"String\",\n      \"value\": \"Demo\"\n    },\n    {\n      \"name\": \"MainMobilePhoneNumber\",\n      \"type\": \"String\",\n      \"value\": 1818181818\n    },\n    {\n      \"name\": \"MainEmail\",\n      \"type\": \"String\",\n      \"value\": \"demo@apiconnector.com\"\n    },\n    {\n      \"name\": \"APILocale\",\n      \"type\": \"String\",\n      \"value\": \"en-GB\"\n    },\n    {\n      \"name\": \"ApiCallsInLastHour\",\n      \"type\": \"Int\",\n      \"value\": \"15\"\n    },\n    {\n      \"name\": \"ApiCallsRemaining\",\n      \"type\": \"Int\",\n      \"value\": \"1985\"\n    },\n    {\n      \"name\": \"ApiEndpoint\",\n      \"type\": \"String\",\n      \"value\": \"https://r1-api.dotdigital.com/\"\n    },\n    {\n      \"name\": \"CurrencyCode\",\n      \"type\": \"String\",\n      \"value\": \"GBP\"\n    },\n    {\n      \"name\": \"CampaignEmailMtaPool\",\n      \"type\": \"String\",\n      \"value\": \"IP pool for Email campaigns\"\n    },\n    {\n      \"name\": \"ShowClock\",\n      \"type\": \"Boolean\",\n      \"value\": \"False\"\n    },\n    {\n      \"name\": \"TimeZoneIana\",\n      \"type\": \"String\",\n      \"value\": \"Europe/London\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2aedfa86-f8ec-4863-aa11-e60dd7bff171",
+          "name": "Get server time",
+          "request": {
+            "name": "Get server time",
+            "description": {
+              "content": "Gets the UTC time as set on our servers",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "server-time"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c85da050-7666-4a0c-b47d-bbdb57700e87",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "server-time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "2021-09-24 09:21:55.661571+00:00",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23902a85-e81d-428d-98c4-6aa986940fe3",
+          "name": "Empty recycle bin",
+          "request": {
+            "name": "Empty recycle bin",
+            "description": {
+              "content": "Permanently deletes everything in the recycle bin",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "accounts",
+                "empty-recycle-bin",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a5ccc013-7560-4188-9384-7b4eb9ba4e67",
+              "name": "202",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "accounts",
+                    "empty-recycle-bin",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "da5f5ea7-f719-496b-b288-41e9b4f6d259",
+    "name": "Accounts and Utilities",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Retrieve account information and perform account-level utility operations. Use\nthis API to get a summary of your account status including credits, API usage,\nand settings; get the current server time; and permanently empty the account\nrecycle bin.",
+      "type": "text/plain"
+    }
+  }
+}

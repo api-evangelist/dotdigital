@@ -1,0 +1,511 @@
+# Dotdigital Marketing API Documentation
+
+> The official developer documentation for Dotdigital Marketing
+
+## Guides
+- [Get started with the API](https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api.md): Understand the fundamentals of our API
+- [Set up an API user](https://marketing.developer.dotdigital.com/docs/setting-up-an-api-user.md)
+- [API conventions](https://marketing.developer.dotdigital.com/docs/api-conventions.md): The following guidance will ensure you can successfully call our services
+- [API endpoints](https://marketing.developer.dotdigital.com/docs/api-end-points.md): Understand how to access our regional API endpoints
+- [Data handling](https://marketing.developer.dotdigital.com/docs/data-handling.md): Learn how to pass and retrieve data with our APIs.
+- [Error handling](https://marketing.developer.dotdigital.com/docs/error-handling.md): Learn how to recognise and handle errors.
+- [Call rate limits](https://marketing.developer.dotdigital.com/docs/call-rate-limits.md): Learn about our API call rate limits and how to work with them.
+- [Importing and exporting data](https://marketing.developer.dotdigital.com/docs/importing-and-exporting-data.md): Learn what options you have for importing and exporting data with Dotdigital Marketing
+- [Facebook Messenger](https://marketing.developer.dotdigital.com/docs/channel-setup-facebook-messenger.md)
+- [Create a push notification profile](https://marketing.developer.dotdigital.com/docs/creating-a-push-notification-profile-new.md)
+- [Use the Android App Messaging SDK](https://marketing.developer.dotdigital.com/docs/android-sdk-new.md): A tutorial for adding the Android App Messaging SDK code to your app to allow your app users to receive push notifications from your Dotdigital account
+- [Use the iOS SDK](https://marketing.developer.dotdigital.com/docs/ios-sdk-new.md): A tutorial for adding the iOS SDK code to your app to allow your app users to receive push notifications from your Dotdigital account.
+- [Use the JavaScript SDK with cross-platform apps](https://marketing.developer.dotdigital.com/docs/javascript-sdk-new.md): A tutorial for adding the JavaScript SDK code to your app to allow your app users to receive push notifications from your Dotdigital account
+- [Register your app users for push](https://marketing.developer.dotdigital.com/docs/registering-your-app-users-for-push.md)
+- [SMS](https://marketing.developer.dotdigital.com/docs/channel-setup-sms.md): Learn about sending SMS through the API.
+- [MMS](https://marketing.developer.dotdigital.com/docs/mms.md)
+- [Marketing Email](https://marketing.developer.dotdigital.com/docs/marketing-email.md): Send marketing emails with ease from your systems.
+- [Transactional email](https://marketing.developer.dotdigital.com/docs/transactional-email.md)
+- [WhatsApp](https://marketing.developer.dotdigital.com/docs/channel-setup-whatsapp.md)
+- [MCP](https://marketing.developer.dotdigital.com/docs/mcp.md)
+- [The Dotdigital Tag](https://marketing.developer.dotdigital.com/docs/the-dotdigital-tag.md): Seamlessly integrate Dotdigital scripts with your site.
+- [Dotdigital Tag API methods](https://marketing.developer.dotdigital.com/docs/dotdigital-tag-api-methods.md): The following API methods are client-side functions which send user interaction data to a server.
+- [Extend the Dotdigital Tag for abandoned cart and browse](https://marketing.developer.dotdigital.com/docs/extend-the-dotdigital-tag-for-abandoned-cart-and-browse.md): Customise the Dotdigital Tag to collect additional data to support abandoned cart and browse functionality.
+- [Track custom page values with the Dotdigital Tag](https://marketing.developer.dotdigital.com/docs/track-custom-page-values-with-the-dotdigital-tag.md): Send custom data from your site to your Dotdigital account.
+- [EasyEditor extension schema](https://marketing.developer.dotdigital.com/docs/easy-editor-extension-schema.md)
+- [Template considerations](https://marketing.developer.dotdigital.com/docs/template-considerations.md)
+- [Uploading and updating your extensions](https://marketing.developer.dotdigital.com/docs/uploading-and-updating-your-extensions.md)
+- [Testing and managing your extensions](https://marketing.developer.dotdigital.com/docs/testing-your-extensions.md)
+- [Integration partners](https://marketing.developer.dotdigital.com/docs/partners.md)
+- [Partner integration verification](https://marketing.developer.dotdigital.com/docs/partner-integration-verification.md): Boost your integration with our Verified Integration partner program.
+- [Requirements for verified integrations](https://marketing.developer.dotdigital.com/docs/requirements-for-verified-integrations.md)
+- [Verified integration tracking](https://marketing.developer.dotdigital.com/docs/verified-integration-tracking.md)
+- [Data Firehose developer reference](https://marketing.developer.dotdigital.com/docs/dotdigital-data-firehose-developer-reference.md)
+- [Data Firehose event schema](https://marketing.developer.dotdigital.com/docs/dotdigital-data-firehose-event-schema.md)
+- [Export Dotdigital Marketing events to Snowflake using data firehose](https://marketing.developer.dotdigital.com/docs/export-dotdigital-events-to-snowflake-using-data-firehose.md): Sync Dotdigital Marketing engagement events to cloud storage using Data Firehose and ingest them into Snowflake for analytics. This guide covers Firehose setup, storage configuration, Snowflake ingestion options, and validation.
+- [AIT (Artificially Inflated Traffic) attacks](https://marketing.developer.dotdigital.com/docs/ait-artificially-inflated-traffic-attacks.md)
+- [Error response types](https://marketing.developer.dotdigital.com/docs/error-response-types.md): Error response types you can expect to receive when an API request fails
+- [HLR Country coverage](https://marketing.developer.dotdigital.com/docs/hlr-country-coverage.md)
+
+## API Reference
+- [Downloading OAS / Swagger specifications](https://marketing.developer.dotdigital.com/reference/downloading-oas-swagger-specifications.md)
+- [Get account information](https://marketing.developer.dotdigital.com/reference/get-account-information.md): Gets a summary of information about the current status of the account
+- [Get server time](https://marketing.developer.dotdigital.com/reference/get-server-time.md): Gets the UTC time as set on our servers
+- [Empty recycle bin](https://marketing.developer.dotdigital.com/reference/empty-recycle-bin.md): Permanently deletes everything in the recycle bin
+- [Contacts](https://marketing.developer.dotdigital.com/reference/unified-contacts.md)
+- [Get contacts based on your criteria](https://marketing.developer.dotdigital.com/reference/getcontacts-1.md): Get contacts based on criteria you specify. Contacts are returned with full data, specified data fields, or key information and identifiers only.<br/><br/>  *Note: All data is returned in ascending order*
+- [Import contact collection](https://marketing.developer.dotdigital.com/reference/importcontacts-1.md): Imports a collection of contacts. Creates contacts if they do not exist and updates contacts if they do. This is an async operation and you will need to check when it is complete by calling **getImportStatus** <br><br>**Note:** It isn't possible to specify the value for the **contactId** field when creating a contact, so it is only used to check for a matching contact when specified
+- [Get the status of a contacts import request](https://marketing.developer.dotdigital.com/reference/getimportstatus.md): Gets the status of a contacts import request and the results if available.<br><br>**Note:** When importing, contacts are created or updated but if any associated data sets fail to import then details of these are included in the **failures** results
+- [Get a contact by an identifier](https://marketing.developer.dotdigital.com/reference/getcontact.md): Get a contact's details using a specific identifier
+- [Get the status of a delete contacts job](https://marketing.developer.dotdigital.com/reference/getdeletestatus.md): Gets the status of a delete contacts job and the results if complete.
+- [Delete multiple contacts](https://marketing.developer.dotdigital.com/reference/deletecontacts.md): Async deletes multiple contacts using whichever identifier you wish.
+- [Create a contact](https://marketing.developer.dotdigital.com/reference/createcontact-1.md): Creates a contact if the identifiers passed are unique in the account then a new contact will be created, otherwise it will fail the call with a 409.
+- [Replace a contact](https://marketing.developer.dotdigital.com/reference/replacecontact.md): Replaces a contact entirly with the data passed in the request.<br><br>   **Note:**   * This call will **replace the entire contact** when updating with the data passed; if would like to change just select fields then use the PATCH call.
+- [Deletes a contact using a specific identifier](https://marketing.developer.dotdigital.com/reference/deletecontact-1.md): Delete a contact using a specific identifier
+- [Import a single contact](https://marketing.developer.dotdigital.com/reference/importcontact.md): Imports a single contact; if it is an existing contact it updates the contact with just the fields passed in the request with a choice of how to handle the merging of data, otherwise it create a new contact.
+- [Custom identifiers](https://marketing.developer.dotdigital.com/reference/custom-identifiers.md): Use custom IDs to create, retrieve, update, and delete contacts.
+- [Get all custom identifiers](https://marketing.developer.dotdigital.com/reference/getcustomidentifiers.md): Gets all the custom identifiers defined for the account.
+- [Creates a custom identifier.](https://marketing.developer.dotdigital.com/reference/createcustomidentifier.md): Creates a new custom identifier that will be available to identify contacts.
+- [Delete a custom identifier by name](https://marketing.developer.dotdigital.com/reference/delete_configuration-v3-customidentifiers-name.md): Delete a custom identifier by name if it exists.
+- [Create contact data field](https://marketing.developer.dotdigital.com/reference/create-contact-data-field.md): Creates a contact data field within the account
+- [Get contact data fields](https://marketing.developer.dotdigital.com/reference/get-contact-data-fields.md): Lists all contact data fields within the account
+- [Delete contact data field](https://marketing.developer.dotdigital.com/reference/delete-contact-data-field.md): Deletes a contact data field within the account
+- [Create list](https://marketing.developer.dotdigital.com/reference/create-address-book.md): Creates an list / address book
+- [Delete list](https://marketing.developer.dotdigital.com/reference/delete-address-book.md): Deletes an list / address book by id
+- [Update list](https://marketing.developer.dotdigital.com/reference/update-address-book.md): Updates an list / address book by id
+- [Get list](https://marketing.developer.dotdigital.com/reference/get-address-book.md): This operation retrieves an list / address book by its id
+- [Get lists](https://marketing.developer.dotdigital.com/reference/get-address-books.md): Gets all lists / address books
+- [Get private lists](https://marketing.developer.dotdigital.com/reference/get-private-address-books.md): Gets all private lists / address books
+- [Get public lists](https://marketing.developer.dotdigital.com/reference/get-public-address-books.md): Gets all public lists / address books
+- [Get unsubscribed from list since date](https://marketing.developer.dotdigital.com/reference/get-unsubscribed-contacts-from-address-book-since-date.md): Gets a list of contacts who have unsubscribed since a given date from a given list / address book
+- [Unsubscribe contact from list](https://marketing.developer.dotdigital.com/reference/unsubscribe-contact-from-address-book.md): Unsubscribes contact from a given list / address book
+- [Resubscribe contact to list](https://marketing.developer.dotdigital.com/reference/resubscribe-contact-to-address-book.md): Resubscribes a previously unsubscribed contact to a given list / address book
+- [Resubscribe contact to list with no challenge](https://marketing.developer.dotdigital.com/reference/resubscribe-contact-to-address-book-with-no-challenge.md): Resubscribes a previously unsubscribed contact to a specific list / address book without sending a challenge email
+- [Delete contact from list](https://marketing.developer.dotdigital.com/reference/delete-contact-from-address-book.md): Deletes a contact from a given list / address book
+- [Delete contacts from list](https://marketing.developer.dotdigital.com/reference/delete-contacts-from-address-book.md): Deletes multiple contacts from an list / address book
+- [Delete all contacts from list](https://marketing.developer.dotdigital.com/reference/delete-all-contacts-from-address-book.md): Deletes all contacts from a given list / address book
+- [Get bulk contact deletion progress](https://marketing.developer.dotdigital.com/reference/get-bulk-contact-deletion-progress.md)
+- [Unsubscribe contact](https://marketing.developer.dotdigital.com/reference/unsubscribe-contact.md): Unsubscribes contact from account
+- [Bulk suppress contacts](https://marketing.developer.dotdigital.com/reference/bulk-suppress-contacts.md): Suppresses a batch of contacts from an account
+- [Resubscribe contact](https://marketing.developer.dotdigital.com/reference/resubscribe-contact.md): Resubscribes a previously unsubscribed contact
+- [Resubscribe contact with no challenge](https://marketing.developer.dotdigital.com/reference/resubscribe-contact-with-no-challenge.md): Resubscribes a previously unsubscribed contact without sending a challenge email
+- [Get suppressed contacts since date](https://marketing.developer.dotdigital.com/reference/get-suppressed-contacts-since-date.md): Gets a list of suppressed contacts after a given date along with the reason for suppression
+- [Get subscriptions for contact](https://marketing.developer.dotdigital.com/reference/get-subscriptions-for-contact.md): Gets all subscriptions for a contact
+- [Get unsubscribed contacts since date](https://marketing.developer.dotdigital.com/reference/get-unsubscribed-contacts-since-date.md): Gets a list of unsubscribed contacts who unsubscribed after a given date
+- [Create preference](https://marketing.developer.dotdigital.com/reference/create-preference.md): Creates a new preference or a new preference category
+- [Update preference](https://marketing.developer.dotdigital.com/reference/update-preference.md): Updates a preference or preference category by id
+- [Get preferences](https://marketing.developer.dotdigital.com/reference/get-preferences.md): Gets all preferences and preference categories
+- [Get modified preferences since date](https://marketing.developer.dotdigital.com/reference/get-modified-preferences-since-date.md): Gets all the preferences and preference categories that have been modified since a given date
+- [Delete preference](https://marketing.developer.dotdigital.com/reference/delete-preference.md): Deletes a preference or preference category by id
+- [Set preferences for contact](https://marketing.developer.dotdigital.com/reference/set-preferences-for-contact.md): Opts in a given contact to preferences, or opts out a given contact from preferences
+- [Get preferences for contact](https://marketing.developer.dotdigital.com/reference/get-preferences-for-contact.md): Gets all preferences for the account and indicates those that a given contact is opted into
+- [Get contacts opted into a preference and an address book](https://marketing.developer.dotdigital.com/reference/get-contacts-opted-into-a-preference-and-an-address-book.md): Gets contacts who are opted into a given preference and a given address book
+- [Get contacts opted into a preference](https://marketing.developer.dotdigital.com/reference/get-contacts-opted-into-a-preference.md): Gets contacts who are opted into a given preference
+- [Get contacts with modified preference opt-in since date](https://marketing.developer.dotdigital.com/reference/get-contacts-with-modified-preference-opt-in-since-date.md): Gets the top 1000 contacts who have had their specified preference opt-in status modified since a given date
+- [Get contacts with modified preference opt-in in address book since date](https://marketing.developer.dotdigital.com/reference/get-contacts-with-modified-preference-opt-in-in-address-book-since-date.md): Gets the top 1000 contacts who have had a specific preference opt-in status modified since a given date, in a given address book
+- [Get segments](https://marketing.developer.dotdigital.com/reference/get-segments.md): Gets all segments
+- [Refresh segment](https://marketing.developer.dotdigital.com/reference/refresh-segment.md): Refreshes a segment by ID
+- [Get refresh progress for segment](https://marketing.developer.dotdigital.com/reference/get-refresh-progress-for-segment.md): Gets the refresh progress for a segment
+- [Get scoring for contacts](https://marketing.developer.dotdigital.com/reference/get-scoring-for-contacts.md): Gets contact scoring for all contacts in the account
+- [Get scoring modified since date for contacts](https://marketing.developer.dotdigital.com/reference/get-scoring-modified-since-date-for-contacts.md): Gets contacts whose contact scoring data has been modified since a given UTC date-time.
+- [Get scoring for contact](https://marketing.developer.dotdigital.com/reference/get-scoring-for-contact-by-email.md): Gets contact scoring for a contact
+- [Get scoring for contacts in address book](https://marketing.developer.dotdigital.com/reference/get-scoring-for-contacts-in-address-book.md): Gets contact scoring for contacts within a specific address book or segment
+- [Insight data](https://marketing.developer.dotdigital.com/reference/insight-data.md)
+- [Retrieve the status of an asynchronous request](https://marketing.developer.dotdigital.com/reference/getasyncstatus.md): Retrieves the status of an asynchronous request and the results if available, such as emptying or deleting collections.
+- [Lists all Insight data collections](https://marketing.developer.dotdigital.com/reference/getallinsightdatacollections.md): Retrieves a list of Insight data collections used at both account and contact level
+- [Creates an Insight data collection](https://marketing.developer.dotdigital.com/reference/postcreateinsightdatacollection.md): Creates an empty Insight data collection. If the collection already exists a successful result will be returned.<br/><br/> **Note:** You can create a maximum of 1000 Insight data collections.
+- [Empties an Insight data collection](https://marketing.developer.dotdigital.com/reference/delemptyanyinsightdatacollection.md): Deletes all records from the specified Insight data collection but not the collection itself, so further data can be added without removing dependencies to product recommendations, campaigns, or segments. <br/><br/> **Notes:** * The deletion is asynchronous progress can be monitored by calling [getAsyncStatus](/reference/getasyncstatus) * If you empty a contact scoped Insight data collection then all data for all contacts in that collection will be removed
+- [Gets the JSON schema for an Insight data collection](https://marketing.developer.dotdigital.com/reference/getinsightdatacollectionschema.md): Gets the schema for an Insight data collection.  *Note: All records added to the collection must adhere to this schema, but are allowed to extend it.*
+- [Deletes an Insight data collection](https://marketing.developer.dotdigital.com/reference/delinsightdatacollection.md): Requests a delete of a specified Insight data collection and all records for either an account scoped collection or for all contacts when referencing an contact scoped collection.<br/><br/> **Notes:** * The deletion is asynchronous progress can be monitored by calling [getAsyncStatus](/reference/getasyncstatus) * If you delete a contact scoped Insight data collection then it is deleted for all contacts!
+- [Bulk imports Insight data](https://marketing.developer.dotdigital.com/reference/importinsightdata.md): Imports a batch of Insight data records into a collection and upserts them. This either creates new records or updates already existing records. This is an asynchronous operation and you need to check when it is complete by calling **getImportStatus**  *Notes:* * *If the Insight data collection does not exist it will be created* * *If targeting a **contact** scoped Insight collection, then you **must** provide a **contactIdentity** on each record*
+- [Retrieve the status of a Insight data import request](https://marketing.developer.dotdigital.com/reference/getimportstatus-1.md): Retrieves the status of a Insight data import request and the results if available.
+- [List account Insight data collections](https://marketing.developer.dotdigital.com/reference/getaccountinsightdatacollections.md): Retrieves a list of all Insight data collections for an account
+- [Retrieves records from an accounts Insight data collection](https://marketing.developer.dotdigital.com/reference/getaccountinsightdata.md): Retrieve all records from an Insight data collection<br><br>*Note: All data is returned in ascending order*
+- [Retrieve single record from an account Insight data collection](https://marketing.developer.dotdigital.com/reference/getaccountinsightdatarecord.md): Retrieve single record from an account Insight data collection
+- [Upsert record into an account Insight data collection](https://marketing.developer.dotdigital.com/reference/putaccountinsightdatarecord.md): Updates or creates a record in a specified Insight data collection
+- [Delete record from an account Insight data collection](https://marketing.developer.dotdigital.com/reference/delaccountinsightdatarecord.md): Deletes a single record from a specified Insight data collection
+- [Deletes multiple records from an account scoped Insight Data collection.](https://marketing.developer.dotdigital.com/reference/delaccountinsightdatarecords.md): Delete from 1 to 5000 records from a single account scoped Insight Data collection in a single call. This call can be used when you need to remove many records from a collection but not all.
+- [Retrieve data for contact-scoped Insight data collection](https://marketing.developer.dotdigital.com/reference/getallcontactsinsightdata.md): Retrieves records from across all contacts for a contacts scoped Insight data collection<br><br> ***Note:** All data is returned in ascending order*
+- [Retrieve records for a contact from Insight data collection](https://marketing.developer.dotdigital.com/reference/getcontactinsightdata.md): Retrieves records from a specified Insight data collection for a contact<br><br>*Note: All data is returned in ascending order*
+- [List Insight data collections for a contact](https://marketing.developer.dotdigital.com/reference/getcontactinsightdatacollections.md): Retrieves a list of Insight Data collections for a contact using a specific identifier
+- [Empty Insight data collection for a contact](https://marketing.developer.dotdigital.com/reference/delemptycontactinsightdatacollection.md): Deletes all records from a specified Insight data collection for a single contact. The collection itself is not deleted; this allows new data to be added without affecting data dependencies.<br/><br/> **Notes:** * The deletion is asynchronous progress can be monitored by calling [getAsyncStatus](/reference/getasyncstatus)
+- [Retrieve Insight data record for a contact](https://marketing.developer.dotdigital.com/reference/getcontactinsightdatarecord.md): Retrieves a single record from a specified Insight data collection for a contact
+- [Upsert record into Insight data collection for a contact](https://marketing.developer.dotdigital.com/reference/putcontactinsightdatarecord.md): Updates or creates a record in a specified Insight data collection for a contact
+- [Delete record from Insight data collection for a contact](https://marketing.developer.dotdigital.com/reference/delcontactinsightdatarecord.md): Deletes a single record from a specified Insight data collection for a contact
+- [Deletes multiple records from an contact scoped Insight Data collection.](https://marketing.developer.dotdigital.com/reference/delcontactinsightdatarecords.md): Delete from 1 to 5000 records from a single contact scoped Insight Data collection in a single call. This call can be used when you need to remove many records from a collection but not all.
+- [Get campaigns sent to address book or segment](https://marketing.developer.dotdigital.com/reference/get-campaigns-sent-to-address-book-or-segment.md): Gets any campaigns that have been sent to an address book or a segment
+- [Get all campaigns (with filters)](https://marketing.developer.dotdigital.com/reference/get-all-campaigns-with-filters.md): Gets all campaigns, with optional filtering.
+- [Get campaigns with activity since date](https://marketing.developer.dotdigital.com/reference/get-campaigns-with-activity-since-date.md): Gets all sent campaigns, which have had activity (e.g. clicks, opens) after a specified date
+- [Get campaign](https://marketing.developer.dotdigital.com/reference/get-campaign.md): Gets a campaign by ID
+- [Create campaign](https://marketing.developer.dotdigital.com/reference/create-campaign.md): Creates a campaign
+- [Create split test campaign](https://marketing.developer.dotdigital.com/reference/create-split-test-campaign.md): Creates a split test campaign
+- [Update campaign](https://marketing.developer.dotdigital.com/reference/update-campaign.md): Updates a given campaign
+- [Delete campaign](https://marketing.developer.dotdigital.com/reference/delete-campaign.md): Deletes a campaign
+- [Copy campaign](https://marketing.developer.dotdigital.com/reference/copy-campaign.md): Copies a given campaign, returning the new campaign
+- [Send campaign](https://marketing.developer.dotdigital.com/reference/send-campaign.md): Sends a specified campaign to one or more address books, segments or contacts, either as an immediate or scheduled send
+- [Send time optimised campaign](https://marketing.developer.dotdigital.com/reference/send-time-optimised-campaign.md): Sends a specified campaign to one or more address books, segments or contacts at the most appropriate time based upon their previous opens
+- [Get campaign send status](https://marketing.developer.dotdigital.com/reference/get-campaign-send-status.md): Gets a campaign send status using send ID
+- [Add campaign attachment](https://marketing.developer.dotdigital.com/reference/add-campaign-attachment.md): Adds a document to a campaign as an attachment
+- [Get campaign attachments](https://marketing.developer.dotdigital.com/reference/get-campaign-attachments.md): Gets documents that are currently attached to a campaign
+- [Remove campaign attachment](https://marketing.developer.dotdigital.com/reference/remove-campaign-attachment.md): Removes an attachment from a campaign
+- [Gets sent campaigns metrics between the specified dates.](https://marketing.developer.dotdigital.com/reference/getdailycampaignmetrics.md): Gets key campaign metrics between the specified dates in UTC for all campaigns with activity.
+- [Get campaign with details](https://marketing.developer.dotdigital.com/reference/get-campaign-with-details.md): Gets a campaign by ID, along with all its details
+- [Get campaign summary](https://marketing.developer.dotdigital.com/reference/get-campaign-summary.md): Gets a summary of reporting information for a specified campaign
+- [Get campaign opens](https://marketing.developer.dotdigital.com/reference/get-campaign-opens.md): Gets a list of campaign opens
+- [Get campaign opens for a contact](https://marketing.developer.dotdigital.com/reference/get-campaign-opens-for-a-contact.md): Gets a list of campaign opens for a contact
+- [Get campaign activity for a contact](https://marketing.developer.dotdigital.com/reference/get-campaign-activity-for-a-contact.md): Gets activity for a given contact and given campaign
+- [Get campaign activity since date](https://marketing.developer.dotdigital.com/reference/get-campaign-activity-since-date.md): Gets a list of contacts who were sent a campaign, and retrieves only those contacts who showed activity (e.g. they clicked, opened) after a specified date
+- [Get campaign clicks](https://marketing.developer.dotdigital.com/reference/get-campaign-clicks.md): Gets a list of campaign link clicks
+- [Get campaign clicks and link groups](https://marketing.developer.dotdigital.com/reference/get-campaign-clicks-and-link-groups.md): Gets a list of campaign link clicks with assigned link groups
+- [Get campaign clicks since date](https://marketing.developer.dotdigital.com/reference/get-campaign-clicks-since-date.md): Gets a list of link clicks for a campaign after a specified date
+- [Get campaign clicks and link groups since date](https://marketing.developer.dotdigital.com/reference/get-campaign-clicks-and-link-groups-since-date.md): Gets a list of link clicks for a campaign, with assigned link groups, after a specified date
+- [Get campaign opens since date](https://marketing.developer.dotdigital.com/reference/get-campaign-opens-since-date.md): Gets a list of opens for a campaign after a specified date
+- [Get campaign activity](https://marketing.developer.dotdigital.com/reference/get-campaign-activity.md): Gets a list of contacts who were sent a campaign, with their activity
+- [Get campaign address books](https://marketing.developer.dotdigital.com/reference/get-campaign-address-books.md): Gets any address books and segments that a campaign has ever been sent to
+- [Get campaign clicks for a contact](https://marketing.developer.dotdigital.com/reference/get-campaign-clicks-for-a-contact.md): Gets a list of campaign link clicks for a contact
+- [Get campaign contact clicks and link groups](https://marketing.developer.dotdigital.com/reference/get-campaign-contact-clicks-and-link-groups.md): Gets a list of campaign link clicks, with assigned link groups, for a contact
+- [Get campaign page views for a contact](https://marketing.developer.dotdigital.com/reference/get-campaign-page-views-for-a-contact.md): Gets a list of page views for a specific campaign for a contact
+- [Get campaign page views since date](https://marketing.developer.dotdigital.com/reference/get-campaign-page-views-since-date.md): Gets a list of page views for a campaign after a specified date
+- [Get campaign replies for a contact](https://marketing.developer.dotdigital.com/reference/get-campaign-replies-for-a-contact.md): Gets a list of campaign replies for a contact
+- [Get campaign ROI activity for a contact](https://marketing.developer.dotdigital.com/reference/get-campaign-roi-activity-for-a-contact.md): Gets a list of ROI information for a campaign for a contact
+- [Get campaign ROI activity since date](https://marketing.developer.dotdigital.com/reference/get-campaign-roi-activity-since-date.md): Retrieves a list of ROI information for a campaign after a specified date
+- [Get campaign social bookmark views](https://marketing.developer.dotdigital.com/reference/get-campaign-social-bookmark-views.md): Gets campaign social bookmark views for a campaign
+- [Get campaign social bookmark views for a contact](https://marketing.developer.dotdigital.com/reference/get-campaign-social-bookmark-views-for-a-contact.md): Gets campaign social bookmark views for a contact
+- [Get campaign hard bouncers](https://marketing.developer.dotdigital.com/reference/get-campaign-hard-bouncers.md): Gets a list of contacts who hard bounced when sent a particular campaign
+- [Get campaign split test results](https://marketing.developer.dotdigital.com/reference/get-campaign-split-test-results.md): Gets the split test results of a given campaign
+- [Get custom from addresses](https://marketing.developer.dotdigital.com/reference/get-custom-from-addresses.md): Gets all custom from addresses which can be used in a campaign
+- [Get campaign revenue since date](https://marketing.developer.dotdigital.com/reference/get-campaign-revenue-since-date.md)
+- [Get campaign revenue for contact](https://marketing.developer.dotdigital.com/reference/get-campaign-revenue-for-contact.md)
+- [Create template](https://marketing.developer.dotdigital.com/reference/create-template.md): Creates an email campaign template
+- [Get templates](https://marketing.developer.dotdigital.com/reference/get-templates.md): Gets a list of all email campaign templates
+- [Get template by id](https://marketing.developer.dotdigital.com/reference/get-template-by-id.md): Gets an email campaign template by id
+- [Update template](https://marketing.developer.dotdigital.com/reference/update-template.md): Creates an email campaign template
+- [Create document folder](https://marketing.developer.dotdigital.com/reference/create-document-folder.md): Creates a new document folder
+- [Get document folders](https://marketing.developer.dotdigital.com/reference/get-document-folders.md): Fetches the document folder tree structure
+- [Get documents in folder](https://marketing.developer.dotdigital.com/reference/get-documents-in-folder.md): Gets all uploaded documents in a folder
+- [Upload document](https://marketing.developer.dotdigital.com/reference/upload-document.md): Upload a document to a specified folder using form data
+- [Create image folder](https://marketing.developer.dotdigital.com/reference/create-image-folder.md): This operation can be used to create a new image folder within an existing image folder, whilst child folders can also be created to nest within it.  **Note:** The accounts root folder id is `0`
+- [Get image folders](https://marketing.developer.dotdigital.com/reference/get-image-folders.md): Gets the accounts image folders tree structure.
+- [Get image folders by id](https://marketing.developer.dotdigital.com/reference/get-image-folders-by-id.md): Gets an image folder by id
+- [Upload image](https://marketing.developer.dotdigital.com/reference/upload-image.md): Uploads a new image to the specified image folder.  The permitted file types are as follows:  | File extension | MIME type     | File type    | | :------------- | :------------ | :----------- | | .gif           | image/gif     | GIF Image    | | .jpeg          | image/jpeg    | JPEG Image   | | .jpg           | image/jpeg    | JPEG Image   | | .png           | image/png     | PNG image    |  It can accept either a file uploaded using form data or a JSON body with the filename and file data in Base64. You can choose which method works best for you.
+- [Get forms](https://marketing.developer.dotdigital.com/reference/get-forms.md): Gets a list of all forms in the account
+- [Get form by ID](https://marketing.developer.dotdigital.com/reference/get-form-by-id.md): Gets a single form by its ID
+- [Get forms with activity since date](https://marketing.developer.dotdigital.com/reference/get-forms-with-activity-since-date.md): Gets a list of forms in the account that have changed since the specified date
+- [Get form fields](https://marketing.developer.dotdigital.com/reference/get-form-fields.md): Gets a list of a form's pages, each containing a list of the fields on that page
+- [Get form responses](https://marketing.developer.dotdigital.com/reference/get-form-responses.md): Gets a list of all responses for a specified form
+- [Get form responses with activity since date](https://marketing.developer.dotdigital.com/reference/get-form-responses-with-activity-since-date.md): Gets a list of responses that have changed since the specified date
+- [Create program enrolment](https://marketing.developer.dotdigital.com/reference/create-program-enrolment.md): Creates a program enrolments for passed contacts and/or lists/address books.   *Note: This happens asynchronously, use the `id` to track progress.*
+- [Get programs](https://marketing.developer.dotdigital.com/reference/get-programs.md): Gets a list of all the programs from your account
+- [Get program by ID](https://marketing.developer.dotdigital.com/reference/get-program-by-id.md): Gets a program by its ID
+- [Gets enrolments by status.](https://marketing.developer.dotdigital.com/reference/get-programenrolments-by-status.md)
+- [Gets an enrolment by ID.](https://marketing.developer.dotdigital.com/reference/get-program-enrolment.md)
+- [Get program enrolment report faults](https://marketing.developer.dotdigital.com/reference/get-program-enrolment-report-faults.md): Gets all contacts that were not successfully enrolled, by enrolment ID.
+- [Get all product recommendations](https://marketing.developer.dotdigital.com/reference/get-all-product-recommendations.md): Gets all product recommendations
+- [Create SMS campaign](https://marketing.developer.dotdigital.com/reference/create-sms-campaign.md): Creates a new SMS campaign
+- [Copy SMS campaign](https://marketing.developer.dotdigital.com/reference/copy-sms-campaign.md): Create a copy of an existing SMS campaign
+- [Get SMS campaigns](https://marketing.developer.dotdigital.com/reference/get-sms-campaigns.md): Returns existing SMS campaigns
+- [Get SMS campaign](https://marketing.developer.dotdigital.com/reference/get-sms-campaign.md): Returns an existing SMS campaign
+- [Update SMS campaign](https://marketing.developer.dotdigital.com/reference/update-sms-campaign.md): Updates an existing SMS campaign, as long as the campaign has not been sent.
+- [Delete SMS campaign](https://marketing.developer.dotdigital.com/reference/delete-sms-campaign.md): Marks an existing SMS campaign as deleted
+- [Send SMS message](https://marketing.developer.dotdigital.com/reference/send-sms-message.md): Sends a single SMS message
+- [Events overview](https://marketing.developer.dotdigital.com/reference/events-overview.md): Import and export events.
+- [Import events](https://marketing.developer.dotdigital.com/reference/import-events.md): Upload events to Dotdigital to display on the Single customer view and use in segmentation and personalization.
+- [Import a collection of events](https://marketing.developer.dotdigital.com/reference/importevents.md): Imports a batch of events associated to contacts.
+- [Export events](https://marketing.developer.dotdigital.com/reference/export-events.md): The export events functionality allows you to call a single service to retrieve events for activity across the whole of Dotdigital Marketing instead of having to retrieve data from multiple services.
+- [Retrieve events](https://marketing.developer.dotdigital.com/reference/exportevents.md): Gets a set of events for a events subscription. If starting to retrieve events then do not pass a `checkPoint` and the earliest events queued for the subscription will be retrieved, and on subsequent calls pass the `checkPoint` value from the previous call to indicate you have received that page of events successfully.<br><br> **Note:** * Ensure you pass the returned `checkPoint` to ensure you only get events after the last time you called. * You must ensure that you pick up the latest events for a subscription within  a 30 day period, otherwise the **subscription will automatically be set to `inactive` status due to non usage.** * If we return no events in the `events` array then you have received all the currently queued events. * Maximum call duration permitted is 30 seconds!
+- [Subscriptions](https://marketing.developer.dotdigital.com/reference/subscriptions.md)
+- [List subscriptions](https://marketing.developer.dotdigital.com/reference/listsubscriptions.md): Lists all events subscriptions and their details.
+- [Create subscription](https://marketing.developer.dotdigital.com/reference/createsubscription.md): Creates a events subscription.   The `name` passed must be unique within the accounts subscriptions  If you apply filters to your event subscription then **all filters must match** (logical AND) for the event to be captured.  If you want to match the same event type on multiple different sets of filters (logical OR) then add the event type multiple time to the subscription with differing filters.
+- [Gets subscription](https://marketing.developer.dotdigital.com/reference/getsubscription.md): Gets a events subscription details.
+- [Update subscription](https://marketing.developer.dotdigital.com/reference/updatesubscription.md): Updates a events subscription with new details.  If you apply filters to your event subscription then **all filters must match** (logical AND) for the event to be captured.  If you want to match the same event type on multiple different sets of filters (logical OR) then add the event type multiple time to the subscription with differing filters.
+- [Deletes subscription](https://marketing.developer.dotdigital.com/reference/deletesubscription.md): Deletes a events subscription.<br><br>  **Note:** once deleted it cannot be restored, this is a destructive call.
+- [Retrieve large object](https://marketing.developer.dotdigital.com/reference/retrievelob-1.md): Gets the data for a large object (LOB) referred to in some events when the data for the field would be too large to be transferred in the event data itself, and so needs downloading seperately.
+- [Data Firehose](https://marketing.developer.dotdigital.com/reference/data-firehose.md)
+- [Add configuration](https://marketing.developer.dotdigital.com/reference/addconfiguration.md): Adds a new Data Firehose configuration.
+- [Get configuration](https://marketing.developer.dotdigital.com/reference/getconfiguration.md): Gets a Data Firehose configuration.
+- [Update configuration](https://marketing.developer.dotdigital.com/reference/updateconfiguration.md): Updates a Data Firehose configuration with new details.
+- [Update configuration status](https://marketing.developer.dotdigital.com/reference/updatestatus.md): Updates the status of a Data Firehose configuration.
+- [Delete configuration](https://marketing.developer.dotdigital.com/reference/deleteconfiguration.md): Deletes a Data Firehose configuration.  If data sync is in progress returns 409.  _Note: Once a configuration deleted it cannot be restored, this is a destructive call!_
+- [Javascript](https://marketing.developer.dotdigital.com/reference/app-messaging-js-overview.md)
+- [Channel selection](https://marketing.developer.dotdigital.com/reference/channel-selection.md)
+- [SMS](https://marketing.developer.dotdigital.com/reference/channel-sms.md)
+- [Get SMS phone numbers](https://marketing.developer.dotdigital.com/reference/get-sms-phone-number.md)
+- [Get SMS shortcodes](https://marketing.developer.dotdigital.com/reference/get-sms-shortcodes.md)
+- [Get SMS keywords](https://marketing.developer.dotdigital.com/reference/get-sms-keywords.md)
+- [MMS](https://marketing.developer.dotdigital.com/reference/channel-mms.md)
+- [Push](https://marketing.developer.dotdigital.com/reference/channel-push.md)
+- [WhatsApp](https://marketing.developer.dotdigital.com/reference/channel-whatsapp.md)
+- [Send a batch of new messages](https://marketing.developer.dotdigital.com/reference/post_cpaas-messages-batch.md)
+- [Send a new message](https://marketing.developer.dotdigital.com/reference/post_cpaas-messages.md)
+- [Retrieves the current state of a specific message.](https://marketing.developer.dotdigital.com/reference/get_cpaas-messages-messageid.md)
+- [Deletes a Message](https://marketing.developer.dotdigital.com/reference/delete_cpaas-messages-messageid.md)
+- [Patches a Message](https://marketing.developer.dotdigital.com/reference/patch_cpaas-messages-messageid.md)
+- [Posts an inbound message](https://marketing.developer.dotdigital.com/reference/post_cpaas-messages-inbounds.md)
+- [Posts a status for an inbound](https://marketing.developer.dotdigital.com/reference/post_cpaas-messages-inbounds-inboundmessageid-statuses-status.md)
+- [Posts a status for a message](https://marketing.developer.dotdigital.com/reference/post_cpaas-messages-messageid-statuses-status.md)
+- [Marketing emails](https://marketing.developer.dotdigital.com/reference/marketing-emails.md)
+- [Send marketing email](https://marketing.developer.dotdigital.com/reference/sendmarketingemail.md): Send a marketing email. <br><br> **Note:**  * _Email marketing status will be checked for known email addresses and email not sent if unsubscribed or suppressed._  * _Contacts will be created for unknown email addresses._
+- [Send batch marketing emails](https://marketing.developer.dotdigital.com/reference/sendmarketingemailbatch.md): Send a batch of marketing emails. <br><br> **Note:**  * _Email marketing status will be checked for known email addresses and email not sent if unsubscribed or suppressed._  * _Contacts will be created for unknown email addresses._
+- [Send transactional email](https://marketing.developer.dotdigital.com/reference/send-transactional-email.md): Send a transactional email to one recipient
+- [Send batch transactional email](https://marketing.developer.dotdigital.com/reference/send-batch-transactional-email.md): Send a transactional email to multiple recipients
+- [Send transactional email using a triggered campaign](https://marketing.developer.dotdigital.com/reference/send-transactional-email-using-a-triggered-campaign.md): Sends a transactional email using a triggered campaign
+- [Send batch transactional email using a triggered campaign](https://marketing.developer.dotdigital.com/reference/send-batch-transactional-email-using-a-triggered-campaign.md)
+- [Get transactional email statistics](https://marketing.developer.dotdigital.com/reference/get-transactional-email-statistics-1.md): Gets transactional email reporting statistics for a specified time period
+- [Transactional Email via SMTP](https://marketing.developer.dotdigital.com/reference/transactional-email-via-smtp.md)
+- [Webhooks](https://marketing.developer.dotdigital.com/reference/webhooks.md)
+- [Message Events](https://marketing.developer.dotdigital.com/reference/message-events.md)
+- [Omnichannel Profile Events](https://marketing.developer.dotdigital.com/reference/profile-events.md)
+- [Facebook Events](https://marketing.developer.dotdigital.com/reference/facebook-events.md)
+- [App Messaging - Conversation Events](https://marketing.developer.dotdigital.com/reference/app-messaging-conversation-events.md)
+- [App Messaging - Message Events](https://marketing.developer.dotdigital.com/reference/app-messaging-message-events.md)
+- [App Messaging - Session Events](https://marketing.developer.dotdigital.com/reference/app-messaging-session-events.md)
+- [Chat - Events](https://marketing.developer.dotdigital.com/reference/chat-events.md)
+- [Chat - Message Events](https://marketing.developer.dotdigital.com/reference/chat-message-events.md)
+- [Chat - Presence Events](https://marketing.developer.dotdigital.com/reference/chat-presence-events.md)
+- [Get webhooks](https://marketing.developer.dotdigital.com/reference/get_cpaas-webhooks.md): Retrieves the configured webhook configurations for the account.
+- [Create webhook](https://marketing.developer.dotdigital.com/reference/post_cpaas-webhooks.md): Create a new webhook configuration, and start streaming events. We strongly encourage using batching, where we will send a batch of events whenever the number of events hits `macBatchSize` or events have been waitng for the `batchTimeout` in seconds, whichever occurs first will trigger the next batch to be sent. <br><br> _**Note**: Use the batching options, and only subscribe to the event types you require to maximise efficency_
+- [Retrieves available webhook events](https://marketing.developer.dotdigital.com/reference/get_cpaas-webhooks-availableevents.md): Retrieves the events you can subscribe to in a webhook and the optional filters you can use to refine event selection further.
+- [Get event templates](https://marketing.developer.dotdigital.com/reference/get_cpaas-webhooks-availabletemplates.md): Gets a list of available events templates that the caller can use when creating webhook. Event templates are pre-defined groups of events that meet common use-cases.
+- [Retrieves webhook configuration](https://marketing.developer.dotdigital.com/reference/get_cpaas-webhooks-webhookid.md): Retrieves a single webhook configuration.
+- [Update webhook configuration](https://marketing.developer.dotdigital.com/reference/put_cpaas-webhooks-webhookid.md): Updates an individual webhook configuration.
+- [Deletes webhook](https://marketing.developer.dotdigital.com/reference/delete_cpaas-webhooks-webhookid.md): Deletes an individual webhook.
+- [Get WhatsApp configuration for API Space](https://marketing.developer.dotdigital.com/reference/get_cpaas-channels-whatsapp-cloud.md): Retrieves all Cloud WhatsApp Channel configuration for an API Space
+- [Creates WhatsApp configuration](https://marketing.developer.dotdigital.com/reference/post_cpaas-channels-whatsapp-cloud.md): Creates a new Cloud WhatsApp configuration.
+- [Get WhatsApp number](https://marketing.developer.dotdigital.com/reference/get_cpaas-channels-whatsapp-cloud-phonenumber.md): Retrieves the WhatsApp configuration for a number.
+- [Removes WhatsApp number](https://marketing.developer.dotdigital.com/reference/delete_cpaas-channels-whatsapp-cloud-phonenumber.md): Removes a WhatsApp number configuration permaently. <br><br> **Warning: This action cannot be undone!**
+- [Registers WhatsApp number](https://marketing.developer.dotdigital.com/reference/post_cpaas-channels-whatsapp-cloud-register-phonenumber.md): Registers a WhatsApp configuration for a number.
+- [Get WhatsApp templates](https://marketing.developer.dotdigital.com/reference/get_cpaas-channels-whatsapp-businessaccounts-wabaid-templates.md): Retrieves the WhatsApp templates for a specific WABA.
+- [Get WhatsApp template](https://marketing.developer.dotdigital.com/reference/get_cpaas-channels-whatsapp-businessaccounts-wabaid-templates-templateid.md): Retrieves a WhatsApp template for a specific WABA.
+- [Gets a token that can be used to start an anonymous session](https://marketing.developer.dotdigital.com/reference/get_cpaas-sessions-tokens-anon.md)
+- [Retrieves details about a session](https://marketing.developer.dotdigital.com/reference/get_cpaas-sessions-id.md)
+- [Ends a session, revoking access to services.](https://marketing.developer.dotdigital.com/reference/delete_cpaas-sessions-id.md)
+- [Single number](https://marketing.developer.dotdigital.com/reference/single-number.md)
+- [Validate a single number](https://marketing.developer.dotdigital.com/reference/getvalidatenumber.md): Validates a single phone number.
+- [Bulk validation](https://marketing.developer.dotdigital.com/reference/bulk-validation.md)
+- [List bulk validation jobs.](https://marketing.developer.dotdigital.com/reference/getlistvalidationjobs.md): Gets a list of bulk phone number validation jobs.
+- [Bulk validate numbers](https://marketing.developer.dotdigital.com/reference/postbulkvalidate.md): Queues a bulk phone number validation request with a CSV file containing the numbers to be validated.
+- [Get bulk job details](https://marketing.developer.dotdigital.com/reference/getjobdetails.md): Gets the details and status of a bulk phone number validation job.
+- [Get bulk job results](https://marketing.developer.dotdigital.com/reference/getjobresults.md): Gets the results file of a successful bulk phone number validation job.  *Note: Failed or incomplete jobs will return no data!*  Output CSV file includes: * Phone Number * Original Phone Number * Status * MCCMNC * Network Name * Network Prefix * Country IDD * Is Ported * Ported From Network Name * Roaming Network Name * Roaming Network Prefix * Roaming Country IsoCode * Roaming Country IDD
+- [Retrieves conversation message analytics](https://marketing.developer.dotdigital.com/reference/get_cpaas-analytics-conversationmessages.md)
+- [Retrieves session analytics](https://marketing.developer.dotdigital.com/reference/get_cpaas-analytics-sessions.md)
+- [Retrieves chat analytics](https://marketing.developer.dotdigital.com/reference/get_cpaas-analytics-chats.md)
+- [Retrieves live chat analytics](https://marketing.developer.dotdigital.com/reference/get_cpaas-analytics-chats-live.md)
+- [Retrieves message analytics](https://marketing.developer.dotdigital.com/reference/get_cpaas-analytics-messages.md)
+- [Retrieves message metrics](https://marketing.developer.dotdigital.com/reference/get_cpaas-analytics-messages-metrics.md)
+- [Retrieves url tracking analytics](https://marketing.developer.dotdigital.com/reference/get_cpaas-analytics-sms-tracking.md)
+- [Retrieves sms verify analytics](https://marketing.developer.dotdigital.com/reference/get_cpaas-analytics-sms-verify.md)
+- [Retrieves inbound SMS analytics](https://marketing.developer.dotdigital.com/reference/get_cpaas-analytics-sms-inbound.md)
+- [Retrieves outbound SMS analytics](https://marketing.developer.dotdigital.com/reference/get_cpaas-analytics-sms-outbound.md)
+- [Retrieves WhatsApp conversation analytics](https://marketing.developer.dotdigital.com/reference/get_cpaas-analytics-whatsapp-conversations.md)
+- [Retrieves WhatsApp business-initiated conversation analytics for the last 24 hours (Daily message usage)](https://marketing.developer.dotdigital.com/reference/get_cpaas-analytics-whatsapp-dailymessagingusage.md)
+- [Exports the result of a profile query in a formatted file for download](https://marketing.developer.dotdigital.com/reference/post_cpaas-profiles-export.md): For format=csv, due to the flat file format, only primitive types will be exported. Non-primitive type will be exported with "--INVALID-TYPE--" as the data. Nested data should be referred to explicitly: "address.line1"
+- [Deletes the requested profiles](https://marketing.developer.dotdigital.com/reference/delete_cpaas-profiles-bulk.md)
+- [Creates or updates the supplied profiles with the supplied data](https://marketing.developer.dotdigital.com/reference/patch_cpaas-profiles-bulk.md)
+- [Retrieves a Profile](https://marketing.developer.dotdigital.com/reference/get_cpaas-profiles-id.md)
+- [Updates or undeletes a Profile](https://marketing.developer.dotdigital.com/reference/put_cpaas-profiles-id.md)
+- [Deletes a Profile](https://marketing.developer.dotdigital.com/reference/delete_cpaas-profiles-id.md)
+- [Patches a Profile](https://marketing.developer.dotdigital.com/reference/patch_cpaas-profiles-id.md)
+- [Set profile opt in for specified channels](https://marketing.developer.dotdigital.com/reference/put_cpaas-profiles-id-optin.md)
+- [Set profile opt in for specified channels](https://marketing.developer.dotdigital.com/reference/delete_cpaas-profiles-id-optin.md)
+- [Creates a relationship where the linked profile is the primary and this profile is a child](https://marketing.developer.dotdigital.com/reference/put_cpaas-profiles-id-rels-primary-linkedid.md)
+- [Deletes the profile's relationship to a primary profile](https://marketing.developer.dotdigital.com/reference/delete_cpaas-profiles-id-rels-primary-linkedid.md)
+- [Creates a relationship where this profile is the primary and the linked profile is a child](https://marketing.developer.dotdigital.com/reference/put_cpaas-profiles-id-rels-link-linkedid.md)
+- [Deletes the primary profile's relationship to a linked Profile](https://marketing.developer.dotdigital.com/reference/delete_cpaas-profiles-id-rels-link-linkedid.md)
+- [Removes device from profile and closes related opened sessions](https://marketing.developer.dotdigital.com/reference/delete_apispaces-apispaceid-profiles-id-devices-deviceid.md)
+- [Retrieves push capabilities summary](https://marketing.developer.dotdigital.com/reference/post_apispaces-apispaceid-profiles-devices-push-validation.md)
+- [Query profiles](https://marketing.developer.dotdigital.com/reference/get_cpaas-profiles.md): See https://www.npmjs.com/package/mongo-querystring for query syntax. If you need to search for strings that are numeric, they can be wrapped in single quotes to prevent them being interpretted as numbers.
+- [Creates a new Profile](https://marketing.developer.dotdigital.com/reference/post_cpaas-profiles.md)
+- [Gets default profiles opt in/out options for each channel in channel service](https://marketing.developer.dotdigital.com/reference/get_cpaas-profiles-optin.md)
+- [Set default profiles opt in/out options for each channel in channel service](https://marketing.developer.dotdigital.com/reference/put_cpaas-profiles-optin.md)
+- [Add contact to address book](https://marketing.developer.dotdigital.com/reference/add-contact-to-address-book.md): Adds a contact to a given address book.
+- [Bulk import contacts in address book with merge option](https://marketing.developer.dotdigital.com/reference/bulk-import-contacts-in-address-book-with-merge-option.md): Bulk creates, or bulk updates, contacts in an address book with merge option
+- [Get contacts from address book](https://marketing.developer.dotdigital.com/reference/get-contacts-from-address-book.md): Gets a list of contacts in a given address book or segment by id
+- [Get modified contacts in address book since date](https://marketing.developer.dotdigital.com/reference/get-modified-contacts-in-address-book-since-date.md): Gets a list of contacts who were modified since a given date, in a given address book or segment
+- [Get all campaigns](https://marketing.developer.dotdigital.com/reference/get-all-campaigns.md): Gets all campaigns
+- [Create contact](https://marketing.developer.dotdigital.com/reference/create-contact.md): Creates or updates a contact
+- [Create contact with consent](https://marketing.developer.dotdigital.com/reference/create-contact-with-consent.md): Creates or updates a contact and their consent information
+- [Create contact with consent and preferences](https://marketing.developer.dotdigital.com/reference/create-contact-with-consent-and-preferences.md): Creates or updates a contact with consent data and marketing preferences
+- [Bulk import contacts collection](https://marketing.developer.dotdigital.com/reference/bulk-import-contacts-collection.md): Bulk creates, or bulk updates, contacts from JSON
+- [Bulk import contacts](https://marketing.developer.dotdigital.com/reference/bulk-import-contacts.md): Bulk creates, or bulk updates, contacts from a file
+- [Get contact import status](https://marketing.developer.dotdigital.com/reference/get-contact-import-status.md): Gets the import status of a previously started contact import
+- [Get contact import report](https://marketing.developer.dotdigital.com/reference/get-contact-import-report.md): Gets a report with statistics about what was successfully imported, and what was unable to be imported
+- [Get contact import report faults](https://marketing.developer.dotdigital.com/reference/get-contact-import-report-faults.md): Gets all contact import records that were not successfully imported
+- [Update contact with consent and preferences](https://marketing.developer.dotdigital.com/reference/update-contact-with-consent.md): Updates a contact by id with their consent information and/or preferences
+- [Delete contact](https://marketing.developer.dotdigital.com/reference/delete-contact.md): Deletes a contact by ID
+- [Get contact](https://marketing.developer.dotdigital.com/reference/get-contact.md): Gets a contact
+- [Get contact with consent](https://marketing.developer.dotdigital.com/reference/get-contact-with-consent.md): Gets a contact with their consent information
+- [Get contact address books](https://marketing.developer.dotdigital.com/reference/get-contact-address-books.md): Gets any address books that a contact is in
+- [Get all contacts count](https://marketing.developer.dotdigital.com/reference/get-all-contacts-count.md): Gets the total number of contacts in the account
+- [Get contacts](https://marketing.developer.dotdigital.com/reference/get-contacts.md): Gets a list of all contacts in the account
+- [Get contacts created since date](https://marketing.developer.dotdigital.com/reference/get-contacts-created-since-date.md): Gets a list of created contacts after a specified date
+- [Get modified contacts since date](https://marketing.developer.dotdigital.com/reference/get-modified-contacts-since-date.md): Gets a list of modified contacts after a specified date
+- [Update contact with consent](https://marketing.developer.dotdigital.com/reference/update-contact-with-consent-1.md): Updates a contact by id with their consent information
+- [Update contact](https://marketing.developer.dotdigital.com/reference/update-contact.md): Updates a contact by id
+- [Facebook Meta Data Service](https://marketing.developer.dotdigital.com/reference/facebook-meta-data-service.md): Used to generate meta data to help attach Facebook messenger Ids to CPaaS profiles
+- [Get orders since date](https://marketing.developer.dotdigital.com/reference/get-orders-since-date.md): Gets a list of all orders since a specified date.
+- [Add transactional data to contact](https://marketing.developer.dotdigital.com/reference/add-transactional-data-to-contact.md): Adds a single piece of transactional/insight data to a contact or account
+- [Bulk add transactional data to contacts](https://marketing.developer.dotdigital.com/reference/bulk-add-transactional-data-to-contacts.md): Adds multiple pieces of transactional/insight data to contacts asynchronously
+- [Replace transactional data by key](https://marketing.developer.dotdigital.com/reference/replace-transactional-data-by-key.md): Replaces a piece of transactional/insight data by key
+- [Get transactional data import status](https://marketing.developer.dotdigital.com/reference/get-transactional-data-import-status.md): Gets the import status of a previously started transactional/insight data import
+- [Get transactional data import report](https://marketing.developer.dotdigital.com/reference/get-transactional-data-import-report.md): Gets a report with statistics about what transactional/insight data was successfully imported, and what was unable to be imported
+- [Get transactional data collection for contact by email](https://marketing.developer.dotdigital.com/reference/get-transactional-data-collection-for-contact-by-email.md): Gets a list of up to 100 pieces of transactional data records for a contact in a collection by their email address, sorted by the transactional record key.
+- [Get transactional data by key](https://marketing.developer.dotdigital.com/reference/get-transactional-data-by-key.md): Gets a piece of transactional/insight data by key
+- [Get account scoped transactional data](https://marketing.developer.dotdigital.com/reference/get-account-scoped-transactional-data.md): Gets transactional/insight data in a collection at account level
+- [Get transactional data collections](https://marketing.developer.dotdigital.com/reference/get-contact-scoped-transactional-data-collections.md): Gets transactional/insight data collections at account and contact level
+- [Delete transactional data by key](https://marketing.developer.dotdigital.com/reference/delete-transactional-data-by-key.md): Deletes a piece of transactional/insight data by key
+- [Delete transactional data collection for contact](https://marketing.developer.dotdigital.com/reference/delete-transactional-data-collection-for-contact.md): Deletes all transactional/insight data for a contact in a collection identified by either their email or contact ID.
+- [Empty transactional data collection](https://marketing.developer.dotdigital.com/reference/empty-transactional-data-collection.md): Removes all transactional data from the specified collection
+- [GetCurrentAccountInfo](https://marketing.developer.dotdigital.com/reference/getcurrentaccountinfo.md)
+- [EmptyRecycleBin](https://marketing.developer.dotdigital.com/reference/emptyrecyclebin.md): Permanently deletes the contents of the recycle bin
+- [CreateAddressBook](https://marketing.developer.dotdigital.com/reference/createaddressbook.md): Creates an address book
+- [UpdateAddressBook](https://marketing.developer.dotdigital.com/reference/updateaddressbook.md): Updates an address book by ID
+- [DeleteAddressBook](https://marketing.developer.dotdigital.com/reference/deleteaddressbook.md): Deletes an address book by ID
+- [GetAddressBooks](https://marketing.developer.dotdigital.com/reference/getaddressbooks.md): Gets all address books
+- [GetAddressBookById](https://marketing.developer.dotdigital.com/reference/getaddressbookbyid.md): Gets an address book by ID
+- [GetAddressBooksForCampaign](https://marketing.developer.dotdigital.com/reference/getaddressbooksforcampaign.md): Gets any address books and segments that a campaign has ever been sent to
+- [GetAddressBooksForContact](https://marketing.developer.dotdigital.com/reference/getaddressbooksforcontact.md): Gets any address books that a contact is in
+- [AddContactToAddressBook](https://marketing.developer.dotdigital.com/reference/addcontacttoaddressbook.md): Adds a contact to a given address book
+- [ImportContactsToAddressBook](https://marketing.developer.dotdigital.com/reference/importcontactstoaddressbook.md): Bulk creates, or bulk updates, contacts in an address book
+- [ImportContactsToAddressBookWithMergeOption](https://marketing.developer.dotdigital.com/reference/importcontactstoaddressbookwithmergeoption.md): Bulk creates, or bulk updates, contacts in an address book with merge option
+- [GetContactsInAddressBook](https://marketing.developer.dotdigital.com/reference/getcontactsinaddressbook.md): Gets contacts in an address book or segment by ID
+- [GetModifiedContactsInAddressBook](https://marketing.developer.dotdigital.com/reference/getmodifiedcontactsinaddressbook.md): Gets a list of contacts who were modified since a given date, in a given address book or segment
+- [GetContactsScoreInAddressBook](https://marketing.developer.dotdigital.com/reference/getcontactsscoreinaddressbook.md): Gets contact scoring for contacts within a specific address book or segment
+- [GetContactsInAddressBookWithPreference](https://marketing.developer.dotdigital.com/reference/getcontactsinaddressbookwithpreference.md): Gets contacts who are opted in to a given preference and a given address book
+- [GetModifiedPreferencesOptInsByAddressBook](https://marketing.developer.dotdigital.com/reference/getmodifiedpreferencesoptinsbyaddressbook.md): Gets the top 1000 contacts who have had a specific preference opt-in status modified since a given date, in a given address book
+- [UnsubscribeContactFromAddressBook](https://marketing.developer.dotdigital.com/reference/unsubscribecontactfromaddressbook.md): Unsubscribes contact from a given address book
+- [GetUnsubscribedContactsInAddressBook](https://marketing.developer.dotdigital.com/reference/getunsubscribedcontactsinaddressbook.md): Gets a list of contacts who have unsubscribed since a given date from a given address book
+- [ResubscribeContactToAddressBook](https://marketing.developer.dotdigital.com/reference/resubscribecontacttoaddressbook.md): Resubscribes a previously unsubscribed contact to a given address book
+- [ResubscribeContactToAddressBookWithNoChallenge](https://marketing.developer.dotdigital.com/reference/resubscribecontacttoaddressbookwithnochallenge.md): Resubscribes a previously unsubscribed contact to a specific address book without sending a challenge email
+- [DeleteContactFromAddressBook](https://marketing.developer.dotdigital.com/reference/deletecontactfromaddressbook.md): Deletes a contact from a given address book
+- [DeleteContactsFromAddressBook](https://marketing.developer.dotdigital.com/reference/deletecontactsfromaddressbook.md): Deletes multiple contacts from an address book
+- [DeleteAllContactsFromAddressBook](https://marketing.developer.dotdigital.com/reference/deleteallcontactsfromaddressbook.md): Deletes all contacts from a given address book
+- [CreateCampaign](https://marketing.developer.dotdigital.com/reference/createcampaign.md): Creates a campaign
+- [CreateSplitTestCampaign (beta)](https://marketing.developer.dotdigital.com/reference/createsplittestcampaign-beta.md): Creates a split test campaign
+- [CopyCampaign](https://marketing.developer.dotdigital.com/reference/copycampaign.md): Copies a given campaign, returning the new campaign
+- [UpdateCampaign](https://marketing.developer.dotdigital.com/reference/updatecampaign.md): Updates a given campaign
+- [SendCampaign](https://marketing.developer.dotdigital.com/reference/sendcampaign.md): Sends a specified campaign to one or more address books, segments or contacts, either as an immediate or scheduled send
+- [SendTimeOptimisedCampaign](https://marketing.developer.dotdigital.com/reference/sendtimeoptimisedcampaign.md): Sends a specified campaign to one or more address books, segments or contacts at the most appropriate time based upon their previous opens
+- [DeleteCampaign](https://marketing.developer.dotdigital.com/reference/deletecampaign.md): Deletes a campaign
+- [GetCampaignSendProgress](https://marketing.developer.dotdigital.com/reference/getcampaignsendprogress.md): Gets a campaign send status using send ID
+- [AttachDocumentToCampaign](https://marketing.developer.dotdigital.com/reference/attachdocumenttocampaign.md): Adds a document to a campaign as an attachment
+- [DetachDocumentFromCampaign](https://marketing.developer.dotdigital.com/reference/detachdocumentfromcampaign.md): Removes an attachment from a campaign
+- [GetCampaignAttachments](https://marketing.developer.dotdigital.com/reference/getcampaignattachments.md): Gets documents that are currently attached to a campaign
+- [GetCampaigns](https://marketing.developer.dotdigital.com/reference/getcampaigns.md): Gets all campaigns
+- [GetCampaignsForAddressBook](https://marketing.developer.dotdigital.com/reference/getcampaignsforaddressbook.md): Gets any campaigns that have been sent to an address book or segment
+- [GetCampaignById](https://marketing.developer.dotdigital.com/reference/getcampaignbyid.md): Gets a campaign by ID
+- [GetCampaignSummary](https://marketing.developer.dotdigital.com/reference/getcampaignsummary.md): Gets a summary of reporting information for a specified campaign
+- [GetCampaignWithDetails](https://marketing.developer.dotdigital.com/reference/getcampaignwithdetails.md): Returns a list of campaign details
+- [GetCampaignOpens](https://marketing.developer.dotdigital.com/reference/getcampaignopens.md): Gets a list of campaign opens
+- [GetCampaignOpensSinceDate](https://marketing.developer.dotdigital.com/reference/getcampaignopenssincedate.md): Gets a list of opens for a campaign after a specified date
+- [GetCampaignActivities](https://marketing.developer.dotdigital.com/reference/getcampaignactivities.md): Gets a list of contacts who were sent a campaign, with their activity
+- [GetCampaignActivitiesSinceDate](https://marketing.developer.dotdigital.com/reference/getcampaignactivitiessincedate.md): Gets a list of contacts who were sent a campaign, and retrieves only those contacts who showed activity (e.g. they clicked, opened) after a specified date
+- [GetSentCampaignsWithActivitySinceDate](https://marketing.developer.dotdigital.com/reference/getsentcampaignswithactivitysincedate.md): Gets all sent campaigns, which have had activity (e.g. clicks, opens) after a specified date
+- [GetCampaignClicks](https://marketing.developer.dotdigital.com/reference/getcampaignclicks.md): Gets a list of campaign link clicks
+- [GetCampaignClicksSinceDate](https://marketing.developer.dotdigital.com/reference/getcampaignclickssincedate.md): Gets a list of link clicks for a campaign after a specified date
+- [GetCampaignClicksAndLinkGroups](https://marketing.developer.dotdigital.com/reference/getcampaignclicksandlinkgroups.md): Gets campaign clicks and link groups
+- [GetCampaignClicksAndLinkGroupsSinceDate](https://marketing.developer.dotdigital.com/reference/getcampaignclicksandlinkgroupssincedate.md): Get campaign clicks with groups since date
+- [GetCampaignPageViewsSinceDate](https://marketing.developer.dotdigital.com/reference/getcampaignpageviewssincedate.md): Gets a list of page views for a campaign after a specified date
+- [GetCampaignContactActivity](https://marketing.developer.dotdigital.com/reference/getcampaigncontactactivity.md): Gets activity for a given contact and given campaign
+- [GetCampaignContactClicks](https://marketing.developer.dotdigital.com/reference/getcampaigncontactclicks.md): Gets a list of campaign link clicks for a contact
+- [GetCampaignContactClicksAndLinkGroups](https://marketing.developer.dotdigital.com/reference/getcampaigncontactclicksandlinkgroups.md): Get campaign contact clicks with groups
+- [GetCampaignContactOpens](https://marketing.developer.dotdigital.com/reference/getcampaigncontactopens.md): Gets a list of campaign opens for a contact
+- [GetCampaignContactPageViews](https://marketing.developer.dotdigital.com/reference/getcampaigncontactpageviews.md): Gets a list of page views for a specific campaign for a contact
+- [GetCampaignContactReplies](https://marketing.developer.dotdigital.com/reference/getcampaigncontactreplies.md): Gets a list of campaign replies for a contact
+- [GetCampaignContactRoiDetails](https://marketing.developer.dotdigital.com/reference/getcampaigncontactroidetails.md): Gets a list of ROI information for a campaign for a contact
+- [GetCampaignRoiDetailsSinceDate](https://marketing.developer.dotdigital.com/reference/getcampaignroidetailssincedate.md): Retrieves a list of ROI information for a campaign after a specified date
+- [GetCampaignContactSocialBookmarkViews](https://marketing.developer.dotdigital.com/reference/getcampaigncontactsocialbookmarkviews.md): Gets campaign social bookmark views for a contact
+- [GetCampaignSocialBookmarkViews](https://marketing.developer.dotdigital.com/reference/getcampaignsocialbookmarkviews.md): Gets campaign social bookmark views for a campaign
+- [GetCampaignHardBouncingContacts](https://marketing.developer.dotdigital.com/reference/getcampaignhardbouncingcontacts.md): Gets a list of contacts who hard bounced when sent a particular campaign
+- [GetCampaignSplitTestResults](https://marketing.developer.dotdigital.com/reference/getcampaignsplittestresults-beta.md): Returns the split test results of a given campaign
+- [CreateContact](https://marketing.developer.dotdigital.com/reference/createcontact.md): Creates a contact
+- [CreateContactWithConsent](https://marketing.developer.dotdigital.com/reference/createcontactwithconsent.md): Creates a contact with their consent information
+- [CreateContactWithConsentAndPreferences](https://marketing.developer.dotdigital.com/reference/createcontactwithconsentandpreferences.md)
+- [ImportContacts](https://marketing.developer.dotdigital.com/reference/importcontacts.md): Bulk creates, or bulk updates, contacts
+- [UpdateContact](https://marketing.developer.dotdigital.com/reference/updatecontact.md): Updates a contact by ID
+- [UpdateContactWithConsent](https://marketing.developer.dotdigital.com/reference/updatecontactwithconsent.md): Updates a contact by ID with their consent information
+- [UpdateContactWithConsentAndPreferences](https://marketing.developer.dotdigital.com/reference/updatecontactwithconsentandpreferences.md)
+- [DeleteContact](https://marketing.developer.dotdigital.com/reference/deletecontact.md): Deletes a contact by ID
+- [GetContactByEmail](https://marketing.developer.dotdigital.com/reference/getcontactbyemail.md): Gets a contact by email address
+- [GetContactById](https://marketing.developer.dotdigital.com/reference/getcontactbyid.md): Gets a contact by ID
+- [GetAllAccountContactsCount](https://marketing.developer.dotdigital.com/reference/getallaccountcontactscount.md): Gets the total number of contacts in the account
+- [GetContacts](https://marketing.developer.dotdigital.com/reference/getcontacts.md): Gets a list of all contacts in the account
+- [GetModifiedContacts](https://marketing.developer.dotdigital.com/reference/getmodifiedcontacts.md): Gets a list of modified contacts after a specified date
+- [GetNewContacts](https://marketing.developer.dotdigital.com/reference/getnewcontacts.md): Gets a list of created contacts after a specified date
+- [GetContactImportProgress](https://marketing.developer.dotdigital.com/reference/getcontactimportprogress.md): Gets the import status of a previously started contact import
+- [GetContactImportReport](https://marketing.developer.dotdigital.com/reference/getcontactimportreport.md): Gets a report with statistics about what was successfully imported, and what was unable to be imported
+- [GetContactImportReportFaults](https://marketing.developer.dotdigital.com/reference/getcontactimportreportfaults.md): Gets all contact import records that were not successfully imported
+- [GetSuppressedContacts](https://marketing.developer.dotdigital.com/reference/getsuppressedcontacts.md): Gets a list of suppressed contacts after a given date along with the reason for suppression
+- [GetUnsubscribedContacts](https://marketing.developer.dotdigital.com/reference/getunsubscribedcontacts.md): Gets a list of unsubscribed contacts who unsubscribed after a given date
+- [UnsubscribeContact](https://marketing.developer.dotdigital.com/reference/unsubscribecontact.md): Unsubscribes contact from account
+- [ResubscribeContact](https://marketing.developer.dotdigital.com/reference/resubscribecontact.md): Resubscribes a previously unsubscribed contact
+- [ResubscribeContactWithNoChallenge](https://marketing.developer.dotdigital.com/reference/resubscribecontactwithnochallenge.md): Resubscribes a previously unsubscribed contact without sending a challenge email
+- [GetContactsScore](https://marketing.developer.dotdigital.com/reference/getcontactsscore.md): Gets contact scoring for all contacts in the account
+- [GetContactsScoreModifiedSinceDate](https://marketing.developer.dotdigital.com/reference/getcontactsscoremodifiedsincedate.md): Gets contacts whose contact scoring data has been modified since a given date
+- [GetContactScoreByEmail](https://marketing.developer.dotdigital.com/reference/getcontactscorebyemail.md): Gets contact scoring for a contact by email address
+- [GetContactScoreByContactId](https://marketing.developer.dotdigital.com/reference/getcontactscorebycontactid.md): Gets contact scoring for a contact by ID
+- [GetContactByIdWithConsent](https://marketing.developer.dotdigital.com/reference/getcontactbyidwithconsent.md): Gets a contact by ID with their consent information
+- [GetContactByEmailWithConsent](https://marketing.developer.dotdigital.com/reference/getcontactbyemailwithconsent.md): Gets a contact by email address with their consent information
+- [GetContactsWithPreference](https://marketing.developer.dotdigital.com/reference/getcontactswithpreference.md): Gets contacts who are opted in to a given preference
+- [GetModifiedPreferenceOptIns](https://marketing.developer.dotdigital.com/reference/getmodifiedpreferenceoptins.md): Gets the top 1000 contacts who have had their specified preference opt-in status modified since a given date
+- [CreateDataField](https://marketing.developer.dotdigital.com/reference/createdatafield.md): Creates a contact data field within the account
+- [DeleteDataField](https://marketing.developer.dotdigital.com/reference/deletedatafield.md): Deletes a contact data field within the account
+- [GetDataFields](https://marketing.developer.dotdigital.com/reference/getdatafields.md): Lists all contact data fields within the account
+- [GetCustomFromAddresses](https://marketing.developer.dotdigital.com/reference/getcustomfromaddresses.md): Gets all custom from addresses which can be used in a campaign
+- [CreateDocumentFolder](https://marketing.developer.dotdigital.com/reference/createdocumentfolder.md): Creates a new document folder
+- [UploadDocument](https://marketing.developer.dotdigital.com/reference/uploaddocument.md): Upload a document to a specified folder
+- [GetDocumentFolders](https://marketing.developer.dotdigital.com/reference/getdocumentfolders.md): Gets all uploaded documents in a folder
+- [GetDocuments](https://marketing.developer.dotdigital.com/reference/getdocuments.md): Fetches the document folder tree structure
+- [CreateImageFolder](https://marketing.developer.dotdigital.com/reference/createimagefolder.md): Creates a new campaign image folder
+- [UploadImage](https://marketing.developer.dotdigital.com/reference/uploadimage.md): Uploads a new campaign image to a specified folder
+- [GetImageFolders](https://marketing.developer.dotdigital.com/reference/getimagefolders.md): Fetches the campaign image folder tree structure
+- [GetImageFolderById](https://marketing.developer.dotdigital.com/reference/getimagefolderbyid.md): Gets an image folder by ID
+- [GetSurveys](https://marketing.developer.dotdigital.com/reference/getsurveys.md): Gets a list of all surveys in the account
+- [GetSurveyById](https://marketing.developer.dotdigital.com/reference/getsurveybyid.md): Gets a single survey by its ID
+- [GetSurveyFields](https://marketing.developer.dotdigital.com/reference/getsurveyfields.md): Gets a list of survey pages, each containing a list of the fields on that page
+- [GetSurveyResponses](https://marketing.developer.dotdigital.com/reference/getsurveyresponses.md): Gets a list of all responses for a survey
+- [GetSurveyResponsesWithActivitySinceDate](https://marketing.developer.dotdigital.com/reference/getsurveyresponseswithactivitysincedate.md): Gets a list of responses that have changed since the specified date
+- [GetSurveysWithActivitySinceDate](https://marketing.developer.dotdigital.com/reference/getsurveyswithactivitysincedate.md): Gets a list of surveys in the account that have changed since the specified date
+- [CreatePreference](https://marketing.developer.dotdigital.com/reference/createpreference.md): Creates a new preference or a new preference category
+- [SetPreferencesForContact](https://marketing.developer.dotdigital.com/reference/setpreferencesforcontact.md): Opts in a given contact to preferences, or opts out a given contact from preferences
+- [UpdatePreference](https://marketing.developer.dotdigital.com/reference/updatepreference.md): Updates a preference or preference category that has a given ID
+- [DeletePreference](https://marketing.developer.dotdigital.com/reference/deletepreference.md): Deletes a preference or a preference category that has a given ID
+- [GetPreferences](https://marketing.developer.dotdigital.com/reference/getpreferences.md): Gets all the preferences and preference categories
+- [GetPreferencesForContact](https://marketing.developer.dotdigital.com/reference/getpreferencesforcontact.md): Gets all preferences for the account and indicates those that a given contact is opted into
+- [GetPreferencesModifiedSinceDate](https://marketing.developer.dotdigital.com/reference/getpreferencesmodifiedsincedate.md): Gets all the preferences that have been modified since a given date
+- [GetProductRecommendations](https://marketing.developer.dotdigital.com/reference/getproductrecommendations.md): Gets product recommendations
+- [CreateEnrolment](https://marketing.developer.dotdigital.com/reference/createenrolment.md): Creates a program enrolment
+- [GetPrograms](https://marketing.developer.dotdigital.com/reference/getprograms.md): Gets all programs
+- [GetProgramById](https://marketing.developer.dotdigital.com/reference/getprogrambyid.md): Gets a program by id
+- [GetEnrolmentReport](https://marketing.developer.dotdigital.com/reference/getenrolmentreport.md): Gets all contacts that were not successfully enrolled, by enrolment ID
+- [GetEnrolmentsByStatus](https://marketing.developer.dotdigital.com/reference/getenrolmentsbystatus.md): Gets program enrolments by status
+- [GetEnrolmentById](https://marketing.developer.dotdigital.com/reference/getenrolmentbyid.md): Gets a program enrolment by ID
+- [GetSegments](https://marketing.developer.dotdigital.com/reference/getsegments.md): Gets all segments
+- [GetSegmentRefreshProgress](https://marketing.developer.dotdigital.com/reference/getsegmentrefreshprogress.md): Gets the refresh progress for a segment
+- [RefreshSegment](https://marketing.developer.dotdigital.com/reference/refreshsegment.md): Refreshes a segment by ID
+- [GetServerTime](https://marketing.developer.dotdigital.com/reference/getservertime.md): Gets the UTC time as set on the server
+- [SendSingleSmsMessage](https://marketing.developer.dotdigital.com/reference/sendsinglesmsmessage.md): Sends a single SMS message
+- [CreateSMSCampaign](https://marketing.developer.dotdigital.com/reference/createsmscampaign.md): Creates a new SMS campaign
+- [CopySMSCampaign](https://marketing.developer.dotdigital.com/reference/copysmscampaign.md): Copy an existing SMS campaign as a new campaign
+- [GetSMSCampaigns](https://marketing.developer.dotdigital.com/reference/getsmscampaigns.md): Returns existing SMS campaigns
+- [GetSMSCampaign](https://marketing.developer.dotdigital.com/reference/getsmscampaign.md): Returns an existing SMS campaign
+- [UpdateSMSCampaign](https://marketing.developer.dotdigital.com/reference/updatesmscampaign.md): Updates an existing SMS campaign
+- [DeleteSMSCampaign](https://marketing.developer.dotdigital.com/reference/deletesmscampaign.md): Marks an existing SMS campaign as deleted
+- [GetTemplates](https://marketing.developer.dotdigital.com/reference/gettemplates.md): Gets list of all templates
+- [CreateTemplate](https://marketing.developer.dotdigital.com/reference/createtemplate.md): Creates a template
+- [UpdateTemplate](https://marketing.developer.dotdigital.com/reference/updatetemplate.md): Updates a template
+- [GetTemplateById](https://marketing.developer.dotdigital.com/reference/gettemplatebyid.md): Gets a template by ID
+- [SendTransactionalEmail](https://marketing.developer.dotdigital.com/reference/sendtransactionalemail.md): Sends a transactional email
+- [SendTransactionalEmailTriggeredCampaign](https://marketing.developer.dotdigital.com/reference/sendtransactionalemailtriggeredcampaign.md): Sends a transactional email using a triggered campaign
+- [GetTransactionalEmailStatistics](https://marketing.developer.dotdigital.com/reference/gettransactionalemailstatistics.md): Gets transactional email reporting statistics for a specified time period
+- [AddTransactionalData](https://marketing.developer.dotdigital.com/reference/addtransactionaldata.md): Adds a single piece of transactional data to a contact
+- [ImportTransactionalData](https://marketing.developer.dotdigital.com/reference/importtransactionaldata.md): Adds multiple pieces of transactional data to contacts asynchronously
+- [ReplaceTransactionalDataByKey](https://marketing.developer.dotdigital.com/reference/replacetransactionaldatabykey.md): Replaces a piece of transactional data by key
+- [DeleteTransactionalDataByContact](https://marketing.developer.dotdigital.com/reference/deletetransactionaldatabycontact.md): Deletes all transactional data for a contact in a collection by their email address
+- [DeleteTransactionalDataByKey](https://marketing.developer.dotdigital.com/reference/deletetransactionaldatabykey.md): Deletes transactional data for a contact in a collection by key
+- [GetTransactionalDataImportProgress](https://marketing.developer.dotdigital.com/reference/gettransactionaldataimportprogress.md): Gets the import status of a previously started transactional data import
+- [GetTransactionalDataImportReport](https://marketing.developer.dotdigital.com/reference/gettransactionaldataimportreport.md): Gets a report with statistics about what transactional data was successfully imported, and what was unable to be imported
+- [GetTransactionalDataByContact](https://marketing.developer.dotdigital.com/reference/gettransactionaldatabycontact.md): Gets a list of all transactional data for a contact in a collection by their email address
+- [GetTransactionalDataByKey](https://marketing.developer.dotdigital.com/reference/gettransactionaldatabykey.md): Gets a piece of transactional data by key
+- [GetAccountScopedTransactionalData](https://marketing.developer.dotdigital.com/reference/getaccountscopedtransactionaldata.md): Gets transactional data in a collection at account level
+
+## Recipes
+- [Exporting data from email campaign reports](https://marketing.developer.dotdigital.com/recipes/exporting-data-from-email-campaign-reports.md)
+- [Retrieving events using the Events API](https://marketing.developer.dotdigital.com/recipes/retrieving-events-using-the-events-api.md)
+- [Send a batch of marketing emails](https://marketing.developer.dotdigital.com/recipes/send-a-batch-of-marketing-emails.md)
+- [Send an SMS](https://marketing.developer.dotdigital.com/recipes/send-an-sms.md)
+- [Sending a batch of transactional emails](https://marketing.developer.dotdigital.com/recipes/sending-a-batch-of-transactional-emails.md)

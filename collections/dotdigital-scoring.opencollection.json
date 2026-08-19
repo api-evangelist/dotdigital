@@ -1,0 +1,155 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scoring",
+    "version": "2.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scoring",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get scoring for contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/score",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets contact scoring for all contacts in the account"
+        },
+        {
+          "info": {
+            "name": "Get scoring modified since date for contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/score/modified-since/:date",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "date",
+                "value": "2026-01-01T00:00:00.000Z",
+                "type": "path",
+                "description": "The date from which any modified contact scoring data will be returned as UTC time in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets contacts whose contact scoring data has been modified since a given UTC date-time."
+        },
+        {
+          "info": {
+            "name": "Get scoring for contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/:contactIdentifier/score",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "contactIdentifier",
+                "value": "bob@example.com",
+                "type": "path",
+                "description": "Either the contact id or email address of the contact"
+              }
+            ]
+          },
+          "docs": "Gets contact scoring for a contact"
+        },
+        {
+          "info": {
+            "name": "Get scoring for contacts in address book",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/address-books/:id/contacts/score",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The id of the address book"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets contact scoring for contacts within a specific address book or segment"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

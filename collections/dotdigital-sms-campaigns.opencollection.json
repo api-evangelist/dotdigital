@@ -1,0 +1,206 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SMS campaigns",
+    "version": "2.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SMS campaigns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get SMS campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/sms/campaigns",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Returns existing SMS campaigns"
+        },
+        {
+          "info": {
+            "name": "Create SMS campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/sms/campaigns",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new SMS campaign"
+        },
+        {
+          "info": {
+            "name": "Copy SMS campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/sms/campaigns/copy",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a copy of an existing SMS campaign"
+        },
+        {
+          "info": {
+            "name": "Get SMS campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/sms/campaigns/:campaignId",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "12345",
+                "type": "path",
+                "description": "The ID of the campaign."
+              }
+            ]
+          },
+          "docs": "Returns an existing SMS campaign"
+        },
+        {
+          "info": {
+            "name": "Update SMS campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{region}-api.dotdigital.com/v2/sms/campaigns/:campaignId",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "12345",
+                "type": "path",
+                "description": "The ID of the campaign."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing SMS campaign, as long as the campaign has not been sent."
+        },
+        {
+          "info": {
+            "name": "Delete SMS campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{region}-api.dotdigital.com/v2/sms/campaigns/:campaignId",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "12345",
+                "type": "path",
+                "description": "The ID of the campaign."
+              }
+            ]
+          },
+          "docs": "Marks an existing SMS campaign as deleted"
+        },
+        {
+          "info": {
+            "name": "Send SMS message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/sms-messages/send-to/:telephoneNumber",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "telephoneNumber",
+                "value": "447123123123",
+                "type": "path",
+                "description": "The mobile number of the contact in E.164 format."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a single SMS message"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

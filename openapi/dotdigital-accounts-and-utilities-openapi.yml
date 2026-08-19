@@ -1,0 +1,198 @@
+openapi: 3.1.0
+info:
+  title: Accounts and Utilities
+  version: 2.0.1
+  description: 'Retrieve account information and perform account-level utility operations. Use
+
+    this API to get a summary of your account status including credits, API usage,
+
+    and settings; get the current server time; and permanently empty the account
+
+    recycle bin.'
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true
+x-samples-languages:
+- curl
+- csharp
+- java
+- javascript
+- node
+- python
+- php
+- ruby
+externalDocs:
+  description: Learn more about Dotdigital APIs
+  url: https://developer.dotdigital.com
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      default: r1
+      enum:
+      - r1
+      - r2
+      - r3
+      description: The Dotdigital region id your account belongs to
+security:
+- basicAuth: []
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+paths:
+  /v2/account-info:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    get:
+      summary: Get account information
+      deprecated: false
+      description: Gets a summary of information about the current status of the account
+      operationId: get-account-information
+      tags:
+      - Accounts and Utilities
+      parameters: []
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    default: 0
+                    examples:
+                    - 1
+                  properties:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          examples:
+                          - AvailableEmailSendsCredits
+                        type:
+                          type: string
+                          examples:
+                          - Int
+                        value:
+                          type: string
+                          examples:
+                          - '153'
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                    id: 1
+                    properties:
+                    - name: AvailableEmailSendsCredits
+                      type: Int
+                      value: '153'
+                    - name: AvailableSmsSendsCredits
+                      type: Int
+                      value: '276'
+                    - name: PremiumWalletBalance
+                      type: Decimal
+                      value: '100.01'
+                    - name: ListManagedUsers
+                      type: String
+                      value: subaccount@example.com, subuser@example.com
+                    - name: Name
+                      type: String
+                      value: Demo
+                    - name: MainMobilePhoneNumber
+                      type: String
+                      value: 01818181818
+                    - name: MainEmail
+                      type: String
+                      value: demo@apiconnector.com
+                    - name: APILocale
+                      type: String
+                      value: en-GB
+                    - name: ApiCallsInLastHour
+                      type: Int
+                      value: '15'
+                    - name: ApiCallsRemaining
+                      type: Int
+                      value: '1985'
+                    - name: ApiEndpoint
+                      type: String
+                      value: https://r1-api.dotdigital.com/
+                    - name: CurrencyCode
+                      type: String
+                      value: GBP
+                    - name: CampaignEmailMtaPool
+                      type: String
+                      value: IP pool for Email campaigns
+                    - name: ShowClock
+                      type: Boolean
+                      value: 'False'
+                    - name: TimeZoneIana
+                      type: String
+                      value: Europe/London
+  /v2/server-time:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    get:
+      summary: Get server time
+      deprecated: false
+      description: Gets the UTC time as set on our servers
+      operationId: get-server-time
+      tags:
+      - Accounts and Utilities
+      parameters: []
+      responses:
+        '200':
+          description: '200'
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: Current date and time in ISO-8601 format
+                examples:
+                - '2021-09-24 09:21:55.661571+00:00'
+              examples:
+                Result:
+                  summary: Current date and time in ISO-8601 format
+                  value: '2021-09-24 09:21:55.661571+00:00'
+  /v2/accounts/empty-recycle-bin/:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    post:
+      summary: Empty recycle bin
+      deprecated: false
+      description: Permanently deletes everything in the recycle bin
+      operationId: empty-recycle-bin
+      tags:
+      - Accounts and Utilities
+      parameters: []
+      responses:
+        '202':
+          description: '202'

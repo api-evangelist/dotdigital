@@ -1,0 +1,220 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/ (43 harvested Dotdigital OpenAPI descriptions — 522 operations, 406 component schemas)
+description: >-
+  Entity-relationship graph for the Dotdigital API estate, derived from path parameters,
+  component schemas and id-reference fields across all 43 published specs. Two things dominate
+  the model. First, there are effectively TWO contact models: the v2 email-contact (keyed by
+  numeric contact id or email, scoped to address books) and the v3 unified contact (addressable
+  by contact id, email OR phone number via an identifier type). Second, the CPaaS/messaging
+  half of the estate has its own root — apiSpace — and its own person entity, Profile, which is
+  explicitly NOT a Marketing contact.
+roots:
+  - entity: Account
+    note: The Marketing account; every entity below is account-scoped. Region is fixed per account.
+  - entity: ApiSpace
+    note: >-
+      Root scope for the CPaaS/messaging services. Appears on every webhook envelope as
+      apiSpaceId and in /apispaces paths on the Profile API.
+entities:
+  - name: Account
+    id_field: accountId
+    specs: [openapi/dotdigital-accounts-and-utilities-openapi.yml, openapi/dotdigital-v2-api-full-openapi.yml]
+    note: Also carries managed users, API users, OAuth tokens, theme and the recycle bin.
+  - name: Contact (v3 unified)
+    id_field: contactId
+    alternate_identifiers: [email, mobile number]
+    specs: [openapi/dotdigital-contacts-openapi.yml]
+    note: >-
+      The v3 identifier model lets a caller address a contact by id, email or phone; the
+      identifier TYPE is part of the request. Create fails with 409 on identifier collision.
+  - name: Contact (v2 email contact)
+    id_field: id
+    alternate_identifiers: [email]
+    specs: [openapi/dotdigital-email-contacts-openapi.yml]
+    deprecated: true
+    note: 20 of its operations are marked deprecated in favour of the v3 contacts service.
+  - name: AddressBook
+    id_field: addressBookId
+    specs: [openapi/dotdigital-lists-address-books-openapi.yml]
+    note: Public and private books; reserved names (Test, All Contacts) are not writable.
+  - name: Segment
+    id_field: id
+    specs: [openapi/dotdigital-segments-openapi.yml]
+  - name: DataField
+    id_field: name
+    specs: [openapi/dotdigital-contact-data-fields-openapi.yml]
+    note: Account-scoped custom fields attached to contacts.
+  - name: Preference
+    id_field: preferenceId
+    specs: [openapi/dotdigital-preferences-and-subscriptions-openapi.yml]
+    note: Preference categories and per-contact preference/consent state.
+  - name: Campaign
+    id_field: campaignId
+    specs: [openapi/dotdigital-email-campaigns-openapi.yml, openapi/dotdigital-sms-campaigns-openapi.yml]
+  - name: CampaignSend
+    id_field: id
+    specs: [openapi/dotdigital-email-campaigns-openapi.yml]
+  - name: Template
+    id_field: templateId
+    specs: [openapi/dotdigital-campaign-templates-openapi.yml, openapi/dotdigital-templates-openapi.yml]
+  - name: Program
+    id_field: programId
+    specs: [openapi/dotdigital-programs-openapi.yml]
+  - name: ProgramEnrolment
+    id_field: enrolmentId
+    specs: [openapi/dotdigital-programs-openapi.yml]
+  - name: Document
+    id_field: id
+    parent: Folder
+    specs: [openapi/dotdigital-documents-openapi.yml]
+  - name: Image
+    id_field: id
+    parent: Folder
+    specs: [openapi/dotdigital-images-openapi.yml]
+  - name: Folder
+    id_field: folderId
+    specs: [openapi/dotdigital-documents-openapi.yml, openapi/dotdigital-images-openapi.yml]
+  - name: InsightDataCollection
+    id_field: collectionName
+    specs: [openapi/dotdigital-insight-data-service-openapi.yml, openapi/dotdigital-insight-and-transactional-data-openapi.yml]
+    note: >-
+      Collections are named, not numbered, and are scoped either to the account or to a contact
+      (collectionScope). Records inside are keyed by an arbitrary caller-supplied key.
+  - name: InsightDataRecord
+    id_field: key
+    parent: InsightDataCollection
+  - name: Order
+    id_field: id
+    specs: [openapi/dotdigital-ecommerce-openapi.yml]
+  - name: ImportJob
+    id_field: importId
+    specs: [openapi/dotdigital-email-contacts-openapi.yml, openapi/dotdigital-lists-address-books-openapi.yml]
+    note: Async; poll for status and per-record failures.
+  - name: DeleteJob
+    id_field: deletionRequestId
+    specs: [openapi/dotdigital-contacts-openapi.yml, openapi/dotdigital-email-contacts-openapi.yml]
+  - name: Message
+    id_field: messageId
+    specs: [openapi/dotdigital-omnichannel-openapi.yml, openapi/dotdigital-message-history-openapi.yml]
+    note: One message fans out to channel-specific status objects (sms, whatsapp, push, email, fbMessenger).
+  - name: MessageRule
+    id_field: id
+    specs: [openapi/dotdigital-message-rules-openapi.yml]
+  - name: Profile
+    id_field: profileId
+    specs: [openapi/dotdigital-profile-openapi.yml]
+    note: The CPaaS person entity. Distinct from a Marketing Contact — the docs say so explicitly.
+  - name: Device
+    id_field: deviceId
+    parent: Profile
+  - name: Chat
+    id_field: chatId
+    specs: [openapi/dotdigital-chat-openapi.yml, openapi/dotdigital-chat-config-openapi.yml]
+  - name: ChatMessage
+    id_field: id
+    parent: Chat
+    specs: [openapi/dotdigital-chat-message-openapi.yml]
+  - name: Conversation
+    id_field: conversationId
+    specs: [openapi/dotdigital-conversation-openapi.yml]
+  - name: ConversationMessage
+    id_field: id
+    parent: Conversation
+    specs: [openapi/dotdigital-conversation-message-openapi.yml]
+  - name: Session
+    id_field: id
+    specs: [openapi/dotdigital-session-openapi.yml]
+  - name: Team
+    id_field: teamId
+    specs: [openapi/dotdigital-chat-openapi.yml, openapi/dotdigital-chat-config-openapi.yml]
+  - name: Webhook
+    id_field: webhookId
+    specs: [openapi/dotdigital-webhook-openapi.yml]
+  - name: EventSubscription
+    id_field: subscriptionId
+    specs: [openapi/dotdigital-events-openapi.yml]
+  - name: Event
+    id_field: eventId
+    specs: [openapi/dotdigital-events-openapi.yml]
+  - name: LargeObject
+    id_field: lobId
+    parent: Event
+    specs: [openapi/dotdigital-events-openapi.yml]
+    note: Oversized event fields are fetched separately by lobId.
+  - name: FirehoseConfiguration
+    id_field: id
+    specs: [openapi/dotdigital-data-firehose-openapi.yml]
+  - name: PhoneNumber
+    id_field: phoneNumberId
+    specs: [openapi/dotdigital-phone-number-validation-openapi.yml]
+  - name: WhatsAppBusinessAccount
+    id_field: wabaId
+    specs: [openapi/dotdigital-whatsapp-channel-openapi.yml]
+  - name: SendingIdentity
+    id_field: sendingIdentityId
+    specs: [openapi/dotdigital-whatsapp-channel-openapi.yml, openapi/dotdigital-cpaas-openapi.yml]
+relationships:
+  - {from: Account, to: Contact, kind: has_many, via: accountId}
+  - {from: Account, to: ApiSpace, kind: has_many, via: apiSpaceId}
+  - {from: AddressBook, to: Contact, kind: has_many, via: addressBookId}
+  - {from: Contact, to: AddressBook, kind: has_many, via: addressBookIds}
+  - {from: Contact, to: DataField, kind: has_many, via: dataFields}
+  - {from: Contact, to: Preference, kind: has_many, via: contactId}
+  - {from: Contact, to: InsightDataRecord, kind: has_many, via: contactId, note: contact-scoped collections}
+  - {from: Contact, to: ProgramEnrolment, kind: has_many, via: contactId}
+  - {from: Contact, to: Event, kind: has_many, via: contactIdentifier}
+  - {from: Campaign, to: CampaignSend, kind: has_many, via: campaignId}
+  - {from: Campaign, to: Template, kind: belongs_to, via: templateId}
+  - {from: Campaign, to: AddressBook, kind: has_many, via: addressBookIds, note: send targets}
+  - {from: Program, to: ProgramEnrolment, kind: has_many, via: programId}
+  - {from: ProgramEnrolment, to: AddressBook, kind: has_many, via: addressBookIds}
+  - {from: Folder, to: Document, kind: has_many, via: folderId}
+  - {from: Folder, to: Image, kind: has_many, via: folderId}
+  - {from: InsightDataCollection, to: InsightDataRecord, kind: has_many, via: collectionName}
+  - {from: ImportJob, to: Contact, kind: has_many, via: importId, note: import report lists created/updated/failed contacts}
+  - {from: ApiSpace, to: Profile, kind: has_many, via: apiSpaceId}
+  - {from: ApiSpace, to: Message, kind: has_many, via: apiSpaceId}
+  - {from: ApiSpace, to: Webhook, kind: has_many, via: apiSpaceId}
+  - {from: Profile, to: Device, kind: has_many, via: profileId}
+  - {from: Profile, to: Message, kind: has_many, via: profileId}
+  - {from: Profile, to: Conversation, kind: has_many, via: profileId}
+  - {from: Chat, to: ChatMessage, kind: has_many, via: chatId}
+  - {from: Chat, to: Team, kind: belongs_to, via: teamId}
+  - {from: Chat, to: Conversation, kind: has_one, via: conversationId}
+  - {from: Conversation, to: ConversationMessage, kind: has_many, via: conversationId}
+  - {from: Message, to: MessageEvent, kind: has_many, via: messageId, note: delivered via webhooks, not a REST collection}
+  - {from: EventSubscription, to: Event, kind: has_many, via: subscriptionId}
+  - {from: Event, to: LargeObject, kind: has_many, via: lobId}
+  - {from: Webhook, to: MessageEvent, kind: has_many, via: name, note: routing is on the envelope name field}
+  - {from: WhatsAppBusinessAccount, to: SendingIdentity, kind: has_many, via: wabaId}
+identifier_conventions:
+  - >-
+    v2 uses numeric surrogate ids (contact id, campaign id, address book id) and accepts email
+    as an alternate selector on several contact routes.
+  - >-
+    v3 uses an explicit identifier TYPE (contactId | email | mobileNumber) so the same route
+    serves all three; this is the headline difference of unified contacts.
+  - >-
+    CPaaS uses opaque GUID-shaped strings for profileId, chatId, conversationId, messageId,
+    eventId and apiSpaceId.
+  - >-
+    Insight data is keyed by caller-chosen strings (collectionName + key), not by server ids —
+    the only namespace in the estate the caller controls.
+  - No id prefixes are used anywhere (unlike, say, Stripe's cus_/ch_ scheme).
+shared_envelopes:
+  - name: paginationLinks
+    used_by: v3 services
+    fields: [self, first, prev, next, last]
+  - name: errorResponse
+    used_by: 6 specs
+    fields: [errorCode, description, details]
+  - name: webhook envelope
+    fields: [eventId, accountId, apiSpaceId, name, payload, revision, etag, timestamp]
+    artifact: asyncapi/dotdigital-webhooks.yml
+summary:
+  entities: 38
+  relationships: 32
+  component_schemas: 406
+  operations: 522
+  distinct_person_models: 2

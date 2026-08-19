@@ -1,0 +1,721 @@
+openapi: 3.1.0
+info:
+  title: Programs
+  description: 'Manage automation programs and enrolments. Use this API to list all programs,
+
+    retrieve a specific program by ID, create enrolments for contacts or address
+
+    books into a program, check enrolment status, retrieve enrolments filtered by
+
+    status, and download a fault report listing contacts that failed to enrol.'
+  version: 2.0.1
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true
+x-samples-languages:
+- curl
+- csharp
+- java
+- javascript
+- node
+- python
+- php
+- ruby
+externalDocs:
+  description: Learn more about Dotdigital APIs
+  url: https://developer.dotdigital.com
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      default: r1
+      enum:
+      - r1
+      - r2
+      - r3
+      description: The Dotdigital region id your account belongs to
+security:
+- basicAuth: []
+paths:
+  /v2/programs/enrolments:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    post:
+      summary: Create program enrolment
+      deprecated: false
+      description: "Creates a program enrolments for passed contacts and/or lists/address books. \n\n*Note: This happens asynchronously, use the `id` to track progress.*"
+      operationId: create-program-enrolment
+      tags:
+      - Programs
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - programId
+              properties:
+                programId:
+                  type: integer
+                  description: The ID of the program
+                  format: int32
+                contacts:
+                  type: array
+                  description: The IDs of the contacts to be enrolled into the program
+                  maxItems: 25
+                  minItems: 1
+                  items:
+                    type: integer
+                    format: int32
+                addressBooks:
+                  type: array
+                  description: The IDs of the address books to be enrolled into the program
+                  maxItems: 10
+                  items:
+                    type: integer
+                    format: int32
+            examples:
+              Request Example:
+                value:
+                  programId: 1
+                  contacts:
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 7
+                  - 8
+                  - 9
+                  - 10
+                  - 11
+                  - 12
+                  - 13
+                  - 14
+                  - 15
+                  - 16
+                  - 17
+                  - 18
+                  - 19
+                  - 20
+                  - 21
+                  - 22
+                  - 23
+                  addressBooks:
+                  - 3
+                  - 4
+                summary: Request Example
+      responses:
+        '201':
+          description: Enrolments accepted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: The unique identifier of the enrolment.
+                  programId:
+                    type: integer
+                    format: int32
+                    description: The ID of the program enrolled onto.
+                  status:
+                    type: string
+                    enum:
+                    - NotAvailableInThisVersion
+                    - Processing
+                    - Finished
+                    description: The processing status of the enrolment.
+                  dateCreated:
+                    type: string
+                    format: date-time
+                    description: The UTC date and time the enrolment was created.
+                  contacts:
+                    type: array
+                    items:
+                      type: integer
+                      format: int32
+                    description: The contact IDs included in the enrolment.
+                  addressBooks:
+                    type: array
+                    items:
+                      type: integer
+                      format: int32
+                    description: The address book IDs included in the enrolment.
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                    id: b0ff06d6-af04-4af8-a299-51bcbad94c1c
+                    programId: 1
+                    status: Processing
+                    dateCreated: '2020-01-01 09:40:18.527000+00:00'
+                    contacts: null
+                    addressBooks: null
+        '400':
+          description: 'The request was invalid. Possible reasons include: - No contacts or address books were specified (`ERROR_ENROLMENT_INVALID`) - More than 10 address books were specified (`ERROR_ADDRESSBOOK_TOOMANY`) - One or more address books were not found (`ERROR_ADDRESSBOOK_NOT_FOUND`) - One or more contacts were not found (`ERROR_CONTACT_NOT_FOUND`) - The enrolment allowance has been exceeded (`ERROR_ENROLMENT_ALLOWANCE_EXCEEDED`)
+
+            '
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A description of the error.
+        '401':
+          description: Invalid or missing credentials.
+        '403':
+          description: The account does not have the Programs permission.
+        '404':
+          description: The specified program was not found (`ERROR_PROGRAM_NOT_FOUND`).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A description of the error.
+              example:
+                message: 'Error: ERROR_PROGRAM_NOT_FOUND'
+        '422':
+          description: The program exists but is not active (`ERROR_PROGRAM_NOT_ACTIVE`).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A description of the error.
+              example:
+                message: 'Error: ERROR_PROGRAM_NOT_ACTIVE'
+  /v2/programs:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    get:
+      summary: Get programs
+      deprecated: false
+      description: Gets a list of all the programs from your account
+      operationId: get-programs
+      tags:
+      - Programs
+      parameters:
+      - name: select
+        in: query
+        description: The number of records to select between 1 and 1000 to retrieve.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 1000
+          default: 1000
+      - name: skip
+        in: query
+        description: The numbers of records to skip in the result set.
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          format: int32
+      responses:
+        '200':
+          description: The accounts programs.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - id
+                  - name
+                  - status
+                  - dateCreated
+                  properties:
+                    id:
+                      description: The unique ID for the program.
+                      type: integer
+                      examples:
+                      - 12345
+                    name:
+                      description: The name of the program.
+                      type: string
+                      minLength: 1
+                      maxLength: 255
+                      examples:
+                      - Birthday program
+                    status:
+                      description: The status of the program.
+                      type: string
+                      enum:
+                      - Draft
+                      - Active
+                      - Deactivated
+                      - ReadOnly
+                      examples:
+                      - Active
+                    dateCreated:
+                      description: The creation date time in UTC ISO-8601 format.
+                      type: string
+                      format: date-time
+                      examples:
+                      - '2020-01-01 09:40:18.527000+00:00'
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                  - id: 1
+                    name: Birthday program
+                    status: Active
+                    dateCreated: '2020-01-01 09:40:18.527000+00:00'
+                  - id: 2
+                    name: Promo
+                    status: Deactivated
+                    dateCreated: '2020-01-01 09:40:18.527000+00:00'
+                  - id: 3
+                    name: Visit
+                    status: Draft
+                    dateCreated: '2020-01-01 09:40:18.527000+00:00'
+                  - id: 4
+                    name: Ads
+                    status: ReadOnly
+                    dateCreated: '2020-01-01 09:40:18.527000+00:00'
+        '400':
+          description: 'Invalid paging parameters (`ERROR_PARAMETER_INVALID`). `select` must be between 1 and 1000. `skip` must not be negative.
+
+            '
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A description of the error.
+        '401':
+          description: Invalid or missing credentials.
+        '403':
+          description: The account does not have the Programs permission.
+  /v2/programs/{id}:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    get:
+      summary: Get program by ID
+      deprecated: false
+      description: Gets a program by its ID
+      operationId: get-program-by-id
+      tags:
+      - Programs
+      parameters:
+      - name: id
+        in: path
+        description: The numeric identifier of the program you want details for.
+        required: true
+        example: 0
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: The requested program details.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - id
+                - name
+                - status
+                - dateCreated
+                properties:
+                  id:
+                    description: The unique ID for the program.
+                    type: integer
+                    examples:
+                    - 12345
+                  name:
+                    description: The name of the program.
+                    type: string
+                    minLength: 1
+                    maxLength: 255
+                    examples:
+                    - Birthday program
+                  status:
+                    description: The status of the program.
+                    type: string
+                    enum:
+                    - Draft
+                    - Active
+                    - Deactivated
+                    - ReadOnly
+                    examples:
+                    - Active
+                  dateCreated:
+                    description: The creation date time in UTC ISO-8601 format.
+                    type: string
+                    format: date-time
+                    examples:
+                    - '2020-01-01 09:40:18.527000+00:00'
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                    id: 1
+                    name: Birthday program
+                    status: Active
+                    dateCreated: '2020-01-01 09:40:18.527000+00:00'
+        '401':
+          description: Invalid or missing credentials.
+        '403':
+          description: The account does not have the Programs permission, or the feature is not active.
+        '404':
+          description: No program was found with the specified ID.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A description of the error.
+              example:
+                message: 'Error: ERROR_PROGRAM_NOT_FOUND'
+  /v2/programs/enrolments/{id}/report-faults:
+    get:
+      summary: Get program enrolment report faults
+      deprecated: false
+      description: Gets all contacts that were not successfully enrolled, by enrolment ID.
+      operationId: get-program-enrolment-report-faults
+      tags:
+      - Programs
+      parameters:
+      - name: id
+        in: path
+        description: The enrolment ID in [GUID](url:http://guid.one/guid) format.
+        required: true
+        example: 13bf8b50-6532-494c-8e2d-02f9bf22f93a
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A CSV file containing all contacts that failed to enrol.
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+              example: 'Id,Email,TelephoneNumber,Reason
+
+                12345,contact@example.com,+441234567890,Unsubcribed
+
+                67890,other@example.com,,AlreadyInProgram
+
+                '
+        '400':
+          description: The enrolment is still processing and the report is not yet available.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A description of the error.
+              example:
+                message: 'Error: ERROR_ENROLMENT_IS_PROCESSING'
+        '401':
+          description: Invalid or missing credentials.
+        '403':
+          description: The account does not have permission to access programs.
+        '404':
+          description: No enrolment was found with the specified ID.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A description of the error.
+              example:
+                message: 'Error: ERROR_ENROLMENT_NOT_FOUND'
+  /v2/programs/enrolments/{enrolmentId}:
+    get:
+      summary: Gets an enrolment by ID.
+      operationId: getProgramEnrolmentById
+      tags:
+      - Programs
+      parameters:
+      - name: enrolmentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The unique identifier of the enrolment.
+      responses:
+        '200':
+          description: The enrolment matching the specified ID.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: The unique identifier of the enrolment.
+                  programId:
+                    type: integer
+                    format: int32
+                    description: The ID of the program enrolled onto.
+                  status:
+                    type: string
+                    enum:
+                    - NotAvailableInThisVersion
+                    - Processing
+                    - Finished
+                    description: The processing status of the enrolment.
+                  dateCreated:
+                    type: string
+                    format: date-time
+                    description: The UTC date and time the enrolment was created.
+                  contacts:
+                    type: array
+                    items:
+                      type: integer
+                      format: int32
+                    description: The contact IDs included in the enrolment.
+                  addressBooks:
+                    type: array
+                    items:
+                      type: integer
+                      format: int32
+                    description: The address book IDs included in the enrolment.
+        '401':
+          description: Invalid or missing credentials.
+        '403':
+          description: The account does not have the Programs permission.
+        '404':
+          description: No enrolment was found with the specified ID (`ERROR_ENROLMENT_NOT_FOUND`).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A description of the error.
+              example:
+                message: 'Error: ERROR_ENROLMENT_NOT_FOUND'
+  /v2/programs/enrolments/{status}:
+    get:
+      summary: Gets enrolments by status.
+      operationId: getProgramEnrolmentsByStatus
+      tags:
+      - Programs
+      parameters:
+      - name: status
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - NotAvailableInThisVersion
+          - Processing
+          - Finished
+          description: The processing status of the enrolment.
+        description: The enrolment status to filter by.
+      - name: select
+        in: query
+        description: The number of records to select between 1 and 1000 to retrieve.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 1000
+          default: 1000
+      - name: skip
+        in: query
+        description: The numbers of records to skip in the result set.
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          format: int32
+      responses:
+        '200':
+          description: A list of enrolments with the specified status.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      description: The unique identifier of the enrolment.
+                    programId:
+                      type: integer
+                      format: int32
+                      description: The ID of the program enrolled onto.
+                    status:
+                      type: string
+                      enum:
+                      - NotAvailableInThisVersion
+                      - Processing
+                      - Finished
+                      description: The processing status of the enrolment.
+                    dateCreated:
+                      type: string
+                      format: date-time
+                      description: The UTC date and time the enrolment was created.
+                    contacts:
+                      type: array
+                      items:
+                        type: integer
+                        format: int32
+                      description: The contact IDs included in the enrolment.
+                    addressBooks:
+                      type: array
+                      items:
+                        type: integer
+                        format: int32
+                      description: The address book IDs included in the enrolment.
+        '400':
+          description: 'Invalid paging parameters (`ERROR_PARAMETER_INVALID`). `select` must be between 1 and 1000. `skip` must not be negative.
+
+            '
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A description of the error.
+        '401':
+          description: Invalid or missing credentials.
+        '403':
+          description: The account does not have the Programs permission.
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    programDetails:
+      type: object
+      required:
+      - id
+      - name
+      - status
+      - dateCreated
+      properties:
+        id:
+          description: The unique ID for the program.
+          type: integer
+          examples:
+          - 12345
+        name:
+          description: The name of the program.
+          type: string
+          minLength: 1
+          maxLength: 255
+          examples:
+          - Birthday program
+        status:
+          description: The status of the program.
+          type: string
+          enum:
+          - Draft
+          - Active
+          - Deactivated
+          - ReadOnly
+          examples:
+          - Active
+        dateCreated:
+          description: The creation date time in UTC ISO-8601 format.
+          type: string
+          format: date-time
+          examples:
+          - '2020-01-01 09:40:18.527000+00:00'
+    ApiError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A description of the error.
+    ApiProgramEnrolment:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the enrolment.
+        programId:
+          type: integer
+          format: int32
+          description: The ID of the program enrolled onto.
+        status:
+          type: string
+          enum:
+          - NotAvailableInThisVersion
+          - Processing
+          - Finished
+          description: The processing status of the enrolment.
+        dateCreated:
+          type: string
+          format: date-time
+          description: The UTC date and time the enrolment was created.
+        contacts:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: The contact IDs included in the enrolment.
+        addressBooks:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: The address book IDs included in the enrolment.
+    ApiProgramEnrolmentStatus:
+      type: string
+      enum:
+      - NotAvailableInThisVersion
+      - Processing
+      - Finished
+      description: The processing status of the enrolment.

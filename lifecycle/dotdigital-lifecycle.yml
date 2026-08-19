@@ -1,0 +1,85 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api,
+  https://marketing.developer.dotdigital.com/docs/api-end-points,
+  https://dotdigitalstatus.com, https://uptime.dotdigital.com,
+  https://dotdigital.com/trust-center/, plus derivation from openapi/
+description: >-
+  Versioning, deprecation and operational-transparency posture for the Dotdigital API estate.
+  Dotdigital runs a two-framework model (v2 legacy, v3 current) and marks deprecation IN THE
+  SPEC — 38 operations across four v2 specs carry deprecated: true — but publishes no written
+  deprecation or sunset policy, no Sunset/Deprecation response headers, and no dated retirement
+  commitments. The signal is real and machine-readable; the policy behind it is not published.
+versioning:
+  scheme: uri-path
+  frameworks: [v2, v3]
+  current: v3
+  hub_version: '3.5'
+  docs: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api#api-versions
+  note: >-
+    v2 paths are /v2/*; v3 paths are /<service>/v3/*. Individual services carry their own
+    semantic version in info.version (e.g. Contacts 3.4.3, Insight data 3.3.1, Events 3.1.1).
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  in_spec_marking: true
+  deprecated_operation_count: 38
+  note: >-
+    Deprecation is communicated only by the deprecated flag inside the OpenAPI plus prose
+    guidance to "prefer v3". No retirement date, notice period, or migration deadline is
+    published anywhere on the developer hub. The deprecated flat-rate limiting scheme is
+    similarly described as deprecated with no end date.
+deprecated_operations:
+  - spec: openapi/dotdigital-email-contacts-openapi.yml
+    count: 20
+    examples: [get-contacts, create-contact, update-contact, delete-contact, bulk-import-contacts, get-contact-import-status]
+    successor: openapi/dotdigital-contacts-openapi.yml (v3 unified contacts)
+  - spec: openapi/dotdigital-insight-and-transactional-data-openapi.yml
+    count: 12
+    examples: [add-transactional-data-to-contact, bulk-add-transactional-data-to-contacts, get-transactional-data-by-key]
+    successor: openapi/dotdigital-insight-data-service-openapi.yml (v3 insight data)
+  - spec: openapi/dotdigital-lists-address-books-openapi.yml
+    count: 4
+    examples: [get-contacts-from-address-book, add-contact-to-address-book, get-modified-contacts-in-address-book-since-date]
+  - spec: openapi/dotdigital-ecommerce-openapi.yml
+    count: 1
+    examples: [get-orders-since-date]
+  - spec: openapi/dotdigital-email-campaigns-openapi.yml
+    count: 1
+    examples: [get-all-campaigns]
+preview_surfaces:
+  - name: Data Firehose
+    status: private preview
+    spec: openapi/dotdigital-data-firehose-openapi.yml
+    note: >-
+      The spec's own info.description says "This is in private preview and should not be used."
+      It is nonetheless published in the public catalog and in the api-catalog linkset.
+status_page:
+  url: https://dotdigitalstatus.com
+  platform: Site24x7 StatusIQ
+  machine_readable_feed: false
+  note: >-
+    No /api/v2/status.json or equivalent JSON endpoint (404 on probe) — the page is
+    human-readable only, so an agent cannot poll platform health.
+uptime_history:
+  url: https://uptime.dotdigital.com
+  note: Historical availability broken out by region and service function.
+sla:
+  url: null
+  uptime_target: null
+  note: >-
+    No public SLA or uptime commitment. Availability terms sit inside the commercial contract;
+    the Trust Center points to the status and uptime sites rather than to a published target.
+support:
+  help_centre: https://support.dotdigital.com
+  academy: https://academy.dotdigital.com
+  developer_hub: https://developer.dotdigital.com
+rate_limit_scheme_lifecycle:
+  current: tiered (per-minute, four tiers)
+  deprecated: flat (per rolling hour)
+  note: >-
+    Flat-rate limiting is explicitly marked deprecated and retained for backwards
+    compatibility; new API users default to tiered. No removal date published.

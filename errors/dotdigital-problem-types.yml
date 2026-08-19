@@ -1,0 +1,104 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/ (43 harvested Dotdigital OpenAPI descriptions)
+format: proprietary
+description: Error responses declared across every published Dotdigital OpenAPI. No response anywhere in the estate uses application/problem+json,
+  so this is NOT an RFC 9457 catalog — it is the observed 4xx/5xx surface. The human-facing code registry lives in errors/dotdigital-error-codes.yml.
+rfc9457: false
+operations_scanned: 522
+problems:
+- status: 400
+  occurrences: 86
+  titles:
+  - Bad request
+  - Validation issues were found
+  - Validation errors were found
+  - '400'
+  - Invalid paging parameters (`ERROR_PARAMETER_INVALID`). `select` must be between 1 and 1000. `skip` must not be negative.
+  - Bad request, you have an error in the request
+  media_types:
+  - application/json
+  spec_count: 17
+- status: 401
+  occurrences: 73
+  titles:
+  - Unauthorized
+  - Invalid or missing credentials.
+  - '401'
+  media_types:
+  - application/json
+  - text/plain
+  spec_count: 12
+- status: 403
+  occurrences: 18
+  titles:
+  - Forbidden
+  - The account does not have the Programs permission.
+  - The ecommerce feature is not active on this account (`ERROR_FEATURENOTACTIVE`).
+  - The account does not have the Programs permission, or the feature is not active.
+  - The account does not have permission to access programs.
+  media_types:
+  - application/json
+  spec_count: 4
+- status: 404
+  occurrences: 113
+  titles:
+  - Not found
+  - The API Space was not
+  - The Profile was not found
+  - The chat was not found
+  - The conversation was not found
+  - The template was not found
+  media_types:
+  - application/json
+  spec_count: 19
+- status: 409
+  occurrences: 30
+  titles:
+  - A conncurrency issue occured updating the chat
+  - A concurrency issue occured deleting the Profile
+  - A concurrency issue occured updating the Profile
+  - Identifier conflict
+  - Name conflict
+  - A conncurrency issue occured deleting the chat
+  media_types:
+  - application/json
+  spec_count: 12
+- status: 412
+  occurrences: 16
+  titles:
+  - The ETag supplied did not match, another update may have taken place
+  - The specified 'if-match' header was not valid, refresh and retry
+  - Custom identifier limit reached
+  - Insight data collection limit exceeded
+  media_types: []
+  spec_count: 6
+- status: 422
+  occurrences: 1
+  titles:
+  - The program exists but is not active (`ERROR_PROGRAM_NOT_ACTIVE`).
+  media_types:
+  - application/json
+  spec_count: 1
+- status: 429
+  occurrences: 2
+  titles:
+  - Too many bulk delete jobs
+  - Too many import requests
+  media_types:
+  - application/json
+  spec_count: 1
+- status: 500
+  occurrences: 13
+  titles:
+  - Internal server error
+  - Internal Server Error
+  media_types: []
+  spec_count: 2
+- status: 503
+  occurrences: 1
+  titles:
+  - The orders collection is currently being restored (`ERROR_TRANSACTIONAL_DATA_COLLECTION_IS_RESTORING`).
+  media_types:
+  - application/json
+  spec_count: 1

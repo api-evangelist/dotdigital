@@ -1,0 +1,4328 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "apiconnector.com",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ApiAccount",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets a summary of information about the current status of the account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/account-info"
+          },
+          "docs": "Gets a summary of information about the current status of the account."
+        },
+        {
+          "info": {
+            "name": "Gets the UTC time as set on the server.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/server-time"
+          },
+          "docs": "Gets the UTC time as set on the server."
+        },
+        {
+          "info": {
+            "name": "Creates an account. The ID of the newly returned account will be returned as the result of this call.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/accounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "There are some mandatory, and some optional fields - missing mandatory fields will cause error code to be returned.\n            The following fields are mandatory: \"EMAIL\", \"FIRSTNAME\", \"LASTNAME\", \"USERIPADDRESS\".\n            The following fields are optional: \"COMPANY\", \"PHONENUMBER\", \"LCID\", \"TIMEZONEID\", \"ISEXPRESSACCOUNT\"."
+        },
+        {
+          "info": {
+            "name": "Creates Managed user for a given account id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/accounts/:accountId/managed-users",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates Managed user for a given account id."
+        },
+        {
+          "info": {
+            "name": "Adds an OAuth token to an account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/accounts/:accountId/oauth-tokens",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds an OAuth token to an account."
+        },
+        {
+          "info": {
+            "name": "Changes a theme for an account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://r1-api.dotdigital.com/v2/accounts/:accountId/theme",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Changes a theme for an account."
+        },
+        {
+          "info": {
+            "name": "Creates an API user for a given account ID. The username of the created user will be returned as the result of this call.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/accounts/:accountId/api-users",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method may only be called on an account with no existing API users configured using the rate limiting scheme referenced in the request indicated with IsTieredRateLimitedApiUser e.g. flat or tiered rate limiting."
+        },
+        {
+          "info": {
+            "name": "Empties the account's recycle bin.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/accounts/empty-recycle-bin"
+          },
+          "docs": "Empties the account's recycle bin."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ApiAddressBook",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets a list by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/address-books/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a list by ID."
+        },
+        {
+          "info": {
+            "name": "Updates a list.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://r1-api.dotdigital.com/v2/address-books/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a list."
+        },
+        {
+          "info": {
+            "name": "Deletes a list.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://r1-api.dotdigital.com/v2/address-books/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a list."
+        },
+        {
+          "info": {
+            "name": "Gets all lists.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/address-books",
+            "params": [
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets all lists."
+        },
+        {
+          "info": {
+            "name": "Creates a list.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/address-books",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a list."
+        },
+        {
+          "info": {
+            "name": "Gets all private lists.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/address-books/private",
+            "params": [
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets all private lists."
+        },
+        {
+          "info": {
+            "name": "Gets all public lists.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/address-books/public",
+            "params": [
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets all public lists."
+        },
+        {
+          "info": {
+            "name": "Gets any lists that a contact is in.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/:contactId/address-books",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets any lists that a contact is in."
+        },
+        {
+          "info": {
+            "name": "Gets any lists that a campaign has ever been sent to.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/address-books",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets any lists that a campaign has ever been sent to."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ApiCampaign",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets a campaign by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a campaign by ID."
+        },
+        {
+          "info": {
+            "name": "Updates a given campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a given campaign."
+        },
+        {
+          "info": {
+            "name": "Gets all campaigns.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns",
+            "params": [
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets all campaigns."
+        },
+        {
+          "info": {
+            "name": "Creates a campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a campaign."
+        },
+        {
+          "info": {
+            "name": "Gets all campaigns (with filters).",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/filtered",
+            "params": [
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "~type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "~tags",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "~sentDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "~statuses",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "~scheduledDateFrom",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "~scheduledDateTo",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets all campaigns (with filters)."
+        },
+        {
+          "info": {
+            "name": "Gets all campaigns with additional information like type.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/with-details",
+            "params": [
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets all campaigns with additional information like type."
+        },
+        {
+          "info": {
+            "name": "Gets any campaigns that have been sent to a list.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/address-books/:addressBookId/campaigns",
+            "params": [
+              {
+                "name": "addressBookId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets any campaigns that have been sent to a list."
+        },
+        {
+          "info": {
+            "name": "Gets all sent campaigns, which have had activity (e.g. clicks, opens) after a specified date.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/with-activity-since/:date",
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets all sent campaigns, which have had activity (e.g. clicks, opens) after a specified date."
+        },
+        {
+          "info": {
+            "name": "Creates a split test campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/split-test",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a split test campaign."
+        },
+        {
+          "info": {
+            "name": "Copies a given campaign returning the new campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/copy",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Copies a given campaign returning the new campaign."
+        },
+        {
+          "info": {
+            "name": "Deletes a campaign, and any associated reporting data. If the campaign is currently in use, or being sent to, this call will not be permitted.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a campaign, and any associated reporting data. If the campaign is currently in use, or being sent to, this call will not be permitted."
+        },
+        {
+          "info": {
+            "name": "Gets a campaign by ID with additional information like type and assigned tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/with-details",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a campaign by ID with additional information like type and assigned tags"
+        },
+        {
+          "info": {
+            "name": "Gets the split test results of a given campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/split-test",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets the split test results of a given campaign."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ApiCampaignFromAddress",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets all custom from addresses which can be used in a campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/custom-from-addresses",
+            "params": [
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets all custom from addresses which can be used in a campaign."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ApiCampaignReporting",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets a summary of reporting information for a specified campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/summary",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a summary of reporting information for a specified campaign."
+        },
+        {
+          "info": {
+            "name": "Gets a list of contacts who were sent a campaign, with their activity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/activities",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of contacts who were sent a campaign, with their activity."
+        },
+        {
+          "info": {
+            "name": "Gets a list of contacts who were sent a campaign, and retrieves only those contacts who showed activity (e.g. they clicked, opened) after a specified date.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/activities/since-date/:date",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of contacts who were sent a campaign, and retrieves only those contacts who showed activity (e.g. they clicked, opened) after a specified date."
+        },
+        {
+          "info": {
+            "name": "Gets activity for a given contact and campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/activities/:contactId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets activity for a given contact and campaign."
+        },
+        {
+          "info": {
+            "name": "Gets a list of campaign link clicks.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/clicks",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of campaign link clicks."
+        },
+        {
+          "info": {
+            "name": "Gets a list of link clicks for a campaign after a specified date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/clicks/since-date/:date",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of link clicks for a campaign after a specified date"
+        },
+        {
+          "info": {
+            "name": "Gets a list of campaign link clicks for a contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/activities/:contactId/clicks",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of campaign link clicks for a contact."
+        },
+        {
+          "info": {
+            "name": "Gets a list of campaign opens.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/opens",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of campaign opens."
+        },
+        {
+          "info": {
+            "name": "Gets a list of opens for a campaign after a specified date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/opens/since-date/:date",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of opens for a campaign after a specified date"
+        },
+        {
+          "info": {
+            "name": "Gets a list of campaign opens for a contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/activities/:contactId/opens",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of campaign opens for a contact."
+        },
+        {
+          "info": {
+            "name": "Gets a list of page views for a campaign after a specified date.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/page-views/since-date/:date",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of page views for a campaign after a specified date."
+        },
+        {
+          "info": {
+            "name": "Gets a list of page views for a contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/activities/:contactId/page-views",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of page views for a contact."
+        },
+        {
+          "info": {
+            "name": "Gets a list of campaign replies for a contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/activities/:contactId/replies",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "You may not request more than 5 records at a time using the \"select\" parameter."
+        },
+        {
+          "info": {
+            "name": "Gets campaign social bookmark views for a campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/social-bookmark-views",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets campaign social bookmark views for a campaign."
+        },
+        {
+          "info": {
+            "name": "Gets campaign social bookmark views for a contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/activities/:contactId/social-bookmark-views",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets campaign social bookmark views for a contact."
+        },
+        {
+          "info": {
+            "name": "Gets a list of ROI information for a campaign after the specified date.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/roi-details/since-date/:date",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of ROI information for a campaign after the specified date."
+        },
+        {
+          "info": {
+            "name": "Gets a list of ROI information for a contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/activities/:contactId/roi-details",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of ROI information for a contact."
+        },
+        {
+          "info": {
+            "name": "Gets a list of contacts who hard bounced when sent a particular campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/hard-bouncing-contacts",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "withFullData",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of contacts who hard bounced when sent a particular campaign."
+        },
+        {
+          "info": {
+            "name": "Gets a list of campaign clicks with link groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/clicks-with-groups",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of campaign clicks with link groups"
+        },
+        {
+          "info": {
+            "name": "Gets a list of campaign clicks with link groups after a specified date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/clicks-with-groups/since-date/:date",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of campaign clicks with link groups after a specified date"
+        },
+        {
+          "info": {
+            "name": "Gets a list of campaign clicks with link groups for a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/activities/:contactId/clicks-with-groups",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of campaign clicks with link groups for a contact"
+        },
+        {
+          "info": {
+            "name": "Gets the revenue attributed to a specified campaign after a specified date.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/revenue/since-date/:date",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets the revenue attributed to a specified campaign after a specified date."
+        },
+        {
+          "info": {
+            "name": "Gets the revenue attributed to a specified campaign generated by a specified contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/activities/:contactId/revenue",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets the revenue attributed to a specified campaign generated by a specified contact."
+        },
+        {
+          "info": {
+            "name": "Gets all sent campaigns daily metrics for the specified date range.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/metrics",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets all sent campaigns daily metrics for the specified date range."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ApiCampaignSend",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Sends a specified campaign to one or more lists, segments or contacts at a specified time. Leave the list array empty to send to All Contacts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/send",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a specified campaign to one or more lists, segments or contacts at a specified time. Leave the list array empty to send to All Contacts."
+        },
+        {
+          "info": {
+            "name": "Sends a specified campaign to one or more lists, segments or contacts at the most appropriate time based upon their previous open. Leave the list array empty to send to All Contacts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/send-time-optimised",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a specified campaign to one or more lists, segments or contacts at the most appropriate time based upon their previous open. Leave the list array empty to send to All Contacts."
+        },
+        {
+          "info": {
+            "name": "Gets the send status using send ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/send/:sendId",
+            "params": [
+              {
+                "name": "sendId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets the send status using send ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ApiContact",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets a list of suppressed contacts after a given date along with the reason for suppression.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/suppressed-since/:date",
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of suppressed contacts after a given date along with the reason for suppression."
+        },
+        {
+          "info": {
+            "name": "Gets a list of unsubscribed contacts who unsubscribed after a given date.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/unsubscribed-since/:date",
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of unsubscribed contacts who unsubscribed after a given date."
+        },
+        {
+          "info": {
+            "name": "Gets a list of modified contacts after a specified date.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/modified-since/:date",
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "withFullData",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of modified contacts after a specified date."
+        },
+        {
+          "info": {
+            "name": "Gets a list of created contacts after a specified date.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/created-since/:date",
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "withFullData",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of created contacts after a specified date."
+        },
+        {
+          "info": {
+            "name": "Gets a list of all contacts in the account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts",
+            "params": [
+              {
+                "name": "withFullData",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of all contacts in the account."
+        },
+        {
+          "info": {
+            "name": "Creates a contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/contacts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a contact."
+        },
+        {
+          "info": {
+            "name": "Gets a contact by ID. Unsubscribed or suppressed contacts will not be retrieved.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a contact by ID. Unsubscribed or suppressed contacts will not be retrieved."
+        },
+        {
+          "info": {
+            "name": "Updates a contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a contact."
+        },
+        {
+          "info": {
+            "name": "Deletes a contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a contact."
+        },
+        {
+          "info": {
+            "name": "Gets a contact by ID with consent records.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/:id/with-consent",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a contact by ID with consent records."
+        },
+        {
+          "info": {
+            "name": "Updates a contact with consent records.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/:id/with-consent",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a contact with consent records."
+        },
+        {
+          "info": {
+            "name": "Gets a contact by email address.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a contact by email address."
+        },
+        {
+          "info": {
+            "name": "Gets a contact by email address with consent records.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/:email/with-consent",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a contact by email address with consent records."
+        },
+        {
+          "info": {
+            "name": "Creates a contact with consent records.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/with-consent",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a contact with consent records."
+        },
+        {
+          "info": {
+            "name": "Creates a contact with consent and preference records.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/with-consent-and-preferences",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a contact with consent and preference records."
+        },
+        {
+          "info": {
+            "name": "Updates a contact with consent and preference records.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/:id/with-consent-and-preferences",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a contact with consent and preference records."
+        },
+        {
+          "info": {
+            "name": "Deletes a contact from a given list.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://r1-api.dotdigital.com/v2/address-books/:addressBookId/contacts/:contactId",
+            "params": [
+              {
+                "name": "addressBookId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a contact from a given list."
+        },
+        {
+          "info": {
+            "name": "Gets a list of contacts in a given list.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/address-books/:addressBookId/contacts",
+            "params": [
+              {
+                "name": "addressBookId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "withFullData",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of contacts in a given list."
+        },
+        {
+          "info": {
+            "name": "Adds a contact to a given list.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/address-books/:addressBookId/contacts",
+            "params": [
+              {
+                "name": "addressBookId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a contact to a given list."
+        },
+        {
+          "info": {
+            "name": "Deletes all contacts from a given list.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://r1-api.dotdigital.com/v2/address-books/:addressBookId/contacts",
+            "params": [
+              {
+                "name": "addressBookId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes all contacts from a given list."
+        },
+        {
+          "info": {
+            "name": "Deletes all contacts from a given list.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/address-books/:addressBookId/contacts/delete-all",
+            "params": [
+              {
+                "name": "addressBookId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes all contacts from a given list."
+        },
+        {
+          "info": {
+            "name": "Deletes multiple contacts from a list. This will run in the background, and for larger lists may take some minutes to fully delete.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/address-books/:addressBookId/contacts/delete",
+            "params": [
+              {
+                "name": "addressBookId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes multiple contacts from a list. This will run in the background, and for larger lists may take some minutes to fully delete."
+        },
+        {
+          "info": {
+            "name": "Gets the status of a previously started request to delete contacts from a list.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/deletion/:deletionRequestId",
+            "params": [
+              {
+                "name": "deletionRequestId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets the status of a previously started request to delete contacts from a list."
+        },
+        {
+          "info": {
+            "name": "Gets a list of contacts who were modified since a given date, in a given list.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/address-books/:addressBookId/contacts/modified-since/:date",
+            "params": [
+              {
+                "name": "addressBookId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "withFullData",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of contacts who were modified since a given date, in a given list."
+        },
+        {
+          "info": {
+            "name": "Gets a list of contacts who have unsubscribed from a given list.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/address-books/:addressBookId/contacts/unsubscribed-since/:date",
+            "params": [
+              {
+                "name": "addressBookId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of contacts who have unsubscribed from a given list."
+        },
+        {
+          "info": {
+            "name": "Unsubscribes contact from account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/unsubscribe",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unsubscribes contact from account."
+        },
+        {
+          "info": {
+            "name": "Suppresses a batch of contacts from account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/suppress-contacts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Suppresses a batch of contacts from account."
+        },
+        {
+          "info": {
+            "name": "Unsubscribes contact from a given list.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/address-books/:addressBookId/contacts/unsubscribe",
+            "params": [
+              {
+                "name": "addressBookId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unsubscribes contact from a given list."
+        },
+        {
+          "info": {
+            "name": "Resubscribes a previously unsubscribed contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/resubscribe",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resubscribes a previously unsubscribed contact."
+        },
+        {
+          "info": {
+            "name": "Resubscribes a previously unsubscribed contact with no challenge.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/resubscribe-with-no-challenge",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resubscribes a previously unsubscribed contact with no challenge."
+        },
+        {
+          "info": {
+            "name": "Resubscribes a previously unsubscribed contact to a given list.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/address-books/:addressBookId/contacts/resubscribe",
+            "params": [
+              {
+                "name": "addressBookId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resubscribes a previously unsubscribed contact to a given list."
+        },
+        {
+          "info": {
+            "name": "Resubscribes a previously unsubscribed contact to a given list with no challenge.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/address-books/:addressBookId/contacts/resubscribe-with-no-challenge",
+            "params": [
+              {
+                "name": "addressBookId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resubscribes a previously unsubscribed contact to a given list with no challenge."
+        },
+        {
+          "info": {
+            "name": "ApiContact_GetTransactionalDataByCollectionFromId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/transactional-data/:collectionName",
+            "params": [
+              {
+                "name": "collectionName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fromId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Adds a single piece of transactional data to a contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/transactional-data/:collectionName",
+            "params": [
+              {
+                "name": "collectionName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a single piece of transactional data to a contact."
+        },
+        {
+          "info": {
+            "name": "Adds multiple pieces of transactional data to contacts asynchronously, returning an identifier that can be used to check for import progress.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/transactional-data/import/:collectionName",
+            "params": [
+              {
+                "name": "collectionName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds multiple pieces of transactional data to contacts asynchronously, returning an identifier that can be used to check for import progress."
+        },
+        {
+          "info": {
+            "name": "Gets the import status of a previously started transactional import.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/transactional-data/import/:importId",
+            "params": [
+              {
+                "name": "importId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets the import status of a previously started transactional import."
+        },
+        {
+          "info": {
+            "name": "Gets a report with statistics about what was successfully imported, and what was unable to be imported.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/transactional-data/import/:importId/report",
+            "params": [
+              {
+                "name": "importId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a report with statistics about what was successfully imported, and what was unable to be imported."
+        },
+        {
+          "info": {
+            "name": "Gets a piece of transactional data by key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/transactional-data/:collectionName/:key",
+            "params": [
+              {
+                "name": "collectionName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a piece of transactional data by key."
+        },
+        {
+          "info": {
+            "name": "Replaces a piece of transactional data by key (logicall equivalent to a delete and an insert).",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/transactional-data/:collectionName/:key",
+            "params": [
+              {
+                "name": "collectionName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replaces a piece of transactional data by key (logicall equivalent to a delete and an insert)."
+        },
+        {
+          "info": {
+            "name": "Deletes a piece of transactional data by key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/transactional-data/:collectionName/:key",
+            "params": [
+              {
+                "name": "collectionName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a piece of transactional data by key."
+        },
+        {
+          "info": {
+            "name": "Removes all items from a transactional data collection.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/transactional-data/:collectionName/empty",
+            "params": [
+              {
+                "name": "collectionName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes all items from a transactional data collection."
+        },
+        {
+          "info": {
+            "name": "Gets a list of all transactional data for a contact (100 most recent only).",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/:id/transactional-data/:collectionName",
+            "params": [
+              {
+                "name": "collectionName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a list of all transactional data for a contact (100 most recent only)."
+        },
+        {
+          "info": {
+            "name": "Deletes all transactional data for a contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/:id/transactional-data/:collectionName",
+            "params": [
+              {
+                "name": "collectionName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes all transactional data for a contact."
+        },
+        {
+          "info": {
+            "name": "Gets a list of all transactional data for a contact (100 most recent only).",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/:email/transactional-data/:collectionName",
+            "params": [
+              {
+                "name": "collectionName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a list of all transactional data for a contact (100 most recent only)."
+        },
+        {
+          "info": {
+            "name": "Deletes all transactional data for a contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/:email/transactional-data/:collectionName",
+            "params": [
+              {
+                "name": "collectionName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes all transactional data for a contact."
+        },
+        {
+          "info": {
+            "name": "Gets a list of account scoped transactional data for given collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/transactional-data/:collectionName",
+            "params": [
+              {
+                "name": "collectionName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of account scoped transactional data for given collection"
+        },
+        {
+          "info": {
+            "name": "Gets a list of transactional data collections.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/transactional-data-collections",
+            "params": [
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of transactional data collections."
+        },
+        {
+          "info": {
+            "name": "Gets a list of contact scoring data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/score",
+            "params": [
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of contact scoring data."
+        },
+        {
+          "info": {
+            "name": "Gets a list of contact scoring data in specified list.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/address-books/:addressBookId/contacts/score",
+            "params": [
+              {
+                "name": "addressBookId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of contact scoring data in specified list."
+        },
+        {
+          "info": {
+            "name": "Gets a list of contact scoring data ordered by modified date.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/score/modified-since/:date",
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of contact scoring data ordered by modified date."
+        },
+        {
+          "info": {
+            "name": "Gets particular contact scoring data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/:email/score",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets particular contact scoring data."
+        },
+        {
+          "info": {
+            "name": "Gets particular contact scoring data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/:id/score",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets particular contact scoring data."
+        },
+        {
+          "info": {
+            "name": "Gets the total number of contacts in an account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/count"
+          },
+          "docs": "Gets the total number of contacts in an account."
+        },
+        {
+          "info": {
+            "name": "Gets a batch of contacts by ID or email address.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/retrieve-collection",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Gets a batch of contacts by ID or email address."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ApiContactImport",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bulk creates, or bulk updates, contacts. The ID of returned object can be used to query import progress.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/address-books/:addressBookId/contacts/import",
+            "params": [
+              {
+                "name": "addressBookId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import format can either be CSV or Excel. Must include one column called \"Email\". Any other columns will attempt to map to your custom data fields."
+        },
+        {
+          "info": {
+            "name": "Bulk creates, or bulk updates, contacts with merge options. The ID of returned object can be used to query import progress.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/address-books/:addressBookId/contacts/import/with-merge-option/:mergeOption",
+            "params": [
+              {
+                "name": "addressBookId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "mergeOption",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import format can either be CSV or Excel. Must include one column called \"Email\". Passing a valid \"mergeOption\" parameter is compulsory. Any other columns will attempt to map to your custom data fields."
+        },
+        {
+          "info": {
+            "name": "Bulk creates, or bulk updates, contacts. The ID of returned object can be used to query import progress.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import format can either be CSV or Excel. Must include one column called \"Email\". Any other columns will attempt to map to your custom data fields."
+        },
+        {
+          "info": {
+            "name": "Bulk creates, or bulk updates, contacts. The ID of returned object can be used to query import progress.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/import-collection",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk creates, or bulk updates, contacts. The ID of returned object can be used to query import progress."
+        },
+        {
+          "info": {
+            "name": "Bulk creates, or bulk updates, contacts with merge options. The ID of returned object can be used to query import progress.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/import/with-merge-option/:mergeOption",
+            "params": [
+              {
+                "name": "mergeOption",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API works on both contact data fields and marketing preferences. Import format can either be CSV or Excel. Must include one column called \"Email\". Passing a valid \"mergeOption\" parameter is compulsory. Any other columns will attempt to map to your custom data fields."
+        },
+        {
+          "info": {
+            "name": "Gets the import status of a previously started contact import.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/import/:importId",
+            "params": [
+              {
+                "name": "importId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets the import status of a previously started contact import."
+        },
+        {
+          "info": {
+            "name": "Gets a report with statistics about what was successfully imported, and what was unable to be imported.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/import/:importId/report",
+            "params": [
+              {
+                "name": "importId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a report with statistics about what was successfully imported, and what was unable to be imported."
+        },
+        {
+          "info": {
+            "name": "Gets all records that were not successfully imported.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/import/:importId/report-faults",
+            "params": [
+              {
+                "name": "importId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "The data are returned in CSV file, which is UTF-8 encoded. This data will only be available for approximately one week after import."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ApiDataField",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists the data fields within the account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/data-fields"
+          },
+          "docs": "Lists the data fields within the account."
+        },
+        {
+          "info": {
+            "name": "Creates a data field within the account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/data-fields",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a data field within the account."
+        },
+        {
+          "info": {
+            "name": "Deletes a data field within the account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://r1-api.dotdigital.com/v2/data-fields/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a data field within the account."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ApiDocument",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets all uploaded documents.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/document-folders/:folderId/documents",
+            "params": [
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets all uploaded documents."
+        },
+        {
+          "info": {
+            "name": "Uploads a document into the specified folder.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/document-folders/:folderId/documents",
+            "params": [
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Uploads a document into the specified folder."
+        },
+        {
+          "info": {
+            "name": "Fetches the document folder tree structure.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/document-folders"
+          },
+          "docs": "Fetches the document folder tree structure."
+        },
+        {
+          "info": {
+            "name": "Gets documents that are currently attached to a campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/attachments",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets documents that are currently attached to a campaign."
+        },
+        {
+          "info": {
+            "name": "Adds a document to a campaign as an attachment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/attachments",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a document to a campaign as an attachment."
+        },
+        {
+          "info": {
+            "name": "Creates a new document folder.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/document-folders/:folderId",
+            "params": [
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new document folder."
+        },
+        {
+          "info": {
+            "name": "Removes an attachment from a campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/attachments/:documentId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes an attachment from a campaign."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ApiEcommerce",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the Retail KPI summaries for the specified date range.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/ecommerce/summaries",
+            "params": [
+              {
+                "name": "dateRange",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the Retail KPI summaries for the specified date range."
+        },
+        {
+          "info": {
+            "name": "Requests a refreshing of metric data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/ecommerce/summaries"
+          },
+          "docs": "Requests a refreshing of metric data."
+        },
+        {
+          "info": {
+            "name": "Returns Retail KPI summaries across every data range.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/ecommerce/fullsummary"
+          },
+          "docs": "Returns Retail KPI summaries across every data range."
+        },
+        {
+          "info": {
+            "name": "Gets a KPI metric of a specified type over a specified date range.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/ecommerce/summary/:summaryType",
+            "params": [
+              {
+                "name": "dateRange",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "summaryType",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a KPI metric of a specified type over a specified date range."
+        },
+        {
+          "info": {
+            "name": "Gets a list of all orders since a date.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/ecommerce/orders",
+            "params": [
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of all orders since a date."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ApiImage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetches the campaign image folder tree structure.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/image-folders"
+          },
+          "docs": "Fetches the campaign image folder tree structure."
+        },
+        {
+          "info": {
+            "name": "Gets an image folder by id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/image-folders/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets an image folder by id."
+        },
+        {
+          "info": {
+            "name": "Creates a new campaign image folder.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/image-folders/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new campaign image folder."
+        },
+        {
+          "info": {
+            "name": "Uploads a new campaign image into the specified folder.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/image-folders/:folderId/images",
+            "params": [
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Uploads a new campaign image into the specified folder."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ApiPreference",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets the preferences, as a tree structure.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/preferences"
+          },
+          "docs": "Gets the preferences, as a tree structure."
+        },
+        {
+          "info": {
+            "name": "Creates a new preference or a new preference category.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/preferences",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new preference or a new preference category."
+        },
+        {
+          "info": {
+            "name": "Gets an array of preferences that have been modified since the specified date.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/preferences/modified-since/:sinceDate",
+            "params": [
+              {
+                "name": "sinceDate",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets an array of preferences that have been modified since the specified date."
+        },
+        {
+          "info": {
+            "name": "Update the preference with the specified Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://r1-api.dotdigital.com/v2/preferences/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the preference with the specified Id."
+        },
+        {
+          "info": {
+            "name": "Deletes the preference with the specified Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://r1-api.dotdigital.com/v2/preferences/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes the preference with the specified Id."
+        },
+        {
+          "info": {
+            "name": "Gets a list of contacts subscribed to the specified preference.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/with-preference/:preferenceId",
+            "params": [
+              {
+                "name": "preferenceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "minContactId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of contacts subscribed to the specified preference."
+        },
+        {
+          "info": {
+            "name": "Gets a list of contacts from a given list, subscribed to the specified preference.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/address-books/:bookId/contacts/with-preference/:preferenceId",
+            "params": [
+              {
+                "name": "bookId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "preferenceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "minContactId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of contacts from a given list, subscribed to the specified preference."
+        },
+        {
+          "info": {
+            "name": "Sets the subscribed preferences for a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/:contactId/preferences",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the subscribed preferences for a contact"
+        },
+        {
+          "info": {
+            "name": "Sets the subscribed preferences for a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://r1-api.dotdigital.com/v2/contact/:contactId/preferences",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the subscribed preferences for a contact"
+        },
+        {
+          "info": {
+            "name": "Gets the preferences for the specified contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/:contactEmail/preferences",
+            "params": [
+              {
+                "name": "contactEmail",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets the preferences for the specified contact"
+        },
+        {
+          "info": {
+            "name": "Sets the subscribed preferences for a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/:contactEmail/preferences",
+            "params": [
+              {
+                "name": "contactEmail",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the subscribed preferences for a contact"
+        },
+        {
+          "info": {
+            "name": "Gets the preferences for the specified contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contact/:contactEmail/preferences",
+            "params": [
+              {
+                "name": "contactEmail",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets the preferences for the specified contact"
+        },
+        {
+          "info": {
+            "name": "Sets the subscribed preferences for a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://r1-api.dotdigital.com/v2/contact/:contactEmail/preferences",
+            "params": [
+              {
+                "name": "contactEmail",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the subscribed preferences for a contact"
+        },
+        {
+          "info": {
+            "name": "Gets the preferences for the specified contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/:contactID/preferences",
+            "params": [
+              {
+                "name": "contactID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets the preferences for the specified contact"
+        },
+        {
+          "info": {
+            "name": "Gets the preferences for the specified contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contact/:contactID/preferences",
+            "params": [
+              {
+                "name": "contactID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets the preferences for the specified contact"
+        },
+        {
+          "info": {
+            "name": "Gets the subscriptions for the specified contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/:contactEmail/subscriptions",
+            "params": [
+              {
+                "name": "contactEmail",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets the subscriptions for the specified contact"
+        },
+        {
+          "info": {
+            "name": "Gets a list of contacts who have opted in to a preference since the specified date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/contacts/with-preference/:preferenceId/opt-ins-since/:sinceDate",
+            "params": [
+              {
+                "name": "preferenceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sinceDate",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "minContactId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of contacts who have opted in to a preference since the specified date"
+        },
+        {
+          "info": {
+            "name": "Gets a list of contacts, from a given list, who have opted in to a preference, since the specified date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/address-books/:bookId/contacts/with-preference/:preferenceId/opt-ins-since/:sinceDate",
+            "params": [
+              {
+                "name": "bookId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "preferenceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sinceDate",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "minContactId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of contacts, from a given list, who have opted in to a preference, since the specified date"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ApiProductRecommendations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets all product recommendations for the account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/products/recommendations"
+          },
+          "docs": "Gets all product recommendations for the account."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ApiProgram",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets a program by id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/programs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a program by id."
+        },
+        {
+          "info": {
+            "name": "Gets all programs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/programs",
+            "params": [
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets all programs."
+        },
+        {
+          "info": {
+            "name": "Gets enrolments by status.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/programs/enrolments/:status",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets enrolments by status."
+        },
+        {
+          "info": {
+            "name": "Gets an enrolment by id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/programs/enrolments/:enrolmentId",
+            "params": [
+              {
+                "name": "enrolmentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets an enrolment by id."
+        },
+        {
+          "info": {
+            "name": "Gets all contacts that were not successfully enrolled, by enrolment ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/programs/enrolments/:enrolmentId/report-faults",
+            "params": [
+              {
+                "name": "enrolmentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets all contacts that were not successfully enrolled, by enrolment ID."
+        },
+        {
+          "info": {
+            "name": "Creates an enrolment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/programs/enrolments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Please note that your account can only call this a maximum of 20 times per hour, across all programs."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ApiSegment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets the refresh progress for a segment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/segments/refresh/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets the refresh progress for a segment."
+        },
+        {
+          "info": {
+            "name": "Refreshes a segment by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/segments/refresh/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Refreshes a segment by ID."
+        },
+        {
+          "info": {
+            "name": "Gets all segments.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/segments",
+            "params": [
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets all segments."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ApiSms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Sends a single SMS message.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/sms-messages/send-to/:telephoneNumber",
+            "params": [
+              {
+                "name": "telephoneNumber",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a single SMS message."
+        },
+        {
+          "info": {
+            "name": "Gets SMS Campaigns.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/sms/campaigns",
+            "params": [
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets SMS Campaigns."
+        },
+        {
+          "info": {
+            "name": "Creates an SMS campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/sms/campaigns",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an SMS campaign."
+        },
+        {
+          "info": {
+            "name": "Gets SMS campaign by Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/sms/campaigns/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets SMS campaign by Id."
+        },
+        {
+          "info": {
+            "name": "Updates an SMS campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://r1-api.dotdigital.com/v2/sms/campaigns/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an SMS campaign."
+        },
+        {
+          "info": {
+            "name": "Deletes an SMS campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://r1-api.dotdigital.com/v2/sms/campaigns/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes an SMS campaign."
+        },
+        {
+          "info": {
+            "name": "Copies an SMS campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/sms/campaigns/copy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Copies an SMS campaign."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ApiSurvey",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets a list of all surveys in the account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/surveys",
+            "params": [
+              {
+                "name": "assignedToAddressBookOnly",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of all surveys in the account."
+        },
+        {
+          "info": {
+            "name": "Gets a list of surveys in the account that have changed since the specified date.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/surveys/with-activity-since/:date",
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "assignedToAddressBookOnly",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of surveys in the account that have changed since the specified date."
+        },
+        {
+          "info": {
+            "name": "Gets a single survey by its ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/surveys/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a single survey by its ID."
+        },
+        {
+          "info": {
+            "name": "Gets a list of survey pages, each containing a list of the fields on that page.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/surveys/:id/fields",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a list of survey pages, each containing a list of the fields on that page."
+        },
+        {
+          "info": {
+            "name": "Gets a list of all responses for a given survey.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/surveys/:id/responses",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of all responses for a given survey."
+        },
+        {
+          "info": {
+            "name": "Gets a list of responses that have changed since the specified date.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/surveys/:id/responses/with-activity-since/:date",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of responses that have changed since the specified date."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ApiTemplate",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets list of all templates.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/templates",
+            "params": [
+              {
+                "name": "select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets list of all templates."
+        },
+        {
+          "info": {
+            "name": "Creates a template.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/templates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a template."
+        },
+        {
+          "info": {
+            "name": "Gets a template by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/templates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a template by ID."
+        },
+        {
+          "info": {
+            "name": "Updates a template.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://r1-api.dotdigital.com/v2/templates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a template."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ApiTransactionalEmail",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Sends a transactional email. If sending to multiple recipients, please separate addresses with a comma.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/email",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a transactional email. If sending to multiple recipients, please separate addresses with a comma."
+        },
+        {
+          "info": {
+            "name": "Sends one or more transactional emails. If sending to multiple recipients, please separate addresses with a comma.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/email/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends one or more transactional emails. If sending to multiple recipients, please separate addresses with a comma."
+        },
+        {
+          "info": {
+            "name": "Sends a transactional email with content taken from a triggered campaign. If sending to multiple recipients, please separate addresses with a comma.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/email/triggered-campaign",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Sends a transactional email with content taken from a triggered campaign. If sending to multiple recipients, please separate addresses with a comma."
+        },
+        {
+          "info": {
+            "name": "Sends one or more transactional emails with content for each taken from a triggered campaign. If sending to multiple recipients, please separate addresses with a comma.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/v2/email/triggered-campaign/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends one or more transactional emails with content for each taken from a triggered campaign. If sending to multiple recipients, please separate addresses with a comma."
+        },
+        {
+          "info": {
+            "name": "Gets aggregated transactional email statistics.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/email/stats/since-date/:startDate",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "aggregatedBy",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets aggregated transactional email statistics."
+        },
+        {
+          "info": {
+            "name": "ApiTransactionalEmail_GetCampaignByIdWithCompiledContentForTransactionalEmail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/v2/campaigns/:campaignId/prepared-for-transactional-email/:email",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "personalizationValues",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

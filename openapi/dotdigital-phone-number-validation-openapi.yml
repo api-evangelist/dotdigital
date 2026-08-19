@@ -1,0 +1,465 @@
+openapi: 3.0.1
+info:
+  title: Phone Number Validation API
+  description: 'Provides methods for validating phone numbers against mobile network data.
+
+    Supports single-number validation as well as bulk validation jobs, with
+
+    endpoints to create a job, check its processing status, and retrieve the
+
+    full results once complete.'
+  version: 1.0.1
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      description: The Dotdigital region id your account belongs to
+      enum:
+      - r1
+      - r2
+      - r3
+      default: r1
+security:
+- basicAuth: []
+paths:
+  /cpaas/phonevalidation/single:
+    get:
+      tags:
+      - Single number
+      summary: Validate a single number
+      description: Validates a single phone number.
+      operationId: getValidateNumber
+      parameters:
+      - name: phoneNumber
+        in: query
+        description: Number of phone to validate. This can be in local format if the 'country' parameter is also supplied.
+        required: true
+        schema:
+          type: string
+      - name: countryCode
+        in: query
+        description: Optional ISO 3166-1 alpha-2 or aplha-3 country code in CAPITALS. You must provide this if the number is in local format.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Validation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleValidation'
+        '401':
+          description: Unauthorized
+          content: {}
+  /cpaas/phonevalidation/bulk:
+    get:
+      tags:
+      - Bulk validation
+      summary: List bulk validation jobs.
+      description: Gets a list of bulk phone number validation jobs.
+      operationId: getListValidationJobs
+      responses:
+        '200':
+          description: Validation result
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobDetails'
+        '401':
+          description: Unauthorized
+          content: {}
+    post:
+      tags:
+      - Bulk validation
+      summary: Bulk validate numbers
+      description: Queues a bulk phone number validation request with a CSV file containing the numbers to be validated.
+      operationId: postBulkValidate
+      requestBody:
+        description: A multipart/form-data request containing the CSV file and its processing options.
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/phonevalidation_bulk_body'
+        required: true
+      responses:
+        '200':
+          description: Job accepted
+          content:
+            application/json:
+              schema:
+                type: integer
+                description: The unique job identifier for the bulk phone number validation job.
+                example: 4523
+        '401':
+          description: Unauthorized
+  /cpaas/phonevalidation/bulk/{jobId}:
+    get:
+      tags:
+      - Bulk validation
+      summary: Get bulk job details
+      description: Gets the details and status of a bulk phone number validation job.
+      operationId: getJobDetails
+      parameters:
+      - name: jobId
+        in: path
+        description: The unqiue job identifier for the async bulk phone number validation
+        required: true
+        schema:
+          type: integer
+          example: 12547
+      responses:
+        '200':
+          description: Validation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobDetails'
+        '401':
+          description: Unauthorized
+          content: {}
+  /cpaas/phonevalidation/bulk/{jobId}/result:
+    get:
+      tags:
+      - Bulk validation
+      summary: Get bulk job results
+      description: 'Gets the results file of a successful bulk phone number validation job.
+
+
+        *Note: Failed or incomplete jobs will return no data!*
+
+
+        Output CSV file includes:
+
+        * Phone Number
+
+        * Original Phone Number
+
+        * Status
+
+        * MCCMNC
+
+        * Network Name
+
+        * Network Prefix
+
+        * Country IDD
+
+        * Is Ported
+
+        * Ported From Network Name
+
+        * Roaming Network Name
+
+        * Roaming Network Prefix
+
+        * Roaming Country IsoCode
+
+        * Roaming Country IDD
+
+        '
+      operationId: getJobResults
+      parameters:
+      - name: jobId
+        in: path
+        description: The unqiue job identifier for the async bulk phone number validation
+        required: true
+        schema:
+          type: integer
+          example: 12547
+      responses:
+        '200':
+          description: Validation result file
+          headers:
+            Content-Disposition:
+              description: results.csv
+              schema:
+                type: string
+          content:
+            text/csv:
+              schema:
+                type: string
+                example: 'Phone Number,Original Phone Number,Status,MCCMNC,Network Name,Network Prefix,Country IDD,Is Ported,Ported From Network Name,Roaming Network Name,Roaming Network Prefix,Roaming Country IsoCode,Roaming Country IDD
+
+                  447123123123,447123123123,On,23420,MNO - 3 (Hutchison 3G UK Ltd),79907,44,True,MNO - Vodafone UK,,,,
+
+                  447234234234,447234234234,Bad Number,,,,,False,,,,,
+
+                  '
+        '401':
+          description: Unauthorized
+          content: {}
+components:
+  schemas:
+    SingleValidation:
+      required:
+      - countryIdd
+      - phoneNumber
+      - status
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          description: The mobile number being checked.
+        status:
+          type: string
+          description: The current mobile network status for the number being checked.
+          enum:
+          - 'On'
+          - 'Off'
+          - Dead
+          - NotProvisioned
+          - BadNumber
+          - CountryMismatch
+        countryIdd:
+          type: string
+          description: The dialling code for the country.
+          example: '44'
+        networkDetails:
+          $ref: '#/components/schemas/SingleValidation_networkDetails'
+    JobDetails:
+      required:
+      - apiSpaceId
+      - chargeableLiveInfoCount
+      - countryIsoCode
+      - created
+      - csvDelimiter
+      - filePath
+      - filename
+      - hasHeader
+      - invalidCount
+      - jobId
+      - liveInfoCount
+      - minRetention
+      - numberColumnName
+      - percentComplete
+      - phoneNumberCount
+      - status
+      - statusFlag
+      - updated
+      - userId
+      type: object
+      properties:
+        jobId:
+          type: integer
+          description: The unique identifier for the job.
+          format: int64
+          readOnly: true
+          example: 12547
+        userId:
+          type: integer
+          description: The identifier of the user who initiated the job.
+          readOnly: true
+          example: 0
+        filename:
+          type: string
+          description: The original name of the uploaded file.
+          example: Contacts - Example.csv
+        countryIsoCode:
+          pattern: ^[a-z]{3}$
+          type: string
+          description: The ISO 3166-1 alpha-3 country code used for processing.
+          example: gbr
+        phoneNumberCount:
+          minimum: 0
+          type: integer
+          description: The total count of phone numbers found in the file.
+          readOnly: true
+          example: 0
+        invalidCount:
+          minimum: 0
+          type: integer
+          description: The count of invalid records found.
+          readOnly: true
+          example: 0
+        liveInfoCount:
+          minimum: 0
+          type: integer
+          description: The count of records for which live information was retrieved.
+          readOnly: true
+          example: 0
+        chargeableLiveInfoCount:
+          minimum: 0
+          type: integer
+          description: The subset of live info records that are chargeable.
+          readOnly: true
+          example: 0
+        status:
+          type: string
+          description: The current processing status of the job.
+          readOnly: true
+          example: Failed
+          enum:
+          - Queued
+          - Processing
+          - Completed
+          - Failed
+          - Cancelled
+        percentComplete:
+          maximum: 100
+          minimum: 0
+          type: integer
+          description: The completion percentage of the job.
+          readOnly: true
+          example: 100
+        created:
+          type: string
+          description: The UTC ISO 8601 timestamp when the job was created.
+          format: date-time
+          readOnly: true
+          example: '2025-08-04T13:43:13.91Z'
+        updated:
+          type: string
+          description: The UTC ISO 8601 timestamp when the job was last updated.
+          format: date-time
+          readOnly: true
+          example: '2025-08-04T13:43:15.41Z'
+        minRetention:
+          type: string
+          description: The UTC ISO 8601 timestamp defining the minimum retention date for the job data.
+          format: date-time
+          readOnly: true
+          example: '2025-09-03T13:43:13.9Z'
+        filePath:
+          type: string
+          description: A secure URL to the processed output file, if applicable.
+          format: uri
+          readOnly: true
+          example: https://content-cpaas.dotdigital.com/apispaces/1344aba6-a68d-4ebe-9010-5567e7ba3b25/content/5ef36c96-15d2-4b44-a92c-34ac98187ff9
+        numberColumnName:
+          type: string
+          description: The name of the column in the source CSV that contains the phone numbers.
+          example: Mobile
+        csvDelimiter:
+          maxLength: 1
+          type: string
+          description: The delimiter character used in the source CSV file.
+          example: ','
+        hasHeader:
+          type: boolean
+          description: Indicates whether the source CSV file has a header row.
+          example: true
+        statusFlag:
+          type: string
+          description: An additional flag providing context about the job's status.
+          readOnly: true
+          example: NotDefined
+          enum:
+          - NotDefined
+          - RequiresAttention
+          - Archived
+        apiSpaceId:
+          type: string
+          description: The unique identifier for the API space this job belongs to.
+          format: uuid
+          readOnly: true
+          example: 1344aba6-a68d-4ebe-9010-5567e7ba3b25
+      additionalProperties: false
+      description: Represents the status and details of an asynchronous phone number validation job.
+    phonevalidation_bulk_body:
+      required:
+      - country
+      - csv
+      - isHeader
+      - isInternational
+      - phoneField
+      - separator
+      type: object
+      properties:
+        csv:
+          type: string
+          description: The CSV file with mobile numbers to be validated.
+          format: binary
+        separator:
+          type: string
+          description: The separator used between fields in the CSV.
+          enum:
+          - comma
+          - semicolon
+          - tab
+        country:
+          type: string
+          description: The country for the bulk validation in ISO 3166-1 alpha-3 format.
+        isHeader:
+          type: boolean
+          description: '`true` if the CSV file has a header row.'
+        isInternational:
+          type: boolean
+          description: '`true` if all numbers in the file are in international format.'
+        phoneField:
+          type: string
+          description: The name of the field that contains the mobile number to be validated.
+    SingleValidation_networkDetails_roaming:
+      required:
+      - countryCode
+      - countryIdd
+      - countryName
+      - networkName
+      type: object
+      properties:
+        networkName:
+          type: string
+          description: The name of the network being used currently.
+          example: Vodafone UK
+        countryCode:
+          type: string
+          description: The country code of the country the phone is roaming within in ISO 3166-1 alpha-2 format.
+          example: GB
+        countryIdd:
+          type: string
+          description: The dialling code of the country the phone is roaming within.
+          example: '44'
+        countryName:
+          type: string
+          description: The name of the country the phone is roaming within.
+          example: United Kingdom
+      description: The roaming details, if the phone is currently roaming
+    SingleValidation_networkDetails:
+      required:
+      - isPorted
+      - mccmnc
+      - networkName
+      - networkPrefix
+      - portedFromNetworkName
+      type: object
+      properties:
+        isPorted:
+          type: boolean
+          description: Flag indicating that the number has been ported from one network to another.
+        portedFromNetworkName:
+          type: string
+          description: The network the phone was ported from.
+          example: O2 (Telefonica UK Ltd)
+        networkName:
+          type: string
+          description: The mobile network name the number is registered to.
+          example: '3'
+        networkPrefix:
+          type: string
+          description: The mobile networks number prefix.
+          example: '7770'
+        mccmnc:
+          type: string
+          description: The mobile country code and mobile network code.
+          example: '23430'
+        roaming:
+          $ref: '#/components/schemas/SingleValidation_networkDetails_roaming'
+      description: The mobile network details for the number.
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+x-readme:
+  samples-languages:
+  - curl
+  - csharp
+  - java
+  - node
+  - php
+  - python
+  - ruby
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

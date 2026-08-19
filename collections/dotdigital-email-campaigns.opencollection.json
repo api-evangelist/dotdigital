@@ -1,0 +1,1510 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Email campaigns",
+    "version": "2.1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Email Campaigns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets all campaigns"
+        },
+        {
+          "info": {
+            "name": "Create campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a campaign"
+        },
+        {
+          "info": {
+            "name": "Create split test campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/split-test",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a split test campaign"
+        },
+        {
+          "info": {
+            "name": "Get campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:id",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              }
+            ]
+          },
+          "docs": "Gets a campaign by ID"
+        },
+        {
+          "info": {
+            "name": "Update campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:id",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign to be updated"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a given campaign"
+        },
+        {
+          "info": {
+            "name": "Delete campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:id",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              }
+            ]
+          },
+          "docs": "Deletes a campaign"
+        },
+        {
+          "info": {
+            "name": "Copy campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:id/copy",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              }
+            ]
+          },
+          "docs": "Copies a given campaign, returning the new campaign"
+        },
+        {
+          "info": {
+            "name": "Send campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/send",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a specified campaign to one or more address books, segments or contacts, either as an immediate or scheduled send"
+        },
+        {
+          "info": {
+            "name": "Send time optimised campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/send-time-optimised",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a specified campaign to one or more address books, segments or contacts at the most appropriate time based upon their previous opens"
+        },
+        {
+          "info": {
+            "name": "Get campaign send status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/send/:id",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The send ID of the send campaign call. The send ID is a GUID, it looks like: 842d81e8-c619-457f-bb77-ab6c4a17da39."
+              }
+            ]
+          },
+          "docs": "Gets a campaign send status using send ID"
+        },
+        {
+          "info": {
+            "name": "Get campaign attachments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:campaignID/attachments",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              }
+            ]
+          },
+          "docs": "Gets documents that are currently attached to a campaign"
+        },
+        {
+          "info": {
+            "name": "Add campaign attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:campaignID/attachments",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a document to a campaign as an attachment"
+        },
+        {
+          "info": {
+            "name": "Remove campaign attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:campaignID/attachments/:documentID",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              },
+              {
+                "name": "documentID",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document"
+              }
+            ]
+          },
+          "docs": "Removes an attachment from a campaign"
+        },
+        {
+          "info": {
+            "name": "Get all campaigns (with filters)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/filtered",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              },
+              {
+                "name": "~type",
+                "value": "",
+                "type": "query",
+                "description": "Filter to a specific type of email campaign."
+              },
+              {
+                "name": "~tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter to campaigns with the specified tags; all tags listed must be assigned to the campaign to be included."
+              },
+              {
+                "name": "~sentDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter for campaigns sent on or after the specified date-time in UTC ISO-8601 format."
+              },
+              {
+                "name": "~statuses",
+                "value": "",
+                "type": "query",
+                "description": "Filter by campaign statuses: `Unsent`, `Sent`, `Sending`, `Paused`, `Cancelled`, `RequiresWorkflowApproval`"
+              },
+              {
+                "name": "~scheduledDateFrom",
+                "value": "",
+                "type": "query",
+                "description": "Filter for campaigns scheduled to be sent on or after the specified date-time in UTC ISO-8601 format. Can be used in conjunction with `~scheduledDateTo` to create a date window."
+              },
+              {
+                "name": "~scheduledDateTo",
+                "value": "",
+                "type": "query",
+                "description": "Filter for campaigns scheduled to be sent on or before the specified date-time in UTC ISO-8601 format. Can be used in conjunction with `~scheduledDateFrom` to create a date window."
+              }
+            ]
+          },
+          "docs": "Gets all campaigns, with optional filtering."
+        },
+        {
+          "info": {
+            "name": "Get campaign with details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:id/with-details",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              }
+            ]
+          },
+          "docs": "Gets a campaign by ID, along with all its details"
+        },
+        {
+          "info": {
+            "name": "Get campaign summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:id/summary",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              }
+            ]
+          },
+          "docs": "Gets a summary of reporting information for a specified campaign"
+        },
+        {
+          "info": {
+            "name": "Get campaign opens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:id/opens",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets a list of campaign opens"
+        },
+        {
+          "info": {
+            "name": "Get campaign opens for a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:campaignID/activities/:contactID/opens",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              },
+              {
+                "name": "contactID",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the contact"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets a list of campaign opens for a contact"
+        },
+        {
+          "info": {
+            "name": "Get campaign activity for a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:campaignID/activities/:contactID",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              },
+              {
+                "name": "contactID",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the contact"
+              }
+            ]
+          },
+          "docs": "Gets activity for a given contact and given campaign"
+        },
+        {
+          "info": {
+            "name": "Get campaign activity since date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:id/activities/since-date/:date",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "The date from which any campaign activity is returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets a list of contacts who were sent a campaign, and retrieves only those contacts who showed activity (e.g. they clicked, opened) after a specified date"
+        },
+        {
+          "info": {
+            "name": "Get campaign clicks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:id/clicks",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "This is the ID of the campaign"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets a list of campaign link clicks"
+        },
+        {
+          "info": {
+            "name": "Get campaign clicks and link groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:id/clicks-with-groups",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "This is the ID of the campaign"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets a list of campaign link clicks with assigned link groups"
+        },
+        {
+          "info": {
+            "name": "Get campaign clicks since date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:id/clicks/since-date/:date",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "This is the ID of the campaign"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "The date from which any campaign clicks are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets a list of link clicks for a campaign after a specified date"
+        },
+        {
+          "info": {
+            "name": "Get campaign clicks and link groups since date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:id/clicks-with-groups/since-date/:date",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "This is the ID of the campaign"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "The date from which any campaign clicks are returned, which needs to be included within the URL in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets a list of link clicks for a campaign, with assigned link groups, after a specified date"
+        },
+        {
+          "info": {
+            "name": "Get campaign opens since date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:id/opens/since-date/:date",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "The date from which any opens for the campaign are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets a list of opens for a campaign after a specified date"
+        },
+        {
+          "info": {
+            "name": "Get campaign activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:id/activities",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets a list of contacts who were sent a campaign, with their activity"
+        },
+        {
+          "info": {
+            "name": "Get campaign address books",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:id/address-books",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets any address books and segments that a campaign has ever been sent to"
+        },
+        {
+          "info": {
+            "name": "Get campaign clicks for a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:campaignID/activities/:contactID/clicks",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "This is the ID of the campaign"
+              },
+              {
+                "name": "contactID",
+                "value": "",
+                "type": "path",
+                "description": "This is the ID of the contact"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets a list of campaign link clicks for a contact"
+        },
+        {
+          "info": {
+            "name": "Get campaign contact clicks and link groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:campaignID/activities/:contactID/clicks-with-groups",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "This is the ID of the campaign"
+              },
+              {
+                "name": "contactID",
+                "value": "",
+                "type": "path",
+                "description": "This is the ID of the contact"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets a list of campaign link clicks, with assigned link groups, for a contact"
+        },
+        {
+          "info": {
+            "name": "Get campaigns with activity since date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/with-activity-since/:date",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "The date from which campaigns with activity will be returned, which needs to be included within the URL in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets all sent campaigns, which have had activity (e.g. clicks, opens) after a specified date"
+        },
+        {
+          "info": {
+            "name": "Get campaign page views for a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:campaignID/activities/:contactID/page-views",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              },
+              {
+                "name": "contactID",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the contact"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets a list of page views for a specific campaign for a contact"
+        },
+        {
+          "info": {
+            "name": "Get campaign page views since date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:id/page-views/since-date/:date",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "The date from which any campaign page views are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets a list of page views for a campaign after a specified date"
+        },
+        {
+          "info": {
+            "name": "Get campaign replies for a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:campaignID/activities/:contactID/replies",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              },
+              {
+                "name": "contactID",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the contact"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets a list of campaign replies for a contact"
+        },
+        {
+          "info": {
+            "name": "Get campaign ROI activity for a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:campaignID/activities/:contactID/roi-details",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              },
+              {
+                "name": "contactID",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the contact"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets a list of ROI information for a campaign for a contact"
+        },
+        {
+          "info": {
+            "name": "Get campaign ROI activity since date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:id/roi-details/since-date/:date",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "The date from which any ROI activity is returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of ROI information for a campaign after a specified date"
+        },
+        {
+          "info": {
+            "name": "Get campaign social bookmark views",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:id/social-bookmark-views",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets campaign social bookmark views for a campaign"
+        },
+        {
+          "info": {
+            "name": "Get campaign social bookmark views for a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:campaignID/activities/:contactID/social-bookmark-views",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              },
+              {
+                "name": "contactID",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the contact"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets campaign social bookmark views for a contact"
+        },
+        {
+          "info": {
+            "name": "Get campaign hard bouncers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:id/hard-bouncing-contacts",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              },
+              {
+                "name": "withFullData",
+                "value": "",
+                "type": "query",
+                "description": "The withFullData parameter can be set to 'true' to retrieve the contacts along with their full contact data fields"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets a list of contacts who hard bounced when sent a particular campaign"
+        },
+        {
+          "info": {
+            "name": "Get campaign split test results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:id/split-test",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "This is the ID of the campaign"
+              }
+            ]
+          },
+          "docs": "Gets the split test results of a given campaign"
+        },
+        {
+          "info": {
+            "name": "Get custom from addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/custom-from-addresses",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Gets all custom from addresses which can be used in a campaign"
+        },
+        {
+          "info": {
+            "name": "Get campaign revenue since date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:campaignId/revenue/since-date/:date",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The unique numeric campaign identifier you want data for"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "The date from which any revenue associated with the campaign is collated from in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+              }
+            ]
+          },
+          "docs": "Get campaign revenue since date"
+        },
+        {
+          "info": {
+            "name": "Get campaign revenue for contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/:campaignId/activities/:contactId/revenue",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The unique numeric campaign identifier you want data for"
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique numeric identifier for the contact you want the data for"
+              }
+            ]
+          },
+          "docs": "Get campaign revenue for contact"
+        },
+        {
+          "info": {
+            "name": "Gets sent campaigns metrics between the specified dates.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/campaigns/metrics",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "The start date/time for the reporting in UTC [ISO-8601 format](https://en.wikipedia.org/wiki/ISO_8601)."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "The end date/time for the reporting in UTC [ISO-8601 format](https://en.wikipedia.org/wiki/ISO_8601)."
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000 to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set."
+              }
+            ]
+          },
+          "docs": "Gets key campaign metrics between the specified dates in UTC for all campaigns with activity."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

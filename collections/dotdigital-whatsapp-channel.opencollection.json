@@ -1,0 +1,194 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WhatsApp Channel API",
+    "version": "1.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "WhatsApp configurations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get WhatsApp configuration for API Space",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/channels/whatsapp/cloud",
+            "params": [
+              {
+                "name": "includeDeleted",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether deleted channels should be returned."
+              },
+              {
+                "name": "configurationStatus",
+                "value": "",
+                "type": "query",
+                "description": "Indicates the current configuration status of the configurations to be returned."
+              },
+              {
+                "name": "wabaIds",
+                "value": "",
+                "type": "query",
+                "description": "The list of wabaIds to filter by"
+              },
+              {
+                "name": "phoneNumbers",
+                "value": "",
+                "type": "query",
+                "description": "An array of phone numbers for which to to filter by. If not provided, all phone numbers added to the WABA are included"
+              }
+            ]
+          },
+          "docs": "Retrieves all Cloud WhatsApp Channel configuration for an API Space"
+        },
+        {
+          "info": {
+            "name": "Creates WhatsApp configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/cpaas/channels/whatsapp/cloud",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Cloud WhatsApp configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "WhatsApp numbers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get WhatsApp number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/channels/whatsapp/cloud/:phoneNumber",
+            "params": [
+              {
+                "name": "phoneNumber",
+                "value": "",
+                "type": "path",
+                "description": "A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account."
+              }
+            ]
+          },
+          "docs": "Retrieves the WhatsApp configuration for a number."
+        },
+        {
+          "info": {
+            "name": "Removes WhatsApp number",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{region}-api.dotdigital.com/cpaas/channels/whatsapp/cloud/:phoneNumber",
+            "params": [
+              {
+                "name": "phoneNumber",
+                "value": "",
+                "type": "path",
+                "description": "A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account."
+              }
+            ]
+          },
+          "docs": "Removes a WhatsApp number configuration permaently.\n<br><br>\n**Warning: This action cannot be undone!**"
+        },
+        {
+          "info": {
+            "name": "Registers WhatsApp number",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/cpaas/channels/whatsapp/cloud/register/:phoneNumber",
+            "params": [
+              {
+                "name": "phoneNumber",
+                "value": "",
+                "type": "path",
+                "description": "A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account."
+              }
+            ]
+          },
+          "docs": "Registers a WhatsApp configuration for a number."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "WhatsApp templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get WhatsApp templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/channels/whatsapp/businessaccounts/:wabaId/templates",
+            "params": [
+              {
+                "name": "wabaId",
+                "value": "",
+                "type": "path",
+                "description": "The unique WhatsApp Business Account (WABA) identifier."
+              }
+            ]
+          },
+          "docs": "Retrieves the WhatsApp templates for a specific WABA."
+        },
+        {
+          "info": {
+            "name": "Get WhatsApp template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/channels/whatsapp/businessaccounts/:wabaId/templates/:templateId",
+            "params": [
+              {
+                "name": "wabaId",
+                "value": "",
+                "type": "path",
+                "description": "The unique WhatsApp Business Account (WABA) identifier."
+              },
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "The unique WhatsApp template identifier."
+              }
+            ]
+          },
+          "docs": "Retrieves a WhatsApp template for a specific WABA."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

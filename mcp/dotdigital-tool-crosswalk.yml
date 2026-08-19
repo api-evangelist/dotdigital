@@ -1,0 +1,111 @@
+generated: '2026-08-13'
+method: derived
+source: mcp/dotdigital-mcp-tools-list.json + openapi/ (43 harvested Dotdigital OpenAPI descriptions)
+description: >-
+  Crosswalk between the seven tools the Dotdigital remote MCP server exposes and the REST
+  operations published in the OpenAPI descriptions. The finding here is a clean surface
+  divergence, not a mapping: Dotdigital's MCP server is a META surface over the contract —
+  every tool reads the specs or the documentation corpus, and NONE of them binds to a
+  Dotdigital business operation. An agent can use MCP to discover how to create a contact or
+  send an SMS; it cannot create a contact or send an SMS through MCP. All 522 REST operations
+  are therefore rest_only.
+surfaces:
+  openapi:
+    count: 43
+    location: openapi/
+    catalog: https://developer.dotdigital.com/openapi
+    well_known: https://developer.dotdigital.com/.well-known/api-catalog
+    gated: false
+  mcp:
+    url: https://marketing.developer.dotdigital.com/mcp
+    transport: streamable-http
+    gated: false
+    note: tools/list answered anonymously; input schemas captured verbatim
+  graphql:
+    present: false
+    note: >-
+      No first-party GraphQL API. Dotdigital ships GraphQL MODULES for Magento 2/Adobe Commerce
+      (dotdigital-magento2-extension-graph-ql, -chat-graph-ql) which extend the merchant's own
+      Magento GraphQL schema — that is the merchant's endpoint, not a Dotdigital API surface.
+crosswalk: []
+mcp_only:
+  - tool: list-endpoints
+    reason: Meta tool over the OpenAPI corpus; no backing Dotdigital REST operation.
+  - tool: get-endpoint
+    reason: Meta tool over the OpenAPI corpus; returns spec content, not account data.
+  - tool: search-endpoints
+    reason: Meta tool over the OpenAPI corpus; spec search, not a Dotdigital query.
+  - tool: list-specs
+    reason: Meta tool; enumerates the 42 published specs (mirrors the api-catalog linkset).
+  - tool: get-server-variables
+    reason: Meta tool; returns the {region} server variable values from a spec.
+  - tool: search
+    reason: Documentation search over the developer hub; no REST equivalent.
+  - tool: fetch
+    reason: Documentation page fetch by id; no REST equivalent.
+rest_only:
+  - capability: Contacts (v2 email contacts + v3 unified contacts)
+    specs:
+      - openapi/dotdigital-email-contacts-openapi.yml
+      - openapi/dotdigital-contacts-openapi.yml
+    note: create/replace/patch/delete contacts, imports, delete jobs — no MCP tool.
+  - capability: Lists / address books, segments, data fields, preferences and subscriptions
+    specs:
+      - openapi/dotdigital-lists-address-books-openapi.yml
+      - openapi/dotdigital-segments-openapi.yml
+      - openapi/dotdigital-contact-data-fields-openapi.yml
+      - openapi/dotdigital-preferences-and-subscriptions-openapi.yml
+  - capability: Email campaigns, SMS campaigns, transactional email, marketing email, templates
+    specs:
+      - openapi/dotdigital-email-campaigns-openapi.yml
+      - openapi/dotdigital-sms-campaigns-openapi.yml
+      - openapi/dotdigital-transactional-email-openapi.yml
+      - openapi/dotdigital-marketing-email-openapi.yml
+      - openapi/dotdigital-campaign-templates-openapi.yml
+  - capability: Omnichannel / CPaaS messaging (SMS, MMS, WhatsApp, push, Facebook, app messaging)
+    specs:
+      - openapi/dotdigital-omnichannel-openapi.yml
+      - openapi/dotdigital-cpaas-openapi.yml
+      - openapi/dotdigital-whatsapp-channel-openapi.yml
+      - openapi/dotdigital-message-rules-openapi.yml
+      - openapi/dotdigital-message-history-openapi.yml
+      - openapi/dotdigital-phone-number-validation-openapi.yml
+  - capability: Chat, conversations, sessions, profiles, content
+    specs:
+      - openapi/dotdigital-chat-openapi.yml
+      - openapi/dotdigital-chat-config-openapi.yml
+      - openapi/dotdigital-chat-message-openapi.yml
+      - openapi/dotdigital-chat-presence-openapi.yml
+      - openapi/dotdigital-conversation-openapi.yml
+      - openapi/dotdigital-conversation-message-openapi.yml
+      - openapi/dotdigital-session-openapi.yml
+      - openapi/dotdigital-profile-openapi.yml
+      - openapi/dotdigital-content-openapi.yml
+  - capability: Events in/out, webhooks, Data Firehose, analytics
+    specs:
+      - openapi/dotdigital-events-openapi.yml
+      - openapi/dotdigital-webhook-openapi.yml
+      - openapi/dotdigital-data-firehose-openapi.yml
+      - openapi/dotdigital-analytics-openapi.yml
+  - capability: Insight data, ecommerce, product recommendations, scoring, programs, pages and forms, images, documents, accounts
+    specs:
+      - openapi/dotdigital-insight-data-service-openapi.yml
+      - openapi/dotdigital-insight-and-transactional-data-openapi.yml
+      - openapi/dotdigital-ecommerce-openapi.yml
+      - openapi/dotdigital-product-recommendations-openapi.yml
+      - openapi/dotdigital-scoring-openapi.yml
+      - openapi/dotdigital-programs-openapi.yml
+      - openapi/dotdigital-pages-and-forms-openapi.yml
+      - openapi/dotdigital-images-openapi.yml
+      - openapi/dotdigital-documents-openapi.yml
+      - openapi/dotdigital-accounts-and-utilities-openapi.yml
+      - openapi/dotdigital-configuration-service-openapi.yml
+coverage:
+  tools_named: 7
+  tools_bound_to_rest: 0
+  mcp_only: 7
+  rest_operations_total: 522
+  rest_operations_with_a_tool: 0
+  note: >-
+    0% tool coverage of the REST surface is the honest measurement, not a harvesting gap. The
+    server is a spec/doc discovery server. A data-plane MCP server would be a net-new product.

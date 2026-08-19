@@ -1,0 +1,1921 @@
+{
+  "item": [
+    {
+      "id": "460c6fb6-9534-4825-bf26-5fa7456644ad",
+      "name": "Data Firehose",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "889e62f4-d637-4288-bba7-8aeed77ab949",
+          "name": "Get configuration",
+          "request": {
+            "name": "Get configuration",
+            "description": {
+              "content": "Gets a Data Firehose configuration. \n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data-firehose",
+                "v3",
+                "configurations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The Data Firehose configuration id to delete"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6d06e603-f166-48c5-8dea-1c934c7f5948",
+              "name": "Configuration retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Data Firehose configuration id to delete"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"none\"\n  },\n  \"events\": [\n    {\n      \"eventType\": \"sms.delivered\"\n    }\n  ],\n  \"frequency\": \"daily\",\n  \"id\": \"string\",\n  \"status\": \"enabled\",\n  \"target\": {\n    \"authentication\": {\n      \"accessKey\": \"key123123\",\n      \"authType\": \"sas\",\n      \"secretAccessKey\": \"some-secret\"\n    },\n    \"configuration\": {\n      \"addAccountIdToPath\": true,\n      \"bucketName\": \"dataPool1\",\n      \"folderPath\": \"events/test\",\n      \"regionEndpoint\": \"http://GQiBtxglZiWLhTnginw.ikmpOiQc,qNqkgtkubAbf3LiAqNg7tBOS.5vIY6hjcVltJeMG\"\n    },\n    \"platform\": \"amazonS3\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2dcc7224-3268-4d0b-b474-59d8bf27465c",
+              "name": "Bad request, you have an error in the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Data Firehose configuration id to delete"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"errorCode\": \"string\",\n  \"details\": [\n    {\n      \"description\": \"string\",\n      \"item\": \"string\"\n    },\n    {\n      \"description\": \"string\",\n      \"item\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e88afb94-7d01-4fb1-822f-1732358de374",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Data Firehose configuration id to delete"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "220a764d-d5cc-4340-8677-102fdf97bf0d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Data Firehose configuration id to delete"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d0a70ed6-b27a-4d5f-84be-e0723f1304bf",
+              "name": "Configuration not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Data Firehose configuration id to delete"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"dataFirehose:configNotFound\",\n  \"description\": \"The Data Firehose configuration id `YOUR ID` was not found!\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cbde477a-145c-4bb8-be02-69db5d3af4ca",
+          "name": "Update configuration",
+          "request": {
+            "name": "Update configuration",
+            "description": {
+              "content": "Updates a Data Firehose configuration with new details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data-firehose",
+                "v3",
+                "configurations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The Data Firehose configuration id you want to update."
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a verified integration then include your integration tracking token here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"events\": [\n    {\n      \"eventType\": \"<string>\"\n    }\n  ],\n  \"frequency\": \"<string>\",\n  \"target\": {\n    \"authentication\": {\n      \"accessKey\": \"<string>\",\n      \"authType\": \"<string>\",\n      \"secretAccessKey\": \"<string>\"\n    },\n    \"configuration\": {\n      \"addAccountIdToPath\": \"<boolean>\",\n      \"bucketName\": \"<string>\",\n      \"folderPath\": \"<string>\",\n      \"regionEndpoint\": \"<uri>\"\n    },\n    \"platform\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5b95202a-ba3e-42b2-a38e-8fce25f22d07",
+              "name": "Updated Data Firehose configuration.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Data Firehose configuration id you want to update."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a verified integration then include your integration tracking token here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"events\": [\n    {\n      \"eventType\": \"<string>\"\n    }\n  ],\n  \"frequency\": \"<string>\",\n  \"target\": {\n    \"authentication\": {\n      \"accessKey\": \"key123123\",\n      \"authType\": \"<string>\",\n      \"secretAccessKey\": \"some-secret\"\n    },\n    \"configuration\": {\n      \"addAccountIdToPath\": \"<boolean>\",\n      \"bucketName\": \"dataPool1\",\n      \"folderPath\": \"events/test\",\n      \"regionEndpoint\": \"<uri>\"\n    },\n    \"platform\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"events\": [\n    {\n      \"eventType\": \"<string>\"\n    }\n  ],\n  \"frequency\": \"<string>\",\n  \"id\": \"string\",\n  \"status\": \"disabled\",\n  \"target\": {\n    \"authentication\": {\n      \"accessKey\": \"key123123\",\n      \"authType\": \"<string>\",\n      \"secretAccessKey\": \"some-secret\"\n    },\n    \"configuration\": {\n      \"addAccountIdToPath\": \"<boolean>\",\n      \"bucketName\": \"dataPool1\",\n      \"folderPath\": \"events/test\",\n      \"regionEndpoint\": \"<uri>\"\n    },\n    \"platform\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8aa7069-1a8e-44f5-9ea6-575fec1d4317",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Data Firehose configuration id you want to update."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a verified integration then include your integration tracking token here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"events\": [\n    {\n      \"eventType\": \"<string>\"\n    }\n  ],\n  \"frequency\": \"<string>\",\n  \"target\": {\n    \"authentication\": {\n      \"accessKey\": \"key123123\",\n      \"authType\": \"<string>\",\n      \"secretAccessKey\": \"some-secret\"\n    },\n    \"configuration\": {\n      \"addAccountIdToPath\": \"<boolean>\",\n      \"bucketName\": \"dataPool1\",\n      \"folderPath\": \"events/test\",\n      \"regionEndpoint\": \"<uri>\"\n    },\n    \"platform\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"errorCode\": \"string\",\n  \"details\": [\n    {\n      \"description\": \"string\",\n      \"item\": \"string\"\n    },\n    {\n      \"description\": \"string\",\n      \"item\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c13090b6-cfc6-48e8-97f8-7e31f593f718",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Data Firehose configuration id you want to update."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a verified integration then include your integration tracking token here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"events\": [\n    {\n      \"eventType\": \"<string>\"\n    }\n  ],\n  \"frequency\": \"<string>\",\n  \"target\": {\n    \"authentication\": {\n      \"accessKey\": \"key123123\",\n      \"authType\": \"<string>\",\n      \"secretAccessKey\": \"some-secret\"\n    },\n    \"configuration\": {\n      \"addAccountIdToPath\": \"<boolean>\",\n      \"bucketName\": \"dataPool1\",\n      \"folderPath\": \"events/test\",\n      \"regionEndpoint\": \"<uri>\"\n    },\n    \"platform\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8cb70fa2-106d-42a4-a260-34d424f5b49a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Data Firehose configuration id you want to update."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a verified integration then include your integration tracking token here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"events\": [\n    {\n      \"eventType\": \"<string>\"\n    }\n  ],\n  \"frequency\": \"<string>\",\n  \"target\": {\n    \"authentication\": {\n      \"accessKey\": \"key123123\",\n      \"authType\": \"<string>\",\n      \"secretAccessKey\": \"some-secret\"\n    },\n    \"configuration\": {\n      \"addAccountIdToPath\": \"<boolean>\",\n      \"bucketName\": \"dataPool1\",\n      \"folderPath\": \"events/test\",\n      \"regionEndpoint\": \"<uri>\"\n    },\n    \"platform\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "99bdc31f-828b-4c9a-9383-0524f288d929",
+              "name": "Configuration not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Data Firehose configuration id you want to update."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a verified integration then include your integration tracking token here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"events\": [\n    {\n      \"eventType\": \"<string>\"\n    }\n  ],\n  \"frequency\": \"<string>\",\n  \"target\": {\n    \"authentication\": {\n      \"accessKey\": \"key123123\",\n      \"authType\": \"<string>\",\n      \"secretAccessKey\": \"some-secret\"\n    },\n    \"configuration\": {\n      \"addAccountIdToPath\": \"<boolean>\",\n      \"bucketName\": \"dataPool1\",\n      \"folderPath\": \"events/test\",\n      \"regionEndpoint\": \"<uri>\"\n    },\n    \"platform\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"dataFirehose:configNotFound\",\n  \"description\": \"The Data Firehose configuration id `YOUR ID` was not found!\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "57335add-003f-4af8-a517-e074531d6101",
+          "name": "Delete configuration",
+          "request": {
+            "name": "Delete configuration",
+            "description": {
+              "content": "Deletes a Data Firehose configuration. \nIf data sync is in progress returns 409.\n\n_Note: Once a configuration deleted it cannot be restored, this is a destructive call!_",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data-firehose",
+                "v3",
+                "configurations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The Data Firehose configuration id to delete"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ee19b5c0-678c-4296-869c-a7f17d5e0222",
+              "name": "Configuration deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Data Firehose configuration id to delete"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "942a5517-391e-4da4-b7ab-77fabf72a99b",
+              "name": "Bad request, you have an error in the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Data Firehose configuration id to delete"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"errorCode\": \"string\",\n  \"details\": [\n    {\n      \"description\": \"string\",\n      \"item\": \"string\"\n    },\n    {\n      \"description\": \"string\",\n      \"item\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dfe963cb-70af-47b8-9b4a-4de7a72728e3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Data Firehose configuration id to delete"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a5a9d920-db57-4b3e-9107-8ea6058c231d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Data Firehose configuration id to delete"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "929c47d1-8e73-4096-a938-521516528c75",
+              "name": "Configuration not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Data Firehose configuration id to delete"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"dataFirehose:configNotFound\",\n  \"description\": \"The Data Firehose configuration id `YOUR ID` was not found!\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "742da10b-b96b-4c92-8b43-aefca57ee9f3",
+              "name": "Cannot delete data sync in progress",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Data Firehose configuration id to delete"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"dataFirehose:syncInProgress\",\n  \"description\": \"The Data Firehose configuration is currently syncing so cannot be deleted.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85562b19-a145-4095-9b8c-ca912fd772c4",
+          "name": "Update configuration status",
+          "request": {
+            "name": "Update configuration status",
+            "description": {
+              "content": "Updates the status of a Data Firehose configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data-firehose",
+                "v3",
+                "configurations",
+                ":id",
+                "status",
+                ":newStatus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The Data Firehose configuration id you want to update."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "newStatus",
+                  "description": "(Required) The new status for the configuration."
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a verified integration then include your integration tracking token here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "db382623-02c6-4e9a-bfcc-8ce8561cca39",
+              "name": "Status updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations",
+                    ":id",
+                    "status",
+                    ":newStatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Data Firehose configuration id you want to update."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "newStatus",
+                      "description": "(Required) The new status for the configuration."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a verified integration then include your integration tracking token here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "54639c53-af3f-4e81-843d-d2486fc76fff"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6aa01d87-79ec-4de7-8f94-2ca173503b88",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations",
+                    ":id",
+                    "status",
+                    ":newStatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Data Firehose configuration id you want to update."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "newStatus",
+                      "description": "(Required) The new status for the configuration."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a verified integration then include your integration tracking token here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "54639c53-af3f-4e81-843d-d2486fc76fff"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "495a834e-efb9-435e-9758-f6c34a5518f9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations",
+                    ":id",
+                    "status",
+                    ":newStatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Data Firehose configuration id you want to update."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "newStatus",
+                      "description": "(Required) The new status for the configuration."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a verified integration then include your integration tracking token here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "54639c53-af3f-4e81-843d-d2486fc76fff"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "39889128-5c1f-4f1c-a855-b96ee4e68985",
+              "name": "Configuration not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations",
+                    ":id",
+                    "status",
+                    ":newStatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Data Firehose configuration id you want to update."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "newStatus",
+                      "description": "(Required) The new status for the configuration."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a verified integration then include your integration tracking token here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "54639c53-af3f-4e81-843d-d2486fc76fff"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"dataFirehose:configNotFound\",\n  \"description\": \"The Data Firehose configuration id `YOUR ID` was not found!\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4b4177b-3ead-4cb7-9ca9-01d586971fbe",
+          "name": "Add configuration",
+          "request": {
+            "name": "Add configuration",
+            "description": {
+              "content": "Adds a new Data Firehose configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data-firehose",
+                "v3",
+                "configurations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"events\": [\n    {\n      \"eventType\": \"<string>\"\n    }\n  ],\n  \"frequency\": \"<string>\",\n  \"target\": {\n    \"authentication\": {\n      \"accessKey\": \"<string>\",\n      \"authType\": \"<string>\",\n      \"secretAccessKey\": \"<string>\"\n    },\n    \"configuration\": {\n      \"addAccountIdToPath\": \"<boolean>\",\n      \"bucketName\": \"<string>\",\n      \"folderPath\": \"<string>\",\n      \"regionEndpoint\": \"<uri>\"\n    },\n    \"platform\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "07f5aefb-d629-4bcd-abfb-c530a0abec0c",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"events\": [\n    {\n      \"eventType\": \"<string>\"\n    }\n  ],\n  \"frequency\": \"<string>\",\n  \"target\": {\n    \"authentication\": {\n      \"accessKey\": \"key123123\",\n      \"authType\": \"<string>\",\n      \"secretAccessKey\": \"some-secret\"\n    },\n    \"configuration\": {\n      \"addAccountIdToPath\": \"<boolean>\",\n      \"bucketName\": \"dataPool1\",\n      \"folderPath\": \"events/test\",\n      \"regionEndpoint\": \"<uri>\"\n    },\n    \"platform\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"events\": [\n    {\n      \"eventType\": \"<string>\"\n    }\n  ],\n  \"frequency\": \"<string>\",\n  \"id\": \"string\",\n  \"status\": \"disabled\",\n  \"target\": {\n    \"authentication\": {\n      \"accessKey\": \"key123123\",\n      \"authType\": \"<string>\",\n      \"secretAccessKey\": \"some-secret\"\n    },\n    \"configuration\": {\n      \"addAccountIdToPath\": \"<boolean>\",\n      \"bucketName\": \"dataPool1\",\n      \"folderPath\": \"events/test\",\n      \"regionEndpoint\": \"<uri>\"\n    },\n    \"platform\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55bb76db-746e-47c4-996c-5e5bea6efb0a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"events\": [\n    {\n      \"eventType\": \"<string>\"\n    }\n  ],\n  \"frequency\": \"<string>\",\n  \"target\": {\n    \"authentication\": {\n      \"accessKey\": \"key123123\",\n      \"authType\": \"<string>\",\n      \"secretAccessKey\": \"some-secret\"\n    },\n    \"configuration\": {\n      \"addAccountIdToPath\": \"<boolean>\",\n      \"bucketName\": \"dataPool1\",\n      \"folderPath\": \"events/test\",\n      \"regionEndpoint\": \"<uri>\"\n    },\n    \"platform\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"events:badJson\",\n  \"description\": \"The request JSON is badly formed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e550b9f-c343-4860-bae3-403e1f60f8b6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"events\": [\n    {\n      \"eventType\": \"<string>\"\n    }\n  ],\n  \"frequency\": \"<string>\",\n  \"target\": {\n    \"authentication\": {\n      \"accessKey\": \"key123123\",\n      \"authType\": \"<string>\",\n      \"secretAccessKey\": \"some-secret\"\n    },\n    \"configuration\": {\n      \"addAccountIdToPath\": \"<boolean>\",\n      \"bucketName\": \"dataPool1\",\n      \"folderPath\": \"events/test\",\n      \"regionEndpoint\": \"<uri>\"\n    },\n    \"platform\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5a93a747-54a4-4aee-9394-09abd7f79bfb",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-firehose",
+                    "v3",
+                    "configurations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"events\": [\n    {\n      \"eventType\": \"<string>\"\n    }\n  ],\n  \"frequency\": \"<string>\",\n  \"target\": {\n    \"authentication\": {\n      \"accessKey\": \"key123123\",\n      \"authType\": \"<string>\",\n      \"secretAccessKey\": \"some-secret\"\n    },\n    \"configuration\": {\n      \"addAccountIdToPath\": \"<boolean>\",\n      \"bucketName\": \"dataPool1\",\n      \"folderPath\": \"events/test\",\n      \"regionEndpoint\": \"<uri>\"\n    },\n    \"platform\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4b68ea28-1f6a-42bd-8702-f42c5f6a2386",
+    "name": "Data Firehose",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "**Note: This is in private preview and should not be used.**\n\nCreate, retrieve, update, and delete Data Firehose configurations. Use this\nAPI to define which events to stream, set the sync frequency, configure the\ntarget storage platform (Amazon S3, Azure Blob Storage, FTPS, SFTP, or\nGoogle Cloud Storage), and enable or disable a configuration.",
+      "type": "text/plain"
+    }
+  }
+}

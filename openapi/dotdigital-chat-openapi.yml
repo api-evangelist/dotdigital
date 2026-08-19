@@ -1,0 +1,620 @@
+openapi: 3.0.1
+info:
+  title: Chat API
+  description: 'Provides methods for creating, retrieving, updating, and deleting chat
+
+    sessions. Supports operations to assign or close a chat, change its channel,
+
+    send forms to a chat, manage typing indicators, and retrieve the list of
+
+    chat participants.'
+  version: 1.0.1
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      description: The Dotdigital region id your account belongs to
+      enum:
+      - r1
+      - r2
+      - r3
+      default: r1
+security:
+- basicAuth: []
+paths:
+  /cpaas/chats/{chatId}:
+    get:
+      summary: Retrieves a chat
+      parameters:
+      - name: chatId
+        in: path
+        description: The id of the chat
+        required: true
+        schema:
+          type: string
+      - name: includeDeleted
+        in: query
+        description: Indicates whether deleted chats should be returned
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: The requested chat
+          headers:
+            ETag:
+              description: A unique value representing the version of the chat, optionally used for optimistic concurrency control on PUT and DELETE
+              schema:
+                type: string
+            Last-Modified:
+              description: The date the chat was last updated in ISO 8601 format
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chat'
+        '404':
+          description: The chat was not found
+          content: {}
+    put:
+      summary: Updates a chat
+      parameters:
+      - name: chatId
+        in: path
+        description: The id of the chat
+        required: true
+        schema:
+          type: string
+      - name: if-match
+        in: header
+        description: An optional ETag for optimistic concurrency control
+        required: false
+        schema:
+          type: string
+      requestBody:
+        description: Detail of the chat to update
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatUpdate'
+        required: true
+      responses:
+        '200':
+          description: The updated chat
+          headers:
+            ETag:
+              description: A unique value representing the version of the chat, optionally used for optimistic concurrency control on PUT and DELETE
+              schema:
+                type: string
+            Last-Modified:
+              description: The date the chat was last updated in ISO 8601 format
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chat'
+        '400':
+          description: Validation issues were found
+          content: {}
+        '404':
+          description: The chat was not found
+          content: {}
+        '409':
+          description: A conncurrency issue occured updating the chat
+          content: {}
+        '412':
+          description: The specified 'if-match' header was not valid, refresh and retry
+          content: {}
+      x-codegen-request-body-name: name
+    delete:
+      summary: Deletes a chat
+      parameters:
+      - name: chatId
+        in: path
+        description: The id of the chat
+        required: true
+        schema:
+          type: string
+      - name: if-match
+        in: header
+        description: An optional ETag for optimistic concurrency control
+        required: false
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Indicates successful deletetion of an chat
+          content: {}
+        '404':
+          description: The chat was not found
+          content: {}
+        '409':
+          description: A conncurrency issue occured deleting the chat
+          content: {}
+        '412':
+          description: The specified 'if-match' header was not valid, refresh and retry
+          content: {}
+  /cpaas/chats/{chatId}/assign:
+    put:
+      summary: Assigns a chat
+      parameters:
+      - name: chatId
+        in: path
+        description: The id of the chat
+        required: true
+        schema:
+          type: string
+      - name: if-match
+        in: header
+        description: An optional ETag for optimistic concurrency control
+        required: false
+        schema:
+          type: string
+      requestBody:
+        description: Detail of the agent to assign the chat to
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignmentDetails'
+        required: true
+      responses:
+        '200':
+          description: The updated chat
+          headers:
+            ETag:
+              description: A unique value representing the version of the chat, optionally used for optimistic concurrency control on PUT and DELETE
+              schema:
+                type: string
+            Last-Modified:
+              description: The date the chat was last updated in ISO 8601 format
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chat'
+        '400':
+          description: Validation issues were found
+          content: {}
+        '404':
+          description: The chat was not found
+          content: {}
+        '409':
+          description: A conncurrency issue occured updating the chat
+          content: {}
+        '412':
+          description: The specified 'if-match' header was not valid, refresh and retry
+          content: {}
+      x-codegen-request-body-name: assignment
+  /cpaas/chats/{chatId}/close:
+    put:
+      summary: Closes a chat
+      parameters:
+      - name: chatId
+        in: path
+        description: The id of the chat
+        required: true
+        schema:
+          type: string
+      - name: if-match
+        in: header
+        description: An optional ETag for optimistic concurrency control
+        required: false
+        schema:
+          type: string
+      requestBody:
+        description: Options relating to closing the chat.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/chatId_close_body'
+        required: false
+      responses:
+        '200':
+          description: The updated chat
+          headers:
+            ETag:
+              description: A unique value representing the version of the chat, optionally used for optimistic concurrency control on PUT and DELETE
+              schema:
+                type: string
+            Last-Modified:
+              description: The date the chat was last updated in ISO 8601 format
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chat'
+        '400':
+          description: Validation issues were found
+          content: {}
+        '404':
+          description: The chat was not found
+          content: {}
+        '409':
+          description: A conncurrency issue occured updating the chat
+          content: {}
+        '412':
+          description: The specified 'if-match' header was not valid, refresh and retry
+          content: {}
+      x-codegen-request-body-name: name
+  /cpaas/chats/{chatId}/channel:
+    put:
+      summary: Changes the channel for an existing chat
+      parameters:
+      - name: chatId
+        in: path
+        description: The id of the chat
+        required: true
+        schema:
+          type: string
+      - name: if-match
+        in: header
+        description: An optional ETag for optimistic concurrency control
+        required: false
+        schema:
+          type: string
+      requestBody:
+        description: Options relating to changing the channel of a the chat.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/chatId_channel_body'
+        required: true
+      responses:
+        '200':
+          description: The updated chat
+          headers:
+            ETag:
+              description: A unique value representing the version of the chat, optionally used for optimistic concurrency control on PUT and DELETE
+              schema:
+                type: string
+            Last-Modified:
+              description: The date the chat was last updated in ISO 8601 format
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chat'
+        '400':
+          description: Validation issues were found
+          content: {}
+        '404':
+          description: The chat was not found
+          content: {}
+        '409':
+          description: A conncurrency issue occured updating the chat
+          content: {}
+        '412':
+          description: The specified 'if-match' header was not valid, refresh and retry
+          content: {}
+      x-codegen-request-body-name: name
+  /cpaas/chats/{chatId}/form:
+    post:
+      summary: Sends a form to a chat
+      parameters:
+      - name: chatId
+        in: path
+        description: The id of the chat
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Options relating to sending a form to a chat.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/chatId_form_body'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content: {}
+        '400':
+          description: Validation issues were found
+          content: {}
+        '404':
+          description: The chat was not found
+          content: {}
+      x-codegen-request-body-name: name
+  /cpaas/chats:
+    get:
+      summary: Retrieves a list of chats
+      parameters:
+      - name: profileId
+        in: query
+        description: Indicates whether only chats the profile is a participant of should be returned
+        required: false
+        schema:
+          type: string
+      - name: scope
+        in: query
+        description: The scope of the query.
+        required: false
+        schema:
+          type: string
+          enum:
+          - profile
+          - all
+          default: profile
+      - name: includeClosed
+        in: query
+        description: Indicates whether closed chats should be returned
+        required: false
+        schema:
+          type: boolean
+      - name: includeDeleted
+        in: query
+        description: Indicates whether deleted chats should be returned
+        required: false
+        schema:
+          type: boolean
+      - name: idsOnly
+        in: query
+        description: Indicates whether just the ids should be returned
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: A list of matching chats
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Chat'
+    post:
+      summary: Creates a new chat
+      requestBody:
+        description: Detail of the chat to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatCreate'
+        required: true
+      responses:
+        '201':
+          description: The chat was successfully created
+          headers:
+            ETag:
+              description: A unique value representing the version of the chat, optionally used for optimistic concurrency control on PUT and DELETE
+              schema:
+                type: string
+            Last-Modified:
+              description: The date the chat was last updated in ISO 8601 format
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chat'
+        '400':
+          description: Validation issues were found
+          content: {}
+        '409':
+          description: The chat already exists
+          content: {}
+      x-codegen-request-body-name: chat
+  /cpaas/chats/{chatId}/typing:
+    post:
+      summary: Indicates that the caller is typing in this chat
+      parameters:
+      - name: chatId
+        in: path
+        description: The id of the chat
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The request was accepted
+          content: {}
+    delete:
+      summary: Indicates that the caller has stopped typing in this chat
+      parameters:
+      - name: chatId
+        in: path
+        description: The id of the chat
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The request was accepted
+          content: {}
+  /cpaas/chats/{chatId}/participants:
+    get:
+      summary: Retrieves the chat participants
+      parameters:
+      - name: chatId
+        in: path
+        description: The id of the chat
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The requested chat
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant'
+        '404':
+          description: The chat was not found
+          content: {}
+components:
+  schemas:
+    AssignmentDetails:
+      required:
+      - teamId
+      type: object
+      properties:
+        teamId:
+          type: string
+          description: The id of the team
+        agentId:
+          type: string
+          description: The id of the agent to assign to (optional)
+    ChatCreate:
+      required:
+      - channelId
+      - name
+      - teamId
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the chat
+        description:
+          type: string
+          description: The description of the chat
+        teamId:
+          type: string
+          description: The id of the team owning this chat
+        channelId:
+          type: string
+          description: The id of the channel initiating this chat
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
+        context:
+          $ref: '#/components/schemas/ChatContext'
+    ChatUpdate:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the chat
+        description:
+          type: string
+          description: The description of the chat
+    Chat:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the chat
+        name:
+          type: string
+          description: The name of the chat
+        description:
+          type: string
+          description: The description of the chat
+        teamId:
+          type: string
+          description: The id of the team owning this chat
+        originalTeamId:
+          type: string
+          description: The id of the team the chat was created against
+          readOnly: true
+        channelId:
+          type: string
+          description: The id of the channel initiating this chat
+        status:
+          type: string
+          description: The current status of this chat
+          enum:
+          - new
+          - replied
+          - closed
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
+        context:
+          $ref: '#/components/schemas/ChatContext'
+        _createdOn:
+          type: string
+          description: The date (in UTC, ISO 8601 format) that the chat was created
+          format: date-time
+          readOnly: true
+        _createdBy:
+          type: string
+          description: The identity that created the chat
+        _updatedOn:
+          type: string
+          description: The date (in UTC, ISO 8601 format) that the chat was last updated
+          format: date-time
+          readOnly: true
+        _updatedBy:
+          type: string
+          description: The identity that created the chat
+          readOnly: true
+    Participant:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the chat participant's profile
+        role:
+          type: string
+          description: The role of the chat participant
+          enum:
+          - agent
+          - participant
+          default: participant
+    ChatContext:
+      type: object
+      properties:
+        conversationId:
+          type: string
+          description: Optional conversationId, used to correlated messages on the channel used for the chat
+    chatId_close_body:
+      type: object
+      properties:
+        bypassMessage:
+          type: boolean
+          description: When set to true, any close message in the team config will be ignored and not sent
+    chatId_channel_body:
+      type: object
+      properties:
+        channelId:
+          type: string
+          description: Must be set to a configuration chat channel
+    chatId_form_body:
+      type: object
+      properties:
+        formTemplateId:
+          type: string
+          description: The id of a template to base the form being sent on
+  parameters:
+    chatIdPathParameter:
+      name: chatId
+      in: path
+      description: The id of the chat
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+x-readme:
+  samples-languages:
+  - curl
+  - csharp
+  - java
+  - node
+  - php
+  - python
+  - ruby
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

@@ -1,0 +1,574 @@
+{
+  "item": [
+    {
+      "id": "7f5f2c29-1676-40f5-aeb8-86a723a8d56d",
+      "name": "Campaign Templates",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b87c8bbd-b061-4aa6-8959-6423caf9a64d",
+          "name": "Create template",
+          "request": {
+            "name": "Create template",
+            "description": {
+              "content": "Creates an email campaign template",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"fromName\": \"<string>\",\n  \"htmlContent\": \"<string>\",\n  \"plainTextContent\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "211a4d2e-2493-43a6-a70c-0966cce0103e",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"New product promotion 2\",\n  \"subject\": \"New product!\",\n  \"fromName\": \"Company name\",\n  \"htmlContent\": \"\\r\\n<!-- Easy Editor -->\\r\\n<table width=\\\"100%\\\" border=\\\"0\\\" cellspacing=\\\"0\\\" cellpadding=\\\"0\\\" style=\\\"table-layout: auto;\\\" class=\\\"ee_resizable ee_mobiletemplate\\\" data-dmtmp=\\\"true\\\">\\r\\n<tbody>\\r\\n<tr>\\r\\n<td align=\\\"center\\\" bgcolor=\\\"#ffffff\\\" cellpadding=\\\"0\\\" cellspacing=\\\"0\\\">\\r\\n<table width=\\\"600\\\" border=\\\"0\\\" cellspacing=\\\"0\\\" cellpadding=\\\"0\\\" style=\\\"table-layout: auto;\\\" class=\\\"eem_mainouterzone\\\">\\r\\n<tbody>\\r\\n<tr>\\r\\n<td bgcolor=\\\"#ffffff\\\" class=\\\"ee_dropzone\\\" style=\\\"padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px;\\\" align=\\\"left\\\">\\r\\n<table width=\\\"100%\\\" cellpadding=\\\"0\\\" cellspacing=\\\"0\\\" style=\\\"width: 600px; background-color: rgb(255, 255, 255); table-layout: auto;\\\" class=\\\"ee_element\\\" bgcolor=\\\"#ffffff\\\">\\r\\n<tbody>\\r\\n<tr>\\r\\n<td align=\\\"left\\\" style=\\\"padding: 0px; width: 600px;\\\" class=\\\"\\\"><div class=\\\"ee_editable\\\"><font style=\\\"font-family: 'trebuchet ms', verdana, arial, sans-serif; font-size: 13px;\\\"><a href=\\\"http://$UNSUB$\\\" style=\\\"color: black;\\\"> Unsubscribe from this newsletter</a></font> </div></td>\\r\\n</tr>\\r\\n</tbody>\\r\\n</table>\\r\\n</td>\\r\\n</tr>\\r\\n</tbody>\\r\\n</table>\\r\\n</td>\\r\\n</tr>\\r\\n</tbody>\\r\\n</table>\",\n  \"plainTextContent\": \"\\r\\n\\n---\\r\\nWant to unsubscribe? $UNSUB$\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4,\n  \"name\": \"New product promotion 2\",\n  \"subject\": \"New product!\",\n  \"fromName\": \"Company name\",\n  \"htmlContent\": \"\\r\\n<!-- Easy Editor -->\\r\\n<table width=\\\"100%\\\" border=\\\"0\\\" cellspacing=\\\"0\\\" cellpadding=\\\"0\\\" style=\\\"table-layout: auto;\\\" class=\\\"ee_resizable ee_mobiletemplate\\\" data-dmtmp=\\\"true\\\">\\r\\n<tbody>\\r\\n<tr>\\r\\n<td align=\\\"center\\\" bgcolor=\\\"#ffffff\\\" cellpadding=\\\"0\\\" cellspacing=\\\"0\\\">\\r\\n<table width=\\\"600\\\" border=\\\"0\\\" cellspacing=\\\"0\\\" cellpadding=\\\"0\\\" style=\\\"table-layout: auto;\\\" class=\\\"eem_mainouterzone\\\">\\r\\n<tbody>\\r\\n<tr>\\r\\n<td bgcolor=\\\"#ffffff\\\" class=\\\"ee_dropzone\\\" style=\\\"padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px;\\\" align=\\\"left\\\">\\r\\n<table width=\\\"100%\\\" cellpadding=\\\"0\\\" cellspacing=\\\"0\\\" style=\\\"width: 600px; background-color: rgb(255, 255, 255); table-layout: auto;\\\" class=\\\"ee_element\\\" bgcolor=\\\"#ffffff\\\">\\r\\n<tbody>\\r\\n<tr>\\r\\n<td align=\\\"left\\\" style=\\\"padding: 0px; width: 600px;\\\" class=\\\"\\\"><div class=\\\"ee_editable\\\"><font style=\\\"font-family: 'trebuchet ms', verdana, arial, sans-serif; font-size: 13px;\\\"><a href=\\\"http://$UNSUB$\\\" style=\\\"color: black;\\\"> Unsubscribe from this newsletter</a></font> </div></td>\\r\\n</tr>\\r\\n</tbody>\\r\\n</table>\\r\\n</td>\\r\\n</tr>\\r\\n</tbody>\\r\\n</table>\\r\\n</td>\\r\\n</tr>\\r\\n</tbody>\\r\\n</table>\",\n  \"plainTextContent\": \"\\r\\n\\n---\\r\\nWant to unsubscribe? $UNSUB$\",\n  \"replyAction\": \"Unset\",\n  \"replyToAddress\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c54007a-cc9f-4271-8cb2-55ab37a2f4ef",
+          "name": "Get templates",
+          "request": {
+            "name": "Get templates",
+            "description": {
+              "content": "Gets a list of all email campaign templates",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "select",
+                  "value": "<integer>",
+                  "description": "The number of records to select between 1 and 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "The numbers of records to skip in the result set"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ad7ed562-f7cc-42e6-bba2-5332700f5ebd",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "select",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Monthly newsletter Dec 2015\",\n    \"subject\": \"Monthly newsletter\",\n    \"fromName\": \"Company name\",\n    \"htmlContent\": null,\n    \"plainTextContent\": null,\n    \"replyAction\": \"Unset\",\n    \"replyToAddress\": null\n  },\n  {\n    \"id\": 2,\n    \"name\": \"Financial update\",\n    \"subject\": \"Financial update\",\n    \"fromName\": \"Company name\",\n    \"htmlContent\": null,\n    \"plainTextContent\": null,\n    \"replyAction\": \"Unset\",\n    \"replyToAddress\": null\n  },\n  {\n    \"id\": 3,\n    \"name\": \"New product promotion\",\n    \"subject\": \"New product!\",\n    \"fromName\": \"Company name\",\n    \"htmlContent\": null,\n    \"plainTextContent\": null,\n    \"replyAction\": \"WebMailForward\",\n    \"replyToAddress\": \"shop@company-name123.com\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1dad42f-4b8c-4732-addd-faa49dae4d7d",
+          "name": "Get template by id",
+          "request": {
+            "name": "Get template by id",
+            "description": {
+              "content": "Gets an email campaign template by id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "templates",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The id of the email campaign template"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f5ec6d0a-1fb0-4c38-8df2-b6ea1617faed",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "templates",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The id of the email campaign template"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"New product promotion\",\n  \"subject\": \"New product!\",\n  \"fromName\": \"Company name\",\n  \"htmlContent\": \"\\r\\n<!-- Easy Editor -->\\r\\n<table width=\\\"100%\\\" border=\\\"0\\\" cellspacing=\\\"0\\\" cellpadding=\\\"0\\\" style=\\\"table-layout: auto;\\\" class=\\\"ee_resizable ee_mobiletemplate\\\" data-dmtmp=\\\"true\\\">\\r\\n<tbody>\\r\\n<tr>\\r\\n<td align=\\\"center\\\" bgcolor=\\\"#ffffff\\\" cellpadding=\\\"0\\\" cellspacing=\\\"0\\\">\\r\\n<table width=\\\"600\\\" border=\\\"0\\\" cellspacing=\\\"0\\\" cellpadding=\\\"0\\\" style=\\\"table-layout: auto;\\\" class=\\\"eem_mainouterzone\\\">\\r\\n<tbody>\\r\\n<tr>\\r\\n<td bgcolor=\\\"#ffffff\\\" class=\\\"ee_dropzone\\\" style=\\\"padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px;\\\" align=\\\"left\\\">\\r\\n<table width=\\\"100%\\\" cellpadding=\\\"0\\\" cellspacing=\\\"0\\\" style=\\\"width: 600px; background-color: rgb(255, 255, 255); table-layout: auto;\\\" class=\\\"ee_element\\\" bgcolor=\\\"#ffffff\\\">\\r\\n<tbody>\\r\\n<tr>\\r\\n<td align=\\\"left\\\" style=\\\"padding: 0px; width: 600px;\\\" class=\\\"\\\"><div class=\\\"ee_editable\\\"><font style=\\\"font-family: 'trebuchet ms', verdana, arial, sans-serif; font-size: 13px;\\\"><a href=\\\"http://$UNSUB$\\\" style=\\\"color: black;\\\"> Unsubscribe from this newsletter</a></font> </div></td>\\r\\n</tr>\\r\\n</tbody>\\r\\n</table>\\r\\n</td>\\r\\n</tr>\\r\\n</tbody>\\r\\n</table>\\r\\n</td>\\r\\n</tr>\\r\\n</tbody>\\r\\n</table>\",\n  \"plainTextContent\": \"\\r\\n\\n---\\r\\nWant to unsubscribe? $UNSUB$\",\n  \"replyAction\": \"WebMailForward\",\n  \"replyToAddress\": \"shop@company-name123.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1db60f02-5c9f-4593-ae4f-259320d679b1",
+          "name": "Update template",
+          "request": {
+            "name": "Update template",
+            "description": {
+              "content": "Creates an email campaign template",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "templates",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The id of the template being updated"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"fromName\": \"<string>\",\n  \"htmlContent\": \"<string>\",\n  \"plainTextContent\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "37a11ec3-653f-4760-9bd7-89f01644d9e8",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "templates",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The id of the template being updated"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"New product promotion\",\n  \"subject\": \"New product!\",\n  \"fromName\": \"Company name\",\n  \"htmlContent\": \"\\r\\n<!-- Easy Editor -->\\r\\n<table width=\\\"100%\\\" border=\\\"0\\\" cellspacing=\\\"0\\\" cellpadding=\\\"0\\\" style=\\\"table-layout: auto;\\\" class=\\\"ee_resizable ee_mobiletemplate\\\" data-dmtmp=\\\"true\\\">\\r\\n<tbody>\\r\\n<tr>\\r\\n<td align=\\\"center\\\" bgcolor=\\\"#ffffff\\\" cellpadding=\\\"0\\\" cellspacing=\\\"0\\\">\\r\\n<table width=\\\"600\\\" border=\\\"0\\\" cellspacing=\\\"0\\\" cellpadding=\\\"0\\\" style=\\\"table-layout: auto;\\\" class=\\\"eem_mainouterzone\\\">\\r\\n<tbody>\\r\\n<tr>\\r\\n<td bgcolor=\\\"#ffffff\\\" class=\\\"ee_dropzone\\\" style=\\\"padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px;\\\" align=\\\"left\\\">\\r\\n<table width=\\\"100%\\\" cellpadding=\\\"0\\\" cellspacing=\\\"0\\\" style=\\\"width: 600px; background-color: rgb(255, 255, 255); table-layout: auto;\\\" class=\\\"ee_element\\\" bgcolor=\\\"#ffffff\\\">\\r\\n<tbody>\\r\\n<tr>\\r\\n<td align=\\\"left\\\" style=\\\"padding: 0px; width: 600px;\\\" class=\\\"\\\"><div class=\\\"ee_editable\\\"><font style=\\\"font-family: 'trebuchet ms', verdana, arial, sans-serif; font-size: 13px;\\\"><a href=\\\"http://$UNSUB$\\\" style=\\\"color: black;\\\"> Unsubscribe from this newsletter</a></font> </div></td>\\r\\n</tr>\\r\\n</tbody>\\r\\n</table>\\r\\n</td>\\r\\n</tr>\\r\\n</tbody>\\r\\n</table>\\r\\n</td>\\r\\n</tr>\\r\\n</tbody>\\r\\n</table>\",\n  \"plainTextContent\": \"\\r\\n\\n---\\r\\nWant to unsubscribe? $UNSUB$\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4,\n  \"name\": \"New product promotion 2\",\n  \"subject\": \"Brand new product released!\",\n  \"fromName\": \"Company name\",\n  \"htmlContent\": \"\\r\\n<!-- Easy Editor -->\\r\\n<table width=\\\"100%\\\" border=\\\"0\\\" cellspacing=\\\"0\\\" cellpadding=\\\"0\\\" style=\\\"table-layout: auto;\\\" class=\\\"ee_resizable ee_mobiletemplate\\\" data-dmtmp=\\\"true\\\">\\r\\n<tbody>\\r\\n<tr>\\r\\n<td align=\\\"center\\\" bgcolor=\\\"#ffffff\\\" cellpadding=\\\"0\\\" cellspacing=\\\"0\\\">\\r\\n<table width=\\\"600\\\" border=\\\"0\\\" cellspacing=\\\"0\\\" cellpadding=\\\"0\\\" style=\\\"table-layout: auto;\\\" class=\\\"eem_mainouterzone\\\">\\r\\n<tbody>\\r\\n<tr>\\r\\n<td bgcolor=\\\"#ffffff\\\" class=\\\"ee_dropzone\\\" style=\\\"padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px;\\\" align=\\\"left\\\">\\r\\n<table width=\\\"100%\\\" cellpadding=\\\"0\\\" cellspacing=\\\"0\\\" style=\\\"width: 600px; background-color: rgb(255, 255, 255); table-layout: auto;\\\" class=\\\"ee_element\\\" bgcolor=\\\"#ffffff\\\">\\r\\n<tbody>\\r\\n<tr>\\r\\n<td align=\\\"left\\\" style=\\\"padding: 0px; width: 600px;\\\" class=\\\"\\\"><div class=\\\"ee_editable\\\"><font style=\\\"font-family: 'trebuchet ms', verdana, arial, sans-serif; font-size: 13px;\\\"><a href=\\\"http://$UNSUB$\\\" style=\\\"color: black;\\\"> Unsubscribe from this newsletter</a></font> </div></td>\\r\\n</tr>\\r\\n</tbody>\\r\\n</table>\\r\\n</td>\\r\\n</tr>\\r\\n</tbody>\\r\\n</table>\\r\\n</td>\\r\\n</tr>\\r\\n</tbody>\\r\\n</table>\",\n  \"plainTextContent\": \"\\r\\n\\n---\\r\\nWant to unsubscribe? $UNSUB$\",\n  \"replyAction\": \"Unset\",\n  \"replyToAddress\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7d5331fa-d5ef-474c-b677-f812dbfd9b9c",
+    "name": "Campaign Templates",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Create, retrieve, and update reusable email campaign templates. Use this API to\ncreate templates with HTML and plain-text content, list all templates with\npagination, fetch a specific template by ID, and update an existing template's\nname, subject, from name, and content.",
+      "type": "text/plain"
+    }
+  }
+}

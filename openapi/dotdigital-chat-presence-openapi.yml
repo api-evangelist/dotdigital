@@ -1,0 +1,135 @@
+openapi: 3.0.1
+info:
+  title: Chat Presence API
+  description: 'Provides methods for retrieving the presence status of agents and users
+
+    within the chat platform. Supports querying presence by profile IDs for both
+
+    chat agents and App Messaging users.'
+  version: 1.0.1
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      description: The Dotdigital region id your account belongs to
+      enum:
+      - r1
+      - r2
+      - r3
+      default: r1
+security:
+- basicAuth: []
+paths:
+  /cpaas/presence:
+    get:
+      summary: Retrieves the presence for a list of agent's profileIds
+      parameters:
+      - name: id
+        in: query
+        description: The id of a profile to retrieve presence settings for
+        required: true
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: The current status of the profile
+        required: false
+        schema:
+          type: string
+          enum:
+          - away
+          - available
+          - offline
+      responses:
+        '200':
+          description: The presence for each profile requested
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Presence'
+  /cpaas/presence/appmessaging:
+    get:
+      summary: Retrieves the presence for a list of user's profileIds
+      parameters:
+      - name: id
+        in: query
+        description: The id of a profile to retrieve presence settings for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The presence for each profile requested
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppMsgPresence'
+components:
+  schemas:
+    Presence:
+      type: array
+      items:
+        $ref: '#/components/schemas/ProfilePresence'
+    AppMsgPresence:
+      type: array
+      items:
+        $ref: '#/components/schemas/AppMsgProfilePresence'
+    ProfilePresence:
+      type: object
+      properties:
+        profileId:
+          type: string
+          description: The profile id
+        status:
+          type: string
+          description: The current status of the profile
+          enum:
+          - away
+          - available
+          - offline
+        isAway:
+          type: boolean
+          description: Set to true when the user is 'Away'
+        isConnected:
+          type: boolean
+          description: Set to true when the user is logged in and connected
+        lastUpdatedOn:
+          type: string
+          description: The time the profiles presence was last updated
+          format: date-time
+    AppMsgProfilePresence:
+      type: object
+      properties:
+        profileId:
+          type: string
+          description: The profile id
+        status:
+          type: string
+          description: The current status of the profile
+          enum:
+          - online
+          - offline
+        lastUpdatedOn:
+          type: string
+          description: The time the profiles presence was last updated
+          format: date-time
+        createdOn:
+          type: string
+          description: The time the profiles presence was created
+          format: date-time
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+x-readme:
+  samples-languages:
+  - curl
+  - csharp
+  - java
+  - node
+  - php
+  - python
+  - ruby
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

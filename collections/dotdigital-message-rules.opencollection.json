@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Message Rules API",
+    "version": "1.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Retrieves a message rules configuration list",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/automation/inboundrules"
+      },
+      "docs": "Retrieves a message rules configuration list"
+    },
+    {
+      "info": {
+        "name": "Create a message rule configuration",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{region}-api.dotdigital.com/cpaas/automation/inboundrules",
+        "headers": [
+          {
+            "name": "if-match",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Create a message rule configuration"
+    },
+    {
+      "info": {
+        "name": "Retrieves single message rule configuration",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{region}-api.dotdigital.com/cpaas/automation/inboundrules/:messageRulesId",
+        "params": [
+          {
+            "name": "messageRulesId",
+            "value": "",
+            "type": "path",
+            "description": "The message rule id"
+          }
+        ]
+      },
+      "docs": "Retrieves single message rule configuration"
+    },
+    {
+      "info": {
+        "name": "Update single message rule configuration",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{region}-api.dotdigital.com/cpaas/automation/inboundrules/:messageRulesId",
+        "headers": [
+          {
+            "name": "if-match",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "messageRulesId",
+            "value": "",
+            "type": "path",
+            "description": "The message rule id"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Update single message rule configuration"
+    },
+    {
+      "info": {
+        "name": "Delete single message rule configuration",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{region}-api.dotdigital.com/cpaas/automation/inboundrules/:messageRulesId",
+        "params": [
+          {
+            "name": "messageRulesId",
+            "value": "",
+            "type": "path",
+            "description": "The message rule id"
+          }
+        ]
+      },
+      "docs": "Delete single message rule configuration"
+    }
+  ],
+  "bundled": true
+}

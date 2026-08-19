@@ -1,0 +1,1711 @@
+{
+  "item": [
+    {
+      "id": "e731b033-a626-4eac-a712-48e30330b281",
+      "name": "Retrieves the chat configuration for an apiSpace",
+      "request": {
+        "name": "Retrieves the chat configuration for an apiSpace",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chat",
+            "config"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "2af5fe3f-6d57-4eb0-9b87-611fde884dec",
+          "name": "The full team details",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chat",
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "disabled": false,
+              "description": "A unique value representing the version of the configuration, optionally used for optimistic concurrency control on PUT and DELETE",
+              "key": "ETag",
+              "value": "string"
+            },
+            {
+              "disabled": false,
+              "description": "The date the team was last updated in ISO 8601 format",
+              "key": "Last-Modified",
+              "value": "1949-11-12T04:00:36.062Z"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"teams\": [\n    {\n      \"teamId\": \"string\",\n      \"channels\": {\n        \"appMessagingConfig\": {\n          \"replyAs\": \"team\",\n          \"welcomeMessage\": {\n            \"timeout\": 3081,\n            \"text\": \"string\"\n          }\n        }\n      },\n      \"settings\": {\n        \"closeMessage\": \"string\",\n        \"avatarUrl\": \"string\",\n        \"outOfHoursFormTemplateId\": \"string\",\n        \"outOfHoursMessage\": \"string\",\n        \"workingHours\": [\n          {\n            \"days\": \"Monday\",\n            \"from\": \"2:44\",\n            \"to\": \"8:45\"\n          },\n          {\n            \"days\": \"Thursday\",\n            \"from\": \"20:50\",\n            \"to\": \"19:18\"\n          }\n        ],\n        \"outOfHoursMessageEnabled\": true\n      }\n    },\n    {\n      \"teamId\": \"string\",\n      \"channels\": {\n        \"appMessagingConfig\": {\n          \"replyAs\": \"team\",\n          \"welcomeMessage\": {\n            \"timeout\": 8571,\n            \"text\": \"string\"\n          }\n        }\n      },\n      \"settings\": {\n        \"closeMessage\": \"string\",\n        \"avatarUrl\": \"string\",\n        \"outOfHoursFormTemplateId\": \"string\",\n        \"outOfHoursMessage\": \"string\",\n        \"workingHours\": [\n          {\n            \"days\": \"Monday to Friday\",\n            \"from\": \"21:54\",\n            \"to\": \"12:17\"\n          },\n          {\n            \"days\": \"Tuesday\",\n            \"from\": \"8:46\",\n            \"to\": \"1:34\"\n          }\n        ],\n        \"outOfHoursMessageEnabled\": false\n      }\n    }\n  ],\n  \"_createdOn\": \"1980-04-12T17:12:33.336Z\",\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1964-11-16T19:27:05.044Z\",\n  \"_updatedBy\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "0d9cacc8-2d26-4ada-b0ac-083b53e25579",
+          "name": "The team was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chat",
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e89e95cc-e36a-451b-abde-eb75a13a4ac9",
+      "name": "Retrieves the members of a team",
+      "request": {
+        "name": "Retrieves the members of a team",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chat",
+            "config",
+            "teams",
+            ":teamId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "teamId",
+              "description": "(Required) The Team id"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "773637f0-dafe-4cf1-ae2a-52e71bd6a3a4",
+          "name": "The team member details",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chat",
+                "config",
+                "teams",
+                ":teamId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamId",
+                  "description": "(Required) The Team id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "disabled": false,
+              "description": "A unique value representing the version of the configuration, optionally used for optimistic concurrency control on PUT and DELETE",
+              "key": "ETag",
+              "value": "string"
+            },
+            {
+              "disabled": false,
+              "description": "The date the team was last updated in ISO 8601 format",
+              "key": "Last-Modified",
+              "value": "1949-11-12T04:00:36.062Z"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"_createdOn\": \"1976-05-28T08:54:02.080Z\",\n  \"_createdBy\": \"string\",\n  \"_updatedOn\": \"1964-05-09T03:53:32.208Z\",\n  \"_updatedBy\": \"string\",\n  \"id\": \"string\",\n  \"members\": [\n    {\n      \"username\": \"string\"\n    },\n    {\n      \"username\": \"string\"\n    }\n  ],\n  \"name\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "614b7902-bcc8-432b-8574-3da5844d906b",
+          "name": "The team was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chat",
+                "config",
+                "teams",
+                ":teamId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamId",
+                  "description": "(Required) The Team id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "0781bf1f-bbbb-43a4-9c45-a547db1f5dfa",
+      "name": "Removes the config for a team",
+      "request": {
+        "name": "Removes the config for a team",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chat",
+            "config",
+            "teams",
+            ":teamId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "teamId",
+              "description": "(Required) The Team ID"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "An optional ETag for optimistic concurrency control",
+            "key": "if-match",
+            "value": "<string>"
+          }
+        ],
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "56d95bf6-ba01-427c-9970-f3155843229d",
+          "name": "The config was removed for the team",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chat",
+                "config",
+                "teams",
+                ":teamId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamId",
+                  "description": "(Required) The Team ID"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "daf26d74-e20f-447c-9275-68e5beb3d3bb",
+          "name": "The team was not found, or did not have any config already",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chat",
+                "config",
+                "teams",
+                ":teamId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamId",
+                  "description": "(Required) The Team ID"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "2731a393-51b9-4ac5-bcb9-aa894765197a",
+          "name": "The ETag supplied did not match, another update may have taken place",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chat",
+                "config",
+                "teams",
+                ":teamId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamId",
+                  "description": "(Required) The Team ID"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Precondition Failed",
+          "code": 412,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "0fc952f3-d452-463b-9d36-fd13a8beb19b",
+      "name": "Update the App Messaging config for a team",
+      "request": {
+        "name": "Update the App Messaging config for a team",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chat",
+            "config",
+            "teams",
+            ":teamId",
+            "appMessaging"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "teamId",
+              "description": "(Required) The Team id"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "An optional ETag for optimistic concurrency control",
+            "key": "if-match",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"replyAs\": \"team\",\n  \"welcomeMessage\": {\n    \"timeout\": \"<integer>\",\n    \"text\": \"<string>\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "95b3dc24-fc2b-480c-8045-512541a69121",
+          "name": "The full team details",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chat",
+                "config",
+                "teams",
+                ":teamId",
+                "appMessaging"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamId",
+                  "description": "(Required) The Team id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"replyAs\": \"team\",\n  \"welcomeMessage\": {\n    \"timeout\": \"<integer>\",\n    \"text\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "disabled": false,
+              "description": "A unique value representing the version of the configuration, optionally used for optimistic concurrency control on PUT and DELETE",
+              "key": "ETag",
+              "value": "string"
+            },
+            {
+              "disabled": false,
+              "description": "The date the configuration was last updated in ISO 8601 format",
+              "key": "Last-Modified",
+              "value": "1949-11-12T04:00:36.062Z"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyAs\": \"team\",\n  \"welcomeMessage\": {\n    \"timeout\": \"<integer>\",\n    \"text\": \"<string>\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "f62876a1-ff1a-4dc6-b18b-d649ce6ebc59",
+          "name": "The team was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chat",
+                "config",
+                "teams",
+                ":teamId",
+                "appMessaging"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamId",
+                  "description": "(Required) The Team id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"replyAs\": \"team\",\n  \"welcomeMessage\": {\n    \"timeout\": \"<integer>\",\n    \"text\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "2c81cf8d-153d-425b-804b-c2514b2fff50",
+          "name": "The ETag supplied did not match, another update may have taken place",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chat",
+                "config",
+                "teams",
+                ":teamId",
+                "appMessaging"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamId",
+                  "description": "(Required) The Team id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"replyAs\": \"team\",\n  \"welcomeMessage\": {\n    \"timeout\": \"<integer>\",\n    \"text\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Precondition Failed",
+          "code": 412,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "5647b128-c0fe-486e-8cae-e0fb0d9cd62b",
+      "name": "Removes the App Messaging config for a team",
+      "request": {
+        "name": "Removes the App Messaging config for a team",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chat",
+            "config",
+            "teams",
+            ":teamId",
+            "appMessaging"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "teamId",
+              "description": "(Required) The Team ID"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "An optional ETag for optimistic concurrency control",
+            "key": "if-match",
+            "value": "<string>"
+          }
+        ],
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "36183051-5f40-4156-bdc5-319179fb1d7c",
+          "name": "The App Messaging config was removed for the team",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chat",
+                "config",
+                "teams",
+                ":teamId",
+                "appMessaging"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamId",
+                  "description": "(Required) The Team ID"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "680c8fd2-69aa-48b5-8d03-fa719480da02",
+          "name": "The team was not found, or did not have any config already",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chat",
+                "config",
+                "teams",
+                ":teamId",
+                "appMessaging"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamId",
+                  "description": "(Required) The Team ID"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "3bfa1e2f-1df0-47ff-827c-52be14d9b5a3",
+          "name": "The ETag supplied did not match, another update may have taken place",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chat",
+                "config",
+                "teams",
+                ":teamId",
+                "appMessaging"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamId",
+                  "description": "(Required) The Team ID"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Precondition Failed",
+          "code": 412,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e1e2fd2a-8edf-4e38-8a3d-213374e51567",
+      "name": "Update general settings for a team",
+      "request": {
+        "name": "Update general settings for a team",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chat",
+            "config",
+            "teams",
+            ":teamId",
+            "settings"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "teamId",
+              "description": "(Required) The Team id"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "An optional ETag for optimistic concurrency control",
+            "key": "if-match",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"closeMessage\": \"<string>\",\n  \"avatarUrl\": \"<string>\",\n  \"outOfHoursFormTemplateId\": \"<string>\",\n  \"outOfHoursMessage\": \"<string>\",\n  \"outOfHoursMessageEnabled\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "c6a58812-adb6-4dbb-83ac-04ae45db578b",
+          "name": "The full team details",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chat",
+                "config",
+                "teams",
+                ":teamId",
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamId",
+                  "description": "(Required) The Team id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"closeMessage\": \"<string>\",\n  \"avatarUrl\": \"<string>\",\n  \"outOfHoursFormTemplateId\": \"<string>\",\n  \"outOfHoursMessage\": \"<string>\",\n  \"outOfHoursMessageEnabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "disabled": false,
+              "description": "A unique value representing the version of the configuration, optionally used for optimistic concurrency control on PUT and DELETE",
+              "key": "ETag",
+              "value": "string"
+            },
+            {
+              "disabled": false,
+              "description": "The date the team was last updated in ISO 8601 format",
+              "key": "Last-Modified",
+              "value": "1949-11-12T04:00:36.062Z"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"closeMessage\": \"<string>\",\n  \"avatarUrl\": \"<string>\",\n  \"outOfHoursFormTemplateId\": \"<string>\",\n  \"outOfHoursMessage\": \"<string>\",\n  \"workingHours\": [\n    {\n      \"days\": \"Saturday\",\n      \"from\": \"23:14\",\n      \"to\": \"4:29\"\n    },\n    {\n      \"days\": \"Saturday\",\n      \"from\": \"23:56\",\n      \"to\": \"23:25\"\n    }\n  ],\n  \"outOfHoursMessageEnabled\": \"<boolean>\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "bb9e1f04-e3e7-45df-9e4f-bef8480fdcf1",
+          "name": "The team was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chat",
+                "config",
+                "teams",
+                ":teamId",
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamId",
+                  "description": "(Required) The Team id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"closeMessage\": \"<string>\",\n  \"avatarUrl\": \"<string>\",\n  \"outOfHoursFormTemplateId\": \"<string>\",\n  \"outOfHoursMessage\": \"<string>\",\n  \"outOfHoursMessageEnabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "5faa0d95-1c1d-47c3-b258-99d415c687d9",
+          "name": "The ETag supplied did not match, another update may have taken place",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chat",
+                "config",
+                "teams",
+                ":teamId",
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamId",
+                  "description": "(Required) The Team id"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"closeMessage\": \"<string>\",\n  \"avatarUrl\": \"<string>\",\n  \"outOfHoursFormTemplateId\": \"<string>\",\n  \"outOfHoursMessage\": \"<string>\",\n  \"outOfHoursMessageEnabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Precondition Failed",
+          "code": 412,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "fa47d45d-51ee-43c9-b9a8-ca7b1cf6b901",
+      "name": "Removes the settings for a team",
+      "request": {
+        "name": "Removes the settings for a team",
+        "description": {},
+        "url": {
+          "path": [
+            "cpaas",
+            "chat",
+            "config",
+            "teams",
+            ":teamId",
+            "settings"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "teamId",
+              "description": "(Required) The Team ID"
+            },
+            {
+              "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+              "type": "any",
+              "value": "{{region}}",
+              "key": "region"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "An optional ETag for optimistic concurrency control",
+            "key": "if-match",
+            "value": "<string>"
+          }
+        ],
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "182d3c0a-1d43-4483-a323-bc3d240ddf98",
+          "name": "The general settings were removed for the team",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chat",
+                "config",
+                "teams",
+                ":teamId",
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamId",
+                  "description": "(Required) The Team ID"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "81561132-9f9a-452d-8ea5-4b7bb2573b86",
+          "name": "The team was not found, or did not have any config already",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chat",
+                "config",
+                "teams",
+                ":teamId",
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamId",
+                  "description": "(Required) The Team ID"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "58c82ac4-fc97-4f4d-94dd-887b1f60b34a",
+          "name": "The ETag supplied did not match, another update may have taken place",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cpaas",
+                "chat",
+                "config",
+                "teams",
+                ":teamId",
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamId",
+                  "description": "(Required) The Team ID"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "disabled": false,
+                "description": "An optional ETag for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Precondition Failed",
+          "code": 412,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a5fd8031-bf30-4de8-8491-f569dc3f4ea7",
+    "name": "Chat Config API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Provides methods for configuring chat for an apiSpace",
+      "type": "text/plain"
+    }
+  }
+}

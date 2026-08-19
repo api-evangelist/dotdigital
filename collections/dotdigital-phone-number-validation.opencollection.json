@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Phone Number Validation API",
+    "version": "1.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Single number",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate a single number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/phonevalidation/single",
+            "params": [
+              {
+                "name": "phoneNumber",
+                "value": "",
+                "type": "query",
+                "description": "Number of phone to validate. This can be in local format if the 'country' parameter is also supplied."
+              },
+              {
+                "name": "countryCode",
+                "value": "",
+                "type": "query",
+                "description": "Optional ISO 3166-1 alpha-2 or aplha-3 country code in CAPITALS. You must provide this if the number is in local format."
+              }
+            ]
+          },
+          "docs": "Validates a single phone number."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Bulk validation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List bulk validation jobs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/phonevalidation/bulk"
+          },
+          "docs": "Gets a list of bulk phone number validation jobs."
+        },
+        {
+          "info": {
+            "name": "Bulk validate numbers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/cpaas/phonevalidation/bulk",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Queues a bulk phone number validation request with a CSV file containing the numbers to be validated."
+        },
+        {
+          "info": {
+            "name": "Get bulk job details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/phonevalidation/bulk/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The unqiue job identifier for the async bulk phone number validation"
+              }
+            ]
+          },
+          "docs": "Gets the details and status of a bulk phone number validation job."
+        },
+        {
+          "info": {
+            "name": "Get bulk job results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/cpaas/phonevalidation/bulk/:jobId/result",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The unqiue job identifier for the async bulk phone number validation"
+              }
+            ]
+          },
+          "docs": "Gets the results file of a successful bulk phone number validation job.\n\n*Note: Failed or incomplete jobs will return no data!*\n\nOutput CSV file includes:\n* Phone Number\n* Original Phone Number\n* Status\n* MCCMNC\n* Network Name\n* Network Prefix\n* Country IDD\n* Is Ported\n* Ported From Network Name\n* Roaming Network Name\n* Roaming Network Prefix\n* Roaming Country IsoCode\n* Roaming Country IDD\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,3274 @@
+{
+  "item": [
+    {
+      "id": "97a532f1-7d36-4e71-aeb6-8674562e3e15",
+      "name": "App Messaging",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "de0df7f6-d664-4bc8-9fc2-ba6a7b1cebb2",
+          "name": "Retrieves conversation message analytics",
+          "request": {
+            "name": "Retrieves conversation message analytics",
+            "description": {},
+            "url": {
+              "path": [
+                "cpaas",
+                "analytics",
+                "conversationmessages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "(Required) The date time to query from in ISO 8601 format UTC"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "(Required) The date time to query up to (but not including) in ISO 8601 format UTC"
+                },
+                {
+                  "disabled": false,
+                  "key": "by",
+                  "value": "<string>",
+                  "description": "The time period to aggregate by"
+                },
+                {
+                  "disabled": false,
+                  "key": "timezone",
+                  "value": "<string>",
+                  "description": "The localtimezone to report the data out for if not specified, UTC is defaulted"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b8b0d9b2-0ef2-41c5-8ae4-4d82273df6aa",
+              "name": "The count of sent, delivered and read messages for a specific period",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "conversationmessages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"date\": \"string\",\n    \"dateUtc\": \"string\",\n    \"sent\": 9784,\n    \"delivered\": 836,\n    \"read\": 8297\n  },\n  {\n    \"date\": \"string\",\n    \"dateUtc\": \"string\",\n    \"sent\": 1609,\n    \"delivered\": 8119,\n    \"read\": 5142\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39c5bbef-3501-4d81-b7c5-7ff22f044079",
+              "name": "Validation errors were found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "conversationmessages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0ce634cf-1487-44e4-b2c4-6bc5f952b986",
+              "name": "The API Space was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "conversationmessages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e349ce0-cef8-4049-bf33-67df77acbf52",
+          "name": "Retrieves session analytics",
+          "request": {
+            "name": "Retrieves session analytics",
+            "description": {},
+            "url": {
+              "path": [
+                "cpaas",
+                "analytics",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "(Required) The date time to query from in ISO 8601 format UTC"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "(Required) The date time to query up to (but not including) in ISO 8601 format UTC"
+                },
+                {
+                  "disabled": false,
+                  "key": "by",
+                  "value": "<string>",
+                  "description": "The time period to aggregate by"
+                },
+                {
+                  "disabled": false,
+                  "key": "timezone",
+                  "value": "<string>",
+                  "description": "The localtimezone to report the data out for if not specified, UTC is defaulted"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2c9c29f3-fbd5-4ff3-b8f4-0dfd9afc7534",
+              "name": "The count of started and explicitly ended sessions for a specific period",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"date\": \"string\",\n    \"dateUtc\": \"string\",\n    \"started\": {\n      \"additionalProperties\": \"string\"\n    },\n    \"ended\": 2619\n  },\n  {\n    \"date\": \"string\",\n    \"dateUtc\": \"string\",\n    \"started\": {\n      \"additionalProperties\": \"string\"\n    },\n    \"ended\": 2864\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3c42581-729f-44ce-935f-28b706e83652",
+              "name": "Validation errors were found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "09b36338-6d09-4cb0-89b9-c920ebd58594",
+              "name": "The API Space was not",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7a994498-a06d-44bb-8c6a-e2691f0fe735",
+      "name": "Chat",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a35eb356-52bb-42b4-ad56-dc391884d19e",
+          "name": "Retrieves chat analytics",
+          "request": {
+            "name": "Retrieves chat analytics",
+            "description": {},
+            "url": {
+              "path": [
+                "cpaas",
+                "analytics",
+                "chats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "(Required) The date time to query from in ISO 8601 format UTC"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "(Required) The date time to query up to (but not including) in ISO 8601 format UTC"
+                },
+                {
+                  "disabled": false,
+                  "key": "by",
+                  "value": "<string>,<string>",
+                  "description": "The aggregation criteria. Can be one time based value and any combination of non time values"
+                },
+                {
+                  "disabled": false,
+                  "key": "timezone",
+                  "value": "<string>",
+                  "description": "The localtimezone to report the data out for if not specified, UTC is defaulted"
+                },
+                {
+                  "disabled": false,
+                  "key": "teamId",
+                  "value": "<string>",
+                  "description": "The id of the team to retrieve analytics for"
+                },
+                {
+                  "disabled": false,
+                  "key": "agentId",
+                  "value": "<string>",
+                  "description": "The id of the agent to retrieve analytics for"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "deafa5c0-daec-4eb1-a19e-4c3bb204aeb6",
+              "name": "The chat analytics for a specific period",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "chats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "teamId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"date\": \"string\",\n    \"dateUtc\": \"string\",\n    \"teamId\": \"string\",\n    \"agentId\": \"string\",\n    \"inbounds\": 2161,\n    \"outbounds\": 6915,\n    \"responses\": 7950,\n    \"timeToRespondSeconds\": 2576,\n    \"initialResponses\": 5671,\n    \"timeToInitialResponseSeconds\": 7128,\n    \"closed\": 2772,\n    \"timeToCloseSeconds\": 6382,\n    \"transitionsToNew\": 6788,\n    \"transitionsToReplied\": 9725\n  },\n  {\n    \"date\": \"string\",\n    \"dateUtc\": \"string\",\n    \"teamId\": \"string\",\n    \"agentId\": \"string\",\n    \"inbounds\": 4120,\n    \"outbounds\": 5121,\n    \"responses\": 1711,\n    \"timeToRespondSeconds\": 2495,\n    \"initialResponses\": 5560,\n    \"timeToInitialResponseSeconds\": 8337,\n    \"closed\": 1771,\n    \"timeToCloseSeconds\": 2845,\n    \"transitionsToNew\": 5995,\n    \"transitionsToReplied\": 6592\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4110171-67dd-4580-b6a7-474bf6aa5fd5",
+              "name": "Validation errors were found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "chats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "teamId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "81fead80-e869-4617-b688-7834edfdac9b",
+              "name": "The API Space was not",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "chats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "teamId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b743b517-8b73-4ef7-b7de-e7a07d00b5b4",
+          "name": "Retrieves live chat analytics",
+          "request": {
+            "name": "Retrieves live chat analytics",
+            "description": {},
+            "url": {
+              "path": [
+                "cpaas",
+                "analytics",
+                "chats",
+                "live"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "teamId",
+                  "value": "<string>",
+                  "description": "The id of the team to retrieve analytics for"
+                },
+                {
+                  "disabled": false,
+                  "key": "by",
+                  "value": "<string>,<string>",
+                  "description": "The aggregation criteria"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bf037c7f-a5bf-405c-a71d-e7e03cd86d69",
+              "name": "The live chat analytics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "chats",
+                    "live"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "teamId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"teamId\": \"string\",\n    \"new\": 4960,\n    \"replied\": 6105,\n    \"closed\": 8679\n  },\n  {\n    \"teamId\": \"string\",\n    \"new\": 7900,\n    \"replied\": 7474,\n    \"closed\": 6143\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b57954d9-5a8c-44e3-8b78-c9115b0fb608",
+              "name": "Validation errors were found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "chats",
+                    "live"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "teamId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3e33c0a4-b228-4fe0-9a06-c9c2b03d9d01",
+              "name": "The API Space was not",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "chats",
+                    "live"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "teamId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "5a9de421-782e-48d3-bfe8-99fc2a8b7e54",
+      "name": "Messaging",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4fb2d309-12bb-42d7-bcaf-837c47c40f17",
+          "name": "Retrieves message analytics",
+          "request": {
+            "name": "Retrieves message analytics",
+            "description": {},
+            "url": {
+              "path": [
+                "cpaas",
+                "analytics",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "(Required) The date time to query from in ISO 8601 format UTC"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "(Required) The date time to query up to (but not including) in ISO 8601 format UTC"
+                },
+                {
+                  "disabled": false,
+                  "key": "by",
+                  "value": "<string>,<string>",
+                  "description": "The time period to aggregate by"
+                },
+                {
+                  "disabled": false,
+                  "key": "system",
+                  "value": "<string>,<string>",
+                  "description": "The system that triggered an analytical event"
+                },
+                {
+                  "disabled": false,
+                  "key": "timezone",
+                  "value": "<string>",
+                  "description": "The localtimezone to report the data out for if not specified, UTC is defaulted"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0600037d-175d-4be5-b1bc-4e646de6a564",
+              "name": "The count of sent, delivered, read, inbound and failed messages for a specific period, including segments used",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "system",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"date\": \"string\",\n    \"dateUtc\": \"string\",\n    \"attempted\": 3663,\n    \"queued\": {\n      \"additionalProperties\": 1150\n    },\n    \"queuedSegments\": {\n      \"additionalProperties\": 4166\n    },\n    \"success\": {\n      \"additionalProperties\": 6719\n    },\n    \"successSegements\": {\n      \"additionalProperties\": 6789\n    },\n    \"delivered\": {\n      \"additionalProperties\": 2397\n    },\n    \"deliveredSegements\": {\n      \"additionalProperties\": 8079\n    },\n    \"read\": {\n      \"additionalProperties\": 3405\n    },\n    \"readSegements\": {\n      \"additionalProperties\": 9318\n    },\n    \"undeliverable\": {\n      \"additionalProperties\": 7992\n    },\n    \"undeliverableSegements\": {\n      \"additionalProperties\": 1150\n    },\n    \"expired\": {\n      \"additionalProperties\": 7888\n    },\n    \"expiredSegements\": {\n      \"additionalProperties\": 4061\n    },\n    \"failed\": 55,\n    \"inbound\": {\n      \"additionalProperties\": 5788\n    }\n  },\n  {\n    \"date\": \"string\",\n    \"dateUtc\": \"string\",\n    \"attempted\": 5629,\n    \"queued\": {\n      \"additionalProperties\": 19\n    },\n    \"queuedSegments\": {\n      \"additionalProperties\": 3082\n    },\n    \"success\": {\n      \"additionalProperties\": 2998\n    },\n    \"successSegements\": {\n      \"additionalProperties\": 7674\n    },\n    \"delivered\": {\n      \"additionalProperties\": 7643\n    },\n    \"deliveredSegements\": {\n      \"additionalProperties\": 5445\n    },\n    \"read\": {\n      \"additionalProperties\": 6804\n    },\n    \"readSegements\": {\n      \"additionalProperties\": 3163\n    },\n    \"undeliverable\": {\n      \"additionalProperties\": 7930\n    },\n    \"undeliverableSegements\": {\n      \"additionalProperties\": 7912\n    },\n    \"expired\": {\n      \"additionalProperties\": 172\n    },\n    \"expiredSegements\": {\n      \"additionalProperties\": 830\n    },\n    \"failed\": 3156,\n    \"inbound\": {\n      \"additionalProperties\": 8166\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "584beea7-0ebc-48ce-9619-911ba8294d54",
+              "name": "Validation errors were found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "system",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b3689f14-cfa9-40be-9f33-caf438f5ae58",
+              "name": "The API Space was not",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "system",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ebbed0b-bfdf-4679-9914-3a0548a0e036",
+          "name": "Retrieves message metrics",
+          "request": {
+            "name": "Retrieves message metrics",
+            "description": {},
+            "url": {
+              "path": [
+                "cpaas",
+                "analytics",
+                "messages",
+                "metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "(Required) The date time to query from in ISO 8601 format UTC"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "(Required) The date time to query up to (but not including) in ISO 8601 format UTC"
+                },
+                {
+                  "disabled": false,
+                  "key": "by",
+                  "value": "<string>,<string>",
+                  "description": "The time period to aggregate by"
+                },
+                {
+                  "disabled": false,
+                  "key": "system",
+                  "value": "<string>,<string>",
+                  "description": "The system that triggered an analytical event"
+                },
+                {
+                  "disabled": false,
+                  "key": "timezone",
+                  "value": "<string>",
+                  "description": "The localtimezone to report the data out for if not specified, UTC is defaulted"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c3efe88c-3c0e-44d7-b56a-b68d020abf33",
+              "name": "Metrics relating to the messages sent for a specific period",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "messages",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "system",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"date\": \"2025-04-01T00:00:00Z\",\n    \"dateUtc\": \"2025-04-01T00:00:00Z\",\n    \"appMessaging\": {\n      \"timeToDelivered\": {\n        \"10\": {\n          \"count\": 5,\n          \"value\": 4680\n        },\n        \"30\": {\n          \"count\": 2,\n          \"value\": 46494\n        }\n      }\n    },\n    \"whatsApp\": {\n      \"timeToDelivered\": {\n        \"10\": {\n          \"count\": 5,\n          \"value\": 4680\n        },\n        \"30\": {\n          \"count\": 2,\n          \"value\": 46494\n        }\n      }\n    },\n    \"sms\": {\n      \"timeToDelivered\": {\n        \"10\": {\n          \"count\": 5,\n          \"value\": 4680\n        },\n        \"30\": {\n          \"count\": 2,\n          \"value\": 46494\n        }\n      }\n    }\n  },\n  {\n    \"date\": \"2025-04-01T00:00:00Z\",\n    \"dateUtc\": \"2025-04-01T00:00:00Z\",\n    \"appMessaging\": {\n      \"timeToDelivered\": {\n        \"10\": {\n          \"count\": 5,\n          \"value\": 4680\n        },\n        \"30\": {\n          \"count\": 2,\n          \"value\": 46494\n        }\n      }\n    },\n    \"whatsApp\": {\n      \"timeToDelivered\": {\n        \"10\": {\n          \"count\": 5,\n          \"value\": 4680\n        },\n        \"30\": {\n          \"count\": 2,\n          \"value\": 46494\n        }\n      }\n    },\n    \"sms\": {\n      \"timeToDelivered\": {\n        \"10\": {\n          \"count\": 5,\n          \"value\": 4680\n        },\n        \"30\": {\n          \"count\": 2,\n          \"value\": 46494\n        }\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97af0181-c4fc-45fa-9292-4cc1ac051cba",
+              "name": "Validation errors were found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "messages",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "system",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "972990fa-cd3b-4e4a-ac44-123bb87a7334",
+              "name": "The API Space was not",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "messages",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "system",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d504ed38-6d7e-4c38-82ad-121060799a48",
+      "name": "SMS",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9dd23abb-d267-4319-b81b-49dbf715da86",
+          "name": "Retrieves url tracking analytics",
+          "request": {
+            "name": "Retrieves url tracking analytics",
+            "description": {},
+            "url": {
+              "path": [
+                "cpaas",
+                "analytics",
+                "sms",
+                "tracking"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "(Required) The date time to query from in ISO 8601 format UTC"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "(Required) The date time to query up to (but not including) in ISO 8601 format UTC"
+                },
+                {
+                  "disabled": false,
+                  "key": "by",
+                  "value": "<string>",
+                  "description": "The time period to aggregate by"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f02340fc-6eca-49e1-b2bc-abb12f9050d0",
+              "name": "The count of sent urls and clicks for a specific period",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "sms",
+                    "tracking"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"date\": \"string\",\n    \"sent\": 1838,\n    \"clicks\": 5287,\n    \"uniqueClicks\": 1072\n  },\n  {\n    \"date\": \"string\",\n    \"sent\": 7574,\n    \"clicks\": 9509,\n    \"uniqueClicks\": 5419\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ebc3b3c-072c-46b4-b4f4-d4df9e2bcf56",
+              "name": "Validation errors were found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "sms",
+                    "tracking"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3ff1d079-cc2e-49c5-b9ec-d7609cecac9c",
+              "name": "The API Space was not",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "sms",
+                    "tracking"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "faca4992-c069-4b74-ab4a-f56e51b654aa",
+          "name": "Retrieves sms verify analytics",
+          "request": {
+            "name": "Retrieves sms verify analytics",
+            "description": {},
+            "url": {
+              "path": [
+                "cpaas",
+                "analytics",
+                "sms",
+                "verify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "(Required) The date time to query from in ISO 8601 format UTC"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "(Required) The date time to query up to (but not including) in ISO 8601 format UTC"
+                },
+                {
+                  "disabled": false,
+                  "key": "by",
+                  "value": "<string>",
+                  "description": "The time period to aggregate by"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "118ce8e3-bdef-426c-bbcc-2bb0e164f725",
+              "name": "The count of notVerified, verified, expired and locked verify calls",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "sms",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"date\": \"string\",\n    \"notVerifed\": 9704,\n    \"verified\": 2694,\n    \"expired\": 7763,\n    \"locked\": 7158\n  },\n  {\n    \"date\": \"string\",\n    \"notVerifed\": 2221,\n    \"verified\": 7530,\n    \"expired\": 2882,\n    \"locked\": 4119\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97a4d0bc-9ea0-4226-bb51-b0fe5bb7ff2c",
+              "name": "Validation errors were found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "sms",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b060a38b-39a2-49eb-a1de-85040d29ae4a",
+              "name": "The API Space was not",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "sms",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6e44309-d5d7-472f-932e-16f1a7cb6116",
+          "name": "Retrieves inbound SMS analytics",
+          "request": {
+            "name": "Retrieves inbound SMS analytics",
+            "description": {},
+            "url": {
+              "path": [
+                "cpaas",
+                "analytics",
+                "sms",
+                "inbound"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "(Required) The date time to query from in ISO 8601 format UTC"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "(Required) The date time to query up to (but not including) in ISO 8601 format UTC"
+                },
+                {
+                  "disabled": false,
+                  "key": "by",
+                  "value": "<string>",
+                  "description": "The time period to aggregate by"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "74bf704c-70ec-40a2-bc67-86ea5846c06f",
+              "name": "The count of received messages for a specific period",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "sms",
+                    "inbound"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"date\": \"string\",\n    \"received\": 5938\n  },\n  {\n    \"date\": \"string\",\n    \"received\": 7344\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "566d7b5f-ecf9-433b-9216-9d9698e8988b",
+              "name": "Validation errors were found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "sms",
+                    "inbound"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fda50d8f-9532-4b4c-b23b-af81a7ca8ce0",
+              "name": "The API Space was not",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "sms",
+                    "inbound"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "14224bae-ec60-42c6-b349-0f644ebf42e7",
+          "name": "Retrieves outbound SMS analytics",
+          "request": {
+            "name": "Retrieves outbound SMS analytics",
+            "description": {},
+            "url": {
+              "path": [
+                "cpaas",
+                "analytics",
+                "sms",
+                "outbound"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "(Required) The date time to query from in ISO 8601 format UTC"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "(Required) The date time to query up to (but not including) in ISO 8601 format UTC"
+                },
+                {
+                  "disabled": false,
+                  "key": "by",
+                  "value": "<string>",
+                  "description": "The time period to aggregate by"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9ca17f13-c883-4ad5-888c-2c74eaf9293e",
+              "name": "The count of submitted, delivered, filtered and undeliverable messages for a specific period",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "sms",
+                    "outbound"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"date\": \"string\",\n    \"submitted\": 8015,\n    \"delivered\": 2871,\n    \"filtered\": 2578,\n    \"undeliverable\": 677\n  },\n  {\n    \"date\": \"string\",\n    \"submitted\": 2618,\n    \"delivered\": 3999,\n    \"filtered\": 4958,\n    \"undeliverable\": 9007\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42daedd4-dded-485d-972f-452f4507a4f4",
+              "name": "Validation errors were found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "sms",
+                    "outbound"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8788e25f-784e-45a0-b943-cdcfede45230",
+              "name": "The API Space was not",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "sms",
+                    "outbound"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "30478b85-4711-44c6-8abd-20ca6da53e4c",
+      "name": "WhatsApp",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9758a018-05f7-4145-981b-9465532a9b05",
+          "name": "Retrieves WhatsApp conversation analytics",
+          "request": {
+            "name": "Retrieves WhatsApp conversation analytics",
+            "description": {},
+            "url": {
+              "path": [
+                "cpaas",
+                "analytics",
+                "whatsapp",
+                "conversations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "wabaIds",
+                  "value": "<string>,<string>",
+                  "description": "The ids of the WhatsApp Business Account to get conversation analytics for"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "(Required) The date time to query up to (but not including) in ISO 8601 format UTC"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "(Required) The date time to query from in ISO 8601 format UTC"
+                },
+                {
+                  "disabled": false,
+                  "key": "by",
+                  "value": "<string>",
+                  "description": "The time period to aggregate by"
+                },
+                {
+                  "disabled": false,
+                  "key": "phoneNumbers",
+                  "value": "<string>,<string>",
+                  "description": "An array of phone numbers for which to retrieve analytics. If not provided, all phone numbers added to the WABA are included"
+                },
+                {
+                  "disabled": false,
+                  "key": "conversationCategories",
+                  "value": "<string>,<string>",
+                  "description": "A list of conversation categories. If not provided, results for all conversation categories are retrieved."
+                },
+                {
+                  "disabled": false,
+                  "key": "dimensions",
+                  "value": "<string>,<string>",
+                  "description": "A list of breakdowns to apply to metrics. If not provided, results are retrieved without any breakdowns"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa7c5a19-622c-4d92-9326-f454a3f2f156",
+              "name": "The count of whatsApp conversations for a specific period",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "whatsapp",
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "wabaIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "phoneNumbers",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "conversationCategories",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "dimensions",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"start\": 8939,\n    \"end\": 3518,\n    \"conversation\": 1210,\n    \"conversationDirection\": \"string\",\n    \"conversationCategory\": \"string\",\n    \"conversationTypes\": \"string\",\n    \"country\": \"string\",\n    \"phone\": \"string\",\n    \"cost\": 9139\n  },\n  {\n    \"start\": 4331,\n    \"end\": 6346,\n    \"conversation\": 8066,\n    \"conversationDirection\": \"string\",\n    \"conversationCategory\": \"string\",\n    \"conversationTypes\": \"string\",\n    \"country\": \"string\",\n    \"phone\": \"string\",\n    \"cost\": 3104\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "137327ce-0e36-452d-a032-8d9a7705eb2b",
+              "name": "Validation errors were found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "whatsapp",
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "wabaIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "phoneNumbers",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "conversationCategories",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "dimensions",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f88e3f93-7379-4bbb-afda-687b47551cd8",
+              "name": "The API Space was not",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "whatsapp",
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "wabaIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "phoneNumbers",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "conversationCategories",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "dimensions",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5849ab08-2190-4c71-aa5e-84dea6038e8c",
+          "name": "Retrieves WhatsApp business-initiated conversation analytics for the last 24 hours (Daily message usage)",
+          "request": {
+            "name": "Retrieves WhatsApp business-initiated conversation analytics for the last 24 hours (Daily message usage)",
+            "description": {},
+            "url": {
+              "path": [
+                "cpaas",
+                "analytics",
+                "whatsapp",
+                "dailymessagingusage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "wabaIds",
+                  "value": "<string>,<string>",
+                  "description": "The ids of the WhatsApp Business Account to get conversation analytics for"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7cd81d21-6919-4449-96f5-f47c3af955a1",
+              "name": "The count of business-initiated(marketing, utility and authentication) conversations for the last 24 hours",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "whatsapp",
+                    "dailymessagingusage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "wabaIds",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"usageInTheLast24Hours\": 8266,\n    \"messagingLimitTier\": \"string\"\n  },\n  {\n    \"usageInTheLast24Hours\": 4643,\n    \"messagingLimitTier\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "886f4d16-78d2-4880-897b-14491e1cf166",
+              "name": "Validation errors were found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "whatsapp",
+                    "dailymessagingusage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "wabaIds",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3a970fd8-87a8-45c5-b365-ad767c85fca2",
+              "name": "The API Space was not",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "analytics",
+                    "whatsapp",
+                    "dailymessagingusage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "wabaIds",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4bd34ef6-9273-4fe1-9696-f513fe907fe8",
+    "name": "Analytics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Provides methods for retrieving analytics data across the Dotdigital\nomnichannel platform. Covers conversation message analytics, chat analytics\n(including live), message metrics, session analytics, SMS tracking,\nverification, inbound/outbound SMS analytics, and WhatsApp conversation and\ndaily messaging usage reports. All endpoints accept date-range and\naggregation parameters and return time-series data suitable for reporting\ndashboards.",
+      "type": "text/plain"
+    }
+  }
+}

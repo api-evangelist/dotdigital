@@ -1,0 +1,199 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pages and forms",
+    "version": "2.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pages and forms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get forms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/surveys",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "assignedToAddressBookOnly",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to only get surveys assigned from an address book. Set to false to only retrieve surveys that aren't assigned to an address book."
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "Enter a number between 1 and 500 (0 is not a valid number). You can select a maximum of 500 results in a single request."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "This is the number of records you want to skip."
+              }
+            ]
+          },
+          "docs": "Gets a list of all forms in the account"
+        },
+        {
+          "info": {
+            "name": "Get form by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/surveys/:id",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The ID of the form, which needs to be included within the URL"
+              }
+            ]
+          },
+          "docs": "Gets a single form by its ID"
+        },
+        {
+          "info": {
+            "name": "Get forms with activity since date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/surveys/with-activity-since/:date",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "The date from which any forms with activity are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)"
+              },
+              {
+                "name": "assignedToAddressBookOnly",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to only get surveys assigned from an address book. Set to false to only retrieve surveys that aren't assigned to an address book."
+              }
+            ]
+          },
+          "docs": "Gets a list of forms in the account that have changed since the specified date"
+        },
+        {
+          "info": {
+            "name": "Get form fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/surveys/:id/fields",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The ID of the form you want to get the fields from."
+              }
+            ]
+          },
+          "docs": "Gets a list of a form's pages, each containing a list of the fields on that page"
+        },
+        {
+          "info": {
+            "name": "Get form responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/surveys/:id/responses",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The ID of the form to get responses from."
+              }
+            ]
+          },
+          "docs": "Gets a list of all responses for a specified form"
+        },
+        {
+          "info": {
+            "name": "Get form responses with activity since date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/surveys/:id/responses/with-activity-since/:date",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "0",
+                "type": "path",
+                "description": "The ID of the form to get responses from."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "The date from which responses with activity are returned. Format: ISO 8601."
+              }
+            ]
+          },
+          "docs": "Gets a list of responses that have changed since the specified date"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

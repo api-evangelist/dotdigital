@@ -1,0 +1,694 @@
+{
+  "item": [
+    {
+      "id": "8b83963b-972d-4711-96d7-0270fe3ebf9d",
+      "name": "Images",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7c864e40-53b2-44ab-9dc5-5a4416119fbf",
+          "name": "Get image folders",
+          "request": {
+            "name": "Get image folders",
+            "description": {
+              "content": "Gets the accounts image folders tree structure.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "image-folders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32249db5-bfa5-4b0a-bbaf-a211c3ac080d",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "image-folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Banners\",\n    \"childFolders\": [\n      {\n        \"id\": 2,\n        \"name\": \"Big\",\n        \"childFolders\": [\n          {\n            \"id\": 3,\n            \"name\": \"Small\",\n            \"childFolders\": [\n              {\n                \"id\": 4,\n                \"name\": \"Logos\",\n                \"childFolders\": null\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60e78a45-9e24-4fed-b898-b9d856da8c64",
+          "name": "Create image folder",
+          "request": {
+            "name": "Create image folder",
+            "description": {
+              "content": "This operation can be used to create a new image folder within an existing image folder, whilst child folders can also be created to nest within it.\n\n**Note:** The accounts root folder id is `0`\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "image-folders",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The image folder id.\n**Note** The root folder id is `0`\n"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "01c5fb79-7e73-4555-9647-549e3c8f3081",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "image-folders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The image folder id.\n**Note** The root folder id is `0`\n"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Product-images\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6,\n  \"name\": \"Product images\",\n  \"childFolders\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e9258789-eec7-4643-b614-1fcdb1effb92",
+          "name": "Get image folders by id",
+          "request": {
+            "name": "Get image folders by id",
+            "description": {
+              "content": "Gets an image folder by id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "image-folders",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The image folder id.\n**Note** The root folder id is `0`\n"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "64b0162f-120e-47ed-93b5-556420d02249",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "image-folders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The image folder id.\n**Note** The root folder id is `0`\n"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3,\n  \"name\": \"Small\",\n  \"childFolders\": [\n    {\n      \"id\": 4,\n      \"name\": \"Logos\",\n      \"childFolders\": null\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "377afd0b-a83c-4f9d-b110-023e23052891",
+          "name": "Get images in folder",
+          "request": {
+            "name": "Get images in folder",
+            "description": {
+              "content": "Gets the images details contained within the specified image folder. Details include:\n* Full URL to image\n* Name\n* MIME Type\n* Dimensions in pixels\n* Size in bytes\n* Image content tags\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "image-folders",
+                ":id",
+                "images"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The image folder id.\n**Note** The root folder id is `0`\n"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c29e5782-0d49-4ad9-9573-6985eb3df987",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "image-folders",
+                    ":id",
+                    "images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The image folder id.\n**Note** The root folder id is `0`\n"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"url\": \"https://i.emlfiles4.com/cmpimg/9/5/9/2/4/2/files/2227353_cookware-zoom.png\",\n    \"filename\": \"product_1245.png\",\n    \"mimeType\": \"image/gif\",\n    \"sizeInBytes\": 1024,\n    \"widthInPixels\": 800,\n    \"heightInPixels\": 600,\n    \"contentTags\": [\n      \"Cookware\",\n      \"Frying pan\",\n      \"Close up\"\n    ]\n  },\n  {\n    \"url\": \"https://i.emlfiles4.com/cmpimg/9/5/9/2/4/2/files/2227353_cookware-zoom.png\",\n    \"filename\": \"product_1245.png\",\n    \"mimeType\": \"image/gif\",\n    \"sizeInBytes\": 1024,\n    \"widthInPixels\": 800,\n    \"heightInPixels\": 600,\n    \"contentTags\": [\n      \"Cookware\",\n      \"Frying pan\",\n      \"Close up\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f6fef39-c1a7-4f7a-84ec-cec8482ad5d6",
+          "name": "Upload image",
+          "request": {
+            "name": "Upload image",
+            "description": {
+              "content": "Uploads a new image to the specified image folder.\n\nThe permitted file types are as follows:\n\n| File extension | MIME type     | File type    |\n| :------------- | :------------ | :----------- |\n| .gif           | image/gif     | GIF Image    |\n| .jpeg          | image/jpeg    | JPEG Image   |\n| .jpg           | image/jpeg    | JPEG Image   |\n| .png           | image/png     | PNG image    |\n\nIt can accept either a file uploaded using form data or a JSON body with the filename and file data in Base64. You can choose which method works best for you.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "image-folders",
+                ":id",
+                "images"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The image folder id.\n**Note** The root folder id is `0`\n"
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fileName\": \"<string>\",\n  \"data\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5c6a8e6c-764a-4e78-a9dc-37be4ac8afe0",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "image-folders",
+                    ":id",
+                    "images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The image folder id.\n**Note** The root folder id is `0`\n"
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fileName\": \"dotdigital.png\",\n  \"data\": \"iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADc0lEQVQ4T12TbUyVZRjH/9d9389zXjp2OG4xw7Mm4KJQKzQ30RVZ9EKbpRZIW6tDqRM+IAU0UmBnGgZEan1gJrSFX1Ko7MVpBUlr0yzXiwFZgcCK3LQFW0fgHM7zXFeDLce6vv236/+7vlw/wv8mZ0/OnbbR2ywj641GujEgpWTEUtxLOnn4xI6BC/Mr9F8Iv5DrCwb5oKWx1TY8Zmn5xGj5zVIs2uBWW8tjlpKw1tyO2ERF14tj07PdOcBs2ePDZ7aWlVpzVT++bU8ZPR6gG2W5oxXFRPoK126K8fjybcZQi1L43glMPNxVNDY9B0irXtdmNIqV5eb/3V865Avq19m2nhKvsdkycG0z41rm3UmvrixeVL7UKNWjwcc6Ij9vpWDFmpW2ss4TSak1XPw+jP+M6zELXY/dMO1X3bBtwOvJh0fXimXGJ4XXRcI7NyvCIQGvplD5Pa1EVDB++ault8Ra32bLPDpjmTX7Tx2c8VHoGR/7yRf3dRREy2zym3Ni1MkN4XufDyWzhwT4lG4oy/tFFD73fF1QFwwFrjBQU322qdOrF/wQ5JCV4obgdwJJv+PPyd1fUgilmhM+T2rpgqf3QtFDtKX9jviVCVP102jtd4lwytnAj2Mrjn748SMQqf/dM5B+W+x2GB0aVqJeyTlQcso21Mdary1d+OwqAbVQY0/m1OzVXbGT5wD+Bkk353LR0TwG7VPg7DjiiNPMAIRrs9ueO225zoUkS+7O1MjdIniNXu3O7CPBmRr5oBJT9lUQGsY2HnlLoM8DstiBgySSf7pIrF7WXrJdidQ5M9dSKxbtaBahPGrszjggoC2Jmy8tiQ5ebIFIBCx5I0+2jRj4nkhCiBB/L70jkq7AX8KVI/WBVZXXrKwRAbqo6XR6FrPuJ8jumvGPWmHoCwiWAXgTkG44ANh9kFwpB8uAxKwHqtM2lYFUAzuJFXOP1NiT2cRMFcK8eXeysxcJfz2EtwMIEQuEZQLgw/jH2fNyWtF9EOu4K/xG8+ODL80Bor0wtpN5DKANAt6XNLGWKDrj+Ct1yZwrN10djaLIy1PBKhdql7CcsAODRdH1cK7LVNgJfVcwow5ENQDirlAPRH7lOQJliSCfhbwk0nhxcmhvVxHc6zLN1zPauzhsHG8EjPtFkDHrGwPDLkuvO4N3GjZe+mP+/r9/Xogj35RiigAAAABJRU5ErkJggg==\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"Conference_venue.jpg\",\n  \"path\": \"Folders/Events/Conference_venue.jpg\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e8ddd5ca-7084-4410-b923-56667a55bdf6",
+    "name": "Images",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage image folders and upload images. Use this API to retrieve the full image\nfolder tree, get a specific folder by ID, create new folders within existing\nfolders, list images within a folder including URL, dimensions, file size, and\ncontent tags, and upload new images via Base64-encoded JSON or binary form data.",
+      "type": "text/plain"
+    }
+  }
+}

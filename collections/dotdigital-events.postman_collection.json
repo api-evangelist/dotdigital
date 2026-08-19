@@ -1,0 +1,3299 @@
+{
+  "item": [
+    {
+      "id": "4d104add-85f2-4da3-9958-6fed3f896ac4",
+      "name": "Import events",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2fce731b-7167-41fe-9ce8-28010e2c8ba2",
+          "name": "Import a collection of events",
+          "request": {
+            "name": "Import a collection of events",
+            "description": {
+              "content": "Imports a batch of events associated to contacts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                "v3",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"contactIdentity\": {\n      \"identifier\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"eventTimestamp\": \"<Current date and time>\",\n    \"timelineDetails\": {\n      \"summary\": \"<string>\"\n    },\n    \"eventData\": {\n      \"key_0\": 7865.163781592536\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eaeae761-e5c7-42f7-a1f1-5c61edb5a233",
+              "name": "Import processing",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"contactIdentity\": {\n      \"identifier\": \"contactId\",\n      \"value\": \"fred.bloggs@emailsim.io\"\n    },\n    \"type\": \"Search destination\",\n    \"id\": \"27e298b2-a1af-4041-96a6-00f909c66ad8\",\n    \"eventTimestamp\": \"2025-05-14T13:01:04.000Z\",\n    \"timelineDetails\": {\n      \"summary\": \"Search for travel desination: Bali\"\n    },\n    \"eventData\": {\n      \"query\": \"Bali\",\n      \"travelFromDate\": \"2025-07-03\",\n      \"flightsRequired\": true\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1942bd88-41de-4b68-aca9-b45d06ffaa39",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"contactIdentity\": {\n      \"identifier\": \"contactId\",\n      \"value\": \"fred.bloggs@emailsim.io\"\n    },\n    \"type\": \"Search destination\",\n    \"id\": \"27e298b2-a1af-4041-96a6-00f909c66ad8\",\n    \"eventTimestamp\": \"2025-05-14T13:01:04.000Z\",\n    \"timelineDetails\": {\n      \"summary\": \"Search for travel desination: Bali\"\n    },\n    \"eventData\": {\n      \"query\": \"Bali\",\n      \"travelFromDate\": \"2025-07-03\",\n      \"flightsRequired\": true\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"events:badJson\",\n  \"description\": \"The request JSON is badly formed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9996fb89-caf3-47a0-ab1f-5d1e8be8f17f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"contactIdentity\": {\n      \"identifier\": \"contactId\",\n      \"value\": \"fred.bloggs@emailsim.io\"\n    },\n    \"type\": \"Search destination\",\n    \"id\": \"27e298b2-a1af-4041-96a6-00f909c66ad8\",\n    \"eventTimestamp\": \"2025-05-14T13:01:04.000Z\",\n    \"timelineDetails\": {\n      \"summary\": \"Search for travel desination: Bali\"\n    },\n    \"eventData\": {\n      \"query\": \"Bali\",\n      \"travelFromDate\": \"2025-07-03\",\n      \"flightsRequired\": true\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "318df6f8-6e72-4b81-b416-fd97cd49e87d",
+      "name": "Export events",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d330529b-2f33-4ee1-b901-79829429f479",
+          "name": "Retrieve events",
+          "request": {
+            "name": "Retrieve events",
+            "description": {
+              "content": "Gets a set of events for a events subscription. If starting to retrieve events then do not pass a `checkPoint` and the earliest events queued for the subscription will be retrieved, and on subsequent calls pass the `checkPoint` value from the previous call to indicate you have received that page of events successfully.<br><br>\n**Note:**\n* Ensure you pass the returned `checkPoint` to ensure you only get events after the last time you called.\n* You must ensure that you pick up the latest events for a subscription within  a 30 day period, otherwise the **subscription will automatically be set to `inactive` status due to non usage.**\n* If we return no events in the `events` array then you have received all the currently queued events.\n* Maximum call duration permitted is 30 seconds!",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                "v3",
+                "export",
+                ":subscriptionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "2000",
+                  "description": "The maximum number of records to return in the results, note it could be fewer."
+                },
+                {
+                  "disabled": false,
+                  "key": "checkPoint",
+                  "value": "<string>",
+                  "description": "Provide the `checkPoint` value from your previous call to indicate you have received the events successfully."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "subscriptionId",
+                  "description": "(Required) The events subscription id you want to interact with."
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8d03ddd7-78f2-48b1-8ac5-6ff25be69b52",
+              "name": "Event data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "2000"
+                    },
+                    {
+                      "key": "checkPoint",
+                      "value": "zf0f945b36ad8"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The events subscription id you want to interact with."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"checkPoint\": \"fgfh63eu77\",\n  \"events\": [\n    {\n      \"accountId\": 33210,\n      \"data\": {\n        \"optinCode\": true,\n        \"contactId\": 12345,\n        \"eventId\": \"27e298b2-a1af-4041-96a6-00f909c66ad8\",\n        \"userAccountId\": 54321,\n        \"timeStamp\": \"2025-02-07T16:23:33.123Z\"\n      },\n      \"eventDate\": \"2025-02-07T16:23:33.741Z\",\n      \"id\": \"27e298b2-a1af-4041-96a6-00f909c66ad8\",\n      \"processedDate\": \"2025-02-07T16:25:01.023Z\",\n      \"type\": \"email.doubleOptIn\"\n    },\n    {\n      \"accountId\": 33210,\n      \"data\": {\n        \"optinCode\": true,\n        \"contactId\": 12345,\n        \"eventId\": \"27e298b2-a1af-4041-96a6-00f909c66ad8\",\n        \"userAccountId\": 54321,\n        \"timeStamp\": \"2025-02-07T16:23:33.123Z\"\n      },\n      \"eventDate\": \"2025-02-07T16:23:33.741Z\",\n      \"id\": \"27e298b2-a1af-4041-96a6-00f909c66ad8\",\n      \"processedDate\": \"2025-02-07T16:25:01.023Z\",\n      \"type\": \"email.doubleOptIn\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2fab2bf9-7928-4de2-955e-37577ed3993b",
+              "name": "Invalid checkpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "2000"
+                    },
+                    {
+                      "key": "checkPoint",
+                      "value": "zf0f945b36ad8"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The events subscription id you want to interact with."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"events:invalidCheckpoint\",\n  \"description\": \"The checkpoint passed is invalid and cannot be parsed.\",\n  \"details\": [\n    {\n      \"item\": \"XXXXYYYYY\",\n      \"description\": \"Invalid checkpoint.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87d191a4-b3c9-4050-88fe-81c24f200bc1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "2000"
+                    },
+                    {
+                      "key": "checkPoint",
+                      "value": "zf0f945b36ad8"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The events subscription id you want to interact with."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "224c87d9-e104-4474-b165-4299417e9896",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "2000"
+                    },
+                    {
+                      "key": "checkPoint",
+                      "value": "zf0f945b36ad8"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The events subscription id you want to interact with."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f3842e90-9dac-40ca-9a76-e6341cd743c5",
+              "name": "Subscription not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "2000"
+                    },
+                    {
+                      "key": "checkPoint",
+                      "value": "zf0f945b36ad8"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The events subscription id you want to interact with."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"events:subscriptionNotFound\",\n  \"description\": \"The following subscription could not be found\",\n  \"details\": [\n    {\n      \"item\": \"zf0f945b36ad8\",\n      \"description\": \"Not found.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb2bae82-d595-4011-9578-20c0b74cff23",
+              "name": "Inactive subscription",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "2000"
+                    },
+                    {
+                      "key": "checkPoint",
+                      "value": "zf0f945b36ad8"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The events subscription id you want to interact with."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"events:inactiveSubscription\",\n  \"description\": \"The subscription is set to inactive and therefore cannot be used.\",\n  \"details\": [\n    {\n      \"item\": \"5a96bc79-19a7-4544-973b-e2da0c9136f9\",\n      \"description\": \"Inactive subscription\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31cc62d4-878b-45c7-a9ea-eb486e8bd8f7",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "2000"
+                    },
+                    {
+                      "key": "checkPoint",
+                      "value": "zf0f945b36ad8"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The events subscription id you want to interact with."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "67b7a485-c09f-4fde-b339-b08c7fcad795",
+      "name": "Subscriptions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ec84ead0-3c9c-4c73-b07f-fcf9d92f49e0",
+          "name": "List subscriptions",
+          "request": {
+            "name": "List subscriptions",
+            "description": {
+              "content": "Lists all events subscriptions and their details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                "v3",
+                "export",
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "2000",
+                  "description": "The maximum number of records to return in the results, note it could be fewer."
+                },
+                {
+                  "disabled": false,
+                  "key": "marker",
+                  "value": "<string>",
+                  "description": "Pagination marker to retrieve the data from"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "890db812-6bb6-4c09-89e1-ad3bc974e5c5",
+              "name": "Subscriptions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "2000"
+                    },
+                    {
+                      "key": "marker",
+                      "value": "RXhhbXBsZSBhbXJrZXIgdmFsdWU="
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"marker\": \"\",\n      \"link\": \"https://r1-api.dotdigital.com/events/v3/export/subscriptions\"\n    },\n    \"first\": {\n      \"marker\": \"\",\n      \"link\": \"https://r1-api.dotdigital.com/events/v3/export/subscriptions\"\n    }\n  },\n  \"_items\": [\n    {\n      \"id\": 10,\n      \"name\": \"Contact events\",\n      \"status\": \"active\",\n      \"subscribedEventTypes\": [\n        {\n          \"eventType\": \"contact.created\"\n        },\n        {\n          \"eventType\": \"contact.preferenceUpdated\"\n        },\n        {\n          \"eventType\": \"contact.removed\"\n        },\n        {\n          \"eventType\": \"contact.updated\"\n        },\n        {\n          \"eventType\": \"contact.membershipUpdated\"\n        },\n        {\n          \"eventType\": \"contact.consentAdded\"\n        },\n        {\n          \"eventType\": \"interaction.click\"\n        },\n        {\n          \"eventType\": \"interaction.unsubscribe\"\n        }\n      ],\n      \"alertsConfiguration\": {\n        \"alertChannels\": \"emailAndInApp\",\n        \"email\": \"someone@emailsim.io\"\n      },\n      \"created\": \"2026-01-14T10:36:56.931Z\",\n      \"updated\": \"2026-02-17T15:42:25.836Z\"\n    },\n    {\n      \"id\": 12,\n      \"name\": \"Insight events\",\n      \"status\": \"active\",\n      \"subscribedEventTypes\": [\n        {\n          \"eventType\": \"insightData.collectionCreated\"\n        },\n        {\n          \"eventType\": \"insightData.collectionRemoved\"\n        },\n        {\n          \"eventType\": \"insightData.removed\"\n        },\n        {\n          \"eventType\": \"insightData.set\"\n        }\n      ],\n      \"alertsConfiguration\": {\n        \"alertChannels\": \"emailAndInApp\",\n        \"email\": \"someone@emailsim.io\"\n      },\n      \"created\": \"2026-01-14T14:23:02.280Z\",\n      \"updated\": \"2026-01-14T14:23:02.280Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1c9a1a9-c498-4722-8593-0e05543f7ed6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "2000"
+                    },
+                    {
+                      "key": "marker",
+                      "value": "RXhhbXBsZSBhbXJrZXIgdmFsdWU="
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "176a8ff0-013a-4fd7-9838-82d75f732827",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "2000"
+                    },
+                    {
+                      "key": "marker",
+                      "value": "RXhhbXBsZSBhbXJrZXIgdmFsdWU="
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6067811f-94f6-4a9a-80bb-c704b59463d9",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "2000"
+                    },
+                    {
+                      "key": "marker",
+                      "value": "RXhhbXBsZSBhbXJrZXIgdmFsdWU="
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "480e39f8-1b85-4354-81db-a448ac2b7d52",
+          "name": "Create subscription",
+          "request": {
+            "name": "Create subscription",
+            "description": {
+              "content": "Creates a events subscription. \n\nThe `name` passed must be unique within the accounts subscriptions\n\nIf you apply filters to your event subscription then **all filters must match** (logical AND) for the event to be captured.\n\nIf you want to match the same event type on multiple different sets of filters (logical OR) then add the event type multiple time to the subscription with differing filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                "v3",
+                "export",
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "_Dotdigital use only_ The calling systems identifier",
+                "key": "x-ddg-calling-system",
+                "value": "customer"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"status\": \"inactive\",\n  \"subscribedEventTypes\": [\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": [\n        {\n          \"field\": \"<string>\",\n          \"matchPattern\": \"<string>\",\n          \"caseSensitive\": true\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "928b86cd-c216-4bb8-be21-19601a1d61c6",
+              "name": "Subscription created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "_Dotdigital use only_ The calling systems identifier",
+                    "key": "x-ddg-calling-system",
+                    "value": "customer"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Campaign events\",\n  \"status\": \"active\",\n  \"subscribedEventTypes\": [\n    {\n      \"eventType\": \"message.sent\"\n    },\n    {\n      \"eventType\": \"message.status\",\n      \"filters\": [\n        {\n          \"field\": \"$.channel\",\n          \"matchPattern\": \"sms\"\n        },\n        {\n          \"field\": \"$.status\",\n          \"matchPattern\": \"failed\"\n        }\n      ]\n    }\n  ],\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"emailAndInApp\",\n    \"email\": \"alerts@emailsim.io\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"created\": \"2025-02-07T16:23:33.741Z\",\n  \"id\": 95,\n  \"name\": \"Campaign events\",\n  \"status\": \"inactive\",\n  \"subscribedEventTypes\": [\n    {\n      \"eventType\": \"message.sent\"\n    },\n    {\n      \"eventType\": \"message.status\",\n      \"filters\": [\n        {\n          \"field\": \"$.channel\",\n          \"matchPattern\": \"sms\"\n        }\n      ]\n    }\n  ],\n  \"updated\": \"2025-02-11T01:33:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99b7b9c5-3441-4eb7-9102-9f05359a6f51",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "_Dotdigital use only_ The calling systems identifier",
+                    "key": "x-ddg-calling-system",
+                    "value": "customer"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Campaign events\",\n  \"status\": \"active\",\n  \"subscribedEventTypes\": [\n    {\n      \"eventType\": \"message.sent\"\n    },\n    {\n      \"eventType\": \"message.status\",\n      \"filters\": [\n        {\n          \"field\": \"$.channel\",\n          \"matchPattern\": \"sms\"\n        },\n        {\n          \"field\": \"$.status\",\n          \"matchPattern\": \"failed\"\n        }\n      ]\n    }\n  ],\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"emailAndInApp\",\n    \"email\": \"alerts@emailsim.io\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"events:invalidEventType\",\n  \"description\": \"The type value 'example.unknownType' is invalid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44de459f-93bf-43f7-9624-77aa6833b1c7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "_Dotdigital use only_ The calling systems identifier",
+                    "key": "x-ddg-calling-system",
+                    "value": "customer"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Campaign events\",\n  \"status\": \"active\",\n  \"subscribedEventTypes\": [\n    {\n      \"eventType\": \"message.sent\"\n    },\n    {\n      \"eventType\": \"message.status\",\n      \"filters\": [\n        {\n          \"field\": \"$.channel\",\n          \"matchPattern\": \"sms\"\n        },\n        {\n          \"field\": \"$.status\",\n          \"matchPattern\": \"failed\"\n        }\n      ]\n    }\n  ],\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"emailAndInApp\",\n    \"email\": \"alerts@emailsim.io\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8d30d381-532c-4064-bc8b-f5b3248c8deb",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "_Dotdigital use only_ The calling systems identifier",
+                    "key": "x-ddg-calling-system",
+                    "value": "customer"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Campaign events\",\n  \"status\": \"active\",\n  \"subscribedEventTypes\": [\n    {\n      \"eventType\": \"message.sent\"\n    },\n    {\n      \"eventType\": \"message.status\",\n      \"filters\": [\n        {\n          \"field\": \"$.channel\",\n          \"matchPattern\": \"sms\"\n        },\n        {\n          \"field\": \"$.status\",\n          \"matchPattern\": \"failed\"\n        }\n      ]\n    }\n  ],\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"emailAndInApp\",\n    \"email\": \"alerts@emailsim.io\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ea573671-9937-4a76-84b3-707e7b60dc7a",
+              "name": "Name conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "_Dotdigital use only_ The calling systems identifier",
+                    "key": "x-ddg-calling-system",
+                    "value": "customer"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Campaign events\",\n  \"status\": \"active\",\n  \"subscribedEventTypes\": [\n    {\n      \"eventType\": \"message.sent\"\n    },\n    {\n      \"eventType\": \"message.status\",\n      \"filters\": [\n        {\n          \"field\": \"$.channel\",\n          \"matchPattern\": \"sms\"\n        },\n        {\n          \"field\": \"$.status\",\n          \"matchPattern\": \"failed\"\n        }\n      ]\n    }\n  ],\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"emailAndInApp\",\n    \"email\": \"alerts@emailsim.io\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"events:nameAlreadyExists\",\n  \"description\": \"The name value 'Camapign events' already exists. All names must be unique!\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e5c435c-4b1f-4b9f-88b0-a4054ea8e2f2",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "_Dotdigital use only_ The calling systems identifier",
+                    "key": "x-ddg-calling-system",
+                    "value": "customer"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Campaign events\",\n  \"status\": \"active\",\n  \"subscribedEventTypes\": [\n    {\n      \"eventType\": \"message.sent\"\n    },\n    {\n      \"eventType\": \"message.status\",\n      \"filters\": [\n        {\n          \"field\": \"$.channel\",\n          \"matchPattern\": \"sms\"\n        },\n        {\n          \"field\": \"$.status\",\n          \"matchPattern\": \"failed\"\n        }\n      ]\n    }\n  ],\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"emailAndInApp\",\n    \"email\": \"alerts@emailsim.io\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30a731d7-9cdb-46b1-b223-a1394577e4c9",
+          "name": "Gets subscription",
+          "request": {
+            "name": "Gets subscription",
+            "description": {
+              "content": "Gets a events subscription details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                "v3",
+                "export",
+                "subscriptions",
+                ":subscriptionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "subscriptionId",
+                  "description": "(Required) The events subscription id you want to interact with."
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7354abd-ddd9-489a-a493-a8226b67d598",
+              "name": "Subscription details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The events subscription id you want to interact with."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 95,\n  \"created\": \"2025-02-07T16:23:33.741Z\",\n  \"updated\": \"2025-02-11T01:33:00.000Z\",\n  \"name\": \"Campaign events\",\n  \"status\": \"inactive\",\n  \"subscribedEventTypes\": [\n    {\n      \"eventType\": \"message.sent\"\n    },\n    {\n      \"eventType\": \"message.status\",\n      \"filters\": [\n        {\n          \"field\": \"$.channel\",\n          \"matchPattern\": \"sms\"\n        }\n      ]\n    }\n  ],\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"none\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68d6b0da-f3ce-4adb-aae3-4c5ff1bb0d87",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The events subscription id you want to interact with."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a1c6ae82-e4b9-4e03-a742-8876c9c20ce7",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The events subscription id you want to interact with."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a67a51eb-68d3-4a9a-b512-2709d74773c8",
+              "name": "Subscription not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The events subscription id you want to interact with."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"events:subscriptionNotFound\",\n  \"description\": \"The following subscription could not be found\",\n  \"details\": [\n    {\n      \"item\": \"zf0f945b36ad8\",\n      \"description\": \"Not found.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef1b1994-38af-4cc9-9dfe-1fbce6d79c0b",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The events subscription id you want to interact with."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c915e45c-590b-4b06-970f-de54771d4780",
+          "name": "Update subscription",
+          "request": {
+            "name": "Update subscription",
+            "description": {
+              "content": "Updates a events subscription with new details.\n\nIf you apply filters to your event subscription then **all filters must match** (logical AND) for the event to be captured.\n\nIf you want to match the same event type on multiple different sets of filters (logical OR) then add the event type multiple time to the subscription with differing filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                "v3",
+                "export",
+                "subscriptions",
+                ":subscriptionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "subscriptionId",
+                  "description": "(Required) The events subscription id you want to interact with."
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"status\": \"inactive\",\n  \"subscribedEventTypes\": [\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": [\n        {\n          \"field\": \"<string>\",\n          \"matchPattern\": \"<string>\",\n          \"caseSensitive\": true\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f96622fb-1f84-47c8-bc33-4808666a8a4a",
+              "name": "Subscription details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The events subscription id you want to interact with."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"name\": \"Campaign events\",\n  \"status\": \"inactive\",\n  \"subscribedEventTypes\": [\n    {\n      \"eventType\": \"message.sent\"\n    },\n    {\n      \"eventType\": \"message.status\",\n      \"filters\": [\n        {\n          \"field\": \"$.channel\",\n          \"matchPattern\": \"sms\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"created\": \"2025-02-07T16:23:33.741Z\",\n  \"id\": 95,\n  \"name\": \"Campaign events\",\n  \"status\": \"inactive\",\n  \"subscribedEventTypes\": [\n    {\n      \"eventType\": \"message.sent\"\n    },\n    {\n      \"eventType\": \"message.status\",\n      \"filters\": [\n        {\n          \"field\": \"$.channel\",\n          \"matchPattern\": \"sms\"\n        }\n      ]\n    }\n  ],\n  \"updated\": \"2025-02-11T01:33:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22c9ff12-7247-46f8-88a4-389d7b8e9bc6",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The events subscription id you want to interact with."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"name\": \"Campaign events\",\n  \"status\": \"inactive\",\n  \"subscribedEventTypes\": [\n    {\n      \"eventType\": \"message.sent\"\n    },\n    {\n      \"eventType\": \"message.status\",\n      \"filters\": [\n        {\n          \"field\": \"$.channel\",\n          \"matchPattern\": \"sms\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"events:invalidEventType\",\n  \"description\": \"The type value 'example.unknownType' is invalid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3b20781-b46f-47ad-ba72-0e609300726b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The events subscription id you want to interact with."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"name\": \"Campaign events\",\n  \"status\": \"inactive\",\n  \"subscribedEventTypes\": [\n    {\n      \"eventType\": \"message.sent\"\n    },\n    {\n      \"eventType\": \"message.status\",\n      \"filters\": [\n        {\n          \"field\": \"$.channel\",\n          \"matchPattern\": \"sms\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "92471d55-3879-45df-923a-568931e05eb6",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The events subscription id you want to interact with."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"name\": \"Campaign events\",\n  \"status\": \"inactive\",\n  \"subscribedEventTypes\": [\n    {\n      \"eventType\": \"message.sent\"\n    },\n    {\n      \"eventType\": \"message.status\",\n      \"filters\": [\n        {\n          \"field\": \"$.channel\",\n          \"matchPattern\": \"sms\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "205c30ad-afa4-4b01-afb0-fed4d1345fc2",
+              "name": "Subscription not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The events subscription id you want to interact with."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"name\": \"Campaign events\",\n  \"status\": \"inactive\",\n  \"subscribedEventTypes\": [\n    {\n      \"eventType\": \"message.sent\"\n    },\n    {\n      \"eventType\": \"message.status\",\n      \"filters\": [\n        {\n          \"field\": \"$.channel\",\n          \"matchPattern\": \"sms\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"events:subscriptionNotFound\",\n  \"description\": \"The following subscription could not be found\",\n  \"details\": [\n    {\n      \"item\": \"zf0f945b36ad8\",\n      \"description\": \"Not found.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dddf765c-2d65-44c7-8182-2179d18ec035",
+              "name": "Name conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The events subscription id you want to interact with."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"name\": \"Campaign events\",\n  \"status\": \"inactive\",\n  \"subscribedEventTypes\": [\n    {\n      \"eventType\": \"message.sent\"\n    },\n    {\n      \"eventType\": \"message.status\",\n      \"filters\": [\n        {\n          \"field\": \"$.channel\",\n          \"matchPattern\": \"sms\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"events:nameAlreadyExists\",\n  \"description\": \"The name value 'Camapign events' already exists. All names must be unique!\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79930aac-dc4d-46bd-a9f3-a74e95118eaf",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The events subscription id you want to interact with."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertsConfiguration\": {\n    \"alertChannels\": \"<string>\"\n  },\n  \"name\": \"Campaign events\",\n  \"status\": \"inactive\",\n  \"subscribedEventTypes\": [\n    {\n      \"eventType\": \"message.sent\"\n    },\n    {\n      \"eventType\": \"message.status\",\n      \"filters\": [\n        {\n          \"field\": \"$.channel\",\n          \"matchPattern\": \"sms\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "52f76bbf-c32d-4ab0-82a0-0a4e5779864e",
+          "name": "Deletes subscription",
+          "request": {
+            "name": "Deletes subscription",
+            "description": {
+              "content": "Deletes a events subscription.<br><br> \n**Note:** once deleted it cannot be restored, this is a destructive call.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                "v3",
+                "export",
+                "subscriptions",
+                ":subscriptionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "subscriptionId",
+                  "description": "(Required) The events subscription id you want to interact with."
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                "key": "x-ddg-integration-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c52b5be2-997e-46c3-b148-52151414a7a9",
+              "name": "Subscription deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The events subscription id you want to interact with."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fac88270-e950-476e-84b2-e484d4542078",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The events subscription id you want to interact with."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0db159cd-85d3-40a4-bbc0-9339195026e1",
+              "name": "Subscription not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "export",
+                    "subscriptions",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The events subscription id you want to interact with."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.",
+                    "key": "x-ddg-integration-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"events:subscriptionNotFound\",\n  \"description\": \"The following subscription could not be found\",\n  \"details\": [\n    {\n      \"item\": \"zf0f945b36ad8\",\n      \"description\": \"Not found.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "1e529c68-1fb0-4bec-bc93-0f1bf7a0b902",
+      "name": "Large objects",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2bae7dca-084c-4dd5-8074-9fd1d14a546b",
+          "name": "Retrieve large object",
+          "request": {
+            "name": "Retrieve large object",
+            "description": {
+              "content": "Gets the data for a large object (LOB) referred to in some events when the data for the field would be too large to be transferred in the event data itself, and so needs downloading seperately.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                "v3",
+                "lob",
+                ":lobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lobId",
+                  "description": "(Required) The unique id for the large object to retrieve."
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-steam"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4aeb22a0-b519-4c40-bf70-a5bfc6acf321",
+              "name": "Large object data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "lob",
+                    ":lobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lobId",
+                      "description": "(Required) The unique id for the large object to retrieve."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-steam"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-steam"
+                }
+              ],
+              "body": "Any large objects data, use the content-type header to determine data type.",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bdfddcb1-5339-4ed2-9cbe-4fbcec4986e5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "lob",
+                    ":lobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lobId",
+                      "description": "(Required) The unique id for the large object to retrieve."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a721bd9e-e926-4266-8a4c-52ca3fefaae2",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "lob",
+                    ":lobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lobId",
+                      "description": "(Required) The unique id for the large object to retrieve."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6921fa28-f35a-45e2-a6cf-57370b042218",
+              "name": "Large object not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "lob",
+                    ":lobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lobId",
+                      "description": "(Required) The unique id for the large object to retrieve."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a4523663-b1bc-4f45-86ad-09422cb35137",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v3",
+                    "lob",
+                    ":lobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lobId",
+                      "description": "(Required) The unique id for the large object to retrieve."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "89959cd4-efda-4ebf-a97b-54393734c2ac",
+    "name": "Events",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Send and receive events with Dotdigital. Use this API to import batches of\ncontact-associated events, manage event subscriptions (create, retrieve, update,\nand delete), retrieve queued events for a subscription using checkpoint-based\npagination, and download large objects referenced in event data.",
+      "type": "text/plain"
+    }
+  }
+}

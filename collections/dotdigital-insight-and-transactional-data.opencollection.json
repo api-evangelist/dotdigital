@@ -1,0 +1,373 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Insight and transactional data",
+    "version": "2.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Insight and transactional data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add transactional data to contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/transactional-data/:collectionName",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "collectionName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the transactional data collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a single piece of transactional/insight data to a contact or account"
+        },
+        {
+          "info": {
+            "name": "Bulk add transactional data to contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/transactional-data/import/:collectionName",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "collectionName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the transactional data collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds multiple pieces of transactional/insight data to contacts asynchronously"
+        },
+        {
+          "info": {
+            "name": "Get transactional data by key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/transactional-data/:collectionName/:key",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key for the piece of transactional data"
+              },
+              {
+                "name": "collectionName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the transactional data collection"
+              }
+            ]
+          },
+          "docs": "Gets a piece of transactional/insight data by key"
+        },
+        {
+          "info": {
+            "name": "Replace transactional data by key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/transactional-data/:collectionName/:key",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "collectionName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the transactional data collection"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key for the piece of data"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replaces a piece of transactional/insight data by key"
+        },
+        {
+          "info": {
+            "name": "Delete transactional data by key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/transactional-data/:collectionName/:key",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "collectionName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the transactional data collection"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key for the piece of transactional data"
+              }
+            ]
+          },
+          "docs": "Deletes a piece of transactional/insight data by key"
+        },
+        {
+          "info": {
+            "name": "Get transactional data import status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/transactional-data/import/:id",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The import ID (GUID) of the transactional data import"
+              }
+            ]
+          },
+          "docs": "Gets the import status of a previously started transactional/insight data import"
+        },
+        {
+          "info": {
+            "name": "Get transactional data import report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/transactional-data/import/:id/report",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The import ID (GUID) of the transactional data import"
+              }
+            ]
+          },
+          "docs": "Gets a report with statistics about what transactional/insight data was successfully imported, and what was unable to be imported"
+        },
+        {
+          "info": {
+            "name": "Get transactional data collection for contact by email",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/:selector/transactional-data/:collectionName",
+            "params": [
+              {
+                "name": "selector",
+                "value": "contact1@emailsim.io",
+                "type": "path",
+                "description": "The email address or contact ID of the contact."
+              },
+              {
+                "name": "collectionName",
+                "value": "orders",
+                "type": "path",
+                "description": "The name of the transactional data collection"
+              }
+            ]
+          },
+          "docs": "Gets a list of up to 100 pieces of transactional data records for a contact in a collection by their email address, sorted by the transactional record key."
+        },
+        {
+          "info": {
+            "name": "Delete transactional data collection for contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/:selector/transactional-data/:collectionName",
+            "params": [
+              {
+                "name": "selector",
+                "value": "contact1@emailsim.io",
+                "type": "path",
+                "description": "The email address or contact ID of the contact."
+              },
+              {
+                "name": "collectionName",
+                "value": "orders",
+                "type": "path",
+                "description": "The name of the transactional data collection"
+              }
+            ]
+          },
+          "docs": "Deletes all transactional/insight data for a contact in a collection identified by either their email or contact ID."
+        },
+        {
+          "info": {
+            "name": "Get account scoped transactional data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/transactional-data/:collectionName",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "collectionName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the transactional data collection"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 100"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set"
+              }
+            ]
+          },
+          "docs": "Gets transactional/insight data in a collection at account level"
+        },
+        {
+          "info": {
+            "name": "Get transactional data collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/transactional-data-collections",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to select between 1 and 1000"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of records to skip in the result set"
+              }
+            ]
+          },
+          "docs": "Gets transactional/insight data collections at account and contact level"
+        },
+        {
+          "info": {
+            "name": "Empty transactional data collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{region}-api.dotdigital.com/v2/contacts/transactional-data/:collectionName/empty",
+            "headers": [
+              {
+                "name": "x-ddg-integration-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "collectionName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the transactional data collection to be emptied"
+              }
+            ]
+          },
+          "docs": "Removes all transactional data from the specified collection"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

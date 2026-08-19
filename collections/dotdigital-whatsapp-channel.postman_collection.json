@@ -1,0 +1,2473 @@
+{
+  "item": [
+    {
+      "id": "6c12fac4-310b-46dd-a6bd-25d55cb0b519",
+      "name": "WhatsApp configurations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c1a39081-6740-4620-b8cc-efa26360ee45",
+          "name": "Get WhatsApp configuration for API Space",
+          "request": {
+            "name": "Get WhatsApp configuration for API Space",
+            "description": {
+              "content": "Retrieves all Cloud WhatsApp Channel configuration for an API Space",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cpaas",
+                "channels",
+                "whatsapp",
+                "cloud"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeDeleted",
+                  "value": "<boolean>",
+                  "description": "Indicates whether deleted channels should be returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "configurationStatus",
+                  "value": "<string>",
+                  "description": "Indicates the current configuration status of the configurations to be returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "wabaIds",
+                  "value": "<string>,<string>",
+                  "description": "The list of wabaIds to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "phoneNumbers",
+                  "value": "<string>,<string>",
+                  "description": "An array of phone numbers for which to to filter by. If not provided, all phone numbers added to the WABA are included"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0ba9986d-7cf6-4307-884b-fc3d57c452e4",
+              "name": "The WhatsApp channel configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeDeleted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "configurationStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wabaIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "phoneNumbers",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"expiresOn\": \"2100-01-01T00:00:00Z\",\n    \"messagingLimitTier\": \"TIER_1K\",\n    \"phoneNumberId\": \"1234567890123456\",\n    \"phoneNumber\": \"16315555555\",\n    \"phoneNumberName\": \"Brand A\",\n    \"phoneNumberNameStatus\": \"CONNECTED\",\n    \"phoneNumberStatus\": \"ONBOARDING\",\n    \"phoneNumberQuality\": \"GREEN\",\n    \"wabaId\": \"226114410888722\",\n    \"wabaReviewStatus\": \"APPROVED\",\n    \"systemUserWabaAssignmentStatus\": \"success\",\n    \"creditLineSharedStatus\": \"success\",\n    \"webhookSubscriptionStatus\": \"success\",\n    \"phoneNumberRegistrationStatus\": \"success\",\n    \"configurationStatus\": \"success\",\n    \"createdOn\": \"2025-01-01T00:00:00Z\"\n  },\n  {\n    \"expiresOn\": \"2100-01-01T00:00:00Z\",\n    \"messagingLimitTier\": \"TIER_1K\",\n    \"phoneNumberId\": \"1234567890123456\",\n    \"phoneNumber\": \"16315555555\",\n    \"phoneNumberName\": \"Brand A\",\n    \"phoneNumberNameStatus\": \"CONNECTED\",\n    \"phoneNumberStatus\": \"ONBOARDING\",\n    \"phoneNumberQuality\": \"GREEN\",\n    \"wabaId\": \"226114410888722\",\n    \"wabaReviewStatus\": \"APPROVED\",\n    \"systemUserWabaAssignmentStatus\": \"success\",\n    \"creditLineSharedStatus\": \"success\",\n    \"webhookSubscriptionStatus\": \"success\",\n    \"phoneNumberRegistrationStatus\": \"success\",\n    \"configurationStatus\": \"success\",\n    \"createdOn\": \"2025-01-01T00:00:00Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5db834c3-a5c7-48f8-98ed-ebe09875c722",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeDeleted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "configurationStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wabaIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "phoneNumbers",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fdcb43e0-a53e-4c41-ba1b-68f70f660dd1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeDeleted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "configurationStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wabaIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "phoneNumbers",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "696e16d0-513a-4df8-8473-55230668c98c",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeDeleted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "configurationStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wabaIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "phoneNumbers",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94097419-396e-4f39-a16c-aeb26b1ce044",
+          "name": "Creates WhatsApp configuration",
+          "request": {
+            "name": "Creates WhatsApp configuration",
+            "description": {
+              "content": "Creates a new Cloud WhatsApp configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cpaas",
+                "channels",
+                "whatsapp",
+                "cloud"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phoneNumberId\": \"<string>\",\n  \"wabaId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9938c95d-1f74-4fdf-b7e8-283cd86e220d",
+              "name": "The request to create a WhatsApp Cloud Channel configuration was accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phoneNumberId\": \"<string>\",\n  \"wabaId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c80af21d-0cfb-481a-b4e3-7042881b13ac",
+              "name": "Validation errors were found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phoneNumberId\": \"<string>\",\n  \"wabaId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6b414ed7-abc3-4d8e-aa50-db87d271874e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phoneNumberId\": \"<string>\",\n  \"wabaId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dea900ec-0ab6-4445-bcf4-1719eb5f8d2d",
+              "name": "The Cloud configuration already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phoneNumberId\": \"<string>\",\n  \"wabaId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "20a03d84-fd38-462f-914e-423851f4e2e1",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phoneNumberId\": \"<string>\",\n  \"wabaId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7be6914d-7844-4723-895d-7d8a459e53f1",
+      "name": "WhatsApp numbers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ba1791f8-04b4-4bb4-8eca-ccc3fb2e7b86",
+          "name": "Get WhatsApp number",
+          "request": {
+            "name": "Get WhatsApp number",
+            "description": {
+              "content": "Retrieves the WhatsApp configuration for a number.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cpaas",
+                "channels",
+                "whatsapp",
+                "cloud",
+                ":phoneNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "phoneNumber",
+                  "description": "(Required) A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account."
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e349534b-58d9-49b1-8ffb-352c63c799e8",
+              "name": "The WhatsApp channel configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud",
+                    ":phoneNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phoneNumber",
+                      "description": "(Required) A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A unique value representing the version of the WhatsApp configuration, optionally used for optimistic concurrency control on PUT and DELETE",
+                  "key": "ETag",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The date the WhatsApp channel configuration was last updated in ISO 8601 format",
+                  "key": "Last-Modified",
+                  "value": "1983-10-26T10:59:39.038Z"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"expiresOn\": \"2100-01-01T00:00:00Z\",\n  \"messagingLimitTier\": \"TIER_1K\",\n  \"phoneNumberId\": \"1234567890123456\",\n  \"phoneNumber\": \"16315555555\",\n  \"phoneNumberName\": \"Brand A\",\n  \"phoneNumberNameStatus\": \"CONNECTED\",\n  \"phoneNumberStatus\": \"ONBOARDING\",\n  \"phoneNumberQuality\": \"GREEN\",\n  \"wabaId\": \"226114410888722\",\n  \"wabaReviewStatus\": \"APPROVED\",\n  \"systemUserWabaAssignmentStatus\": \"success\",\n  \"creditLineSharedStatus\": \"success\",\n  \"webhookSubscriptionStatus\": \"success\",\n  \"phoneNumberRegistrationStatus\": \"success\",\n  \"configurationStatus\": \"success\",\n  \"createdOn\": \"2025-01-01T00:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2006eef0-ecd7-47c7-8277-baa03d9b46f9",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud",
+                    ":phoneNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phoneNumber",
+                      "description": "(Required) A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f2c3787f-7dc6-4f0e-b716-ca0787a5fc66",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud",
+                    ":phoneNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phoneNumber",
+                      "description": "(Required) A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8793ea65-0b81-45fe-88c0-4604c8fc07ec",
+              "name": "The WhatsApp channel configuration was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud",
+                    ":phoneNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phoneNumber",
+                      "description": "(Required) A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7ba62695-6356-4ca1-a897-cde22a7cff7e",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud",
+                    ":phoneNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phoneNumber",
+                      "description": "(Required) A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a931f265-9ddd-4316-95c2-648dad3d9319",
+          "name": "Removes WhatsApp number",
+          "request": {
+            "name": "Removes WhatsApp number",
+            "description": {
+              "content": "Removes a WhatsApp number configuration permaently.\n<br><br>\n**Warning: This action cannot be undone!**",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cpaas",
+                "channels",
+                "whatsapp",
+                "cloud",
+                ":phoneNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "phoneNumber",
+                  "description": "(Required) A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account."
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "457890e2-69a7-4678-86fc-85ed7b835c34",
+              "name": "Indicates successful removal of a cloud originator number",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud",
+                    ":phoneNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phoneNumber",
+                      "description": "(Required) A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5775f3c9-b5b6-4918-a136-81446c7e02ea",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud",
+                    ":phoneNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phoneNumber",
+                      "description": "(Required) A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a1a7a91e-a0b2-4f6a-800c-48d6f6d2a78c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud",
+                    ":phoneNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phoneNumber",
+                      "description": "(Required) A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c5610b50-74f8-4a16-9777-38aaf340861f",
+              "name": "The cloud originator number was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud",
+                    ":phoneNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phoneNumber",
+                      "description": "(Required) A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cc1c16d5-48a0-4f43-aacb-39c29eea6927",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud",
+                    ":phoneNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phoneNumber",
+                      "description": "(Required) A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a3dd333-c5f4-43af-8fd4-decfd6a8d322",
+          "name": "Registers WhatsApp number",
+          "request": {
+            "name": "Registers WhatsApp number",
+            "description": {
+              "content": "Registers a WhatsApp configuration for a number.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cpaas",
+                "channels",
+                "whatsapp",
+                "cloud",
+                "register",
+                ":phoneNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "phoneNumber",
+                  "description": "(Required) A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account."
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "639495d9-8642-4019-9d1c-f2151784db27",
+              "name": "A Cloud registration attempt was made for the WhatsApp phone number",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud",
+                    "register",
+                    ":phoneNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phoneNumber",
+                      "description": "(Required) A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "true",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9f4d71d-7432-4eb2-9dba-cdfd3b0624d9",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud",
+                    "register",
+                    ":phoneNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phoneNumber",
+                      "description": "(Required) A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ddbfe85e-82c1-434a-bb34-e597275e2196",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud",
+                    "register",
+                    ":phoneNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phoneNumber",
+                      "description": "(Required) A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9bcc7ecc-a7e1-43b2-874c-130a6877031d",
+              "name": "The WhatsApp channel configuration for the phone number was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud",
+                    "register",
+                    ":phoneNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phoneNumber",
+                      "description": "(Required) A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8f5ba121-4b90-40b3-80d4-ce0e93869636",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "cloud",
+                    "register",
+                    ":phoneNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phoneNumber",
+                      "description": "(Required) A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e9da95b0-f50e-4e87-8c35-e2c693cf6a04",
+      "name": "WhatsApp templates",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d22ddcd5-2bea-4f1d-8319-25fad781af0f",
+          "name": "Get WhatsApp templates",
+          "request": {
+            "name": "Get WhatsApp templates",
+            "description": {
+              "content": "Retrieves the WhatsApp templates for a specific WABA.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cpaas",
+                "channels",
+                "whatsapp",
+                "businessaccounts",
+                ":wabaId",
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "wabaId",
+                  "description": "(Required) The unique WhatsApp Business Account (WABA) identifier."
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a3d64b85-c738-4f30-a137-f12adca8babb",
+              "name": "The WhatsApp templates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "businessaccounts",
+                    ":wabaId",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wabaId",
+                      "description": "(Required) The unique WhatsApp Business Account (WABA) identifier."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"category\": \"MARKETING\",\n      \"components\": [\n        {\n          \"title\": \"Named parameters\",\n          \"required\": [\n            \"body_text_named_params\"\n          ],\n          \"type\": \"object\",\n          \"description\": \"Example of the parameter(s) usage when using **named** parameters\",\n          \"properties\": {\n            \"body_text_named_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"title\": \"Named parameters\",\n          \"required\": [\n            \"body_text_named_params\"\n          ],\n          \"type\": \"object\",\n          \"description\": \"Example of the parameter(s) usage when using **named** parameters\",\n          \"properties\": {\n            \"body_text_named_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"id\": \"920070352646140\",\n      \"language\": \"en_US\",\n      \"name\": \"2025_april_promo\",\n      \"parameter_format\": \"POSITIONAL\",\n      \"status\": \"APPROVED\",\n      \"sub_category\": \"CUSTOM\"\n    },\n    {\n      \"category\": \"MARKETING\",\n      \"components\": [\n        {\n          \"title\": \"Named parameters\",\n          \"required\": [\n            \"body_text_named_params\"\n          ],\n          \"type\": \"object\",\n          \"description\": \"Example of the parameter(s) usage when using **named** parameters\",\n          \"properties\": {\n            \"body_text_named_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"title\": \"Named parameters\",\n          \"required\": [\n            \"body_text_named_params\"\n          ],\n          \"type\": \"object\",\n          \"description\": \"Example of the parameter(s) usage when using **named** parameters\",\n          \"properties\": {\n            \"body_text_named_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"id\": \"920070352646140\",\n      \"language\": \"en_US\",\n      \"name\": \"2025_april_promo\",\n      \"parameter_format\": \"POSITIONAL\",\n      \"status\": \"APPROVED\",\n      \"sub_category\": \"CUSTOM\"\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"after\": \"QVFIU2RLSVkwNzNaSkpGYjk0YnhGWE1iMHpJS0tTRzFpRzNMRzFhVUVfUHVjd0UwYUdOSFpCOC1qOGtlTWNlSnktTEk2enhyWnV6YWItSDZANV0xIbVJCVk1n\",\n      \"before\": \"QVFIU1pNYzBEY2dNM0pjNlQ5Mm0wS1FSNnRBbkJSS0hhcTdka1FXdDBCV1kxYmMyMS1DZADBZAMTd1aHhRaWEta0RXVFNSQXFKVENYQWhyVW50bndDMUEwbXhn\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d443ea60-cb27-43eb-bec2-9eec19e6c592",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "businessaccounts",
+                    ":wabaId",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wabaId",
+                      "description": "(Required) The unique WhatsApp Business Account (WABA) identifier."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "76c34eb1-ec25-4207-8587-7171b7f5f788",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "businessaccounts",
+                    ":wabaId",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wabaId",
+                      "description": "(Required) The unique WhatsApp Business Account (WABA) identifier."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c0a26037-a9b9-49ac-8661-a445d4ae0eda",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "businessaccounts",
+                    ":wabaId",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wabaId",
+                      "description": "(Required) The unique WhatsApp Business Account (WABA) identifier."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa6d4f29-cba3-4ce7-af97-52cf55402bde",
+          "name": "Get WhatsApp template",
+          "request": {
+            "name": "Get WhatsApp template",
+            "description": {
+              "content": "Retrieves a WhatsApp template for a specific WABA.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cpaas",
+                "channels",
+                "whatsapp",
+                "businessaccounts",
+                ":wabaId",
+                "templates",
+                ":templateId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "wabaId",
+                  "description": "(Required) The unique WhatsApp Business Account (WABA) identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "templateId",
+                  "description": "(Required) The unique WhatsApp template identifier."
+                },
+                {
+                  "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "65922071-94c2-4682-95cb-3d9190e6a3bd",
+              "name": "The WhatsApp templates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "businessaccounts",
+                    ":wabaId",
+                    "templates",
+                    ":templateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wabaId",
+                      "description": "(Required) The unique WhatsApp Business Account (WABA) identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) The unique WhatsApp template identifier."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"category\": \"MARKETING\",\n  \"components\": [\n    {\n      \"title\": \"Named parameters\",\n      \"required\": [\n        \"body_text_named_params\"\n      ],\n      \"type\": \"object\",\n      \"description\": \"Example of the parameter(s) usage when using **named** parameters\",\n      \"properties\": {\n        \"body_text_named_params\": {\n          \"minItems\": 1,\n          \"type\": \"array\",\n          \"description\": \"Create an example of each parameter.\",\n          \"maxItems\": 1,\n          \"items\": {\n            \"required\": [\n              \"example\",\n              \"param_name\"\n            ],\n            \"type\": \"object\",\n            \"properties\": {\n              \"param_name\": {\n                \"type\": \"string\",\n                \"description\": \"The parameters name.\",\n                \"example\": \"booking_date\"\n              },\n              \"example\": {\n                \"type\": \"string\",\n                \"description\": \"An example value for the parameter.\",\n                \"example\": \"2nd February\"\n              }\n            }\n          }\n        }\n      }\n    },\n    {\n      \"title\": \"Named parameters\",\n      \"required\": [\n        \"body_text_named_params\"\n      ],\n      \"type\": \"object\",\n      \"description\": \"Example of the parameter(s) usage when using **named** parameters\",\n      \"properties\": {\n        \"body_text_named_params\": {\n          \"minItems\": 1,\n          \"type\": \"array\",\n          \"description\": \"Create an example of each parameter.\",\n          \"maxItems\": 1,\n          \"items\": {\n            \"required\": [\n              \"example\",\n              \"param_name\"\n            ],\n            \"type\": \"object\",\n            \"properties\": {\n              \"param_name\": {\n                \"type\": \"string\",\n                \"description\": \"The parameters name.\",\n                \"example\": \"booking_date\"\n              },\n              \"example\": {\n                \"type\": \"string\",\n                \"description\": \"An example value for the parameter.\",\n                \"example\": \"2nd February\"\n              }\n            }\n          }\n        }\n      }\n    }\n  ],\n  \"id\": \"920070352646140\",\n  \"language\": \"en_US\",\n  \"name\": \"2025_april_promo\",\n  \"parameter_format\": \"POSITIONAL\",\n  \"status\": \"APPROVED\",\n  \"sub_category\": \"CUSTOM\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3665f6c9-f880-4468-8678-57d23f00093b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "businessaccounts",
+                    ":wabaId",
+                    "templates",
+                    ":templateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wabaId",
+                      "description": "(Required) The unique WhatsApp Business Account (WABA) identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) The unique WhatsApp template identifier."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c606bd61-b32d-43b2-9603-56af89c1e8f3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "businessaccounts",
+                    ":wabaId",
+                    "templates",
+                    ":templateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wabaId",
+                      "description": "(Required) The unique WhatsApp Business Account (WABA) identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) The unique WhatsApp template identifier."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e45537a3-92a4-4591-8b12-985d067698f0",
+              "name": "The WhatsApp template was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "businessaccounts",
+                    ":wabaId",
+                    "templates",
+                    ":templateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wabaId",
+                      "description": "(Required) The unique WhatsApp Business Account (WABA) identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) The unique WhatsApp template identifier."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fcf84130-f8bc-43ea-bb3d-dcf1577115d3",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cpaas",
+                    "channels",
+                    "whatsapp",
+                    "businessaccounts",
+                    ":wabaId",
+                    "templates",
+                    ":templateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wabaId",
+                      "description": "(Required) The unique WhatsApp Business Account (WABA) identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) The unique WhatsApp template identifier."
+                    },
+                    {
+                      "description": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Dotdigital region id your account belongs to (This can only be one of r1,r2,r3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "r1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}-api.dotdigital.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c2681a62-c7b7-4858-a6e5-d8d90354780e",
+    "name": "WhatsApp Channel API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Provides methods for configuring and managing WhatsApp Cloud API channels\nwithin an API Space. Supports creating and retrieving WhatsApp\nconfigurations, registering and removing phone numbers, and retrieving\nWhatsApp message templates from a given WhatsApp Business Account.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,161 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://marketing.developer.dotdigital.com/docs/api-conventions,
+  https://marketing.developer.dotdigital.com/docs/data-handling,
+  https://marketing.developer.dotdigital.com/docs/error-handling,
+  https://marketing.developer.dotdigital.com/docs/api-end-points,
+  https://marketing.developer.dotdigital.com/docs/call-rate-limits,
+  plus derivation from openapi/ (43 specs, 522 operations)
+description: >-
+  Cross-cutting request/response semantics for the Dotdigital API estate. The single most
+  important fact for a client is that Dotdigital runs TWO frameworks side by side — v2 and v3 —
+  which differ in pagination, error shape and contact identification, and the docs explicitly
+  say most integrations need both. Regional endpoint selection is mandatory and is enforced:
+  calling the wrong region returns 403.
+authentication:
+  style: HTTP Basic
+  credential: API user (generated username + password), created in-app under Settings > Access > API users
+  scheme_name: basicAuth
+  applies_to: every published spec in openapi/ (43 of 43)
+  oauth2: false
+  api_keys: false
+  scopes: false
+  note: >-
+    Permissions are account-level, not token-level. There is no OAuth scope surface, so
+    scopes/ is deliberately absent. Best practice per the docs is one API user per integrating
+    system so credentials can be revoked independently.
+  docs: https://marketing.developer.dotdigital.com/docs/setting-up-an-api-user
+  artifact: authentication/dotdigital-authentication.yml
+regions:
+  required: true
+  mechanism: host selection
+  hosts:
+    - {region: r1, name: Europe, host: r1-api.dotdigital.com}
+    - {region: r2, name: North America, host: r2-api.dotdigital.com}
+    - {region: r3, name: Asia Pacific, host: r3-api.dotdigital.com}
+  server_template: https://{region}-api.dotdigital.com
+  discovery: >-
+    Call Get account information against r1-api.dotdigital.com regardless of region; the
+    response names the account's correct endpoint.
+  wrong_region_response: 403 Forbidden - Access is denied
+  docs: https://marketing.developer.dotdigital.com/docs/api-end-points
+versioning:
+  scheme: uri-path
+  frameworks:
+    - version: v2
+      path_prefix: /v2/
+      note: Legacy framework. Still the only home for many capabilities (campaigns, programs, documents, images).
+    - version: v3
+      path_prefix: /<service>/v3/
+      note: >-
+        Current framework, built for unified contacts. Per-service paths such as /contacts/v3/,
+        /insightData/v3/, /events/v3/, /data-firehose/v3/. Each v3 service also serves its own
+        generated spec at <service>/v3/swagger.json on the API host.
+  guidance: Dotdigital recommends v3 wherever a capability exists there.
+  docs: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api#api-versions
+pagination:
+  v2:
+    style: offset
+    params: [select, skip]
+    default_page_size: null
+    max_page_size: 1000
+    note: >-
+      Increment skip by the select value until a call returns 0 records. Some select calls
+      permit more than 1000.
+  v3:
+    style: seek / continuation token (cursor)
+    params: [limit, marker, sort]
+    limit_range: 0-10000
+    limit_default: 5000
+    response_fields: [_links, _items]
+    note: >-
+      The first call passes no pagination parameters; the response carries pagination _links
+      whose marker values drive subsequent calls.
+  docs: https://marketing.developer.dotdigital.com/docs/data-handling
+idempotency:
+  idempotency_key: false
+  note: >-
+    Dotdigital publishes NO idempotency-key header or parameter anywhere in the estate — a
+    grep of all 43 specs and the docs corpus returns zero matches. Retry safety is instead
+    approached through optimistic concurrency (see `concurrency` below) and through async
+    import/delete jobs whose status is polled. This is a genuine gap, not a harvesting gap.
+concurrency:
+  mechanism: ETag / If-Match conditional requests
+  request_header: If-Match
+  response_field: etag
+  failure_status: 412
+  note: >-
+    Used across the CPaaS-family services (profiles, chats, conversations, sessions) and on
+    some v3 resources. A 412 means another update landed first — refresh and retry. Note this
+    is conditional-update protection, NOT request idempotency: a retried POST is not deduped.
+  evidence: 16 declared 412 responses across 6 specs
+async_jobs:
+  pattern: submit then poll
+  examples:
+    - {submit: importContacts, poll: getImportStatus, spec: openapi/dotdigital-email-contacts-openapi.yml}
+    - {submit: deleteContacts, poll: getDeleteStatus, spec: openapi/dotdigital-contacts-openapi.yml}
+    - {submit: bulk-import-contacts, poll: get-contact-import-status, spec: openapi/dotdigital-email-contacts-openapi.yml}
+  note: >-
+    Bulk contact import and bulk delete are asynchronous; the caller must poll the status
+    operation for completion and for per-record failures.
+dates_and_times:
+  timezone: UTC
+  format: ISO 8601
+  server_time_operation: ApiAccount_GetServerTime (GET /v2/server-time)
+  note: Use Get server time to align time-dependent routines with the API clock.
+data_format:
+  content_type: application/json
+  case_sensitivity: >-
+    Case sensitivity of JSON request bodies varies by operation; the docs instruct callers to
+    check each operation's sample request rather than assume one convention.
+error_envelope:
+  v2:
+    shape: message string containing an ERROR_* token
+    catalog: errors/dotdigital-error-codes.yml
+  v3:
+    shape: '{errorCode, description, details[]}'
+    machine_readable: true
+    note: errorCode is namespaced by service, e.g. contacts:invalidContacts
+  rfc9457: false
+  docs: https://marketing.developer.dotdigital.com/docs/error-handling
+  artifacts:
+    - errors/dotdigital-error-codes.yml
+    - errors/dotdigital-problem-types.yml
+rate_limit_signaling:
+  headers: [X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-RateLimit-Scope]
+  exhausted_status: 429
+  legacy_exhausted_status: 400
+  case_sensitivity_warning: >-
+    Headers are lowercase under HTTP/2 per spec; the docs require case-insensitive matching.
+  artifact: rate-limits/dotdigital-rate-limits.yml
+request_tracing:
+  request_id_header: null
+  note: No documented correlation/request-id response header. Webhook events instead carry eventId.
+timeouts:
+  client_timeout_guidance_seconds: 121
+  export_events_max_call_seconds: 30
+  webhook_receiver_max_seconds: 10
+  note: >-
+    Clients must permit 121 seconds before treating a call as timed out. Retrieve events must
+    complete within 30 seconds. A webhook receiver has 10 seconds to acknowledge.
+transport_security:
+  tls_minimum: TLS 1.2
+  tls_supported: [TLSv1.2, TLSv1.3]
+  certificates: SHA-256
+  note: TLS 1.0/1.1 are refused.
+field_expansion:
+  supported: false
+  note: No sparse-fieldset or expand parameter is documented; some v2 contact reads take a fixed "with full data / specified data fields / keys only" mode instead.
+metadata:
+  supported: true
+  scope: messaging
+  note: >-
+    The messaging APIs accept a metadata facility on send; the values are echoed back on the
+    resulting webhook events, which the docs recommend using for correlating sends to receipts.
+cross_links:
+  authentication: authentication/dotdigital-authentication.yml
+  errors: errors/dotdigital-error-codes.yml
+  lifecycle: lifecycle/dotdigital-lifecycle.yml
+  rate_limits: rate-limits/dotdigital-rate-limits.yml
+  webhooks: asyncapi/dotdigital-webhooks.yml

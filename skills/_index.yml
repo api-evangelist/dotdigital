@@ -1,0 +1,43 @@
+generated: '2026-08-13'
+method: generated
+source: openapi/ (43 harvested Dotdigital OpenAPI descriptions) + conventions/, errors/, asyncapi/
+description: >-
+  Packaged Agent Skills for the Dotdigital API estate. Every step is grounded in an operationId
+  that exists verbatim in the referenced spec (the Webhook and Omnichannel specs declare no
+  operationIds, so those skills name operations by method and path as published). Nothing here
+  is invented.
+skills:
+  - file: dotdigital-sync-contacts.md
+    name: Sync contacts into Dotdigital (v3 unified contacts)
+    api: openapi/dotdigital-contacts-openapi.yml
+    operations: [getContacts, createContact, getContact, replaceContact, importContact, deleteContact, importContacts, getImportStatus, deleteContacts, getDeleteStatus]
+  - file: dotdigital-send-transactional-email.md
+    name: Send transactional email through Dotdigital
+    api: openapi/dotdigital-transactional-email-openapi.yml
+    operations: [send-transactional-email, send-batch-transactional-email, send-transactional-email-using-a-triggered-campaign, send-batch-transactional-email-using-a-triggered-campaign, get-transactional-email-statistics]
+  - file: dotdigital-consume-events.md
+    name: Consume Dotdigital events with a durable subscription
+    api: openapi/dotdigital-events-openapi.yml
+    operations: [createSubscription, listSubscriptions, getSubscription, updateSubscription, deleteSubscription, exportEvents, retrieveLob, importEvents]
+  - file: dotdigital-receive-webhooks.md
+    name: Receive and verify Dotdigital webhooks
+    api: openapi/dotdigital-webhook-openapi.yml
+    operations: ['POST /cpaas/webhooks', 'GET /cpaas/webhooks/availableevents', 'GET /cpaas/webhooks/availabletemplates', 'GET /cpaas/webhooks/{webhookId}', 'PUT /cpaas/webhooks/{webhookId}', 'DELETE /cpaas/webhooks/{webhookId}']
+  - file: dotdigital-manage-consent.md
+    name: Manage consent, preferences and suppression in Dotdigital
+    api: openapi/dotdigital-preferences-and-subscriptions-openapi.yml
+    operations: [create-preference, get-preferences, update-preference, delete-preference, set-preferences-for-contact, get-preferences-for-contact, unsubscribe-contact, bulk-suppress-contacts, resubscribe-contact, resubscribe-contact-with-no-challenge, get-suppressed-contacts-since-date, get-unsubscribed-contacts-since-date]
+cross_cutting:
+  region_selection: conventions/dotdigital-conventions.yml#regions
+  authentication: authentication/dotdigital-authentication.yml
+  rate_limits: rate-limits/dotdigital-rate-limits.yml
+  errors: errors/dotdigital-error-codes.yml
+  events: asyncapi/dotdigital-webhooks.yml
+notes:
+  - >-
+    No provider-published AGENTS.md or skill files exist; a search of the developer hub, the
+    llms.txt index and the dotmailer GitHub org found none. These are generated.
+  - >-
+    Every skill states the same three cross-cutting hazards, because they are the ones that
+    break real integrations: wrong regional host returns 403, there is no idempotency key so
+    retries can duplicate, and rate limits are tiered per minute with X-RateLimit-* headers.

@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dotdigital Configuration Service",
+    "version": "3.0.2"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom identifiers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all custom identifiers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://r1-api.dotdigital.com/configuration/v3/customIdentifiers"
+          },
+          "docs": "Gets all the custom identifiers defined for the account."
+        },
+        {
+          "info": {
+            "name": "Creates a custom identifier.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://r1-api.dotdigital.com/configuration/v3/customIdentifiers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new custom identifier that will be available to identify contacts."
+        },
+        {
+          "info": {
+            "name": "Delete a custom identifier by name",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://r1-api.dotdigital.com/configuration/v3/customIdentifiers/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a custom identifier by name if it exists."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
