@@ -49,6 +49,27 @@ tags:
   - Consent Management
   - Personalization
   - Loyalty
+  - E-Commerce
+  - Event
+  - Webhook
+tags_raw:
+  - Marketing Automation
+  - Email Marketing
+  - SMS
+  - MMS
+  - WhatsApp
+  - Contacts
+  - Campaigns
+  - Push Notifications
+  - Transactional Email
+  - Engagement
+  - Automation
+  - CPaaS
+  - Omnichannel
+  - Customer Data
+  - Consent Management
+  - Personalization
+  - Loyalty
   - Ecommerce
   - Events
   - Webhooks
@@ -131,6 +152,13 @@ apis:
     tags:
       - Contacts
       - Insight Data
+      - Event
+      - Data Firehose
+      - Marketing Email
+      - Automation
+    tags_raw:
+      - Contacts
+      - Insight Data
       - Events
       - Data Firehose
       - Marketing Email
@@ -164,6 +192,15 @@ apis:
     humanURL: https://marketing.developer.dotdigital.com/reference/omnichannel-api
     baseURL: https://r1-api.dotdigital.com/cpaas
     tags:
+      - SMS
+      - MMS
+      - WhatsApp
+      - Push Notifications
+      - Omnichannel
+      - Messaging
+      - Chat
+      - Webhook
+    tags_raw:
       - SMS
       - MMS
       - WhatsApp
