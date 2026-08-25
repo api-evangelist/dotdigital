@@ -9,10 +9,6 @@
       "method": "feed"
     },
     {
-      "source": "https://www.linkedin.com/company/dotdigital",
-      "error": "HTTPError"
-    },
-    {
       "source": "https://x.com/dotdigital",
       "feed_url": "https://x.com/dotdigital",
       "title": "",
@@ -27,6 +23,6 @@
       "method": "discovered"
     }
   ],
-  "post_count": 21,
-  "fetched": "2026-08-15T12:22:01Z"
+  "post_count": 23,
+  "fetched": "2026-08-22T20:20:02Z"
 }
