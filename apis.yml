@@ -13,6 +13,18 @@ description: >-
   regional host (r1 Europe, r2 North America, r3 Asia Pacific). Dotdigital also runs a remote
   MCP server over its developer hub and publishes webhooks, a durable Events in/out API and a
   Data Firehose for streaming engagement data to cloud storage.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: unknown
