@@ -1360,6 +1360,9 @@ apis:
   - type: Documentation
     url: https://marketing.developer.dotdigital.com/reference/omnichannel-api
 common:
+  - type: CapabilityMap
+    url: capabilities/dotdigital-capability-edges.yml
+    name: Dotdigital Business Capability Map
   - type: Overlay
     url: overlays/dotdigital-v2-api-full-overlay.yaml
   - type: Overlay
