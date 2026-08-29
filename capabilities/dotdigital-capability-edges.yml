@@ -3,7 +3,7 @@ provider: Dotdigital
 generated_by: planning/capability-mapping/scripts/classify_capabilities.py
 model: claude-opus-5
 frame:
-- Software & Technology
+- Telecommunications
 min_confidence: 0.7
 capability_model:
   source: https://github.com/vincentmakes/turbo-ea-capabilities
@@ -13,168 +13,165 @@ capability_model:
   notice: NOTICE
 edge_count: 16
 edges:
-- tag: Email Campaigns
-  spec_file: dotdigital-email-campaigns-api-openapi.yml
-  capability_id: BC-400.60
-  capability_id_l1: BC-400
-  capability_name: Digital Marketing Management
-  confidence: 0.9
-  evidence: '"Create, manage, and report on email campaigns ... Send campaigns immediately, schedule them
-    for a future time, or use time-optimised sending"'
-  reason: Operations create, send, schedule and report on email marketing campaigns including opens, clicks
-    and ROI — squarely digital marketing / marketing automation execution.
-- tag: ApiCampaign
-  spec_file: dotdigital-apicampaign-api-openapi.yml
-  capability_id: BC-400
-  capability_id_l1: BC-400
-  capability_name: Marketing Management
-  confidence: 0.85
-  evidence: Creates a campaign; Creates a split test campaign; Gets all sent campaigns, which have had
-    activity (e.g. clicks, opens) after a specified date
-  reason: Clearly marketing campaign lifecycle management on an email/SMS engagement platform. L1 Marketing
-    Management is certain; the split between demand generation and digital marketing sub-capabilities
-    is not resolved by the evidence, so no L2 asserted.
 - tag: ApiSegment
   spec_file: dotdigital-apisegment-api-openapi.yml
   capability_id: BC-420.20
   capability_id_l1: BC-420
   capability_name: Customer Segmentation Management
   confidence: 0.85
-  evidence: GET /v2/segments — "Gets all segments."; POST /v2/segments/refresh/{id} — "Refreshes a segment
-    by ID."
-  reason: Operations list and recompute contact segments in the customer database, which is directly customer
-    segmentation management. Refresh-progress endpoints are supporting mechanics of the same capability.
+  evidence: GET /v2/segments ApiSegment_GetSegments 'Gets all segments.'; POST /v2/segments/refresh/{id}
+    'Refreshes a segment by ID.'
+  reason: Directly manages contact segments used for targeting, which is customer segmentation management.
 - tag: Contacts
   spec_file: dotdigital-contacts-api-openapi.yml
   capability_id: BC-420.10
   capability_id_l1: BC-420
   capability_name: Customer Data Management
   confidence: 0.85
-  evidence: '''Create, Get, update, and delete contacts ... Each contact can carry data fields, channel
-    properties (email, SMS, WhatsApp), list memberships, marketing preferences, and consent records.'''
-  reason: Full lifecycle CRUD, import and identifier-based lookup over the contact database — the customer
-    master/golden record of the engagement platform.
-- tag: SMS campaigns
-  spec_file: dotdigital-sms-campaigns-api-openapi.yml
+  evidence: '''Create, Get, update, and delete contacts''; ''Each contact can carry data fields, channel
+    properties (email, SMS, WhatsApp), list memberships, marketing preferences, and consent records'''
+  reason: Full CRUD, bulk import and identifier-based lookup over the contact master record — customer
+    data management / golden record maintenance. Consent and preference storage is a secondary aspect
+    but the core surface is customer master data.
+- tag: Email Campaigns
+  spec_file: dotdigital-email-campaigns-api-openapi.yml
   capability_id: BC-400.60
   capability_id_l1: BC-400
   capability_name: Digital Marketing Management
   confidence: 0.85
-  evidence: '"Create and manage SMS campaigns ... create, retrieve, update, copy, and delete SMS campaigns,
-    and to send individual SMS messages"'
-  reason: Full lifecycle of SMS marketing campaigns and message sending — unambiguously digital/mobile
-    marketing campaign execution.
-- tag: Segments
-  spec_file: dotdigital-segments-api-openapi.yml
-  capability_id: BC-420.20
-  capability_id_l1: BC-420
-  capability_name: Customer Segmentation Management
-  confidence: 0.85
-  evidence: '"Retrieve and manage contact segments ... list all segments with their current contact counts,
-    trigger a refresh of a segment''s membership"'
-  reason: Operations create/refresh contact segment membership — customer segmentation management.
-- tag: ApiCampaignSend
-  spec_file: dotdigital-apicampaignsend-api-openapi.yml
-  capability_id: BC-400
+  evidence: '''Create, manage, and report on email campaigns'' ... POST /v2/campaigns/send ''Send campaign'',
+    ''send-time-optimised-campaign'', reporting ''opens, clicks, page views, replies, ROI'''
+  reason: Operations create, schedule, send and report on email marketing campaigns — squarely digital/email
+    marketing execution and measurement, i.e. Digital Marketing Management under Marketing Management.
+- tag: Marketing Emails
+  spec_file: dotdigital-marketing-emails-api-openapi.yml
+  capability_id: BC-400.60
   capability_id_l1: BC-400
-  capability_name: Marketing Management
-  confidence: 0.8
-  evidence: Sends a specified campaign to one or more lists, segments or contacts at a specified time;
-    Sends a specified campaign to one or more lists ... at the most appropriate time based upon their
-    previous open
-  reason: Execution of outbound marketing campaign sends to lists and segments — clearly Marketing Management.
-    Sub-capability (demand generation vs digital marketing) not determinable from the evidence.
+  capability_name: Digital Marketing Management
+  confidence: 0.85
+  evidence: '''send marketing emails directly to recipients without the need to create a campaign. Email
+    marketing status will be checked ... not sent if unsubscribed or suppressed'' ; POST /marketing-email/v3/send'
+  reason: Transactional-style dispatch of marketing email with marketing-consent suppression checks —
+    execution of email marketing, i.e. Digital Marketing Management.
 - tag: ApiContact
   spec_file: dotdigital-apicontact-api-openapi.yml
   capability_id: BC-420.10
   capability_id_l1: BC-420
   capability_name: Customer Data Management
   confidence: 0.8
-  evidence: Creates a contact; Updates a contact; Gets a contact by ID with consent records; Gets a list
-    of suppressed contacts after a given date along with the reason for suppression
-  reason: Full CRUD, deduplication-by-email, consent and suppression handling over the contact database
-    — customer/contact master data management. Consent records give a privacy flavour but the dominant
-    surface is contact data stewardship.
-- tag: ApiSms
-  spec_file: dotdigital-apisms-api-openapi.yml
-  capability_id: BC-400
-  capability_id_l1: BC-400
-  capability_name: Marketing Management
-  confidence: 0.8
-  evidence: POST /v2/sms/campaigns — "Creates an SMS campaign."; POST /v2/sms-messages/send-to/{telephoneNumber}
-    — "Sends a single SMS message."
-  reason: Creating, updating, copying and sending SMS campaigns is outbound marketing campaign execution,
-    so Marketing Management is plain. Whether it belongs to digital marketing channels or demand generation
-    is ambiguous, so no L2 is claimed.
-- tag: Marketing Emails
-  spec_file: dotdigital-marketing-emails-api-openapi.yml
-  capability_id: BC-400.60
-  capability_id_l1: BC-400
-  capability_name: Digital Marketing Management
-  confidence: 0.8
-  evidence: '"send marketing emails directly to recipients without the need to create a campaign. Email
-    marketing status will be checked ... email not sent if unsubscribed or suppressed"; POST /marketing-email/v3/send'
-  reason: Operations send marketing email to recipients with marketing-consent checking — email marketing
-    execution, a digital marketing capability rather than transactional IT messaging.
-- tag: Email contacts
-  spec_file: dotdigital-email-contacts-api-openapi.yml
-  capability_id: BC-420.10
-  capability_id_l1: BC-420
-  capability_name: Customer Data Management
-  confidence: 0.78
-  evidence: '"create, retrieve, update, and delete individual contacts; bulk-import contacts ... record
-    consent information and marketing preferences"'
-  reason: CRUD and bulk import over the marketing contact database with consent and preference attributes
-    — management of customer records, i.e. customer data management.
-- tag: ApiContactImport
-  spec_file: dotdigital-apicontactimport-api-openapi.yml
-  capability_id: BC-420.10
-  capability_id_l1: BC-420
-  capability_name: Customer Data Management
-  confidence: 0.75
-  evidence: POST /v2/contacts/import — "Bulk creates, or bulk updates, contacts"; schemas ApiContactForBulkImport,
-    ApiContact
-  reason: Operations bulk create/update contact records in the vendor's contact database, i.e. loading
-    and maintaining the customer/contact master used for engagement. Import-progress and fault-report
-    endpoints are plumbing around that same contact-data maintenance, so Customer Data Management is the
-    honest fit rather than a campaign capability.
-- tag: ApiProgram
-  spec_file: dotdigital-apiprogram-api-openapi.yml
-  capability_id: BC-400
-  capability_id_l1: BC-400
-  capability_name: Marketing Management
-  confidence: 0.75
-  evidence: POST /v2/programs/enrolments — "Creates an enrolment." and GET /v2/programs/enrolments/{status}
-  reason: Programs with contact enrolments are Dotdigital's automation journeys — enrolling contacts into
-    automated marketing programmes. That is clearly Marketing Management, but it straddles lifecycle/demand
-    generation and marketing automation sub-capabilities, so only the L1 is asserted.
-- tag: ApiSurvey
-  spec_file: dotdigital-apisurvey-api-openapi.yml
-  capability_id: BC-430.50
-  capability_id_l1: BC-430
-  capability_name: Customer Feedback Management
-  confidence: 0.75
-  evidence: GET /v2/surveys/{id}/responses — "Gets a list of all responses for a given survey."
-  reason: The surface reads survey definitions, fields and respondent answers, which is survey/voice-of-customer
-    feedback collection. It is marketing-embedded rather than contact-centre based, which is why confidence
-    is not higher.
+  evidence: ApiContact_CreateContact Creates a contact ... Gets a contact by ID with consent records
+  reason: Full CRUD over the contact master record including consent, suppression and unsubscribe state
+    — customer/contact data management within CRM. Some overlap with privacy consent handling, hence not
+    maximal confidence.
 - tag: Contact data fields
   spec_file: dotdigital-contact-data-fields-api-openapi.yml
   capability_id: BC-420.10
   capability_id_l1: BC-420
   capability_name: Customer Data Management
+  confidence: 0.8
+  evidence: '''Manage the custom data fields used to store structured attributes against contacts''; ''Contact
+    data fields drive personalisation, segmentation, and targeting'''
+  reason: Defines and maintains the attribute schema of the customer/contact master record, which is customer
+    data management. Some overlap with segmentation, but the operations govern the data model itself.
+- tag: SMS campaigns
+  spec_file: dotdigital-sms-campaigns-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.8
+  evidence: '"Create SMS campaign", "Copy SMS campaign", "Send SMS message"'
+  reason: Explicit campaign lifecycle management for an SMS marketing channel — digital marketing campaign
+    execution.
+- tag: Segments
+  spec_file: dotdigital-segments-api-openapi.yml
+  capability_id: BC-420.20
+  capability_id_l1: BC-420
+  capability_name: Customer Segmentation Management
+  confidence: 0.8
+  evidence: '"Retrieve and manage contact segments ... list all segments with their current contact counts,
+    trigger a refresh of a segment''s membership"'
+  reason: Definition and refresh of customer/contact segments — customer segmentation management.
+- tag: Campaign Templates
+  spec_file: dotdigital-campaign-templates-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
   confidence: 0.75
-  evidence: '''Manage the custom data fields used to store structured attributes against contacts ...
-    Contact data fields drive personalisation, segmentation, and targeting'''
-  reason: Defines and maintains the attribute schema of the contact (customer) master record, which is
-    customer data management rather than generic configuration.
-- tag: Lists / Address books
-  spec_file: dotdigital-lists-address-books-api-openapi.yml
+  evidence: '''Create, retrieve, and update reusable email campaign templates''; POST /v2/templates ''Create
+    template'''
+  reason: Operations manage reusable email campaign templates (HTML/plain text, subject, from name), which
+    is email/marketing-automation asset management within digital marketing. Some chance the better fit
+    is content marketing, hence moderate confidence.
+- tag: ApiCampaign
+  spec_file: dotdigital-apicampaign-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.7
+  evidence: POST /v2/campaigns ApiCampaign_CreateCampaign Creates a campaign ... ApiCampaign_CreateSplitTestCampaign
+    Creates a split test campaign
+  reason: CRUD plus split-testing over email/SMS marketing campaigns on a customer engagement platform
+    — clearly Marketing Management; sub-capability ambiguous between digital marketing automation and
+    demand generation.
+- tag: ApiCampaignSend
+  spec_file: dotdigital-apicampaignsend-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.7
+  evidence: Sends a specified campaign to one or more lists, segments or contacts at a specified time.
+  reason: Execution of outbound marketing campaign sends, including send-time optimisation — marketing
+    automation/digital marketing delivery. Sub-capability choice carries some ambiguity.
+- tag: ApiContactImport
+  spec_file: dotdigital-apicontactimport-api-openapi.yml
   capability_id: BC-420.10
   capability_id_l1: BC-420
   capability_name: Customer Data Management
   confidence: 0.7
-  evidence: '"Manage contact lists (address books) and their memberships ... manage subscription status
-    (unsubscribe and resubscribe)"'
-  reason: Maintains marketing contact lists, memberships and subscription/opt-in status — management of
-    customer records and their marketing consent state.
+  evidence: Bulk creates, or bulk updates, contacts. The ID of returned object can be used to query import
+    progress.
+  reason: Bulk contact ingestion with merge options and import fault reports maintains the customer/contact
+    master data set. Part of the surface is generic batch-job plumbing (import progress), so confidence
+    is moderate.
+- tag: ApiSms
+  spec_file: dotdigital-apisms-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.7
+  evidence: POST /v2/sms/campaigns ApiSms_CreateSmsCampaign 'Creates an SMS campaign.'; schema ApiSmsCampaignStatuses
+  reason: Despite the telecom-sounding tag, the operations create, update and copy SMS marketing campaigns
+    on a customer engagement platform — outbound digital marketing channel execution, not telecom messaging
+    network capability.
+- tag: Custom identifiers
+  spec_file: dotdigital-custom-identifiers-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.7
+  evidence: '''list, create, and delete custom contact identifiers that can be used to uniquely identify
+    contacts across your account'''
+  reason: Configures the identifier keys used for identity resolution of contacts, which sits within customer
+    data management. Confidence moderated because the surface is account configuration rather than the
+    data itself.
+- tag: Email contacts
+  spec_file: dotdigital-email-contacts-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.7
+  evidence: '''create, retrieve, update, and delete individual contacts; bulk-import contacts ... record
+    consent information and marketing preferences'''
+  reason: CRUD and bulk import over the marketing contact database including consent and preference attributes
+    — maintenance of the customer/contact record, i.e. Customer Data Management. Slight ambiguity with
+    consent/privacy handling keeps confidence moderate.
+- tag: InsightData
+  spec_file: dotdigital-insightdata-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.7
+  evidence: '''Insight data makes structured behavioural and transactional data — such as orders, product
+    catalogues, and web activity — available to drive personalisation, segmentation, and product recommendations'''
+  reason: Collection and record lifecycle for behavioural/transactional customer data used for personalisation
+    and segmentation — Customer Data Management, with adjacency to segmentation.
