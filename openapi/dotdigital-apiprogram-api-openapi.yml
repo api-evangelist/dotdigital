@@ -1,0 +1,235 @@
+openapi: 3.2.0
+info:
+  title: apiconnector.com API Program API
+  version: v2
+servers:
+- url: https://r1-api.dotdigital.com
+tags:
+- name: ApiProgram
+paths:
+  /v2/programs/{id}:
+    get:
+      tags:
+      - ApiProgram
+      summary: Gets a program by id.
+      operationId: ApiProgram_GetProgramById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiProgram'
+  /v2/programs:
+    get:
+      tags:
+      - ApiProgram
+      summary: Gets all programs.
+      operationId: ApiProgram_GetPrograms
+      parameters:
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 1
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiProgram'
+  /v2/programs/enrolments/{status}:
+    get:
+      tags:
+      - ApiProgram
+      summary: Gets enrolments by status.
+      operationId: ApiProgram_GetEnrolmentsByStatus
+      parameters:
+      - name: status
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/ApiProgramEnrolmentStatus'
+        x-position: 1
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 2
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 3
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiProgramEnrolment'
+  /v2/programs/enrolments/{enrolmentId}:
+    get:
+      tags:
+      - ApiProgram
+      summary: Gets an enrolment by id.
+      operationId: ApiProgram_GetEnrolmentById
+      parameters:
+      - name: enrolmentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: guid
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiProgramEnrolment'
+  /v2/programs/enrolments/{enrolmentId}/report-faults:
+    get:
+      tags:
+      - ApiProgram
+      summary: Gets all contacts that were not successfully enrolled, by enrolment ID.
+      operationId: ApiProgram_GetEnrolmentReport
+      parameters:
+      - name: enrolmentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: guid
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+  /v2/programs/enrolments:
+    post:
+      tags:
+      - ApiProgram
+      summary: Creates an enrolment.
+      description: Please note that your account can only call this a maximum of 20 times per hour, across all programs.
+      operationId: ApiProgram_PostEnrolment
+      requestBody:
+        x-name: enrolment
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiProgramEnrolment'
+        required: true
+        x-position: 1
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiProgramEnrolment'
+components:
+  schemas:
+    ApiProgram:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/ApiProgramStatus'
+        dateCreated:
+          type: string
+          format: date-time
+    ApiProgramEnrolmentStatus:
+      type: string
+      description: ''
+      x-enumNames:
+      - Processing
+      - Finished
+      - NotAvailableInThisVersion
+      enum:
+      - Processing
+      - Finished
+      - NotAvailableInThisVersion
+    ApiProgramStatus:
+      type: string
+      description: ''
+      x-enumNames:
+      - Draft
+      - Deactivated
+      - Active
+      - ReadOnly
+      - NotAvailableInThisVersion
+      enum:
+      - Draft
+      - Deactivated
+      - Active
+      - ReadOnly
+      - NotAvailableInThisVersion
+    ApiProgramEnrolment:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: guid
+        programId:
+          type: integer
+          format: int32
+        status:
+          $ref: '#/components/schemas/ApiProgramEnrolmentStatus'
+        dateCreated:
+          type: string
+          format: date-time
+        contacts:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+        addressBooks:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

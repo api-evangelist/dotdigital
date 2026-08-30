@@ -1,0 +1,156 @@
+openapi: 3.2.0
+info:
+  title: Phone Number Validation Single number API
+  description: 'Provides methods for validating phone numbers against mobile network data.
+
+    Supports single-number validation as well as bulk validation jobs, with
+
+    endpoints to create a job, check its processing status, and retrieve the
+
+    full results once complete.'
+  version: 1.0.1
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      description: The Dotdigital region id your account belongs to
+      enum:
+      - r1
+      - r2
+      - r3
+      default: r1
+security:
+- basicAuth: []
+tags:
+- name: Single number
+paths:
+  /cpaas/phonevalidation/single:
+    get:
+      tags:
+      - Single number
+      summary: Validate a single number
+      description: Validates a single phone number.
+      operationId: getValidateNumber
+      parameters:
+      - name: phoneNumber
+        in: query
+        description: Number of phone to validate. This can be in local format if the 'country' parameter is also supplied.
+        required: true
+        schema:
+          type: string
+      - name: countryCode
+        in: query
+        description: Optional ISO 3166-1 alpha-2 or aplha-3 country code in CAPITALS. You must provide this if the number is in local format.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Validation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleValidation'
+        '401':
+          description: Unauthorized
+          content: {}
+components:
+  schemas:
+    SingleValidation:
+      required:
+      - countryIdd
+      - phoneNumber
+      - status
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          description: The mobile number being checked.
+        status:
+          type: string
+          description: The current mobile network status for the number being checked.
+          enum:
+          - 'On'
+          - 'Off'
+          - Dead
+          - NotProvisioned
+          - BadNumber
+          - CountryMismatch
+        countryIdd:
+          type: string
+          description: The dialling code for the country.
+          example: '44'
+        networkDetails:
+          $ref: '#/components/schemas/SingleValidation_networkDetails'
+    SingleValidation_networkDetails:
+      required:
+      - isPorted
+      - mccmnc
+      - networkName
+      - networkPrefix
+      - portedFromNetworkName
+      type: object
+      properties:
+        isPorted:
+          type: boolean
+          description: Flag indicating that the number has been ported from one network to another.
+        portedFromNetworkName:
+          type: string
+          description: The network the phone was ported from.
+          example: O2 (Telefonica UK Ltd)
+        networkName:
+          type: string
+          description: The mobile network name the number is registered to.
+          example: '3'
+        networkPrefix:
+          type: string
+          description: The mobile networks number prefix.
+          example: '7770'
+        mccmnc:
+          type: string
+          description: The mobile country code and mobile network code.
+          example: '23430'
+        roaming:
+          $ref: '#/components/schemas/SingleValidation_networkDetails_roaming'
+      description: The mobile network details for the number.
+    SingleValidation_networkDetails_roaming:
+      required:
+      - countryCode
+      - countryIdd
+      - countryName
+      - networkName
+      type: object
+      properties:
+        networkName:
+          type: string
+          description: The name of the network being used currently.
+          example: Vodafone UK
+        countryCode:
+          type: string
+          description: The country code of the country the phone is roaming within in ISO 3166-1 alpha-2 format.
+          example: GB
+        countryIdd:
+          type: string
+          description: The dialling code of the country the phone is roaming within.
+          example: '44'
+        countryName:
+          type: string
+          description: The name of the country the phone is roaming within.
+          example: United Kingdom
+      description: The roaming details, if the phone is currently roaming
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+x-readme:
+  samples-languages:
+  - curl
+  - csharp
+  - java
+  - node
+  - php
+  - python
+  - ruby
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

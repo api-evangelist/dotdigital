@@ -1,0 +1,135 @@
+openapi: 3.2.0
+info:
+  title: Profile Apispaces API
+  description: 'Provides methods for creating, retrieving, updating, patching, and deleting
+
+    customer profiles. Also supports bulk create/update and bulk delete
+
+    operations, profile opt-in management by channel, profile relationship
+
+    linking, device management, and push capability validation.'
+  version: 1.0.1
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      description: The Dotdigital region id your account belongs to
+      enum:
+      - r1
+      - r2
+      - r3
+      default: r1
+security:
+- basicAuth: []
+tags:
+- name: Apispaces
+paths:
+  /apispaces/{apiSpaceId}/profiles/{id}/devices/{deviceId}:
+    delete:
+      summary: Removes device from profile and closes related opened sessions
+      parameters:
+      - name: apiSpaceId
+        in: path
+        description: The API space id
+        required: true
+        schema:
+          pattern: ^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})|[a-f0-9]{32}$
+          type: string
+      - name: id
+        in: path
+        description: The id of the profile
+        required: true
+        schema:
+          type: string
+      - name: deviceId
+        in: path
+        description: The id of the device
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Device sucessfully removed from profile
+        '404':
+          description: Device with specified id not found
+      tags:
+      - Apispaces
+  /apispaces/{apiSpaceId}/profiles/devices/push/validation:
+    post:
+      summary: Retrieves push capabilities summary
+      parameters:
+      - name: apiSpaceId
+        in: path
+        description: The API space id
+        required: true
+        schema:
+          pattern: ^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})|[a-f0-9]{32}$
+          type: string
+      requestBody:
+        description: ids of the profiles to query
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/push_validation_body'
+        required: true
+      responses:
+        '200':
+          description: The requested push capabilities summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PushCapabilitiesSummary'
+      tags:
+      - Apispaces
+components:
+  schemas:
+    push_validation_body:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: string
+    PushCapabilitiesSummary:
+      type: array
+      description: Array with push capabilities for each queried profile
+      items:
+        $ref: '#/components/schemas/PushCapabilitiesSummary_inner'
+    PushCapabilitiesSummary_inner:
+      required:
+      - id
+      - pushDevicesCount
+      type: object
+      properties:
+        id:
+          type: string
+          description: Profile id
+        pushDevicesCount:
+          type: number
+          description: Count of devices that have push details
+        fcm:
+          type: array
+          description: Package names for fcm push tokens registered for this profile
+          items:
+            type: string
+        apns:
+          type: array
+          description: <bundleId>.<environment> string for apns push tokens registered for this profile
+          items:
+            type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+x-readme:
+  samples-languages:
+  - curl
+  - csharp
+  - java
+  - node
+  - php
+  - python
+  - ruby
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

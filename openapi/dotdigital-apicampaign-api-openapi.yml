@@ -1,0 +1,740 @@
+openapi: 3.2.0
+info:
+  title: apiconnector.com API Campaign API
+  version: v2
+servers:
+- url: https://r1-api.dotdigital.com
+tags:
+- name: ApiCampaign
+paths:
+  /v2/campaigns/{id}:
+    get:
+      tags:
+      - ApiCampaign
+      summary: Gets a campaign by ID.
+      operationId: ApiCampaign_GetCampaignById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiCampaign'
+    put:
+      tags:
+      - ApiCampaign
+      summary: Updates a given campaign.
+      operationId: ApiCampaign_UpdateCampaign
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      requestBody:
+        x-name: apiCampaign
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiCampaign'
+        required: true
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiCampaign'
+  /v2/campaigns:
+    get:
+      tags:
+      - ApiCampaign
+      summary: Gets all campaigns.
+      operationId: ApiCampaign_GetCampaigns
+      parameters:
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 1
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaign'
+    post:
+      tags:
+      - ApiCampaign
+      summary: Creates a campaign.
+      operationId: ApiCampaign_CreateCampaign
+      requestBody:
+        x-name: apiCampaign
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiCampaignWithType'
+        required: true
+        x-position: 1
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiCampaignWithType'
+  /v2/campaigns/filtered:
+    get:
+      tags:
+      - ApiCampaign
+      summary: Gets all campaigns (with filters).
+      operationId: ApiCampaign_GetCampaignsWithFilters
+      parameters:
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 1
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 2
+      - name: ~type
+        x-originalName: type
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+        x-position: 3
+      - name: ~tags
+        x-originalName: tags
+        in: query
+        style: form
+        explode: true
+        schema:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        x-position: 4
+      - name: ~sentDate
+        x-originalName: sentDate
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        x-position: 5
+      - name: ~statuses
+        x-originalName: statuses
+        in: query
+        style: form
+        explode: true
+        schema:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        x-position: 6
+      - name: ~scheduledDateFrom
+        x-originalName: scheduledDateFrom
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        x-position: 7
+      - name: ~scheduledDateTo
+        x-originalName: scheduledDateTo
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        x-position: 8
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaignExtended'
+  /v2/campaigns/with-details:
+    get:
+      tags:
+      - ApiCampaign
+      summary: Gets all campaigns with additional information like type.
+      operationId: ApiCampaign_GetCampaignsWithDetails
+      parameters:
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 1
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaignDetails'
+  /v2/address-books/{addressBookId}/campaigns:
+    get:
+      tags:
+      - ApiCampaign
+      summary: Gets any campaigns that have been sent to a list.
+      operationId: ApiCampaign_GetCampaignsForAddressBook
+      parameters:
+      - name: addressBookId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 2
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 3
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaign'
+  /v2/campaigns/with-activity-since/{date}:
+    get:
+      tags:
+      - ApiCampaign
+      summary: Gets all sent campaigns, which have had activity (e.g. clicks, opens) after a specified date.
+      operationId: ApiCampaign_GetSentCampaignsWithActivitySinceDate
+      parameters:
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date-time
+        x-position: 1
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 2
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 3
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaign'
+  /v2/campaigns/split-test:
+    post:
+      tags:
+      - ApiCampaign
+      summary: Creates a split test campaign.
+      operationId: ApiCampaign_CreateSplitTestCampaign
+      requestBody:
+        x-name: apiCampaign
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiSplitTestCampaign'
+        required: true
+        x-position: 1
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiSplitTestCampaign'
+  /v2/campaigns/{campaignId}/copy:
+    post:
+      tags:
+      - ApiCampaign
+      summary: Copies a given campaign returning the new campaign.
+      operationId: ApiCampaign_CopyCampaign
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiCampaign'
+  /v2/campaigns/{campaignId}:
+    delete:
+      tags:
+      - ApiCampaign
+      summary: Deletes a campaign, and any associated reporting data. If the campaign is currently in use, or being sent to, this call will not be permitted.
+      operationId: ApiCampaign_DeleteCampaign
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      responses:
+        '204':
+          description: ''
+  /v2/campaigns/{campaignId}/with-details:
+    get:
+      tags:
+      - ApiCampaign
+      summary: Gets a campaign by ID with additional information like type and assigned tags
+      operationId: ApiCampaign_GetCampaignWithDetails
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiCampaignDetails'
+  /v2/campaigns/{campaignId}/split-test:
+    get:
+      tags:
+      - ApiCampaign
+      summary: Gets the split test results of a given campaign.
+      operationId: ApiCampaign_GetCampaignSplitTestResults
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiCampaignSplitTestResults'
+components:
+  schemas:
+    ApiCampaignFromAddress:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+    ApiCampaignSplitTestResults:
+      type: object
+      additionalProperties: false
+      properties:
+        versions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiSplitTestResult'
+        splitTestWinnerMetric:
+          $ref: '#/components/schemas/ApiSplitTestMetrics'
+    ApiCampaignWithType:
+      allOf:
+      - $ref: '#/components/schemas/ApiCampaign'
+      - type: object
+        additionalProperties: false
+        properties:
+          type:
+            readOnly: true
+            oneOf:
+            - $ref: '#/components/schemas/ApiCampaignTypes'
+    ApiCampaignTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - Standard
+      - Triggered
+      - NotAvailableInThisVersion
+      enum:
+      - Standard
+      - Triggered
+      - NotAvailableInThisVersion
+    ApiCampaignDetails:
+      type: object
+      additionalProperties: false
+      required:
+      - name
+      - subject
+      - fromName
+      - htmlContent
+      - plainTextContent
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          minLength: 1
+        subject:
+          type: string
+          minLength: 1
+        fromName:
+          type: string
+          minLength: 1
+        fromAddress:
+          oneOf:
+          - $ref: '#/components/schemas/ApiCampaignFromAddress'
+        htmlContent:
+          type: string
+          minLength: 1
+        plainTextContent:
+          type: string
+          minLength: 1
+        replyAction:
+          $ref: '#/components/schemas/ApiCampaignReplyActions'
+        replyToAddress:
+          type:
+          - string
+          - 'null'
+        isSplitTest:
+          type: boolean
+          readOnly: true
+        status:
+          readOnly: true
+          oneOf:
+          - $ref: '#/components/schemas/ApiCampaignStatuses'
+        type:
+          readOnly: true
+          oneOf:
+          - $ref: '#/components/schemas/ApiCampaignTypes'
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiCampaignTag'
+        splitTestOptions:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        sentDate:
+          type: string
+          format: date-time
+        customReplyToAddress:
+          type:
+          - string
+          - 'null'
+    ApiCampaignExtended:
+      allOf:
+      - $ref: '#/components/schemas/ApiCampaign'
+      - type: object
+        additionalProperties: false
+        properties:
+          type:
+            type: string
+          tags:
+            type: array
+            items:
+              type: string
+          sentDate:
+            type:
+            - string
+            - 'null'
+            format: date-time
+          scheduledDate:
+            type:
+            - string
+            - 'null'
+            format: date-time
+    ApiCampaignReplyActions:
+      type: string
+      description: ''
+      x-enumNames:
+      - Unset
+      - WebMailForward
+      - Webmail
+      - Delete
+      - NotAvailableInThisVersion
+      enum:
+      - Unset
+      - WebMailForward
+      - Webmail
+      - Delete
+      - NotAvailableInThisVersion
+    ApiSplitTestResult:
+      type: object
+      additionalProperties: false
+      properties:
+        subjectLine:
+          type:
+          - string
+          - 'null'
+        fromName:
+          type:
+          - string
+          - 'null'
+        fromAddress:
+          type:
+          - string
+          - 'null'
+        htmlContent:
+          type:
+          - string
+          - 'null'
+        plainTextContent:
+          type:
+          - string
+          - 'null'
+        version:
+          type:
+          - string
+          - 'null'
+        winningVersion:
+          type: boolean
+        resultsActual:
+          type: number
+          format: decimal
+        resultsPercentage:
+          type: number
+          format: decimal
+    ApiSplitTestCampaign:
+      type: object
+      additionalProperties: false
+      required:
+      - name
+      - plainTextContents
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          maxLength: 255
+          minLength: 1
+        subjects:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        fromNames:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        fromAddresses:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiCampaignFromAddress'
+        htmlContents:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        plainTextContents:
+          type: array
+          items:
+            type: string
+        replyAction:
+          $ref: '#/components/schemas/ApiCampaignReplyActions'
+        replyToAddress:
+          type:
+          - string
+          - 'null'
+        status:
+          readOnly: true
+          oneOf:
+          - $ref: '#/components/schemas/ApiCampaignStatuses'
+        customReplyToAddress:
+          type:
+          - string
+          - 'null'
+    ApiCampaignTag:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+    ApiCampaignStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - Unsent
+      - Sending
+      - Sent
+      - Paused
+      - Cancelled
+      - RequiresSystemApproval
+      - RequiresSMSApproval
+      - RequiresWorkflowApproval
+      - Triggered
+      - NotAvailableInThisVersion
+      enum:
+      - Unsent
+      - Sending
+      - Sent
+      - Paused
+      - Cancelled
+      - RequiresSystemApproval
+      - RequiresSMSApproval
+      - RequiresWorkflowApproval
+      - Triggered
+      - NotAvailableInThisVersion
+    ApiSplitTestMetrics:
+      type: string
+      description: ''
+      x-enumNames:
+      - Opens
+      - Clicks
+      - ROI
+      - NotAvailableInThisVersion
+      enum:
+      - Opens
+      - Clicks
+      - ROI
+      - NotAvailableInThisVersion
+    ApiCampaign:
+      type: object
+      additionalProperties: false
+      required:
+      - name
+      - subject
+      - fromName
+      - htmlContent
+      - plainTextContent
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          maxLength: 255
+          minLength: 1
+        subject:
+          type: string
+          minLength: 1
+        fromName:
+          type: string
+          minLength: 1
+        fromAddress:
+          oneOf:
+          - $ref: '#/components/schemas/ApiCampaignFromAddress'
+        htmlContent:
+          type: string
+          minLength: 1
+        plainTextContent:
+          type: string
+          minLength: 1
+        replyAction:
+          $ref: '#/components/schemas/ApiCampaignReplyActions'
+        replyToAddress:
+          type:
+          - string
+          - 'null'
+        isSplitTest:
+          type: boolean
+          readOnly: true
+        status:
+          readOnly: true
+          oneOf:
+          - $ref: '#/components/schemas/ApiCampaignStatuses'
+        customReplyToAddress:
+          type:
+          - string
+          - 'null'
+x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

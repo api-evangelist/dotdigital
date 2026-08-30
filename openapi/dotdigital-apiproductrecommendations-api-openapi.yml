@@ -1,0 +1,105 @@
+openapi: 3.2.0
+info:
+  title: apiconnector.com API Product Recommendations API
+  version: v2
+servers:
+- url: https://r1-api.dotdigital.com
+tags:
+- name: ApiProductRecommendations
+paths:
+  /v2/products/recommendations:
+    get:
+      tags:
+      - ApiProductRecommendations
+      summary: Gets all product recommendations for the account.
+      operationId: ApiProductRecommendations_GetProductRecommendations
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiProductRecommendation'
+components:
+  schemas:
+    ApiProductRecommendation:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        dateLastRefreshed:
+          type: string
+          format: date-time
+        dateModified:
+          type: string
+          format: date-time
+        dateLastUsed:
+          type: string
+          format: date-time
+        name:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/ApiProductRecommendationType'
+        status:
+          $ref: '#/components/schemas/ApiProductRecommendationStatus'
+        fallbackRecommendationId:
+          type: integer
+          format: int32
+        revenue:
+          type: number
+          format: decimal
+        errorStatus:
+          type:
+          - string
+          - 'null'
+    ApiProductRecommendationType:
+      type: string
+      description: ''
+      x-enumNames:
+      - BestSellers
+      - MostViewed
+      - FilterOnly
+      - LastBrowsed
+      - BoughtTogether
+      - Newest
+      - Lookalikes
+      - AlsoBought
+      - Trending
+      - BestNext
+      - Hybrid
+      - NotAvailableInThisVersion
+      enum:
+      - BestSellers
+      - MostViewed
+      - FilterOnly
+      - LastBrowsed
+      - BoughtTogether
+      - Newest
+      - Lookalikes
+      - AlsoBought
+      - Trending
+      - BestNext
+      - Hybrid
+      - NotAvailableInThisVersion
+    ApiProductRecommendationStatus:
+      type: string
+      description: ''
+      x-enumNames:
+      - Ready
+      - InProgress
+      - Failed
+      - Queued
+      - NotAvailableInThisVersion
+      enum:
+      - Ready
+      - InProgress
+      - Failed
+      - Queued
+      - NotAvailableInThisVersion
+x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

@@ -1,0 +1,161 @@
+openapi: 3.2.0
+info:
+  title: apiconnector.com API Campaign Send API
+  version: v2
+servers:
+- url: https://r1-api.dotdigital.com
+tags:
+- name: ApiCampaignSend
+paths:
+  /v2/campaigns/send:
+    post:
+      tags:
+      - ApiCampaignSend
+      summary: Sends a specified campaign to one or more lists, segments or contacts at a specified time. Leave the list array empty to send to All Contacts.
+      operationId: ApiCampaignSend_SendCampaign
+      requestBody:
+        x-name: apiCampaignSend
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiCampaignSend'
+        required: true
+        x-position: 1
+      responses:
+        '202':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiCampaignSend'
+  /v2/campaigns/send-time-optimised:
+    post:
+      tags:
+      - ApiCampaignSend
+      summary: Sends a specified campaign to one or more lists, segments or contacts at the most appropriate time based upon their previous open. Leave the list array empty to send to All Contacts.
+      operationId: ApiCampaignSend_SendTimeOptimisedCampaign
+      requestBody:
+        x-name: apiCampaignSend
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiCampaignSend'
+        required: true
+        x-position: 1
+      responses:
+        '202':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiCampaignSend'
+  /v2/campaigns/send/{sendId}:
+    get:
+      tags:
+      - ApiCampaignSend
+      summary: Gets the send status using send ID.
+      operationId: ApiCampaignSend_GetCampaignSendProgress
+      parameters:
+      - name: sendId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: guid
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiCampaignSend'
+components:
+  schemas:
+    ApiSplitTestSendOptions:
+      type: object
+      additionalProperties: false
+      required:
+      - testMetric
+      - testPercentage
+      - testPeriodHours
+      properties:
+        testMetric:
+          $ref: '#/components/schemas/ApiSplitTestMetrics'
+        testPercentage:
+          type: integer
+          format: int32
+          maximum: 100.0
+          minimum: 1.0
+        testPeriodHours:
+          type: integer
+          format: int32
+          maximum: 2147483647.0
+          minimum: 1.0
+    ApiCampaignSend:
+      type: object
+      additionalProperties: false
+      required:
+      - campaignId
+      properties:
+        id:
+          type: string
+          format: guid
+        campaignId:
+          type: integer
+          format: int32
+        addressBookIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+        contactIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+        sendDate:
+          type: string
+          format: date-time
+        splitTestOptions:
+          oneOf:
+          - $ref: '#/components/schemas/ApiSplitTestSendOptions'
+        status:
+          readOnly: true
+          oneOf:
+          - $ref: '#/components/schemas/ApiCampaignSendStatuses'
+    ApiCampaignSendStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - NotSent
+      - Scheduled
+      - Sending
+      - Sent
+      - Cancelled
+      - NotAvailableInThisVersion
+      enum:
+      - NotSent
+      - Scheduled
+      - Sending
+      - Sent
+      - Cancelled
+      - NotAvailableInThisVersion
+    ApiSplitTestMetrics:
+      type: string
+      description: ''
+      x-enumNames:
+      - Opens
+      - Clicks
+      - ROI
+      - NotAvailableInThisVersion
+      enum:
+      - Opens
+      - Clicks
+      - ROI
+      - NotAvailableInThisVersion
+x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

@@ -1,0 +1,75 @@
+openapi: 3.2.0
+info:
+  title: Events Large objects API
+  description: 'Send and receive events with Dotdigital. Use this API to import batches of
+
+    contact-associated events, manage event subscriptions (create, retrieve, update,
+
+    and delete), retrieve queued events for a subscription using checkpoint-based
+
+    pagination, and download large objects referenced in event data.'
+  version: 3.1.1-Events-in-out
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      description: The Dotdigital region id your account belongs to
+      enum:
+      - r1
+      - r2
+      - r3
+      default: r1
+security:
+- basicAuth: []
+tags:
+- name: Large objects
+paths:
+  /events/v3/lob/{lobId}:
+    get:
+      tags:
+      - Large objects
+      summary: Retrieve large object
+      description: Gets the data for a large object (LOB) referred to in some events when the data for the field would be too large to be transferred in the event data itself, and so needs downloading seperately.
+      operationId: retrieveLob
+      parameters:
+      - name: lobId
+        in: path
+        description: The unique id for the large object to retrieve.
+        required: true
+        schema:
+          type: string
+          example: d4699dd5-c7fb-4313-a62e-a81998180da0
+      responses:
+        '200':
+          description: Large object data
+          content:
+            application/octet-steam:
+              schema:
+                type: string
+                format: binary
+                example: Any large objects data, use the content-type header to determine data type.
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Large object not found
+        '500':
+          description: Internal Server Error
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+externalDocs:
+  description: Learn more about Dotdigital APIs
+  url: https://developer.dotdigital.com
+x-samples-languages:
+- curl
+- csharp
+- java
+- javascript
+- node
+- python
+- php
+- ruby

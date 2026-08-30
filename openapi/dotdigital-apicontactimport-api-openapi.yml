@@ -1,0 +1,455 @@
+openapi: 3.2.0
+info:
+  title: apiconnector.com API Contact Import API
+  version: v2
+servers:
+- url: https://r1-api.dotdigital.com
+tags:
+- name: ApiContactImport
+paths:
+  /v2/address-books/{addressBookId}/contacts/import:
+    post:
+      tags:
+      - ApiContactImport
+      summary: Bulk creates, or bulk updates, contacts. The ID of returned object can be used to query import progress.
+      description: Import format can either be CSV or Excel. Must include one column called "Email". Any other columns will attempt to map to your custom data fields.
+      operationId: ApiContactImport_ImportContactsToAddressBook
+      parameters:
+      - name: addressBookId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      requestBody:
+        x-name: file
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiFileMedia'
+        required: true
+        x-position: 2
+      responses:
+        '202':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContactImport'
+  /v2/address-books/{addressBookId}/contacts/import/with-merge-option/{mergeOption}:
+    post:
+      tags:
+      - ApiContactImport
+      summary: Bulk creates, or bulk updates, contacts with merge options. The ID of returned object can be used to query import progress.
+      description: Import format can either be CSV or Excel. Must include one column called "Email". Passing a valid "mergeOption" parameter is compulsory. Any other columns will attempt to map to your custom data fields.
+      operationId: ApiContactImport_ImportContactsToAddressBookWithMergeOption
+      parameters:
+      - name: addressBookId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: mergeOption
+        in: path
+        required: true
+        schema:
+          default: NotAvailableInThisVersion
+          oneOf:
+          - $ref: '#/components/schemas/ApiContactMergeOptionTypes'
+        x-position: 3
+      requestBody:
+        x-name: file
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiFileMedia'
+        required: true
+        x-position: 2
+      responses:
+        '202':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContactImport'
+  /v2/contacts/import:
+    post:
+      tags:
+      - ApiContactImport
+      summary: Bulk creates, or bulk updates, contacts. The ID of returned object can be used to query import progress.
+      description: Import format can either be CSV or Excel. Must include one column called "Email". Any other columns will attempt to map to your custom data fields.
+      operationId: ApiContactImport_ImportContacts
+      requestBody:
+        x-name: file
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiFileMedia'
+        required: true
+        x-position: 1
+      responses:
+        '202':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContactImport'
+  /v2/contacts/import-collection:
+    post:
+      tags:
+      - ApiContactImport
+      summary: Bulk creates, or bulk updates, contacts. The ID of returned object can be used to query import progress.
+      operationId: ApiContactImport_ImportContactsCollection
+      requestBody:
+        x-name: contactImportCollection
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiContactImportCollection'
+        required: true
+        x-position: 1
+      responses:
+        '202':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContactImport'
+  /v2/contacts/import/with-merge-option/{mergeOption}:
+    post:
+      tags:
+      - ApiContactImport
+      summary: Bulk creates, or bulk updates, contacts with merge options. The ID of returned object can be used to query import progress.
+      description: This API works on both contact data fields and marketing preferences. Import format can either be CSV or Excel. Must include one column called "Email". Passing a valid "mergeOption" parameter is compulsory. Any other columns will attempt to map to your custom data fields.
+      operationId: ApiContactImport_ImportContactsWithMergeOption
+      parameters:
+      - name: mergeOption
+        in: path
+        required: true
+        schema:
+          default: NotAvailableInThisVersion
+          oneOf:
+          - $ref: '#/components/schemas/ApiContactMergeOptionTypes'
+        x-position: 2
+      requestBody:
+        x-name: file
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiFileMedia'
+        required: true
+        x-position: 1
+      responses:
+        '202':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContactImport'
+  /v2/contacts/import/{importId}:
+    get:
+      tags:
+      - ApiContactImport
+      summary: Gets the import status of a previously started contact import.
+      operationId: ApiContactImport_GetContactImportProgress
+      parameters:
+      - name: importId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: guid
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContactImport'
+  /v2/contacts/import/{importId}/report:
+    get:
+      tags:
+      - ApiContactImport
+      summary: Gets a report with statistics about what was successfully imported, and what was unable to be imported.
+      operationId: ApiContactImport_GetContactImportReport
+      parameters:
+      - name: importId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: guid
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContactImportReport'
+  /v2/contacts/import/{importId}/report-faults:
+    get:
+      tags:
+      - ApiContactImport
+      summary: Gets all records that were not successfully imported.
+      description: The data are returned in CSV file, which is UTF-8 encoded. This data will only be available for approximately one week after import.
+      operationId: ApiContactImport_GetContactImportReportFaults
+      parameters:
+      - name: importId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: guid
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+components:
+  schemas:
+    ApiContactForBulkImport:
+      allOf:
+      - $ref: '#/components/schemas/ApiContact'
+      - type: object
+        additionalProperties: false
+        properties:
+          consentFields:
+            type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ApiContactData'
+          mobileNumberId:
+            type:
+            - string
+            - 'null'
+    ApiContactStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - Subscribed
+      - Unsubscribed
+      - SoftBounced
+      - HardBounced
+      - IspComplained
+      - MailBlocked
+      - PendingOptIn
+      - DirectComplaint
+      - Deleted
+      - SharedSuppression
+      - Suppressed
+      - NotAllowed
+      - DomainSuppression
+      - NoMxRecord
+      - NotAvailableInThisVersion
+      enum:
+      - Subscribed
+      - Unsubscribed
+      - SoftBounced
+      - HardBounced
+      - IspComplained
+      - MailBlocked
+      - PendingOptIn
+      - DirectComplaint
+      - Deleted
+      - SharedSuppression
+      - Suppressed
+      - NotAllowed
+      - DomainSuppression
+      - NoMxRecord
+      - NotAvailableInThisVersion
+    ApiContactImport:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: guid
+        status:
+          $ref: '#/components/schemas/ApiContactImportStatuses'
+    ApiFileMedia:
+      type: object
+      additionalProperties: false
+      properties:
+        fileName:
+          type:
+          - string
+          - 'null'
+        data:
+          type:
+          - string
+          - 'null'
+          format: byte
+    ApiContactData:
+      type: object
+      additionalProperties: false
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        value: {}
+    ApiContact:
+      type: object
+      additionalProperties: false
+      required:
+      - email
+      properties:
+        id:
+          type: integer
+          format: int32
+        email:
+          type: string
+          minLength: 1
+        optInType:
+          oneOf:
+          - $ref: '#/components/schemas/ApiContactOptInTypes'
+        emailType:
+          oneOf:
+          - $ref: '#/components/schemas/ApiContactEmailTypes'
+        dataFields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiContactData'
+        status:
+          $ref: '#/components/schemas/ApiContactStatuses'
+    ApiContactImportCollection:
+      type: object
+      additionalProperties: false
+      properties:
+        contacts:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiContactForBulkImport'
+        addressBookIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+        mergeOption:
+          $ref: '#/components/schemas/ApiContactMergeOptionTypes'
+    ApiContactImportReport:
+      type: object
+      additionalProperties: false
+      properties:
+        newContacts:
+          type: integer
+          format: int32
+        updatedContacts:
+          type: integer
+          format: int32
+        globallySuppressed:
+          type: integer
+          format: int32
+        invalidEntries:
+          type: integer
+          format: int32
+        duplicateEmails:
+          type: integer
+          format: int32
+        blocked:
+          type: integer
+          format: int32
+        unsubscribed:
+          type: integer
+          format: int32
+        hardBounced:
+          type: integer
+          format: int32
+        softBounced:
+          type: integer
+          format: int32
+        ispComplaints:
+          type: integer
+          format: int32
+        mailBlocked:
+          type: integer
+          format: int32
+        domainSuppressed:
+          type: integer
+          format: int32
+        pendingDoubleOptin:
+          type: integer
+          format: int32
+        failures:
+          type: integer
+          format: int32
+        suppressedContacts:
+          type: integer
+          format: int32
+    ApiContactImportStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - Finished
+      - NotFinished
+      - RejectedByWatchdog
+      - InvalidFileFormat
+      - Unknown
+      - Failed
+      - ExceedsAllowedContactLimit
+      - NotAvailableInThisVersion
+      enum:
+      - Finished
+      - NotFinished
+      - RejectedByWatchdog
+      - InvalidFileFormat
+      - Unknown
+      - Failed
+      - ExceedsAllowedContactLimit
+      - NotAvailableInThisVersion
+    ApiContactEmailTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - PlainText
+      - Html
+      - NotAvailableInThisVersion
+      enum:
+      - PlainText
+      - Html
+      - NotAvailableInThisVersion
+    ApiContactMergeOptionTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - Overwrite
+      - OnlyOverwriteIfNotEmpty
+      - OnlyOverwriteIfContactDataNotPopulated
+      - NotAvailableInThisVersion
+      enum:
+      - Overwrite
+      - OnlyOverwriteIfNotEmpty
+      - OnlyOverwriteIfContactDataNotPopulated
+      - NotAvailableInThisVersion
+    ApiContactOptInTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - Unknown
+      - Single
+      - Double
+      - VerifiedDouble
+      - NotAvailableInThisVersion
+      enum:
+      - Unknown
+      - Single
+      - Double
+      - VerifiedDouble
+      - NotAvailableInThisVersion
+x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

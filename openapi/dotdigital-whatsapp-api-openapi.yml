@@ -1,0 +1,217 @@
+openapi: 3.2.0
+info:
+  title: Analytics Whats App API
+  description: 'Provides methods for retrieving analytics data across the Dotdigital
+
+    omnichannel platform. Covers conversation message analytics, chat analytics
+
+    (including live), message metrics, session analytics, SMS tracking,
+
+    verification, inbound/outbound SMS analytics, and WhatsApp conversation and
+
+    daily messaging usage reports. All endpoints accept date-range and
+
+    aggregation parameters and return time-series data suitable for reporting
+
+    dashboards.'
+  version: 1.1.1
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      description: The Dotdigital region id your account belongs to
+      enum:
+      - r1
+      - r2
+      - r3
+      default: r1
+security:
+- basicAuth: []
+tags:
+- name: WhatsApp
+paths:
+  /cpaas/analytics/whatsapp/conversations:
+    get:
+      tags:
+      - WhatsApp
+      summary: Retrieves WhatsApp conversation analytics
+      parameters:
+      - name: wabaIds
+        in: query
+        description: The ids of the WhatsApp Business Account to get conversation analytics for
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: to
+        in: query
+        description: The date time to query up to (but not including) in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: from
+        in: query
+        description: The date time to query from in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: by
+        in: query
+        description: The time period to aggregate by
+        required: false
+        schema:
+          type: string
+          enum:
+          - half_hour
+          - daily
+          - monthly
+      - name: phoneNumbers
+        in: query
+        description: An array of phone numbers for which to retrieve analytics. If not provided, all phone numbers added to the WABA are included
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: conversationCategories
+        in: query
+        description: A list of conversation categories. If not provided, results for all conversation categories are retrieved.
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - marketing
+            - utility
+            - authentication
+            - service
+      - name: dimensions
+        in: query
+        description: A list of breakdowns to apply to metrics. If not provided, results are retrieved without any breakdowns
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - conversation_category
+            - conversation_direction
+            - conversation_type
+            - country
+            - phone
+      responses:
+        '200':
+          description: The count of whatsApp conversations for a specific period
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/whatsAppConversationAnalytics'
+        '400':
+          description: Validation errors were found
+        '404':
+          description: The API Space was not
+  /cpaas/analytics/whatsapp/dailymessagingusage:
+    get:
+      tags:
+      - WhatsApp
+      summary: Retrieves WhatsApp business-initiated conversation analytics for the last 24 hours (Daily message usage)
+      parameters:
+      - name: wabaIds
+        in: query
+        description: The ids of the WhatsApp Business Account to get conversation analytics for
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: The count of business-initiated(marketing, utility and authentication) conversations for the last 24 hours
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/whatsAppDailyMessagingUsage'
+        '400':
+          description: Validation errors were found
+        '404':
+          description: The API Space was not
+components:
+  schemas:
+    whatsAppDailyMessagingUsage:
+      type: object
+      properties:
+        usageInTheLast24Hours:
+          type: integer
+          description: The daily messaging usage (business-initiated conversations) for the waba for the last 24 hours
+          format: int64
+        messagingLimitTier:
+          type: string
+          description: The current messaging limit tier for the WABA
+    whatsAppConversationAnalytics:
+      type: object
+      properties:
+        start:
+          type: integer
+          description: The start date unix timestamp
+          format: int64
+        end:
+          type: integer
+          description: The end date unix timestamp
+          format: int64
+        conversation:
+          type: integer
+          description: The number of conversations for that specific date and time
+          format: int64
+        conversationDirection:
+          type: string
+          description: The conversation direction, i.e. business-initiated, user-initiated or unknown
+        conversationCategory:
+          type: string
+          description: The conversation category, i.e. marketing, utility, authentication or service
+        conversationTypes:
+          type: string
+          description: The conversation type, i.e. free tier, free entry, or regular
+        country:
+          type: string
+          description: The country code of the user
+        phone:
+          type: string
+          description: The phone number that was used to for the conversation
+        cost:
+          type: integer
+          description: The cost of the conversations
+          format: int64
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+x-readme:
+  samples-languages:
+  - curl
+  - csharp
+  - java
+  - node
+  - php
+  - python
+  - ruby
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

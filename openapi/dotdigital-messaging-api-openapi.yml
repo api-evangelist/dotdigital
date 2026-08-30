@@ -1,0 +1,392 @@
+openapi: 3.2.0
+info:
+  title: Analytics Messaging API
+  description: 'Provides methods for retrieving analytics data across the Dotdigital
+
+    omnichannel platform. Covers conversation message analytics, chat analytics
+
+    (including live), message metrics, session analytics, SMS tracking,
+
+    verification, inbound/outbound SMS analytics, and WhatsApp conversation and
+
+    daily messaging usage reports. All endpoints accept date-range and
+
+    aggregation parameters and return time-series data suitable for reporting
+
+    dashboards.'
+  version: 1.1.1
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      description: The Dotdigital region id your account belongs to
+      enum:
+      - r1
+      - r2
+      - r3
+      default: r1
+security:
+- basicAuth: []
+tags:
+- name: Messaging
+paths:
+  /cpaas/analytics/messages:
+    get:
+      tags:
+      - Messaging
+      summary: Retrieves message analytics
+      parameters:
+      - name: from
+        in: query
+        description: The date time to query from in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: The date time to query up to (but not including) in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: by
+        in: query
+        description: The time period to aggregate by
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - hour
+            - day
+            - month
+            - year
+            - alltime
+            - system
+            - recipientCountryCode
+      - name: system
+        in: query
+        description: The system that triggered an analytical event
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - api
+            - broadcast
+            - chat
+      - name: timezone
+        in: query
+        description: The localtimezone to report the data out for if not specified, UTC is defaulted
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The count of sent, delivered, read, inbound and failed messages for a specific period, including segments used
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/messageAnalytics'
+        '400':
+          description: Validation errors were found
+        '404':
+          description: The API Space was not
+  /cpaas/analytics/messages/metrics:
+    get:
+      tags:
+      - Messaging
+      summary: Retrieves message metrics
+      parameters:
+      - name: from
+        in: query
+        description: The date time to query from in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: The date time to query up to (but not including) in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: by
+        in: query
+        description: The time period to aggregate by
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - hour
+            - day
+            - month
+            - year
+            - alltime
+            - system
+            - recipientCountryCode
+      - name: system
+        in: query
+        description: The system that triggered an analytical event
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - api
+            - broadcast
+            - chat
+      - name: timezone
+        in: query
+        description: The localtimezone to report the data out for if not specified, UTC is defaulted
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Metrics relating to the messages sent for a specific period
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiProfilingAnalytics'
+        '400':
+          description: Validation errors were found
+        '404':
+          description: The API Space was not
+components:
+  schemas:
+    messageAnalytics_inbound:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The count of messages received from each channel
+    messageAnalytics_deliveredSegements:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The segment count of delivered messages on each channel
+    messageAnalytics_expired:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The count of expired messages for each channel
+    messageAnalytics_queuedSegments:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The segment count of queued messages on each channel
+    messageAnalytics_read:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The count of messages read for each channel
+    ApiProfilingAnalytics:
+      required:
+      - date
+      - dateUtc
+      type: object
+      properties:
+        date:
+          type: string
+          description: The date of the analytics data in ISO 8601 format.
+          format: date-time
+          example: '2025-04-01T00:00:00Z'
+        dateUtc:
+          type: string
+          description: The UTC date of the analytics data in ISO 8601 format.
+          format: date-time
+          example: '2025-04-01T00:00:00Z'
+        appMessaging:
+          $ref: '#/components/schemas/ChannelProfiling'
+        whatsApp:
+          $ref: '#/components/schemas/ChannelProfiling'
+        sms:
+          $ref: '#/components/schemas/ChannelProfiling'
+      description: 'API profiling analytics data, including delivery times for different messaging channels on a specific date.
+
+        '
+    TimeToDeliveredMetrics:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/DeliveryTimeMetric'
+      description: 'Delivery time metrics, keyed by delivery time thresholds (in seconds).
+
+        '
+      example:
+        '10':
+          count: 5
+          value: 4680
+        '30':
+          count: 2
+          value: 46494
+    messageAnalytics_success:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The count of messages sent for each channel
+    messageAnalytics_expiredSegements:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The segment count of expired messages on each channel
+    messageAnalytics_delivered:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The count of messages delivered for each channel
+    DeliveryTimeMetric:
+      required:
+      - count
+      - value
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Number of messages delivered within the threshold.
+          example: 5
+        value:
+          type: integer
+          description: Total time (in milliseconds) for all messages delivered within the threshold.
+          example: 4680
+      description: 'Metric for messages delivered within a specific time threshold.
+
+        '
+    ChannelProfiling:
+      required:
+      - timeToDelivered
+      type: object
+      properties:
+        timeToDelivered:
+          $ref: '#/components/schemas/TimeToDeliveredMetrics'
+      description: 'Profiling data for a specific messaging channel, including delivery time metrics.
+
+        '
+    messageAnalytics:
+      type: object
+      properties:
+        date:
+          type: string
+          description: The start date and time for the period in the timezone passesd in
+        dateUtc:
+          type: string
+          description: The start date and time for the period in UTC
+        attempted:
+          type: integer
+          description: The number of message sends that were attempted in the period
+          format: int64
+        queued:
+          $ref: '#/components/schemas/messageAnalytics_queued'
+        queuedSegments:
+          $ref: '#/components/schemas/messageAnalytics_queuedSegments'
+        success:
+          $ref: '#/components/schemas/messageAnalytics_success'
+        successSegements:
+          $ref: '#/components/schemas/messageAnalytics_successSegements'
+        delivered:
+          $ref: '#/components/schemas/messageAnalytics_delivered'
+        deliveredSegements:
+          $ref: '#/components/schemas/messageAnalytics_deliveredSegements'
+        read:
+          $ref: '#/components/schemas/messageAnalytics_read'
+        readSegements:
+          $ref: '#/components/schemas/messageAnalytics_readSegements'
+        undeliverable:
+          $ref: '#/components/schemas/messageAnalytics_undeliverable'
+        undeliverableSegements:
+          $ref: '#/components/schemas/messageAnalytics_undeliverableSegements'
+        expired:
+          $ref: '#/components/schemas/messageAnalytics_expired'
+        expiredSegements:
+          $ref: '#/components/schemas/messageAnalytics_expiredSegements'
+        failed:
+          type: integer
+          description: The number of message sends that failed in the period
+          format: int64
+        inbound:
+          $ref: '#/components/schemas/messageAnalytics_inbound'
+    messageAnalytics_readSegements:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The segment count of read messages on each channel
+    messageAnalytics_queued:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The count of queued messages for each channel
+    messageAnalytics_undeliverableSegements:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The segment count of undeliverable messages on each channel
+    messageAnalytics_undeliverable:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The count of undeliverable messages for each channel
+    messageAnalytics_successSegements:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The segment count of sent messages on each channel
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+x-readme:
+  samples-languages:
+  - curl
+  - csharp
+  - java
+  - node
+  - php
+  - python
+  - ruby
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

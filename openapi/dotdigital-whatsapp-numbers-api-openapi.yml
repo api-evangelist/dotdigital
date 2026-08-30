@@ -1,0 +1,230 @@
+openapi: 3.2.0
+info:
+  title: WhatsApp Channel WhatsApp numbers API
+  description: 'Provides methods for configuring and managing WhatsApp Cloud API channels
+
+    within an API Space. Supports creating and retrieving WhatsApp
+
+    configurations, registering and removing phone numbers, and retrieving
+
+    WhatsApp message templates from a given WhatsApp Business Account.'
+  version: 1.0.1
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      description: The Dotdigital region id your account belongs to
+      enum:
+      - r1
+      - r2
+      - r3
+      default: r1
+security:
+- basicAuth: []
+tags:
+- name: WhatsApp numbers
+paths:
+  /cpaas/channels/whatsapp/cloud/{phoneNumber}:
+    get:
+      tags:
+      - WhatsApp numbers
+      summary: Get WhatsApp number
+      description: Retrieves the WhatsApp configuration for a number.
+      parameters:
+      - name: phoneNumber
+        in: path
+        description: A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The WhatsApp channel configuration
+          headers:
+            ETag:
+              description: A unique value representing the version of the WhatsApp configuration, optionally used for optimistic concurrency control on PUT and DELETE
+              schema:
+                type: string
+            Last-Modified:
+              description: The date the WhatsApp channel configuration was last updated in ISO 8601 format
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/whatsAppCloudConfiguration'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: The WhatsApp channel configuration was not found
+        '500':
+          description: Internal server error
+    delete:
+      tags:
+      - WhatsApp numbers
+      summary: Removes WhatsApp number
+      description: 'Removes a WhatsApp number configuration permaently.
+
+        <br><br>
+
+        **Warning: This action cannot be undone!**'
+      parameters:
+      - name: phoneNumber
+        in: path
+        description: A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Indicates successful removal of a cloud originator number
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: The cloud originator number was not found
+        '500':
+          description: Internal server error
+  /cpaas/channels/whatsapp/cloud/register/{phoneNumber}:
+    post:
+      tags:
+      - WhatsApp numbers
+      summary: Registers WhatsApp number
+      description: Registers a WhatsApp configuration for a number.
+      parameters:
+      - name: phoneNumber
+        in: path
+        description: A WhatsApp-registered number in [E164 format](https://en.wikipedia.org/wiki/E.164) associated with a WhatsApp Business Messaging account.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A Cloud registration attempt was made for the WhatsApp phone number
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/registrationResult'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: The WhatsApp channel configuration for the phone number was not found
+        '500':
+          description: Internal server error
+components:
+  schemas:
+    whatsAppCloudConfiguration:
+      type: object
+      properties:
+        expiresOn:
+          type: string
+          description: The UTC date the configuration expires.
+          format: date-time
+          example: '2100-01-01T00:00:00Z'
+        messagingLimitTier:
+          type: string
+          description: The daily messaging tier limit.
+          example: TIER_1K
+        phoneNumberId:
+          type: string
+          description: The unique id for the number.
+          example: '1234567890123456'
+        phoneNumber:
+          type: string
+          description: The number in [E164 format](https://en.wikipedia.org/wiki/E.164).
+          example: '16315555555'
+        phoneNumberName:
+          type: string
+          description: The friendly display name for the number.
+          example: Brand A
+        phoneNumberNameStatus:
+          type: string
+          description: The friendly name for a number review status.
+          example: CONNECTED
+        phoneNumberStatus:
+          type: string
+          description: The numbers status.
+          example: ONBOARDING
+        phoneNumberQuality:
+          type: string
+          description: The messaging quality rating for the number.
+          example: GREEN
+        wabaId:
+          $ref: '#/components/schemas/wabaId'
+        wabaReviewStatus:
+          type: string
+          description: The status of the WABA review by Meta.
+          example: APPROVED
+        systemUserWabaAssignmentStatus:
+          type: string
+          description: User WABA assignment status.
+          example: success
+          enum:
+          - failed
+          - inProgress
+          - success
+        creditLineSharedStatus:
+          type: string
+          description: Shared credit line status.
+          example: success
+          enum:
+          - failed
+          - inProgress
+          - success
+        webhookSubscriptionStatus:
+          type: string
+          description: WhatsApp webhook subscription status.
+          example: success
+          enum:
+          - failed
+          - inProgress
+          - success
+        phoneNumberRegistrationStatus:
+          type: string
+          description: WhatsApp number registration status.
+          example: success
+          enum:
+          - failed
+          - inProgress
+          - success
+        configurationStatus:
+          type: string
+          description: WhatsApp configuration status.
+          example: success
+          enum:
+          - failed
+          - inProgress
+          - success
+        createdOn:
+          type: string
+          description: The UTC date time of when the configuration was created.
+          format: date-time
+          example: '2025-01-01T00:00:00Z'
+    wabaId:
+      type: string
+      description: The unique WhatsApp Business Account (WABA) identifier.
+      example: '226114410888722'
+    registrationResult:
+      type: boolean
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+x-readme:
+  samples-languages:
+  - curl
+  - csharp
+  - java
+  - node
+  - php
+  - python
+  - ruby
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

@@ -1,0 +1,553 @@
+openapi: 3.2.0
+info:
+  title: apiconnector.com API Survey API
+  version: v2
+servers:
+- url: https://r1-api.dotdigital.com
+tags:
+- name: ApiSurvey
+paths:
+  /v2/surveys:
+    get:
+      tags:
+      - ApiSurvey
+      summary: Gets a list of all surveys in the account.
+      operationId: ApiSurvey_GetSurveys
+      parameters:
+      - name: assignedToAddressBookOnly
+        in: query
+        schema:
+          type: boolean
+          default: false
+        x-position: 1
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 2
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 3
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiSurvey'
+  /v2/surveys/with-activity-since/{date}:
+    get:
+      tags:
+      - ApiSurvey
+      summary: Gets a list of surveys in the account that have changed since the specified date.
+      operationId: ApiSurvey_GetSurveys2
+      parameters:
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date-time
+        x-position: 1
+      - name: assignedToAddressBookOnly
+        in: query
+        schema:
+          type: boolean
+          default: false
+        x-position: 2
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 3
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiSurvey'
+  /v2/surveys/{id}:
+    get:
+      tags:
+      - ApiSurvey
+      summary: Gets a single survey by its ID.
+      operationId: ApiSurvey_GetSurveyById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiSurvey'
+  /v2/surveys/{id}/fields:
+    get:
+      tags:
+      - ApiSurvey
+      summary: Gets a list of survey pages, each containing a list of the fields on that page.
+      operationId: ApiSurvey_GetSurveyFields
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiSurveyPage'
+  /v2/surveys/{id}/responses:
+    get:
+      tags:
+      - ApiSurvey
+      summary: Gets a list of all responses for a given survey.
+      operationId: ApiSurvey_GetSurveyResponses
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 2
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 3
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiSurveyResponse'
+  /v2/surveys/{id}/responses/with-activity-since/{date}:
+    get:
+      tags:
+      - ApiSurvey
+      summary: Gets a list of responses that have changed since the specified date.
+      operationId: ApiSurvey_GetSurveyResponses2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date-time
+        x-position: 2
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 3
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiSurveyResponse'
+components:
+  schemas:
+    ApiSurveySubmissionMode:
+      type: string
+      description: ''
+      x-enumNames:
+      - Single
+      - Multiple
+      - NotAvailableInThisVersion
+      enum:
+      - Single
+      - Multiple
+      - NotAvailableInThisVersion
+    ApiSurveyPage:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiSurveyField'
+    ApiSurveyConfirmationMode:
+      type: string
+      description: ''
+      x-enumNames:
+      - Text
+      - Url
+      - NotAvailableInThisVersion
+      enum:
+      - Text
+      - Url
+      - NotAvailableInThisVersion
+    ApiSurveyState:
+      type: string
+      description: ''
+      x-enumNames:
+      - Active
+      - Inactive
+      - Pending
+      - Expired
+      - SurveyFeatureDisabled
+      - NotAvailableInThisVersion
+      enum:
+      - Active
+      - Inactive
+      - Pending
+      - Expired
+      - SurveyFeatureDisabled
+      - NotAvailableInThisVersion
+    ApiAssignedContactDataExistsAction:
+      type: string
+      description: ''
+      x-enumNames:
+      - OverwriteData
+      - HideField
+      - NotAvailableInThisVersion
+      enum:
+      - OverwriteData
+      - HideField
+      - NotAvailableInThisVersion
+    ApiSurveyGivenAnswer:
+      type: object
+      additionalProperties: false
+      properties:
+        fieldId:
+          type: integer
+          format: int32
+        subFieldId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        value: {}
+    ApiSurveyResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+        started:
+          type: boolean
+        dateStarted:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        complete:
+          type: boolean
+        dateCompleted:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        givenAnswers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiSurveyGivenAnswer'
+    ApiSurvey:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        dateSurveyCreated:
+          type: string
+          format: date-time
+        dateSurveyModified:
+          type: string
+          format: date-time
+        state:
+          $ref: '#/components/schemas/ApiSurveyState'
+        firstActiveDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastInactiveDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        scheduledStartDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        scheduledEndDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        confirmationMode:
+          $ref: '#/components/schemas/ApiSurveyConfirmationMode'
+        submissionMode:
+          $ref: '#/components/schemas/ApiSurveySubmissionMode'
+        fieldCount:
+          type: integer
+          format: int32
+        notifyCreatorOnResponse:
+          type: boolean
+        respondentNotificationType:
+          $ref: '#/components/schemas/ApiRespondentNotificationType'
+        respondentNotificationCampaignId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        isAssignedToAddressBook:
+          type: boolean
+        assignedAddressBookTarget:
+          $ref: '#/components/schemas/ApiSurveyAssignedAddressBookTarget'
+        assignedSpecificAddressBookId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        firstResponseDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastResponseDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        totalCompleteResponses:
+          type: integer
+          format: int32
+        totalCompleteResponsesInLastDay:
+          type: integer
+          format: int32
+        totalCompleteResponsesInLastWeek:
+          type: integer
+          format: int32
+        totalIncompleteResponses:
+          type: integer
+          format: int32
+        totalViews:
+          type: integer
+          format: int32
+        totalBounces:
+          type: integer
+          format: int32
+        timeToCompleteMax:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        timeToCompleteMin:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        timeToCompleteTotal:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        sourceDirectTotal:
+          type: integer
+          format: int32
+        sourceEmailTotal:
+          type: integer
+          format: int32
+        sourceEmbeddedTotal:
+          type: integer
+          format: int32
+        sourcePopoverTotal:
+          type: integer
+          format: int32
+        sourceFacebookTotal:
+          type: integer
+          format: int32
+        sourceTwitterTotal:
+          type: integer
+          format: int32
+        sourceGooglePlusTotal:
+          type: integer
+          format: int32
+        sourceOtherTotal:
+          type: integer
+          format: int32
+    ApiRespondentNotificationType:
+      type: string
+      description: ''
+      x-enumNames:
+      - None
+      - Basic
+      - Campaign
+      - NotAvailableInThisVersion
+      enum:
+      - None
+      - Basic
+      - Campaign
+      - NotAvailableInThisVersion
+    ApiSurveyField:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        type:
+          type:
+          - string
+          - 'null'
+        text:
+          type:
+          - string
+          - 'null'
+        isRequired:
+          type: boolean
+        defaultValue:
+          type:
+          - string
+          - 'null'
+        mode:
+          type:
+          - string
+          - 'null'
+        choices:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiSurveyQuestionChoice'
+        subFields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiSurveyField'
+        hasOtherOption:
+          type: boolean
+        otherOptionChoiceId:
+          type: integer
+          format: int32
+        otherOptionSubFieldId:
+          type: integer
+          format: int32
+        otherOptionTextFieldId:
+          type: integer
+          format: int32
+        isAssignedToContactDataField:
+          type: boolean
+        assignedContactDataFieldName:
+          type:
+          - string
+          - 'null'
+        assignedContactDataExistsAction:
+          $ref: '#/components/schemas/ApiAssignedContactDataExistsAction'
+    ApiSurveyQuestionChoice:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        text:
+          type:
+          - string
+          - 'null'
+    ApiSurveyAssignedAddressBookTarget:
+      type: string
+      description: ''
+      x-enumNames:
+      - AllContacts
+      - SpecificAddressBook
+      - NotAvailableInThisVersion
+      enum:
+      - AllContacts
+      - SpecificAddressBook
+      - NotAvailableInThisVersion
+x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

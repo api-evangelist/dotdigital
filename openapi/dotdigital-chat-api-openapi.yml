@@ -1,0 +1,227 @@
+openapi: 3.2.0
+info:
+  title: Analytics Chat API
+  description: 'Provides methods for retrieving analytics data across the Dotdigital
+
+    omnichannel platform. Covers conversation message analytics, chat analytics
+
+    (including live), message metrics, session analytics, SMS tracking,
+
+    verification, inbound/outbound SMS analytics, and WhatsApp conversation and
+
+    daily messaging usage reports. All endpoints accept date-range and
+
+    aggregation parameters and return time-series data suitable for reporting
+
+    dashboards.'
+  version: 1.1.1
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      description: The Dotdigital region id your account belongs to
+      enum:
+      - r1
+      - r2
+      - r3
+      default: r1
+security:
+- basicAuth: []
+tags:
+- name: Chat
+paths:
+  /cpaas/analytics/chats:
+    get:
+      tags:
+      - Chat
+      summary: Retrieves chat analytics
+      parameters:
+      - name: from
+        in: query
+        description: The date time to query from in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: The date time to query up to (but not including) in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: by
+        in: query
+        description: The aggregation criteria. Can be one time based value and any combination of non time values
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - hour
+            - day
+            - month
+            - year
+            - alltime
+            - team
+            - agent
+      - name: timezone
+        in: query
+        description: The localtimezone to report the data out for if not specified, UTC is defaulted
+        required: false
+        schema:
+          type: string
+      - name: teamId
+        in: query
+        description: The id of the team to retrieve analytics for
+        required: false
+        schema:
+          type: string
+      - name: agentId
+        in: query
+        description: The id of the agent to retrieve analytics for
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The chat analytics for a specific period
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/chatAnalytics'
+        '400':
+          description: Validation errors were found
+        '404':
+          description: The API Space was not
+  /cpaas/analytics/chats/live:
+    get:
+      tags:
+      - Chat
+      summary: Retrieves live chat analytics
+      parameters:
+      - name: teamId
+        in: query
+        description: The id of the team to retrieve analytics for
+        required: false
+        schema:
+          type: string
+      - name: by
+        in: query
+        description: The aggregation criteria
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - team
+            - agent
+      responses:
+        '200':
+          description: The live chat analytics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/liveChatAnalytics'
+        '400':
+          description: Validation errors were found
+        '404':
+          description: The API Space was not
+components:
+  schemas:
+    liveChatAnalytics:
+      type: object
+      properties:
+        teamId:
+          type: string
+          description: The live count of 'new' chats
+        new:
+          type: integer
+          description: The live count of 'new' chats
+        replied:
+          type: integer
+          description: The live count of 'replied' chats
+        closed:
+          type: integer
+          description: The live count of 'closed' chats
+    chatAnalytics:
+      type: object
+      properties:
+        date:
+          type: string
+          description: The start date and time for the period in the timezone passed in
+        dateUtc:
+          type: string
+          description: The start date and time for the period in UTC
+        teamId:
+          type: string
+          description: The team allocated
+        agentId:
+          type: string
+          description: The agent allocated
+        inbounds:
+          type: integer
+          description: The number of inbound messages for the period
+          format: int64
+        outbounds:
+          type: integer
+          description: The number of agent-send messages for the period
+          format: int64
+        responses:
+          type: integer
+          description: The number of agent replies for the period
+          format: int64
+        timeToRespondSeconds:
+          type: integer
+          description: The total time to reply to all inbound messages for the period in seconds
+          format: int64
+        initialResponses:
+          type: integer
+          description: The number of initial inbound message replies for the period
+          format: int64
+        timeToInitialResponseSeconds:
+          type: integer
+          description: The total time to reply to initial inbound messages for the period in seconds
+          format: int64
+        closed:
+          type: integer
+          description: The number of closed chats for the period
+          format: int64
+        timeToCloseSeconds:
+          type: integer
+          description: The total time to close chats closed in this period
+          format: int64
+        transitionsToNew:
+          type: integer
+          description: The total number of times chats were transitioned to 'New'
+          format: int64
+        transitionsToReplied:
+          type: integer
+          description: The total number of times chats were transitioned to 'Replied'
+          format: int64
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+x-readme:
+  samples-languages:
+  - curl
+  - csharp
+  - java
+  - node
+  - php
+  - python
+  - ruby
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

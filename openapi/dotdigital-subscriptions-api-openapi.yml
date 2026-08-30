@@ -1,0 +1,675 @@
+openapi: 3.2.0
+info:
+  title: Events Subscriptions API
+  description: 'Send and receive events with Dotdigital. Use this API to import batches of
+
+    contact-associated events, manage event subscriptions (create, retrieve, update,
+
+    and delete), retrieve queued events for a subscription using checkpoint-based
+
+    pagination, and download large objects referenced in event data.'
+  version: 3.1.1-Events-in-out
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      description: The Dotdigital region id your account belongs to
+      enum:
+      - r1
+      - r2
+      - r3
+      default: r1
+security:
+- basicAuth: []
+tags:
+- name: Subscriptions
+paths:
+  /events/v3/export/subscriptions:
+    get:
+      tags:
+      - Subscriptions
+      summary: List subscriptions
+      description: Lists all events subscriptions and their details.
+      operationId: listSubscriptions
+      parameters:
+      - name: x-ddg-integration-token
+        in: header
+        description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+        required: false
+        schema:
+          pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+          type: string
+          example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+      - name: limit
+        in: query
+        description: The maximum number of records to return in the results, note it could be fewer.
+        required: false
+        schema:
+          maximum: 5000
+          minimum: 1
+          type: integer
+          example: 2000
+          default: 2000
+      - name: marker
+        in: query
+        description: Pagination marker to retrieve the data from
+        schema:
+          type: string
+          example: RXhhbXBsZSBhbXJrZXIgdmFsdWU=
+      responses:
+        '200':
+          description: Subscriptions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+              examples:
+                Example:
+                  value:
+                    _links:
+                      self:
+                        marker: ''
+                        link: https://r1-api.dotdigital.com/events/v3/export/subscriptions
+                      first:
+                        marker: ''
+                        link: https://r1-api.dotdigital.com/events/v3/export/subscriptions
+                    _items:
+                    - id: 10
+                      name: Contact events
+                      status: active
+                      subscribedEventTypes:
+                      - eventType: contact.created
+                      - eventType: contact.preferenceUpdated
+                      - eventType: contact.removed
+                      - eventType: contact.updated
+                      - eventType: contact.membershipUpdated
+                      - eventType: contact.consentAdded
+                      - eventType: interaction.click
+                      - eventType: interaction.unsubscribe
+                      alertsConfiguration:
+                        alertChannels: emailAndInApp
+                        email: someone@emailsim.io
+                      created: '2026-01-14T10:36:56.931Z'
+                      updated: '2026-02-17T15:42:25.836Z'
+                    - id: 12
+                      name: Insight events
+                      status: active
+                      subscribedEventTypes:
+                      - eventType: insightData.collectionCreated
+                      - eventType: insightData.collectionRemoved
+                      - eventType: insightData.removed
+                      - eventType: insightData.set
+                      alertsConfiguration:
+                        alertChannels: emailAndInApp
+                        email: someone@emailsim.io
+                      created: '2026-01-14T14:23:02.280Z'
+                      updated: '2026-01-14T14:23:02.280Z'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+    post:
+      tags:
+      - Subscriptions
+      summary: Create subscription
+      description: "Creates a events subscription. \n\nThe `name` passed must be unique within the accounts subscriptions\n\nIf you apply filters to your event subscription then **all filters must match** (logical AND) for the event to be captured.\n\nIf you want to match the same event type on multiple different sets of filters (logical OR) then add the event type multiple time to the subscription with differing filters."
+      operationId: createSubscription
+      parameters:
+      - name: x-ddg-integration-token
+        in: header
+        description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+        required: false
+        schema:
+          pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+          type: string
+          example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+      - name: x-ddg-calling-system
+        in: header
+        description: _Dotdigital use only_ The calling systems identifier
+        required: false
+        schema:
+          maxLength: 60
+          type: string
+          default: customer
+      requestBody:
+        description: Subscription details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/subscriptionRequest'
+            examples:
+              Event subscription:
+                description: Example of subscribing to multiple events.
+                value:
+                  name: Campaign events
+                  status: active
+                  subscribedEventTypes:
+                  - eventType: message.sent
+                  - eventType: message.status
+                    filters:
+                    - field: $.channel
+                      matchPattern: sms
+                    - field: $.status
+                      matchPattern: failed
+                  alertsConfiguration:
+                    alertChannels: emailAndInApp
+                    email: alerts@emailsim.io
+              An OR event subscription:
+                description: Subscribing to the same event multiple times to create a logical OR. This example includes all `message.sent` events sent on the `sms` or `whatsApp` channel.
+                value:
+                  name: Campaign events
+                  status: active
+                  subscribedEventTypes:
+                  - eventType: message.sent
+                    filters:
+                    - field: $.channel
+                      matchPattern: sms
+                  - eventType: message.sent
+                    filters:
+                    - field: $.channel
+                      matchPattern: whatsApp
+                  alertsConfiguration:
+                    alertChannels: emailAndInApp
+                    email: alerts@emailsim.io
+        required: true
+      responses:
+        '201':
+          description: Subscription created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/subscription'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              examples:
+                unknownEventType:
+                  value:
+                    errorCode: events:invalidEventType
+                    description: The type value 'example.unknownType' is invalid.
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '409':
+          description: Name conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                errorCode: events:nameAlreadyExists
+                description: The name value 'Camapign events' already exists. All names must be unique!
+        '500':
+          description: Internal Server Error
+  /events/v3/export/subscriptions/{subscriptionId}:
+    get:
+      tags:
+      - Subscriptions
+      summary: Gets subscription
+      description: Gets a events subscription details.
+      operationId: getSubscription
+      parameters:
+      - name: subscriptionId
+        in: path
+        description: The events subscription id you want to interact with.
+        required: true
+        schema:
+          type: integer
+          example: 1234
+      - name: x-ddg-integration-token
+        in: header
+        description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+        required: false
+        schema:
+          pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+          type: string
+          example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+      responses:
+        '200':
+          description: Subscription details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/subscription'
+              examples:
+                Example:
+                  value:
+                    id: 95
+                    created: '2025-02-07T16:23:33.741Z'
+                    updated: '2025-02-11T01:33:00.000Z'
+                    name: Campaign events
+                    status: inactive
+                    subscribedEventTypes:
+                    - eventType: message.sent
+                    - eventType: message.status
+                      filters:
+                      - field: $.channel
+                        matchPattern: sms
+                    alertsConfiguration:
+                      alertChannels: none
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          $ref: '#/components/responses/subscriptionNotFound'
+        '500':
+          description: Internal Server Error
+    put:
+      tags:
+      - Subscriptions
+      summary: Update subscription
+      description: 'Updates a events subscription with new details.
+
+
+        If you apply filters to your event subscription then **all filters must match** (logical AND) for the event to be captured.
+
+
+        If you want to match the same event type on multiple different sets of filters (logical OR) then add the event type multiple time to the subscription with differing filters.'
+      operationId: updateSubscription
+      parameters:
+      - name: subscriptionId
+        in: path
+        description: The events subscription id you want to interact with.
+        required: true
+        schema:
+          type: integer
+          example: 1234
+      - name: x-ddg-integration-token
+        in: header
+        description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+        required: false
+        schema:
+          pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+          type: string
+          example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/subscriptionRequest'
+      responses:
+        '200':
+          description: Subscription details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/subscription'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              examples:
+                unknownEventType:
+                  value:
+                    errorCode: events:invalidEventType
+                    description: The type value 'example.unknownType' is invalid.
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          $ref: '#/components/responses/subscriptionNotFound'
+        '409':
+          description: Name conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                errorCode: events:nameAlreadyExists
+                description: The name value 'Camapign events' already exists. All names must be unique!
+        '500':
+          description: Internal Server Error
+    delete:
+      tags:
+      - Subscriptions
+      summary: Deletes subscription
+      description: "Deletes a events subscription.<br><br> \n**Note:** once deleted it cannot be restored, this is a destructive call."
+      operationId: deleteSubscription
+      parameters:
+      - name: subscriptionId
+        in: path
+        description: The events subscription id you want to interact with.
+        required: true
+        schema:
+          type: integer
+          example: 1234
+      - name: x-ddg-integration-token
+        in: header
+        description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+        required: false
+        schema:
+          pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+          type: string
+          example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+      responses:
+        '204':
+          description: Subscription deleted
+        '401':
+          description: Unauthorized
+        '404':
+          $ref: '#/components/responses/subscriptionNotFound'
+components:
+  responses:
+    subscriptionNotFound:
+      description: Subscription not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          example:
+            errorCode: events:subscriptionNotFound
+            description: The following subscription could not be found
+            details:
+            - item: zf0f945b36ad8
+              description: Not found.
+  schemas:
+    eventType:
+      required:
+      - eventType
+      type: object
+      properties:
+        eventType:
+          type: string
+          description: The  event type
+          example: email.read
+        filters:
+          maxItems: 5
+          minItems: 1
+          type: array
+          description: 'Capture only events that match these filters.
+
+
+            All filters will be accessed and **all must match for the event to be captured!**
+
+            '
+          items:
+            $ref: '#/components/schemas/filter'
+      additionalProperties: false
+      description: An event type and any inclusive filters that should be applied.
+    paginationLinksPrevNext_self:
+      required:
+      - link
+      - marker
+      type: object
+      properties:
+        marker:
+          type: string
+          description: Pagination marker to be passed to API calls to retrieve this data page
+        link:
+          type: string
+          description: Link to retrieve the data page
+      description: Details for accessing this data page via pagination
+    paginationLinksPrevNext_prev:
+      required:
+      - link
+      - marker
+      type: object
+      properties:
+        marker:
+          type: string
+          description: Pagination marker to be passed to API calls to retrieve this data page
+        link:
+          type: string
+          description: Link to retrieve the data page
+      description: Details for accessing the previous pagea worth of data
+    paginationLinksPrevNext:
+      required:
+      - first
+      - self
+      type: object
+      properties:
+        self:
+          $ref: '#/components/schemas/paginationLinksPrevNext_self'
+        prev:
+          $ref: '#/components/schemas/paginationLinksPrevNext_prev'
+        next:
+          $ref: '#/components/schemas/paginationLinksPrevNext_next'
+      description: Pagination links
+    paginationLinksPrevNext_next:
+      required:
+      - link
+      - marker
+      type: object
+      properties:
+        marker:
+          type: string
+          description: Pagination marker to be passed to API calls to retrieve this data page
+        link:
+          type: string
+          description: Link to retrieve the data page
+      description: Details for accessing the next pages worth of data
+    subscriptionStatus:
+      type: string
+      description: The subscription status.
+      enum:
+      - active
+      - inactive
+      default: inactive
+    subscriptionRequest:
+      required:
+      - alertsConfiguration
+      - name
+      - status
+      - subscribedEventTypes
+      type: object
+      properties:
+        name:
+          maxLength: 50
+          minLength: 1
+          type: string
+          description: Descriptive name for the subscription.
+          example: Campaign events
+        status:
+          $ref: '#/components/schemas/subscriptionStatus'
+        subscribedEventTypes:
+          maxItems: 100
+          minItems: 1
+          type: array
+          description: The  event types this subscription collects.
+          example:
+          - eventType: message.sent
+          - eventType: message.status
+            filters:
+            - field: $.channel
+              matchPattern: sms
+          items:
+            $ref: '#/components/schemas/eventType'
+        alertsConfiguration:
+          description: Alert options to use if we detect issues with the subscription.
+          oneOf:
+          - title: No alerts
+            required:
+            - alertChannels
+            type: object
+            properties:
+              alertChannels:
+                type: string
+                description: The type(s) of channels to be alerted on.
+                enum:
+                - none
+            description: No alerts
+          - title: In app alerts only
+            required:
+            - alertChannels
+            type: object
+            properties:
+              alertChannels:
+                type: string
+                description: The type(s) of channels to be alerted on.
+                enum:
+                - inApp
+            description: In app alerts only
+          - title: Email alerts only
+            required:
+            - alertChannels
+            - email
+            type: object
+            properties:
+              alertChannels:
+                type: string
+                description: The type(s) of channels to be alerted on.
+                enum:
+                - email
+              email:
+                type: string
+                description: The email address to send alerts regarding this subscription to.
+                format: email
+                example: alerts@emailsim.io
+            description: Email alerts only
+          - title: Email and in-app alerts
+            required:
+            - alertChannels
+            - email
+            type: object
+            properties:
+              alertChannels:
+                type: string
+                description: The type(s) of channels to be alerted on.
+                enum:
+                - emailAndInApp
+              email:
+                type: string
+                description: The email address to send alerts regarding this subscription to.
+                format: email
+                example: alerts@emailsim.io
+            description: Email and in-app alerts
+      additionalProperties: false
+    errorResponse_details:
+      required:
+      - description
+      - item
+      type: object
+      properties:
+        item:
+          type: string
+          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
+        description:
+          type: string
+          description: Description of the error
+    filter:
+      required:
+      - field
+      - matchPattern
+      type: object
+      properties:
+        field:
+          type: string
+          description: 'The [JSON path](https://en.wikipedia.org/wiki/JSONPath) to the field to match against.
+
+
+            Note: The base ($) is the `eventData` field.
+
+            '
+          example: $.channel
+        matchPattern:
+          maxLength: 1024
+          minLength: 1
+          type: string
+          description: 'The literal value or pattern to match against the value of the field.
+
+            You use the following syntax to define the match pattern:
+
+            * `*` matches any number of any characters including none
+
+            * `?` matches any single character
+
+            * `[abc]` matches one character given in the brackets
+
+            * `[a-z]` matches one character from the range given in the bracket
+
+            * `[!abc]` matches one character _that is not_ given in the brackets
+
+            * `[!a-z]` matches one character _that is not_ from the range given in the bracket
+
+
+            _Note: Filters use the Unicode character set and ranges must be from lower to higher code points to be valid. e.g. `[a-z]` is valid but `[z-a]` is invalid_
+
+            '
+          example: http?://*
+        caseSensitive:
+          type: boolean
+          description: Whether the matching should be case sensitive.
+          default: true
+      additionalProperties: false
+      description: 'An inclusive filter that must be matched to include the event.
+
+        '
+    inline_response_200_1:
+      required:
+      - _items
+      - _links
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/paginationLinksPrevNext'
+        _items:
+          type: array
+          description: Returned program extensions
+          items:
+            $ref: '#/components/schemas/subscription'
+    errorResponse:
+      required:
+      - description
+      - errorCode
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: Unique error code
+        description:
+          type: string
+          description: Description of the issue
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/errorResponse_details'
+    subscription:
+      allOf:
+      - required:
+        - created
+        - id
+        - updated
+        type: object
+        properties:
+          id:
+            type: integer
+            description: The subscriptions unique identifier.
+            example: 95
+          created:
+            type: string
+            description: The UTC date time in ISO 8601 format when the subscription was created.
+            format: date-time
+            example: '2025-02-07T16:23:33.741Z'
+          updated:
+            type: string
+            description: The UTC date time in ISO 8601 format when the subscription was updated.
+            format: date-time
+            example: '2025-02-11T01:33:00Z'
+        additionalProperties: false
+      - $ref: '#/components/schemas/subscriptionRequest'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+externalDocs:
+  description: Learn more about Dotdigital APIs
+  url: https://developer.dotdigital.com
+x-samples-languages:
+- curl
+- csharp
+- java
+- javascript
+- node
+- python
+- php
+- ruby

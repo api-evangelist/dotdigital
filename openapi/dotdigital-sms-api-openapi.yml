@@ -1,0 +1,535 @@
+openapi: 3.2.0
+info:
+  title: Dotdigital SMS API
+  version: '1.0'
+  description: 'Operations tagged SMS across 2 of this provider''s published API definitions: dotdigital-analytics-openapi.yml, dotdigital-cpaas-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      description: The Dotdigital region id your account belongs to
+      enum:
+      - r1
+      - r2
+      - r3
+      default: r1
+tags:
+- name: SMS
+paths:
+  /cpaas/analytics/sms/tracking:
+    get:
+      tags:
+      - SMS
+      summary: Retrieves url tracking analytics
+      parameters:
+      - name: from
+        in: query
+        description: The date time to query from in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: The date time to query up to (but not including) in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: by
+        in: query
+        description: The time period to aggregate by
+        required: false
+        schema:
+          type: string
+          enum:
+          - hour
+          - day
+          - month
+          - year
+      responses:
+        '200':
+          description: The count of sent urls and clicks for a specific period
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/smsTrackingAnalytics'
+        '400':
+          description: Validation errors were found
+        '404':
+          description: The API Space was not
+      security:
+      - basicAuth: []
+    servers:
+    - url: https://{region}-api.dotdigital.com
+      variables:
+        region:
+          description: The Dotdigital region id your account belongs to
+          enum:
+          - r1
+          - r2
+          - r3
+          default: r1
+  /cpaas/analytics/sms/verify:
+    get:
+      tags:
+      - SMS
+      summary: Retrieves sms verify analytics
+      parameters:
+      - name: from
+        in: query
+        description: The date time to query from in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: The date time to query up to (but not including) in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: by
+        in: query
+        description: The time period to aggregate by
+        required: false
+        schema:
+          type: string
+          enum:
+          - hour
+          - day
+          - month
+          - year
+      responses:
+        '200':
+          description: The count of notVerified, verified, expired and locked verify calls
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/smsVerifyAnalytics'
+        '400':
+          description: Validation errors were found
+        '404':
+          description: The API Space was not
+      security:
+      - basicAuth: []
+    servers:
+    - url: https://{region}-api.dotdigital.com
+      variables:
+        region:
+          description: The Dotdigital region id your account belongs to
+          enum:
+          - r1
+          - r2
+          - r3
+          default: r1
+  /cpaas/analytics/sms/inbound:
+    get:
+      tags:
+      - SMS
+      summary: Retrieves inbound SMS analytics
+      parameters:
+      - name: from
+        in: query
+        description: The date time to query from in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: The date time to query up to (but not including) in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: by
+        in: query
+        description: The time period to aggregate by
+        required: false
+        schema:
+          type: string
+          enum:
+          - hour
+          - day
+          - month
+          - year
+      responses:
+        '200':
+          description: The count of received messages for a specific period
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/smsInboundAnalytics'
+        '400':
+          description: Validation errors were found
+        '404':
+          description: The API Space was not
+      security:
+      - basicAuth: []
+    servers:
+    - url: https://{region}-api.dotdigital.com
+      variables:
+        region:
+          description: The Dotdigital region id your account belongs to
+          enum:
+          - r1
+          - r2
+          - r3
+          default: r1
+  /cpaas/analytics/sms/outbound:
+    get:
+      tags:
+      - SMS
+      summary: Retrieves outbound SMS analytics
+      parameters:
+      - name: from
+        in: query
+        description: The date time to query from in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: The date time to query up to (but not including) in ISO 8601 format UTC
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: by
+        in: query
+        description: The time period to aggregate by
+        required: false
+        schema:
+          type: string
+          enum:
+          - hour
+          - day
+          - month
+          - year
+      responses:
+        '200':
+          description: The count of submitted, delivered, filtered and undeliverable messages for a specific period
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/smsOutboundAnalytics'
+        '400':
+          description: Validation errors were found
+        '404':
+          description: The API Space was not
+      security:
+      - basicAuth: []
+    servers:
+    - url: https://{region}-api.dotdigital.com
+      variables:
+        region:
+          description: The Dotdigital region id your account belongs to
+          enum:
+          - r1
+          - r2
+          - r3
+          default: r1
+  /sms/dedicatedNumbers:
+    get:
+      summary: Get SMS phone numbers
+      description: ''
+      operationId: get-sms-phone-number
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '[
+
+                    {
+
+                    "number": "447123123123",
+
+                    "countryIsoCode": "GBR"
+
+                    }
+
+                    ]'
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    number:
+                      type: string
+                      examples:
+                      - '447123123123'
+                    countryIsoCode:
+                      type: string
+                      examples:
+                      - GBR
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - SMS
+      security:
+      - sec0: []
+    servers:
+    - url: https://{region}-api.dotdigital.com
+      variables:
+        region:
+          default: r1
+          enum:
+          - r1
+          - r2
+          - r3
+          description: The Dotdigital region id your account belongs to
+  /sms/shortcodes:
+    get:
+      summary: Get SMS shortcodes
+      description: ''
+      operationId: get-sms-shortcodes
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '[
+
+                    {
+
+                    "number": "123123",
+
+                    "keyword": "",
+
+                    "countryIsoCode": "GBR"
+
+                    }
+
+                    ]'
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    number:
+                      type: string
+                      examples:
+                      - '123123'
+                    keyword:
+                      type: string
+                      examples:
+                      - ''
+                    countryIsoCode:
+                      type: string
+                      examples:
+                      - GBR
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - SMS
+      security:
+      - sec0: []
+    servers:
+    - url: https://{region}-api.dotdigital.com
+      variables:
+        region:
+          default: r1
+          enum:
+          - r1
+          - r2
+          - r3
+          description: The Dotdigital region id your account belongs to
+  /sms/keywords:
+    get:
+      summary: Get SMS keywords
+      description: ''
+      operationId: get-sms-keywords
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '[
+
+                    {
+
+                    "number": "123123",
+
+                    "keyword": "TEST",
+
+                    "countryIsoCode": "GBR"
+
+                    }
+
+                    ]'
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    number:
+                      type: string
+                      examples:
+                      - '123123'
+                    keyword:
+                      type: string
+                      examples:
+                      - TEST
+                    countryIsoCode:
+                      type: string
+                      examples:
+                      - GBR
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - SMS
+      security:
+      - sec0: []
+    servers:
+    - url: https://{region}-api.dotdigital.com
+      variables:
+        region:
+          default: r1
+          enum:
+          - r1
+          - r2
+          - r3
+          description: The Dotdigital region id your account belongs to
+components:
+  schemas:
+    smsInboundAnalytics:
+      type: object
+      properties:
+        date:
+          type: string
+          description: The start date and time for the period
+        received:
+          type: integer
+          description: The number of messages received in the period
+          format: int64
+    smsOutboundAnalytics:
+      type: object
+      properties:
+        date:
+          type: string
+          description: The start date and time for the period
+        submitted:
+          type: integer
+          description: The number of messages submitted in the period
+          format: int64
+        delivered:
+          type: integer
+          description: The number of messages delivered to handsets in the period
+          format: int64
+        filtered:
+          type: integer
+          description: The number of messages filtered out in the messaging platform in the period
+          format: int64
+        undeliverable:
+          type: integer
+          description: The number of messages deemed undeliverable in the period
+          format: int64
+    smsVerifyAnalytics:
+      type: object
+      properties:
+        date:
+          type: string
+          description: The start date and time for the period
+        notVerifed:
+          type: integer
+          description: The number of verify calls that were not verified
+          format: int64
+        verified:
+          type: integer
+          description: The number of verify calls that were successfully verified
+          format: int64
+        expired:
+          type: integer
+          description: The number of verify calls that expired
+          format: int64
+        locked:
+          type: integer
+          description: The number of verify calls that locked out
+          format: int64
+    smsTrackingAnalytics:
+      type: object
+      properties:
+        date:
+          type: string
+          description: The start date and time for the period
+        sent:
+          type: integer
+          description: The number of trackings urls sent
+          format: int64
+        clicks:
+          type: integer
+          description: The number of clicks recorded for the url
+          format: int64
+        uniqueClicks:
+          type: integer
+          description: The number of clicks recorded by unique individuals
+          format: int64
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    sec0:
+      type: http
+      scheme: basic
+x-refined-from:
+- dotdigital-analytics-openapi.yml
+- dotdigital-cpaas-openapi.yml
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true
+x-samples-languages:
+- curl
+- csharp
+- java
+- javascript
+- node
+- python
+- php
+- ruby

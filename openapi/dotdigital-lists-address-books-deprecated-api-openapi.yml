@@ -1,0 +1,464 @@
+openapi: 3.2.0
+info:
+  title: Lists / Address books - Deprecated API
+  version: 2.0.2
+  description: 'Manage contact lists (address books) and their memberships. Use this API to create, update, and delete lists; retrieve all, public, or private lists; bulk-import contacts; remove individual or multiple contacts; manage subscription status (unsubscribe and resubscribe); and query contacts within a list by preference opt-in status or unsubscribe date.
+
+    '
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      default: r1
+      enum:
+      - r1
+      - r2
+      - r3
+      description: The Dotdigital region id your account belongs to
+security:
+- basicAuth: []
+tags:
+- name: Lists / Address books - Deprecated
+paths:
+  /v2/address-books/{id}/contacts/import/with-merge-option/{mergeOption}:
+    parameters:
+    - in: header
+      name: x-ddg-integration-token
+      required: false
+      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+      schema:
+        type: string
+        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+    post:
+      summary: Bulk import contacts in address book with merge option
+      deprecated: true
+      description: Bulk creates, or bulk updates, contacts in an address book with merge option
+      operationId: bulk-import-contacts-in-address-book-with-merge-option
+      tags:
+      - Lists / Address books - Deprecated
+      parameters:
+      - name: id
+        in: path
+        description: The address book id
+        required: true
+        example: 0
+        schema:
+          type: integer
+          format: int32
+      - name: mergeOption
+        in: path
+        description: 'For Merge options: you can update all data fields by entering ''''0'''', avoid updating data fields that contain blank values by entering ''''1'''', or you can choose not to update data fields that contain values by entering ''''2'''''
+        required: true
+        example: ''
+        schema:
+          type: string
+          enum:
+          - '0'
+          - '1'
+          - '2'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - filename
+              - data
+              properties:
+                filename:
+                  type: string
+                  description: The filename of the file being uploaded
+                data:
+                  type: string
+                  description: The [base64](https://en.wikipedia.org/wiki/Base64) data for the file
+      responses:
+        '202':
+          description: '202'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    examples:
+                    - af4ac4bc-e1e7-4817-8a66-73fb59e91ce6
+                  status:
+                    type: string
+                    examples:
+                    - NotFinished
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                    id: af4ac4bc-e1e7-4817-8a66-73fb59e91ce6
+                    status: NotFinished
+      x-readme:
+        code-samples:
+        - language: text
+          code: 'Email,Firstname,Lastname,Postcode,Customfield_1,Customfield_2
+
+            user1@example.com,Bob,Smith,LXS123,Yes,100
+
+            user2@example.com,Frank,Smith,LXS121,No,200
+
+            user3@example.com,Sarah,Smith,LXS124,Yes,300'
+          name: CSV Example
+        samples-languages:
+        - text
+  /v2/address-books/{id}/contacts/modified-since/{date}:
+    get:
+      summary: Get modified contacts in address book since date
+      deprecated: true
+      description: Gets a list of contacts who were modified since a given date, in a given address book or segment
+      operationId: get-modified-contacts-in-address-book-since-date
+      tags:
+      - Lists / Address books - Deprecated
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the address book or segment
+        required: true
+        example: 0
+        schema:
+          type: integer
+          format: int32
+      - name: date
+        in: path
+        description: The date from which any modified contacts are returned in [ISO 8601 format](https://www.w3.org/TR/xmlschema-2/#dateTime)
+        required: true
+        example: ''
+        schema:
+          type: string
+          format: date
+      - name: withFullData
+        in: query
+        description: Can be set to 'true' to retrieve the contacts along with their full contact data fields
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: select
+        in: query
+        description: he select parameter requires a number between 1 and 1000 (0 is not a valid number). You may only select a maximum of 1000 results in a single request. This parameter goes within the URL.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: skip
+        in: query
+        description: The skip parameter should be used in tandem with the select parameter when wanting to iterate through a whole data set. If you want to select the next 1000 records you should set the select parameter to 1000 and the skip parameter to 1000, which will return records 1001 to 2000. You should continue to do this until 0 records are returned to retrieve the whole data set.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      default: 0
+                      examples:
+                      - 5
+                    email:
+                      type: string
+                      examples:
+                      - darryl.netherland@example.com
+                    optInType:
+                      type: string
+                      examples:
+                      - Single
+                    emailType:
+                      type: string
+                      examples:
+                      - PlainText
+                    dataFields: {}
+                    status:
+                      type: string
+                      examples:
+                      - Subscribed
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                  - id: 5
+                    email: darryl.netherland@example.com
+                    optInType: Single
+                    emailType: PlainText
+                    dataFields: null
+                    status: Subscribed
+                  - id: 17
+                    email: dora.judge@example.com
+                    optInType: Single
+                    emailType: PlainText
+                    dataFields: null
+                    status: Subscribed
+                  - id: 21
+                    email: deonna.medine@example.com
+                    optInType: Single
+                    emailType: PlainText
+                    dataFields: null
+                    status: Subscribed
+          headers: {}
+  /v2/address-books/{id}/contacts:
+    get:
+      summary: Get contacts from address book
+      deprecated: true
+      description: Gets a list of contacts in a given address book or segment by id
+      operationId: get-contacts-from-address-book
+      tags:
+      - Lists / Address books - Deprecated
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the address book or segment
+        required: true
+        example: 0
+        schema:
+          type: integer
+          format: int32
+      - name: withFullData
+        in: query
+        description: Can be set to 'true' to retrieve the contacts along with their full contact data fields
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: select
+        in: query
+        description: he select parameter requires a number between 1 and 1000 (0 is not a valid number). You may only select a maximum of 1000 results in a single request. This parameter goes within the URL.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: skip
+        in: query
+        description: The skip parameter should be used in tandem with the select parameter when wanting to iterate through a whole data set. If you want to select the next 1000 records you should set the select parameter to 1000 and the skip parameter to 1000, which will return records 1001 to 2000. You should continue to do this until 0 records are returned to retrieve the whole data set.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - id
+                  - email
+                  - optInType
+                  - emailType
+                  - status
+                  properties:
+                    id:
+                      type: integer
+                      default: 0
+                      examples:
+                      - 5
+                    email:
+                      type: string
+                      examples:
+                      - darryl.netherland@example.com
+                    optInType:
+                      type: string
+                      examples:
+                      - Single
+                    emailType:
+                      type: string
+                      examples:
+                      - PlainText
+                    dataFields: {}
+                    status:
+                      type: string
+                      examples:
+                      - Subscribed
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                  - id: 5
+                    email: darryl.netherland@example.com
+                    optInType: Single
+                    emailType: PlainText
+                    dataFields: null
+                    status: Subscribed
+                  - id: 17
+                    email: dora.judge@example.com
+                    optInType: Single
+                    emailType: PlainText
+                    dataFields: null
+                    status: Subscribed
+                  - id: 21
+                    email: deonna.medine@example.com
+                    optInType: Single
+                    emailType: PlainText
+                    dataFields: null
+                    status: Subscribed
+          headers: {}
+    post:
+      summary: Add contact to address book
+      deprecated: true
+      description: Adds a contact to a given address book.
+      operationId: add-contact-to-address-book
+      tags:
+      - Lists / Address books - Deprecated
+      parameters:
+      - name: id
+        in: path
+        description: The id of the address book
+        required: true
+        example: 0
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - email
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: The email address of the contact
+                optInType:
+                  type: string
+                  description: The opt-in type of the contact
+                  enum:
+                  - Unknown
+                  - Single
+                  - Double
+                  - VerifiedDouble
+                emailType:
+                  type: string
+                  description: The email type of the contact
+                  enum:
+                  - PlainText
+                  - Html
+                dataFields:
+                  type: array
+                  description: The data fields for the contact
+                  items:
+                    type: object
+                    required:
+                    - key
+                    - value
+                    properties:
+                      key:
+                        type: string
+                        description: The key name
+                      value:
+                        type: string
+                        description: The value associated with the key
+            examples:
+              Request Example:
+                summary: Request Example
+                value:
+                  email: john.smith@example.com
+                  optInType: Single
+                  emailType: Html
+                  dataFields:
+                  - key: FIRSTNAME
+                    value: John
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    default: 0
+                    examples:
+                    - 1
+                  email:
+                    type: string
+                    format: email
+                    examples:
+                    - john.smith@example.com
+                  optInType:
+                    type: string
+                    examples:
+                    - Single
+                  emailType:
+                    type: string
+                    examples:
+                    - Html
+                  dataFields:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        key:
+                          type: string
+                          examples:
+                          - FIRSTNAME
+                        value:
+                          type: string
+                          examples:
+                          - John
+                  status:
+                    type: string
+                    examples:
+                    - Subscribed
+              examples:
+                Result:
+                  summary: Result
+                  value:
+                    id: 1
+                    email: john.smith@example.com
+                    optInType: Single
+                    emailType: Html
+                    dataFields:
+                    - key: FIRSTNAME
+                      value: John
+                    - key: FULLNAME
+                      value: John Smith
+                    - key: GENDER
+                      value: Male
+                    - key: LASTNAME
+                      value: Smith
+                    - key: LASTSUBSCRIBED
+                      value: '2020-01-01 09:40:18.527000+00:00'
+                    - key: POSTCODE
+                      value: N5 1DP
+                    status: Subscribed
+          headers: {}
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+externalDocs:
+  description: Learn more about Dotdigital APIs
+  url: https://developer.dotdigital.com
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true
+x-samples-languages:
+- curl
+- csharp
+- java
+- javascript
+- node
+- python
+- php
+- ruby

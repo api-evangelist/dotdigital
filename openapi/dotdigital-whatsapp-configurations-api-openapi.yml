@@ -1,0 +1,225 @@
+openapi: 3.2.0
+info:
+  title: WhatsApp Channel WhatsApp configurations API
+  description: 'Provides methods for configuring and managing WhatsApp Cloud API channels
+
+    within an API Space. Supports creating and retrieving WhatsApp
+
+    configurations, registering and removing phone numbers, and retrieving
+
+    WhatsApp message templates from a given WhatsApp Business Account.'
+  version: 1.0.1
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      description: The Dotdigital region id your account belongs to
+      enum:
+      - r1
+      - r2
+      - r3
+      default: r1
+security:
+- basicAuth: []
+tags:
+- name: WhatsApp configurations
+paths:
+  /cpaas/channels/whatsapp/cloud:
+    get:
+      tags:
+      - WhatsApp configurations
+      summary: Get WhatsApp configuration for API Space
+      description: Retrieves all Cloud WhatsApp Channel configuration for an API Space
+      parameters:
+      - name: includeDeleted
+        in: query
+        description: Indicates whether deleted channels should be returned.
+        required: false
+        schema:
+          type: boolean
+      - name: configurationStatus
+        in: query
+        description: Indicates the current configuration status of the configurations to be returned.
+        required: false
+        schema:
+          type: string
+      - name: wabaIds
+        in: query
+        description: The list of wabaIds to filter by
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: phoneNumbers
+        in: query
+        description: An array of phone numbers for which to to filter by. If not provided, all phone numbers added to the WABA are included
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            pattern: ^\+?[1-9]\d{1,14}$
+            type: string
+      responses:
+        '200':
+          description: The WhatsApp channel configuration
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/whatsAppCloudConfiguration'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+    post:
+      tags:
+      - WhatsApp configurations
+      summary: Creates WhatsApp configuration
+      description: Creates a new Cloud WhatsApp configuration.
+      requestBody:
+        description: Details of the WhatsApp Cloud Channel configuration to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/whatsAppCloudConfigurationCreate'
+        required: true
+      responses:
+        '202':
+          description: The request to create a WhatsApp Cloud Channel configuration was accepted
+        '400':
+          description: Validation errors were found
+        '401':
+          description: Unauthorized
+        '409':
+          description: The Cloud configuration already exists
+        '500':
+          description: Internal server error
+components:
+  schemas:
+    whatsAppCloudConfigurationCreate:
+      required:
+      - phoneNumberId
+      - wabaId
+      type: object
+      properties:
+        phoneNumberId:
+          type: string
+          description: Originator phone number id.
+        wabaId:
+          type: string
+          description: WhatsApp Business account id.
+    whatsAppCloudConfiguration:
+      type: object
+      properties:
+        expiresOn:
+          type: string
+          description: The UTC date the configuration expires.
+          format: date-time
+          example: '2100-01-01T00:00:00Z'
+        messagingLimitTier:
+          type: string
+          description: The daily messaging tier limit.
+          example: TIER_1K
+        phoneNumberId:
+          type: string
+          description: The unique id for the number.
+          example: '1234567890123456'
+        phoneNumber:
+          type: string
+          description: The number in [E164 format](https://en.wikipedia.org/wiki/E.164).
+          example: '16315555555'
+        phoneNumberName:
+          type: string
+          description: The friendly display name for the number.
+          example: Brand A
+        phoneNumberNameStatus:
+          type: string
+          description: The friendly name for a number review status.
+          example: CONNECTED
+        phoneNumberStatus:
+          type: string
+          description: The numbers status.
+          example: ONBOARDING
+        phoneNumberQuality:
+          type: string
+          description: The messaging quality rating for the number.
+          example: GREEN
+        wabaId:
+          $ref: '#/components/schemas/wabaId'
+        wabaReviewStatus:
+          type: string
+          description: The status of the WABA review by Meta.
+          example: APPROVED
+        systemUserWabaAssignmentStatus:
+          type: string
+          description: User WABA assignment status.
+          example: success
+          enum:
+          - failed
+          - inProgress
+          - success
+        creditLineSharedStatus:
+          type: string
+          description: Shared credit line status.
+          example: success
+          enum:
+          - failed
+          - inProgress
+          - success
+        webhookSubscriptionStatus:
+          type: string
+          description: WhatsApp webhook subscription status.
+          example: success
+          enum:
+          - failed
+          - inProgress
+          - success
+        phoneNumberRegistrationStatus:
+          type: string
+          description: WhatsApp number registration status.
+          example: success
+          enum:
+          - failed
+          - inProgress
+          - success
+        configurationStatus:
+          type: string
+          description: WhatsApp configuration status.
+          example: success
+          enum:
+          - failed
+          - inProgress
+          - success
+        createdOn:
+          type: string
+          description: The UTC date time of when the configuration was created.
+          format: date-time
+          example: '2025-01-01T00:00:00Z'
+    wabaId:
+      type: string
+      description: The unique WhatsApp Business Account (WABA) identifier.
+      example: '226114410888722'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+x-readme:
+  samples-languages:
+  - curl
+  - csharp
+  - java
+  - node
+  - php
+  - python
+  - ruby
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

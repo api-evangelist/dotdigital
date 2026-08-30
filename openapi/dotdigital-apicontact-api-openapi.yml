@@ -1,0 +1,1962 @@
+openapi: 3.2.0
+info:
+  title: apiconnector.com API Contact API
+  version: v2
+servers:
+- url: https://r1-api.dotdigital.com
+tags:
+- name: ApiContact
+paths:
+  /v2/contacts/suppressed-since/{date}:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets a list of suppressed contacts after a given date along with the reason for suppression.
+      operationId: ApiContact_GetSuppressedContacts
+      parameters:
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date-time
+        x-position: 1
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 2
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 3
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiContactSuppression'
+  /v2/contacts/unsubscribed-since/{date}:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets a list of unsubscribed contacts who unsubscribed after a given date.
+      operationId: ApiContact_GetUnsubscribedContacts
+      parameters:
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date-time
+        x-position: 1
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 2
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 3
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiContactSuppression'
+  /v2/contacts/modified-since/{date}:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets a list of modified contacts after a specified date.
+      operationId: ApiContact_GetModifiedContacts
+      parameters:
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date-time
+        x-position: 1
+      - name: withFullData
+        in: query
+        schema:
+          type: boolean
+          default: false
+        x-position: 2
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 2000
+        x-position: 3
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiContact'
+  /v2/contacts/created-since/{date}:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets a list of created contacts after a specified date.
+      operationId: ApiContact_GetNewContacts
+      parameters:
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date-time
+        x-position: 1
+      - name: withFullData
+        in: query
+        schema:
+          type: boolean
+          default: false
+        x-position: 2
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 3
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiContact'
+  /v2/contacts:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets a list of all contacts in the account.
+      operationId: ApiContact_GetContacts
+      parameters:
+      - name: withFullData
+        in: query
+        schema:
+          type: boolean
+          default: false
+        x-position: 1
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 2
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 3
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiContact'
+    post:
+      tags:
+      - ApiContact
+      summary: Creates a contact.
+      operationId: ApiContact_CreateContact
+      requestBody:
+        x-name: apiContact
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiContact'
+        required: true
+        x-position: 1
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContact'
+  /v2/contacts/{id}:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets a contact by ID. Unsubscribed or suppressed contacts will not be retrieved.
+      operationId: ApiContact_GetContactById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContact'
+    put:
+      tags:
+      - ApiContact
+      summary: Updates a contact.
+      operationId: ApiContact_UpdateContact
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      requestBody:
+        x-name: apiContact
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiContact'
+        required: true
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContact'
+    delete:
+      tags:
+      - ApiContact
+      summary: Deletes a contact.
+      operationId: ApiContact_DeleteContact
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      responses:
+        '204':
+          description: ''
+  /v2/contacts/{id}/with-consent:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets a contact by ID with consent records.
+      operationId: ApiContact_GetContactByIdWithConsent
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContactWithConsent'
+    put:
+      tags:
+      - ApiContact
+      summary: Updates a contact with consent records.
+      operationId: ApiContact_UpdateContact2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      requestBody:
+        x-name: apiContactWithConsent
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiContactWithConsent'
+        required: true
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContactWithConsent'
+  /v2/contacts/{email}:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets a contact by email address.
+      operationId: ApiContact_GetContactByEmail
+      parameters:
+      - name: email
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContact'
+  /v2/contacts/{email}/with-consent:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets a contact by email address with consent records.
+      operationId: ApiContact_GetContactByEmailWithConsent
+      parameters:
+      - name: email
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContactWithConsent'
+  /v2/contacts/with-consent:
+    post:
+      tags:
+      - ApiContact
+      summary: Creates a contact with consent records.
+      operationId: ApiContact_CreateContactWithConsent
+      requestBody:
+        x-name: apiContactWithConsent
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiContactWithConsent'
+        required: true
+        x-position: 1
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContactWithConsent'
+  /v2/contacts/with-consent-and-preferences:
+    post:
+      tags:
+      - ApiContact
+      summary: Creates a contact with consent and preference records.
+      operationId: ApiContact_CreateContactWithConsentAndPreferences
+      requestBody:
+        x-name: apiContactWithConsentAndPreferences
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiContactWithConsentAndPreferences'
+        required: true
+        x-position: 1
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContactWithConsentAndPreferences'
+  /v2/contacts/{id}/with-consent-and-preferences:
+    put:
+      tags:
+      - ApiContact
+      summary: Updates a contact with consent and preference records.
+      operationId: ApiContact_UpdateContact3
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      requestBody:
+        x-name: apiContactWithConsentAndPreferences
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiContactWithConsentAndPreferences'
+        required: true
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContactWithConsentAndPreferences'
+  /v2/address-books/{addressBookId}/contacts/{contactId}:
+    delete:
+      tags:
+      - ApiContact
+      summary: Deletes a contact from a given list.
+      operationId: ApiContact_DeleteContactFromAddressBook
+      parameters:
+      - name: addressBookId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: contactId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 2
+      responses:
+        '204':
+          description: ''
+  /v2/address-books/{addressBookId}/contacts:
+    delete:
+      tags:
+      - ApiContact
+      summary: Deletes all contacts from a given list.
+      operationId: ApiContact_DeleteAllContactsFromAddressBookWithoutProgress
+      parameters:
+      - name: addressBookId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      responses:
+        '204':
+          description: ''
+    get:
+      tags:
+      - ApiContact
+      summary: Gets a list of contacts in a given list.
+      operationId: ApiContact_GetContactsInAddressBook
+      parameters:
+      - name: addressBookId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: withFullData
+        in: query
+        schema:
+          type: boolean
+          default: false
+        x-position: 2
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 3
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiContact'
+    post:
+      tags:
+      - ApiContact
+      summary: Adds a contact to a given list.
+      operationId: ApiContact_AddContactToAddressBook
+      parameters:
+      - name: addressBookId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      requestBody:
+        x-name: apiContact
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiContact'
+        required: true
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContact'
+  /v2/address-books/{addressBookId}/contacts/delete-all:
+    post:
+      tags:
+      - ApiContact
+      summary: Deletes all contacts from a given list.
+      operationId: ApiContact_DeleteAllContactsFromAddressBook
+      parameters:
+      - name: addressBookId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      responses:
+        '202':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBulkContactDeletion'
+  /v2/address-books/{addressBookId}/contacts/delete:
+    post:
+      tags:
+      - ApiContact
+      summary: Deletes multiple contacts from a list. This will run in the background, and for larger lists may take some minutes to fully delete.
+      operationId: ApiContact_DeleteContactsFromAddressBook
+      parameters:
+      - name: addressBookId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      requestBody:
+        x-name: contactIds
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: integer
+                format: int32
+        required: true
+        x-position: 2
+      responses:
+        '202':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBulkContactDeletion'
+  /v2/contacts/deletion/{deletionRequestId}:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets the status of a previously started request to delete contacts from a list.
+      operationId: ApiContact_GetBulkContactDeletionProgress
+      parameters:
+      - name: deletionRequestId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: guid
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBulkContactDeletion'
+  /v2/address-books/{addressBookId}/contacts/modified-since/{date}:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets a list of contacts who were modified since a given date, in a given list.
+      operationId: ApiContact_GetModifiedContactsInAddressBook
+      parameters:
+      - name: addressBookId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date-time
+        x-position: 2
+      - name: withFullData
+        in: query
+        schema:
+          type: boolean
+          default: false
+        x-position: 3
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 2000
+        x-position: 4
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 5
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiContact'
+  /v2/address-books/{addressBookId}/contacts/unsubscribed-since/{date}:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets a list of contacts who have unsubscribed from a given list.
+      operationId: ApiContact_GetUnsubscribedContactsInAddressBook
+      parameters:
+      - name: addressBookId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date-time
+        x-position: 2
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 3
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiContactSuppression'
+  /v2/contacts/unsubscribe:
+    post:
+      tags:
+      - ApiContact
+      summary: Unsubscribes contact from account.
+      operationId: ApiContact_UnsubscribeContact
+      requestBody:
+        x-name: apiContact
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiContact'
+        required: true
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContactSuppression'
+  /v2/contacts/suppress-contacts:
+    put:
+      tags:
+      - ApiContact
+      summary: Suppresses a batch of contacts from account.
+      operationId: ApiContact_SuppressContacts
+      requestBody:
+        x-name: apiContacts
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ApiContactIdAndEmail'
+        required: true
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBulkSuppressResponse'
+  /v2/address-books/{addressBookId}/contacts/unsubscribe:
+    post:
+      tags:
+      - ApiContact
+      summary: Unsubscribes contact from a given list.
+      operationId: ApiContact_UnsubscribeContactFromAddressBook
+      parameters:
+      - name: addressBookId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      requestBody:
+        x-name: apiContact
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiContact'
+        required: true
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContactSuppression'
+  /v2/contacts/resubscribe:
+    post:
+      tags:
+      - ApiContact
+      summary: Resubscribes a previously unsubscribed contact.
+      operationId: ApiContact_ResubscribeContact
+      requestBody:
+        x-name: apiContactResubscription
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiContactResubscription'
+        required: true
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResubscribeResult'
+  /v2/contacts/resubscribe-with-no-challenge:
+    post:
+      tags:
+      - ApiContact
+      summary: Resubscribes a previously unsubscribed contact with no challenge.
+      operationId: ApiContact_ResubscribeContactWithNoChallenge
+      requestBody:
+        x-name: apiContactResubscription
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiContactResubscription'
+        required: true
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResubscribeResult'
+  /v2/address-books/{addressBookId}/contacts/resubscribe:
+    post:
+      tags:
+      - ApiContact
+      summary: Resubscribes a previously unsubscribed contact to a given list.
+      operationId: ApiContact_ResubscribeContactToAddressBook
+      parameters:
+      - name: addressBookId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      requestBody:
+        x-name: apiContactResubscription
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiContactResubscription'
+        required: true
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResubscribeResult'
+  /v2/address-books/{addressBookId}/contacts/resubscribe-with-no-challenge:
+    post:
+      tags:
+      - ApiContact
+      summary: Resubscribes a previously unsubscribed contact to a given list with no challenge.
+      operationId: ApiContact_ResubscribeContactToAddressBookWithNoChallenge
+      parameters:
+      - name: addressBookId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      requestBody:
+        x-name: apiContactResubscription
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiContactResubscription'
+        required: true
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResubscribeResult'
+  /v2/contacts/transactional-data/{collectionName}:
+    post:
+      tags:
+      - ApiContact
+      summary: Adds a single piece of transactional data to a contact.
+      operationId: ApiContact_AddTransactionalData
+      parameters:
+      - name: collectionName
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 1
+      requestBody:
+        x-name: apiTransactionalData
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiTransactionalData'
+        required: true
+        x-position: 2
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiTransactionalData'
+    get:
+      tags:
+      - ApiContact
+      operationId: ApiContact_GetTransactionalDataByCollectionFromId
+      parameters:
+      - name: collectionName
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 1
+      - name: fromId
+        in: query
+        schema:
+          type: string
+        x-position: 2
+      - name: take
+        in: query
+        schema:
+          type: integer
+          format: int32
+        x-position: 3
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiTransactionalData'
+  /v2/contacts/transactional-data/import/{collectionName}:
+    post:
+      tags:
+      - ApiContact
+      summary: Adds multiple pieces of transactional data to contacts asynchronously, returning an identifier that can be used to check for import progress.
+      operationId: ApiContact_ImportTransactionalData
+      parameters:
+      - name: collectionName
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 1
+      requestBody:
+        x-name: apiTransactionalData
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ApiTransactionalData'
+        required: true
+        x-position: 2
+      responses:
+        '202':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiTransactionalDataImport'
+  /v2/contacts/transactional-data/import/{importId}:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets the import status of a previously started transactional import.
+      operationId: ApiContact_GetTransactionalDataImportProgress
+      parameters:
+      - name: importId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: guid
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiTransactionalDataImport'
+  /v2/contacts/transactional-data/import/{importId}/report:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets a report with statistics about what was successfully imported, and what was unable to be imported.
+      operationId: ApiContact_GetTransactionalDataImportReport
+      parameters:
+      - name: importId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: guid
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiTransactionalDataImportReport'
+  /v2/contacts/transactional-data/{collectionName}/{key}:
+    post:
+      tags:
+      - ApiContact
+      summary: Replaces a piece of transactional data by key (logicall equivalent to a delete and an insert).
+      operationId: ApiContact_ReplaceTransactionalDataByKey
+      parameters:
+      - name: collectionName
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 1
+      - name: key
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 2
+      requestBody:
+        x-name: apiJsonData
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiJsonData'
+        required: true
+        x-position: 3
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiTransactionalData'
+    delete:
+      tags:
+      - ApiContact
+      summary: Deletes a piece of transactional data by key.
+      operationId: ApiContact_DeleteTransactionalDataByKey
+      parameters:
+      - name: collectionName
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 1
+      - name: key
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 2
+      responses:
+        '204':
+          description: ''
+    get:
+      tags:
+      - ApiContact
+      summary: Gets a piece of transactional data by key.
+      operationId: ApiContact_GetTransactionalDataByKey
+      parameters:
+      - name: collectionName
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 1
+      - name: key
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiTransactionalData'
+  /v2/contacts/transactional-data/{collectionName}/empty:
+    put:
+      tags:
+      - ApiContact
+      summary: Removes all items from a transactional data collection.
+      operationId: ApiContact_EmptyTransactionalDataCollection
+      parameters:
+      - name: collectionName
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 1
+      responses:
+        '204':
+          description: ''
+  /v2/contacts/{id}/transactional-data/{collectionName}:
+    delete:
+      tags:
+      - ApiContact
+      summary: Deletes all transactional data for a contact.
+      operationId: ApiContact_DeleteTransactionalDataByContactId
+      parameters:
+      - name: collectionName
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 1
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 2
+      responses:
+        '204':
+          description: ''
+    get:
+      tags:
+      - ApiContact
+      summary: Gets a list of all transactional data for a contact (100 most recent only).
+      operationId: ApiContact_GetTransactionalDataByContactId
+      parameters:
+      - name: collectionName
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 1
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiTransactionalData'
+  /v2/contacts/{email}/transactional-data/{collectionName}:
+    delete:
+      tags:
+      - ApiContact
+      summary: Deletes all transactional data for a contact.
+      operationId: ApiContact_DeleteTransactionalDataByContactEmail
+      parameters:
+      - name: collectionName
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 1
+      - name: email
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 2
+      responses:
+        '204':
+          description: ''
+    get:
+      tags:
+      - ApiContact
+      summary: Gets a list of all transactional data for a contact (100 most recent only).
+      operationId: ApiContact_GetTransactionalDataByContactEmail
+      parameters:
+      - name: collectionName
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 1
+      - name: email
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiTransactionalData'
+  /v2/transactional-data/{collectionName}:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets a list of account scoped transactional data for given collection
+      operationId: ApiContact_GetAccountScopedTransactionalData
+      parameters:
+      - name: collectionName
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 1
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 100
+        x-position: 2
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 3
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiTransactionalData'
+  /v2/contacts/transactional-data-collections:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets a list of transactional data collections.
+      operationId: ApiContact_GetTransactionalDataCollections
+      parameters:
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 1
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiTransactionalDataCollection'
+  /v2/contacts/score:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets a list of contact scoring data.
+      operationId: ApiContact_GetContactsScore
+      parameters:
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 1
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiContactScore'
+  /v2/address-books/{addressBookId}/contacts/score:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets a list of contact scoring data in specified list.
+      operationId: ApiContact_GetContactsScoreInAddressBook
+      parameters:
+      - name: addressBookId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 2
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 3
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiContactScore'
+  /v2/contacts/score/modified-since/{date}:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets a list of contact scoring data ordered by modified date.
+      operationId: ApiContact_GetContactsScoreModifiedSinceDate
+      parameters:
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date-time
+        x-position: 1
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 2
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 3
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiContactScore'
+  /v2/contacts/{email}/score:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets particular contact scoring data.
+      operationId: ApiContact_GetContactScoreByEmail
+      parameters:
+      - name: email
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContactScore'
+  /v2/contacts/{id}/score:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets particular contact scoring data.
+      operationId: ApiContact_GetContactScoreByContactId
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContactScore'
+  /v2/contacts/count:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets the total number of contacts in an account.
+      operationId: ApiContact_GetAllContactsCount
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: integer
+                format: int32
+  /v2/contacts/retrieve-collection:
+    get:
+      tags:
+      - ApiContact
+      summary: Gets a batch of contacts by ID or email address.
+      operationId: ApiContact_GetMultipleContacts
+      requestBody:
+        x-name: multipleContactsRequest
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiMultipleContactsRequest'
+        required: true
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiMultipleContactsResponse'
+components:
+  schemas:
+    ApiResubscribeResult:
+      type: object
+      additionalProperties: false
+      properties:
+        contact:
+          oneOf:
+          - $ref: '#/components/schemas/ApiContact'
+        status:
+          $ref: '#/components/schemas/ApiResubscribeStatuses'
+    ApiResubscribeStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - ContactAdded
+      - ContactChallenged
+      - ContactCannotBeUnsuppressed
+      - NotAvailableInThisVersion
+      enum:
+      - ContactAdded
+      - ContactChallenged
+      - ContactCannotBeUnsuppressed
+      - NotAvailableInThisVersion
+    ApiTransactionalDataImportStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - NotStarted
+      - NotFinished
+      - Finished
+      - Failed
+      - NotAvailableInThisVersion
+      enum:
+      - NotStarted
+      - NotFinished
+      - Finished
+      - Failed
+      - NotAvailableInThisVersion
+    ApiContactScore:
+      type: object
+      additionalProperties: false
+      properties:
+        contactId:
+          type: integer
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+        dateModified:
+          type: string
+          format: date-time
+        scoreLabel:
+          type:
+          - string
+          - 'null'
+        score:
+          type: integer
+          format: byte
+        engagement:
+          type: integer
+          format: byte
+        suitability:
+          type: integer
+          format: byte
+    ApiContact:
+      type: object
+      additionalProperties: false
+      required:
+      - email
+      properties:
+        id:
+          type: integer
+          format: int32
+        email:
+          type: string
+          minLength: 1
+        optInType:
+          oneOf:
+          - $ref: '#/components/schemas/ApiContactOptInTypes'
+        emailType:
+          oneOf:
+          - $ref: '#/components/schemas/ApiContactEmailTypes'
+        dataFields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiContactData'
+        status:
+          $ref: '#/components/schemas/ApiContactStatuses'
+    ApiBulkContactDeletionStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - Started
+      - Completed
+      - Failed
+      - NotAvailableInThisVersion
+      enum:
+      - Started
+      - Completed
+      - Failed
+      - NotAvailableInThisVersion
+    ApiMultipleContactsRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        contacts:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiContactIdAndEmail'
+        withFullData:
+          type: boolean
+    ApiBulkSuppressResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        suppressed:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiContactIdAndEmail'
+        notFound:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiContactIdAndEmail'
+    ApiContactEmailTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - PlainText
+      - Html
+      - NotAvailableInThisVersion
+      enum:
+      - PlainText
+      - Html
+      - NotAvailableInThisVersion
+    ApiTransactionalDataImportReportFault:
+      type: object
+      additionalProperties: false
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        reason:
+          $ref: '#/components/schemas/ApiTransactionalDataImportFaultReason'
+        detail:
+          type:
+          - string
+          - 'null'
+    ApiMultipleContactsResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        contacts:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiContactExtended'
+        notFound:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiContactIdAndEmail'
+    ApiConsent:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiContactData'
+    ApiContactIdAndEmail:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+    ApiBulkContactDeletion:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: guid
+        status:
+          $ref: '#/components/schemas/ApiBulkContactDeletionStatuses'
+    ApiTransactionalDataImportFaultReason:
+      type: string
+      description: ''
+      x-enumNames:
+      - Unknown
+      - InvalidClientKey
+      - InvalidContactIdentifier
+      - InvalidJson
+      - DuplicateKey
+      - ContactIdDoesNotExist
+      - ContactEmailDoesNotExist
+      - JsonKeyTooLong
+      - JsonKeyInvalidCharacters
+      - JsonValueTooLong
+      - JsonValueIncompatibleWithSchema
+      - JsonNumberValueTooLarge
+      - JsonDoesNotMatchSchema
+      - JsonContainsDashUnderscoreClash
+      - MissingCollection
+      - InconsistentTypes
+      - TooManyDistinctKeyValuePairs
+      - ContactPhoneNumberDoesNotExist
+      - InvalidContactIdentifierType
+      - KeyExistingForDifferentContact
+      - ContactCustomIdentifierValueDoesNotExist
+      - JsonContainsNestedArray
+      - NotAvailableInThisVersion
+      enum:
+      - Unknown
+      - InvalidClientKey
+      - InvalidContactIdentifier
+      - InvalidJson
+      - DuplicateKey
+      - ContactIdDoesNotExist
+      - ContactEmailDoesNotExist
+      - JsonKeyTooLong
+      - JsonKeyInvalidCharacters
+      - JsonValueTooLong
+      - JsonValueIncompatibleWithSchema
+      - JsonNumberValueTooLarge
+      - JsonDoesNotMatchSchema
+      - JsonContainsDashUnderscoreClash
+      - MissingCollection
+      - InconsistentTypes
+      - TooManyDistinctKeyValuePairs
+      - ContactPhoneNumberDoesNotExist
+      - InvalidContactIdentifierType
+      - KeyExistingForDifferentContact
+      - ContactCustomIdentifierValueDoesNotExist
+      - JsonContainsNestedArray
+      - NotAvailableInThisVersion
+    ApiContactResubscription:
+      type: object
+      additionalProperties: false
+      required:
+      - unsubscribedContact
+      properties:
+        unsubscribedContact:
+          $ref: '#/components/schemas/ApiContact'
+        preferredLocale:
+          type:
+          - string
+          - 'null'
+        returnUrlToUseIfChallenged:
+          type:
+          - string
+          - 'null'
+    ApiTransactionalDataImport:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: guid
+        status:
+          $ref: '#/components/schemas/ApiTransactionalDataImportStatuses'
+    ApiTransactionalDataCollection:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+    ApiContactExtended:
+      allOf:
+      - $ref: '#/components/schemas/ApiContact'
+      - type: object
+        additionalProperties: false
+        properties:
+          created:
+            type: string
+            format: date-time
+    ApiPreference:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        publicName:
+          type:
+          - string
+          - 'null'
+        privateName:
+          type:
+          - string
+          - 'null'
+        isPreference:
+          type: boolean
+        order:
+          type:
+          - string
+          - 'null'
+        isPublic:
+          type: boolean
+        categoryId:
+          type: integer
+          format: int32
+        preferenceCount:
+          type: integer
+          format: int32
+        created:
+          type: string
+          format: date-time
+        lastModified:
+          type: string
+          format: date-time
+        isOptedIn:
+          type:
+          - boolean
+          - 'null'
+        preferences:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiPreference'
+    ApiTransactionalData:
+      type: object
+      additionalProperties: false
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        contactIdentifier:
+          type:
+          - string
+          - 'null'
+        json:
+          type:
+          - string
+          - 'null'
+    ApiContactSuppression:
+      type: object
+      additionalProperties: false
+      properties:
+        suppressedContact:
+          oneOf:
+          - $ref: '#/components/schemas/ApiContact'
+        dateRemoved:
+          type: string
+          format: date-time
+        reason:
+          $ref: '#/components/schemas/ApiContactStatuses'
+    ApiContactWithConsent:
+      type: object
+      additionalProperties: false
+      properties:
+        contact:
+          oneOf:
+          - $ref: '#/components/schemas/ApiContact'
+        consentFields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiConsent'
+    ApiContactStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - Subscribed
+      - Unsubscribed
+      - SoftBounced
+      - HardBounced
+      - IspComplained
+      - MailBlocked
+      - PendingOptIn
+      - DirectComplaint
+      - Deleted
+      - SharedSuppression
+      - Suppressed
+      - NotAllowed
+      - DomainSuppression
+      - NoMxRecord
+      - NotAvailableInThisVersion
+      enum:
+      - Subscribed
+      - Unsubscribed
+      - SoftBounced
+      - HardBounced
+      - IspComplained
+      - MailBlocked
+      - PendingOptIn
+      - DirectComplaint
+      - Deleted
+      - SharedSuppression
+      - Suppressed
+      - NotAllowed
+      - DomainSuppression
+      - NoMxRecord
+      - NotAvailableInThisVersion
+    ApiContactData:
+      type: object
+      additionalProperties: false
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        value: {}
+    ApiTransactionalDataImportReport:
+      type: object
+      additionalProperties: false
+      properties:
+        totalItems:
+          type: integer
+          format: int32
+        totalImported:
+          type: integer
+          format: int32
+        totalRejected:
+          type: integer
+          format: int32
+        faults:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiTransactionalDataImportReportFault'
+    ApiJsonData:
+      type: object
+      additionalProperties: false
+      properties:
+        json:
+          type:
+          - string
+          - 'null'
+    ApiContactWithConsentAndPreferences:
+      allOf:
+      - $ref: '#/components/schemas/ApiContactWithConsent'
+      - type: object
+        additionalProperties: false
+        properties:
+          preferences:
+            type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ApiPreference'
+    ApiContactOptInTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - Unknown
+      - Single
+      - Double
+      - VerifiedDouble
+      - NotAvailableInThisVersion
+      enum:
+      - Unknown
+      - Single
+      - Double
+      - VerifiedDouble
+      - NotAvailableInThisVersion
+x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

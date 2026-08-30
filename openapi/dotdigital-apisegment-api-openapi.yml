@@ -1,0 +1,122 @@
+openapi: 3.2.0
+info:
+  title: apiconnector.com API Segment API
+  version: v2
+servers:
+- url: https://r1-api.dotdigital.com
+tags:
+- name: ApiSegment
+paths:
+  /v2/segments/refresh/{id}:
+    post:
+      tags:
+      - ApiSegment
+      summary: Refreshes a segment by ID.
+      operationId: ApiSegment_RefreshSegment
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      responses:
+        '202':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiSegmentRefresh'
+    get:
+      tags:
+      - ApiSegment
+      summary: Gets the refresh progress for a segment.
+      operationId: ApiSegment_GetSegmentRefreshProgress
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiSegmentRefresh'
+  /v2/segments:
+    get:
+      tags:
+      - ApiSegment
+      summary: Gets all segments.
+      operationId: ApiSegment_GetSegments
+      parameters:
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 1
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiSegment'
+components:
+  schemas:
+    ApiSegmentRefresh:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        status:
+          $ref: '#/components/schemas/ApiSegmentRefreshStatuses'
+    ApiSegmentRefreshStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - NotStarted
+      - NotFinished
+      - Finished
+      - Failed
+      - NotAvailableInThisVersion
+      enum:
+      - NotStarted
+      - NotFinished
+      - Finished
+      - Failed
+      - NotAvailableInThisVersion
+    ApiSegment:
+      type: object
+      additionalProperties: false
+      required:
+      - name
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          minLength: 1
+        contacts:
+          type: integer
+          format: int32
+x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

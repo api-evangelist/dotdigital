@@ -1,0 +1,678 @@
+openapi: 3.2.0
+info:
+  title: apiconnector.com API Preference API
+  version: v2
+servers:
+- url: https://r1-api.dotdigital.com
+tags:
+- name: ApiPreference
+paths:
+  /v2/preferences:
+    get:
+      tags:
+      - ApiPreference
+      summary: Gets the preferences, as a tree structure.
+      operationId: ApiPreference_GetPreferences
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+    post:
+      tags:
+      - ApiPreference
+      summary: Creates a new preference or a new preference category.
+      operationId: ApiPreference_CreatePreference
+      requestBody:
+        x-name: preference
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiPreference'
+        required: true
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+  /v2/preferences/modified-since/{sinceDate}:
+    get:
+      tags:
+      - ApiPreference
+      summary: Gets an array of preferences that have been modified since the specified date.
+      operationId: ApiPreference_GetPreferencesSinceDate
+      parameters:
+      - name: sinceDate
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date-time
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+  /v2/preferences/{id}:
+    put:
+      tags:
+      - ApiPreference
+      summary: Update the preference with the specified Id.
+      operationId: ApiPreference_UpdatePreference
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      requestBody:
+        x-name: preference
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiPreference'
+        required: true
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPreference'
+    delete:
+      tags:
+      - ApiPreference
+      summary: Deletes the preference with the specified Id.
+      operationId: ApiPreference_DeletePreference
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+  /v2/contacts/with-preference/{preferenceId}:
+    get:
+      tags:
+      - ApiPreference
+      summary: Gets a list of contacts subscribed to the specified preference.
+      operationId: ApiPreference_GetContactsWithPreference
+      parameters:
+      - name: preferenceId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: minContactId
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiContactIdAndEmail'
+  /v2/address-books/{bookId}/contacts/with-preference/{preferenceId}:
+    get:
+      tags:
+      - ApiPreference
+      summary: Gets a list of contacts from a given list, subscribed to the specified preference.
+      operationId: ApiPreference_GetContactsInAddressBookWithPreference
+      parameters:
+      - name: bookId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: preferenceId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 2
+      - name: minContactId
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 3
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiContactIdAndEmail'
+  /v2/contacts/{contactId}/preferences:
+    put:
+      tags:
+      - ApiPreference
+      summary: Sets the subscribed preferences for a contact
+      operationId: ApiPreference_SetPreferencesForContact
+      parameters:
+      - name: contactId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      requestBody:
+        x-name: preferences
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ApiPreference'
+        required: true
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+  /v2/contact/{contactId}/preferences:
+    put:
+      tags:
+      - ApiPreference
+      summary: Sets the subscribed preferences for a contact
+      operationId: ApiPreference_SetPreferencesForContact2
+      parameters:
+      - name: contactId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      requestBody:
+        x-name: preferences
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ApiPreference'
+        required: true
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+  /v2/contacts/{contactEmail}/preferences:
+    put:
+      tags:
+      - ApiPreference
+      summary: Sets the subscribed preferences for a contact
+      operationId: ApiPreference_SetPreferencesForContact3
+      parameters:
+      - name: contactEmail
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 1
+      requestBody:
+        x-name: preferences
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ApiPreference'
+        required: true
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+    get:
+      tags:
+      - ApiPreference
+      summary: Gets the preferences for the specified contact
+      operationId: ApiPreference_GetPreferencesForContact
+      parameters:
+      - name: contactEmail
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+  /v2/contact/{contactEmail}/preferences:
+    put:
+      tags:
+      - ApiPreference
+      summary: Sets the subscribed preferences for a contact
+      operationId: ApiPreference_SetPreferencesForContact4
+      parameters:
+      - name: contactEmail
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 1
+      requestBody:
+        x-name: preferences
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ApiPreference'
+        required: true
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+    get:
+      tags:
+      - ApiPreference
+      summary: Gets the preferences for the specified contact
+      operationId: ApiPreference_GetPreferencesForContact2
+      parameters:
+      - name: contactEmail
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+  /v2/contacts/{contactID}/preferences:
+    get:
+      tags:
+      - ApiPreference
+      summary: Gets the preferences for the specified contact
+      operationId: ApiPreference_GetPreferencesForContact3
+      parameters:
+      - name: contactID
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+  /v2/contact/{contactID}/preferences:
+    get:
+      tags:
+      - ApiPreference
+      summary: Gets the preferences for the specified contact
+      operationId: ApiPreference_GetPreferencesForContact4
+      parameters:
+      - name: contactID
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+  /v2/contacts/{contactEmail}/subscriptions:
+    get:
+      tags:
+      - ApiPreference
+      summary: Gets the subscriptions for the specified contact
+      operationId: ApiPreference_GetSubscriptionsForContact
+      parameters:
+      - name: contactEmail
+        in: path
+        required: true
+        schema:
+          type: string
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+  /v2/contacts/with-preference/{preferenceId}/opt-ins-since/{sinceDate}:
+    get:
+      tags:
+      - ApiPreference
+      summary: Gets a list of contacts who have opted in to a preference since the specified date
+      operationId: ApiPreference_GetModifiedPreferenceOptIns
+      parameters:
+      - name: preferenceId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: sinceDate
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date-time
+        x-position: 2
+      - name: minContactId
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 3
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiContactWithPreferenceOptIn'
+  /v2/address-books/{bookId}/contacts/with-preference/{preferenceId}/opt-ins-since/{sinceDate}:
+    get:
+      tags:
+      - ApiPreference
+      summary: Gets a list of contacts, from a given list, who have opted in to a preference, since the specified date
+      operationId: ApiPreference_GetModifiedPreferenceOptInsByAddressBook
+      parameters:
+      - name: bookId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: preferenceId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 2
+      - name: sinceDate
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date-time
+        x-position: 3
+      - name: minContactId
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiContactWithPreferenceOptIn'
+components:
+  schemas:
+    ApiContactStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - Subscribed
+      - Unsubscribed
+      - SoftBounced
+      - HardBounced
+      - IspComplained
+      - MailBlocked
+      - PendingOptIn
+      - DirectComplaint
+      - Deleted
+      - SharedSuppression
+      - Suppressed
+      - NotAllowed
+      - DomainSuppression
+      - NoMxRecord
+      - NotAvailableInThisVersion
+      enum:
+      - Subscribed
+      - Unsubscribed
+      - SoftBounced
+      - HardBounced
+      - IspComplained
+      - MailBlocked
+      - PendingOptIn
+      - DirectComplaint
+      - Deleted
+      - SharedSuppression
+      - Suppressed
+      - NotAllowed
+      - DomainSuppression
+      - NoMxRecord
+      - NotAvailableInThisVersion
+    ApiContactData:
+      type: object
+      additionalProperties: false
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        value: {}
+    ApiPreference:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        publicName:
+          type:
+          - string
+          - 'null'
+        privateName:
+          type:
+          - string
+          - 'null'
+        isPreference:
+          type: boolean
+        order:
+          type:
+          - string
+          - 'null'
+        isPublic:
+          type: boolean
+        categoryId:
+          type: integer
+          format: int32
+        preferenceCount:
+          type: integer
+          format: int32
+        created:
+          type: string
+          format: date-time
+        lastModified:
+          type: string
+          format: date-time
+        isOptedIn:
+          type:
+          - boolean
+          - 'null'
+        preferences:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiPreference'
+    ApiContact:
+      type: object
+      additionalProperties: false
+      required:
+      - email
+      properties:
+        id:
+          type: integer
+          format: int32
+        email:
+          type: string
+          minLength: 1
+        optInType:
+          oneOf:
+          - $ref: '#/components/schemas/ApiContactOptInTypes'
+        emailType:
+          oneOf:
+          - $ref: '#/components/schemas/ApiContactEmailTypes'
+        dataFields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiContactData'
+        status:
+          $ref: '#/components/schemas/ApiContactStatuses'
+    ApiContactWithPreferenceOptIn:
+      type: object
+      additionalProperties: false
+      properties:
+        contact:
+          oneOf:
+          - $ref: '#/components/schemas/ApiContact'
+        marketingPreferenceOptIns:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMarketingPreferenceOptIn'
+    ApiContactIdAndEmail:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+    ApiMarketingPreferenceOptIn:
+      type: object
+      additionalProperties: false
+      properties:
+        marketingPreferenceId:
+          type: integer
+          format: int32
+        addressBookId:
+          type: integer
+          format: int32
+        isOptedIn:
+          type: boolean
+        dateModifed:
+          type: string
+          format: date-time
+    ApiContactEmailTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - PlainText
+      - Html
+      - NotAvailableInThisVersion
+      enum:
+      - PlainText
+      - Html
+      - NotAvailableInThisVersion
+    ApiContactOptInTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - Unknown
+      - Single
+      - Double
+      - VerifiedDouble
+      - NotAvailableInThisVersion
+      enum:
+      - Unknown
+      - Single
+      - Double
+      - VerifiedDouble
+      - NotAvailableInThisVersion
+x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

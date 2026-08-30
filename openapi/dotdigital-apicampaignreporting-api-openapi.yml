@@ -1,0 +1,1670 @@
+openapi: 3.2.0
+info:
+  title: apiconnector.com API Campaign Reporting API
+  version: v2
+servers:
+- url: https://r1-api.dotdigital.com
+tags:
+- name: ApiCampaignReporting
+paths:
+  /v2/campaigns/{campaignId}/summary:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets a summary of reporting information for a specified campaign.
+      operationId: ApiCampaignReporting_GetCampaignSummary
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiCampaignSummary'
+  /v2/campaigns/{campaignId}/activities:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets a list of contacts who were sent a campaign, with their activity.
+      operationId: ApiCampaignReporting_GetCampaignActivities
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 2
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 3
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaignContactSummary'
+  /v2/campaigns/{campaignId}/activities/since-date/{date}:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets a list of contacts who were sent a campaign, and retrieves only those contacts who showed activity (e.g. they clicked, opened) after a specified date.
+      operationId: ApiCampaignReporting_GetCampaignActivitiesSinceDate
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date-time
+        x-position: 2
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 2000
+        x-position: 3
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaignContactSummary'
+  /v2/campaigns/{campaignId}/activities/{contactId}:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets activity for a given contact and campaign.
+      operationId: ApiCampaignReporting_GetCampaignContactActivity
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: contactId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiCampaignContactSummary'
+  /v2/campaigns/{campaignId}/clicks:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets a list of campaign link clicks.
+      operationId: ApiCampaignReporting_GetCampaignClicks
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 2
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 3
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaignContactClick'
+  /v2/campaigns/{campaignId}/clicks/since-date/{date}:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets a list of link clicks for a campaign after a specified date
+      operationId: ApiCampaignReporting_GetCampaignClicksSinceDate
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date-time
+        x-position: 2
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 3
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaignContactClick'
+  /v2/campaigns/{campaignId}/activities/{contactId}/clicks:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets a list of campaign link clicks for a contact.
+      operationId: ApiCampaignReporting_GetCampaignContactClicks
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: contactId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 2
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 3
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaignContactClick'
+  /v2/campaigns/{campaignId}/opens:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets a list of campaign opens.
+      operationId: ApiCampaignReporting_GetCampaignOpens
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 2
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 3
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaignContactOpen'
+  /v2/campaigns/{campaignId}/opens/since-date/{date}:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets a list of opens for a campaign after a specified date
+      operationId: ApiCampaignReporting_GetCampaignOpensSinceDate
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date-time
+        x-position: 2
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 3
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaignContactOpen'
+  /v2/campaigns/{campaignId}/activities/{contactId}/opens:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets a list of campaign opens for a contact.
+      operationId: ApiCampaignReporting_GetCampaignContactOpens
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: contactId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 2
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 3
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaignContactOpen'
+  /v2/campaigns/{campaignId}/page-views/since-date/{date}:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets a list of page views for a campaign after a specified date.
+      operationId: ApiCampaignReporting_GetCampaignPageViewsSinceDate
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date-time
+        x-position: 2
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 3
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaignContactPageView'
+  /v2/campaigns/{campaignId}/activities/{contactId}/page-views:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets a list of page views for a contact.
+      operationId: ApiCampaignReporting_GetCampaignContactPageViews
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: contactId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 2
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 3
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaignContactPageView'
+  /v2/campaigns/{campaignId}/activities/{contactId}/replies:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets a list of campaign replies for a contact.
+      description: You may not request more than 5 records at a time using the "select" parameter.
+      operationId: ApiCampaignReporting_GetCampaignContactReplies
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: contactId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 2
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 5
+        x-position: 3
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaignContactReply'
+  /v2/campaigns/{campaignId}/social-bookmark-views:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets campaign social bookmark views for a campaign.
+      operationId: ApiCampaignReporting_GetCampaignSocialBookmarkViews
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 2
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 3
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaignContactSocialBookmarkView'
+  /v2/campaigns/{campaignId}/activities/{contactId}/social-bookmark-views:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets campaign social bookmark views for a contact.
+      operationId: ApiCampaignReporting_GetCampaignContactSocialBookmarkViews
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: contactId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 2
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 3
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaignContactSocialBookmarkView'
+  /v2/campaigns/{campaignId}/roi-details/since-date/{date}:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets a list of ROI information for a campaign after the specified date.
+      operationId: ApiCampaignReporting_GetCampaignRoiDetailsSinceDate
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date-time
+        x-position: 2
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 3
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaignContactRoiDetail'
+  /v2/campaigns/{campaignId}/activities/{contactId}/roi-details:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets a list of ROI information for a contact.
+      operationId: ApiCampaignReporting_GetCampaignContactRoiDetails
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: contactId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 2
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 3
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaignContactRoiDetail'
+  /v2/campaigns/{campaignId}/hard-bouncing-contacts:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets a list of contacts who hard bounced when sent a particular campaign.
+      operationId: ApiCampaignReporting_GetCampaignHardBouncingContacts
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: withFullData
+        in: query
+        schema:
+          type: boolean
+          default: false
+        x-position: 2
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 3
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiContact'
+  /v2/campaigns/{campaignId}/clicks-with-groups:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets a list of campaign clicks with link groups
+      operationId: ApiCampaignReporting_GetCampaignClicksAndLinkGroups
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 2
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 3
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaignContactClickWithGroups'
+  /v2/campaigns/{campaignId}/clicks-with-groups/since-date/{date}:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets a list of campaign clicks with link groups after a specified date
+      operationId: ApiCampaignReporting_GetCampaignClicksAndLinkGroupsSinceDate
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date-time
+        x-position: 2
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 3
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaignContactClickWithGroups'
+  /v2/campaigns/{campaignId}/activities/{contactId}/clicks-with-groups:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets a list of campaign clicks with link groups for a contact
+      operationId: ApiCampaignReporting_GetCampaignContactClicksAnsLinkGroups
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: contactId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 2
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 3
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaignContactClickWithGroups'
+  /v2/campaigns/{campaignId}/revenue/since-date/{date}:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets the revenue attributed to a specified campaign after a specified date.
+      operationId: ApiCampaignReporting_GetCampaignRevenueSinceDate
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date-time
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiCampaignRevenueAttributionDetail'
+  /v2/campaigns/{campaignId}/activities/{contactId}/revenue:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets the revenue attributed to a specified campaign generated by a specified contact.
+      operationId: ApiCampaignReporting_GetCampaignRevenueByContact
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: contactId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiCampaignRevenueAttributionDetail'
+  /v2/campaigns/metrics:
+    get:
+      tags:
+      - ApiCampaignReporting
+      summary: Gets all sent campaigns daily metrics for the specified date range.
+      operationId: ApiCampaignReporting_GetCampaignMetrics
+      parameters:
+      - name: startDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+        x-position: 1
+      - name: endDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+        x-position: 2
+      - name: select
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1000
+        x-position: 3
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiCampaignReportModelExtended'
+components:
+  schemas:
+    ApiCampaignLinkGroup:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        dateCreated:
+          type: string
+          format: date-time
+    ApiCampaignSummary:
+      type: object
+      additionalProperties: false
+      properties:
+        dateSent:
+          type: string
+          format: date-time
+        numUniqueOpens:
+          type: integer
+          format: int32
+        numUniqueTextOpens:
+          type: integer
+          format: int32
+        numTotalUniqueOpens:
+          type: integer
+          format: int32
+        numOpens:
+          type: integer
+          format: int32
+        numTextOpens:
+          type: integer
+          format: int32
+        numTotalOpens:
+          type: integer
+          format: int32
+        numClicks:
+          type: integer
+          format: int32
+        numTextClicks:
+          type: integer
+          format: int32
+        numTotalClicks:
+          type: integer
+          format: int32
+        numPageViews:
+          type: integer
+          format: int32
+        numTotalPageViews:
+          type: integer
+          format: int32
+        numTextPageViews:
+          type: integer
+          format: int32
+        numForwards:
+          type: integer
+          format: int32
+        numTextForwards:
+          type: integer
+          format: int32
+        numEstimatedForwards:
+          type: integer
+          format: int32
+        numTextEstimatedForwards:
+          type: integer
+          format: int32
+        numTotalEstimatedForwards:
+          type: integer
+          format: int32
+        numReplies:
+          type: integer
+          format: int32
+        numTextReplies:
+          type: integer
+          format: int32
+        numTotalReplies:
+          type: integer
+          format: int32
+        numHardBounces:
+          type: integer
+          format: int32
+        numTextHardBounces:
+          type: integer
+          format: int32
+        numTotalHardBounces:
+          type: integer
+          format: int32
+        numSoftBounces:
+          type: integer
+          format: int32
+        numTextSoftBounces:
+          type: integer
+          format: int32
+        numTotalSoftBounces:
+          type: integer
+          format: int32
+        numUnsubscribes:
+          type: integer
+          format: int32
+        numTextUnsubscribes:
+          type: integer
+          format: int32
+        numTotalUnsubscribes:
+          type: integer
+          format: int32
+        numIspComplaints:
+          type: integer
+          format: int32
+        numTextIspComplaints:
+          type: integer
+          format: int32
+        numTotalIspComplaints:
+          type: integer
+          format: int32
+        numMailBlocks:
+          type: integer
+          format: int32
+        numTextMailBlocks:
+          type: integer
+          format: int32
+        numTotalMailBlocks:
+          type: integer
+          format: int32
+        numSent:
+          type: integer
+          format: int32
+        numTextSent:
+          type: integer
+          format: int32
+        numTotalSent:
+          type: integer
+          format: int32
+        numRecipientsClicked:
+          type: integer
+          format: int32
+        numDelivered:
+          type: integer
+          format: int32
+        numTextDelivered:
+          type: integer
+          format: int32
+        numTotalDelivered:
+          type: integer
+          format: int32
+        percentageDelivered:
+          type: number
+          format: double
+        percentageUniqueOpens:
+          type: number
+          format: double
+        percentageOpens:
+          type: number
+          format: double
+        percentageUnsubscribes:
+          type: number
+          format: double
+        percentageReplies:
+          type: number
+          format: double
+        percentageHardBounces:
+          type: number
+          format: double
+        percentageSoftBounces:
+          type: number
+          format: double
+        percentageUsersClicked:
+          type: number
+          format: double
+        percentageClicksToOpens:
+          type: number
+          format: double
+        revenue:
+          type:
+          - string
+          - 'null'
+        conversionRate:
+          type: number
+          format: decimal
+        assistedRevenue:
+          type:
+          - string
+          - 'null'
+        numOrders:
+          type: integer
+          format: int32
+        numAssistedOrders:
+          type: integer
+          format: int32
+    ApiContact:
+      type: object
+      additionalProperties: false
+      required:
+      - email
+      properties:
+        id:
+          type: integer
+          format: int32
+        email:
+          type: string
+          minLength: 1
+        optInType:
+          oneOf:
+          - $ref: '#/components/schemas/ApiContactOptInTypes'
+        emailType:
+          oneOf:
+          - $ref: '#/components/schemas/ApiContactEmailTypes'
+        dataFields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiContactData'
+        status:
+          $ref: '#/components/schemas/ApiContactStatuses'
+    ApiCampaignContactSocialBookmarkView:
+      type: object
+      additionalProperties: false
+      properties:
+        contactId:
+          type: integer
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+        bookmarkName:
+          type:
+          - string
+          - 'null'
+        numViews:
+          type: integer
+          format: int32
+    ApiCampaignContactClick:
+      type: object
+      additionalProperties: false
+      properties:
+        contactId:
+          type: integer
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        ipAddress:
+          type:
+          - string
+          - 'null'
+        userAgent:
+          type:
+          - string
+          - 'null'
+        dateClicked:
+          type: string
+          format: date-time
+        keyword:
+          type:
+          - string
+          - 'null'
+    ApiCampaignContactClickWithGroups:
+      type: object
+      additionalProperties: false
+      properties:
+        contactId:
+          type: integer
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        ipAddress:
+          type:
+          - string
+          - 'null'
+        userAgent:
+          type:
+          - string
+          - 'null'
+        dateClicked:
+          type: string
+          format: date-time
+        keyword:
+          type:
+          - string
+          - 'null'
+        groups:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiCampaignLinkGroup'
+    ApiContactEmailTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - PlainText
+      - Html
+      - NotAvailableInThisVersion
+      enum:
+      - PlainText
+      - Html
+      - NotAvailableInThisVersion
+    CampaignType:
+      type: string
+      description: ''
+      x-enumNames:
+      - Standard
+      - Triggered
+      - Template
+      - AiTemplate
+      enum:
+      - Standard
+      - Triggered
+      - Template
+      - AiTemplate
+    ApiRoiDetailDataTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - String
+      - Numeric
+      - Date
+      - Boolean
+      - NotAvailableInThisVersion
+      enum:
+      - String
+      - Numeric
+      - Date
+      - Boolean
+      - NotAvailableInThisVersion
+    ApiCampaignContactOpen:
+      type: object
+      additionalProperties: false
+      properties:
+        contactId:
+          type: integer
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+        mailClient:
+          type:
+          - string
+          - 'null'
+        mailClientVersion:
+          type:
+          - string
+          - 'null'
+        ipAddress:
+          type:
+          - string
+          - 'null'
+        userAgent:
+          type:
+          - string
+          - 'null'
+        isHtml:
+          type: boolean
+        isForward:
+          type: boolean
+        dateOpened:
+          type: string
+          format: date-time
+    ApiCampaignContactSummary:
+      type: object
+      additionalProperties: false
+      properties:
+        contactId:
+          type: integer
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+        numOpens:
+          type: integer
+          format: int32
+        numPageViews:
+          type: integer
+          format: int32
+        numClicks:
+          type: integer
+          format: int32
+        numForwards:
+          type: integer
+          format: int32
+        numEstimatedForwards:
+          type: integer
+          format: int32
+        numReplies:
+          type: integer
+          format: int32
+        dateSent:
+          type: string
+          format: date-time
+        dateFirstOpened:
+          type: string
+          format: date-time
+        dateLastOpened:
+          type: string
+          format: date-time
+        firstOpenIp:
+          type:
+          - string
+          - 'null'
+          description: "if the openip is null it doesn't get mapped so this defualt \nempty string is needed is required to maintain api usage."
+        unsubscribed:
+          type: boolean
+        softBounced:
+          type: boolean
+        hardBounced:
+          type: boolean
+    ApiCampaignReportModelExtended:
+      type: object
+      additionalProperties: false
+      properties:
+        campaignId:
+          type: integer
+          format: int32
+        dateSent:
+          type: string
+          format: date-time
+        campaignName:
+          type: string
+        campaignType:
+          $ref: '#/components/schemas/CampaignType'
+        sent:
+          type: integer
+          format: int32
+        delivered:
+          type: integer
+          format: int32
+        uniqueOpens:
+          type: integer
+          format: int32
+        clicks:
+          type: integer
+          format: int32
+        hardBounces:
+          type: integer
+          format: int32
+        softBounces:
+          type: integer
+          format: int32
+        replies:
+          type: integer
+          format: int32
+        unsubscribes:
+          type: integer
+          format: int32
+        forwards:
+          type: integer
+          format: int32
+        uniqueClicks:
+          type: integer
+          format: int32
+        sendStatusFails:
+          type: integer
+          format: int32
+        mailBlocks:
+          type: integer
+          format: int32
+        opens:
+          type: integer
+          format: int32
+        complaints:
+          type: integer
+          format: int32
+        pageViews:
+          type: integer
+          format: int32
+        percentageDelivered:
+          type: number
+          format: decimal
+        percentageUniqueOpens:
+          type: number
+          format: decimal
+        percentageHardBounces:
+          type: number
+          format: decimal
+        percentageSoftBounces:
+          type: number
+          format: decimal
+        percentageReplies:
+          type: number
+          format: decimal
+        percentageUnsubscribes:
+          type: number
+          format: decimal
+        percentageUniqueClicks:
+          type: number
+          format: decimal
+        percentageUniqueClicksToOpens:
+          type: number
+          format: decimal
+        revenue:
+          type: number
+          format: decimal
+        conversionRate:
+          type: number
+          format: decimal
+        assistedRevenue:
+          type: number
+          format: decimal
+        orders:
+          type: integer
+          format: int32
+        assistedOrders:
+          type: integer
+          format: int32
+        tags:
+          type: array
+          items:
+            type: string
+        subjectLine:
+          type:
+          - string
+          - 'null'
+        fromName:
+          type:
+          - string
+          - 'null'
+        fromAddress:
+          type:
+          - string
+          - 'null'
+        isSplitTest:
+          type: boolean
+    ApiCampaignReplyTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - Reply
+      - AutoReply
+      - ChallengeResponse
+      - Unsafe
+      - NotAvailableInThisVersion
+      enum:
+      - Reply
+      - AutoReply
+      - ChallengeResponse
+      - Unsafe
+      - NotAvailableInThisVersion
+    ApiCampaignContactRoiDetail:
+      type: object
+      additionalProperties: false
+      properties:
+        contactId:
+          type: integer
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+        markerName:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/ApiRoiDetailDataTypes'
+        value: {}
+        dateEntered:
+          type: string
+          format: date-time
+    ApiCampaignContactPageView:
+      type: object
+      additionalProperties: false
+      properties:
+        contactId:
+          type: integer
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        dateViewed:
+          type: string
+          format: date-time
+    ApiCampaignContactReply:
+      type: object
+      additionalProperties: false
+      properties:
+        contactId:
+          type: integer
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+        fromAddress:
+          type:
+          - string
+          - 'null'
+        toAddress:
+          type:
+          - string
+          - 'null'
+        subject:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+        isHtml:
+          type: boolean
+        dateReplied:
+          type: string
+          format: date-time
+        replyType:
+          $ref: '#/components/schemas/ApiCampaignReplyTypes'
+        customReplyToAddress:
+          type:
+          - string
+          - 'null'
+    ApiContactStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - Subscribed
+      - Unsubscribed
+      - SoftBounced
+      - HardBounced
+      - IspComplained
+      - MailBlocked
+      - PendingOptIn
+      - DirectComplaint
+      - Deleted
+      - SharedSuppression
+      - Suppressed
+      - NotAllowed
+      - DomainSuppression
+      - NoMxRecord
+      - NotAvailableInThisVersion
+      enum:
+      - Subscribed
+      - Unsubscribed
+      - SoftBounced
+      - HardBounced
+      - IspComplained
+      - MailBlocked
+      - PendingOptIn
+      - DirectComplaint
+      - Deleted
+      - SharedSuppression
+      - Suppressed
+      - NotAllowed
+      - DomainSuppression
+      - NoMxRecord
+      - NotAvailableInThisVersion
+    ApiCampaignRevenueAttributionDetail:
+      type: object
+      additionalProperties: false
+      properties:
+        campaignID:
+          type: integer
+          format: int32
+        dateLastSent:
+          type: string
+          format: date-time
+        currency:
+          type:
+          - string
+          - 'null'
+        revenue:
+          type: number
+          format: decimal
+        numOrders:
+          type: integer
+          format: int32
+        conversionRate:
+          type: number
+          format: decimal
+    ApiContactData:
+      type: object
+      additionalProperties: false
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        value: {}
+    ApiContactOptInTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - Unknown
+      - Single
+      - Double
+      - VerifiedDouble
+      - NotAvailableInThisVersion
+      enum:
+      - Unknown
+      - Single
+      - Double
+      - VerifiedDouble
+      - NotAvailableInThisVersion
+x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

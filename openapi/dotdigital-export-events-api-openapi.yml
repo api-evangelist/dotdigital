@@ -1,0 +1,233 @@
+openapi: 3.2.0
+info:
+  title: Export events API
+  description: 'Send and receive events with Dotdigital. Use this API to import batches of
+
+    contact-associated events, manage event subscriptions (create, retrieve, update,
+
+    and delete), retrieve queued events for a subscription using checkpoint-based
+
+    pagination, and download large objects referenced in event data.'
+  version: 3.1.1-Events-in-out
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      description: The Dotdigital region id your account belongs to
+      enum:
+      - r1
+      - r2
+      - r3
+      default: r1
+security:
+- basicAuth: []
+tags:
+- name: Export events
+paths:
+  /events/v3/export/{subscriptionId}:
+    get:
+      tags:
+      - Export events
+      summary: Retrieve events
+      description: 'Gets a set of events for a events subscription. If starting to retrieve events then do not pass a `checkPoint` and the earliest events queued for the subscription will be retrieved, and on subsequent calls pass the `checkPoint` value from the previous call to indicate you have received that page of events successfully.<br><br>
+
+        **Note:**
+
+        * Ensure you pass the returned `checkPoint` to ensure you only get events after the last time you called.
+
+        * You must ensure that you pick up the latest events for a subscription within  a 30 day period, otherwise the **subscription will automatically be set to `inactive` status due to non usage.**
+
+        * If we return no events in the `events` array then you have received all the currently queued events.
+
+        * Maximum call duration permitted is 30 seconds!'
+      operationId: exportEvents
+      parameters:
+      - name: x-ddg-integration-token
+        in: header
+        description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+        required: false
+        schema:
+          pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+          type: string
+          example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+      - name: subscriptionId
+        in: path
+        description: The events subscription id you want to interact with.
+        required: true
+        schema:
+          type: integer
+          example: 1234
+      - name: limit
+        in: query
+        description: The maximum number of records to return in the results, note it could be fewer.
+        required: false
+        schema:
+          maximum: 5000
+          minimum: 1
+          type: integer
+          example: 2000
+          default: 2000
+      - name: checkPoint
+        in: query
+        description: Provide the `checkPoint` value from your previous call to indicate you have received the events successfully.
+        required: false
+        schema:
+          type: string
+          example: zf0f945b36ad8
+      responses:
+        '200':
+          description: Event data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        '400':
+          description: Invalid checkpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                errorCode: events:invalidCheckpoint
+                description: The checkpoint passed is invalid and cannot be parsed.
+                details:
+                - item: XXXXYYYYY
+                  description: Invalid checkpoint.
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          $ref: '#/components/responses/subscriptionNotFound'
+        '409':
+          description: Inactive subscription
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                errorCode: events:inactiveSubscription
+                description: The subscription is set to inactive and therefore cannot be used.
+                details:
+                - item: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+                  description: Inactive subscription
+        '500':
+          description: Internal Server Error
+components:
+  responses:
+    subscriptionNotFound:
+      description: Subscription not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          example:
+            errorCode: events:subscriptionNotFound
+            description: The following subscription could not be found
+            details:
+            - item: zf0f945b36ad8
+              description: Not found.
+  schemas:
+    errorResponse_details:
+      required:
+      - description
+      - item
+      type: object
+      properties:
+        item:
+          type: string
+          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
+        description:
+          type: string
+          description: Description of the error
+    event:
+      required:
+      - accountId
+      - data
+      - eventDate
+      - id
+      - processedDate
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique id for the event.
+          example: 27e298b2-a1af-4041-96a6-00f909c66ad8
+        accountId:
+          type: integer
+          description: The account id the event is related to.
+          example: 33210
+        processedDate:
+          type: string
+          description: Date time in ISO 8601 format based on UTC when the event was processed by Dotdogital.
+          format: date-time
+          example: '2025-02-07T16:25:01.023Z'
+        type:
+          type: string
+          description: The type of the event.
+          example: email.doubleOptIn
+        eventDate:
+          type: string
+          description: Date time in ISO 8601 format based on UTC when the event occurred.
+          format: date-time
+          example: '2025-02-07T16:23:33.741Z'
+        data:
+          type: object
+          additionalProperties: true
+          description: The events data.
+          example:
+            optinCode: true
+            contactId: 12345
+            eventId: 27e298b2-a1af-4041-96a6-00f909c66ad8
+            userAccountId: 54321
+            timeStamp: '2025-02-07T16:23:33.123Z'
+      additionalProperties: false
+      description: An event
+    errorResponse:
+      required:
+      - description
+      - errorCode
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: Unique error code
+        description:
+          type: string
+          description: Description of the issue
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/errorResponse_details'
+    inline_response_200:
+      required:
+      - checkPoint
+      - events
+      type: object
+      properties:
+        checkPoint:
+          type: string
+          description: This is the value you should pass back with your subsequent call in the `checkPoint` query string to indicate you have received the previous page of events successfully.
+          example: fgfh63eu77
+        events:
+          type: array
+          description: Returned events
+          items:
+            $ref: '#/components/schemas/event'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+externalDocs:
+  description: Learn more about Dotdigital APIs
+  url: https://developer.dotdigital.com
+x-samples-languages:
+- curl
+- csharp
+- java
+- javascript
+- node
+- python
+- php
+- ruby

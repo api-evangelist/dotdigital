@@ -1,0 +1,183 @@
+openapi: 3.2.0
+info:
+  title: Import events API
+  description: 'Send and receive events with Dotdigital. Use this API to import batches of
+
+    contact-associated events, manage event subscriptions (create, retrieve, update,
+
+    and delete), retrieve queued events for a subscription using checkpoint-based
+
+    pagination, and download large objects referenced in event data.'
+  version: 3.1.1-Events-in-out
+servers:
+- url: https://{region}-api.dotdigital.com
+  variables:
+    region:
+      description: The Dotdigital region id your account belongs to
+      enum:
+      - r1
+      - r2
+      - r3
+      default: r1
+security:
+- basicAuth: []
+tags:
+- name: Import events
+paths:
+  /events/v3/import:
+    post:
+      tags:
+      - Import events
+      summary: Import a collection of events
+      description: Imports a batch of events associated to contacts.
+      operationId: importEvents
+      parameters:
+      - name: x-ddg-integration-token
+        in: header
+        description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
+        required: false
+        schema:
+          pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
+          type: string
+          example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
+      requestBody:
+        description: Events to be imported
+        content:
+          application/json:
+            schema:
+              maxItems: 5000
+              minItems: 1
+              type: array
+              description: The events to import.
+              items:
+                $ref: '#/components/schemas/v3_import_body'
+        required: true
+      responses:
+        '202':
+          description: Import processing
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                errorCode: events:badJson
+                description: The request JSON is badly formed
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    contactIdentifier:
+      required:
+      - identifier
+      - value
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of contactId, email or mobileNumber
+          example: contactId
+        value:
+          type:
+          - string
+          - 'null'
+          description: The unique value to identify the contact or the same type as the **identifier**
+          example: fred.bloggs@emailsim.io
+    errorResponse_details:
+      required:
+      - description
+      - item
+      type: object
+      properties:
+        item:
+          type: string
+          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
+        description:
+          type: string
+          description: Description of the error
+    eventsv3import_timelineDetails:
+      required:
+      - summary
+      type: object
+      properties:
+        summary:
+          maxLength: 160
+          minLength: 1
+          type: string
+          description: Optional description of the event for display in the timeline of the contact.
+          example: 'Search for travel desination: Bali'
+      description: The details to display in the contacts timeline; if omitted nothing will be shown.
+    errorResponse:
+      required:
+      - description
+      - errorCode
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: Unique error code
+        description:
+          type: string
+          description: Description of the issue
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/errorResponse_details'
+    v3_import_body:
+      required:
+      - contactIdentity
+      - type
+      type: object
+      properties:
+        contactIdentity:
+          allOf:
+          - description: The way to identify the contact the event is associated to.
+          - $ref: '#/components/schemas/contactIdentifier'
+        type:
+          maxLength: 80
+          minLength: 1
+          type: string
+          description: The event type
+          example: Search destination
+        id:
+          type: string
+          description: The unique id for the event.
+          example: 27e298b2-a1af-4041-96a6-00f909c66ad8
+        eventTimestamp:
+          type: string
+          description: 'The UTC date and time the event occurred in ISO 8601 format.
+
+
+            _**Note:** Optional and will default to when we process the event if not specified._
+
+            '
+          example: '2025-05-14T13:01:04.000Z'
+          default: <Current date and time>
+        timelineDetails:
+          $ref: '#/components/schemas/eventsv3import_timelineDetails'
+        eventData:
+          type: object
+          additionalProperties: true
+          description: Any addtional data attributes for the event.
+          example:
+            query: Bali
+            travelFromDate: '2025-07-03'
+            flightsRequired: true
+      description: An event
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+externalDocs:
+  description: Learn more about Dotdigital APIs
+  url: https://developer.dotdigital.com
+x-samples-languages:
+- curl
+- csharp
+- java
+- javascript
+- node
+- python
+- php
+- ruby

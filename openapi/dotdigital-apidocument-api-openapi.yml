@@ -1,0 +1,237 @@
+openapi: 3.2.0
+info:
+  title: apiconnector.com API Document API
+  version: v2
+servers:
+- url: https://r1-api.dotdigital.com
+tags:
+- name: ApiDocument
+paths:
+  /v2/document-folders/{folderId}/documents:
+    get:
+      tags:
+      - ApiDocument
+      summary: Gets all uploaded documents.
+      operationId: ApiDocument_GetDocuments
+      parameters:
+      - name: folderId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiDocument'
+    post:
+      tags:
+      - ApiDocument
+      summary: Uploads a document into the specified folder.
+      operationId: ApiDocument_UploadDocument
+      parameters:
+      - name: folderId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      requestBody:
+        x-name: file
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiFileMedia'
+        required: true
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiDocument'
+  /v2/document-folders:
+    get:
+      tags:
+      - ApiDocument
+      summary: Fetches the document folder tree structure.
+      operationId: ApiDocument_GetDocumentFolders
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiDocumentFolder'
+  /v2/campaigns/{campaignId}/attachments:
+    get:
+      tags:
+      - ApiDocument
+      summary: Gets documents that are currently attached to a campaign.
+      operationId: ApiDocument_GetCampaignAttachments
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiDocument'
+    post:
+      tags:
+      - ApiDocument
+      summary: Adds a document to a campaign as an attachment.
+      operationId: ApiDocument_AttachDocumentToCampaign
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      requestBody:
+        x-name: document
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiDocument'
+        required: true
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiDocument'
+  /v2/document-folders/{folderId}:
+    post:
+      tags:
+      - ApiDocument
+      summary: Creates a new document folder.
+      operationId: ApiDocument_CreateDocumentFolder
+      parameters:
+      - name: folderId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      requestBody:
+        x-name: folder
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiDocumentFolder'
+        required: true
+        x-position: 2
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiDocumentFolder'
+  /v2/campaigns/{campaignId}/attachments/{documentId}:
+    delete:
+      tags:
+      - ApiDocument
+      summary: Removes an attachment from a campaign.
+      operationId: ApiDocument_DeleteDocumentFromCampaign
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 1
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+        x-position: 2
+      responses:
+        '204':
+          description: ''
+components:
+  schemas:
+    ApiDocument:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        fileName:
+          type:
+          - string
+          - 'null'
+        fileSize:
+          type: integer
+          format: int32
+        dateCreated:
+          type: string
+          format: date-time
+        dateModified:
+          type: string
+          format: date-time
+    ApiDocumentFolder:
+      type: object
+      additionalProperties: false
+      required:
+      - name
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          minLength: 1
+        childFolders:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiDocumentFolder'
+    ApiFileMedia:
+      type: object
+      additionalProperties: false
+      properties:
+        fileName:
+          type:
+          - string
+          - 'null'
+        data:
+          type:
+          - string
+          - 'null'
+          format: byte
+x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))
