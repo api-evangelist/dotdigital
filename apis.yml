@@ -316,6 +316,8 @@ apis:
   humanURL: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
   baseURL: https://r1-api.dotdigital.com/v2
   tags:
+  - API / Document
+  tags_raw:
   - ApiDocument
   properties:
   - type: OpenAPI
@@ -356,6 +358,8 @@ apis:
   humanURL: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
   baseURL: https://r1-api.dotdigital.com/v2
   tags:
+  - API Image
+  tags_raw:
   - ApiImage
   properties:
   - type: OpenAPI
@@ -698,6 +702,8 @@ apis:
   humanURL: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
   baseURL: https://r1-api.dotdigital.com/v2
   tags:
+  - CPaaS
+  tags_raw:
   - Cpaas
   properties:
   - type: OpenAPI
@@ -778,6 +784,8 @@ apis:
   humanURL: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
   baseURL: https://r1-api.dotdigital.com/v2
   tags:
+  - E-Commerce
+  tags_raw:
   - Ecommerce
   properties:
   - type: OpenAPI
@@ -858,6 +866,8 @@ apis:
   humanURL: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
   baseURL: https://r1-api.dotdigital.com/v2
   tags:
+  - Image
+  tags_raw:
   - Images
   properties:
   - type: OpenAPI
@@ -1204,6 +1214,8 @@ apis:
   humanURL: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
   baseURL: https://r1-api.dotdigital.com/v2
   tags:
+  - SMS Campaigns
+  tags_raw:
   - SMS campaigns
   properties:
   - type: OpenAPI
@@ -1224,6 +1236,8 @@ apis:
   humanURL: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
   baseURL: https://r1-api.dotdigital.com/v2
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -1244,6 +1258,8 @@ apis:
   humanURL: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
   baseURL: https://r1-api.dotdigital.com/v2
   tags:
+  - Transactional Email
+  tags_raw:
   - Transactional email
   properties:
   - type: OpenAPI
@@ -1325,6 +1341,8 @@ apis:
   humanURL: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
   baseURL: https://r1-api.dotdigital.com/v2
   tags:
+  - WhatsApp Numbers
+  tags_raw:
   - WhatsApp numbers
   properties:
   - type: OpenAPI
@@ -1345,6 +1363,8 @@ apis:
   humanURL: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
   baseURL: https://r1-api.dotdigital.com/v2
   tags:
+  - WhatsApp Templates
+  tags_raw:
   - WhatsApp templates
   properties:
   - type: OpenAPI
