@@ -596,26 +596,6 @@ apis:
     url: https://marketing.developer.dotdigital.com/reference/unified-contacts
   - type: Documentation
     url: https://marketing.developer.dotdigital.com/reference/omnichannel-api
-- aid: dotdigital:dotdigital-campaign-templates-api
-  name: Dotdigital Campaign Templates API
-  description: The Campaign Templates API from Dotdigital — 2 operation(s) for campaign templates.
-  humanURL: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
-  baseURL: https://r1-api.dotdigital.com/v2
-  tags:
-  - Campaign Templates
-  properties:
-  - type: OpenAPI
-    url: openapi/dotdigital-campaign-templates-api-openapi.yml
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
-  - type: APIReference
-    url: https://marketing.developer.dotdigital.com/reference/
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/docs/api-end-points
-  - type: APIReference
-    url: https://marketing.developer.dotdigital.com/reference/unified-contacts
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/reference/omnichannel-api
 - aid: dotdigital:dotdigital-channels-api
   name: Dotdigital Channels API
   description: The Channels API from Dotdigital — 1 operation(s) for channels.
@@ -646,26 +626,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/dotdigital-chat-api-openapi.yml
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
-  - type: APIReference
-    url: https://marketing.developer.dotdigital.com/reference/
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/docs/api-end-points
-  - type: APIReference
-    url: https://marketing.developer.dotdigital.com/reference/unified-contacts
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/reference/omnichannel-api
-- aid: dotdigital:dotdigital-contact-data-fields-api
-  name: Dotdigital Contact data fields API
-  description: The Contact data fields API from Dotdigital — 2 operation(s) for contact data fields.
-  humanURL: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
-  baseURL: https://r1-api.dotdigital.com/v2
-  tags:
-  - Contact data fields
-  properties:
-  - type: OpenAPI
-    url: openapi/dotdigital-contact-data-fields-api-openapi.yml
   - type: Documentation
     url: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
   - type: APIReference
@@ -768,28 +728,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/dotdigital-documents-api-openapi.yml
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
-  - type: APIReference
-    url: https://marketing.developer.dotdigital.com/reference/
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/docs/api-end-points
-  - type: APIReference
-    url: https://marketing.developer.dotdigital.com/reference/unified-contacts
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/reference/omnichannel-api
-- aid: dotdigital:dotdigital-ecommerce-api
-  name: Dotdigital Ecommerce API
-  description: The Ecommerce API from Dotdigital — 1 operation(s) for ecommerce.
-  humanURL: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
-  baseURL: https://r1-api.dotdigital.com/v2
-  tags:
-  - E-Commerce
-  tags_raw:
-  - Ecommerce
-  properties:
-  - type: OpenAPI
-    url: openapi/dotdigital-ecommerce-api-openapi.yml
   - type: Documentation
     url: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
   - type: APIReference
@@ -1067,26 +1005,6 @@ apis:
     url: https://marketing.developer.dotdigital.com/reference/unified-contacts
   - type: Documentation
     url: https://marketing.developer.dotdigital.com/reference/omnichannel-api
-- aid: dotdigital:dotdigital-pages-and-forms-api
-  name: Dotdigital Pages and forms API
-  description: The Pages and forms API from Dotdigital — 6 operation(s) for pages and forms.
-  humanURL: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
-  baseURL: https://r1-api.dotdigital.com/v2
-  tags:
-  - Pages and forms
-  properties:
-  - type: OpenAPI
-    url: openapi/dotdigital-pages-and-forms-api-openapi.yml
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
-  - type: APIReference
-    url: https://marketing.developer.dotdigital.com/reference/
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/docs/api-end-points
-  - type: APIReference
-    url: https://marketing.developer.dotdigital.com/reference/unified-contacts
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/reference/omnichannel-api
 - aid: dotdigital:dotdigital-preferences-and-subscriptions-api
   name: Dotdigital Preferences and subscriptions API
   description: >-
@@ -1138,26 +1056,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/dotdigital-scoring-api-openapi.yml
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
-  - type: APIReference
-    url: https://marketing.developer.dotdigital.com/reference/
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/docs/api-end-points
-  - type: APIReference
-    url: https://marketing.developer.dotdigital.com/reference/unified-contacts
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/reference/omnichannel-api
-- aid: dotdigital:dotdigital-segments-api
-  name: Dotdigital Segments API
-  description: The Segments API from Dotdigital — 2 operation(s) for segments.
-  humanURL: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
-  baseURL: https://r1-api.dotdigital.com/v2
-  tags:
-  - Segments
-  properties:
-  - type: OpenAPI
-    url: openapi/dotdigital-segments-api-openapi.yml
   - type: Documentation
     url: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
   - type: APIReference
