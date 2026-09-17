@@ -310,28 +310,6 @@ apis:
     url: https://marketing.developer.dotdigital.com/reference/unified-contacts
   - type: Documentation
     url: https://marketing.developer.dotdigital.com/reference/omnichannel-api
-- aid: dotdigital:dotdigital-apidocument-api
-  name: Dotdigital API Document API
-  description: The ApiDocument API from Dotdigital — 5 operation(s) for apidocument.
-  humanURL: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
-  baseURL: https://r1-api.dotdigital.com/v2
-  tags:
-  - API / Document
-  tags_raw:
-  - ApiDocument
-  properties:
-  - type: OpenAPI
-    url: openapi/dotdigital-apidocument-api-openapi.yml
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
-  - type: APIReference
-    url: https://marketing.developer.dotdigital.com/reference/
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/docs/api-end-points
-  - type: APIReference
-    url: https://marketing.developer.dotdigital.com/reference/unified-contacts
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/reference/omnichannel-api
 - aid: dotdigital:dotdigital-apiecommerce-api
   name: Dotdigital API Ecommerce API
   description: The ApiEcommerce API from Dotdigital — 4 operation(s) for apiecommerce.
@@ -342,28 +320,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/dotdigital-apiecommerce-api-openapi.yml
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
-  - type: APIReference
-    url: https://marketing.developer.dotdigital.com/reference/
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/docs/api-end-points
-  - type: APIReference
-    url: https://marketing.developer.dotdigital.com/reference/unified-contacts
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/reference/omnichannel-api
-- aid: dotdigital:dotdigital-apiimage-api
-  name: Dotdigital API Image API
-  description: The ApiImage API from Dotdigital — 3 operation(s) for apiimage.
-  humanURL: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
-  baseURL: https://r1-api.dotdigital.com/v2
-  tags:
-  - API Image
-  tags_raw:
-  - ApiImage
-  properties:
-  - type: OpenAPI
-    url: openapi/dotdigital-apiimage-api-openapi.yml
   - type: Documentation
     url: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
   - type: APIReference
@@ -1192,26 +1148,6 @@ apis:
     url: https://marketing.developer.dotdigital.com/reference/unified-contacts
   - type: Documentation
     url: https://marketing.developer.dotdigital.com/reference/omnichannel-api
-- aid: dotdigital:dotdigital-whatsapp-api
-  name: Dotdigital Whats App API
-  description: The WhatsApp API from Dotdigital — 2 operation(s) for whatsapp.
-  humanURL: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
-  baseURL: https://r1-api.dotdigital.com/v2
-  tags:
-  - WhatsApp
-  properties:
-  - type: OpenAPI
-    url: openapi/dotdigital-whatsapp-api-openapi.yml
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
-  - type: APIReference
-    url: https://marketing.developer.dotdigital.com/reference/
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/docs/api-end-points
-  - type: APIReference
-    url: https://marketing.developer.dotdigital.com/reference/unified-contacts
-  - type: Documentation
-    url: https://marketing.developer.dotdigital.com/reference/omnichannel-api
 - aid: dotdigital:dotdigital-whatsapp-configurations-api
   name: Dotdigital WhatsApp configurations API
   description: >-
@@ -1267,6 +1203,66 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/dotdigital-whatsapp-templates-api-openapi.yml
+  - type: Documentation
+    url: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
+  - type: APIReference
+    url: https://marketing.developer.dotdigital.com/reference/
+  - type: Documentation
+    url: https://marketing.developer.dotdigital.com/docs/api-end-points
+  - type: APIReference
+    url: https://marketing.developer.dotdigital.com/reference/unified-contacts
+  - type: Documentation
+    url: https://marketing.developer.dotdigital.com/reference/omnichannel-api
+- aid: dotdigital:dotdigital-api-document-api
+  name: Dotdigital API / Document API
+  description: The API / Document API from Dotdigital — 5 operation(s) for api / document.
+  humanURL: https://marketing.developer.dotdigital.com/docs/mcp
+  baseURL: https://marketing.developer.dotdigital.com/mcp
+  tags:
+  - API / Document
+  properties:
+  - type: OpenAPI
+    url: openapi/dotdigital-api-document-api-openapi.yml
+  - type: Documentation
+    url: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
+  - type: APIReference
+    url: https://marketing.developer.dotdigital.com/reference/
+  - type: Documentation
+    url: https://marketing.developer.dotdigital.com/docs/api-end-points
+  - type: APIReference
+    url: https://marketing.developer.dotdigital.com/reference/unified-contacts
+  - type: Documentation
+    url: https://marketing.developer.dotdigital.com/reference/omnichannel-api
+- aid: dotdigital:dotdigital-api-image-api
+  name: Dotdigital API Image API
+  description: The API Image API from Dotdigital — 3 operation(s) for api image.
+  humanURL: https://marketing.developer.dotdigital.com/docs/mcp
+  baseURL: https://marketing.developer.dotdigital.com/mcp
+  tags:
+  - API Image
+  properties:
+  - type: OpenAPI
+    url: openapi/dotdigital-api-image-api-openapi.yml
+  - type: Documentation
+    url: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
+  - type: APIReference
+    url: https://marketing.developer.dotdigital.com/reference/
+  - type: Documentation
+    url: https://marketing.developer.dotdigital.com/docs/api-end-points
+  - type: APIReference
+    url: https://marketing.developer.dotdigital.com/reference/unified-contacts
+  - type: Documentation
+    url: https://marketing.developer.dotdigital.com/reference/omnichannel-api
+- aid: dotdigital:dotdigital-whats-app-api
+  name: Dotdigital Whats App API
+  description: The Whats App API from Dotdigital — 2 operation(s) for whats app.
+  humanURL: https://marketing.developer.dotdigital.com/docs/mcp
+  baseURL: https://marketing.developer.dotdigital.com/mcp
+  tags:
+  - Whats App
+  properties:
+  - type: OpenAPI
+    url: openapi/dotdigital-whats-app-api-openapi.yml
   - type: Documentation
     url: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
   - type: APIReference
