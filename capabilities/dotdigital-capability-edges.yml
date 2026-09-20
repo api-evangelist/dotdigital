@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 16
+edge_count: 19
 edges:
 - tag: ApiSegment
   spec_file: dotdigital-apisegment-api-openapi.yml
@@ -91,6 +91,28 @@ edges:
   evidence: '"Retrieve and manage contact segments ... list all segments with their current contact counts,
     trigger a refresh of a segment''s membership"'
   reason: Definition and refresh of customer/contact segments — customer segmentation management.
+- tag: ApiProgram
+  spec_file: dotdigital-apiprogram-api-openapi.yml
+  capability_id: BC-400
+  capability_id_l1: BC-400
+  capability_name: Marketing Management
+  confidence: 0.75
+  evidence: POST /v2/programs/enrolments — "Creates an enrolment." and GET /v2/programs/enrolments/{status}
+  reason: Programs with contact enrolments are Dotdigital's automation journeys — enrolling contacts into
+    automated marketing programmes. That is clearly Marketing Management, but it straddles lifecycle/demand
+    generation and marketing automation sub-capabilities, so only the L1 is asserted.
+  recovered_from: sweep-20260829T005356Z-edges.json
+- tag: ApiSurvey
+  spec_file: dotdigital-apisurvey-api-openapi.yml
+  capability_id: BC-430.50
+  capability_id_l1: BC-430
+  capability_name: Customer Feedback Management
+  confidence: 0.75
+  evidence: GET /v2/surveys/{id}/responses — "Gets a list of all responses for a given survey."
+  reason: The surface reads survey definitions, fields and respondent answers, which is survey/voice-of-customer
+    feedback collection. It is marketing-embedded rather than contact-centre based, which is why confidence
+    is not higher.
+  recovered_from: sweep-20260829T005356Z-edges.json
 - tag: Campaign Templates
   spec_file: dotdigital-campaign-templates-api-openapi.yml
   capability_id: BC-400.60
@@ -175,3 +197,14 @@ edges:
     catalogues, and web activity — available to drive personalisation, segmentation, and product recommendations'''
   reason: Collection and record lifecycle for behavioural/transactional customer data used for personalisation
     and segmentation — Customer Data Management, with adjacency to segmentation.
+- tag: Lists / Address books
+  spec_file: dotdigital-lists-address-books-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.7
+  evidence: '"Manage contact lists (address books) and their memberships ... manage subscription status
+    (unsubscribe and resubscribe)"'
+  reason: Maintains marketing contact lists, memberships and subscription/opt-in status — management of
+    customer records and their marketing consent state.
+  recovered_from: sweep-20260829T005356Z-edges.json
