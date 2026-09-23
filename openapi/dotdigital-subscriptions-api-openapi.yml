@@ -114,7 +114,16 @@ paths:
       tags:
       - Subscriptions
       summary: Create subscription
-      description: "Creates a events subscription. \n\nThe `name` passed must be unique within the accounts subscriptions\n\nIf you apply filters to your event subscription then **all filters must match** (logical AND) for the event to be captured.\n\nIf you want to match the same event type on multiple different sets of filters (logical OR) then add the event type multiple time to the subscription with differing filters."
+      description: 'Creates a events subscription.
+
+
+        The `name` passed must be unique within the accounts subscriptions
+
+
+        If you apply filters to your event subscription then **all filters must match** (logical AND) for the event to be captured.
+
+
+        If you want to match the same event type on multiple different sets of filters (logical OR) then add the event type multiple time to the subscription with differing filters.'
       operationId: createSubscription
       parameters:
       - name: x-ddg-integration-token
@@ -333,7 +342,10 @@ paths:
       tags:
       - Subscriptions
       summary: Deletes subscription
-      description: "Deletes a events subscription.<br><br> \n**Note:** once deleted it cannot be restored, this is a destructive call."
+      description: 'Deletes a events subscription.
+
+
+        **Note:** once deleted it cannot be restored, this is a destructive call.'
       operationId: deleteSubscription
       parameters:
       - name: subscriptionId
@@ -359,69 +371,55 @@ paths:
         '404':
           $ref: '#/components/responses/subscriptionNotFound'
 components:
-  responses:
-    subscriptionNotFound:
-      description: Subscription not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/errorResponse'
-          example:
-            errorCode: events:subscriptionNotFound
-            description: The following subscription could not be found
-            details:
-            - item: zf0f945b36ad8
-              description: Not found.
   schemas:
-    eventType:
+    filter:
       required:
-      - eventType
+      - field
+      - matchPattern
       type: object
       properties:
-        eventType:
+        field:
           type: string
-          description: The  event type
-          example: email.read
-        filters:
-          maxItems: 5
-          minItems: 1
-          type: array
-          description: 'Capture only events that match these filters.
+          description: 'The [JSON path](https://en.wikipedia.org/wiki/JSONPath) to the field to match against.
 
 
-            All filters will be accessed and **all must match for the event to be captured!**
+            Note: The base ($) is the `eventData` field.
 
             '
-          items:
-            $ref: '#/components/schemas/filter'
+          example: $.channel
+        matchPattern:
+          maxLength: 1024
+          minLength: 1
+          type: string
+          description: 'The literal value or pattern to match against the value of the field.
+
+            You use the following syntax to define the match pattern:
+
+            * `*` matches any number of any characters including none
+
+            * `?` matches any single character
+
+            * `[abc]` matches one character given in the brackets
+
+            * `[a-z]` matches one character from the range given in the bracket
+
+            * `[!abc]` matches one character _that is not_ given in the brackets
+
+            * `[!a-z]` matches one character _that is not_ from the range given in the bracket
+
+
+            _Note: Filters use the Unicode character set and ranges must be from lower to higher code points to be valid. e.g. `[a-z]` is valid but `[z-a]` is invalid_
+
+            '
+          example: http?://*
+        caseSensitive:
+          type: boolean
+          description: Whether the matching should be case sensitive.
+          default: true
       additionalProperties: false
-      description: An event type and any inclusive filters that should be applied.
-    paginationLinksPrevNext_self:
-      required:
-      - link
-      - marker
-      type: object
-      properties:
-        marker:
-          type: string
-          description: Pagination marker to be passed to API calls to retrieve this data page
-        link:
-          type: string
-          description: Link to retrieve the data page
-      description: Details for accessing this data page via pagination
-    paginationLinksPrevNext_prev:
-      required:
-      - link
-      - marker
-      type: object
-      properties:
-        marker:
-          type: string
-          description: Pagination marker to be passed to API calls to retrieve this data page
-        link:
-          type: string
-          description: Link to retrieve the data page
-      description: Details for accessing the previous pagea worth of data
+      description: 'An inclusive filter that must be matched to include the event.
+
+        '
     paginationLinksPrevNext:
       required:
       - first
@@ -435,6 +433,91 @@ components:
         next:
           $ref: '#/components/schemas/paginationLinksPrevNext_next'
       description: Pagination links
+    paginationLinksPrevNext_self:
+      required:
+      - link
+      - marker
+      type: object
+      properties:
+        marker:
+          type: string
+          description: Pagination marker to be passed to API calls to retrieve this data page
+        link:
+          type: string
+          description: Link to retrieve the data page
+      description: Details for accessing this data page via pagination
+    errorResponse_details:
+      required:
+      - description
+      - item
+      type: object
+      properties:
+        item:
+          type: string
+          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
+        description:
+          type: string
+          description: Description of the error
+    subscriptionStatus:
+      type: string
+      description: The subscription status.
+      enum:
+      - active
+      - inactive
+      default: inactive
+    errorResponse:
+      required:
+      - description
+      - errorCode
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: Unique error code
+        description:
+          type: string
+          description: Description of the issue
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/errorResponse_details'
+    paginationLinksPrevNext_prev:
+      required:
+      - link
+      - marker
+      type: object
+      properties:
+        marker:
+          type: string
+          description: Pagination marker to be passed to API calls to retrieve this data page
+        link:
+          type: string
+          description: Link to retrieve the data page
+      description: Details for accessing the previous pagea worth of data
+    subscription:
+      allOf:
+      - required:
+        - created
+        - id
+        - updated
+        type: object
+        properties:
+          id:
+            type: integer
+            description: The subscriptions unique identifier.
+            example: 95
+          created:
+            type: string
+            description: The UTC date time in ISO 8601 format when the subscription was created.
+            format: date-time
+            example: '2025-02-07T16:23:33.741Z'
+          updated:
+            type: string
+            description: The UTC date time in ISO 8601 format when the subscription was updated.
+            format: date-time
+            example: '2025-02-11T01:33:00Z'
+        additionalProperties: false
+      - $ref: '#/components/schemas/subscriptionRequest'
     paginationLinksPrevNext_next:
       required:
       - link
@@ -448,13 +531,6 @@ components:
           type: string
           description: Link to retrieve the data page
       description: Details for accessing the next pages worth of data
-    subscriptionStatus:
-      type: string
-      description: The subscription status.
-      enum:
-      - active
-      - inactive
-      default: inactive
     subscriptionRequest:
       required:
       - alertsConfiguration
@@ -544,66 +620,6 @@ components:
                 example: alerts@emailsim.io
             description: Email and in-app alerts
       additionalProperties: false
-    errorResponse_details:
-      required:
-      - description
-      - item
-      type: object
-      properties:
-        item:
-          type: string
-          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
-        description:
-          type: string
-          description: Description of the error
-    filter:
-      required:
-      - field
-      - matchPattern
-      type: object
-      properties:
-        field:
-          type: string
-          description: 'The [JSON path](https://en.wikipedia.org/wiki/JSONPath) to the field to match against.
-
-
-            Note: The base ($) is the `eventData` field.
-
-            '
-          example: $.channel
-        matchPattern:
-          maxLength: 1024
-          minLength: 1
-          type: string
-          description: 'The literal value or pattern to match against the value of the field.
-
-            You use the following syntax to define the match pattern:
-
-            * `*` matches any number of any characters including none
-
-            * `?` matches any single character
-
-            * `[abc]` matches one character given in the brackets
-
-            * `[a-z]` matches one character from the range given in the bracket
-
-            * `[!abc]` matches one character _that is not_ given in the brackets
-
-            * `[!a-z]` matches one character _that is not_ from the range given in the bracket
-
-
-            _Note: Filters use the Unicode character set and ranges must be from lower to higher code points to be valid. e.g. `[a-z]` is valid but `[z-a]` is invalid_
-
-            '
-          example: http?://*
-        caseSensitive:
-          type: boolean
-          description: Whether the matching should be case sensitive.
-          default: true
-      additionalProperties: false
-      description: 'An inclusive filter that must be matched to include the event.
-
-        '
     inline_response_200_1:
       required:
       - _items
@@ -617,46 +633,42 @@ components:
           description: Returned program extensions
           items:
             $ref: '#/components/schemas/subscription'
-    errorResponse:
+    eventType:
       required:
-      - description
-      - errorCode
+      - eventType
       type: object
       properties:
-        errorCode:
+        eventType:
           type: string
-          description: Unique error code
-        description:
-          type: string
-          description: Description of the issue
-        details:
+          description: The  event type
+          example: email.read
+        filters:
+          maxItems: 5
+          minItems: 1
           type: array
+          description: 'Capture only events that match these filters.
+
+
+            All filters will be accessed and **all must match for the event to be captured!**
+
+            '
           items:
-            $ref: '#/components/schemas/errorResponse_details'
-    subscription:
-      allOf:
-      - required:
-        - created
-        - id
-        - updated
-        type: object
-        properties:
-          id:
-            type: integer
-            description: The subscriptions unique identifier.
-            example: 95
-          created:
-            type: string
-            description: The UTC date time in ISO 8601 format when the subscription was created.
-            format: date-time
-            example: '2025-02-07T16:23:33.741Z'
-          updated:
-            type: string
-            description: The UTC date time in ISO 8601 format when the subscription was updated.
-            format: date-time
-            example: '2025-02-11T01:33:00Z'
-        additionalProperties: false
-      - $ref: '#/components/schemas/subscriptionRequest'
+            $ref: '#/components/schemas/filter'
+      additionalProperties: false
+      description: An event type and any inclusive filters that should be applied.
+  responses:
+    subscriptionNotFound:
+      description: Subscription not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          example:
+            errorCode: events:subscriptionNotFound
+            description: The following subscription could not be found
+            details:
+            - item: zf0f945b36ad8
+              description: Not found.
   securitySchemes:
     basicAuth:
       type: http

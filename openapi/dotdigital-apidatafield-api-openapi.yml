@@ -11,7 +11,7 @@ paths:
     post:
       tags:
       - ApiDataField
-      summary: Creates a data field within the account.
+      summary: Creates a data field within the account
       operationId: ApiDataField_CreateDataField
       requestBody:
         x-name: dataField
@@ -27,7 +27,7 @@ paths:
     get:
       tags:
       - ApiDataField
-      summary: Lists the data fields within the account.
+      summary: Lists the data fields within the account
       operationId: ApiDataField_GetDataFields
       responses:
         '200':
@@ -42,7 +42,7 @@ paths:
     delete:
       tags:
       - ApiDataField
-      summary: Deletes a data field within the account.
+      summary: Deletes a data field within the account
       operationId: ApiDataField_DeleteDataField
       parameters:
       - name: name
@@ -66,79 +66,6 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
-    ApiDependencyResult:
-      type: object
-      additionalProperties: false
-      properties:
-        dependencies:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiDependency'
-        result:
-          type: boolean
-    ApiDataField:
-      type: object
-      additionalProperties: false
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          minLength: 1
-        type:
-          $ref: '#/components/schemas/ApiDataTypes'
-        visibility:
-          $ref: '#/components/schemas/ApiDataFieldVisibility'
-        defaultValue: {}
-    ApiDataFieldVisibility:
-      type: string
-      description: ''
-      x-enumNames:
-      - Private
-      - Public
-      - NotAvailableInThisVersion
-      enum:
-      - Private
-      - Public
-      - NotAvailableInThisVersion
-    ApiDependency:
-      type: object
-      additionalProperties: false
-      properties:
-        type:
-          $ref: '#/components/schemas/ApiBusinessObjectType'
-        objectId:
-          type: integer
-          format: int32
-    ApiBusinessObjectType:
-      type: string
-      description: ''
-      x-enumNames:
-      - Campaign
-      - Survey
-      - MicrositePage
-      - DynamicContent
-      - ContactLabel
-      - SurveyQuestion
-      - AddressBook
-      - DynamicContentRule
-      - CampaignLink
-      - CampaignTemplate
-      - NotAvailableInThisVersion
-      enum:
-      - Campaign
-      - Survey
-      - MicrositePage
-      - DynamicContent
-      - ContactLabel
-      - SurveyQuestion
-      - AddressBook
-      - DynamicContentRule
-      - CampaignLink
-      - CampaignTemplate
-      - NotAvailableInThisVersion
     ProblemDetails:
       type: object
       additionalProperties: {}
@@ -167,6 +94,40 @@ components:
         extensions:
           type: object
           additionalProperties: {}
+    ApiDependency:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/ApiBusinessObjectType'
+        objectId:
+          type: integer
+          format: int32
+    ApiDataField:
+      type: object
+      additionalProperties: false
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          minLength: 1
+        type:
+          $ref: '#/components/schemas/ApiDataTypes'
+        visibility:
+          $ref: '#/components/schemas/ApiDataFieldVisibility'
+        defaultValue: {}
+    ApiDataFieldVisibility:
+      type: string
+      description: ''
+      x-enumNames:
+      - Private
+      - Public
+      - NotAvailableInThisVersion
+      enum:
+      - Private
+      - Public
+      - NotAvailableInThisVersion
     ApiDataTypes:
       type: string
       description: ''
@@ -182,4 +143,43 @@ components:
       - Date
       - Boolean
       - NotAvailableInThisVersion
+    ApiBusinessObjectType:
+      type: string
+      description: ''
+      x-enumNames:
+      - Campaign
+      - Survey
+      - MicrositePage
+      - DynamicContent
+      - ContactLabel
+      - SurveyQuestion
+      - AddressBook
+      - DynamicContentRule
+      - CampaignLink
+      - CampaignTemplate
+      - NotAvailableInThisVersion
+      enum:
+      - Campaign
+      - Survey
+      - MicrositePage
+      - DynamicContent
+      - ContactLabel
+      - SurveyQuestion
+      - AddressBook
+      - DynamicContentRule
+      - CampaignLink
+      - CampaignTemplate
+      - NotAvailableInThisVersion
+    ApiDependencyResult:
+      type: object
+      additionalProperties: false
+      properties:
+        dependencies:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiDependency'
+        result:
+          type: boolean
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

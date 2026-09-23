@@ -68,34 +68,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    contactIdentifier:
-      required:
-      - identifier
-      - value
-      type: object
-      properties:
-        identifier:
-          type: string
-          description: The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of contactId, email or mobileNumber
-          example: contactId
-        value:
-          type:
-          - string
-          - 'null'
-          description: The unique value to identify the contact or the same type as the **identifier**
-          example: fred.bloggs@emailsim.io
-    errorResponse_details:
-      required:
-      - description
-      - item
-      type: object
-      properties:
-        item:
-          type: string
-          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
-        description:
-          type: string
-          description: Description of the error
     eventsv3import_timelineDetails:
       required:
       - summary
@@ -108,22 +80,6 @@ components:
           description: Optional description of the event for display in the timeline of the contact.
           example: 'Search for travel desination: Bali'
       description: The details to display in the contacts timeline; if omitted nothing will be shown.
-    errorResponse:
-      required:
-      - description
-      - errorCode
-      type: object
-      properties:
-        errorCode:
-          type: string
-          description: Unique error code
-        description:
-          type: string
-          description: Description of the issue
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/errorResponse_details'
     v3_import_body:
       required:
       - contactIdentity
@@ -165,6 +121,50 @@ components:
             travelFromDate: '2025-07-03'
             flightsRequired: true
       description: An event
+    errorResponse_details:
+      required:
+      - description
+      - item
+      type: object
+      properties:
+        item:
+          type: string
+          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
+        description:
+          type: string
+          description: Description of the error
+    contactIdentifier:
+      required:
+      - identifier
+      - value
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of contactId, email or mobileNumber
+          example: contactId
+        value:
+          type:
+          - string
+          - 'null'
+          description: The unique value to identify the contact or the same type as the **identifier**
+          example: fred.bloggs@emailsim.io
+    errorResponse:
+      required:
+      - description
+      - errorCode
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: Unique error code
+        description:
+          type: string
+          description: Description of the issue
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/errorResponse_details'
   securitySchemes:
     basicAuth:
       type: http

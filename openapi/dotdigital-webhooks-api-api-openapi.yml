@@ -61,17 +61,16 @@ paths:
         '404':
           description: The webhookconfiguration was not found
           content: {}
+      operationId: getCpaasWebhooks
+      x-operation-id-source: derived
     post:
       tags:
       - Webhooks API
       summary: Create webhook
       description: 'Create a new webhook configuration, and start streaming events. We strongly encourage using batching, where we will send a batch of events whenever the number of events hits `macBatchSize` or events have been waitng for the `batchTimeout` in seconds, whichever occurs first will trigger the next batch to be sent.
 
-        <br><br>
 
-        _**Note**: Use the batching options, and only subscribe to the event types you require to maximise efficency_
-
-        '
+        _**Note**: Use the batching options, and only subscribe to the event types you require to maximise efficency_'
       parameters:
       - name: if-match
         in: header
@@ -107,6 +106,8 @@ paths:
           description: The webhook configuration was not found
           content: {}
       x-codegen-request-body-name: webhookData
+      operationId: postCpaasWebhooks
+      x-operation-id-source: derived
   /cpaas/webhooks/availableevents:
     get:
       tags:
@@ -140,14 +141,14 @@ paths:
         '404':
           description: The webhook configuration was not found
           content: {}
+      operationId: getCpaasWebhooksAvailableevents
+      x-operation-id-source: derived
   /cpaas/webhooks/availabletemplates:
     get:
       tags:
       - Webhooks API
       summary: Get event templates
-      description: 'Gets a list of available events templates that the caller can use when creating webhook. Event templates are pre-defined groups of events that meet common use-cases.
-
-        '
+      description: Gets a list of available events templates that the caller can use when creating webhook. Event templates are pre-defined groups of events that meet common use-cases.
       responses:
         '200':
           description: The available templates
@@ -181,6 +182,8 @@ paths:
                   - profile.devicesUpdated
                 items:
                   $ref: '#/components/schemas/inline_response_200'
+      operationId: getCpaasWebhooksAvailabletemplates
+      x-operation-id-source: derived
   /cpaas/webhooks/{webhookId}:
     get:
       tags:
@@ -221,6 +224,8 @@ paths:
         '404':
           description: The webhook configuration was not found
           content: {}
+      operationId: getCpaasWebhooksByWebhookId
+      x-operation-id-source: derived
     put:
       tags:
       - Webhooks API
@@ -267,6 +272,8 @@ paths:
           description: The webhook configuration was not found
           content: {}
       x-codegen-request-body-name: webhookData
+      operationId: putCpaasWebhooksByWebhookId
+      x-operation-id-source: derived
     delete:
       tags:
       - Webhooks API
@@ -292,8 +299,124 @@ paths:
         '404':
           description: The webhook configuration was not found
           content: {}
+      operationId: deleteCpaasWebhooksByWebhookId
+      x-operation-id-source: derived
 components:
   schemas:
+    WebhookConfiguration:
+      allOf:
+      - type: object
+        properties:
+          id:
+            pattern: ^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})|[a-f0-9]{32}$
+            type: string
+            description: The Api Space's unique identifier
+          _createdOn:
+            type: string
+            description: The date (in UTC, ISO 8601 format) that the webhook was created
+            format: date-time
+            readOnly: true
+          _createdBy:
+            type: string
+            description: The identity that created the webhook
+          _updatedOn:
+            type: string
+            description: The date (in UTC, ISO 8601 format) that the webhook was last updated
+            format: date-time
+            readOnly: true
+          _updatedBy:
+            type: string
+            description: The identity that created the webhook
+            readOnly: true
+      - $ref: '#/components/schemas/WebhookConfigurationCreateUpdate'
+    WebhookEvents:
+      type: object
+      properties:
+        type:
+          type: string
+          description: type of event
+          example: message.delivered
+        filters:
+          type: array
+          description: Array of used filters
+          items:
+            $ref: '#/components/schemas/EventFilters'
+      example:
+      - type: message.sent
+        filters: []
+      - type: message.delivered
+        filters: []
+      - type: message.expired
+        filters: []
+      - type: message.failed
+        filters: []
+      - type: message.inbound
+        filters: []
+      - type: message.read
+        filters: []
+    EventFilters:
+      type: object
+      properties:
+        name:
+          type: string
+          description: name of filter
+          example: channel
+        value:
+          type: string
+          description: value to watch
+          example: sms
+    AvailbleEvents:
+      type: array
+      items:
+        $ref: '#/components/schemas/AvailbleEvents_inner'
+    AvailbleEvents_inner:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Event type
+          example: message.delivered
+        description:
+          type: string
+          description: Description of event type
+          example: Details of any outbound message \"delivered\" status updates.
+        filters:
+          type: array
+          description: Filters for event
+          items:
+            $ref: '#/components/schemas/AvailableEventsFilters'
+    inline_response_200:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the events template
+        description:
+          type: string
+          description: Describes the template
+        events:
+          type: array
+          items:
+            type: string
+            description: The event id
+    AvailableEventsFilters:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of filter
+          example: channel
+        path:
+          type: string
+          description: Path of filter - used when type=path
+        required:
+          type: boolean
+          description: Is filter setting required
+          example: false
+        description:
+          type: string
+          description: Description of filter
+          example: Channel that the event relates to e.g `sms`
     WebhookConfigurationCreateUpdate:
       required:
       - name
@@ -333,120 +456,6 @@ components:
           type: number
           description: Maximum duration in seconds to wait before a batch is sent
           example: 60
-    AvailbleEvents_inner:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Event type
-          example: message.delivered
-        description:
-          type: string
-          description: Description of event type
-          example: Details of any outbound message \"delivered\" status updates.
-        filters:
-          type: array
-          description: Filters for event
-          items:
-            $ref: '#/components/schemas/AvailableEventsFilters'
-    AvailbleEvents:
-      type: array
-      items:
-        $ref: '#/components/schemas/AvailbleEvents_inner'
-    AvailableEventsFilters:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of filter
-          example: channel
-        path:
-          type: string
-          description: Path of filter - used when type=path
-        required:
-          type: boolean
-          description: Is filter setting required
-          example: false
-        description:
-          type: string
-          description: Description of filter
-          example: Channel that the event relates to e.g `sms`
-    WebhookConfiguration:
-      allOf:
-      - type: object
-        properties:
-          id:
-            pattern: ^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})|[a-f0-9]{32}$
-            type: string
-            description: The Api Space's unique identifier
-          _createdOn:
-            type: string
-            description: The date (in UTC, ISO 8601 format) that the webhook was created
-            format: date-time
-            readOnly: true
-          _createdBy:
-            type: string
-            description: The identity that created the webhook
-          _updatedOn:
-            type: string
-            description: The date (in UTC, ISO 8601 format) that the webhook was last updated
-            format: date-time
-            readOnly: true
-          _updatedBy:
-            type: string
-            description: The identity that created the webhook
-            readOnly: true
-      - $ref: '#/components/schemas/WebhookConfigurationCreateUpdate'
-    EventFilters:
-      type: object
-      properties:
-        name:
-          type: string
-          description: name of filter
-          example: channel
-        value:
-          type: string
-          description: value to watch
-          example: sms
-    WebhookEvents:
-      type: object
-      properties:
-        type:
-          type: string
-          description: type of event
-          example: message.delivered
-        filters:
-          type: array
-          description: Array of used filters
-          items:
-            $ref: '#/components/schemas/EventFilters'
-      example:
-      - type: message.sent
-        filters: []
-      - type: message.delivered
-        filters: []
-      - type: message.expired
-        filters: []
-      - type: message.failed
-        filters: []
-      - type: message.inbound
-        filters: []
-      - type: message.read
-        filters: []
-    inline_response_200:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the events template
-        description:
-          type: string
-          description: Describes the template
-        events:
-          type: array
-          items:
-            type: string
-            description: The event id
   securitySchemes:
     basicAuth:
       type: http

@@ -2,17 +2,17 @@ openapi: 3.2.0
 info:
   title: Dotdigital Cpaas API
   version: '1.0'
-  description: 'Operations tagged Cpaas across 12 of this provider''s published API definitions: dotdigital-chat-config-openapi.yml, dotdigital-chat-message-openapi.yml, dotdigital-chat-openapi.yml, dotdigital-chat-presence-openapi.yml, dotdigital-content-openapi.yml, dotdigital-conversation-message-openapi.yml, dotdigital-conversation-openapi.yml, dotdigital-message-history-openapi.yml, dotdigital-message-rules-openapi.yml, dotdigital-profile-openapi.yml, dotdigital-session-openapi.yml, dotdigital-templates-openapi.yml. Each path carries the servers of the definition it was published in.'
+  description: 'Operations tagged Cpaas across 12 of this provider''s published API definitions: chat-api.json, chat-config-api.json, chat-message-api.json, chat-presence-api.json, content-api.json, conversation-api.json, conversation-message-api.json, dotdigital-message-history-openapi.yml, dotdigital-message-rules-openapi.yml, dotdigital-profile-openapi.yml, dotdigital-session-openapi.yml, dotdigital-templates-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://{region}-api.dotdigital.com
   variables:
     region:
-      default: r1
+      description: The Dotdigital region id your account belongs to
       enum:
       - r1
       - r2
       - r3
-      description: The Dotdigital region id your account belongs to
+      default: r1
 - url: http://{region}-api.dotdigital.com/v2
   variables:
     region:
@@ -27,428 +27,6 @@ security:
 tags:
 - name: Cpaas
 paths:
-  /cpaas/chat/config:
-    get:
-      summary: Retrieves the chat configuration for an apiSpace
-      responses:
-        '200':
-          description: The full team details
-          headers:
-            ETag:
-              description: A unique value representing the version of the configuration, optionally used for optimistic concurrency control on PUT and DELETE
-              schema:
-                type: string
-            Last-Modified:
-              description: The date the team was last updated in ISO 8601 format
-              schema:
-                type: string
-                format: date-time
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/configFull'
-        '404':
-          description: The team was not found
-          content: {}
-      tags:
-      - Cpaas
-    servers:
-    - url: https://{region}-api.dotdigital.com
-      variables:
-        region:
-          default: r1
-          enum:
-          - r1
-          - r2
-          - r3
-          description: The Dotdigital region id your account belongs to
-  /cpaas/chat/config/teams/{teamId}:
-    get:
-      summary: Retrieves the members of a team
-      parameters:
-      - name: teamId
-        in: path
-        description: The Team id
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: The team member details
-          headers:
-            ETag:
-              description: A unique value representing the version of the configuration, optionally used for optimistic concurrency control on PUT and DELETE
-              schema:
-                type: string
-            Last-Modified:
-              description: The date the team was last updated in ISO 8601 format
-              schema:
-                type: string
-                format: date-time
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/teamMembers'
-        '404':
-          description: The team was not found
-          content: {}
-      tags:
-      - Cpaas
-    delete:
-      summary: Removes the config for a team
-      parameters:
-      - name: teamId
-        in: path
-        description: The Team ID
-        required: true
-        schema:
-          type: string
-      - name: if-match
-        in: header
-        description: An optional ETag for optimistic concurrency control
-        schema:
-          type: string
-      responses:
-        '200':
-          description: The config was removed for the team
-          content: {}
-        '404':
-          description: The team was not found, or did not have any config already
-          content: {}
-        '412':
-          description: The ETag supplied did not match, another update may have taken place
-          content: {}
-      tags:
-      - Cpaas
-    servers:
-    - url: https://{region}-api.dotdigital.com
-      variables:
-        region:
-          default: r1
-          enum:
-          - r1
-          - r2
-          - r3
-          description: The Dotdigital region id your account belongs to
-  /cpaas/chat/config/teams/{teamId}/appMessaging:
-    put:
-      summary: Update the App Messaging config for a team
-      parameters:
-      - name: teamId
-        in: path
-        description: The Team id
-        required: true
-        schema:
-          type: string
-      - name: if-match
-        in: header
-        description: An optional ETag for optimistic concurrency control
-        schema:
-          type: string
-      requestBody:
-        description: The App Messaging config to update for the team
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/appMessagingConfig'
-        required: true
-      responses:
-        '200':
-          description: The full team details
-          headers:
-            ETag:
-              description: A unique value representing the version of the configuration, optionally used for optimistic concurrency control on PUT and DELETE
-              schema:
-                type: string
-            Last-Modified:
-              description: The date the configuration was last updated in ISO 8601 format
-              schema:
-                type: string
-                format: date-time
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/appMessagingConfig'
-        '404':
-          description: The team was not found
-          content: {}
-        '412':
-          description: The ETag supplied did not match, another update may have taken place
-          content: {}
-      x-codegen-request-body-name: body
-      tags:
-      - Cpaas
-    delete:
-      summary: Removes the App Messaging config for a team
-      parameters:
-      - name: teamId
-        in: path
-        description: The Team ID
-        required: true
-        schema:
-          type: string
-      - name: if-match
-        in: header
-        description: An optional ETag for optimistic concurrency control
-        schema:
-          type: string
-      responses:
-        '200':
-          description: The App Messaging config was removed for the team
-          content: {}
-        '404':
-          description: The team was not found, or did not have any config already
-          content: {}
-        '412':
-          description: The ETag supplied did not match, another update may have taken place
-          content: {}
-      tags:
-      - Cpaas
-    servers:
-    - url: https://{region}-api.dotdigital.com
-      variables:
-        region:
-          default: r1
-          enum:
-          - r1
-          - r2
-          - r3
-          description: The Dotdigital region id your account belongs to
-  /cpaas/chat/config/teams/{teamId}/settings:
-    put:
-      summary: Update general settings for a team
-      parameters:
-      - name: teamId
-        in: path
-        description: The Team id
-        required: true
-        schema:
-          type: string
-      - name: if-match
-        in: header
-        description: An optional ETag for optimistic concurrency control
-        schema:
-          type: string
-      requestBody:
-        description: The settings to update for the team
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/settings'
-        required: true
-      responses:
-        '200':
-          description: The full team details
-          headers:
-            ETag:
-              description: A unique value representing the version of the configuration, optionally used for optimistic concurrency control on PUT and DELETE
-              schema:
-                type: string
-            Last-Modified:
-              description: The date the team was last updated in ISO 8601 format
-              schema:
-                type: string
-                format: date-time
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/settings'
-        '404':
-          description: The team was not found
-          content: {}
-        '412':
-          description: The ETag supplied did not match, another update may have taken place
-          content: {}
-      x-codegen-request-body-name: body
-      tags:
-      - Cpaas
-    delete:
-      summary: Removes the settings for a team
-      parameters:
-      - name: teamId
-        in: path
-        description: The Team ID
-        required: true
-        schema:
-          type: string
-      - name: if-match
-        in: header
-        description: An optional ETag for optimistic concurrency control
-        schema:
-          type: string
-      responses:
-        '200':
-          description: The general settings were removed for the team
-          content: {}
-        '404':
-          description: The team was not found, or did not have any config already
-          content: {}
-        '412':
-          description: The ETag supplied did not match, another update may have taken place
-          content: {}
-      tags:
-      - Cpaas
-    servers:
-    - url: https://{region}-api.dotdigital.com
-      variables:
-        region:
-          default: r1
-          enum:
-          - r1
-          - r2
-          - r3
-          description: The Dotdigital region id your account belongs to
-  /cpaas/chats/{chatId}/events:
-    get:
-      summary: Retrieves a chat's events
-      parameters:
-      - name: chatId
-        in: path
-        description: The id of the chat
-        required: true
-        schema:
-          type: string
-      - name: from
-        in: query
-        description: The event id to start from
-        required: true
-        schema:
-          minimum: 0
-          type: integer
-      - name: limit
-        in: query
-        description: The number of events to read forward
-        required: true
-        schema:
-          minimum: 0
-          type: integer
-      responses:
-        '200':
-          description: A list of chat events
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/MessageEvent'
-      tags:
-      - Cpaas
-    servers:
-    - url: https://{region}-api.dotdigital.com
-      variables:
-        region:
-          description: The Dotdigital region id your account belongs to
-          enum:
-          - r1
-          - r2
-          - r3
-          default: r1
-  /cpaas/chats/{chatId}/messages:
-    get:
-      summary: Retrieves a chat's messages from an point (event) in time and works backwards
-      parameters:
-      - name: chatId
-        in: path
-        description: The id of the chat
-        required: true
-        schema:
-          type: string
-      - name: from
-        in: query
-        description: The event id to work backwards from
-        required: false
-        schema:
-          minimum: 0
-          type: integer
-      - name: limit
-        in: query
-        description: The number of messages to return
-        required: true
-        schema:
-          maximum: 100
-          minimum: 1
-          type: integer
-      responses:
-        '200':
-          description: A list of partial and the requested number of complete messages, aggregated from the chat events
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MessageResult'
-      tags:
-      - Cpaas
-    post:
-      summary: Sends a message to chat
-      parameters:
-      - name: chatId
-        in: path
-        description: The id of the chat
-        required: true
-        schema:
-          type: string
-      requestBody:
-        description: Detail of the message to send
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MessagePost'
-        required: true
-      responses:
-        '200':
-          description: The message was successfully sent
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MessagePostResult'
-      x-codegen-request-body-name: message
-      tags:
-      - Cpaas
-    servers:
-    - url: https://{region}-api.dotdigital.com
-      variables:
-        region:
-          description: The Dotdigital region id your account belongs to
-          enum:
-          - r1
-          - r2
-          - r3
-          default: r1
-  /cpaas/chats/{chatId}/messages/statusupdates:
-    post:
-      summary: Posts message updates back
-      parameters:
-      - name: chatId
-        in: path
-        description: The id of the chat
-        required: true
-        schema:
-          type: string
-      requestBody:
-        description: Details of the message status updates
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/MessageStatusUpdate'
-        required: true
-      responses:
-        '200':
-          description: The status updates were successfully received
-          content: {}
-      x-codegen-request-body-name: updates
-      tags:
-      - Cpaas
-    servers:
-    - url: https://{region}-api.dotdigital.com
-      variables:
-        region:
-          description: The Dotdigital region id your account belongs to
-          enum:
-          - r1
-          - r2
-          - r3
-          default: r1
   /cpaas/chats/{chatId}:
     get:
       summary: Retrieves a chat
@@ -487,6 +65,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: getCpaasChatsByChatId
+      x-operation-id-source: derived
     put:
       summary: Updates a chat
       parameters:
@@ -541,6 +121,8 @@ paths:
       x-codegen-request-body-name: name
       tags:
       - Cpaas
+      operationId: putCpaasChatsByChatId
+      x-operation-id-source: derived
     delete:
       summary: Deletes a chat
       parameters:
@@ -571,6 +153,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: deleteCpaasChatsByChatId
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -636,6 +220,8 @@ paths:
       x-codegen-request-body-name: assignment
       tags:
       - Cpaas
+      operationId: putCpaasChatsByChatIdAssign
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -701,6 +287,8 @@ paths:
       x-codegen-request-body-name: name
       tags:
       - Cpaas
+      operationId: putCpaasChatsByChatIdClose
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -766,6 +354,8 @@ paths:
       x-codegen-request-body-name: name
       tags:
       - Cpaas
+      operationId: putCpaasChatsByChatIdChannel
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -806,6 +396,8 @@ paths:
       x-codegen-request-body-name: name
       tags:
       - Cpaas
+      operationId: postCpaasChatsByChatIdForm
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -865,6 +457,8 @@ paths:
                   $ref: '#/components/schemas/Chat'
       tags:
       - Cpaas
+      operationId: getCpaasChats
+      x-operation-id-source: derived
     post:
       summary: Creates a new chat
       requestBody:
@@ -900,6 +494,8 @@ paths:
       x-codegen-request-body-name: chat
       tags:
       - Cpaas
+      operationId: postCpaasChats
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -926,6 +522,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: postCpaasChatsByChatIdTyping
+      x-operation-id-source: derived
     delete:
       summary: Indicates that the caller has stopped typing in this chat
       parameters:
@@ -941,6 +539,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: deleteCpaasChatsByChatIdTyping
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -975,6 +575,452 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: getCpaasChatsByChatIdParticipants
+      x-operation-id-source: derived
+    servers:
+    - url: https://{region}-api.dotdigital.com
+      variables:
+        region:
+          description: The Dotdigital region id your account belongs to
+          enum:
+          - r1
+          - r2
+          - r3
+          default: r1
+  /cpaas/chat/config:
+    get:
+      summary: Retrieves the chat configuration for an apiSpace
+      responses:
+        '200':
+          description: The full team details
+          headers:
+            ETag:
+              description: A unique value representing the version of the configuration, optionally used for optimistic concurrency control on PUT and DELETE
+              schema:
+                type: string
+            Last-Modified:
+              description: The date the team was last updated in ISO 8601 format
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/configFull'
+        '404':
+          description: The team was not found
+          content: {}
+      tags:
+      - Cpaas
+      operationId: getCpaasChatConfig
+      x-operation-id-source: derived
+    servers:
+    - url: https://{region}-api.dotdigital.com
+      variables:
+        region:
+          default: r1
+          enum:
+          - r1
+          - r2
+          - r3
+          description: The Dotdigital region id your account belongs to
+  /cpaas/chat/config/teams/{teamId}:
+    get:
+      summary: Retrieves the members of a team
+      parameters:
+      - name: teamId
+        in: path
+        description: The Team id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The team member details
+          headers:
+            ETag:
+              description: A unique value representing the version of the configuration, optionally used for optimistic concurrency control on PUT and DELETE
+              schema:
+                type: string
+            Last-Modified:
+              description: The date the team was last updated in ISO 8601 format
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/teamMembers'
+        '404':
+          description: The team was not found
+          content: {}
+      tags:
+      - Cpaas
+      operationId: getCpaasChatConfigTeamsByTeamId
+      x-operation-id-source: derived
+    delete:
+      summary: Removes the config for a team
+      parameters:
+      - name: teamId
+        in: path
+        description: The Team ID
+        required: true
+        schema:
+          type: string
+      - name: if-match
+        in: header
+        description: An optional ETag for optimistic concurrency control
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The config was removed for the team
+          content: {}
+        '404':
+          description: The team was not found, or did not have any config already
+          content: {}
+        '412':
+          description: The ETag supplied did not match, another update may have taken place
+          content: {}
+      tags:
+      - Cpaas
+      operationId: deleteCpaasChatConfigTeamsByTeamId
+      x-operation-id-source: derived
+    servers:
+    - url: https://{region}-api.dotdigital.com
+      variables:
+        region:
+          default: r1
+          enum:
+          - r1
+          - r2
+          - r3
+          description: The Dotdigital region id your account belongs to
+  /cpaas/chat/config/teams/{teamId}/appMessaging:
+    put:
+      summary: Update the App Messaging config for a team
+      parameters:
+      - name: teamId
+        in: path
+        description: The Team id
+        required: true
+        schema:
+          type: string
+      - name: if-match
+        in: header
+        description: An optional ETag for optimistic concurrency control
+        schema:
+          type: string
+      requestBody:
+        description: The App Messaging config to update for the team
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/appMessagingConfig'
+        required: true
+      responses:
+        '200':
+          description: The full team details
+          headers:
+            ETag:
+              description: A unique value representing the version of the configuration, optionally used for optimistic concurrency control on PUT and DELETE
+              schema:
+                type: string
+            Last-Modified:
+              description: The date the configuration was last updated in ISO 8601 format
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/appMessagingConfig'
+        '404':
+          description: The team was not found
+          content: {}
+        '412':
+          description: The ETag supplied did not match, another update may have taken place
+          content: {}
+      x-codegen-request-body-name: body
+      tags:
+      - Cpaas
+      operationId: putCpaasChatConfigTeamsByTeamIdAppMessaging
+      x-operation-id-source: derived
+    delete:
+      summary: Removes the App Messaging config for a team
+      parameters:
+      - name: teamId
+        in: path
+        description: The Team ID
+        required: true
+        schema:
+          type: string
+      - name: if-match
+        in: header
+        description: An optional ETag for optimistic concurrency control
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The App Messaging config was removed for the team
+          content: {}
+        '404':
+          description: The team was not found, or did not have any config already
+          content: {}
+        '412':
+          description: The ETag supplied did not match, another update may have taken place
+          content: {}
+      tags:
+      - Cpaas
+      operationId: deleteCpaasChatConfigTeamsByTeamIdAppMessaging
+      x-operation-id-source: derived
+    servers:
+    - url: https://{region}-api.dotdigital.com
+      variables:
+        region:
+          default: r1
+          enum:
+          - r1
+          - r2
+          - r3
+          description: The Dotdigital region id your account belongs to
+  /cpaas/chat/config/teams/{teamId}/settings:
+    put:
+      summary: Update general settings for a team
+      parameters:
+      - name: teamId
+        in: path
+        description: The Team id
+        required: true
+        schema:
+          type: string
+      - name: if-match
+        in: header
+        description: An optional ETag for optimistic concurrency control
+        schema:
+          type: string
+      requestBody:
+        description: The settings to update for the team
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/settings'
+        required: true
+      responses:
+        '200':
+          description: The full team details
+          headers:
+            ETag:
+              description: A unique value representing the version of the configuration, optionally used for optimistic concurrency control on PUT and DELETE
+              schema:
+                type: string
+            Last-Modified:
+              description: The date the team was last updated in ISO 8601 format
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/settings'
+        '404':
+          description: The team was not found
+          content: {}
+        '412':
+          description: The ETag supplied did not match, another update may have taken place
+          content: {}
+      x-codegen-request-body-name: body
+      tags:
+      - Cpaas
+      operationId: putCpaasChatConfigTeamsByTeamIdSettings
+      x-operation-id-source: derived
+    delete:
+      summary: Removes the settings for a team
+      parameters:
+      - name: teamId
+        in: path
+        description: The Team ID
+        required: true
+        schema:
+          type: string
+      - name: if-match
+        in: header
+        description: An optional ETag for optimistic concurrency control
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The general settings were removed for the team
+          content: {}
+        '404':
+          description: The team was not found, or did not have any config already
+          content: {}
+        '412':
+          description: The ETag supplied did not match, another update may have taken place
+          content: {}
+      tags:
+      - Cpaas
+      operationId: deleteCpaasChatConfigTeamsByTeamIdSettings
+      x-operation-id-source: derived
+    servers:
+    - url: https://{region}-api.dotdigital.com
+      variables:
+        region:
+          default: r1
+          enum:
+          - r1
+          - r2
+          - r3
+          description: The Dotdigital region id your account belongs to
+  /cpaas/chats/{chatId}/events:
+    get:
+      summary: Retrieves a chat's events
+      parameters:
+      - name: chatId
+        in: path
+        description: The id of the chat
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: The event id to start from
+        required: true
+        schema:
+          minimum: 0
+          type: integer
+      - name: limit
+        in: query
+        description: The number of events to read forward
+        required: true
+        schema:
+          minimum: 0
+          type: integer
+      responses:
+        '200':
+          description: A list of chat events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MessageEvent'
+      tags:
+      - Cpaas
+      operationId: getCpaasChatsByChatIdEvents
+      x-operation-id-source: derived
+    servers:
+    - url: https://{region}-api.dotdigital.com
+      variables:
+        region:
+          description: The Dotdigital region id your account belongs to
+          enum:
+          - r1
+          - r2
+          - r3
+          default: r1
+  /cpaas/chats/{chatId}/messages:
+    get:
+      summary: Retrieves a chat's messages from an point (event) in time and works backwards
+      parameters:
+      - name: chatId
+        in: path
+        description: The id of the chat
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: The event id to work backwards from
+        required: false
+        schema:
+          minimum: 0
+          type: integer
+      - name: limit
+        in: query
+        description: The number of messages to return
+        required: true
+        schema:
+          maximum: 100
+          minimum: 1
+          type: integer
+      responses:
+        '200':
+          description: A list of partial and the requested number of complete messages, aggregated from the chat events
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResult'
+      tags:
+      - Cpaas
+      operationId: getCpaasChatsByChatIdMessages
+      x-operation-id-source: derived
+    post:
+      summary: Sends a message to chat
+      parameters:
+      - name: chatId
+        in: path
+        description: The id of the chat
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Detail of the message to send
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessagePost'
+        required: true
+      responses:
+        '200':
+          description: The message was successfully sent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessagePostResult'
+      x-codegen-request-body-name: message
+      tags:
+      - Cpaas
+      operationId: postCpaasChatsByChatIdMessages
+      x-operation-id-source: derived
+    servers:
+    - url: https://{region}-api.dotdigital.com
+      variables:
+        region:
+          description: The Dotdigital region id your account belongs to
+          enum:
+          - r1
+          - r2
+          - r3
+          default: r1
+  /cpaas/chats/{chatId}/messages/statusupdates:
+    post:
+      summary: Posts message updates back
+      parameters:
+      - name: chatId
+        in: path
+        description: The id of the chat
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Details of the message status updates
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/MessageStatusUpdate'
+        required: true
+      responses:
+        '200':
+          description: The status updates were successfully received
+          content: {}
+      x-codegen-request-body-name: updates
+      tags:
+      - Cpaas
+      operationId: postCpaasChatsByChatIdMessagesStatusupdates
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -1014,6 +1060,8 @@ paths:
                 $ref: '#/components/schemas/Presence'
       tags:
       - Cpaas
+      operationId: getCpaasPresence
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -1043,6 +1091,8 @@ paths:
                 $ref: '#/components/schemas/AppMsgPresence'
       tags:
       - Cpaas
+      operationId: getCpaasPresenceAppmessaging
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -1076,6 +1126,8 @@ paths:
       x-codegen-request-body-name: File details
       tags:
       - Cpaas
+      operationId: postCpaasContent
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -1114,6 +1166,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: getCpaasContentByFileId
+      x-operation-id-source: derived
     delete:
       summary: Delete a file
       parameters:
@@ -1132,6 +1186,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: deleteCpaasContentByFileId
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -1143,157 +1199,6 @@ paths:
           - r3
           default: r1
     - url: http://{region}-api.dotdigital.com/v2
-      variables:
-        region:
-          description: The Dotdigital region id your account belongs to
-          enum:
-          - r1
-          - r2
-          - r3
-          default: r1
-  /cpaas/conversations/{conversationId}/events:
-    get:
-      summary: Retrieves a conversation's events
-      parameters:
-      - name: conversationId
-        in: path
-        description: The id of the conversation
-        required: true
-        schema:
-          type: string
-      - name: from
-        in: query
-        description: The event id to start from
-        required: true
-        schema:
-          minimum: 0
-          type: integer
-      - name: limit
-        in: query
-        description: The number of events to read forward
-        required: true
-        schema:
-          minimum: 0
-          type: integer
-      responses:
-        '200':
-          description: A list of conversation events
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/MessageEvent'
-      tags:
-      - Cpaas
-    servers:
-    - url: https://{region}-api.dotdigital.com
-      variables:
-        region:
-          description: The Dotdigital region id your account belongs to
-          enum:
-          - r1
-          - r2
-          - r3
-          default: r1
-  /cpaas/conversations/{conversationId}/messages:
-    get:
-      summary: Retrieves a conversation's messages from an point (event) in time and works backwards
-      parameters:
-      - name: conversationId
-        in: path
-        description: The id of the conversation
-        required: true
-        schema:
-          type: string
-      - name: from
-        in: query
-        description: The event id to work backwards from
-        required: false
-        schema:
-          minimum: 0
-          type: integer
-      - name: limit
-        in: query
-        description: The number of messages to return
-        required: true
-        schema:
-          maximum: 100
-          minimum: 1
-          type: integer
-      responses:
-        '200':
-          description: A list of partial and the requested number of complete messages, aggregated from the conversation events
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MessageResult_2'
-      tags:
-      - Cpaas
-    post:
-      summary: Sends a message to conversation
-      parameters:
-      - name: conversationId
-        in: path
-        description: The id of the conversation
-        required: true
-        schema:
-          type: string
-      requestBody:
-        description: Detail of the message to send
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MessagePost_2'
-        required: true
-      responses:
-        '200':
-          description: The message was successfully sent
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MessagePostResult_2'
-      x-codegen-request-body-name: message
-      tags:
-      - Cpaas
-    servers:
-    - url: https://{region}-api.dotdigital.com
-      variables:
-        region:
-          description: The Dotdigital region id your account belongs to
-          enum:
-          - r1
-          - r2
-          - r3
-          default: r1
-  /cpaas/conversations/{conversationId}/messages/statusupdates:
-    post:
-      summary: Posts message updates back
-      parameters:
-      - name: conversationId
-        in: path
-        description: The id of the conversation
-        required: true
-        schema:
-          type: string
-      requestBody:
-        description: Details of the message status updates
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/MessageStatusUpdate'
-        required: true
-      responses:
-        '200':
-          description: The status updates were successfully received
-          content: {}
-      x-codegen-request-body-name: updates
-      tags:
-      - Cpaas
-    servers:
-    - url: https://{region}-api.dotdigital.com
       variables:
         region:
           description: The Dotdigital region id your account belongs to
@@ -1340,6 +1245,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: getCpaasConversationsByConversationId
+      x-operation-id-source: derived
     put:
       summary: Updates a conversation
       parameters:
@@ -1394,6 +1301,8 @@ paths:
       x-codegen-request-body-name: name
       tags:
       - Cpaas
+      operationId: putCpaasConversationsByConversationId
+      x-operation-id-source: derived
     delete:
       summary: Deletes a conversation
       parameters:
@@ -1424,6 +1333,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: deleteCpaasConversationsByConversationId
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -1470,6 +1381,8 @@ paths:
                   $ref: '#/components/schemas/ConversationQueryResult'
       tags:
       - Cpaas
+      operationId: getCpaasConversations
+      x-operation-id-source: derived
     post:
       summary: Creates a new conversation
       requestBody:
@@ -1505,6 +1418,8 @@ paths:
       x-codegen-request-body-name: conversation
       tags:
       - Cpaas
+      operationId: postCpaasConversations
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -1531,6 +1446,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: postCpaasConversationsByConversationIdTyping
+      x-operation-id-source: derived
     delete:
       summary: Indicates that the caller has stopped typing in this conversation
       parameters:
@@ -1546,6 +1463,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: deleteCpaasConversationsByConversationIdTyping
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -1580,6 +1499,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: getCpaasConversationsByConversationIdParticipants
+      x-operation-id-source: derived
     post:
       summary: Adds a list of participants to a conversation
       parameters:
@@ -1611,6 +1532,8 @@ paths:
       x-codegen-request-body-name: participants
       tags:
       - Cpaas
+      operationId: postCpaasConversationsByConversationIdParticipants
+      x-operation-id-source: derived
     delete:
       summary: Deletes a list of participants from a conversation
       parameters:
@@ -1639,6 +1562,167 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: deleteCpaasConversationsByConversationIdParticipants
+      x-operation-id-source: derived
+    servers:
+    - url: https://{region}-api.dotdigital.com
+      variables:
+        region:
+          description: The Dotdigital region id your account belongs to
+          enum:
+          - r1
+          - r2
+          - r3
+          default: r1
+  /cpaas/conversations/{conversationId}/events:
+    get:
+      summary: Retrieves a conversation's events
+      parameters:
+      - name: conversationId
+        in: path
+        description: The id of the conversation
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: The event id to start from
+        required: true
+        schema:
+          minimum: 0
+          type: integer
+      - name: limit
+        in: query
+        description: The number of events to read forward
+        required: true
+        schema:
+          minimum: 0
+          type: integer
+      responses:
+        '200':
+          description: A list of conversation events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MessageEvent'
+      tags:
+      - Cpaas
+      operationId: getCpaasConversationsByConversationIdEvents
+      x-operation-id-source: derived
+    servers:
+    - url: https://{region}-api.dotdigital.com
+      variables:
+        region:
+          description: The Dotdigital region id your account belongs to
+          enum:
+          - r1
+          - r2
+          - r3
+          default: r1
+  /cpaas/conversations/{conversationId}/messages:
+    get:
+      summary: Retrieves a conversation's messages from an point (event) in time and works…
+      parameters:
+      - name: conversationId
+        in: path
+        description: The id of the conversation
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: The event id to work backwards from
+        required: false
+        schema:
+          minimum: 0
+          type: integer
+      - name: limit
+        in: query
+        description: The number of messages to return
+        required: true
+        schema:
+          maximum: 100
+          minimum: 1
+          type: integer
+      responses:
+        '200':
+          description: A list of partial and the requested number of complete messages, aggregated from the conversation events
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResult_2'
+      tags:
+      - Cpaas
+      operationId: getCpaasConversationsByConversationIdMessages
+      x-operation-id-source: derived
+    post:
+      summary: Sends a message to conversation
+      parameters:
+      - name: conversationId
+        in: path
+        description: The id of the conversation
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Detail of the message to send
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessagePost_2'
+        required: true
+      responses:
+        '200':
+          description: The message was successfully sent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessagePostResult_2'
+      x-codegen-request-body-name: message
+      tags:
+      - Cpaas
+      operationId: postCpaasConversationsByConversationIdMessages
+      x-operation-id-source: derived
+    servers:
+    - url: https://{region}-api.dotdigital.com
+      variables:
+        region:
+          description: The Dotdigital region id your account belongs to
+          enum:
+          - r1
+          - r2
+          - r3
+          default: r1
+  /cpaas/conversations/{conversationId}/messages/statusupdates:
+    post:
+      summary: Posts message updates back
+      parameters:
+      - name: conversationId
+        in: path
+        description: The id of the conversation
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Details of the message status updates
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/MessageStatusUpdate'
+        required: true
+      responses:
+        '200':
+          description: The status updates were successfully received
+          content: {}
+      x-codegen-request-body-name: updates
+      tags:
+      - Cpaas
+      operationId: postCpaasConversationsByConversationIdMessagesStatusupdates
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -1651,7 +1735,7 @@ paths:
           default: r1
   /cpaas/profiles/{profileId}/messages:
     get:
-      summary: Retrieves message history for the specified profile.  Messages retrieved from the date spacified (default now), in descending time order.
+      summary: Retrieves message history for the specified profile.
       parameters:
       - name: profileId
         in: path
@@ -1698,6 +1782,8 @@ paths:
                   $ref: '#/components/schemas/MessageHistoryEntry'
       tags:
       - Cpaas
+      operationId: getCpaasProfilesByProfileIdMessages
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -1730,6 +1816,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: getCpaasAutomationInboundrules
+      x-operation-id-source: derived
     post:
       summary: Create a message rule configuration
       parameters:
@@ -1764,6 +1852,8 @@ paths:
       x-codegen-request-body-name: messageRulesData
       tags:
       - Cpaas
+      operationId: postCpaasAutomationInboundrules
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -1797,6 +1887,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: getCpaasAutomationInboundrulesByMessageRulesId
+      x-operation-id-source: derived
     put:
       summary: Update single message rule configuration
       parameters:
@@ -1833,6 +1925,8 @@ paths:
       x-codegen-request-body-name: messageRulesData
       tags:
       - Cpaas
+      operationId: putCpaasAutomationInboundrulesByMessageRulesId
+      x-operation-id-source: derived
     delete:
       summary: Delete single message rule configuration
       parameters:
@@ -1852,6 +1946,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: deleteCpaasAutomationInboundrulesByMessageRulesId
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -1887,6 +1983,8 @@ paths:
       x-codegen-request-body-name: exportOptions
       tags:
       - Cpaas
+      operationId: postCpaasProfilesExport
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -1917,6 +2015,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: deleteCpaasProfilesBulk
+      x-operation-id-source: derived
     patch:
       summary: Creates or updates the supplied profiles with the supplied data
       requestBody:
@@ -1935,6 +2035,8 @@ paths:
       x-codegen-request-body-name: profiles
       tags:
       - Cpaas
+      operationId: patchCpaasProfilesBulk
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -1973,6 +2075,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: getCpaasProfilesById
+      x-operation-id-source: derived
     put:
       summary: Updates or undeletes a Profile
       parameters:
@@ -2011,6 +2115,8 @@ paths:
       x-codegen-request-body-name: profile data
       tags:
       - Cpaas
+      operationId: putCpaasProfilesById
+      x-operation-id-source: derived
     delete:
       summary: Deletes a Profile
       parameters:
@@ -2038,6 +2144,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: deleteCpaasProfilesById
+      x-operation-id-source: derived
     patch:
       summary: Patches a Profile
       parameters:
@@ -2086,6 +2194,8 @@ paths:
       x-codegen-request-body-name: profile data
       tags:
       - Cpaas
+      operationId: patchCpaasProfilesById
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -2126,6 +2236,8 @@ paths:
       x-codegen-request-body-name: name
       tags:
       - Cpaas
+      operationId: putCpaasProfilesByIdOptin
+      x-operation-id-source: derived
     delete:
       summary: Set profile opt in for specified channels
       parameters:
@@ -2157,6 +2269,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: deleteCpaasProfilesByIdOptin
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -2169,7 +2283,7 @@ paths:
           default: r1
   /cpaas/profiles/{id}/rels/primary/{linkedId}:
     put:
-      summary: Creates a relationship where the linked profile is the primary and this profile is a child
+      summary: Creates a relationship where the linked profile is the primary and this profile…
       parameters:
       - name: id
         in: path
@@ -2198,6 +2312,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: putCpaasProfilesByIdRelsPrimaryByLinkedId
+      x-operation-id-source: derived
     delete:
       summary: Deletes the profile's relationship to a primary profile
       parameters:
@@ -2228,6 +2344,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: deleteCpaasProfilesByIdRelsPrimaryByLinkedId
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -2240,7 +2358,7 @@ paths:
           default: r1
   /cpaas/profiles/{id}/rels/link/{linkedId}:
     put:
-      summary: Creates a relationship where this profile is the primary and the linked profile is a child
+      summary: Creates a relationship where this profile is the primary and the linked profile…
       parameters:
       - name: id
         in: path
@@ -2269,6 +2387,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: putCpaasProfilesByIdRelsLinkByLinkedId
+      x-operation-id-source: derived
     delete:
       summary: Deletes the primary profile's relationship to a linked Profile
       parameters:
@@ -2299,6 +2419,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: deleteCpaasProfilesByIdRelsLinkByLinkedId
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -2379,6 +2501,8 @@ paths:
                   $ref: '#/components/schemas/ProfileFull'
       tags:
       - Cpaas
+      operationId: getCpaasProfiles
+      x-operation-id-source: derived
     post:
       summary: Creates a new Profile
       requestBody:
@@ -2401,6 +2525,8 @@ paths:
       x-codegen-request-body-name: profile
       tags:
       - Cpaas
+      operationId: postCpaasProfiles
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -2420,6 +2546,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: getCpaasProfilesOptin
+      x-operation-id-source: derived
     put:
       summary: Set default profiles opt in/out options for each channel in channel service
       responses:
@@ -2428,6 +2556,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: putCpaasProfilesOptin
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -2472,6 +2602,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: getCpaasSessionsTokensAnon
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -2504,8 +2636,10 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: getCpaasSessionsById
+      x-operation-id-source: derived
     delete:
-      summary: Ends a session, revoking access to services.
+      summary: Ends a session, revoking access to services
       parameters:
       - name: id
         in: path
@@ -2525,6 +2659,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: deleteCpaasSessionsById
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -2552,6 +2688,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: getCpaasTemplates
+      x-operation-id-source: derived
     post:
       summary: Create a template
       requestBody:
@@ -2584,6 +2722,8 @@ paths:
       x-codegen-request-body-name: templateData
       tags:
       - Cpaas
+      operationId: postCpaasTemplates
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -2631,6 +2771,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: getCpaasTemplatesByTemplateId
+      x-operation-id-source: derived
     put:
       summary: Updates a template
       parameters:
@@ -2678,6 +2820,8 @@ paths:
       x-codegen-request-body-name: templateData
       tags:
       - Cpaas
+      operationId: putCpaasTemplatesByTemplateId
+      x-operation-id-source: derived
     delete:
       summary: Deletes a template
       parameters:
@@ -2704,6 +2848,8 @@ paths:
           content: {}
       tags:
       - Cpaas
+      operationId: deleteCpaasTemplatesByTemplateId
+      x-operation-id-source: derived
     servers:
     - url: https://{region}-api.dotdigital.com
       variables:
@@ -2716,411 +2862,6 @@ paths:
           description: The Dotdigital region id your account belongs to
 components:
   schemas:
-    appMessagingConfig:
-      required:
-      - replyAs
-      type: object
-      properties:
-        welcomeMessage:
-          type: object
-          properties:
-            timeout:
-              type: integer
-              description: The welcome message timeout in seconds
-            text:
-              type: string
-              description: The welcome message text
-          description: The welcome message config
-        replyAs:
-          type: string
-          description: Indicates how replies should appear to the end user
-          default: team
-          enum:
-          - team
-          - individual
-      description: The App Messaging configuration for the team
-    configFull:
-      type: object
-      properties:
-        teams:
-          type: array
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/configSingle'
-        _createdOn:
-          type: string
-          description: The date (in UTC, ISO 8601 format) that the message was created
-          format: date-time
-          readOnly: true
-        _createdBy:
-          type: string
-          description: The identity that created the message
-          readOnly: true
-        _updatedOn:
-          type: string
-          description: The date (in UTC, ISO 8601 format) that the message was last updated
-          format: date-time
-          readOnly: true
-        _updatedBy:
-          type: string
-          description: The identity that created the message
-          readOnly: true
-      description: All chat configuration for the apiSpace.
-    settings:
-      type: object
-      properties:
-        closeMessage:
-          type: string
-          description: The chat close message assigned to the team
-        avatarUrl:
-          type: string
-          description: The avatar assigned to the team
-        outOfHoursFormTemplateId:
-          type: string
-          description: The id of a form to send when out of hours
-        outOfHoursMessage:
-          type: string
-          description: The chat out of hours message assigned to the team
-        workingHours:
-          type: array
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/workingHoursSingle'
-        outOfHoursMessageEnabled:
-          type: boolean
-          description: define if out ouf hours message is enabled
-      description: The general settings for the team
-    workingHoursSingle:
-      required:
-      - days
-      - from
-      - to
-      type: object
-      properties:
-        days:
-          type: string
-          description: Days for which working hours are defined
-          enum:
-          - Monday
-          - Tuesday
-          - Wednesday
-          - Thursday
-          - Friday
-          - Saturday
-          - Sunday
-          - Weekend
-          - Monday to Friday
-        from:
-          pattern: ^([0-1]?[0-9]|2[0-3]):[0-5][0-9]
-          type: string
-          description: working hours start time
-        to:
-          pattern: ^([0-1]?[0-9]|2[0-3]):[0-5][0-9]
-          type: string
-          description: working hours stop time
-      description: The working hours configuration for the team
-    configSingle:
-      type: object
-      properties:
-        teamId:
-          type: string
-          description: The id of the team
-          readOnly: true
-        channels:
-          type: object
-          properties:
-            appMessagingConfig:
-              $ref: '#/components/schemas/appMessagingConfig'
-        settings:
-          $ref: '#/components/schemas/settings'
-    teamMembers:
-      type: object
-      properties:
-        _createdOn:
-          type: string
-          description: The date (in UTC, ISO 8601 format) that the message was created
-          format: date-time
-          readOnly: true
-        _createdBy:
-          type: string
-          description: The identity that created the message
-          readOnly: true
-        _updatedOn:
-          type: string
-          description: The date (in UTC, ISO 8601 format) that the message was last updated
-          format: date-time
-          readOnly: true
-        _updatedBy:
-          type: string
-          description: The identity that created the message
-          readOnly: true
-        id:
-          type: string
-          description: The teams identifier
-          readOnly: true
-        members:
-          type: array
-          readOnly: true
-          items:
-            type: object
-            properties:
-              username:
-                type: string
-                description: The team members profile id / username
-                readOnly: true
-            description: A member of the chat team
-        name:
-          type: string
-          description: The teams name
-          readOnly: true
-      description: The members of the chat team
-    MessageAlertPlatforms:
-      type: object
-      properties:
-        apns:
-          $ref: '#/components/schemas/MessageAlertApns'
-        fcm:
-          $ref: '#/components/schemas/MessageAlertFcm'
-      description: The platform specific details for the alert. If specified, these are set verbatim and alert.title / alert.body values are ignored
-    MessageAlertApns:
-      type: object
-      properties:
-        badge:
-          type: integer
-          description: The value to display on the application badge
-        sound:
-          type: string
-          description: The soundfile to play on the device when the notification arrived
-        alert:
-          type: string
-          description: The alert to display on the device when the notification arrives
-        payload:
-          type: object
-          properties: {}
-          description: The payload to send to the device
-      description: The APNS details for the alert
-    MessagePostResult:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The globally unique id of the message
-        eventId:
-          type: integer
-          description: The id of the event corresponding to the send in the message stream for this chat
-      description: The id of the message sent event recorded
-    MessagePost_from:
-      required:
-      - profileId
-      type: object
-      properties:
-        profileId:
-          type: string
-          description: The id of the profile to send from
-        name:
-          type: string
-          description: Name to display
-      description: Set of identifiers for the message sender.
-    MessageAlert:
-      type: object
-      properties:
-        title:
-          type: string
-          description: Title for the notification to send to all platforms. Note that this is ignored if any details are set in platforms
-        body:
-          type: string
-          description: Body for the notification to send to all platforms. Note that this is ignored if any details are set in platforms
-        platforms:
-          $ref: '#/components/schemas/MessageAlertPlatforms'
-      description: Details of the alert to be displayed on receipt of the message
-    MessageContext:
-      type: object
-      properties:
-        from:
-          $ref: '#/components/schemas/MessageContextFrom'
-        chatId:
-          type: string
-          description: The id of the chat that the message was sent on
-        sentBy:
-          type: string
-          description: The message sender
-        sentOn:
-          type: string
-          description: The date the message was sent in ISO 8601 format
-          format: date-time
-        direction:
-          type: string
-          description: Indicates the direction of the message
-          enum:
-          - inbound
-          - outbound
-      description: Platform metadata relating to the message
-    MessageContextFrom:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The id of the profile the message was from
-        name:
-          type: string
-          description: The name for the profile that sent the message
-      description: Details of the sender of a message
-    MessageEvent:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The id of the event
-        data:
-          type: object
-          properties: {}
-          description: The event data
-      description: An event relating to a message
-    MessageStatusUpdate:
-      required:
-      - messageIds
-      - status
-      - timestamp
-      type: object
-      properties:
-        messageIds:
-          type: array
-          description: A list of message ids being updated
-          items:
-            type: string
-        status:
-          type: string
-          description: The status to update each message to
-          enum:
-          - delivered
-          - read
-        timestamp:
-          type: string
-          description: The date of the status update in ISO 8601 format
-          format: date-time
-    MessageComplete:
-      type: object
-      properties:
-        id:
-          pattern: ^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})|[a-f0-9]{32}$
-          type: string
-          description: The id of the message
-        sentEventId:
-          type: integer
-          description: The event id that corresponds to the sent event for the message
-        metadata:
-          type: object
-          properties: {}
-          description: Custom metadata relating to the message
-        context:
-          $ref: '#/components/schemas/MessageContext'
-        parts:
-          type: array
-          items:
-            $ref: '#/components/schemas/MessagePart'
-        statusUpdates:
-          type: object
-          properties: {}
-          description: Array of updates keyed by the profileId and a list of statues and the date the status was set
-      description: Details of a message sent to a chat
-    MessagePart:
-      type: object
-      properties:
-        name:
-          type: string
-          description: A name for the part
-        type:
-          type: string
-          description: The mime type (if applicable) sof the part
-        url:
-          type: string
-          description: A url associated with the message part
-        data:
-          type: string
-          description: String representation (e.g. base64) of the message part
-        size:
-          type: integer
-          description: Size of the message part in bytes
-      description: Details of a single part that makes up the message
-    MessageResult:
-      type: object
-      properties:
-        earliestEventId:
-          type: integer
-          description: The earliest event id that was included in the message aggregation. If this value is above 0, there will be more data available and should be used in the 'from' parameter of subsequent calls
-        latestEventId:
-          type: integer
-          description: The latest event id that was included in the message aggregation.
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/MessageComplete'
-        orphanedEvents:
-          type: array
-          items:
-            $ref: '#/components/schemas/MessageEvent'
-      description: A list of chat messages
-    MessageAlertFcmNotification:
-      type: object
-      properties:
-        title:
-          type: string
-          description: The title to display
-        body:
-          type: string
-          description: The body to display
-        icon:
-          type: string
-          description: The icon to display
-      description: Details of the notification to display
-    MessageAlertFcm:
-      type: object
-      properties:
-        collapse_key:
-          type: string
-          description: The collapse key to send to FCM
-        data:
-          type: object
-          properties: {}
-          description: The payload to send to the device
-        notification:
-          $ref: '#/components/schemas/MessageAlertFcmNotification'
-      description: The FCM details for the alert
-    MessagePost:
-      required:
-      - parts
-      type: object
-      properties:
-        from:
-          $ref: '#/components/schemas/MessagePost_from'
-        metadata:
-          type: object
-          properties: {}
-          description: Custom metadata relating to the message
-        parts:
-          type: array
-          items:
-            $ref: '#/components/schemas/MessagePart'
-        alert:
-          $ref: '#/components/schemas/MessageAlert'
-        direction:
-          type: string
-          description: Indicates the direction of the message
-          enum:
-          - inbound
-          - outbound
-        isAutomatedSend:
-          type: boolean
-          description: Indicates if a message was an automated send - will be ommitted from analytics
-      description: Details of a message to post to the chat
-    chatId_form_body:
-      type: object
-      properties:
-        formTemplateId:
-          type: string
-          description: The id of a template to base the form being sent on
     ChatContext:
       type: object
       properties:
@@ -3179,44 +2920,17 @@ components:
           type: string
           description: The identity that created the chat
           readOnly: true
-    AssignmentDetails:
+    ChatUpdate:
       required:
-      - teamId
+      - name
       type: object
       properties:
-        teamId:
+        name:
           type: string
-          description: The id of the team
-        agentId:
+          description: The name of the chat
+        description:
           type: string
-          description: The id of the agent to assign to (optional)
-    Participant:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The id of the chat participant's profile
-        role:
-          type: string
-          description: The role of the chat participant
-          enum:
-          - agent
-          - participant
-          default: participant
-    chatId_channel_body:
-      type: object
-      properties:
-        channelId:
-          type: string
-          description: Must be set to a configuration chat channel
-    chatId_close_body:
-      type: object
-      properties:
-        bypassMessage:
-          type: boolean
-          description: When set to true, any close message in the team config will be ignored and not sent
+          description: The description of the chat
     ChatCreate:
       required:
       - channelId
@@ -3242,21 +2956,449 @@ components:
             $ref: '#/components/schemas/Participant'
         context:
           $ref: '#/components/schemas/ChatContext'
-    ChatUpdate:
+    chatId_channel_body:
+      type: object
+      properties:
+        channelId:
+          type: string
+          description: Must be set to a configuration chat channel
+    Participant:
       required:
-      - name
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the chat participant's profile
+        role:
+          type: string
+          description: The role of the chat participant
+          enum:
+          - agent
+          - participant
+          default: participant
+    chatId_close_body:
+      type: object
+      properties:
+        bypassMessage:
+          type: boolean
+          description: When set to true, any close message in the team config will be ignored and not sent
+    chatId_form_body:
+      type: object
+      properties:
+        formTemplateId:
+          type: string
+          description: The id of a template to base the form being sent on
+    AssignmentDetails:
+      required:
+      - teamId
+      type: object
+      properties:
+        teamId:
+          type: string
+          description: The id of the team
+        agentId:
+          type: string
+          description: The id of the agent to assign to (optional)
+    configFull:
+      type: object
+      properties:
+        teams:
+          type: array
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/configSingle'
+        _createdOn:
+          type: string
+          description: The date (in UTC, ISO 8601 format) that the message was created
+          format: date-time
+          readOnly: true
+        _createdBy:
+          type: string
+          description: The identity that created the message
+          readOnly: true
+        _updatedOn:
+          type: string
+          description: The date (in UTC, ISO 8601 format) that the message was last updated
+          format: date-time
+          readOnly: true
+        _updatedBy:
+          type: string
+          description: The identity that created the message
+          readOnly: true
+      description: All chat configuration for the apiSpace.
+    appMessagingConfig:
+      required:
+      - replyAs
+      type: object
+      properties:
+        welcomeMessage:
+          type: object
+          properties:
+            timeout:
+              type: integer
+              description: The welcome message timeout in seconds
+            text:
+              type: string
+              description: The welcome message text
+          description: The welcome message config
+        replyAs:
+          type: string
+          description: Indicates how replies should appear to the end user
+          default: team
+          enum:
+          - team
+          - individual
+      description: The App Messaging configuration for the team
+    workingHoursSingle:
+      required:
+      - days
+      - from
+      - to
+      type: object
+      properties:
+        days:
+          type: string
+          description: Days for which working hours are defined
+          enum:
+          - Monday
+          - Tuesday
+          - Wednesday
+          - Thursday
+          - Friday
+          - Saturday
+          - Sunday
+          - Weekend
+          - Monday to Friday
+        from:
+          pattern: ^([0-1]?[0-9]|2[0-3]):[0-5][0-9]
+          type: string
+          description: working hours start time
+        to:
+          pattern: ^([0-1]?[0-9]|2[0-3]):[0-5][0-9]
+          type: string
+          description: working hours stop time
+      description: The working hours configuration for the team
+    settings:
+      type: object
+      properties:
+        closeMessage:
+          type: string
+          description: The chat close message assigned to the team
+        avatarUrl:
+          type: string
+          description: The avatar assigned to the team
+        outOfHoursFormTemplateId:
+          type: string
+          description: The id of a form to send when out of hours
+        outOfHoursMessage:
+          type: string
+          description: The chat out of hours message assigned to the team
+        workingHours:
+          type: array
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/workingHoursSingle'
+        outOfHoursMessageEnabled:
+          type: boolean
+          description: define if out ouf hours message is enabled
+      description: The general settings for the team
+    teamMembers:
+      type: object
+      properties:
+        _createdOn:
+          type: string
+          description: The date (in UTC, ISO 8601 format) that the message was created
+          format: date-time
+          readOnly: true
+        _createdBy:
+          type: string
+          description: The identity that created the message
+          readOnly: true
+        _updatedOn:
+          type: string
+          description: The date (in UTC, ISO 8601 format) that the message was last updated
+          format: date-time
+          readOnly: true
+        _updatedBy:
+          type: string
+          description: The identity that created the message
+          readOnly: true
+        id:
+          type: string
+          description: The teams identifier
+          readOnly: true
+        members:
+          type: array
+          readOnly: true
+          items:
+            type: object
+            properties:
+              username:
+                type: string
+                description: The team members profile id / username
+                readOnly: true
+            description: A member of the chat team
+        name:
+          type: string
+          description: The teams name
+          readOnly: true
+      description: The members of the chat team
+    configSingle:
+      type: object
+      properties:
+        teamId:
+          type: string
+          description: The id of the team
+          readOnly: true
+        channels:
+          type: object
+          properties:
+            appMessagingConfig:
+              $ref: '#/components/schemas/appMessagingConfig'
+        settings:
+          $ref: '#/components/schemas/settings'
+    MessagePost_from:
+      required:
+      - profileId
+      type: object
+      properties:
+        profileId:
+          type: string
+          description: The id of the profile to send from
+        name:
+          type: string
+          description: Name to display
+      description: Set of identifiers for the message sender.
+    MessageStatusUpdate:
+      required:
+      - messageIds
+      - status
+      - timestamp
+      type: object
+      properties:
+        messageIds:
+          type: array
+          description: A list of message ids being updated
+          items:
+            type: string
+        status:
+          type: string
+          description: The status to update each message to
+          enum:
+          - delivered
+          - read
+        timestamp:
+          type: string
+          description: The date of the status update in ISO 8601 format
+          format: date-time
+    MessagePart:
       type: object
       properties:
         name:
           type: string
-          description: The name of the chat
-        description:
+          description: A name for the part
+        type:
           type: string
-          description: The description of the chat
-    Presence:
-      type: array
-      items:
-        $ref: '#/components/schemas/ProfilePresence'
+          description: The mime type (if applicable) sof the part
+        url:
+          type: string
+          description: A url associated with the message part
+        data:
+          type: string
+          description: String representation (e.g. base64) of the message part
+        size:
+          type: integer
+          description: Size of the message part in bytes
+      description: Details of a single part that makes up the message
+    MessageAlertFcmNotification:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title to display
+        body:
+          type: string
+          description: The body to display
+        icon:
+          type: string
+          description: The icon to display
+      description: Details of the notification to display
+    MessageResult:
+      type: object
+      properties:
+        earliestEventId:
+          type: integer
+          description: The earliest event id that was included in the message aggregation. If this value is above 0, there will be more data available and should be used in the 'from' parameter of subsequent calls
+        latestEventId:
+          type: integer
+          description: The latest event id that was included in the message aggregation.
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageComplete'
+        orphanedEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageEvent'
+      description: A list of chat messages
+    MessageAlertFcm:
+      type: object
+      properties:
+        collapse_key:
+          type: string
+          description: The collapse key to send to FCM
+        data:
+          type: object
+          properties: {}
+          description: The payload to send to the device
+        notification:
+          $ref: '#/components/schemas/MessageAlertFcmNotification'
+      description: The FCM details for the alert
+    MessageContext:
+      type: object
+      properties:
+        from:
+          $ref: '#/components/schemas/MessageContextFrom'
+        chatId:
+          type: string
+          description: The id of the chat that the message was sent on
+        sentBy:
+          type: string
+          description: The message sender
+        sentOn:
+          type: string
+          description: The date the message was sent in ISO 8601 format
+          format: date-time
+        direction:
+          type: string
+          description: Indicates the direction of the message
+          enum:
+          - inbound
+          - outbound
+      description: Platform metadata relating to the message
+    MessageAlertApns:
+      type: object
+      properties:
+        badge:
+          type: integer
+          description: The value to display on the application badge
+        sound:
+          type: string
+          description: The soundfile to play on the device when the notification arrived
+        alert:
+          type: string
+          description: The alert to display on the device when the notification arrives
+        payload:
+          type: object
+          properties: {}
+          description: The payload to send to the device
+      description: The APNS details for the alert
+    MessageAlert:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title for the notification to send to all platforms. Note that this is ignored if any details are set in platforms
+        body:
+          type: string
+          description: Body for the notification to send to all platforms. Note that this is ignored if any details are set in platforms
+        platforms:
+          $ref: '#/components/schemas/MessageAlertPlatforms'
+      description: Details of the alert to be displayed on receipt of the message
+    MessageComplete:
+      type: object
+      properties:
+        id:
+          pattern: ^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})|[a-f0-9]{32}$
+          type: string
+          description: The id of the message
+        sentEventId:
+          type: integer
+          description: The event id that corresponds to the sent event for the message
+        metadata:
+          type: object
+          properties: {}
+          description: Custom metadata relating to the message
+        context:
+          $ref: '#/components/schemas/MessageContext'
+        parts:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessagePart'
+        statusUpdates:
+          type: object
+          properties: {}
+          description: Array of updates keyed by the profileId and a list of statues and the date the status was set
+      description: Details of a message sent to a chat
+    MessageEvent:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the event
+        data:
+          type: object
+          properties: {}
+          description: The event data
+      description: An event relating to a message
+    MessagePostResult:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The globally unique id of the message
+        eventId:
+          type: integer
+          description: The id of the event corresponding to the send in the message stream for this chat
+      description: The id of the message sent event recorded
+    MessagePost:
+      required:
+      - parts
+      type: object
+      properties:
+        from:
+          $ref: '#/components/schemas/MessagePost_from'
+        metadata:
+          type: object
+          properties: {}
+          description: Custom metadata relating to the message
+        parts:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessagePart'
+        alert:
+          $ref: '#/components/schemas/MessageAlert'
+        direction:
+          type: string
+          description: Indicates the direction of the message
+          enum:
+          - inbound
+          - outbound
+        isAutomatedSend:
+          type: boolean
+          description: Indicates if a message was an automated send - will be ommitted from analytics
+      description: Details of a message to post to the chat
+    MessageContextFrom:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the profile the message was from
+        name:
+          type: string
+          description: The name for the profile that sent the message
+      description: Details of the sender of a message
+    MessageAlertPlatforms:
+      type: object
+      properties:
+        apns:
+          $ref: '#/components/schemas/MessageAlertApns'
+        fcm:
+          $ref: '#/components/schemas/MessageAlertFcm'
+      description: The platform specific details for the alert. If specified, these are set verbatim and alert.title / alert.body values are ignored
     ProfilePresence:
       type: object
       properties:
@@ -3284,6 +3426,10 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/AppMsgProfilePresence'
+    Presence:
+      type: array
+      items:
+        $ref: '#/components/schemas/ProfilePresence'
     AppMsgProfilePresence:
       type: object
       properties:
@@ -3304,22 +3450,6 @@ components:
           type: string
           description: The time the profiles presence was created
           format: date-time
-    cpaas_content_body:
-      required:
-      - data
-      - name
-      - type
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the file
-        type:
-          type: string
-          description: The files MIME type
-        data:
-          type: string
-          description: The Base64 file data
     UploadedFile:
       type: object
       properties:
@@ -3358,142 +3488,22 @@ components:
           type: string
           description: The identity that created the content
           readOnly: true
-    MessagePostResult_2:
+    cpaas_content_body:
       required:
-      - id
+      - data
+      - name
+      - type
       type: object
       properties:
-        id:
-          type: string
-          description: The globally unique id of the message
-        eventId:
-          type: integer
-          description: The id of the event corresponding to the send in the message stream for this conversation
-      description: The id of the message sent event recorded
-    MessageContext_2:
-      type: object
-      properties:
-        from:
-          $ref: '#/components/schemas/MessageContextFrom_2'
-        conversationId:
-          type: string
-          description: The id of the conversation that the message was sent on
-        sentBy:
-          type: string
-          description: The message sender
-        sentOn:
-          type: string
-          description: The date the message was sent in ISO 8601 format
-          format: date-time
-        scope:
-          type: string
-          description: Indicates if a conversation is A2P or P2P
-          enum:
-          - a2p
-          - p2p
-          default: p2p
-        direction:
-          type: string
-          description: Indicates the direction of the message (only applicable to a2p messages)
-          enum:
-          - inbound
-          - outbound
-      description: Platform metadata relating to the message
-    MessageContextFrom_2:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The id of the profile the message was from
         name:
           type: string
-          description: The name for the profile that sent the message
-        avatarUrl:
+          description: The name of the file
+        type:
           type: string
-          description: URL for an avatar to display with this message
-      description: Details of the sender of a message
-    MessageComplete_2:
-      type: object
-      properties:
-        id:
-          pattern: ^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})|[a-f0-9]{32}$
+          description: The files MIME type
+        data:
           type: string
-          description: The id of the message
-        sentEventId:
-          type: integer
-          description: The event id that corresponds to the sent event for the message
-        metadata:
-          type: object
-          properties: {}
-          description: Custom metadata relating to the message
-        context:
-          $ref: '#/components/schemas/MessageContext_2'
-        parts:
-          type: array
-          items:
-            $ref: '#/components/schemas/MessagePart'
-        statusUpdates:
-          type: object
-          properties: {}
-          description: Array of updates keyed by the profileId and a list of statues and the date the status was set
-      description: Details of a message sent to a conversation
-    MessageResult_2:
-      type: object
-      properties:
-        earliestEventId:
-          type: integer
-          description: The earliest event id that was included in the message aggregation. If this value is above 0, there will be more data available and should be used in the 'from' parameter of subsequent calls
-        latestEventId:
-          type: integer
-          description: The latest event id that was included in the message aggregation.
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/MessageComplete_2'
-        orphanedEvents:
-          type: array
-          items:
-            $ref: '#/components/schemas/MessageEvent'
-      description: A list of conversation messages
-    MessagePost_2:
-      required:
-      - parts
-      type: object
-      properties:
-        from:
-          $ref: '#/components/schemas/MessagePost_from'
-        metadata:
-          type: object
-          properties: {}
-          description: Custom metadata relating to the message
-        parts:
-          type: array
-          items:
-            $ref: '#/components/schemas/MessagePart'
-        alert:
-          $ref: '#/components/schemas/MessageAlert'
-        direction:
-          type: string
-          description: Indicates the direction of the message (only applicable to a2p messages)
-          enum:
-          - inbound
-          - outbound
-      description: Details of a message to post to the conversation
-    Participant_2:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The id of the conversation participant's profile
-        role:
-          type: string
-          description: The role of the conversation participant
-          enum:
-          - owner
-          - participant
-          default: participant
+          description: The Base64 file data
     ConversationUpdate:
       required:
       - name
@@ -3508,54 +3518,6 @@ components:
           description: The description of the conversation
         roles:
           $ref: '#/components/schemas/Roles'
-    Privileges:
-      required:
-      - canAddParticipants
-      - canRemoveParticipants
-      - canSend
-      type: object
-      properties:
-        canSend:
-          type: boolean
-          description: Determines whether the role assigned can send to the conversation
-        canAddParticipants:
-          type: boolean
-          description: Determines whether the role assigned can add participants to the conversation
-        canRemoveParticipants:
-          type: boolean
-          description: Determines whether the role assigned can remove participants from the conversation
-    ConversationCreate:
-      required:
-      - id
-      - isPublic
-      - name
-      - roles
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the conversation
-        name:
-          type: string
-          description: The name of the conversation
-        description:
-          type: string
-          description: The description of the conversation
-        roles:
-          $ref: '#/components/schemas/Roles'
-        isPublic:
-          type: boolean
-          description: Determines whether the conversation is publically visible
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant_2'
-        messageScope:
-          type: string
-          description: Indicates if a conversation is A2P or P2P
-          enum:
-          - a2p
-          - p2p
     Conversation:
       type: object
       properties:
@@ -3596,6 +3558,48 @@ components:
           type: string
           description: The identity that created the conversation
           readOnly: true
+    Privileges:
+      required:
+      - canAddParticipants
+      - canRemoveParticipants
+      - canSend
+      type: object
+      properties:
+        canSend:
+          type: boolean
+          description: Determines whether the role assigned can send to the conversation
+        canAddParticipants:
+          type: boolean
+          description: Determines whether the role assigned can add participants to the conversation
+        canRemoveParticipants:
+          type: boolean
+          description: Determines whether the role assigned can remove participants from the conversation
+    Participant_2:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the conversation participant's profile
+        role:
+          type: string
+          description: The role of the conversation participant
+          enum:
+          - owner
+          - participant
+          default: participant
+    Roles:
+      required:
+      - owner
+      - participant
+      type: object
+      properties:
+        owner:
+          $ref: '#/components/schemas/Privileges'
+        participant:
+          $ref: '#/components/schemas/Privileges'
+      description: Describes the roles belonging to the conversation
     ConversationQueryResult:
       type: object
       properties:
@@ -3642,31 +3646,159 @@ components:
           type: string
           description: The identity that created the conversation
           readOnly: true
-    Roles:
+    ConversationCreate:
       required:
-      - owner
-      - participant
+      - id
+      - isPublic
+      - name
+      - roles
       type: object
       properties:
-        owner:
-          $ref: '#/components/schemas/Privileges'
-        participant:
-          $ref: '#/components/schemas/Privileges'
-      description: Describes the roles belonging to the conversation
-    MessageHistoryEntry_message:
+        id:
+          type: string
+          description: The unique identifier of the conversation
+        name:
+          type: string
+          description: The name of the conversation
+        description:
+          type: string
+          description: The description of the conversation
+        roles:
+          $ref: '#/components/schemas/Roles'
+        isPublic:
+          type: boolean
+          description: Determines whether the conversation is publically visible
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant_2'
+        messageScope:
+          type: string
+          description: Indicates if a conversation is A2P or P2P
+          enum:
+          - a2p
+          - p2p
+    MessageResult_2:
       type: object
       properties:
-        title:
+        earliestEventId:
+          type: integer
+          description: The earliest event id that was included in the message aggregation. If this value is above 0, there will be more data available and should be used in the 'from' parameter of subsequent calls
+        latestEventId:
+          type: integer
+          description: The latest event id that was included in the message aggregation.
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageComplete_2'
+        orphanedEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageEvent'
+      description: A list of conversation messages
+    MessageContext_2:
+      type: object
+      properties:
+        from:
+          $ref: '#/components/schemas/MessageContextFrom_2'
+        conversationId:
           type: string
-          description: The message title (if appropriate / supported for the channel)
-        body:
+          description: The id of the conversation that the message was sent on
+        sentBy:
           type: string
-          description: The message body
-        channelData:
+          description: The message sender
+        sentOn:
+          type: string
+          description: The date the message was sent in ISO 8601 format
+          format: date-time
+        scope:
+          type: string
+          description: Indicates if a conversation is A2P or P2P
+          enum:
+          - a2p
+          - p2p
+          default: p2p
+        direction:
+          type: string
+          description: Indicates the direction of the message (only applicable to a2p messages)
+          enum:
+          - inbound
+          - outbound
+      description: Platform metadata relating to the message
+    MessageComplete_2:
+      type: object
+      properties:
+        id:
+          pattern: ^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})|[a-f0-9]{32}$
+          type: string
+          description: The id of the message
+        sentEventId:
+          type: integer
+          description: The event id that corresponds to the sent event for the message
+        metadata:
           type: object
           properties: {}
-          description: The channel specific data for the message
-      description: The message details.
+          description: Custom metadata relating to the message
+        context:
+          $ref: '#/components/schemas/MessageContext_2'
+        parts:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessagePart'
+        statusUpdates:
+          type: object
+          properties: {}
+          description: Array of updates keyed by the profileId and a list of statues and the date the status was set
+      description: Details of a message sent to a conversation
+    MessagePostResult_2:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The globally unique id of the message
+        eventId:
+          type: integer
+          description: The id of the event corresponding to the send in the message stream for this conversation
+      description: The id of the message sent event recorded
+    MessagePost_2:
+      required:
+      - parts
+      type: object
+      properties:
+        from:
+          $ref: '#/components/schemas/MessagePost_from'
+        metadata:
+          type: object
+          properties: {}
+          description: Custom metadata relating to the message
+        parts:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessagePart'
+        alert:
+          $ref: '#/components/schemas/MessageAlert'
+        direction:
+          type: string
+          description: Indicates the direction of the message (only applicable to a2p messages)
+          enum:
+          - inbound
+          - outbound
+      description: Details of a message to post to the conversation
+    MessageContextFrom_2:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the profile the message was from
+        name:
+          type: string
+          description: The name for the profile that sent the message
+        avatarUrl:
+          type: string
+          description: URL for an avatar to display with this message
+      description: Details of the sender of a message
     MessageHistoryEntry:
       required:
       - messageId
@@ -3701,54 +3833,20 @@ components:
           - failed
         message:
           $ref: '#/components/schemas/MessageHistoryEntry_message'
-    InboundRuleConfiguration_actionData:
+    MessageHistoryEntry_message:
       type: object
       properties:
-        chatTeamId:
+        title:
           type: string
-          description: If action is startChat specify team id which should have this chat assigned
-        messageParts:
-          type: array
-          description: Additional message parts / attachments. If action is set to replayMessage
-          items:
-            $ref: '#/components/schemas/MessagePart_2'
-        profileUpdate:
-          type: array
-          description: If action is set to profileUpdate gives list of profile changes.
-          items:
-            $ref: '#/components/schemas/ProfileChange'
-      description: 'Defines options for picked action '
-    ProfileChange:
-      type: object
-      properties:
-        propertyName:
+          description: The message title (if appropriate / supported for the channel)
+        body:
           type: string
-          description: A name of the property
-        propertyValue:
-          type: string
-          description: A value of the property after change
-      description: Single profile change
-    MessagePart_2:
-      required:
-      - type
-      type: object
-      properties:
-        name:
-          type: string
-          description: A name for the part
-        type:
-          type: string
-          description: The mime type (if applicable) sof the part
-        url:
-          type: string
-          description: A url associated with the message part
-        data:
-          type: string
-          description: String representation (e.g. base64) of the message part
-        size:
-          type: integer
-          description: Size of the message part in bytes
-      description: Details of a single part that makes up a message
+          description: The message body
+        channelData:
+          type: object
+          properties: {}
+          description: The channel specific data for the message
+      description: The message details.
     InboundRuleConfiguration:
       type: object
       properties:
@@ -3781,37 +3879,61 @@ components:
           - profileUpdate
         actionData:
           $ref: '#/components/schemas/InboundRuleConfiguration_actionData'
-    ProfileCreate:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The Profile's unique identifier
-        _systemProfile:
-          type: boolean
-          description: If set to true, the profile is required for system use. Use of the this field is limited to system internals
-    ProfileExportOptions:
+    MessagePart_2:
       required:
-      - format
+      - type
       type: object
       properties:
-        format:
+        name:
           type: string
-          description: The format to export profile data in
-          enum:
-          - json
-          - csv
-        fields:
+          description: A name for the part
+        type:
+          type: string
+          description: The mime type (if applicable) sof the part
+        url:
+          type: string
+          description: A url associated with the message part
+        data:
+          type: string
+          description: String representation (e.g. base64) of the message part
+        size:
+          type: integer
+          description: Size of the message part in bytes
+      description: Details of a single part that makes up a message
+    InboundRuleConfiguration_actionData:
+      type: object
+      properties:
+        chatTeamId:
+          type: string
+          description: If action is startChat specify team id which should have this chat assigned
+        messageParts:
           type: array
-          description: The list of fields to export, in order (only used for csv exports)
+          description: Additional message parts / attachments. If action is set to replayMessage
+          items:
+            $ref: '#/components/schemas/MessagePart_2'
+        profileUpdate:
+          type: array
+          description: If action is set to profileUpdate gives list of profile changes.
+          items:
+            $ref: '#/components/schemas/ProfileChange'
+      description: 'Defines options for picked action '
+    ProfileChange:
+      type: object
+      properties:
+        propertyName:
+          type: string
+          description: A name of the property
+        propertyValue:
+          type: string
+          description: A value of the property after change
+      description: Single profile change
+    id_optin_body:
+      type: object
+      properties:
+        channels:
+          type: array
           items:
             type: string
-        fieldSeparator:
-          type: string
-          description: The character to delimit each field (only used for csv exports)
-        includeHeaders:
-          type: boolean
-          description: Whether to include the field names as a header (only used for csv exports)
     ProfileFull:
       required:
       - id
@@ -3846,13 +3968,50 @@ components:
           description: The date (in UTC, ISO 8601 format) of the last visible activity involving the profile
           format: date-time
           readOnly: true
-    id_optin_body:
+    ProfileCreate:
       type: object
       properties:
-        channels:
+        id:
+          type: string
+          description: The Profile's unique identifier
+        _systemProfile:
+          type: boolean
+          description: If set to true, the profile is required for system use. Use of the this field is limited to system internals
+    ProfileExportOptions:
+      required:
+      - format
+      type: object
+      properties:
+        format:
+          type: string
+          description: The format to export profile data in
+          enum:
+          - json
+          - csv
+        fields:
           type: array
+          description: The list of fields to export, in order (only used for csv exports)
           items:
             type: string
+        fieldSeparator:
+          type: string
+          description: The character to delimit each field (only used for csv exports)
+        includeHeaders:
+          type: boolean
+          description: Whether to include the field names as a header (only used for csv exports)
+    sessionPushConfigFcm:
+      required:
+      - package
+      - registrationId
+      type: object
+      properties:
+        package:
+          type: string
+          description: The FCM package name.
+        registrationId:
+          type: string
+          description: The FCM registration id for the session.
+      description: The FCM push configuration for the session
     sessionPushConfig:
       type: object
       properties:
@@ -3860,6 +4019,26 @@ components:
           $ref: '#/components/schemas/sessionPushConfigApns'
         fcm:
           $ref: '#/components/schemas/sessionPushConfigFcm'
+    sessionPushConfigApns:
+      required:
+      - bundleId
+      - environment
+      - token
+      type: object
+      properties:
+        bundleId:
+          type: string
+          description: The APNS bundleId.
+        environment:
+          type: string
+          description: The APNS environment.
+          enum:
+          - development
+          - production
+        token:
+          type: string
+          description: The APNS token.
+      description: The APNS push configuration for the session
     sessionFull:
       required:
       - deviceId
@@ -3919,60 +4098,6 @@ components:
           format: date-time
         push:
           $ref: '#/components/schemas/sessionPushConfig'
-    sessionPushConfigFcm:
-      required:
-      - package
-      - registrationId
-      type: object
-      properties:
-        package:
-          type: string
-          description: The FCM package name.
-        registrationId:
-          type: string
-          description: The FCM registration id for the session.
-      description: The FCM push configuration for the session
-    sessionPushConfigApns:
-      required:
-      - bundleId
-      - environment
-      - token
-      type: object
-      properties:
-        bundleId:
-          type: string
-          description: The APNS bundleId.
-        environment:
-          type: string
-          description: The APNS environment.
-          enum:
-          - development
-          - production
-        token:
-          type: string
-          description: The APNS token.
-      description: The APNS push configuration for the session
-    templateCreate:
-      required:
-      - messageParts
-      - name
-      type: object
-      properties:
-        id:
-          pattern: ^[a-zA-Z\d-_]
-          type: string
-          description: The templates unique identifier, can only contain alpha numerics, hyphens and underscores
-        name:
-          type: string
-          description: The name of the template. In the absence of an id, the name will be stripped of invalid characters and used as the id
-        description:
-          type: string
-          description: The description of the template.
-        messageParts:
-          type: array
-          description: MessageParts
-          items:
-            $ref: '#/components/schemas/messagePart'
     templateFull:
       type: object
       properties:
@@ -4010,8 +4135,6 @@ components:
           type: string
           description: The identity that created the template
           readOnly: true
-    messagePart:
-      type: object
     templateUpdate:
       required:
       - messageParts
@@ -4029,18 +4152,41 @@ components:
           description: MessageParts
           items:
             $ref: '#/components/schemas/messagePart'
+    messagePart:
+      type: object
+    templateCreate:
+      required:
+      - messageParts
+      - name
+      type: object
+      properties:
+        id:
+          pattern: ^[a-zA-Z\d-_]
+          type: string
+          description: The templates unique identifier, can only contain alpha numerics, hyphens and underscores
+        name:
+          type: string
+          description: The name of the template. In the absence of an id, the name will be stripped of invalid characters and used as the id
+        description:
+          type: string
+          description: The description of the template.
+        messageParts:
+          type: array
+          description: MessageParts
+          items:
+            $ref: '#/components/schemas/messagePart'
   securitySchemes:
     basicAuth:
       type: http
       scheme: basic
 x-refined-from:
-- dotdigital-chat-config-openapi.yml
-- dotdigital-chat-message-openapi.yml
-- dotdigital-chat-openapi.yml
-- dotdigital-chat-presence-openapi.yml
-- dotdigital-content-openapi.yml
-- dotdigital-conversation-message-openapi.yml
-- dotdigital-conversation-openapi.yml
+- chat-api.json
+- chat-config-api.json
+- chat-message-api.json
+- chat-presence-api.json
+- content-api.json
+- conversation-api.json
+- conversation-message-api.json
 - dotdigital-message-history-openapi.yml
 - dotdigital-message-rules-openapi.yml
 - dotdigital-profile-openapi.yml

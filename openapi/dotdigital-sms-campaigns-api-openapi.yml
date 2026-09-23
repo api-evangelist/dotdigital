@@ -20,7 +20,7 @@ servers:
 security:
 - basicAuth: []
 tags:
-- name: SMS campaigns
+- name: SMS Campaigns
 paths:
   /v2/sms/campaigns:
     parameters:
@@ -38,7 +38,7 @@ paths:
       description: Creates a new SMS campaign
       operationId: create-sms-campaign
       tags:
-      - SMS campaigns
+      - SMS Campaigns
       parameters: []
       requestBody:
         content:
@@ -144,7 +144,7 @@ paths:
       description: Returns existing SMS campaigns
       operationId: get-sms-campaigns
       tags:
-      - SMS campaigns
+      - SMS Campaigns
       parameters:
       - name: select
         in: query
@@ -244,7 +244,7 @@ paths:
       description: Create a copy of an existing SMS campaign
       operationId: copy-sms-campaign
       tags:
-      - SMS campaigns
+      - SMS Campaigns
       parameters: []
       requestBody:
         content:
@@ -347,7 +347,7 @@ paths:
       description: Returns an existing SMS campaign
       operationId: get-sms-campaign
       tags:
-      - SMS campaigns
+      - SMS Campaigns
       responses:
         '200':
           description: '200'
@@ -409,7 +409,7 @@ paths:
       description: Updates an existing SMS campaign, as long as the campaign has not been sent.
       operationId: update-sms-campaign
       tags:
-      - SMS campaigns
+      - SMS Campaigns
       requestBody:
         content:
           application/json:
@@ -506,7 +506,7 @@ paths:
       description: Marks an existing SMS campaign as deleted
       operationId: delete-sms-campaign
       tags:
-      - SMS campaigns
+      - SMS Campaigns
       responses:
         '200':
           description: Deleted
@@ -526,7 +526,7 @@ paths:
       description: Sends a single SMS message
       operationId: send-sms-message
       tags:
-      - SMS campaigns
+      - SMS Campaigns
       parameters:
       - name: telephoneNumber
         in: path

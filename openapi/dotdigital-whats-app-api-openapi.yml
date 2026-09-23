@@ -28,12 +28,12 @@ servers:
 security:
 - basicAuth: []
 tags:
-- name: WhatsApp
+- name: Whats App
 paths:
   /cpaas/analytics/whatsapp/conversations:
     get:
       tags:
-      - WhatsApp
+      - Whats App
       summary: Retrieves WhatsApp conversation analytics
       parameters:
       - name: wabaIds
@@ -124,11 +124,13 @@ paths:
           description: Validation errors were found
         '404':
           description: The API Space was not
+      operationId: getCpaasAnalyticsWhatsappConversations
+      x-operation-id-source: derived
   /cpaas/analytics/whatsapp/dailymessagingusage:
     get:
       tags:
-      - WhatsApp
-      summary: Retrieves WhatsApp business-initiated conversation analytics for the last 24 hours (Daily message usage)
+      - Whats App
+      summary: Retrieves WhatsApp business-initiated conversation analytics for the last 24…
       parameters:
       - name: wabaIds
         in: query
@@ -153,6 +155,8 @@ paths:
           description: Validation errors were found
         '404':
           description: The API Space was not
+      operationId: getCpaasAnalyticsWhatsappDailymessagingusage
+      x-operation-id-source: derived
 components:
   schemas:
     whatsAppDailyMessagingUsage:

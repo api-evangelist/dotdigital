@@ -54,6 +54,8 @@ paths:
           description: Device with specified id not found
       tags:
       - Apispaces
+      operationId: deleteApispacesByApiSpaceIdProfilesByIdDevicesByDeviceId
+      x-operation-id-source: derived
   /apispaces/{apiSpaceId}/profiles/devices/push/validation:
     post:
       summary: Retrieves push capabilities summary
@@ -81,6 +83,8 @@ paths:
                 $ref: '#/components/schemas/PushCapabilitiesSummary'
       tags:
       - Apispaces
+      operationId: postApispacesByApiSpaceIdProfilesDevicesPushValidation
+      x-operation-id-source: derived
 components:
   schemas:
     push_validation_body:

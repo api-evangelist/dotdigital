@@ -11,7 +11,7 @@ paths:
     get:
       tags:
       - ApiCampaignFromAddress
-      summary: Gets all custom from addresses which can be used in a campaign.
+      summary: Gets all custom from addresses which can be used in a campaign
       operationId: ApiCampaignFromAddress_GetCustomFromAddresses
       parameters:
       - name: select

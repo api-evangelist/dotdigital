@@ -28,7 +28,7 @@ paths:
     get:
       tags:
       - Bulk validation
-      summary: List bulk validation jobs.
+      summary: List bulk validation jobs
       description: Gets a list of bulk phone number validation jobs.
       operationId: getListValidationJobs
       responses:
@@ -129,9 +129,7 @@ paths:
 
         * Roaming Country IsoCode
 
-        * Roaming Country IDD
-
-        '
+        * Roaming Country IDD'
       operationId: getJobResults
       parameters:
       - name: jobId
@@ -165,6 +163,39 @@ paths:
           content: {}
 components:
   schemas:
+    phonevalidation_bulk_body:
+      required:
+      - country
+      - csv
+      - isHeader
+      - isInternational
+      - phoneField
+      - separator
+      type: object
+      properties:
+        csv:
+          type: string
+          description: The CSV file with mobile numbers to be validated.
+          format: binary
+        separator:
+          type: string
+          description: The separator used between fields in the CSV.
+          enum:
+          - comma
+          - semicolon
+          - tab
+        country:
+          type: string
+          description: The country for the bulk validation in ISO 3166-1 alpha-3 format.
+        isHeader:
+          type: boolean
+          description: '`true` if the CSV file has a header row.'
+        isInternational:
+          type: boolean
+          description: '`true` if all numbers in the file are in international format.'
+        phoneField:
+          type: string
+          description: The name of the field that contains the mobile number to be validated.
     JobDetails:
       required:
       - apiSpaceId
@@ -304,39 +335,6 @@ components:
           example: 1344aba6-a68d-4ebe-9010-5567e7ba3b25
       additionalProperties: false
       description: Represents the status and details of an asynchronous phone number validation job.
-    phonevalidation_bulk_body:
-      required:
-      - country
-      - csv
-      - isHeader
-      - isInternational
-      - phoneField
-      - separator
-      type: object
-      properties:
-        csv:
-          type: string
-          description: The CSV file with mobile numbers to be validated.
-          format: binary
-        separator:
-          type: string
-          description: The separator used between fields in the CSV.
-          enum:
-          - comma
-          - semicolon
-          - tab
-        country:
-          type: string
-          description: The country for the bulk validation in ISO 3166-1 alpha-3 format.
-        isHeader:
-          type: boolean
-          description: '`true` if the CSV file has a header row.'
-        isInternational:
-          type: boolean
-          description: '`true` if all numbers in the file are in international format.'
-        phoneField:
-          type: string
-          description: The name of the field that contains the mobile number to be validated.
   securitySchemes:
     basicAuth:
       type: http

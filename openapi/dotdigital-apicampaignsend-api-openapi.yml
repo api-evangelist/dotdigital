@@ -11,7 +11,7 @@ paths:
     post:
       tags:
       - ApiCampaignSend
-      summary: Sends a specified campaign to one or more lists, segments or contacts at a specified time. Leave the list array empty to send to All Contacts.
+      summary: Sends a specified campaign to one or more lists, segments or contacts at a…
       operationId: ApiCampaignSend_SendCampaign
       requestBody:
         x-name: apiCampaignSend
@@ -32,7 +32,7 @@ paths:
     post:
       tags:
       - ApiCampaignSend
-      summary: Sends a specified campaign to one or more lists, segments or contacts at the most appropriate time based upon their previous open. Leave the list array empty to send to All Contacts.
+      summary: Sends a specified campaign to one or more lists, segments or contacts at the…
       operationId: ApiCampaignSend_SendTimeOptimisedCampaign
       requestBody:
         x-name: apiCampaignSend
@@ -53,7 +53,7 @@ paths:
     get:
       tags:
       - ApiCampaignSend
-      summary: Gets the send status using send ID.
+      summary: Gets the send status using send ID
       operationId: ApiCampaignSend_GetCampaignSendProgress
       parameters:
       - name: sendId
@@ -72,6 +72,23 @@ paths:
                 $ref: '#/components/schemas/ApiCampaignSend'
 components:
   schemas:
+    ApiCampaignSendStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - NotSent
+      - Scheduled
+      - Sending
+      - Sent
+      - Cancelled
+      - NotAvailableInThisVersion
+      enum:
+      - NotSent
+      - Scheduled
+      - Sending
+      - Sent
+      - Cancelled
+      - NotAvailableInThisVersion
     ApiSplitTestSendOptions:
       type: object
       additionalProperties: false
@@ -128,23 +145,6 @@ components:
           readOnly: true
           oneOf:
           - $ref: '#/components/schemas/ApiCampaignSendStatuses'
-    ApiCampaignSendStatuses:
-      type: string
-      description: ''
-      x-enumNames:
-      - NotSent
-      - Scheduled
-      - Sending
-      - Sent
-      - Cancelled
-      - NotAvailableInThisVersion
-      enum:
-      - NotSent
-      - Scheduled
-      - Sending
-      - Sent
-      - Cancelled
-      - NotAvailableInThisVersion
     ApiSplitTestMetrics:
       type: string
       description: ''

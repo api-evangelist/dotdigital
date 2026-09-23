@@ -37,7 +37,7 @@ paths:
     post:
       tags:
       - Custom identifiers
-      summary: Creates a custom identifier.
+      summary: Creates a custom identifier
       description: Creates a new custom identifier that will be available to identify contacts.
       operationId: createCustomIdentifier
       requestBody:
@@ -118,8 +118,50 @@ paths:
               example:
               - errorCode: customIdentifiers:notExist
                 description: The custom identifier does not exist.
+      operationId: deleteConfigurationV3CustomIdentifiersByName
+      x-operation-id-source: derived
 components:
   schemas:
+    errorResponse:
+      required:
+      - description
+      - errorCode
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: Unique error code
+        description:
+          type: string
+          description: Description of the issue
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/errorResponse_details'
+    customIdentifierRequest:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          maxLength: 50
+          minLength: 1
+          pattern: (^[-A-Za-z0-9_]{1,50}$)
+          type: string
+          description: The unique custom identifier name.
+          example: crm-id
+    errorResponse_details:
+      required:
+      - description
+      - item
+      type: object
+      properties:
+        item:
+          type: string
+          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
+        description:
+          type: string
+          description: Description of the error
     customIdentifier:
       type: object
       properties:
@@ -137,46 +179,6 @@ components:
           description: ISO 8601 UTC timestamp for when the record was last updated.
           format: date-time
           example: '2024-05-21T12:34:56Z'
-    errorResponse:
-      required:
-      - description
-      - errorCode
-      type: object
-      properties:
-        errorCode:
-          type: string
-          description: Unique error code
-        description:
-          type: string
-          description: Description of the issue
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/errorResponse_details'
-    errorResponse_details:
-      required:
-      - description
-      - item
-      type: object
-      properties:
-        item:
-          type: string
-          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
-        description:
-          type: string
-          description: Description of the error
-    customIdentifierRequest:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          maxLength: 50
-          minLength: 1
-          pattern: (^[-A-Za-z0-9_]{1,50}$)
-          type: string
-          description: The unique custom identifier name.
-          example: crm-id
   securitySchemes:
     basicAuth:
       type: http

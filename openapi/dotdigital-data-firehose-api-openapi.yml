@@ -30,7 +30,7 @@ paths:
       tags:
       - Data Firehose
       summary: Get configuration
-      description: "Gets a Data Firehose configuration. \n"
+      description: Gets a Data Firehose configuration.
       operationId: getConfiguration
       parameters:
       - name: id
@@ -130,7 +130,12 @@ paths:
       tags:
       - Data Firehose
       summary: Delete configuration
-      description: "Deletes a Data Firehose configuration. \nIf data sync is in progress returns 409.\n\n_Note: Once a configuration deleted it cannot be restored, this is a destructive call!_"
+      description: 'Deletes a Data Firehose configuration.
+
+        If data sync is in progress returns 409.
+
+
+        _Note: Once a configuration deleted it cannot be restored, this is a destructive call!_'
       operationId: deleteConfiguration
       parameters:
       - name: id
@@ -265,6 +270,125 @@ paths:
       - basicAuth: []
 components:
   schemas:
+    azureBlobOauth_authentication:
+      required:
+      - authType
+      - clientId
+      - clientSecret
+      - tenantId
+      type: object
+      properties:
+        authType:
+          type: string
+          description: The authentication type
+          enum:
+          - oAuth2
+        tenantId:
+          type: string
+          description: The Microsoft Entra tenant (directory) ID of the service principal.
+          example: de249954-0df3-4661-acde-1e1be9d73fd6
+        clientId:
+          type: string
+          description: The client (application) ID of the service principal.
+          example: key123123
+        clientSecret:
+          type: string
+          description: A client secret that was generated for the App Registration used to authenticate the client.
+          example: some-secret
+      additionalProperties: false
+      description: The authentication details for the platform
+    googleCloudStorage:
+      required:
+      - authentication
+      - configuration
+      - platform
+      type: object
+      properties:
+        platform:
+          type: string
+          enum:
+          - googleCloudStorage
+        configuration:
+          $ref: '#/components/schemas/googleCloudStorage_configuration'
+        authentication:
+          $ref: '#/components/schemas/googleCloudStorage_authentication'
+      additionalProperties: false
+      description: Amazon S3 storage
+    errorResponse:
+      required:
+      - description
+      - errorCode
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: Unique error code
+        description:
+          type: string
+          description: Description of the issue
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/errorResponse_details'
+    amazonS3sas_authentication:
+      required:
+      - accessKey
+      - authType
+      - secretAccessKey
+      type: object
+      properties:
+        authType:
+          type: string
+          description: The authentication type
+          enum:
+          - sas
+        accessKey:
+          type: string
+          description: The access key for the S3 storage
+          example: key123123
+        secretAccessKey:
+          type: string
+          description: The secret for the access key for the S3 storage
+          example: some-secret
+      additionalProperties: false
+      description: The authentication details for the platform
+    azureBlobSas:
+      required:
+      - authentication
+      - configuration
+      - platform
+      type: object
+      properties:
+        platform:
+          type: string
+          enum:
+          - azureBlobStorage
+        configuration:
+          $ref: '#/components/schemas/azureBlobOauth_configuration'
+        authentication:
+          $ref: '#/components/schemas/azureBlobSas_authentication'
+      additionalProperties: false
+      description: Amazon S3 storage
+    googleCloudStorage_configuration:
+      required:
+      - addAccountIdToPath
+      - bucketName
+      - folderPath
+      type: object
+      properties:
+        folderPath:
+          type: string
+          description: The specific folder path within the GCS bucket where the data will be stored.
+          example: dataPool1
+        bucketName:
+          type: string
+          description: The GCS bucket name where the data will be stored.
+          example: myBucketName
+        addAccountIdToPath:
+          type: boolean
+          description: Add the account id as a suffix to the path for identification purposes.
+      additionalProperties: false
+      description: The configuration parameters for the storage.
     sftpPrivateKey:
       required:
       - authentication
@@ -302,51 +426,6 @@ components:
           type: string
           description: The hostname or IP address of the server.
           example: my-sftp-server.com
-        addAccountIdToPath:
-          type: boolean
-          description: Add the account id as a suffix to the path for identification purposes.
-      additionalProperties: false
-      description: The configuration parameters for the storage.
-    smsFailedEvent:
-      required:
-      - eventType
-      type: object
-      properties:
-        eventType:
-          type: string
-          description: The event type.
-          enum:
-          - sms.failed
-        filters:
-          maxItems: 100
-          minItems: 1
-          type: array
-          description: Optional additional filters for the event.
-          items:
-            type: string
-            enum:
-            - failed
-            - expired
-            - deleted
-            - softBounced
-            - hardBounced
-            - skipped
-      additionalProperties: false
-    googleCloudStorage_configuration:
-      required:
-      - addAccountIdToPath
-      - bucketName
-      - folderPath
-      type: object
-      properties:
-        folderPath:
-          type: string
-          description: The specific folder path within the GCS bucket where the data will be stored.
-          example: dataPool1
-        bucketName:
-          type: string
-          description: The GCS bucket name where the data will be stored.
-          example: myBucketName
         addAccountIdToPath:
           type: boolean
           description: Add the account id as a suffix to the path for identification purposes.
@@ -418,118 +497,6 @@ components:
           example: googleapis.com
       additionalProperties: false
       description: The authentication details for the platform
-    errorResponse_details:
-      required:
-      - description
-      - item
-      type: object
-      properties:
-        item:
-          type: string
-          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
-        description:
-          type: string
-          description: Description of the error
-    sftpPrivateKey_authentication:
-      required:
-      - authType
-      - privateKey
-      - username
-      type: object
-      properties:
-        authType:
-          type: string
-          description: The authentication type.
-          enum:
-          - privateKey
-        username:
-          type: string
-          description: Username to authenticate with.
-          example: myUser
-        privateKey:
-          type: string
-          description: SSH private key to authenticate with.
-          example: REDACTED_PRIVATE_KEY_EXAMPLE
-      additionalProperties: false
-      description: The authentication details for the platform
-    azureBlobSas_authentication:
-      required:
-      - authType
-      - sasToken
-      type: object
-      properties:
-        authType:
-          type: string
-          description: The authentication type
-          enum:
-          - sasToken
-        sasToken:
-          type: string
-          description: Shared access signature to use to authenticate with the Azure service.
-          example: 2021-10-04&se=2023-03-20T11%3A20%3A45Z&sr=b&sp=r&sig=M5GaoRgyIWcLMMfggqfZ9pI01dZLyFD0Em5WdCNsUuk%3D
-      additionalProperties: false
-      description: The authentication details for the platform
-    azureBlobSas:
-      required:
-      - authentication
-      - configuration
-      - platform
-      type: object
-      properties:
-        platform:
-          type: string
-          enum:
-          - azureBlobStorage
-        configuration:
-          $ref: '#/components/schemas/azureBlobOauth_configuration'
-        authentication:
-          $ref: '#/components/schemas/azureBlobSas_authentication'
-      additionalProperties: false
-      description: Amazon S3 storage
-    googleCloudStorage:
-      required:
-      - authentication
-      - configuration
-      - platform
-      type: object
-      properties:
-        platform:
-          type: string
-          enum:
-          - googleCloudStorage
-        configuration:
-          $ref: '#/components/schemas/googleCloudStorage_configuration'
-        authentication:
-          $ref: '#/components/schemas/googleCloudStorage_authentication'
-      additionalProperties: false
-      description: Amazon S3 storage
-    azureBlobOauth_authentication:
-      required:
-      - authType
-      - clientId
-      - clientSecret
-      - tenantId
-      type: object
-      properties:
-        authType:
-          type: string
-          description: The authentication type
-          enum:
-          - oAuth2
-        tenantId:
-          type: string
-          description: The Microsoft Entra tenant (directory) ID of the service principal.
-          example: de249954-0df3-4661-acde-1e1be9d73fd6
-        clientId:
-          type: string
-          description: The client (application) ID of the service principal.
-          example: key123123
-        clientSecret:
-          type: string
-          description: A client secret that was generated for the App Registration used to authenticate the client.
-          example: some-secret
-      additionalProperties: false
-      description: The authentication details for the platform
     azureBlobOauth_configuration:
       required:
       - accountName
@@ -556,53 +523,80 @@ components:
           description: Add the account id as a suffix to the path for identification purposes.
       additionalProperties: false
       description: The configuration parameters for the storage.
-    ftpsPassword_authentication:
+    ftpsPassword:
       required:
-      - authType
-      - password
-      - username
+      - authentication
+      - configuration
+      - platform
       type: object
       properties:
-        authType:
+        platform:
           type: string
-          description: The authentication type.
           enum:
-          - password
-        username:
-          type: string
-          description: Username to authenticate with.
-          example: myUser
-        password:
-          type: string
-          description: Password.
-          example: sssh don't tell
+          - ftps
+        configuration:
+          $ref: '#/components/schemas/ftpsPassword_configuration'
+        authentication:
+          $ref: '#/components/schemas/ftpsPassword_authentication'
       additionalProperties: false
-      description: The authentication details for the platform
-    ftpsPassword_configuration:
+      description: Amazon S3 storage
+    sftpPassword:
       required:
-      - addAccountIdToPath
-      - folderPath
-      - host
-      - port
+      - authentication
+      - configuration
+      - platform
       type: object
       properties:
-        folderPath:
+        platform:
           type: string
-          description: The folder path on the server.
-          example: ./events/dotdigital
-        port:
-          type: integer
-          description: The TCP port to use for the connections.
-          example: 21
-        host:
-          type: string
-          description: The hostname or IP address of the server.
-          example: my-sftp-server.com
-        addAccountIdToPath:
-          type: boolean
-          description: Add the account id as a suffix to the path for identification purposes.
+          enum:
+          - sftp
+        configuration:
+          $ref: '#/components/schemas/sftpPassword_configuration'
+        authentication:
+          $ref: '#/components/schemas/ftpsPassword_authentication'
       additionalProperties: false
-      description: The configuration parameters for the storage.
+      description: Amazon S3 storage
+    emailFailedEvent:
+      required:
+      - eventType
+      type: object
+      properties:
+        eventType:
+          type: string
+          description: The event type.
+          enum:
+          - email.failed
+        filters:
+          maxItems: 100
+          minItems: 1
+          type: array
+          description: Optional additional filters for the event.
+          items:
+            type: string
+            enum:
+            - hardBounced
+            - softBounced
+            - mailBlocked
+      additionalProperties: false
+    fireshoseConfiguration:
+      allOf:
+      - required:
+        - id
+        - status
+        type: object
+        properties:
+          id:
+            type: string
+            description: The unique identifier for the Data Firehose configuration.
+          status:
+            type: string
+            description: The status of this sync configuration
+            enum:
+            - enabled
+            - disabled
+        additionalProperties: false
+      - $ref: '#/components/schemas/fireshoseConfigurationRequest'
     fireshoseConfigurationRequest:
       required:
       - alertsConfiguration
@@ -699,23 +693,6 @@ components:
             description: Email and in-app alerts
       additionalProperties: false
       description: A configuration for Data Firehose.
-    ftpsPassword:
-      required:
-      - authentication
-      - configuration
-      - platform
-      type: object
-      properties:
-        platform:
-          type: string
-          enum:
-          - ftps
-        configuration:
-          $ref: '#/components/schemas/ftpsPassword_configuration'
-        authentication:
-          $ref: '#/components/schemas/ftpsPassword_authentication'
-      additionalProperties: false
-      description: Amazon S3 storage
     azureBlobOauth:
       required:
       - authentication
@@ -733,65 +710,65 @@ components:
           $ref: '#/components/schemas/azureBlobOauth_authentication'
       additionalProperties: false
       description: Amazon S3 storage
-    sftpPassword:
+    smsFailedEvent:
       required:
-      - authentication
-      - configuration
-      - platform
+      - eventType
       type: object
       properties:
-        platform:
+        eventType:
           type: string
+          description: The event type.
           enum:
-          - sftp
-        configuration:
-          $ref: '#/components/schemas/sftpPassword_configuration'
-        authentication:
-          $ref: '#/components/schemas/ftpsPassword_authentication'
+          - sms.failed
+        filters:
+          maxItems: 100
+          minItems: 1
+          type: array
+          description: Optional additional filters for the event.
+          items:
+            type: string
+            enum:
+            - failed
+            - expired
+            - deleted
+            - softBounced
+            - hardBounced
+            - skipped
       additionalProperties: false
-      description: Amazon S3 storage
-    amazonS3sas_configuration:
-      required:
-      - addAccountIdToPath
-      - bucketName
-      - folderPath
-      - regionEndpoint
-      type: object
-      properties:
-        bucketName:
-          type: string
-          description: The S3 bucket name
-          example: dataPool1
-        regionEndpoint:
-          type: string
-          description: The regional endpoint URL for the S3 service.
-          format: uri
-          example: eu-central-1
-        folderPath:
-          type: string
-          description: The folder path within the bucket.
-          example: events/test
-        addAccountIdToPath:
-          type: boolean
-          description: Add the account id as a suffix to the path for identification purposes.
-      additionalProperties: false
-      description: The configuration parameters for the storage.
-    errorResponse:
+    errorResponse_details:
       required:
       - description
-      - errorCode
+      - item
       type: object
       properties:
-        errorCode:
+        item:
           type: string
-          description: Unique error code
+          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
         description:
           type: string
-          description: Description of the issue
-        details:
+          description: Description of the error
+    transactionalEmailFailedEvent:
+      required:
+      - eventType
+      type: object
+      properties:
+        eventType:
+          type: string
+          description: The event type.
+          enum:
+          - transactional.emailFailed
+        filters:
+          maxItems: 100
+          minItems: 1
           type: array
+          description: Optional additional filters for the event.
           items:
-            $ref: '#/components/schemas/errorResponse_details'
+            type: string
+            enum:
+            - hardBounced
+            - softBounced
+            - mailBlocked
+      additionalProperties: false
     unfilteredEvents:
       required:
       - eventType
@@ -826,24 +803,96 @@ components:
           - sms.remove
           - transactional.emailCampaignSend
       additionalProperties: false
-    fireshoseConfiguration:
-      allOf:
-      - required:
-        - id
-        - status
-        type: object
-        properties:
-          id:
-            type: string
-            description: The unique identifier for the Data Firehose configuration.
-          status:
-            type: string
-            description: The status of this sync configuration
-            enum:
-            - enabled
-            - disabled
-        additionalProperties: false
-      - $ref: '#/components/schemas/fireshoseConfigurationRequest'
+    sftpPrivateKey_authentication:
+      required:
+      - authType
+      - privateKey
+      - username
+      type: object
+      properties:
+        authType:
+          type: string
+          description: The authentication type.
+          enum:
+          - privateKey
+        username:
+          type: string
+          description: Username to authenticate with.
+          example: myUser
+        privateKey:
+          type: string
+          description: SSH private key to authenticate with.
+          example: REDACTED_PRIVATE_KEY_EXAMPLE
+      additionalProperties: false
+      description: The authentication details for the platform
+    azureBlobSas_authentication:
+      required:
+      - authType
+      - sasToken
+      type: object
+      properties:
+        authType:
+          type: string
+          description: The authentication type
+          enum:
+          - sasToken
+        sasToken:
+          type: string
+          description: Shared access signature to use to authenticate with the Azure service.
+          example: 2021-10-04&se=2023-03-20T11%3A20%3A45Z&sr=b&sp=r&sig=M5GaoRgyIWcLMMfggqfZ9pI01dZLyFD0Em5WdCNsUuk%3D
+      additionalProperties: false
+      description: The authentication details for the platform
+    amazonS3sas_configuration:
+      required:
+      - addAccountIdToPath
+      - bucketName
+      - folderPath
+      - regionEndpoint
+      type: object
+      properties:
+        bucketName:
+          type: string
+          description: The S3 bucket name
+          example: dataPool1
+        regionEndpoint:
+          type: string
+          description: The regional endpoint URL for the S3 service.
+          format: uri
+          example: eu-central-1
+        folderPath:
+          type: string
+          description: The folder path within the bucket.
+          example: events/test
+        addAccountIdToPath:
+          type: boolean
+          description: Add the account id as a suffix to the path for identification purposes.
+      additionalProperties: false
+      description: The configuration parameters for the storage.
+    ftpsPassword_configuration:
+      required:
+      - addAccountIdToPath
+      - folderPath
+      - host
+      - port
+      type: object
+      properties:
+        folderPath:
+          type: string
+          description: The folder path on the server.
+          example: ./events/dotdigital
+        port:
+          type: integer
+          description: The TCP port to use for the connections.
+          example: 21
+        host:
+          type: string
+          description: The hostname or IP address of the server.
+          example: my-sftp-server.com
+        addAccountIdToPath:
+          type: boolean
+          description: Add the account id as a suffix to the path for identification purposes.
+      additionalProperties: false
+      description: The configuration parameters for the storage.
     amazonS3sas:
       required:
       - authentication
@@ -861,70 +910,26 @@ components:
           $ref: '#/components/schemas/amazonS3sas_authentication'
       additionalProperties: false
       description: Amazon S3 storage
-    transactionalEmailFailedEvent:
+    ftpsPassword_authentication:
       required:
-      - eventType
-      type: object
-      properties:
-        eventType:
-          type: string
-          description: The event type.
-          enum:
-          - transactional.emailFailed
-        filters:
-          maxItems: 100
-          minItems: 1
-          type: array
-          description: Optional additional filters for the event.
-          items:
-            type: string
-            enum:
-            - hardBounced
-            - softBounced
-            - mailBlocked
-      additionalProperties: false
-    emailFailedEvent:
-      required:
-      - eventType
-      type: object
-      properties:
-        eventType:
-          type: string
-          description: The event type.
-          enum:
-          - email.failed
-        filters:
-          maxItems: 100
-          minItems: 1
-          type: array
-          description: Optional additional filters for the event.
-          items:
-            type: string
-            enum:
-            - hardBounced
-            - softBounced
-            - mailBlocked
-      additionalProperties: false
-    amazonS3sas_authentication:
-      required:
-      - accessKey
       - authType
-      - secretAccessKey
+      - password
+      - username
       type: object
       properties:
         authType:
           type: string
-          description: The authentication type
+          description: The authentication type.
           enum:
-          - sas
-        accessKey:
+          - password
+        username:
           type: string
-          description: The access key for the S3 storage
-          example: key123123
-        secretAccessKey:
+          description: Username to authenticate with.
+          example: myUser
+        password:
           type: string
-          description: The secret for the access key for the S3 storage
-          example: some-secret
+          description: Password.
+          example: sssh don't tell
       additionalProperties: false
       description: The authentication details for the platform
   securitySchemes:

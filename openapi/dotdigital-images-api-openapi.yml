@@ -136,9 +136,7 @@ paths:
       description: 'This operation can be used to create a new image folder within an existing image folder, whilst child folders can also be created to nest within it.
 
 
-        **Note:** The accounts root folder id is `0`
-
-        '
+        **Note:** The accounts root folder id is `0`'
       operationId: create-image-folder
       tags:
       - Images
@@ -300,9 +298,7 @@ paths:
 
         * Size in bytes
 
-        * Image content tags
-
-        '
+        * Image content tags'
       responses:
         '200':
           description: '200'
@@ -376,17 +372,17 @@ paths:
         The permitted file types are as follows:
 
 
-        | File extension | MIME type     | File type    |
+        | File extension | MIME type | File type |
 
         | :------------- | :------------ | :----------- |
 
-        | .gif           | image/gif     | GIF Image    |
+        | .gif | image/gif | GIF Image |
 
-        | .jpeg          | image/jpeg    | JPEG Image   |
+        | .jpeg | image/jpeg | JPEG Image |
 
-        | .jpg           | image/jpeg    | JPEG Image   |
+        | .jpg | image/jpeg | JPEG Image |
 
-        | .png           | image/png     | PNG image    |
+        | .png | image/png | PNG image |
 
 
         It can accept either a file uploaded using form data or a JSON body with the filename and file data in Base64. You can choose which method works best for you.'

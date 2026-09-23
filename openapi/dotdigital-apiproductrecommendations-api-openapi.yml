@@ -11,7 +11,7 @@ paths:
     get:
       tags:
       - ApiProductRecommendations
-      summary: Gets all product recommendations for the account.
+      summary: Gets all product recommendations for the account
       operationId: ApiProductRecommendations_GetProductRecommendations
       responses:
         '200':
@@ -24,6 +24,21 @@ paths:
                   $ref: '#/components/schemas/ApiProductRecommendation'
 components:
   schemas:
+    ApiProductRecommendationStatus:
+      type: string
+      description: ''
+      x-enumNames:
+      - Ready
+      - InProgress
+      - Failed
+      - Queued
+      - NotAvailableInThisVersion
+      enum:
+      - Ready
+      - InProgress
+      - Failed
+      - Queued
+      - NotAvailableInThisVersion
     ApiProductRecommendation:
       type: object
       additionalProperties: false
@@ -86,20 +101,5 @@ components:
       - Trending
       - BestNext
       - Hybrid
-      - NotAvailableInThisVersion
-    ApiProductRecommendationStatus:
-      type: string
-      description: ''
-      x-enumNames:
-      - Ready
-      - InProgress
-      - Failed
-      - Queued
-      - NotAvailableInThisVersion
-      enum:
-      - Ready
-      - InProgress
-      - Failed
-      - Queued
       - NotAvailableInThisVersion
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

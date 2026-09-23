@@ -5,13 +5,13 @@ info:
 servers:
 - url: https://r1-api.dotdigital.com
 tags:
-- name: ApiImage
+- name: API Image
 paths:
   /v2/image-folders:
     get:
       tags:
-      - ApiImage
-      summary: Fetches the campaign image folder tree structure.
+      - API Image
+      summary: Fetches the campaign image folder tree structure
       operationId: ApiImage_GetImageFolders
       responses:
         '200':
@@ -25,8 +25,8 @@ paths:
   /v2/image-folders/{id}:
     get:
       tags:
-      - ApiImage
-      summary: Gets an image folder by id.
+      - API Image
+      summary: Gets an image folder by id
       operationId: ApiImage_GetImageFolderById
       parameters:
       - name: id
@@ -45,8 +45,8 @@ paths:
                 $ref: '#/components/schemas/ApiImageFolder'
     post:
       tags:
-      - ApiImage
-      summary: Creates a new campaign image folder.
+      - API Image
+      summary: Creates a new campaign image folder
       operationId: ApiImage_CreateImageFolder
       parameters:
       - name: id
@@ -74,8 +74,8 @@ paths:
   /v2/image-folders/{folderId}/images:
     post:
       tags:
-      - ApiImage
-      summary: Uploads a new campaign image into the specified folder.
+      - API Image
+      summary: Uploads a new campaign image into the specified folder
       operationId: ApiImage_UploadImage
       parameters:
       - name: folderId
@@ -102,6 +102,19 @@ paths:
                 $ref: '#/components/schemas/ApiImage'
 components:
   schemas:
+    ApiFileMedia:
+      type: object
+      additionalProperties: false
+      properties:
+        fileName:
+          type:
+          - string
+          - 'null'
+        data:
+          type:
+          - string
+          - 'null'
+          format: byte
     ApiImage:
       type: object
       additionalProperties: false
@@ -135,17 +148,4 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/ApiImageFolder'
-    ApiFileMedia:
-      type: object
-      additionalProperties: false
-      properties:
-        fileName:
-          type:
-          - string
-          - 'null'
-        data:
-          type:
-          - string
-          - 'null'
-          format: byte
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

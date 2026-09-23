@@ -11,7 +11,7 @@ paths:
     post:
       tags:
       - ApiSms
-      summary: Sends a single SMS message.
+      summary: Sends a single SMS message
       operationId: ApiSms_SendSingleSmsMessage
       parameters:
       - name: telephoneNumber
@@ -35,7 +35,7 @@ paths:
     post:
       tags:
       - ApiSms
-      summary: Creates an SMS campaign.
+      summary: Creates an SMS campaign
       operationId: ApiSms_CreateSmsCampaign
       requestBody:
         x-name: apiSmsCampaign
@@ -55,7 +55,7 @@ paths:
     get:
       tags:
       - ApiSms
-      summary: Gets SMS Campaigns.
+      summary: Gets SMS Campaigns
       operationId: ApiSms_GetSmsCampaigns
       parameters:
       - name: select
@@ -83,7 +83,7 @@ paths:
     put:
       tags:
       - ApiSms
-      summary: Updates an SMS campaign.
+      summary: Updates an SMS campaign
       operationId: ApiSms_UpdateSmsCampaign
       parameters:
       - name: id
@@ -111,7 +111,7 @@ paths:
     delete:
       tags:
       - ApiSms
-      summary: Deletes an SMS campaign.
+      summary: Deletes an SMS campaign
       operationId: ApiSms_DeleteSmsCampaign
       parameters:
       - name: id
@@ -127,7 +127,7 @@ paths:
     get:
       tags:
       - ApiSms
-      summary: Gets SMS campaign by Id.
+      summary: Gets SMS campaign by Id
       operationId: ApiSms_GetSmsCampaign
       parameters:
       - name: id
@@ -148,7 +148,7 @@ paths:
     post:
       tags:
       - ApiSms
-      summary: Copies an SMS campaign.
+      summary: Copies an SMS campaign
       operationId: ApiSms_CopySmsCampaign
       requestBody:
         x-name: apiCopyrequest
@@ -167,44 +167,6 @@ paths:
                 $ref: '#/components/schemas/ApiSmsCampaign'
 components:
   schemas:
-    ApiCopySmsCampaignRequest:
-      type: object
-      additionalProperties: false
-      required:
-      - campaignId
-      - copyName
-      properties:
-        campaignId:
-          type: integer
-          format: int32
-        copyName:
-          type: string
-          maxLength: 256
-          minLength: 1
-    ApiSms:
-      type: object
-      additionalProperties: false
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          minLength: 1
-    ApiSmsCampaignStatuses:
-      type: string
-      description: ''
-      x-enumNames:
-      - Unsent
-      - Sending
-      - Sent
-      - Cancelled
-      - NotAvailableInThisVersion
-      enum:
-      - Unsent
-      - Sending
-      - Sent
-      - Cancelled
-      - NotAvailableInThisVersion
     ApiSmsCampaign:
       allOf:
       - $ref: '#/components/schemas/ApiSms'
@@ -236,4 +198,42 @@ components:
             readOnly: true
             oneOf:
             - $ref: '#/components/schemas/ApiSmsCampaignStatuses'
+    ApiCopySmsCampaignRequest:
+      type: object
+      additionalProperties: false
+      required:
+      - campaignId
+      - copyName
+      properties:
+        campaignId:
+          type: integer
+          format: int32
+        copyName:
+          type: string
+          maxLength: 256
+          minLength: 1
+    ApiSmsCampaignStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - Unsent
+      - Sending
+      - Sent
+      - Cancelled
+      - NotAvailableInThisVersion
+      enum:
+      - Unsent
+      - Sending
+      - Sent
+      - Cancelled
+      - NotAvailableInThisVersion
+    ApiSms:
+      type: object
+      additionalProperties: false
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          minLength: 1
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

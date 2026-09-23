@@ -2,9 +2,7 @@ openapi: 3.2.0
 info:
   title: Lists / Address books API
   version: 2.0.2
-  description: 'Manage contact lists (address books) and their memberships. Use this API to create, update, and delete lists; retrieve all, public, or private lists; bulk-import contacts; remove individual or multiple contacts; manage subscription status (unsubscribe and resubscribe); and query contacts within a list by preference opt-in status or unsubscribe date.
-
-    '
+  description: Manage contact lists (address books) and their memberships. Use this API to create, update, and delete lists; retrieve all, public, or private lists; bulk-import contacts; remove individual or multiple contacts; manage subscription status (unsubscribe and resubscribe); and query contacts within a list by preference opt-in status or unsubscribe date.
 servers:
 - url: https://{region}-api.dotdigital.com
   variables:

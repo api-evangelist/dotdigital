@@ -79,6 +79,8 @@ paths:
           description: Unauthorized
         '500':
           description: Internal server error
+      operationId: getCpaasChannelsWhatsappCloud
+      x-operation-id-source: derived
     post:
       tags:
       - WhatsApp configurations
@@ -102,20 +104,10 @@ paths:
           description: The Cloud configuration already exists
         '500':
           description: Internal server error
+      operationId: postCpaasChannelsWhatsappCloud
+      x-operation-id-source: derived
 components:
   schemas:
-    whatsAppCloudConfigurationCreate:
-      required:
-      - phoneNumberId
-      - wabaId
-      type: object
-      properties:
-        phoneNumberId:
-          type: string
-          description: Originator phone number id.
-        wabaId:
-          type: string
-          description: WhatsApp Business account id.
     whatsAppCloudConfiguration:
       type: object
       properties:
@@ -207,6 +199,18 @@ components:
       type: string
       description: The unique WhatsApp Business Account (WABA) identifier.
       example: '226114410888722'
+    whatsAppCloudConfigurationCreate:
+      required:
+      - phoneNumberId
+      - wabaId
+      type: object
+      properties:
+        phoneNumberId:
+          type: string
+          description: Originator phone number id.
+        wabaId:
+          type: string
+          description: WhatsApp Business account id.
   securitySchemes:
     basicAuth:
       type: http

@@ -22,12 +22,12 @@ servers:
 security:
 - basicAuth: []
 tags:
-- name: WhatsApp numbers
+- name: WhatsApp Numbers
 paths:
   /cpaas/channels/whatsapp/cloud/{phoneNumber}:
     get:
       tags:
-      - WhatsApp numbers
+      - WhatsApp Numbers
       summary: Get WhatsApp number
       description: Retrieves the WhatsApp configuration for a number.
       parameters:
@@ -62,13 +62,14 @@ paths:
           description: The WhatsApp channel configuration was not found
         '500':
           description: Internal server error
+      operationId: getCpaasChannelsWhatsappCloudByPhoneNumber
+      x-operation-id-source: derived
     delete:
       tags:
-      - WhatsApp numbers
+      - WhatsApp Numbers
       summary: Removes WhatsApp number
       description: 'Removes a WhatsApp number configuration permaently.
 
-        <br><br>
 
         **Warning: This action cannot be undone!**'
       parameters:
@@ -89,10 +90,12 @@ paths:
           description: The cloud originator number was not found
         '500':
           description: Internal server error
+      operationId: deleteCpaasChannelsWhatsappCloudByPhoneNumber
+      x-operation-id-source: derived
   /cpaas/channels/whatsapp/cloud/register/{phoneNumber}:
     post:
       tags:
-      - WhatsApp numbers
+      - WhatsApp Numbers
       summary: Registers WhatsApp number
       description: Registers a WhatsApp configuration for a number.
       parameters:
@@ -117,8 +120,16 @@ paths:
           description: The WhatsApp channel configuration for the phone number was not found
         '500':
           description: Internal server error
+      operationId: postCpaasChannelsWhatsappCloudRegisterByPhoneNumber
+      x-operation-id-source: derived
 components:
   schemas:
+    registrationResult:
+      type: boolean
+    wabaId:
+      type: string
+      description: The unique WhatsApp Business Account (WABA) identifier.
+      example: '226114410888722'
     whatsAppCloudConfiguration:
       type: object
       properties:
@@ -206,12 +217,6 @@ components:
           description: The UTC date time of when the configuration was created.
           format: date-time
           example: '2025-01-01T00:00:00Z'
-    wabaId:
-      type: string
-      description: The unique WhatsApp Business Account (WABA) identifier.
-      example: '226114410888722'
-    registrationResult:
-      type: boolean
   securitySchemes:
     basicAuth:
       type: http

@@ -11,7 +11,7 @@ paths:
     get:
       tags:
       - ApiAddressBook
-      summary: Gets a list by ID.
+      summary: Gets a list by ID
       operationId: ApiAddressBook_GetAddressBookById
       parameters:
       - name: id
@@ -31,7 +31,7 @@ paths:
     put:
       tags:
       - ApiAddressBook
-      summary: Updates a list.
+      summary: Updates a list
       operationId: ApiAddressBook_UpdateAddressBook
       parameters:
       - name: id
@@ -59,7 +59,7 @@ paths:
     delete:
       tags:
       - ApiAddressBook
-      summary: Deletes a list.
+      summary: Deletes a list
       operationId: ApiAddressBook_DeleteAddressBook
       parameters:
       - name: id
@@ -81,7 +81,7 @@ paths:
     get:
       tags:
       - ApiAddressBook
-      summary: Gets all lists.
+      summary: Gets all lists
       operationId: ApiAddressBook_GetAddressBooks
       parameters:
       - name: select
@@ -110,7 +110,7 @@ paths:
     post:
       tags:
       - ApiAddressBook
-      summary: Creates a list.
+      summary: Creates a list
       operationId: ApiAddressBook_CreateAddressBook
       requestBody:
         x-name: apiAddressBook
@@ -131,7 +131,7 @@ paths:
     get:
       tags:
       - ApiAddressBook
-      summary: Gets all private lists.
+      summary: Gets all private lists
       operationId: ApiAddressBook_GetPrivateAddressBooks
       parameters:
       - name: select
@@ -161,7 +161,7 @@ paths:
     get:
       tags:
       - ApiAddressBook
-      summary: Gets all public lists.
+      summary: Gets all public lists
       operationId: ApiAddressBook_GetPublicAddressBooks
       parameters:
       - name: select
@@ -191,7 +191,7 @@ paths:
     get:
       tags:
       - ApiAddressBook
-      summary: Gets any lists that a contact is in.
+      summary: Gets any lists that a contact is in
       operationId: ApiAddressBook_GetAddressBooksForContact
       parameters:
       - name: contactId
@@ -228,7 +228,7 @@ paths:
     get:
       tags:
       - ApiAddressBook
-      summary: Gets any lists that a campaign has ever been sent to.
+      summary: Gets any lists that a campaign has ever been sent to
       operationId: ApiAddressBook_GetAddressBooksForCampaign
       parameters:
       - name: campaignId
@@ -263,6 +263,17 @@ paths:
                   $ref: '#/components/schemas/ApiAddressBook'
 components:
   schemas:
+    ApiAddressBookVisibility:
+      type: string
+      description: ''
+      x-enumNames:
+      - Private
+      - Public
+      - NotAvailableInThisVersion
+      enum:
+      - Private
+      - Public
+      - NotAvailableInThisVersion
     ApiAddressBook:
       type: object
       additionalProperties: false
@@ -280,15 +291,4 @@ components:
         contacts:
           type: integer
           format: int32
-    ApiAddressBookVisibility:
-      type: string
-      description: ''
-      x-enumNames:
-      - Private
-      - Public
-      - NotAvailableInThisVersion
-      enum:
-      - Private
-      - Public
-      - NotAvailableInThisVersion
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

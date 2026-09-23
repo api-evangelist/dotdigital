@@ -1,8 +1,14 @@
 openapi: 3.2.0
 info:
-  title: Dotdigital Programs API
-  version: '1.0'
-  description: 'Operations tagged Programs across 2 of this provider''s published API definitions: dotdigital-product-recommendations-openapi.yml, dotdigital-programs-openapi.yml. Each path carries the servers of the definition it was published in.'
+  title: Programs API
+  description: 'Manage automation programs and enrolments. Use this API to list all programs,
+
+    retrieve a specific program by ID, create enrolments for contacts or address
+
+    books into a program, check enrolment status, retrieve enrolments filtered by
+
+    status, and download a fault report listing contacts that failed to enrol.'
+  version: 2.0.1
 servers:
 - url: https://{region}-api.dotdigital.com
   variables:
@@ -18,161 +24,6 @@ security:
 tags:
 - name: Programs
 paths:
-  /v2/products/recommendations:
-    parameters:
-    - in: header
-      name: x-ddg-integration-token
-      required: false
-      description: If you are a partner of Dotdigital and have a [verified integration](https://developer.dotdigital.com/docs/partner-integration-verification) then include your [integration tracking token](https://developer.dotdigital.co/docs/verified-integration-tracking) here.
-      schema:
-        type: string
-        pattern: /^(?:\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\}{0,1})$/
-        example: 5a96bc79-19a7-4544-973b-e2da0c9136f9
-    get:
-      summary: Get all product recommendations
-      deprecated: false
-      description: Gets all product recommendations
-      operationId: get-all-product-recommendations
-      tags:
-      - Programs
-      parameters: []
-      responses:
-        '200':
-          description: '200'
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  required:
-                  - id
-                  - dateLastRefreshed
-                  - dateModified
-                  - dateLastUsed
-                  - name
-                  - type
-                  - status
-                  - fallbackRecommendationId
-                  - revenue
-                  properties:
-                    id:
-                      description: The product recommendations unique ID.
-                      type: integer
-                      default: 0
-                      examples:
-                      - 1
-                    dateLastRefreshed:
-                      description: The date time the product recommendations were last refreshed in UTC ISO-8601 format.
-                      type: string
-                      format: date-time
-                      examples:
-                      - '2020-01-01T09:40:18.527Z'
-                    dateModified:
-                      description: The date time the product recommendations were modified in UTC ISO-8601 format.
-                      type: string
-                      format: date-time
-                      examples:
-                      - '2020-01-01T09:40:18.527Z'
-                    dateLastUsed:
-                      description: The date time the product recommendations were last used in UTC ISO-8601 format.
-                      type: string
-                      format: date-time
-                      examples:
-                      - '2020-01-01T09:40:18.527Z'
-                    name:
-                      description: The name of the product recommendation.
-                      type: string
-                      examples:
-                      - Best sellers
-                    type:
-                      description: The type of product recommendation.
-                      type: string
-                      enum:
-                      - BestSellers
-                      - MostViewed
-                      - FilterOnly
-                      - LastBrowsed
-                      - BoughtTogether
-                      - Newest
-                      - Lookalikes
-                      - AlsoBought
-                      - Trending
-                      - BestNext
-                      - NextOrderPrediction
-                      - Hybrid
-                      - ChurnPrediction
-                      - CLVPrediction
-                      - OrderCountPrediction
-                      - RecentlyAdded
-                      - AlsoBoughtV2
-                      examples:
-                      - BestSellers
-                    status:
-                      description: The status of the product recommendation.
-                      type: string
-                      enum:
-                      - Ready
-                      - InProgress
-                      - Failed
-                      - Queued
-                      - Empty
-                      - Warning
-                      examples:
-                      - Failed
-                    fallbackRecommendationId:
-                      description: The ID of the product recommendation to fall back to if the current one produces no recommendations.
-                      type: integer
-                      default: 0
-                      examples:
-                      - 12345
-                    revenue:
-                      description: The revenue value attributed with this product recommendation.
-                      type: number
-                      default: 0
-                      examples:
-                      - 199.99
-              examples:
-                Result:
-                  summary: Accounts product recommendations
-                  value:
-                  - id: 1
-                    dateLastRefreshed: '2020-01-01T09:40:18.527Z'
-                    dateModified: '2020-01-01T09:40:18.527Z'
-                    dateLastUsed: '2020-01-01T09:40:18.527Z'
-                    name: Best sellers
-                    type: BestSellers
-                    status: Failed
-                    fallbackRecommendationId: 0
-                    revenue: 199.99
-                  - id: 3021
-                    dateLastRefreshed: '2020-01-01T09:40:18.527Z'
-                    dateModified: '2020-01-01T09:40:18.527Z'
-                    dateLastUsed: '2020-01-01T09:40:18.527Z'
-                    name: Best sellers 2
-                    type: BestSellers
-                    status: Ready
-                    fallbackRecommendationId: 12345
-                    revenue: 0
-                  - id: 6029
-                    dateLastRefreshed: '2020-01-01T09:40:18.527Z'
-                    dateModified: '2020-01-01T09:40:18.527Z'
-                    dateLastUsed: '2020-01-01T09:40:18.527Z'
-                    name: Also bought
-                    type: AlsoBought
-                    status: InProgress
-                    fallbackRecommendationId: 0
-                    revenue: 0
-    servers:
-    - url: https://{region}-api.dotdigital.com
-      variables:
-        region:
-          default: r1
-          enum:
-          - r1
-          - r2
-          - r3
-          description: The Dotdigital region id your account belongs to
   /v2/programs/enrolments:
     parameters:
     - in: header
@@ -186,7 +37,10 @@ paths:
     post:
       summary: Create program enrolment
       deprecated: false
-      description: "Creates a program enrolments for passed contacts and/or lists/address books. \n\n*Note: This happens asynchronously, use the `id` to track progress.*"
+      description: 'Creates a program enrolments for passed contacts and/or lists/address books.
+
+
+        *Note: This happens asynchronously, use the `id` to track progress.*'
       operationId: create-program-enrolment
       tags:
       - Programs
@@ -337,16 +191,6 @@ paths:
                     description: A description of the error.
               example:
                 message: 'Error: ERROR_PROGRAM_NOT_ACTIVE'
-    servers:
-    - url: https://{region}-api.dotdigital.com
-      variables:
-        region:
-          default: r1
-          enum:
-          - r1
-          - r2
-          - r3
-          description: The Dotdigital region id your account belongs to
   /v2/programs:
     parameters:
     - in: header
@@ -462,16 +306,6 @@ paths:
           description: Invalid or missing credentials.
         '403':
           description: The account does not have the Programs permission.
-    servers:
-    - url: https://{region}-api.dotdigital.com
-      variables:
-        region:
-          default: r1
-          enum:
-          - r1
-          - r2
-          - r3
-          description: The Dotdigital region id your account belongs to
   /v2/programs/{id}:
     parameters:
     - in: header
@@ -563,16 +397,6 @@ paths:
                     description: A description of the error.
               example:
                 message: 'Error: ERROR_PROGRAM_NOT_FOUND'
-    servers:
-    - url: https://{region}-api.dotdigital.com
-      variables:
-        region:
-          default: r1
-          enum:
-          - r1
-          - r2
-          - r3
-          description: The Dotdigital region id your account belongs to
   /v2/programs/enrolments/{id}/report-faults:
     get:
       summary: Get program enrolment report faults
@@ -632,19 +456,9 @@ paths:
                     description: A description of the error.
               example:
                 message: 'Error: ERROR_ENROLMENT_NOT_FOUND'
-    servers:
-    - url: https://{region}-api.dotdigital.com
-      variables:
-        region:
-          default: r1
-          enum:
-          - r1
-          - r2
-          - r3
-          description: The Dotdigital region id your account belongs to
   /v2/programs/enrolments/{enrolmentId}:
     get:
-      summary: Gets an enrolment by ID.
+      summary: Gets an enrolment by ID
       operationId: getProgramEnrolmentById
       tags:
       - Programs
@@ -711,19 +525,9 @@ paths:
                     description: A description of the error.
               example:
                 message: 'Error: ERROR_ENROLMENT_NOT_FOUND'
-    servers:
-    - url: https://{region}-api.dotdigital.com
-      variables:
-        region:
-          default: r1
-          enum:
-          - r1
-          - r2
-          - r3
-          description: The Dotdigital region id your account belongs to
   /v2/programs/enrolments/{status}:
     get:
-      summary: Gets enrolments by status.
+      summary: Gets enrolments by status
       operationId: getProgramEnrolmentsByStatus
       tags:
       - Programs
@@ -814,16 +618,6 @@ paths:
           description: Invalid or missing credentials.
         '403':
           description: The account does not have the Programs permission.
-    servers:
-    - url: https://{region}-api.dotdigital.com
-      variables:
-        region:
-          default: r1
-          enum:
-          - r1
-          - r2
-          - r3
-          description: The Dotdigital region id your account belongs to
 components:
   securitySchemes:
     basicAuth:
@@ -832,9 +626,6 @@ components:
 externalDocs:
   description: Learn more about Dotdigital APIs
   url: https://developer.dotdigital.com
-x-refined-from:
-- dotdigital-product-recommendations-openapi.yml
-- dotdigital-programs-openapi.yml
 x-readme:
   headers: []
   explorer-enabled: true

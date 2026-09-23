@@ -11,7 +11,7 @@ paths:
     get:
       tags:
       - ApiProgram
-      summary: Gets a program by id.
+      summary: Gets a program by id
       operationId: ApiProgram_GetProgramById
       parameters:
       - name: id
@@ -32,7 +32,7 @@ paths:
     get:
       tags:
       - ApiProgram
-      summary: Gets all programs.
+      summary: Gets all programs
       operationId: ApiProgram_GetPrograms
       parameters:
       - name: select
@@ -62,7 +62,7 @@ paths:
     get:
       tags:
       - ApiProgram
-      summary: Gets enrolments by status.
+      summary: Gets enrolments by status
       operationId: ApiProgram_GetEnrolmentsByStatus
       parameters:
       - name: status
@@ -98,7 +98,7 @@ paths:
     get:
       tags:
       - ApiProgram
-      summary: Gets an enrolment by id.
+      summary: Gets an enrolment by id
       operationId: ApiProgram_GetEnrolmentById
       parameters:
       - name: enrolmentId
@@ -119,7 +119,7 @@ paths:
     get:
       tags:
       - ApiProgram
-      summary: Gets all contacts that were not successfully enrolled, by enrolment ID.
+      summary: Gets all contacts that were not successfully enrolled, by enrolment ID
       operationId: ApiProgram_GetEnrolmentReport
       parameters:
       - name: enrolmentId
@@ -141,7 +141,7 @@ paths:
     post:
       tags:
       - ApiProgram
-      summary: Creates an enrolment.
+      summary: Creates an enrolment
       description: Please note that your account can only call this a maximum of 20 times per hour, across all programs.
       operationId: ApiProgram_PostEnrolment
       requestBody:
@@ -177,17 +177,6 @@ components:
         dateCreated:
           type: string
           format: date-time
-    ApiProgramEnrolmentStatus:
-      type: string
-      description: ''
-      x-enumNames:
-      - Processing
-      - Finished
-      - NotAvailableInThisVersion
-      enum:
-      - Processing
-      - Finished
-      - NotAvailableInThisVersion
     ApiProgramStatus:
       type: string
       description: ''
@@ -202,6 +191,17 @@ components:
       - Deactivated
       - Active
       - ReadOnly
+      - NotAvailableInThisVersion
+    ApiProgramEnrolmentStatus:
+      type: string
+      description: ''
+      x-enumNames:
+      - Processing
+      - Finished
+      - NotAvailableInThisVersion
+      enum:
+      - Processing
+      - Finished
       - NotAvailableInThisVersion
     ApiProgramEnrolment:
       type: object

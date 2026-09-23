@@ -5,13 +5,13 @@ info:
 servers:
 - url: https://r1-api.dotdigital.com
 tags:
-- name: ApiDocument
+- name: API / Document
 paths:
   /v2/document-folders/{folderId}/documents:
     get:
       tags:
-      - ApiDocument
-      summary: Gets all uploaded documents.
+      - API / Document
+      summary: Gets all uploaded documents
       operationId: ApiDocument_GetDocuments
       parameters:
       - name: folderId
@@ -32,8 +32,8 @@ paths:
                   $ref: '#/components/schemas/ApiDocument'
     post:
       tags:
-      - ApiDocument
-      summary: Uploads a document into the specified folder.
+      - API / Document
+      summary: Uploads a document into the specified folder
       operationId: ApiDocument_UploadDocument
       parameters:
       - name: folderId
@@ -61,8 +61,8 @@ paths:
   /v2/document-folders:
     get:
       tags:
-      - ApiDocument
-      summary: Fetches the document folder tree structure.
+      - API / Document
+      summary: Fetches the document folder tree structure
       operationId: ApiDocument_GetDocumentFolders
       responses:
         '200':
@@ -76,8 +76,8 @@ paths:
   /v2/campaigns/{campaignId}/attachments:
     get:
       tags:
-      - ApiDocument
-      summary: Gets documents that are currently attached to a campaign.
+      - API / Document
+      summary: Gets documents that are currently attached to a campaign
       operationId: ApiDocument_GetCampaignAttachments
       parameters:
       - name: campaignId
@@ -98,8 +98,8 @@ paths:
                   $ref: '#/components/schemas/ApiDocument'
     post:
       tags:
-      - ApiDocument
-      summary: Adds a document to a campaign as an attachment.
+      - API / Document
+      summary: Adds a document to a campaign as an attachment
       operationId: ApiDocument_AttachDocumentToCampaign
       parameters:
       - name: campaignId
@@ -127,8 +127,8 @@ paths:
   /v2/document-folders/{folderId}:
     post:
       tags:
-      - ApiDocument
-      summary: Creates a new document folder.
+      - API / Document
+      summary: Creates a new document folder
       operationId: ApiDocument_CreateDocumentFolder
       parameters:
       - name: folderId
@@ -156,8 +156,8 @@ paths:
   /v2/campaigns/{campaignId}/attachments/{documentId}:
     delete:
       tags:
-      - ApiDocument
-      summary: Removes an attachment from a campaign.
+      - API / Document
+      summary: Removes an attachment from a campaign
       operationId: ApiDocument_DeleteDocumentFromCampaign
       parameters:
       - name: campaignId
@@ -179,6 +179,37 @@ paths:
           description: ''
 components:
   schemas:
+    ApiFileMedia:
+      type: object
+      additionalProperties: false
+      properties:
+        fileName:
+          type:
+          - string
+          - 'null'
+        data:
+          type:
+          - string
+          - 'null'
+          format: byte
+    ApiDocumentFolder:
+      type: object
+      additionalProperties: false
+      required:
+      - name
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          minLength: 1
+        childFolders:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiDocumentFolder'
     ApiDocument:
       type: object
       additionalProperties: false
@@ -203,35 +234,4 @@ components:
         dateModified:
           type: string
           format: date-time
-    ApiDocumentFolder:
-      type: object
-      additionalProperties: false
-      required:
-      - name
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-          minLength: 1
-        childFolders:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiDocumentFolder'
-    ApiFileMedia:
-      type: object
-      additionalProperties: false
-      properties:
-        fileName:
-          type:
-          - string
-          - 'null'
-        data:
-          type:
-          - string
-          - 'null'
-          format: byte
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

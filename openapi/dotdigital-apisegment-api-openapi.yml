@@ -11,7 +11,7 @@ paths:
     post:
       tags:
       - ApiSegment
-      summary: Refreshes a segment by ID.
+      summary: Refreshes a segment by ID
       operationId: ApiSegment_RefreshSegment
       parameters:
       - name: id
@@ -31,7 +31,7 @@ paths:
     get:
       tags:
       - ApiSegment
-      summary: Gets the refresh progress for a segment.
+      summary: Gets the refresh progress for a segment
       operationId: ApiSegment_GetSegmentRefreshProgress
       parameters:
       - name: id
@@ -52,7 +52,7 @@ paths:
     get:
       tags:
       - ApiSegment
-      summary: Gets all segments.
+      summary: Gets all segments
       operationId: ApiSegment_GetSegments
       parameters:
       - name: select
@@ -80,30 +80,6 @@ paths:
                   $ref: '#/components/schemas/ApiSegment'
 components:
   schemas:
-    ApiSegmentRefresh:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: integer
-          format: int32
-        status:
-          $ref: '#/components/schemas/ApiSegmentRefreshStatuses'
-    ApiSegmentRefreshStatuses:
-      type: string
-      description: ''
-      x-enumNames:
-      - NotStarted
-      - NotFinished
-      - Finished
-      - Failed
-      - NotAvailableInThisVersion
-      enum:
-      - NotStarted
-      - NotFinished
-      - Finished
-      - Failed
-      - NotAvailableInThisVersion
     ApiSegment:
       type: object
       additionalProperties: false
@@ -119,4 +95,28 @@ components:
         contacts:
           type: integer
           format: int32
+    ApiSegmentRefreshStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - NotStarted
+      - NotFinished
+      - Finished
+      - Failed
+      - NotAvailableInThisVersion
+      enum:
+      - NotStarted
+      - NotFinished
+      - Finished
+      - Failed
+      - NotAvailableInThisVersion
+    ApiSegmentRefresh:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        status:
+          $ref: '#/components/schemas/ApiSegmentRefreshStatuses'
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

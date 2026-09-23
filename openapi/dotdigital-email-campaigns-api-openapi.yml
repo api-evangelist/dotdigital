@@ -2,19 +2,7 @@ openapi: 3.2.0
 info:
   version: 2.1.1
   title: Email Campaigns API
-  description: 'Create, manage, and report on email campaigns. Use this API to create standard
-
-    and split-test campaigns, update campaign content and settings, copy campaigns,
-
-    and delete campaigns. Send campaigns immediately, schedule them for a future
-
-    time, or use time-optimised sending. Retrieve reporting data including opens,
-
-    clicks, page views, replies, ROI, social bookmark views, bounce data, and
-
-    aggregate metrics filtered by date range. Supports split-test result retrieval
-
-    and custom from-address management.'
+  description: Create, manage, and report on email campaigns.
 servers:
 - url: https://{region}-api.dotdigital.com
   variables:
@@ -5973,7 +5961,7 @@ paths:
     get:
       tags:
       - Email Campaigns
-      summary: Gets sent campaigns metrics between the specified dates.
+      summary: Gets sent campaigns metrics between the specified dates
       description: Gets key campaign metrics between the specified dates in UTC for all campaigns with activity.
       operationId: getDailyCampaignMetrics
       parameters:

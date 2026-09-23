@@ -80,6 +80,8 @@ paths:
           description: Validation errors were found
         '404':
           description: The API Space was not found
+      operationId: getCpaasAnalyticsConversationmessages
+      x-operation-id-source: derived
   /cpaas/analytics/sessions:
     get:
       tags:
@@ -130,8 +132,16 @@ paths:
           description: Validation errors were found
         '404':
           description: The API Space was not
+      operationId: getCpaasAnalyticsSessions
+      x-operation-id-source: derived
 components:
   schemas:
+    sessionAnalytics_started:
+      type: object
+      properties:
+        additionalProperties:
+          type: string
+      description: The number of sessions started in the period, broken down by platform and sdkType
     sessionAnalytics:
       type: object
       properties:
@@ -168,12 +178,6 @@ components:
           type: integer
           description: The number of messages read in the period
           format: int64
-    sessionAnalytics_started:
-      type: object
-      properties:
-        additionalProperties:
-          type: string
-      description: The number of sessions started in the period, broken down by platform and sdkType
   securitySchemes:
     basicAuth:
       type: http

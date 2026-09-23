@@ -99,6 +99,8 @@ paths:
           description: Validation errors were found
         '404':
           description: The API Space was not
+      operationId: getCpaasAnalyticsChats
+      x-operation-id-source: derived
   /cpaas/analytics/chats/live:
     get:
       tags:
@@ -137,6 +139,8 @@ paths:
           description: Validation errors were found
         '404':
           description: The API Space was not
+      operationId: getCpaasAnalyticsChatsLive
+      x-operation-id-source: derived
 components:
   schemas:
     liveChatAnalytics:

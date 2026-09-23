@@ -29,13 +29,14 @@ paths:
       tags:
       - Export events
       summary: Retrieve events
-      description: 'Gets a set of events for a events subscription. If starting to retrieve events then do not pass a `checkPoint` and the earliest events queued for the subscription will be retrieved, and on subsequent calls pass the `checkPoint` value from the previous call to indicate you have received that page of events successfully.<br><br>
+      description: 'Gets a set of events for a events subscription. If starting to retrieve events then do not pass a `checkPoint` and the earliest events queued for the subscription will be retrieved, and on subsequent calls pass the `checkPoint` value from the previous call to indicate you have received that page of events successfully.
+
 
         **Note:**
 
         * Ensure you pass the returned `checkPoint` to ensure you only get events after the last time you called.
 
-        * You must ensure that you pick up the latest events for a subscription within  a 30 day period, otherwise the **subscription will automatically be set to `inactive` status due to non usage.**
+        * You must ensure that you pick up the latest events for a subscription within a 30 day period, otherwise the **subscription will automatically be set to `inactive` status due to non usage.**
 
         * If we return no events in the `events` array then you have received all the currently queued events.
 
@@ -114,19 +115,6 @@ paths:
         '500':
           description: Internal Server Error
 components:
-  responses:
-    subscriptionNotFound:
-      description: Subscription not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/errorResponse'
-          example:
-            errorCode: events:subscriptionNotFound
-            description: The following subscription could not be found
-            details:
-            - item: zf0f945b36ad8
-              description: Not found.
   schemas:
     errorResponse_details:
       required:
@@ -140,6 +128,37 @@ components:
         description:
           type: string
           description: Description of the error
+    errorResponse:
+      required:
+      - description
+      - errorCode
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: Unique error code
+        description:
+          type: string
+          description: Description of the issue
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/errorResponse_details'
+    inline_response_200:
+      required:
+      - checkPoint
+      - events
+      type: object
+      properties:
+        checkPoint:
+          type: string
+          description: This is the value you should pass back with your subsequent call in the `checkPoint` query string to indicate you have received the previous page of events successfully.
+          example: fgfh63eu77
+        events:
+          type: array
+          description: Returned events
+          items:
+            $ref: '#/components/schemas/event'
     event:
       required:
       - accountId
@@ -184,37 +203,19 @@ components:
             timeStamp: '2025-02-07T16:23:33.123Z'
       additionalProperties: false
       description: An event
-    errorResponse:
-      required:
-      - description
-      - errorCode
-      type: object
-      properties:
-        errorCode:
-          type: string
-          description: Unique error code
-        description:
-          type: string
-          description: Description of the issue
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/errorResponse_details'
-    inline_response_200:
-      required:
-      - checkPoint
-      - events
-      type: object
-      properties:
-        checkPoint:
-          type: string
-          description: This is the value you should pass back with your subsequent call in the `checkPoint` query string to indicate you have received the previous page of events successfully.
-          example: fgfh63eu77
-        events:
-          type: array
-          description: Returned events
-          items:
-            $ref: '#/components/schemas/event'
+  responses:
+    subscriptionNotFound:
+      description: Subscription not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          example:
+            errorCode: events:subscriptionNotFound
+            description: The following subscription could not be found
+            details:
+            - item: zf0f945b36ad8
+              description: Not found.
   securitySchemes:
     basicAuth:
       type: http

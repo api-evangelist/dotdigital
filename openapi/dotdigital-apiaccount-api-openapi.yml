@@ -11,7 +11,7 @@ paths:
     get:
       tags:
       - ApiAccount
-      summary: Gets a summary of information about the current status of the account.
+      summary: Gets a summary of information about the current status of the account
       operationId: ApiAccount_GetCurrentAccountInfo
       responses:
         '200':
@@ -24,7 +24,7 @@ paths:
     get:
       tags:
       - ApiAccount
-      summary: Gets the UTC time as set on the server.
+      summary: Gets the UTC time as set on the server
       operationId: ApiAccount_GetServerTime
       responses:
         '200':
@@ -38,8 +38,12 @@ paths:
     post:
       tags:
       - ApiAccount
-      summary: Creates an account. The ID of the newly returned account will be returned as the result of this call.
-      description: "There are some mandatory, and some optional fields - missing mandatory fields will cause error code to be returned.\n            The following fields are mandatory: \"EMAIL\", \"FIRSTNAME\", \"LASTNAME\", \"USERIPADDRESS\".\n            The following fields are optional: \"COMPANY\", \"PHONENUMBER\", \"LCID\", \"TIMEZONEID\", \"ISEXPRESSACCOUNT\"."
+      summary: Creates an account.
+      description: 'There are some mandatory, and some optional fields - missing mandatory fields will cause error code to be returned.
+
+        The following fields are mandatory: "EMAIL", "FIRSTNAME", "LASTNAME", "USERIPADDRESS".
+
+        The following fields are optional: "COMPANY", "PHONENUMBER", "LCID", "TIMEZONEID", "ISEXPRESSACCOUNT".'
       operationId: ApiAccount_CreateAccount
       requestBody:
         x-name: account
@@ -60,7 +64,7 @@ paths:
     post:
       tags:
       - ApiAccount
-      summary: Creates Managed user for a given account id.
+      summary: Creates Managed user for a given account id
       operationId: ApiAccount_CreateManagedUser
       parameters:
       - name: accountId
@@ -89,7 +93,7 @@ paths:
     post:
       tags:
       - ApiAccount
-      summary: Adds an OAuth token to an account.
+      summary: Adds an OAuth token to an account
       operationId: ApiAccount_CreateOAuthToken
       parameters:
       - name: accountId
@@ -118,7 +122,7 @@ paths:
     put:
       tags:
       - ApiAccount
-      summary: Changes a theme for an account.
+      summary: Changes a theme for an account
       operationId: ApiAccount_UpdateTheme
       parameters:
       - name: accountId
@@ -143,7 +147,7 @@ paths:
     post:
       tags:
       - ApiAccount
-      summary: Creates an API user for a given account ID. The username of the created user will be returned as the result of this call.
+      summary: Creates an API user for a given account ID.
       description: This method may only be called on an account with no existing API users configured using the rate limiting scheme referenced in the request indicated with IsTieredRateLimitedApiUser e.g. flat or tiered rate limiting.
       operationId: ApiAccount_CreateApiUser
       parameters:
@@ -173,7 +177,7 @@ paths:
     post:
       tags:
       - ApiAccount
-      summary: Empties the account's recycle bin.
+      summary: Empties the account's recycle bin
       operationId: ApiAccount_EmptyRecycleBin
       responses:
         '200':
@@ -185,23 +189,6 @@ paths:
                 format: binary
 components:
   schemas:
-    ApiOAuthToken:
-      type: object
-      additionalProperties: false
-      required:
-      - redirectUri
-      properties:
-        redirectUri:
-          type: string
-          minLength: 1
-        clientId:
-          type:
-          - string
-          - 'null'
-        secretKey:
-          type:
-          - string
-          - 'null'
     ApiUser:
       type: object
       additionalProperties: false
@@ -224,19 +211,33 @@ components:
           type:
           - string
           - 'null'
-    ApiAccountProperty:
+    ApiAccount:
       type: object
       additionalProperties: false
+      required:
+      - properties
       properties:
-        name:
+        id:
+          type: integer
+          format: int32
+        properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiAccountProperty'
+    ApiOAuthToken:
+      type: object
+      additionalProperties: false
+      required:
+      - redirectUri
+      properties:
+        redirectUri:
+          type: string
+          minLength: 1
+        clientId:
           type:
           - string
           - 'null'
-        type:
-          type:
-          - string
-          - 'null'
-        value:
+        secretKey:
           type:
           - string
           - 'null'
@@ -265,33 +266,6 @@ components:
           type: string
           minLength: 1
           pattern: ^(\#[0-9a-f]{6})$
-    ApiPermissionTypes:
-      type: string
-      description: ''
-      x-enumNames:
-      - Sender
-      - Reporter
-      - EditCampaigns
-      - TemplateAdmin
-      - Contacts
-      - ReportDrillDown
-      - ContactExporter
-      - CanSendWithoutApproval
-      - Programs
-      - ManageAccount
-      - NotAvailableInThisVersion
-      enum:
-      - Sender
-      - Reporter
-      - EditCampaigns
-      - TemplateAdmin
-      - Contacts
-      - ReportDrillDown
-      - ContactExporter
-      - CanSendWithoutApproval
-      - Programs
-      - ManageAccount
-      - NotAvailableInThisVersion
     ApiManagedUser:
       type: object
       additionalProperties: false
@@ -322,17 +296,47 @@ components:
           type:
           - string
           - 'null'
-    ApiAccount:
+    ApiAccountProperty:
       type: object
       additionalProperties: false
-      required:
-      - properties
       properties:
-        id:
-          type: integer
-          format: int32
-        properties:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiAccountProperty'
+        name:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+    ApiPermissionTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - Sender
+      - Reporter
+      - EditCampaigns
+      - TemplateAdmin
+      - Contacts
+      - ReportDrillDown
+      - ContactExporter
+      - CanSendWithoutApproval
+      - Programs
+      - ManageAccount
+      - NotAvailableInThisVersion
+      enum:
+      - Sender
+      - Reporter
+      - EditCampaigns
+      - TemplateAdmin
+      - Contacts
+      - ReportDrillDown
+      - ContactExporter
+      - CanSendWithoutApproval
+      - Programs
+      - ManageAccount
+      - NotAvailableInThisVersion
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

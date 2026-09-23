@@ -22,12 +22,12 @@ servers:
 security:
 - basicAuth: []
 tags:
-- name: WhatsApp templates
+- name: WhatsApp Templates
 paths:
   /cpaas/channels/whatsapp/businessaccounts/{wabaId}/templates:
     get:
       tags:
-      - WhatsApp templates
+      - WhatsApp Templates
       summary: Get WhatsApp templates
       description: Retrieves the WhatsApp templates for a specific WABA.
       parameters:
@@ -50,10 +50,12 @@ paths:
           description: Unauthorized
         '500':
           description: Internal server error
+      operationId: getCpaasChannelsWhatsappBusinessaccountsByWabaIdTemplates
+      x-operation-id-source: derived
   /cpaas/channels/whatsapp/businessaccounts/{wabaId}/templates/{templateId}:
     get:
       tags:
-      - WhatsApp templates
+      - WhatsApp Templates
       summary: Get WhatsApp template
       description: Retrieves a WhatsApp template for a specific WABA.
       parameters:
@@ -84,22 +86,10 @@ paths:
           description: The WhatsApp template was not found.
         '500':
           description: Internal server error
+      operationId: getCpaasChannelsWhatsappBusinessaccountsByWabaIdTemplatesByTemplateId
+      x-operation-id-source: derived
 components:
   schemas:
-    inline_response_200_paging_cursors:
-      required:
-      - after
-      - before
-      type: object
-      properties:
-        before:
-          type: string
-          description: Continuation token for the previous page.
-          example: QVFIU1pNYzBEY2dNM0pjNlQ5Mm0wS1FSNnRBbkJSS0hhcTdka1FXdDBCV1kxYmMyMS1DZADBZAMTd1aHhRaWEta0RXVFNSQXFKVENYQWhyVW50bndDMUEwbXhn
-        after:
-          type: string
-          description: Continuation token for the next page.
-          example: QVFIU2RLSVkwNzNaSkpGYjk0YnhGWE1iMHpJS0tTRzFpRzNMRzFhVUVfUHVjd0UwYUdOSFpCOC1qOGtlTWNlSnktTEk2enhyWnV6YWItSDZANV0xIbVJCVk1n
     whatsAppTemplate:
       required:
       - category
@@ -470,10 +460,20 @@ components:
                     description: For `COPY_CODE` buttons provide the value to be copied.
                     example: 250FF
               additionalProperties: true
-    wabaId:
-      type: string
-      description: The unique WhatsApp Business Account (WABA) identifier.
-      example: '226114410888722'
+    inline_response_200_paging_cursors:
+      required:
+      - after
+      - before
+      type: object
+      properties:
+        before:
+          type: string
+          description: Continuation token for the previous page.
+          example: QVFIU1pNYzBEY2dNM0pjNlQ5Mm0wS1FSNnRBbkJSS0hhcTdka1FXdDBCV1kxYmMyMS1DZADBZAMTd1aHhRaWEta0RXVFNSQXFKVENYQWhyVW50bndDMUEwbXhn
+        after:
+          type: string
+          description: Continuation token for the next page.
+          example: QVFIU2RLSVkwNzNaSkpGYjk0YnhGWE1iMHpJS0tTRzFpRzNMRzFhVUVfUHVjd0UwYUdOSFpCOC1qOGtlTWNlSnktTEk2enhyWnV6YWItSDZANV0xIbVJCVk1n
     inline_response_200_paging:
       type: object
       properties:
@@ -493,6 +493,10 @@ components:
             $ref: '#/components/schemas/whatsAppTemplate'
         paging:
           $ref: '#/components/schemas/inline_response_200_paging'
+    wabaId:
+      type: string
+      description: The unique WhatsApp Business Account (WABA) identifier.
+      example: '226114410888722'
   securitySchemes:
     basicAuth:
       type: http

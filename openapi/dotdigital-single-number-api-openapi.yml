@@ -56,32 +56,6 @@ paths:
           content: {}
 components:
   schemas:
-    SingleValidation:
-      required:
-      - countryIdd
-      - phoneNumber
-      - status
-      type: object
-      properties:
-        phoneNumber:
-          type: string
-          description: The mobile number being checked.
-        status:
-          type: string
-          description: The current mobile network status for the number being checked.
-          enum:
-          - 'On'
-          - 'Off'
-          - Dead
-          - NotProvisioned
-          - BadNumber
-          - CountryMismatch
-        countryIdd:
-          type: string
-          description: The dialling code for the country.
-          example: '44'
-        networkDetails:
-          $ref: '#/components/schemas/SingleValidation_networkDetails'
     SingleValidation_networkDetails:
       required:
       - isPorted
@@ -138,6 +112,32 @@ components:
           description: The name of the country the phone is roaming within.
           example: United Kingdom
       description: The roaming details, if the phone is currently roaming
+    SingleValidation:
+      required:
+      - countryIdd
+      - phoneNumber
+      - status
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          description: The mobile number being checked.
+        status:
+          type: string
+          description: The current mobile network status for the number being checked.
+          enum:
+          - 'On'
+          - 'Off'
+          - Dead
+          - NotProvisioned
+          - BadNumber
+          - CountryMismatch
+        countryIdd:
+          type: string
+          description: The dialling code for the country.
+          example: '44'
+        networkDetails:
+          $ref: '#/components/schemas/SingleValidation_networkDetails'
   securitySchemes:
     basicAuth:
       type: http

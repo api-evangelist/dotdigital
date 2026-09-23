@@ -11,7 +11,7 @@ paths:
     get:
       tags:
       - ApiEcommerce
-      summary: Returns the Retail KPI summaries for the specified date range.
+      summary: Returns the Retail KPI summaries for the specified date range
       operationId: ApiEcommerce_GetKpiMetricSummaries
       parameters:
       - name: dateRange
@@ -29,7 +29,7 @@ paths:
     post:
       tags:
       - ApiEcommerce
-      summary: Requests a refreshing of metric data.
+      summary: Requests a refreshing of metric data
       operationId: ApiEcommerce_RefreshSummaries
       responses:
         '200':
@@ -38,7 +38,7 @@ paths:
     get:
       tags:
       - ApiEcommerce
-      summary: Returns Retail KPI summaries across every data range.
+      summary: Returns Retail KPI summaries across every data range
       operationId: ApiEcommerce_GetAllKpiMetricSummaries
       responses:
         '200':
@@ -51,7 +51,7 @@ paths:
     get:
       tags:
       - ApiEcommerce
-      summary: Gets a KPI metric of a specified type over a specified date range.
+      summary: Gets a KPI metric of a specified type over a specified date range
       operationId: ApiEcommerce_GetMetricSummary
       parameters:
       - name: dateRange
@@ -76,7 +76,7 @@ paths:
     get:
       tags:
       - ApiEcommerce
-      summary: Gets a list of all orders since a date.
+      summary: Gets a list of all orders since a date
       operationId: ApiEcommerce_GetTransactionalDataByCollectionFromIdFromDate
       parameters:
       - name: fromDate
@@ -110,6 +110,123 @@ paths:
                   $ref: '#/components/schemas/ApiOrder'
 components:
   schemas:
+    ApiOrderAddress:
+      type: object
+      additionalProperties: false
+      properties:
+        address1:
+          type:
+          - string
+          - 'null'
+        address2:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        postCode:
+          type:
+          - string
+          - 'null'
+    KpiMetricType:
+      type: string
+      description: ''
+      x-enumNames:
+      - TotalRevenue
+      - AverageOrderValue
+      - CustomerLifetimeValue
+      - TotalOrders
+      - AverageItemsPerOrder
+      - AverageDaysToSecondOrder
+      - Customers
+      - SinglePurchaseCustomers
+      - RepeatCustomers
+      - TotalDelay
+      - TotalRepeatOrders
+      - TotalItems
+      enum:
+      - TotalRevenue
+      - AverageOrderValue
+      - CustomerLifetimeValue
+      - TotalOrders
+      - AverageItemsPerOrder
+      - AverageDaysToSecondOrder
+      - Customers
+      - SinglePurchaseCustomers
+      - RepeatCustomers
+      - TotalDelay
+      - TotalRepeatOrders
+      - TotalItems
+    KpiMetricValue:
+      type: object
+      additionalProperties: false
+      properties:
+        initialTotalValue:
+          type: number
+          format: double
+        comparisonTotalValue:
+          type: number
+          format: double
+    KpiMetricSummary:
+      type: object
+      additionalProperties: false
+      properties:
+        metricType:
+          $ref: '#/components/schemas/KpiMetricType'
+        metricValues:
+          oneOf:
+          - $ref: '#/components/schemas/KpiMetricValue'
+        dateRange:
+          $ref: '#/components/schemas/EcommercePredefinedDateRanges'
+    ReportSummaryOfKpiMetricSummary:
+      type: object
+      additionalProperties: false
+      properties:
+        records:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/KpiMetricSummary'
+        dateRange:
+          oneOf:
+          - $ref: '#/components/schemas/EcommercePredefinedDateRanges'
+        asOfDate:
+          type: string
+          format: date-time
+    EcommercePredefinedDateRanges:
+      type: string
+      description: ''
+      x-enumNames:
+      - LastThirtyVsPrevious
+      - TodayVsYesterday
+      - YesterdayVsPrevious
+      - ThisWeekVsLast
+      - LastWeekVsPrevious
+      - ThisMonthVsLast
+      - LastMonthVsPrevious
+      - ThisYearVsLast
+      - LastYearVsPrevious
+      - AllTime
+      - Custom
+      enum:
+      - LastThirtyVsPrevious
+      - TodayVsYesterday
+      - YesterdayVsPrevious
+      - ThisWeekVsLast
+      - LastWeekVsPrevious
+      - ThisMonthVsLast
+      - LastMonthVsPrevious
+      - ThisYearVsLast
+      - LastYearVsPrevious
+      - AllTime
+      - Custom
     ApiOrder:
       type: object
       additionalProperties: false
@@ -183,99 +300,53 @@ components:
         retailValue:
           type: number
           format: decimal
-    ReportSummaryOfKpiMetricSummary:
+    ApiKpiMetricType:
+      type: string
+      description: ''
+      x-enumNames:
+      - TotalRevenue
+      - AverageOrderValue
+      - CustomerLifetimeValue
+      - TotalOrders
+      - AverageItemsPerOrder
+      - AverageDaysToSecondOrder
+      - Customers
+      - SinglePurchaseCustomers
+      - RepeatCustomers
+      - NotAvailableInThisVersion
+      enum:
+      - TotalRevenue
+      - AverageOrderValue
+      - CustomerLifetimeValue
+      - TotalOrders
+      - AverageItemsPerOrder
+      - AverageDaysToSecondOrder
+      - Customers
+      - SinglePurchaseCustomers
+      - RepeatCustomers
+      - NotAvailableInThisVersion
+    ApiOrderItem:
       type: object
       additionalProperties: false
       properties:
-        records:
+        sku:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/KpiMetricSummary'
-        dateRange:
-          oneOf:
-          - $ref: '#/components/schemas/EcommercePredefinedDateRanges'
-        asOfDate:
-          type: string
-          format: date-time
-    KpiMetricSummary:
-      type: object
-      additionalProperties: false
-      properties:
-        metricType:
-          $ref: '#/components/schemas/KpiMetricType'
-        metricValues:
-          oneOf:
-          - $ref: '#/components/schemas/KpiMetricValue'
-        dateRange:
-          $ref: '#/components/schemas/EcommercePredefinedDateRanges'
-    EcommercePredefinedDateRanges:
-      type: string
-      description: ''
-      x-enumNames:
-      - LastThirtyVsPrevious
-      - TodayVsYesterday
-      - YesterdayVsPrevious
-      - ThisWeekVsLast
-      - LastWeekVsPrevious
-      - ThisMonthVsLast
-      - LastMonthVsPrevious
-      - ThisYearVsLast
-      - LastYearVsPrevious
-      - AllTime
-      - Custom
-      enum:
-      - LastThirtyVsPrevious
-      - TodayVsYesterday
-      - YesterdayVsPrevious
-      - ThisWeekVsLast
-      - LastWeekVsPrevious
-      - ThisMonthVsLast
-      - LastMonthVsPrevious
-      - ThisYearVsLast
-      - LastYearVsPrevious
-      - AllTime
-      - Custom
-    KpiMetricType:
-      type: string
-      description: ''
-      x-enumNames:
-      - TotalRevenue
-      - AverageOrderValue
-      - CustomerLifetimeValue
-      - TotalOrders
-      - AverageItemsPerOrder
-      - AverageDaysToSecondOrder
-      - Customers
-      - SinglePurchaseCustomers
-      - RepeatCustomers
-      - TotalDelay
-      - TotalRepeatOrders
-      - TotalItems
-      enum:
-      - TotalRevenue
-      - AverageOrderValue
-      - CustomerLifetimeValue
-      - TotalOrders
-      - AverageItemsPerOrder
-      - AverageDaysToSecondOrder
-      - Customers
-      - SinglePurchaseCustomers
-      - RepeatCustomers
-      - TotalDelay
-      - TotalRepeatOrders
-      - TotalItems
-    KpiMetricValue:
-      type: object
-      additionalProperties: false
-      properties:
-        initialTotalValue:
+        name:
+          type:
+          - string
+          - 'null'
+        price:
           type: number
-          format: double
-        comparisonTotalValue:
+          format: decimal
+        quantity:
           type: number
-          format: double
+          format: decimal
+        imagePath:
+          type:
+          - string
+          - 'null'
     ApiKpiMetricDateRange:
       type: string
       description: ''
@@ -303,75 +374,4 @@ components:
       - LastYearVsPrevious
       - AllTime
       - NotAvailableInThisVersion
-    ApiKpiMetricType:
-      type: string
-      description: ''
-      x-enumNames:
-      - TotalRevenue
-      - AverageOrderValue
-      - CustomerLifetimeValue
-      - TotalOrders
-      - AverageItemsPerOrder
-      - AverageDaysToSecondOrder
-      - Customers
-      - SinglePurchaseCustomers
-      - RepeatCustomers
-      - NotAvailableInThisVersion
-      enum:
-      - TotalRevenue
-      - AverageOrderValue
-      - CustomerLifetimeValue
-      - TotalOrders
-      - AverageItemsPerOrder
-      - AverageDaysToSecondOrder
-      - Customers
-      - SinglePurchaseCustomers
-      - RepeatCustomers
-      - NotAvailableInThisVersion
-    ApiOrderAddress:
-      type: object
-      additionalProperties: false
-      properties:
-        address1:
-          type:
-          - string
-          - 'null'
-        address2:
-          type:
-          - string
-          - 'null'
-        city:
-          type:
-          - string
-          - 'null'
-        country:
-          type:
-          - string
-          - 'null'
-        postCode:
-          type:
-          - string
-          - 'null'
-    ApiOrderItem:
-      type: object
-      additionalProperties: false
-      properties:
-        sku:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        price:
-          type: number
-          format: decimal
-        quantity:
-          type: number
-          format: decimal
-        imagePath:
-          type:
-          - string
-          - 'null'
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

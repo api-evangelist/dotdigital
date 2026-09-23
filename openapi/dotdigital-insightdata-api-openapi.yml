@@ -1,9 +1,7 @@
 openapi: 3.2.0
 info:
   title: service Insight Data API
-  description: 'Manage Insight data collections and records at both account and contact level. Use this API to bulk-import records via asynchronous upsert, retrieve and update individual records, create and delete collections, empty collections, and poll the status of import or asynchronous operations. Insight data makes structured behavioural and transactional data — such as orders, product catalogues, and web activity — available to drive personalisation, segmentation, and product recommendations across your campaigns.
-
-    '
+  description: Manage Insight data collections and records at both account and contact level.
   version: 3.3.1
 servers:
 - url: https://{region}-api.dotdigital.com
@@ -273,7 +271,8 @@ paths:
   /insightData/v3/collections/{collectionName}:
     post:
       summary: Creates an Insight data collection
-      description: 'Creates an empty Insight data collection. If the collection already exists a successful result will be returned.<br/><br/>
+      description: 'Creates an empty Insight data collection. If the collection already exists a successful result will be returned.
+
 
         **Note:** You can create a maximum of 1000 Insight data collections.'
       operationId: postCreateInsightDataCollection
@@ -328,11 +327,12 @@ paths:
       - InsightData
     delete:
       summary: Deletes an Insight data collection
-      description: 'Requests a delete of a specified Insight data collection and all records for either an account scoped collection or for all contacts when referencing an contact scoped collection.<br/><br/>
+      description: 'Requests a delete of a specified Insight data collection and all records for either an account scoped collection or for all contacts when referencing an contact scoped collection.
+
 
         **Notes:**
 
-        * The deletion is asynchronous progress can be monitored by calling [getAsyncStatus](/reference/getasyncstatus)
+        * The deletion is asynchronous progress can be monitored by calling getAsyncStatus
 
         * If you delete a contact scoped Insight data collection then it is deleted for all contacts!'
       operationId: delInsightDataCollection
@@ -390,10 +390,8 @@ paths:
       - InsightData
   /insightData/v3/accounts/{collectionName}/deleteRecords:
     delete:
-      summary: Deletes multiple records from an account scoped Insight Data collection.
-      description: 'Delete from 1 to 5000 records from a single account scoped Insight Data collection in a single call. This call can be used when you need to remove many records from a collection but not all.
-
-        '
+      summary: Deletes multiple records from an account scoped Insight Data collection
+      description: Delete from 1 to 5000 records from a single account scoped Insight Data collection in a single call. This call can be used when you need to remove many records from a collection but not all.
       operationId: delAccountInsightDataRecords
       parameters:
       - name: collectionName
@@ -455,11 +453,12 @@ paths:
   /insightData/v3/collections/{collectionName}/empty:
     delete:
       summary: Empties an Insight data collection
-      description: 'Deletes all records from the specified Insight data collection but not the collection itself, so further data can be added without removing dependencies to product recommendations, campaigns, or segments. <br/><br/>
+      description: 'Deletes all records from the specified Insight data collection but not the collection itself, so further data can be added without removing dependencies to product recommendations, campaigns, or segments.
+
 
         **Notes:**
 
-        * The deletion is asynchronous progress can be monitored by calling [getAsyncStatus](/reference/getasyncstatus)
+        * The deletion is asynchronous progress can be monitored by calling getAsyncStatus
 
         * If you empty a contact scoped Insight data collection then all data for all contacts in that collection will be removed'
       operationId: delEmptyAnyInsightDataCollection
@@ -606,7 +605,10 @@ paths:
   /insightData/v3/account/{collectionName}:
     get:
       summary: Retrieves records from an accounts Insight data collection
-      description: 'Retrieve all records from an Insight data collection<br><br>*Note: All data is returned in ascending order*'
+      description: 'Retrieve all records from an Insight data collection
+
+
+        *Note: All data is returned in ascending order*'
       operationId: getAccountInsightData
       parameters:
       - name: collectionName
@@ -691,7 +693,6 @@ paths:
   /insightData/v3/account/{collectionName}/{recordId}:
     get:
       summary: Retrieve single record from an account Insight data collection
-      description: Retrieve single record from an account Insight data collection
       operationId: getAccountInsightDataRecord
       parameters:
       - name: collectionName
@@ -896,7 +897,8 @@ paths:
   /insightData/v3/contacts/{collectionName}:
     get:
       summary: Retrieve data for contact-scoped Insight data collection
-      description: 'Retrieves records from across all contacts for a contacts scoped Insight data collection<br><br>
+      description: 'Retrieves records from across all contacts for a contacts scoped Insight data collection
+
 
         ***Note:** All data is returned in ascending order*'
       operationId: getAllContactsInsightData
@@ -1050,7 +1052,10 @@ paths:
   /insightData/v3/contacts/{identifier}/{value}/{collectionName}:
     get:
       summary: Retrieve records for a contact from Insight data collection
-      description: 'Retrieves records from a specified Insight data collection for a contact<br><br>*Note: All data is returned in ascending order*'
+      description: 'Retrieves records from a specified Insight data collection for a contact
+
+
+        *Note: All data is returned in ascending order*'
       operationId: getContactInsightData
       parameters:
       - name: identifier
@@ -1159,10 +1164,8 @@ paths:
       - InsightData
   /insightData/v3/contacts/{identifier}/{value}/{collectionName}/deleteRecords:
     delete:
-      summary: Deletes multiple records from an contact scoped Insight Data collection.
-      description: 'Delete from 1 to 5000 records from a single contact scoped Insight Data collection in a single call. This call can be used when you need to remove many records from a collection but not all.
-
-        '
+      summary: Deletes multiple records from an contact scoped Insight Data collection
+      description: Delete from 1 to 5000 records from a single contact scoped Insight Data collection in a single call. This call can be used when you need to remove many records from a collection but not all.
       operationId: delContactInsightDataRecords
       parameters:
       - name: identifier
@@ -1241,11 +1244,12 @@ paths:
   /insightData/v3/contacts/{identifier}/{value}/{collectionName}/empty:
     delete:
       summary: Empty Insight data collection for a contact
-      description: 'Deletes all records from a specified Insight data collection for a single contact. The collection itself is not deleted; this allows new data to be added without affecting data dependencies.<br/><br/>
+      description: 'Deletes all records from a specified Insight data collection for a single contact. The collection itself is not deleted; this allows new data to be added without affecting data dependencies.
+
 
         **Notes:**
 
-        * The deletion is asynchronous progress can be monitored by calling [getAsyncStatus](/reference/getasyncstatus)'
+        * The deletion is asynchronous progress can be monitored by calling getAsyncStatus'
       operationId: delEmptyContactInsightDataCollection
       parameters:
       - name: identifier
@@ -1607,6 +1611,34 @@ paths:
       - InsightData
 components:
   schemas:
+    insightRecord:
+      required:
+      - json
+      - key
+      type: object
+      properties:
+        key:
+          type: string
+          description: The unique key for the record
+          example: '24938'
+        json:
+          type: object
+          additionalProperties: true
+          format: json
+          example:
+            PurchaseDate: '2020-01-01T09:40:18.527Z'
+            TotalExTax: 56
+            TotalIncTax: 67.2
+            SalesChannel: In store
+            SalesSubChannel: Manchester
+            Product:
+              Name: Armani Jeans beanie hat
+              Brand: Armani Jeans
+              Department: Menswear
+              Category: Hat
+              PriceExTax: 56
+              ProductID: '24938'
+      description: An Insight data record
     paginationLinks:
       required:
       - first
@@ -1624,50 +1656,22 @@ components:
         last:
           $ref: '#/components/schemas/paginationLinks_last'
       description: Pagination links
-    inline_response_200_2:
+    contactIdentifier:
       required:
-      - failures
-      - summary
+      - identifier
+      - value
       type: object
       properties:
-        summary:
-          $ref: '#/components/schemas/inline_response_200_2_summary'
-        notFound:
-          type: array
-          description: The record keys that could not be found in the collection for deletion.
-          items:
-            type: string
-            example: '["XXX-unknown"]'
-      description: The results of the deletion.
-    paginationLinks_last:
-      required:
-      - link
-      - marker
-      type: object
-      properties:
-        marker:
+        identifier:
           type: string
-          description: Pagination marker to be passed to API calls to retrieve this data page
-        link:
-          type: string
-          description: Link to retrieve the data page
-      description: Details for accessing the last pages worth of data
-    collectionName_deleteRecords_body:
-      required:
-      - keys
-      type: object
-      properties:
-        keys:
-          maxItems: 5000
-          minItems: 1
-          type: array
-          description: The record keys to be deleted.
-          example:
-          - MKS-123
-          - ABS-9932-A
-          - XXX-unknown
-          items:
-            type: string
+          description: The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of contactId, email or mobileNumber
+          example: contactId
+        value:
+          type:
+          - string
+          - 'null'
+          description: The unique value to identify the contact or the same type as the **identifier**
+          example: fred.bloggs@emailsim.io
     collectionSummary:
       required:
       - collectionName
@@ -1692,25 +1696,22 @@ components:
           format: int64
           example: 100
       description: An Insight data collection summary
-    inline_response_202:
-      type: object
-      properties:
-        importId:
-          type: string
-          description: The import id to use to retrieve the imports status using **getImportStatus**
-          example: d7de900d-d337-43f6-b1e1-c8ec73e1a434
-    errorResponse_details:
+    errorResponse:
       required:
       - description
-      - item
+      - errorCode
       type: object
       properties:
-        item:
+        errorCode:
           type: string
-          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
+          description: Unique error code
         description:
           type: string
-          description: Description of the error
+          description: Description of the issue
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/errorResponse_details'
     collectionType:
       type: string
       description: Type of data the collection holds; **custom** denotes your custom data.
@@ -1725,110 +1726,13 @@ components:
       - productCategories
       - webInsight
       - wishList
-    v3_import_body:
-      required:
-      - collectionName
-      - collectionScope
-      - collectionType
-      - records
+    inline_response_202:
       type: object
       properties:
-        collectionName:
-          $ref: '#/components/schemas/collectionName'
-        collectionScope:
-          $ref: '#/components/schemas/collectionScope'
-        collectionType:
-          $ref: '#/components/schemas/collectionType'
-        records:
-          minItems: 1
-          type: array
-          description: The Insight data records for the collection
-          items:
-            $ref: '#/components/schemas/upsertInsightRecord'
-    collectionName:
-      maxLength: 255
-      pattern: (^[-A-Za-z_][-A-Za-z0-9_]{1,255}$)
-      type: string
-      description: Name of the Insight data collection
-      example: Orders
-    inline_response_200_4:
-      required:
-      - _items
-      - _links
-      type: object
-      properties:
-        _links:
-          $ref: '#/components/schemas/paginationLinks'
-        _items:
-          maxItems: 1000
-          type: array
-          description: The returned Insight data records
-          example:
-          - key: '24938'
-            json:
-              PurchaseDate: '2020-01-01T09:40:18.527Z'
-              TotalExTax: 56
-              TotalIncTax: 67.2
-              SalesChannel: In store
-              SalesSubChannel: Manchester
-              Product:
-                Name: Armani Jeans beanie hat
-                Brand: Armani Jeans
-                Department: Menswear
-                Category: Hat
-                PriceExTax: 56
-                ProductID: '24938'
-            created: '2023-04-17T11:50:40.390Z'
-            updated: '2023-04-17T11:50:40.390Z'
-          items:
-            $ref: '#/components/schemas/returnedInsightRecord'
-    inline_response_200_summary:
-      type: object
-      properties:
-        totalRecords:
-          type: integer
-          description: The number of records submitted for import
-          format: int32
-          example: 10
-        totalImported:
-          type: integer
-          description: The number of records successfully imported
-          format: int32
-          example: 9
-        totalRejected:
-          type: integer
-          description: The number of records that were rejected due to an issue
-          format: int32
-          example: 1
-    returnedInsightRecord:
-      description: An Insight data record
-      allOf:
-      - $ref: '#/components/schemas/insightRecord'
-      - required:
-        - created
-        - updated
-        type: object
-        properties:
-          created:
-            type: string
-            description: ISO 8601 UTC timestamp for when the record was created
-            format: date-time
-          updated:
-            type: string
-            description: ISO 8601 UTC timestamp for when the record was last updated
-            format: date-time
-          ownerContactId:
-            $ref: '#/components/schemas/contactId'
-        additionalProperties: false
-    asyncJobId:
-      required:
-      - jobId
-      type: object
-      properties:
-        jobId:
+        importId:
           type: string
-          description: The unique asynchronous job id
-          example: e036d11f-15be-4497-8dee-5ca210abeca6
+          description: The import id to use to retrieve the imports status using **getImportStatus**
+          example: d7de900d-d337-43f6-b1e1-c8ec73e1a434
     inline_response_200_1_summary:
       type: object
       properties:
@@ -1847,6 +1751,67 @@ components:
           description: The number of records that failed to process
           format: int32
           example: 1
+    inline_response_200_5:
+      required:
+      - _items
+      - _links
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/paginationLinks'
+        _items:
+          maxItems: 1000
+          type: array
+          description: The returned Insight data records
+          items:
+            $ref: '#/components/schemas/returnedInsightRecord'
+    collectionName:
+      maxLength: 255
+      pattern: (^[-A-Za-z_][-A-Za-z0-9_]{1,255}$)
+      type: string
+      description: Name of the Insight data collection
+      example: Orders
+    collectionOwner:
+      required:
+      - ownerType
+      type: object
+      properties:
+        ownerType:
+          type: string
+          enum:
+          - account
+          - contact
+        contactIdentity:
+          $ref: '#/components/schemas/contactIdentifier'
+    paginationLinks_self:
+      required:
+      - link
+      - marker
+      type: object
+      properties:
+        marker:
+          type: string
+          description: Pagination marker to be passed to API calls to retrieve this data page
+        link:
+          type: string
+          description: Link to retrieve the data page
+      description: Details for accessing this data page via pagination
+    collectionName_deleteRecords_body_1:
+      required:
+      - keys
+      type: object
+      properties:
+        keys:
+          maxItems: 5000
+          minItems: 1
+          type: array
+          description: The record keys to be deleted.
+          example:
+          - MKS-123
+          - ABS-9932-A
+          - XXX-unknown
+          items:
+            type: string
     inline_response_200_3:
       required:
       - collectionName
@@ -1958,6 +1923,182 @@ components:
               type: STRING
               fields: []
       description: An Insight data collection summary
+    inline_response_200_1:
+      required:
+      - jobId
+      - status
+      type: object
+      properties:
+        jobId:
+          type: string
+          description: Asynchronous job id
+          example: d7de900d-d337-43f6-b1e1-c8ec73e1a434
+        status:
+          type: string
+          example: Finished
+          enum:
+          - NotStarted
+          - NotFinished
+          - Finished
+          - Failed
+          - NotAvailableInThisVersion
+        summary:
+          $ref: '#/components/schemas/inline_response_200_1_summary'
+        failures:
+          type: array
+          items:
+            $ref: '#/components/schemas/errorResponse'
+    paginationLinks_last:
+      required:
+      - link
+      - marker
+      type: object
+      properties:
+        marker:
+          type: string
+          description: Pagination marker to be passed to API calls to retrieve this data page
+        link:
+          type: string
+          description: Link to retrieve the data page
+      description: Details for accessing the last pages worth of data
+    inline_response_200_4:
+      required:
+      - _items
+      - _links
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/paginationLinks'
+        _items:
+          maxItems: 1000
+          type: array
+          description: The returned Insight data records
+          example:
+          - key: '24938'
+            json:
+              PurchaseDate: '2020-01-01T09:40:18.527Z'
+              TotalExTax: 56
+              TotalIncTax: 67.2
+              SalesChannel: In store
+              SalesSubChannel: Manchester
+              Product:
+                Name: Armani Jeans beanie hat
+                Brand: Armani Jeans
+                Department: Menswear
+                Category: Hat
+                PriceExTax: 56
+                ProductID: '24938'
+            created: '2023-04-17T11:50:40.390Z'
+            updated: '2023-04-17T11:50:40.390Z'
+          items:
+            $ref: '#/components/schemas/returnedInsightRecord'
+    inline_response_200_6:
+      required:
+      - _items
+      - _links
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/paginationLinks'
+        _items:
+          type: array
+          description: The returned Insight data records
+          items:
+            $ref: '#/components/schemas/returnedInsightRecord'
+    paginationLinks_first:
+      required:
+      - link
+      - marker
+      type: object
+      properties:
+        marker:
+          type: string
+          description: Pagination marker to be passed to API calls to retrieve this data page
+        link:
+          type: string
+          description: Link to retrieve the data page
+      description: Details for accessing the first page worth of data
+    inline_response_200_summary:
+      type: object
+      properties:
+        totalRecords:
+          type: integer
+          description: The number of records submitted for import
+          format: int32
+          example: 10
+        totalImported:
+          type: integer
+          description: The number of records successfully imported
+          format: int32
+          example: 9
+        totalRejected:
+          type: integer
+          description: The number of records that were rejected due to an issue
+          format: int32
+          example: 1
+    upsertInsightRecord:
+      description: An Insight data record to be upserted
+      allOf:
+      - type: object
+        properties:
+          contactIdentity:
+            allOf:
+            - description: If targeting a contact scoped collection you must specify the contact that owns this record
+            - $ref: '#/components/schemas/contactIdentifier'
+        additionalProperties: false
+      - $ref: '#/components/schemas/insightRecord'
+    asyncJobId:
+      required:
+      - jobId
+      type: object
+      properties:
+        jobId:
+          type: string
+          description: The unique asynchronous job id
+          example: e036d11f-15be-4497-8dee-5ca210abeca6
+    inline_response_200_2:
+      required:
+      - failures
+      - summary
+      type: object
+      properties:
+        summary:
+          $ref: '#/components/schemas/inline_response_200_2_summary'
+        notFound:
+          type: array
+          description: The record keys that could not be found in the collection for deletion.
+          items:
+            type: string
+            example: '["XXX-unknown"]'
+      description: The results of the deletion.
+    errorResponse_details:
+      required:
+      - description
+      - item
+      type: object
+      properties:
+        item:
+          type: string
+          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
+        description:
+          type: string
+          description: Description of the error
+    collectionName_deleteRecords_body:
+      required:
+      - keys
+      type: object
+      properties:
+        keys:
+          maxItems: 5000
+          minItems: 1
+          type: array
+          description: The record keys to be deleted.
+          example:
+          - MKS-123
+          - ABS-9932-A
+          - XXX-unknown
+          items:
+            type: string
     inline_response_200:
       required:
       - importId
@@ -2021,19 +2162,7 @@ components:
                     type: string
                     description: A failure reason
             - $ref: '#/components/schemas/insightRecord'
-    collectionOwner:
-      required:
-      - ownerType
-      type: object
-      properties:
-        ownerType:
-          type: string
-          enum:
-          - account
-          - contact
-        contactIdentity:
-          $ref: '#/components/schemas/contactIdentifier'
-    paginationLinks_next:
+    paginationLinks_prev:
       required:
       - link
       - marker
@@ -2045,155 +2174,7 @@ components:
         link:
           type: string
           description: Link to retrieve the data page
-      description: Details for accessing the next pages worth of data
-    inline_response_200_5:
-      required:
-      - _items
-      - _links
-      type: object
-      properties:
-        _links:
-          $ref: '#/components/schemas/paginationLinks'
-        _items:
-          maxItems: 1000
-          type: array
-          description: The returned Insight data records
-          items:
-            $ref: '#/components/schemas/returnedInsightRecord'
-    contactIdentifier:
-      required:
-      - identifier
-      - value
-      type: object
-      properties:
-        identifier:
-          type: string
-          description: The field to use to uniquely identify the contact. This can be a custom identifier or a contact identifer of contactId, email or mobileNumber
-          example: contactId
-        value:
-          type:
-          - string
-          - 'null'
-          description: The unique value to identify the contact or the same type as the **identifier**
-          example: fred.bloggs@emailsim.io
-    contactId:
-      minimum: 0
-      type: integer
-      description: Immutable unique identifier for the contact
-      example: 35212311
-    inline_response_200_6:
-      required:
-      - _items
-      - _links
-      type: object
-      properties:
-        _links:
-          $ref: '#/components/schemas/paginationLinks'
-        _items:
-          type: array
-          description: The returned Insight data records
-          items:
-            $ref: '#/components/schemas/returnedInsightRecord'
-    inline_response_200_1:
-      required:
-      - jobId
-      - status
-      type: object
-      properties:
-        jobId:
-          type: string
-          description: Asynchronous job id
-          example: d7de900d-d337-43f6-b1e1-c8ec73e1a434
-        status:
-          type: string
-          example: Finished
-          enum:
-          - NotStarted
-          - NotFinished
-          - Finished
-          - Failed
-          - NotAvailableInThisVersion
-        summary:
-          $ref: '#/components/schemas/inline_response_200_1_summary'
-        failures:
-          type: array
-          items:
-            $ref: '#/components/schemas/errorResponse'
-    errorResponse:
-      required:
-      - description
-      - errorCode
-      type: object
-      properties:
-        errorCode:
-          type: string
-          description: Unique error code
-        description:
-          type: string
-          description: Description of the issue
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/errorResponse_details'
-    collectionName_deleteRecords_body_1:
-      required:
-      - keys
-      type: object
-      properties:
-        keys:
-          maxItems: 5000
-          minItems: 1
-          type: array
-          description: The record keys to be deleted.
-          example:
-          - MKS-123
-          - ABS-9932-A
-          - XXX-unknown
-          items:
-            type: string
-    collectionScope:
-      type: string
-      description: The scope the collection applies to, either account level or contact level
-      enum:
-      - account
-      - contact
-    upsertInsightRecord:
-      description: An Insight data record to be upserted
-      allOf:
-      - type: object
-        properties:
-          contactIdentity:
-            allOf:
-            - description: If targeting a contact scoped collection you must specify the contact that owns this record
-            - $ref: '#/components/schemas/contactIdentifier'
-        additionalProperties: false
-      - $ref: '#/components/schemas/insightRecord'
-    paginationLinks_first:
-      required:
-      - link
-      - marker
-      type: object
-      properties:
-        marker:
-          type: string
-          description: Pagination marker to be passed to API calls to retrieve this data page
-        link:
-          type: string
-          description: Link to retrieve the data page
-      description: Details for accessing the first page worth of data
-    paginationLinks_self:
-      required:
-      - link
-      - marker
-      type: object
-      properties:
-        marker:
-          type: string
-          description: Pagination marker to be passed to API calls to retrieve this data page
-        link:
-          type: string
-          description: Link to retrieve the data page
-      description: Details for accessing this data page via pagination
+      description: Details for accessing the previous pagea worth of data
     inline_response_200_2_summary:
       type: object
       properties:
@@ -2212,35 +2193,33 @@ components:
           description: The number of records that were not found for deletion
           format: int32
           example: 1
-    insightRecord:
+    v3_import_body:
       required:
-      - json
-      - key
+      - collectionName
+      - collectionScope
+      - collectionType
+      - records
       type: object
       properties:
-        key:
-          type: string
-          description: The unique key for the record
-          example: '24938'
-        json:
-          type: object
-          additionalProperties: true
-          format: json
-          example:
-            PurchaseDate: '2020-01-01T09:40:18.527Z'
-            TotalExTax: 56
-            TotalIncTax: 67.2
-            SalesChannel: In store
-            SalesSubChannel: Manchester
-            Product:
-              Name: Armani Jeans beanie hat
-              Brand: Armani Jeans
-              Department: Menswear
-              Category: Hat
-              PriceExTax: 56
-              ProductID: '24938'
-      description: An Insight data record
-    paginationLinks_prev:
+        collectionName:
+          $ref: '#/components/schemas/collectionName'
+        collectionScope:
+          $ref: '#/components/schemas/collectionScope'
+        collectionType:
+          $ref: '#/components/schemas/collectionType'
+        records:
+          minItems: 1
+          type: array
+          description: The Insight data records for the collection
+          items:
+            $ref: '#/components/schemas/upsertInsightRecord'
+    collectionScope:
+      type: string
+      description: The scope the collection applies to, either account level or contact level
+      enum:
+      - account
+      - contact
+    paginationLinks_next:
       required:
       - link
       - marker
@@ -2252,7 +2231,32 @@ components:
         link:
           type: string
           description: Link to retrieve the data page
-      description: Details for accessing the previous pagea worth of data
+      description: Details for accessing the next pages worth of data
+    contactId:
+      minimum: 0
+      type: integer
+      description: Immutable unique identifier for the contact
+      example: 35212311
+    returnedInsightRecord:
+      description: An Insight data record
+      allOf:
+      - $ref: '#/components/schemas/insightRecord'
+      - required:
+        - created
+        - updated
+        type: object
+        properties:
+          created:
+            type: string
+            description: ISO 8601 UTC timestamp for when the record was created
+            format: date-time
+          updated:
+            type: string
+            description: ISO 8601 UTC timestamp for when the record was last updated
+            format: date-time
+          ownerContactId:
+            $ref: '#/components/schemas/contactId'
+        additionalProperties: false
   securitySchemes:
     basicAuth:
       type: http
