@@ -329,6 +329,60 @@ components:
             description: The identity that created the webhook
             readOnly: true
       - $ref: '#/components/schemas/WebhookConfigurationCreateUpdate'
+    EventFilters:
+      type: object
+      properties:
+        name:
+          type: string
+          description: name of filter
+          example: channel
+        value:
+          type: string
+          description: value to watch
+          example: sms
+    AvailbleEvents:
+      type: array
+      items:
+        $ref: '#/components/schemas/AvailbleEvents_inner'
+    WebhookConfigurationCreateUpdate:
+      required:
+      - name
+      - url
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the webhook configuration
+          example: crm_system
+        url:
+          type: string
+          description: The target url of the webhook
+          example: https://mycrm.example.com/webhooksReceive
+        secret:
+          type: string
+          description: The secret used to create HMAC secure hash
+          example: f946b0e7-5fe9-4f57-9d8f-62b3ac0b4a13
+        subscriptions:
+          type: array
+          description: Events for webhook
+          items:
+            $ref: '#/components/schemas/WebhookEvents'
+        batch:
+          type: boolean
+          description: Whether to use event batching, or send single events
+          example: true
+        maxBatchSize:
+          maximum: 500
+          minimum: 1
+          type: number
+          description: Maximum number of events to batch before it is sent
+          example: 100
+        batchTimeout:
+          maximum: 60
+          minimum: 1
+          type: number
+          description: Maximum duration in seconds to wait before a batch is sent
+          example: 60
     WebhookEvents:
       type: object
       properties:
@@ -354,21 +408,6 @@ components:
         filters: []
       - type: message.read
         filters: []
-    EventFilters:
-      type: object
-      properties:
-        name:
-          type: string
-          description: name of filter
-          example: channel
-        value:
-          type: string
-          description: value to watch
-          example: sms
-    AvailbleEvents:
-      type: array
-      items:
-        $ref: '#/components/schemas/AvailbleEvents_inner'
     AvailbleEvents_inner:
       type: object
       properties:
@@ -417,45 +456,6 @@ components:
           type: string
           description: Description of filter
           example: Channel that the event relates to e.g `sms`
-    WebhookConfigurationCreateUpdate:
-      required:
-      - name
-      - url
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the webhook configuration
-          example: crm_system
-        url:
-          type: string
-          description: The target url of the webhook
-          example: https://mycrm.example.com/webhooksReceive
-        secret:
-          type: string
-          description: The secret used to create HMAC secure hash
-          example: f946b0e7-5fe9-4f57-9d8f-62b3ac0b4a13
-        subscriptions:
-          type: array
-          description: Events for webhook
-          items:
-            $ref: '#/components/schemas/WebhookEvents'
-        batch:
-          type: boolean
-          description: Whether to use event batching, or send single events
-          example: true
-        maxBatchSize:
-          maximum: 500
-          minimum: 1
-          type: number
-          description: Maximum number of events to batch before it is sent
-          example: 100
-        batchTimeout:
-          maximum: 60
-          minimum: 1
-          type: number
-          description: Maximum duration in seconds to wait before a batch is sent
-          example: 60
   securitySchemes:
     basicAuth:
       type: http

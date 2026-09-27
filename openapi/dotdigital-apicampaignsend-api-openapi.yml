@@ -89,26 +89,6 @@ components:
       - Sent
       - Cancelled
       - NotAvailableInThisVersion
-    ApiSplitTestSendOptions:
-      type: object
-      additionalProperties: false
-      required:
-      - testMetric
-      - testPercentage
-      - testPeriodHours
-      properties:
-        testMetric:
-          $ref: '#/components/schemas/ApiSplitTestMetrics'
-        testPercentage:
-          type: integer
-          format: int32
-          maximum: 100.0
-          minimum: 1.0
-        testPeriodHours:
-          type: integer
-          format: int32
-          maximum: 2147483647.0
-          minimum: 1.0
     ApiCampaignSend:
       type: object
       additionalProperties: false
@@ -145,6 +125,26 @@ components:
           readOnly: true
           oneOf:
           - $ref: '#/components/schemas/ApiCampaignSendStatuses'
+    ApiSplitTestSendOptions:
+      type: object
+      additionalProperties: false
+      required:
+      - testMetric
+      - testPercentage
+      - testPeriodHours
+      properties:
+        testMetric:
+          $ref: '#/components/schemas/ApiSplitTestMetrics'
+        testPercentage:
+          type: integer
+          format: int32
+          maximum: 100.0
+          minimum: 1.0
+        testPeriodHours:
+          type: integer
+          format: int32
+          maximum: 2147483647.0
+          minimum: 1.0
     ApiSplitTestMetrics:
       type: string
       description: ''

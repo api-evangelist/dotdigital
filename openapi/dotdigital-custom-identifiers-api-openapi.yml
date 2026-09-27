@@ -122,22 +122,23 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    errorResponse:
-      required:
-      - description
-      - errorCode
+    customIdentifier:
       type: object
       properties:
-        errorCode:
+        name:
           type: string
-          description: Unique error code
-        description:
+          description: The unique custom identifier name.
+          example: crm-id
+        created:
           type: string
-          description: Description of the issue
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/errorResponse_details'
+          description: ISO 8601 UTC timestamp for when the record was created.
+          format: date-time
+          example: '2024-05-21T12:34:56Z'
+        updated:
+          type: string
+          description: ISO 8601 UTC timestamp for when the record was last updated.
+          format: date-time
+          example: '2024-05-21T12:34:56Z'
     customIdentifierRequest:
       required:
       - name
@@ -162,23 +163,22 @@ components:
         description:
           type: string
           description: Description of the error
-    customIdentifier:
+    errorResponse:
+      required:
+      - description
+      - errorCode
       type: object
       properties:
-        name:
+        errorCode:
           type: string
-          description: The unique custom identifier name.
-          example: crm-id
-        created:
+          description: Unique error code
+        description:
           type: string
-          description: ISO 8601 UTC timestamp for when the record was created.
-          format: date-time
-          example: '2024-05-21T12:34:56Z'
-        updated:
-          type: string
-          description: ISO 8601 UTC timestamp for when the record was last updated.
-          format: date-time
-          example: '2024-05-21T12:34:56Z'
+          description: Description of the issue
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/errorResponse_details'
   securitySchemes:
     basicAuth:
       type: http

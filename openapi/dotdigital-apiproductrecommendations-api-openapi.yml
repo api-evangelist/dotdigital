@@ -24,20 +24,34 @@ paths:
                   $ref: '#/components/schemas/ApiProductRecommendation'
 components:
   schemas:
-    ApiProductRecommendationStatus:
+    ApiProductRecommendationType:
       type: string
       description: ''
       x-enumNames:
-      - Ready
-      - InProgress
-      - Failed
-      - Queued
+      - BestSellers
+      - MostViewed
+      - FilterOnly
+      - LastBrowsed
+      - BoughtTogether
+      - Newest
+      - Lookalikes
+      - AlsoBought
+      - Trending
+      - BestNext
+      - Hybrid
       - NotAvailableInThisVersion
       enum:
-      - Ready
-      - InProgress
-      - Failed
-      - Queued
+      - BestSellers
+      - MostViewed
+      - FilterOnly
+      - LastBrowsed
+      - BoughtTogether
+      - Newest
+      - Lookalikes
+      - AlsoBought
+      - Trending
+      - BestNext
+      - Hybrid
       - NotAvailableInThisVersion
     ApiProductRecommendation:
       type: object
@@ -73,33 +87,19 @@ components:
           type:
           - string
           - 'null'
-    ApiProductRecommendationType:
+    ApiProductRecommendationStatus:
       type: string
       description: ''
       x-enumNames:
-      - BestSellers
-      - MostViewed
-      - FilterOnly
-      - LastBrowsed
-      - BoughtTogether
-      - Newest
-      - Lookalikes
-      - AlsoBought
-      - Trending
-      - BestNext
-      - Hybrid
+      - Ready
+      - InProgress
+      - Failed
+      - Queued
       - NotAvailableInThisVersion
       enum:
-      - BestSellers
-      - MostViewed
-      - FilterOnly
-      - LastBrowsed
-      - BoughtTogether
-      - Newest
-      - Lookalikes
-      - AlsoBought
-      - Trending
-      - BestNext
-      - Hybrid
+      - Ready
+      - InProgress
+      - Failed
+      - Queued
       - NotAvailableInThisVersion
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

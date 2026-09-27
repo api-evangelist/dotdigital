@@ -90,6 +90,20 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    inline_response_200_paging_cursors:
+      required:
+      - after
+      - before
+      type: object
+      properties:
+        before:
+          type: string
+          description: Continuation token for the previous page.
+          example: QVFIU1pNYzBEY2dNM0pjNlQ5Mm0wS1FSNnRBbkJSS0hhcTdka1FXdDBCV1kxYmMyMS1DZADBZAMTd1aHhRaWEta0RXVFNSQXFKVENYQWhyVW50bndDMUEwbXhn
+        after:
+          type: string
+          description: Continuation token for the next page.
+          example: QVFIU2RLSVkwNzNaSkpGYjk0YnhGWE1iMHpJS0tTRzFpRzNMRzFhVUVfUHVjd0UwYUdOSFpCOC1qOGtlTWNlSnktTEk2enhyWnV6YWItSDZANV0xIbVJCVk1n
     whatsAppTemplate:
       required:
       - category
@@ -175,6 +189,29 @@ components:
           description: The unique id for the template.
           example: '920070352646140'
       description: WhatsApp templates
+    inline_response_200:
+      required:
+      - data
+      - paging
+      type: object
+      properties:
+        data:
+          type: array
+          description: WhatsApp registered templates
+          items:
+            $ref: '#/components/schemas/whatsAppTemplate'
+        paging:
+          $ref: '#/components/schemas/inline_response_200_paging'
+    inline_response_200_paging:
+      type: object
+      properties:
+        cursors:
+          $ref: '#/components/schemas/inline_response_200_paging_cursors'
+      description: Pagination cursors
+    wabaId:
+      type: string
+      description: The unique WhatsApp Business Account (WABA) identifier.
+      example: '226114410888722'
     whatsAppComponent:
       title: WhatsApp template component
       type: object
@@ -460,43 +497,6 @@ components:
                     description: For `COPY_CODE` buttons provide the value to be copied.
                     example: 250FF
               additionalProperties: true
-    inline_response_200_paging_cursors:
-      required:
-      - after
-      - before
-      type: object
-      properties:
-        before:
-          type: string
-          description: Continuation token for the previous page.
-          example: QVFIU1pNYzBEY2dNM0pjNlQ5Mm0wS1FSNnRBbkJSS0hhcTdka1FXdDBCV1kxYmMyMS1DZADBZAMTd1aHhRaWEta0RXVFNSQXFKVENYQWhyVW50bndDMUEwbXhn
-        after:
-          type: string
-          description: Continuation token for the next page.
-          example: QVFIU2RLSVkwNzNaSkpGYjk0YnhGWE1iMHpJS0tTRzFpRzNMRzFhVUVfUHVjd0UwYUdOSFpCOC1qOGtlTWNlSnktTEk2enhyWnV6YWItSDZANV0xIbVJCVk1n
-    inline_response_200_paging:
-      type: object
-      properties:
-        cursors:
-          $ref: '#/components/schemas/inline_response_200_paging_cursors'
-      description: Pagination cursors
-    inline_response_200:
-      required:
-      - data
-      - paging
-      type: object
-      properties:
-        data:
-          type: array
-          description: WhatsApp registered templates
-          items:
-            $ref: '#/components/schemas/whatsAppTemplate'
-        paging:
-          $ref: '#/components/schemas/inline_response_200_paging'
-    wabaId:
-      type: string
-      description: The unique WhatsApp Business Account (WABA) identifier.
-      example: '226114410888722'
   securitySchemes:
     basicAuth:
       type: http

@@ -172,6 +172,33 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ApiTransactionalEmailAttachment:
+      type: object
+      additionalProperties: false
+      properties:
+        fileName:
+          type:
+          - string
+          - 'null'
+        content:
+          type:
+          - string
+          - 'null'
+        mimeType:
+          type:
+          - string
+          - 'null'
+    ApiCampaignFromAddress:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
     ApiTransactionalEmail:
       type: object
       additionalProperties: false
@@ -226,135 +253,30 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/ApiTransactionalEmailAttachment'
-    ApiCampaignFromAddress:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: integer
-          format: int32
-        email:
-          type:
-          - string
-          - 'null'
-    ApiCampaignReplyActions:
+    ApiCampaignStatuses:
       type: string
       description: ''
       x-enumNames:
-      - Unset
-      - WebMailForward
-      - Webmail
-      - Delete
+      - Unsent
+      - Sending
+      - Sent
+      - Paused
+      - Cancelled
+      - RequiresSystemApproval
+      - RequiresSMSApproval
+      - RequiresWorkflowApproval
+      - Triggered
       - NotAvailableInThisVersion
       enum:
-      - Unset
-      - WebMailForward
-      - Webmail
-      - Delete
-      - NotAvailableInThisVersion
-    ApiTransactionalEmailAttachment:
-      type: object
-      additionalProperties: false
-      properties:
-        fileName:
-          type:
-          - string
-          - 'null'
-        content:
-          type:
-          - string
-          - 'null'
-        mimeType:
-          type:
-          - string
-          - 'null'
-    ApiTransactionalEmailTriggeredCampaign:
-      type: object
-      additionalProperties: false
-      properties:
-        toAddresses:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        ccAddresses:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        bccAddresses:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        campaignId:
-          type: integer
-          format: int32
-        personalizationValues:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiPersonalizationValue'
-        metadata:
-          type:
-          - string
-          - 'null'
-        fromAddress:
-          type:
-          - string
-          - 'null'
-        attachments:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiTransactionalEmailAttachment'
-    ApiTransactionalEmailStatistics:
-      type: object
-      additionalProperties: false
-      properties:
-        startDate:
-          type: string
-          format: date-time
-        endDate:
-          type: string
-          format: date-time
-        numSent:
-          type: integer
-          format: int32
-        numDelivered:
-          type: integer
-          format: int32
-        numOpens:
-          type: integer
-          format: int32
-        numClicks:
-          type: integer
-          format: int32
-        numIspComplaints:
-          type: integer
-          format: int32
-        numBounces:
-          type: integer
-          format: int32
-    ApiAggregationPeriod:
-      type: string
-      description: ''
-      x-enumNames:
-      - AllTime
-      - Month
-      - Week
-      - Day
-      - NotAvailableInThisVersion
-      enum:
-      - AllTime
-      - Month
-      - Week
-      - Day
+      - Unsent
+      - Sending
+      - Sent
+      - Paused
+      - Cancelled
+      - RequiresSystemApproval
+      - RequiresSMSApproval
+      - RequiresWorkflowApproval
+      - Triggered
       - NotAvailableInThisVersion
     ApiCampaignWithProcessedContent:
       type: object
@@ -414,31 +336,109 @@ components:
           type:
           - string
           - 'null'
-    ApiCampaignStatuses:
+    ApiCampaignReplyActions:
       type: string
       description: ''
       x-enumNames:
-      - Unsent
-      - Sending
-      - Sent
-      - Paused
-      - Cancelled
-      - RequiresSystemApproval
-      - RequiresSMSApproval
-      - RequiresWorkflowApproval
-      - Triggered
+      - Unset
+      - WebMailForward
+      - Webmail
+      - Delete
       - NotAvailableInThisVersion
       enum:
-      - Unsent
-      - Sending
-      - Sent
-      - Paused
-      - Cancelled
-      - RequiresSystemApproval
-      - RequiresSMSApproval
-      - RequiresWorkflowApproval
-      - Triggered
+      - Unset
+      - WebMailForward
+      - Webmail
+      - Delete
       - NotAvailableInThisVersion
+    ApiTransactionalEmailStatistics:
+      type: object
+      additionalProperties: false
+      properties:
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        numSent:
+          type: integer
+          format: int32
+        numDelivered:
+          type: integer
+          format: int32
+        numOpens:
+          type: integer
+          format: int32
+        numClicks:
+          type: integer
+          format: int32
+        numIspComplaints:
+          type: integer
+          format: int32
+        numBounces:
+          type: integer
+          format: int32
+    ApiAggregationPeriod:
+      type: string
+      description: ''
+      x-enumNames:
+      - AllTime
+      - Month
+      - Week
+      - Day
+      - NotAvailableInThisVersion
+      enum:
+      - AllTime
+      - Month
+      - Week
+      - Day
+      - NotAvailableInThisVersion
+    ApiTransactionalEmailTriggeredCampaign:
+      type: object
+      additionalProperties: false
+      properties:
+        toAddresses:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        ccAddresses:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        bccAddresses:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        campaignId:
+          type: integer
+          format: int32
+        personalizationValues:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiPersonalizationValue'
+        metadata:
+          type:
+          - string
+          - 'null'
+        fromAddress:
+          type:
+          - string
+          - 'null'
+        attachments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiTransactionalEmailAttachment'
     ApiPersonalizationValue:
       type: object
       additionalProperties: false

@@ -178,6 +178,104 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    messageAnalytics_inbound:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The count of messages received from each channel
+    DeliveryTimeMetric:
+      required:
+      - count
+      - value
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Number of messages delivered within the threshold.
+          example: 5
+        value:
+          type: integer
+          description: Total time (in milliseconds) for all messages delivered within the threshold.
+          example: 4680
+      description: 'Metric for messages delivered within a specific time threshold.
+
+        '
+    messageAnalytics_undeliverable:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The count of undeliverable messages for each channel
+    ApiProfilingAnalytics:
+      required:
+      - date
+      - dateUtc
+      type: object
+      properties:
+        date:
+          type: string
+          description: The date of the analytics data in ISO 8601 format.
+          format: date-time
+          example: '2025-04-01T00:00:00Z'
+        dateUtc:
+          type: string
+          description: The UTC date of the analytics data in ISO 8601 format.
+          format: date-time
+          example: '2025-04-01T00:00:00Z'
+        appMessaging:
+          $ref: '#/components/schemas/ChannelProfiling'
+        whatsApp:
+          $ref: '#/components/schemas/ChannelProfiling'
+        sms:
+          $ref: '#/components/schemas/ChannelProfiling'
+      description: 'API profiling analytics data, including delivery times for different messaging channels on a specific date.
+
+        '
+    messageAnalytics_expiredSegements:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The segment count of expired messages on each channel
+    messageAnalytics_success:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The count of messages sent for each channel
+    messageAnalytics_undeliverableSegements:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The segment count of undeliverable messages on each channel
+    messageAnalytics_deliveredSegements:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The segment count of delivered messages on each channel
+    TimeToDeliveredMetrics:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/DeliveryTimeMetric'
+      description: 'Delivery time metrics, keyed by delivery time thresholds (in seconds).
+
+        '
+      example:
+        '10':
+          count: 5
+          value: 4680
+        '30':
+          count: 2
+          value: 46494
     messageAnalytics_queuedSegments:
       type: object
       properties:
@@ -185,13 +283,20 @@ components:
           type: integer
           format: int64
       description: The segment count of queued messages on each channel
-    messageAnalytics_readSegements:
+    messageAnalytics_delivered:
       type: object
       properties:
         additionalProperties:
           type: integer
           format: int64
-      description: The segment count of read messages on each channel
+      description: The count of messages delivered for each channel
+    messageAnalytics_expired:
+      type: object
+      properties:
+        additionalProperties:
+          type: integer
+          format: int64
+      description: The count of expired messages for each channel
     messageAnalytics:
       type: object
       properties:
@@ -235,27 +340,13 @@ components:
           format: int64
         inbound:
           $ref: '#/components/schemas/messageAnalytics_inbound'
-    messageAnalytics_expiredSegements:
+    messageAnalytics_readSegements:
       type: object
       properties:
         additionalProperties:
           type: integer
           format: int64
-      description: The segment count of expired messages on each channel
-    messageAnalytics_expired:
-      type: object
-      properties:
-        additionalProperties:
-          type: integer
-          format: int64
-      description: The count of expired messages for each channel
-    messageAnalytics_queued:
-      type: object
-      properties:
-        additionalProperties:
-          type: integer
-          format: int64
-      description: The count of queued messages for each channel
+      description: The segment count of read messages on each channel
     ChannelProfiling:
       required:
       - timeToDelivered
@@ -266,97 +357,6 @@ components:
       description: 'Profiling data for a specific messaging channel, including delivery time metrics.
 
         '
-    messageAnalytics_undeliverable:
-      type: object
-      properties:
-        additionalProperties:
-          type: integer
-          format: int64
-      description: The count of undeliverable messages for each channel
-    messageAnalytics_undeliverableSegements:
-      type: object
-      properties:
-        additionalProperties:
-          type: integer
-          format: int64
-      description: The segment count of undeliverable messages on each channel
-    messageAnalytics_read:
-      type: object
-      properties:
-        additionalProperties:
-          type: integer
-          format: int64
-      description: The count of messages read for each channel
-    messageAnalytics_success:
-      type: object
-      properties:
-        additionalProperties:
-          type: integer
-          format: int64
-      description: The count of messages sent for each channel
-    ApiProfilingAnalytics:
-      required:
-      - date
-      - dateUtc
-      type: object
-      properties:
-        date:
-          type: string
-          description: The date of the analytics data in ISO 8601 format.
-          format: date-time
-          example: '2025-04-01T00:00:00Z'
-        dateUtc:
-          type: string
-          description: The UTC date of the analytics data in ISO 8601 format.
-          format: date-time
-          example: '2025-04-01T00:00:00Z'
-        appMessaging:
-          $ref: '#/components/schemas/ChannelProfiling'
-        whatsApp:
-          $ref: '#/components/schemas/ChannelProfiling'
-        sms:
-          $ref: '#/components/schemas/ChannelProfiling'
-      description: 'API profiling analytics data, including delivery times for different messaging channels on a specific date.
-
-        '
-    TimeToDeliveredMetrics:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/DeliveryTimeMetric'
-      description: 'Delivery time metrics, keyed by delivery time thresholds (in seconds).
-
-        '
-      example:
-        '10':
-          count: 5
-          value: 4680
-        '30':
-          count: 2
-          value: 46494
-    messageAnalytics_delivered:
-      type: object
-      properties:
-        additionalProperties:
-          type: integer
-          format: int64
-      description: The count of messages delivered for each channel
-    DeliveryTimeMetric:
-      required:
-      - count
-      - value
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Number of messages delivered within the threshold.
-          example: 5
-        value:
-          type: integer
-          description: Total time (in milliseconds) for all messages delivered within the threshold.
-          example: 4680
-      description: 'Metric for messages delivered within a specific time threshold.
-
-        '
     messageAnalytics_successSegements:
       type: object
       properties:
@@ -364,20 +364,20 @@ components:
           type: integer
           format: int64
       description: The segment count of sent messages on each channel
-    messageAnalytics_deliveredSegements:
+    messageAnalytics_queued:
       type: object
       properties:
         additionalProperties:
           type: integer
           format: int64
-      description: The segment count of delivered messages on each channel
-    messageAnalytics_inbound:
+      description: The count of queued messages for each channel
+    messageAnalytics_read:
       type: object
       properties:
         additionalProperties:
           type: integer
           format: int64
-      description: The count of messages received from each channel
+      description: The count of messages read for each channel
   securitySchemes:
     basicAuth:
       type: http

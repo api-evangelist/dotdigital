@@ -66,6 +66,53 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
+    ApiDependencyResult:
+      type: object
+      additionalProperties: false
+      properties:
+        dependencies:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiDependency'
+        result:
+          type: boolean
+    ApiDataFieldVisibility:
+      type: string
+      description: ''
+      x-enumNames:
+      - Private
+      - Public
+      - NotAvailableInThisVersion
+      enum:
+      - Private
+      - Public
+      - NotAvailableInThisVersion
+    ApiDataTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - String
+      - Numeric
+      - Date
+      - Boolean
+      - NotAvailableInThisVersion
+      enum:
+      - String
+      - Numeric
+      - Date
+      - Boolean
+      - NotAvailableInThisVersion
+    ApiDependency:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/ApiBusinessObjectType'
+        objectId:
+          type: integer
+          format: int32
     ProblemDetails:
       type: object
       additionalProperties: {}
@@ -94,15 +141,6 @@ components:
         extensions:
           type: object
           additionalProperties: {}
-    ApiDependency:
-      type: object
-      additionalProperties: false
-      properties:
-        type:
-          $ref: '#/components/schemas/ApiBusinessObjectType'
-        objectId:
-          type: integer
-          format: int32
     ApiDataField:
       type: object
       additionalProperties: false
@@ -117,32 +155,6 @@ components:
         visibility:
           $ref: '#/components/schemas/ApiDataFieldVisibility'
         defaultValue: {}
-    ApiDataFieldVisibility:
-      type: string
-      description: ''
-      x-enumNames:
-      - Private
-      - Public
-      - NotAvailableInThisVersion
-      enum:
-      - Private
-      - Public
-      - NotAvailableInThisVersion
-    ApiDataTypes:
-      type: string
-      description: ''
-      x-enumNames:
-      - String
-      - Numeric
-      - Date
-      - Boolean
-      - NotAvailableInThisVersion
-      enum:
-      - String
-      - Numeric
-      - Date
-      - Boolean
-      - NotAvailableInThisVersion
     ApiBusinessObjectType:
       type: string
       description: ''
@@ -170,16 +182,4 @@ components:
       - CampaignLink
       - CampaignTemplate
       - NotAvailableInThisVersion
-    ApiDependencyResult:
-      type: object
-      additionalProperties: false
-      properties:
-        dependencies:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiDependency'
-        result:
-          type: boolean
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

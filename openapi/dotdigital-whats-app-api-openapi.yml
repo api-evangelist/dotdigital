@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Analytics Whats App API
+  title: Analytics WhatsApp API
   description: 'Provides methods for retrieving analytics data across the Dotdigital
 
     omnichannel platform. Covers conversation message analytics, chat analytics

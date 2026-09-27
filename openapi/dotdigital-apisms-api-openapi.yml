@@ -167,6 +167,20 @@ paths:
                 $ref: '#/components/schemas/ApiSmsCampaign'
 components:
   schemas:
+    ApiCopySmsCampaignRequest:
+      type: object
+      additionalProperties: false
+      required:
+      - campaignId
+      - copyName
+      properties:
+        campaignId:
+          type: integer
+          format: int32
+        copyName:
+          type: string
+          maxLength: 256
+          minLength: 1
     ApiSmsCampaign:
       allOf:
       - $ref: '#/components/schemas/ApiSms'
@@ -198,20 +212,6 @@ components:
             readOnly: true
             oneOf:
             - $ref: '#/components/schemas/ApiSmsCampaignStatuses'
-    ApiCopySmsCampaignRequest:
-      type: object
-      additionalProperties: false
-      required:
-      - campaignId
-      - copyName
-      properties:
-        campaignId:
-          type: integer
-          format: int32
-        copyName:
-          type: string
-          maxLength: 256
-          minLength: 1
     ApiSmsCampaignStatuses:
       type: string
       description: ''

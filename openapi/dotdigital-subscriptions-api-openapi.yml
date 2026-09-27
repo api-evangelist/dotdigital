@@ -371,6 +371,19 @@ paths:
         '404':
           $ref: '#/components/responses/subscriptionNotFound'
 components:
+  responses:
+    subscriptionNotFound:
+      description: Subscription not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          example:
+            errorCode: events:subscriptionNotFound
+            description: The following subscription could not be found
+            details:
+            - item: zf0f945b36ad8
+              description: Not found.
   schemas:
     filter:
       required:
@@ -420,117 +433,6 @@ components:
       description: 'An inclusive filter that must be matched to include the event.
 
         '
-    paginationLinksPrevNext:
-      required:
-      - first
-      - self
-      type: object
-      properties:
-        self:
-          $ref: '#/components/schemas/paginationLinksPrevNext_self'
-        prev:
-          $ref: '#/components/schemas/paginationLinksPrevNext_prev'
-        next:
-          $ref: '#/components/schemas/paginationLinksPrevNext_next'
-      description: Pagination links
-    paginationLinksPrevNext_self:
-      required:
-      - link
-      - marker
-      type: object
-      properties:
-        marker:
-          type: string
-          description: Pagination marker to be passed to API calls to retrieve this data page
-        link:
-          type: string
-          description: Link to retrieve the data page
-      description: Details for accessing this data page via pagination
-    errorResponse_details:
-      required:
-      - description
-      - item
-      type: object
-      properties:
-        item:
-          type: string
-          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
-        description:
-          type: string
-          description: Description of the error
-    subscriptionStatus:
-      type: string
-      description: The subscription status.
-      enum:
-      - active
-      - inactive
-      default: inactive
-    errorResponse:
-      required:
-      - description
-      - errorCode
-      type: object
-      properties:
-        errorCode:
-          type: string
-          description: Unique error code
-        description:
-          type: string
-          description: Description of the issue
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/errorResponse_details'
-    paginationLinksPrevNext_prev:
-      required:
-      - link
-      - marker
-      type: object
-      properties:
-        marker:
-          type: string
-          description: Pagination marker to be passed to API calls to retrieve this data page
-        link:
-          type: string
-          description: Link to retrieve the data page
-      description: Details for accessing the previous pagea worth of data
-    subscription:
-      allOf:
-      - required:
-        - created
-        - id
-        - updated
-        type: object
-        properties:
-          id:
-            type: integer
-            description: The subscriptions unique identifier.
-            example: 95
-          created:
-            type: string
-            description: The UTC date time in ISO 8601 format when the subscription was created.
-            format: date-time
-            example: '2025-02-07T16:23:33.741Z'
-          updated:
-            type: string
-            description: The UTC date time in ISO 8601 format when the subscription was updated.
-            format: date-time
-            example: '2025-02-11T01:33:00Z'
-        additionalProperties: false
-      - $ref: '#/components/schemas/subscriptionRequest'
-    paginationLinksPrevNext_next:
-      required:
-      - link
-      - marker
-      type: object
-      properties:
-        marker:
-          type: string
-          description: Pagination marker to be passed to API calls to retrieve this data page
-        link:
-          type: string
-          description: Link to retrieve the data page
-      description: Details for accessing the next pages worth of data
     subscriptionRequest:
       required:
       - alertsConfiguration
@@ -620,19 +522,6 @@ components:
                 example: alerts@emailsim.io
             description: Email and in-app alerts
       additionalProperties: false
-    inline_response_200_1:
-      required:
-      - _items
-      - _links
-      type: object
-      properties:
-        _links:
-          $ref: '#/components/schemas/paginationLinksPrevNext'
-        _items:
-          type: array
-          description: Returned program extensions
-          items:
-            $ref: '#/components/schemas/subscription'
     eventType:
       required:
       - eventType
@@ -656,19 +545,130 @@ components:
             $ref: '#/components/schemas/filter'
       additionalProperties: false
       description: An event type and any inclusive filters that should be applied.
-  responses:
-    subscriptionNotFound:
-      description: Subscription not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/errorResponse'
-          example:
-            errorCode: events:subscriptionNotFound
-            description: The following subscription could not be found
-            details:
-            - item: zf0f945b36ad8
-              description: Not found.
+    errorResponse:
+      required:
+      - description
+      - errorCode
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: Unique error code
+        description:
+          type: string
+          description: Description of the issue
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/errorResponse_details'
+    paginationLinksPrevNext:
+      required:
+      - first
+      - self
+      type: object
+      properties:
+        self:
+          $ref: '#/components/schemas/paginationLinksPrevNext_self'
+        prev:
+          $ref: '#/components/schemas/paginationLinksPrevNext_prev'
+        next:
+          $ref: '#/components/schemas/paginationLinksPrevNext_next'
+      description: Pagination links
+    paginationLinksPrevNext_prev:
+      required:
+      - link
+      - marker
+      type: object
+      properties:
+        marker:
+          type: string
+          description: Pagination marker to be passed to API calls to retrieve this data page
+        link:
+          type: string
+          description: Link to retrieve the data page
+      description: Details for accessing the previous pagea worth of data
+    errorResponse_details:
+      required:
+      - description
+      - item
+      type: object
+      properties:
+        item:
+          type: string
+          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
+        description:
+          type: string
+          description: Description of the error
+    paginationLinksPrevNext_next:
+      required:
+      - link
+      - marker
+      type: object
+      properties:
+        marker:
+          type: string
+          description: Pagination marker to be passed to API calls to retrieve this data page
+        link:
+          type: string
+          description: Link to retrieve the data page
+      description: Details for accessing the next pages worth of data
+    paginationLinksPrevNext_self:
+      required:
+      - link
+      - marker
+      type: object
+      properties:
+        marker:
+          type: string
+          description: Pagination marker to be passed to API calls to retrieve this data page
+        link:
+          type: string
+          description: Link to retrieve the data page
+      description: Details for accessing this data page via pagination
+    subscription:
+      allOf:
+      - required:
+        - created
+        - id
+        - updated
+        type: object
+        properties:
+          id:
+            type: integer
+            description: The subscriptions unique identifier.
+            example: 95
+          created:
+            type: string
+            description: The UTC date time in ISO 8601 format when the subscription was created.
+            format: date-time
+            example: '2025-02-07T16:23:33.741Z'
+          updated:
+            type: string
+            description: The UTC date time in ISO 8601 format when the subscription was updated.
+            format: date-time
+            example: '2025-02-11T01:33:00Z'
+        additionalProperties: false
+      - $ref: '#/components/schemas/subscriptionRequest'
+    subscriptionStatus:
+      type: string
+      description: The subscription status.
+      enum:
+      - active
+      - inactive
+      default: inactive
+    inline_response_200_1:
+      required:
+      - _items
+      - _links
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/paginationLinksPrevNext'
+        _items:
+          type: array
+          description: Returned program extensions
+          items:
+            $ref: '#/components/schemas/subscription'
   securitySchemes:
     basicAuth:
       type: http

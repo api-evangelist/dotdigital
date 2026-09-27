@@ -124,8 +124,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    registrationResult:
-      type: boolean
     wabaId:
       type: string
       description: The unique WhatsApp Business Account (WABA) identifier.
@@ -217,6 +215,8 @@ components:
           description: The UTC date time of when the configuration was created.
           format: date-time
           example: '2025-01-01T00:00:00Z'
+    registrationResult:
+      type: boolean
   securitySchemes:
     basicAuth:
       type: http

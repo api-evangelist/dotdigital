@@ -108,6 +108,21 @@ paths:
                 $ref: '#/components/schemas/ApiTemplate'
 components:
   schemas:
+    ApiCampaignReplyActions:
+      type: string
+      description: ''
+      x-enumNames:
+      - Unset
+      - WebMailForward
+      - Webmail
+      - Delete
+      - NotAvailableInThisVersion
+      enum:
+      - Unset
+      - WebMailForward
+      - Webmail
+      - Delete
+      - NotAvailableInThisVersion
     ApiTemplate:
       type: object
       additionalProperties: false
@@ -142,19 +157,4 @@ components:
           type:
           - string
           - 'null'
-    ApiCampaignReplyActions:
-      type: string
-      description: ''
-      x-enumNames:
-      - Unset
-      - WebMailForward
-      - Webmail
-      - Delete
-      - NotAvailableInThisVersion
-      enum:
-      - Unset
-      - WebMailForward
-      - Webmail
-      - Delete
-      - NotAvailableInThisVersion
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))
