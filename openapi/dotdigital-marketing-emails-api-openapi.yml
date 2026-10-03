@@ -212,42 +212,34 @@ components:
             description: Tag
       additionalProperties: false
       description: Content created from a triggered campaign.
-    inline_response_201_failures:
+    errorResponse:
       required:
       - description
-      - failureCode
+      - errorCode
       type: object
       properties:
-        failureCode:
-          allOf:
-          - $ref: '#/components/schemas/BatchMarketingEmailFailureCode'
-          - $ref: '#/components/schemas/emailRefusedReason'
+        errorCode:
+          type: string
+          description: Unique error code
         description:
           type: string
-          description: Description of the reason for the failure
-          example: Invalid email of 'invalid@email'
-      description: A failure reason
-    inline_response_201_summary:
+          description: Description of the issue
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/errorResponse_details'
+    errorResponse_details:
       required:
-      - failed
-      - sent
-      - uncontactable
+      - description
+      - item
       type: object
       properties:
-        sent:
-          type: integer
-          description: Number successfully sent.
-          example: 8
-        uncontactable:
-          type: integer
-          description: Number of opted out or otherwise uncontactable.
-          example: 1
-        failed:
-          type: integer
-          description: Number that failed to send.
-          example: 1
-      additionalProperties: false
-      description: Summary of the batch send status.
+        item:
+          type: string
+          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
+        description:
+          type: string
+          description: Description of the error
     htmlContent:
       title: HTML content
       required:
@@ -275,22 +267,33 @@ components:
             '
       additionalProperties: false
       description: Raw HTML content.
-    errorResponse:
+    inline_response_201_failures:
       required:
       - description
-      - errorCode
+      - failureCode
       type: object
       properties:
-        errorCode:
-          type: string
-          description: Unique error code
+        failureCode:
+          allOf:
+          - $ref: '#/components/schemas/BatchMarketingEmailFailureCode'
+          - $ref: '#/components/schemas/emailRefusedReason'
         description:
           type: string
-          description: Description of the issue
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/errorResponse_details'
+          description: Description of the reason for the failure
+          example: Invalid email of 'invalid@email'
+      description: A failure reason
+    emailRefusedReason:
+      type: string
+      description: Unique failure code for this failure reason
+      example: marketingEmail:invalidEmailAddress
+      enum:
+      - marketingEmail:unsubscribed
+      - marketingEmail:hardBounced
+      - marketingEmail:complaint
+      - marketingEmail:blocked
+      - marketingEmail:spamTrap
+      - marketingEmail:suppressed
+      - marketingEmail:invalidEmailAddress
     emailRequest:
       title: Email send request
       required:
@@ -341,37 +344,6 @@ components:
             emailRef: 4564637238
             shard: 1
       additionalProperties: false
-    SingleMarketingEmailErrorCode:
-      type: string
-      enum:
-      - marketingemail:badRequest
-      - marketingemail:badJson
-      - marketingemail:badEncodingDetected
-      - marketingemail:invalidValue
-      - marketingemail:forbidden
-      - marketingemail:internalServerError
-      - marketingemail:campaignNotFound
-      - marketingemail:duplicatePersonalizationValuesFound
-      - marketingemail:invalidFromAddress
-      - marketingemail:attachmentMimeTypeMissing
-      - marketingemail:attachmentFileNameMissing
-      - marketingemail:attachmentContentMissing
-      - marketingemail:attachmentContentInvalid
-      - marketingemail:attachmentContentTooBig
-      - marketingemail:attachmentMimeTypeInvalid
-      - marketingemail:attachmentCombinedContentTooBig
-    errorResponse_details:
-      required:
-      - description
-      - item
-      type: object
-      properties:
-        item:
-          type: string
-          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
-        description:
-          type: string
-          description: Description of the error
     inline_response_201:
       type: object
       properties:
@@ -401,71 +373,27 @@ components:
             description: The `from` address '<The from address>' is a restricted from being used with the Email Marketing API!
           - failureCode: marketingEmail:noUnsubscribeLink
             description: An unsubscribe link must be included in the email by including the `$unsub$` token which injects the full URL to the Dotdigital unsubscribe page for the account.
-    inline_response_409:
-      allOf:
-      - $ref: '#/components/schemas/errorResponse'
-      - type: object
-        properties:
-          errorCode:
-            $ref: '#/components/schemas/emailRefusedReason'
-    inline_response_400:
-      allOf:
-      - $ref: '#/components/schemas/errorResponse'
-      - type: object
-        properties:
-          errorCode:
-            $ref: '#/components/schemas/SingleMarketingEmailErrorCode'
-    templateContent_personalizationValues:
+    inline_response_201_summary:
       required:
-      - name
-      - value
+      - failed
+      - sent
+      - uncontactable
       type: object
       properties:
-        name:
-          maxLength: 20
-          minLength: 1
-          type: string
-          description: The name of the personalization field.
-          example: FAV_COLOR
-        value:
-          type: string
-          description: The value of the field.
-          example: Pink
-      description: Name value pair
-    emailRefusedReason:
-      type: string
-      description: Unique failure code for this failure reason
-      example: marketingEmail:invalidEmailAddress
-      enum:
-      - marketingEmail:unsubscribed
-      - marketingEmail:hardBounced
-      - marketingEmail:complaint
-      - marketingEmail:blocked
-      - marketingEmail:spamTrap
-      - marketingEmail:suppressed
-      - marketingEmail:invalidEmailAddress
-    emailRequest_attachments:
-      required:
-      - content
-      - fileName
-      - mimeType
-      type: object
-      properties:
-        fileName:
-          type: string
-          description: The filename of the attachment.
-          example: orderSummary.pdf
-        mimeType:
-          type: string
-          description: The MIME type of the file.
-          example: application/pdf
-        content:
-          maxLength: 15728640
-          type: string
-          description: The Base64 encoded bytes of the attachment file.
-          example: VGhpcyBpcyBhbiBleGFtcGxlIEJhc2U2NCBlbmNvZGVkIGVtYWlsLg==
+        sent:
+          type: integer
+          description: Number successfully sent.
+          example: 8
+        uncontactable:
+          type: integer
+          description: Number of opted out or otherwise uncontactable.
+          example: 1
+        failed:
+          type: integer
+          description: Number that failed to send.
+          example: 1
       additionalProperties: false
-      description: Attachment file
+      description: Summary of the batch send status.
     inline_response_201_results:
       required:
       - index
@@ -513,6 +441,78 @@ components:
       - MISSING_UNSUB
       - SUBJECT_NOT_ALLOWED_WHEN_SENDING_TRIGGERED_EMAIL
       - INVALID_FROM_ADDRESS
+    emailRequest_attachments:
+      required:
+      - content
+      - fileName
+      - mimeType
+      type: object
+      properties:
+        fileName:
+          type: string
+          description: The filename of the attachment.
+          example: orderSummary.pdf
+        mimeType:
+          type: string
+          description: The MIME type of the file.
+          example: application/pdf
+        content:
+          maxLength: 15728640
+          type: string
+          description: The Base64 encoded bytes of the attachment file.
+          example: VGhpcyBpcyBhbiBleGFtcGxlIEJhc2U2NCBlbmNvZGVkIGVtYWlsLg==
+      additionalProperties: false
+      description: Attachment file
+    templateContent_personalizationValues:
+      required:
+      - name
+      - value
+      type: object
+      properties:
+        name:
+          maxLength: 20
+          minLength: 1
+          type: string
+          description: The name of the personalization field.
+          example: FAV_COLOR
+        value:
+          type: string
+          description: The value of the field.
+          example: Pink
+      description: Name value pair
+    inline_response_400:
+      allOf:
+      - $ref: '#/components/schemas/errorResponse'
+      - type: object
+        properties:
+          errorCode:
+            $ref: '#/components/schemas/SingleMarketingEmailErrorCode'
+    SingleMarketingEmailErrorCode:
+      type: string
+      enum:
+      - marketingemail:badRequest
+      - marketingemail:badJson
+      - marketingemail:badEncodingDetected
+      - marketingemail:invalidValue
+      - marketingemail:forbidden
+      - marketingemail:internalServerError
+      - marketingemail:campaignNotFound
+      - marketingemail:duplicatePersonalizationValuesFound
+      - marketingemail:invalidFromAddress
+      - marketingemail:attachmentMimeTypeMissing
+      - marketingemail:attachmentFileNameMissing
+      - marketingemail:attachmentContentMissing
+      - marketingemail:attachmentContentInvalid
+      - marketingemail:attachmentContentTooBig
+      - marketingemail:attachmentMimeTypeInvalid
+      - marketingemail:attachmentCombinedContentTooBig
+    inline_response_409:
+      allOf:
+      - $ref: '#/components/schemas/errorResponse'
+      - type: object
+        properties:
+          errorCode:
+            $ref: '#/components/schemas/emailRefusedReason'
   securitySchemes:
     basicAuth:
       type: http

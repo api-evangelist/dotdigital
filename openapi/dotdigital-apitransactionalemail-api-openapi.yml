@@ -172,22 +172,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiTransactionalEmailAttachment:
-      type: object
-      additionalProperties: false
-      properties:
-        fileName:
-          type:
-          - string
-          - 'null'
-        content:
-          type:
-          - string
-          - 'null'
-        mimeType:
-          type:
-          - string
-          - 'null'
     ApiCampaignFromAddress:
       type: object
       additionalProperties: false
@@ -199,85 +183,18 @@ components:
           type:
           - string
           - 'null'
-    ApiTransactionalEmail:
+    ApiPersonalizationValue:
       type: object
       additionalProperties: false
       properties:
-        toAddresses:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        ccAddresses:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        bccAddresses:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        subject:
+        name:
           type:
           - string
           - 'null'
-        fromAddress:
+        value:
           type:
           - string
           - 'null'
-        htmlContent:
-          type:
-          - string
-          - 'null'
-        plainTextContent:
-          type:
-          - string
-          - 'null'
-        tags:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        metadata:
-          type:
-          - string
-          - 'null'
-        attachments:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiTransactionalEmailAttachment'
-    ApiCampaignStatuses:
-      type: string
-      description: ''
-      x-enumNames:
-      - Unsent
-      - Sending
-      - Sent
-      - Paused
-      - Cancelled
-      - RequiresSystemApproval
-      - RequiresSMSApproval
-      - RequiresWorkflowApproval
-      - Triggered
-      - NotAvailableInThisVersion
-      enum:
-      - Unsent
-      - Sending
-      - Sent
-      - Paused
-      - Cancelled
-      - RequiresSystemApproval
-      - RequiresSMSApproval
-      - RequiresWorkflowApproval
-      - Triggered
-      - NotAvailableInThisVersion
     ApiCampaignWithProcessedContent:
       type: object
       additionalProperties: false
@@ -336,21 +253,22 @@ components:
           type:
           - string
           - 'null'
-    ApiCampaignReplyActions:
-      type: string
-      description: ''
-      x-enumNames:
-      - Unset
-      - WebMailForward
-      - Webmail
-      - Delete
-      - NotAvailableInThisVersion
-      enum:
-      - Unset
-      - WebMailForward
-      - Webmail
-      - Delete
-      - NotAvailableInThisVersion
+    ApiTransactionalEmailAttachment:
+      type: object
+      additionalProperties: false
+      properties:
+        fileName:
+          type:
+          - string
+          - 'null'
+        content:
+          type:
+          - string
+          - 'null'
+        mimeType:
+          type:
+          - string
+          - 'null'
     ApiTransactionalEmailStatistics:
       type: object
       additionalProperties: false
@@ -379,6 +297,21 @@ components:
         numBounces:
           type: integer
           format: int32
+    ApiCampaignReplyActions:
+      type: string
+      description: ''
+      x-enumNames:
+      - Unset
+      - WebMailForward
+      - Webmail
+      - Delete
+      - NotAvailableInThisVersion
+      enum:
+      - Unset
+      - WebMailForward
+      - Webmail
+      - Delete
+      - NotAvailableInThisVersion
     ApiAggregationPeriod:
       type: string
       description: ''
@@ -394,6 +327,85 @@ components:
       - Week
       - Day
       - NotAvailableInThisVersion
+    ApiCampaignStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - Unsent
+      - Sending
+      - Sent
+      - Paused
+      - Cancelled
+      - RequiresSystemApproval
+      - RequiresSMSApproval
+      - RequiresWorkflowApproval
+      - Triggered
+      - NotAvailableInThisVersion
+      enum:
+      - Unsent
+      - Sending
+      - Sent
+      - Paused
+      - Cancelled
+      - RequiresSystemApproval
+      - RequiresSMSApproval
+      - RequiresWorkflowApproval
+      - Triggered
+      - NotAvailableInThisVersion
+    ApiTransactionalEmail:
+      type: object
+      additionalProperties: false
+      properties:
+        toAddresses:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        ccAddresses:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        bccAddresses:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        subject:
+          type:
+          - string
+          - 'null'
+        fromAddress:
+          type:
+          - string
+          - 'null'
+        htmlContent:
+          type:
+          - string
+          - 'null'
+        plainTextContent:
+          type:
+          - string
+          - 'null'
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        metadata:
+          type:
+          - string
+          - 'null'
+        attachments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiTransactionalEmailAttachment'
     ApiTransactionalEmailTriggeredCampaign:
       type: object
       additionalProperties: false
@@ -439,16 +451,4 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/ApiTransactionalEmailAttachment'
-    ApiPersonalizationValue:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        value:
-          type:
-          - string
-          - 'null'
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

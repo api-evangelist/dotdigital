@@ -445,27 +445,23 @@ paths:
           description: The Dotdigital region id your account belongs to
 components:
   schemas:
-    smsVerifyAnalytics:
+    smsTrackingAnalytics:
       type: object
       properties:
         date:
           type: string
           description: The start date and time for the period
-        notVerifed:
+        sent:
           type: integer
-          description: The number of verify calls that were not verified
+          description: The number of trackings urls sent
           format: int64
-        verified:
+        clicks:
           type: integer
-          description: The number of verify calls that were successfully verified
+          description: The number of clicks recorded for the url
           format: int64
-        expired:
+        uniqueClicks:
           type: integer
-          description: The number of verify calls that expired
-          format: int64
-        locked:
-          type: integer
-          description: The number of verify calls that locked out
+          description: The number of clicks recorded by unique individuals
           format: int64
     smsOutboundAnalytics:
       type: object
@@ -489,6 +485,28 @@ components:
           type: integer
           description: The number of messages deemed undeliverable in the period
           format: int64
+    smsVerifyAnalytics:
+      type: object
+      properties:
+        date:
+          type: string
+          description: The start date and time for the period
+        notVerifed:
+          type: integer
+          description: The number of verify calls that were not verified
+          format: int64
+        verified:
+          type: integer
+          description: The number of verify calls that were successfully verified
+          format: int64
+        expired:
+          type: integer
+          description: The number of verify calls that expired
+          format: int64
+        locked:
+          type: integer
+          description: The number of verify calls that locked out
+          format: int64
     smsInboundAnalytics:
       type: object
       properties:
@@ -498,24 +516,6 @@ components:
         received:
           type: integer
           description: The number of messages received in the period
-          format: int64
-    smsTrackingAnalytics:
-      type: object
-      properties:
-        date:
-          type: string
-          description: The start date and time for the period
-        sent:
-          type: integer
-          description: The number of trackings urls sent
-          format: int64
-        clicks:
-          type: integer
-          description: The number of clicks recorded for the url
-          format: int64
-        uniqueClicks:
-          type: integer
-          description: The number of clicks recorded by unique individuals
           format: int64
   securitySchemes:
     basicAuth:

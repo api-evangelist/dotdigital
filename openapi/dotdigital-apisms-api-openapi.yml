@@ -167,19 +167,14 @@ paths:
                 $ref: '#/components/schemas/ApiSmsCampaign'
 components:
   schemas:
-    ApiCopySmsCampaignRequest:
+    ApiSms:
       type: object
       additionalProperties: false
       required:
-      - campaignId
-      - copyName
+      - message
       properties:
-        campaignId:
-          type: integer
-          format: int32
-        copyName:
+        message:
           type: string
-          maxLength: 256
           minLength: 1
     ApiSmsCampaign:
       allOf:
@@ -227,13 +222,18 @@ components:
       - Sent
       - Cancelled
       - NotAvailableInThisVersion
-    ApiSms:
+    ApiCopySmsCampaignRequest:
       type: object
       additionalProperties: false
       required:
-      - message
+      - campaignId
+      - copyName
       properties:
-        message:
+        campaignId:
+          type: integer
+          format: int32
+        copyName:
           type: string
+          maxLength: 256
           minLength: 1
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

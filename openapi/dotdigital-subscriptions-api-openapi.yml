@@ -371,68 +371,74 @@ paths:
         '404':
           $ref: '#/components/responses/subscriptionNotFound'
 components:
-  responses:
-    subscriptionNotFound:
-      description: Subscription not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/errorResponse'
-          example:
-            errorCode: events:subscriptionNotFound
-            description: The following subscription could not be found
-            details:
-            - item: zf0f945b36ad8
-              description: Not found.
   schemas:
-    filter:
+    paginationLinksPrevNext:
       required:
-      - field
-      - matchPattern
+      - first
+      - self
       type: object
       properties:
-        field:
+        self:
+          $ref: '#/components/schemas/paginationLinksPrevNext_self'
+        prev:
+          $ref: '#/components/schemas/paginationLinksPrevNext_prev'
+        next:
+          $ref: '#/components/schemas/paginationLinksPrevNext_next'
+      description: Pagination links
+    paginationLinksPrevNext_prev:
+      required:
+      - link
+      - marker
+      type: object
+      properties:
+        marker:
           type: string
-          description: 'The [JSON path](https://en.wikipedia.org/wiki/JSONPath) to the field to match against.
-
-
-            Note: The base ($) is the `eventData` field.
-
-            '
-          example: $.channel
-        matchPattern:
-          maxLength: 1024
-          minLength: 1
+          description: Pagination marker to be passed to API calls to retrieve this data page
+        link:
           type: string
-          description: 'The literal value or pattern to match against the value of the field.
-
-            You use the following syntax to define the match pattern:
-
-            * `*` matches any number of any characters including none
-
-            * `?` matches any single character
-
-            * `[abc]` matches one character given in the brackets
-
-            * `[a-z]` matches one character from the range given in the bracket
-
-            * `[!abc]` matches one character _that is not_ given in the brackets
-
-            * `[!a-z]` matches one character _that is not_ from the range given in the bracket
-
-
-            _Note: Filters use the Unicode character set and ranges must be from lower to higher code points to be valid. e.g. `[a-z]` is valid but `[z-a]` is invalid_
-
-            '
-          example: http?://*
-        caseSensitive:
-          type: boolean
-          description: Whether the matching should be case sensitive.
-          default: true
-      additionalProperties: false
-      description: 'An inclusive filter that must be matched to include the event.
-
-        '
+          description: Link to retrieve the data page
+      description: Details for accessing the previous pagea worth of data
+    errorResponse:
+      required:
+      - description
+      - errorCode
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: Unique error code
+        description:
+          type: string
+          description: Description of the issue
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/errorResponse_details'
+    errorResponse_details:
+      required:
+      - description
+      - item
+      type: object
+      properties:
+        item:
+          type: string
+          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
+        description:
+          type: string
+          description: Description of the error
+    paginationLinksPrevNext_self:
+      required:
+      - link
+      - marker
+      type: object
+      properties:
+        marker:
+          type: string
+          description: Pagination marker to be passed to API calls to retrieve this data page
+        link:
+          type: string
+          description: Link to retrieve the data page
+      description: Details for accessing this data page via pagination
     subscriptionRequest:
       required:
       - alertsConfiguration
@@ -522,109 +528,6 @@ components:
                 example: alerts@emailsim.io
             description: Email and in-app alerts
       additionalProperties: false
-    eventType:
-      required:
-      - eventType
-      type: object
-      properties:
-        eventType:
-          type: string
-          description: The  event type
-          example: email.read
-        filters:
-          maxItems: 5
-          minItems: 1
-          type: array
-          description: 'Capture only events that match these filters.
-
-
-            All filters will be accessed and **all must match for the event to be captured!**
-
-            '
-          items:
-            $ref: '#/components/schemas/filter'
-      additionalProperties: false
-      description: An event type and any inclusive filters that should be applied.
-    errorResponse:
-      required:
-      - description
-      - errorCode
-      type: object
-      properties:
-        errorCode:
-          type: string
-          description: Unique error code
-        description:
-          type: string
-          description: Description of the issue
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/errorResponse_details'
-    paginationLinksPrevNext:
-      required:
-      - first
-      - self
-      type: object
-      properties:
-        self:
-          $ref: '#/components/schemas/paginationLinksPrevNext_self'
-        prev:
-          $ref: '#/components/schemas/paginationLinksPrevNext_prev'
-        next:
-          $ref: '#/components/schemas/paginationLinksPrevNext_next'
-      description: Pagination links
-    paginationLinksPrevNext_prev:
-      required:
-      - link
-      - marker
-      type: object
-      properties:
-        marker:
-          type: string
-          description: Pagination marker to be passed to API calls to retrieve this data page
-        link:
-          type: string
-          description: Link to retrieve the data page
-      description: Details for accessing the previous pagea worth of data
-    errorResponse_details:
-      required:
-      - description
-      - item
-      type: object
-      properties:
-        item:
-          type: string
-          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
-        description:
-          type: string
-          description: Description of the error
-    paginationLinksPrevNext_next:
-      required:
-      - link
-      - marker
-      type: object
-      properties:
-        marker:
-          type: string
-          description: Pagination marker to be passed to API calls to retrieve this data page
-        link:
-          type: string
-          description: Link to retrieve the data page
-      description: Details for accessing the next pages worth of data
-    paginationLinksPrevNext_self:
-      required:
-      - link
-      - marker
-      type: object
-      properties:
-        marker:
-          type: string
-          description: Pagination marker to be passed to API calls to retrieve this data page
-        link:
-          type: string
-          description: Link to retrieve the data page
-      description: Details for accessing this data page via pagination
     subscription:
       allOf:
       - required:
@@ -649,13 +552,6 @@ components:
             example: '2025-02-11T01:33:00Z'
         additionalProperties: false
       - $ref: '#/components/schemas/subscriptionRequest'
-    subscriptionStatus:
-      type: string
-      description: The subscription status.
-      enum:
-      - active
-      - inactive
-      default: inactive
     inline_response_200_1:
       required:
       - _items
@@ -669,6 +565,110 @@ components:
           description: Returned program extensions
           items:
             $ref: '#/components/schemas/subscription'
+    paginationLinksPrevNext_next:
+      required:
+      - link
+      - marker
+      type: object
+      properties:
+        marker:
+          type: string
+          description: Pagination marker to be passed to API calls to retrieve this data page
+        link:
+          type: string
+          description: Link to retrieve the data page
+      description: Details for accessing the next pages worth of data
+    subscriptionStatus:
+      type: string
+      description: The subscription status.
+      enum:
+      - active
+      - inactive
+      default: inactive
+    filter:
+      required:
+      - field
+      - matchPattern
+      type: object
+      properties:
+        field:
+          type: string
+          description: 'The [JSON path](https://en.wikipedia.org/wiki/JSONPath) to the field to match against.
+
+
+            Note: The base ($) is the `eventData` field.
+
+            '
+          example: $.channel
+        matchPattern:
+          maxLength: 1024
+          minLength: 1
+          type: string
+          description: 'The literal value or pattern to match against the value of the field.
+
+            You use the following syntax to define the match pattern:
+
+            * `*` matches any number of any characters including none
+
+            * `?` matches any single character
+
+            * `[abc]` matches one character given in the brackets
+
+            * `[a-z]` matches one character from the range given in the bracket
+
+            * `[!abc]` matches one character _that is not_ given in the brackets
+
+            * `[!a-z]` matches one character _that is not_ from the range given in the bracket
+
+
+            _Note: Filters use the Unicode character set and ranges must be from lower to higher code points to be valid. e.g. `[a-z]` is valid but `[z-a]` is invalid_
+
+            '
+          example: http?://*
+        caseSensitive:
+          type: boolean
+          description: Whether the matching should be case sensitive.
+          default: true
+      additionalProperties: false
+      description: 'An inclusive filter that must be matched to include the event.
+
+        '
+    eventType:
+      required:
+      - eventType
+      type: object
+      properties:
+        eventType:
+          type: string
+          description: The  event type
+          example: email.read
+        filters:
+          maxItems: 5
+          minItems: 1
+          type: array
+          description: 'Capture only events that match these filters.
+
+
+            All filters will be accessed and **all must match for the event to be captured!**
+
+            '
+          items:
+            $ref: '#/components/schemas/filter'
+      additionalProperties: false
+      description: An event type and any inclusive filters that should be applied.
+  responses:
+    subscriptionNotFound:
+      description: Subscription not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          example:
+            errorCode: events:subscriptionNotFound
+            description: The following subscription could not be found
+            details:
+            - item: zf0f945b36ad8
+              description: Not found.
   securitySchemes:
     basicAuth:
       type: http

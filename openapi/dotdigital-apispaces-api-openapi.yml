@@ -87,13 +87,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    push_validation_body:
-      type: object
-      properties:
-        ids:
-          type: array
-          items:
-            type: string
     PushCapabilitiesSummary_inner:
       required:
       - id
@@ -121,6 +114,13 @@ components:
       description: Array with push capabilities for each queried profile
       items:
         $ref: '#/components/schemas/PushCapabilitiesSummary_inner'
+    push_validation_body:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: string
   securitySchemes:
     basicAuth:
       type: http

@@ -1477,20 +1477,111 @@ paths:
                 $ref: '#/components/schemas/ApiMultipleContactsResponse'
 components:
   schemas:
-    ApiTransactionalDataImportReportFault:
+    ApiTransactionalDataImportReport:
       type: object
       additionalProperties: false
       properties:
-        key:
+        totalItems:
+          type: integer
+          format: int32
+        totalImported:
+          type: integer
+          format: int32
+        totalRejected:
+          type: integer
+          format: int32
+        faults:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiTransactionalDataImportReportFault'
+    ApiMultipleContactsResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        contacts:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiContactExtended'
+        notFound:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiContactIdAndEmail'
+    ApiTransactionalDataImport:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: guid
+        status:
+          $ref: '#/components/schemas/ApiTransactionalDataImportStatuses'
+    ApiContactIdAndEmail:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        email:
           type:
           - string
           - 'null'
-        reason:
-          $ref: '#/components/schemas/ApiTransactionalDataImportFaultReason'
-        detail:
+    ApiResubscribeResult:
+      type: object
+      additionalProperties: false
+      properties:
+        contact:
+          oneOf:
+          - $ref: '#/components/schemas/ApiContact'
+        status:
+          $ref: '#/components/schemas/ApiResubscribeStatuses'
+    ApiMultipleContactsRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        contacts:
           type:
-          - string
+          - array
           - 'null'
+          items:
+            $ref: '#/components/schemas/ApiContactIdAndEmail'
+        withFullData:
+          type: boolean
+    ApiBulkSuppressResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        suppressed:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiContactIdAndEmail'
+        notFound:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiContactIdAndEmail'
+    ApiBulkContactDeletionStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - Started
+      - Completed
+      - Failed
+      - NotAvailableInThisVersion
+      enum:
+      - Started
+      - Completed
+      - Failed
+      - NotAvailableInThisVersion
     ApiContactWithConsent:
       type: object
       additionalProperties: false
@@ -1504,40 +1595,6 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/ApiConsent'
-    ApiContactResubscription:
-      type: object
-      additionalProperties: false
-      required:
-      - unsubscribedContact
-      properties:
-        unsubscribedContact:
-          $ref: '#/components/schemas/ApiContact'
-        preferredLocale:
-          type:
-          - string
-          - 'null'
-        returnUrlToUseIfChallenged:
-          type:
-          - string
-          - 'null'
-    ApiBulkContactDeletion:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: string
-          format: guid
-        status:
-          $ref: '#/components/schemas/ApiBulkContactDeletionStatuses'
-    ApiContactExtended:
-      allOf:
-      - $ref: '#/components/schemas/ApiContact'
-      - type: object
-        additionalProperties: false
-        properties:
-          created:
-            type: string
-            format: date-time
     ApiConsent:
       type: object
       additionalProperties: false
@@ -1552,58 +1609,22 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/ApiContactData'
-    ApiContact:
+    ApiTransactionalData:
       type: object
       additionalProperties: false
-      required:
-      - email
       properties:
-        id:
-          type: integer
-          format: int32
-        email:
-          type: string
-          minLength: 1
-        optInType:
-          oneOf:
-          - $ref: '#/components/schemas/ApiContactOptInTypes'
-        emailType:
-          oneOf:
-          - $ref: '#/components/schemas/ApiContactEmailTypes'
-        dataFields:
+        key:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/ApiContactData'
-        status:
-          $ref: '#/components/schemas/ApiContactStatuses'
-    ApiContactEmailTypes:
-      type: string
-      description: ''
-      x-enumNames:
-      - PlainText
-      - Html
-      - NotAvailableInThisVersion
-      enum:
-      - PlainText
-      - Html
-      - NotAvailableInThisVersion
-    ApiTransactionalDataImportStatuses:
-      type: string
-      description: ''
-      x-enumNames:
-      - NotStarted
-      - NotFinished
-      - Finished
-      - Failed
-      - NotAvailableInThisVersion
-      enum:
-      - NotStarted
-      - NotFinished
-      - Finished
-      - Failed
-      - NotAvailableInThisVersion
+        contactIdentifier:
+          type:
+          - string
+          - 'null'
+        json:
+          type:
+          - string
+          - 'null'
     ApiContactScore:
       type: object
       additionalProperties: false
@@ -1631,6 +1652,143 @@ components:
         suitability:
           type: integer
           format: byte
+    ApiJsonData:
+      type: object
+      additionalProperties: false
+      properties:
+        json:
+          type:
+          - string
+          - 'null'
+    ApiContactResubscription:
+      type: object
+      additionalProperties: false
+      required:
+      - unsubscribedContact
+      properties:
+        unsubscribedContact:
+          $ref: '#/components/schemas/ApiContact'
+        preferredLocale:
+          type:
+          - string
+          - 'null'
+        returnUrlToUseIfChallenged:
+          type:
+          - string
+          - 'null'
+    ApiTransactionalDataCollection:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+    ApiTransactionalDataImportStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - NotStarted
+      - NotFinished
+      - Finished
+      - Failed
+      - NotAvailableInThisVersion
+      enum:
+      - NotStarted
+      - NotFinished
+      - Finished
+      - Failed
+      - NotAvailableInThisVersion
+    ApiContactOptInTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - Unknown
+      - Single
+      - Double
+      - VerifiedDouble
+      - NotAvailableInThisVersion
+      enum:
+      - Unknown
+      - Single
+      - Double
+      - VerifiedDouble
+      - NotAvailableInThisVersion
+    ApiContactWithConsentAndPreferences:
+      allOf:
+      - $ref: '#/components/schemas/ApiContactWithConsent'
+      - type: object
+        additionalProperties: false
+        properties:
+          preferences:
+            type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ApiPreference'
+    ApiTransactionalDataImportReportFault:
+      type: object
+      additionalProperties: false
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        reason:
+          $ref: '#/components/schemas/ApiTransactionalDataImportFaultReason'
+        detail:
+          type:
+          - string
+          - 'null'
+    ApiContact:
+      type: object
+      additionalProperties: false
+      required:
+      - email
+      properties:
+        id:
+          type: integer
+          format: int32
+        email:
+          type: string
+          minLength: 1
+        optInType:
+          oneOf:
+          - $ref: '#/components/schemas/ApiContactOptInTypes'
+        emailType:
+          oneOf:
+          - $ref: '#/components/schemas/ApiContactEmailTypes'
+        dataFields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiContactData'
+        status:
+          $ref: '#/components/schemas/ApiContactStatuses'
+    ApiResubscribeStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - ContactAdded
+      - ContactChallenged
+      - ContactCannotBeUnsuppressed
+      - NotAvailableInThisVersion
+      enum:
+      - ContactAdded
+      - ContactChallenged
+      - ContactCannotBeUnsuppressed
+      - NotAvailableInThisVersion
+    ApiContactExtended:
+      allOf:
+      - $ref: '#/components/schemas/ApiContact'
+      - type: object
+        additionalProperties: false
+        properties:
+          created:
+            type: string
+            format: date-time
     ApiTransactionalDataImportFaultReason:
       type: string
       description: ''
@@ -1682,29 +1840,59 @@ components:
       - ContactCustomIdentifierValueDoesNotExist
       - JsonContainsNestedArray
       - NotAvailableInThisVersion
-    ApiContactSuppression:
-      type: object
-      additionalProperties: false
-      properties:
-        suppressedContact:
-          oneOf:
-          - $ref: '#/components/schemas/ApiContact'
-        dateRemoved:
-          type: string
-          format: date-time
-        reason:
-          $ref: '#/components/schemas/ApiContactStatuses'
-    ApiContactIdAndEmail:
+    ApiBulkContactDeletion:
       type: object
       additionalProperties: false
       properties:
         id:
-          type: integer
-          format: int32
-        email:
+          type: string
+          format: guid
+        status:
+          $ref: '#/components/schemas/ApiBulkContactDeletionStatuses'
+    ApiContactData:
+      type: object
+      additionalProperties: false
+      properties:
+        key:
           type:
           - string
           - 'null'
+        value: {}
+    ApiContactStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - Subscribed
+      - Unsubscribed
+      - SoftBounced
+      - HardBounced
+      - IspComplained
+      - MailBlocked
+      - PendingOptIn
+      - DirectComplaint
+      - Deleted
+      - SharedSuppression
+      - Suppressed
+      - NotAllowed
+      - DomainSuppression
+      - NoMxRecord
+      - NotAvailableInThisVersion
+      enum:
+      - Subscribed
+      - Unsubscribed
+      - SoftBounced
+      - HardBounced
+      - IspComplained
+      - MailBlocked
+      - PendingOptIn
+      - DirectComplaint
+      - Deleted
+      - SharedSuppression
+      - Suppressed
+      - NotAllowed
+      - DomainSuppression
+      - NoMxRecord
+      - NotAvailableInThisVersion
     ApiPreference:
       type: object
       additionalProperties: false
@@ -1750,215 +1938,27 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/ApiPreference'
-    ApiBulkContactDeletionStatuses:
-      type: string
-      description: ''
-      x-enumNames:
-      - Started
-      - Completed
-      - Failed
-      - NotAvailableInThisVersion
-      enum:
-      - Started
-      - Completed
-      - Failed
-      - NotAvailableInThisVersion
-    ApiTransactionalDataImportReport:
+    ApiContactSuppression:
       type: object
       additionalProperties: false
       properties:
-        totalItems:
-          type: integer
-          format: int32
-        totalImported:
-          type: integer
-          format: int32
-        totalRejected:
-          type: integer
-          format: int32
-        faults:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiTransactionalDataImportReportFault'
-    ApiMultipleContactsResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        contacts:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiContactExtended'
-        notFound:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiContactIdAndEmail'
-    ApiContactData:
-      type: object
-      additionalProperties: false
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        value: {}
-    ApiResubscribeStatuses:
-      type: string
-      description: ''
-      x-enumNames:
-      - ContactAdded
-      - ContactChallenged
-      - ContactCannotBeUnsuppressed
-      - NotAvailableInThisVersion
-      enum:
-      - ContactAdded
-      - ContactChallenged
-      - ContactCannotBeUnsuppressed
-      - NotAvailableInThisVersion
-    ApiJsonData:
-      type: object
-      additionalProperties: false
-      properties:
-        json:
-          type:
-          - string
-          - 'null'
-    ApiMultipleContactsRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        contacts:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiContactIdAndEmail'
-        withFullData:
-          type: boolean
-    ApiTransactionalDataImport:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: string
-          format: guid
-        status:
-          $ref: '#/components/schemas/ApiTransactionalDataImportStatuses'
-    ApiContactStatuses:
-      type: string
-      description: ''
-      x-enumNames:
-      - Subscribed
-      - Unsubscribed
-      - SoftBounced
-      - HardBounced
-      - IspComplained
-      - MailBlocked
-      - PendingOptIn
-      - DirectComplaint
-      - Deleted
-      - SharedSuppression
-      - Suppressed
-      - NotAllowed
-      - DomainSuppression
-      - NoMxRecord
-      - NotAvailableInThisVersion
-      enum:
-      - Subscribed
-      - Unsubscribed
-      - SoftBounced
-      - HardBounced
-      - IspComplained
-      - MailBlocked
-      - PendingOptIn
-      - DirectComplaint
-      - Deleted
-      - SharedSuppression
-      - Suppressed
-      - NotAllowed
-      - DomainSuppression
-      - NoMxRecord
-      - NotAvailableInThisVersion
-    ApiContactWithConsentAndPreferences:
-      allOf:
-      - $ref: '#/components/schemas/ApiContactWithConsent'
-      - type: object
-        additionalProperties: false
-        properties:
-          preferences:
-            type:
-            - array
-            - 'null'
-            items:
-              $ref: '#/components/schemas/ApiPreference'
-    ApiResubscribeResult:
-      type: object
-      additionalProperties: false
-      properties:
-        contact:
+        suppressedContact:
           oneOf:
           - $ref: '#/components/schemas/ApiContact'
-        status:
-          $ref: '#/components/schemas/ApiResubscribeStatuses'
-    ApiBulkSuppressResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        suppressed:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiContactIdAndEmail'
-        notFound:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiContactIdAndEmail'
-    ApiTransactionalData:
-      type: object
-      additionalProperties: false
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        contactIdentifier:
-          type:
-          - string
-          - 'null'
-        json:
-          type:
-          - string
-          - 'null'
-    ApiContactOptInTypes:
+        dateRemoved:
+          type: string
+          format: date-time
+        reason:
+          $ref: '#/components/schemas/ApiContactStatuses'
+    ApiContactEmailTypes:
       type: string
       description: ''
       x-enumNames:
-      - Unknown
-      - Single
-      - Double
-      - VerifiedDouble
+      - PlainText
+      - Html
       - NotAvailableInThisVersion
       enum:
-      - Unknown
-      - Single
-      - Double
-      - VerifiedDouble
+      - PlainText
+      - Html
       - NotAvailableInThisVersion
-    ApiTransactionalDataCollection:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

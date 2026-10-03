@@ -108,22 +108,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    wabaId:
-      type: string
-      description: The unique WhatsApp Business Account (WABA) identifier.
-      example: '226114410888722'
-    whatsAppCloudConfigurationCreate:
-      required:
-      - phoneNumberId
-      - wabaId
-      type: object
-      properties:
-        phoneNumberId:
-          type: string
-          description: Originator phone number id.
-        wabaId:
-          type: string
-          description: WhatsApp Business account id.
     whatsAppCloudConfiguration:
       type: object
       properties:
@@ -211,6 +195,22 @@ components:
           description: The UTC date time of when the configuration was created.
           format: date-time
           example: '2025-01-01T00:00:00Z'
+    wabaId:
+      type: string
+      description: The unique WhatsApp Business Account (WABA) identifier.
+      example: '226114410888722'
+    whatsAppCloudConfigurationCreate:
+      required:
+      - phoneNumberId
+      - wabaId
+      type: object
+      properties:
+        phoneNumberId:
+          type: string
+          description: Originator phone number id.
+        wabaId:
+          type: string
+          description: WhatsApp Business account id.
   securitySchemes:
     basicAuth:
       type: http

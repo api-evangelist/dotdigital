@@ -68,18 +68,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    eventsv3import_timelineDetails:
-      required:
-      - summary
-      type: object
-      properties:
-        summary:
-          maxLength: 160
-          minLength: 1
-          type: string
-          description: Optional description of the event for display in the timeline of the contact.
-          example: 'Search for travel desination: Bali'
-      description: The details to display in the contacts timeline; if omitted nothing will be shown.
     errorResponse:
       required:
       - description
@@ -108,6 +96,18 @@ components:
         description:
           type: string
           description: Description of the error
+    eventsv3import_timelineDetails:
+      required:
+      - summary
+      type: object
+      properties:
+        summary:
+          maxLength: 160
+          minLength: 1
+          type: string
+          description: Optional description of the event for display in the timeline of the contact.
+          example: 'Search for travel desination: Bali'
+      description: The details to display in the contacts timeline; if omitted nothing will be shown.
     contactIdentifier:
       required:
       - identifier

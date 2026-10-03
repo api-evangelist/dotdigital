@@ -124,10 +124,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    wabaId:
-      type: string
-      description: The unique WhatsApp Business Account (WABA) identifier.
-      example: '226114410888722'
     whatsAppCloudConfiguration:
       type: object
       properties:
@@ -217,6 +213,10 @@ components:
           example: '2025-01-01T00:00:00Z'
     registrationResult:
       type: boolean
+    wabaId:
+      type: string
+      description: The unique WhatsApp Business Account (WABA) identifier.
+      example: '226114410888722'
   securitySchemes:
     basicAuth:
       type: http

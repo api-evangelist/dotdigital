@@ -95,15 +95,6 @@ components:
       - Finished
       - Failed
       - NotAvailableInThisVersion
-    ApiSegmentRefresh:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: integer
-          format: int32
-        status:
-          $ref: '#/components/schemas/ApiSegmentRefreshStatuses'
     ApiSegment:
       type: object
       additionalProperties: false
@@ -119,4 +110,13 @@ components:
         contacts:
           type: integer
           format: int32
+    ApiSegmentRefresh:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        status:
+          $ref: '#/components/schemas/ApiSegmentRefreshStatuses'
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

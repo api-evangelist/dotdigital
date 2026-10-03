@@ -157,21 +157,6 @@ components:
         description:
           type: string
           description: Description of the error
-    inline_response_200:
-      required:
-      - checkPoint
-      - events
-      type: object
-      properties:
-        checkPoint:
-          type: string
-          description: This is the value you should pass back with your subsequent call in the `checkPoint` query string to indicate you have received the previous page of events successfully.
-          example: fgfh63eu77
-        events:
-          type: array
-          description: Returned events
-          items:
-            $ref: '#/components/schemas/event'
     event:
       required:
       - accountId
@@ -216,6 +201,21 @@ components:
             timeStamp: '2025-02-07T16:23:33.123Z'
       additionalProperties: false
       description: An event
+    inline_response_200:
+      required:
+      - checkPoint
+      - events
+      type: object
+      properties:
+        checkPoint:
+          type: string
+          description: This is the value you should pass back with your subsequent call in the `checkPoint` query string to indicate you have received the previous page of events successfully.
+          example: fgfh63eu77
+        events:
+          type: array
+          description: Returned events
+          items:
+            $ref: '#/components/schemas/event'
   securitySchemes:
     basicAuth:
       type: http

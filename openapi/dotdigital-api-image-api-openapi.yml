@@ -102,6 +102,21 @@ paths:
                 $ref: '#/components/schemas/ApiImage'
 components:
   schemas:
+    ApiImage:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        path:
+          type:
+          - string
+          - 'null'
     ApiFileMedia:
       type: object
       additionalProperties: false
@@ -133,19 +148,4 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/ApiImageFolder'
-    ApiImage:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type:
-          - string
-          - 'null'
-        path:
-          type:
-          - string
-          - 'null'
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

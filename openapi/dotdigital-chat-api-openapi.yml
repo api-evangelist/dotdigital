@@ -143,21 +143,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    liveChatAnalytics:
-      type: object
-      properties:
-        teamId:
-          type: string
-          description: The live count of 'new' chats
-        new:
-          type: integer
-          description: The live count of 'new' chats
-        replied:
-          type: integer
-          description: The live count of 'replied' chats
-        closed:
-          type: integer
-          description: The live count of 'closed' chats
     chatAnalytics:
       type: object
       properties:
@@ -213,6 +198,21 @@ components:
           type: integer
           description: The total number of times chats were transitioned to 'Replied'
           format: int64
+    liveChatAnalytics:
+      type: object
+      properties:
+        teamId:
+          type: string
+          description: The live count of 'new' chats
+        new:
+          type: integer
+          description: The live count of 'new' chats
+        replied:
+          type: integer
+          description: The live count of 'replied' chats
+        closed:
+          type: integer
+          description: The live count of 'closed' chats
   securitySchemes:
     basicAuth:
       type: http

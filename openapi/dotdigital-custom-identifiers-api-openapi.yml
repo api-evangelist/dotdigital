@@ -122,6 +122,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    errorResponse_details:
+      required:
+      - description
+      - item
+      type: object
+      properties:
+        item:
+          type: string
+          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
+        description:
+          type: string
+          description: Description of the error
     customIdentifier:
       type: object
       properties:
@@ -139,30 +151,6 @@ components:
           description: ISO 8601 UTC timestamp for when the record was last updated.
           format: date-time
           example: '2024-05-21T12:34:56Z'
-    customIdentifierRequest:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          maxLength: 50
-          minLength: 1
-          pattern: (^[-A-Za-z0-9_]{1,50}$)
-          type: string
-          description: The unique custom identifier name.
-          example: crm-id
-    errorResponse_details:
-      required:
-      - description
-      - item
-      type: object
-      properties:
-        item:
-          type: string
-          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
-        description:
-          type: string
-          description: Description of the error
     errorResponse:
       required:
       - description
@@ -179,6 +167,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/errorResponse_details'
+    customIdentifierRequest:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          maxLength: 50
+          minLength: 1
+          pattern: (^[-A-Za-z0-9_]{1,50}$)
+          type: string
+          description: The unique custom identifier name.
+          example: crm-id
   securitySchemes:
     basicAuth:
       type: http

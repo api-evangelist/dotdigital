@@ -213,17 +213,34 @@ paths:
                   $ref: '#/components/schemas/ApiSurveyResponse'
 components:
   schemas:
-    ApiAssignedContactDataExistsAction:
+    ApiSurveySubmissionMode:
       type: string
       description: ''
       x-enumNames:
-      - OverwriteData
-      - HideField
+      - Single
+      - Multiple
       - NotAvailableInThisVersion
       enum:
-      - OverwriteData
-      - HideField
+      - Single
+      - Multiple
       - NotAvailableInThisVersion
+    ApiSurveyPage:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiSurveyField'
     ApiSurveyState:
       type: string
       description: ''
@@ -240,6 +257,99 @@ components:
       - Pending
       - Expired
       - SurveyFeatureDisabled
+      - NotAvailableInThisVersion
+    ApiSurveyConfirmationMode:
+      type: string
+      description: ''
+      x-enumNames:
+      - Text
+      - Url
+      - NotAvailableInThisVersion
+      enum:
+      - Text
+      - Url
+      - NotAvailableInThisVersion
+    ApiSurveyGivenAnswer:
+      type: object
+      additionalProperties: false
+      properties:
+        fieldId:
+          type: integer
+          format: int32
+        subFieldId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        value: {}
+    ApiSurveyField:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        type:
+          type:
+          - string
+          - 'null'
+        text:
+          type:
+          - string
+          - 'null'
+        isRequired:
+          type: boolean
+        defaultValue:
+          type:
+          - string
+          - 'null'
+        mode:
+          type:
+          - string
+          - 'null'
+        choices:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiSurveyQuestionChoice'
+        subFields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiSurveyField'
+        hasOtherOption:
+          type: boolean
+        otherOptionChoiceId:
+          type: integer
+          format: int32
+        otherOptionSubFieldId:
+          type: integer
+          format: int32
+        otherOptionTextFieldId:
+          type: integer
+          format: int32
+        isAssignedToContactDataField:
+          type: boolean
+        assignedContactDataFieldName:
+          type:
+          - string
+          - 'null'
+        assignedContactDataExistsAction:
+          $ref: '#/components/schemas/ApiAssignedContactDataExistsAction'
+    ApiRespondentNotificationType:
+      type: string
+      description: ''
+      x-enumNames:
+      - None
+      - Basic
+      - Campaign
+      - NotAvailableInThisVersion
+      enum:
+      - None
+      - Basic
+      - Campaign
       - NotAvailableInThisVersion
     ApiSurvey:
       type: object
@@ -376,73 +486,39 @@ components:
         sourceOtherTotal:
           type: integer
           format: int32
-    ApiSurveySubmissionMode:
-      type: string
-      description: ''
-      x-enumNames:
-      - Single
-      - Multiple
-      - NotAvailableInThisVersion
-      enum:
-      - Single
-      - Multiple
-      - NotAvailableInThisVersion
-    ApiSurveyField:
+    ApiSurveyQuestionChoice:
       type: object
       additionalProperties: false
       properties:
         id:
           type: integer
           format: int32
-        type:
-          type:
-          - string
-          - 'null'
         text:
           type:
           - string
           - 'null'
-        isRequired:
-          type: boolean
-        defaultValue:
-          type:
-          - string
-          - 'null'
-        mode:
-          type:
-          - string
-          - 'null'
-        choices:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiSurveyQuestionChoice'
-        subFields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiSurveyField'
-        hasOtherOption:
-          type: boolean
-        otherOptionChoiceId:
-          type: integer
-          format: int32
-        otherOptionSubFieldId:
-          type: integer
-          format: int32
-        otherOptionTextFieldId:
-          type: integer
-          format: int32
-        isAssignedToContactDataField:
-          type: boolean
-        assignedContactDataFieldName:
-          type:
-          - string
-          - 'null'
-        assignedContactDataExistsAction:
-          $ref: '#/components/schemas/ApiAssignedContactDataExistsAction'
+    ApiAssignedContactDataExistsAction:
+      type: string
+      description: ''
+      x-enumNames:
+      - OverwriteData
+      - HideField
+      - NotAvailableInThisVersion
+      enum:
+      - OverwriteData
+      - HideField
+      - NotAvailableInThisVersion
+    ApiSurveyAssignedAddressBookTarget:
+      type: string
+      description: ''
+      x-enumNames:
+      - AllContacts
+      - SpecificAddressBook
+      - NotAvailableInThisVersion
+      enum:
+      - AllContacts
+      - SpecificAddressBook
+      - NotAvailableInThisVersion
     ApiSurveyResponse:
       type: object
       additionalProperties: false
@@ -474,80 +550,4 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/ApiSurveyGivenAnswer'
-    ApiSurveyQuestionChoice:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: integer
-          format: int32
-        text:
-          type:
-          - string
-          - 'null'
-    ApiRespondentNotificationType:
-      type: string
-      description: ''
-      x-enumNames:
-      - None
-      - Basic
-      - Campaign
-      - NotAvailableInThisVersion
-      enum:
-      - None
-      - Basic
-      - Campaign
-      - NotAvailableInThisVersion
-    ApiSurveyGivenAnswer:
-      type: object
-      additionalProperties: false
-      properties:
-        fieldId:
-          type: integer
-          format: int32
-        subFieldId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        value: {}
-    ApiSurveyAssignedAddressBookTarget:
-      type: string
-      description: ''
-      x-enumNames:
-      - AllContacts
-      - SpecificAddressBook
-      - NotAvailableInThisVersion
-      enum:
-      - AllContacts
-      - SpecificAddressBook
-      - NotAvailableInThisVersion
-    ApiSurveyConfirmationMode:
-      type: string
-      description: ''
-      x-enumNames:
-      - Text
-      - Url
-      - NotAvailableInThisVersion
-      enum:
-      - Text
-      - Url
-      - NotAvailableInThisVersion
-    ApiSurveyPage:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type:
-          - string
-          - 'null'
-        fields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiSurveyField'
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

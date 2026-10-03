@@ -189,6 +189,117 @@ paths:
                 format: binary
 components:
   schemas:
+    ApiManagedUser:
+      type: object
+      additionalProperties: false
+      required:
+      - email
+      - password
+      - permissions
+      properties:
+        email:
+          type: string
+          minLength: 1
+        password:
+          type: string
+          minLength: 1
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiPermissionTypes'
+        firstName:
+          type:
+          - string
+          - 'null'
+        lastName:
+          type:
+          - string
+          - 'null'
+        mobileNumber:
+          type:
+          - string
+          - 'null'
+    ApiAccountProperty:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+    ApiTheme:
+      type: object
+      additionalProperties: false
+      required:
+      - primaryColor
+      - secondaryColor
+      - hyperlinkColor
+      - buttonColor
+      properties:
+        primaryColor:
+          type: string
+          minLength: 1
+          pattern: ^(\#[0-9a-f]{6})$
+        secondaryColor:
+          type: string
+          minLength: 1
+          pattern: ^(\#[0-9a-f]{6})$
+        hyperlinkColor:
+          type: string
+          minLength: 1
+          pattern: ^(\#[0-9a-f]{6})$
+        buttonColor:
+          type: string
+          minLength: 1
+          pattern: ^(\#[0-9a-f]{6})$
+    ApiPermissionTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - Sender
+      - Reporter
+      - EditCampaigns
+      - TemplateAdmin
+      - Contacts
+      - ReportDrillDown
+      - ContactExporter
+      - CanSendWithoutApproval
+      - Programs
+      - ManageAccount
+      - NotAvailableInThisVersion
+      enum:
+      - Sender
+      - Reporter
+      - EditCampaigns
+      - TemplateAdmin
+      - Contacts
+      - ReportDrillDown
+      - ContactExporter
+      - CanSendWithoutApproval
+      - Programs
+      - ManageAccount
+      - NotAvailableInThisVersion
+    ApiAccount:
+      type: object
+      additionalProperties: false
+      required:
+      - properties
+      properties:
+        id:
+          type: integer
+          format: int32
+        properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiAccountProperty'
     ApiUser:
       type: object
       additionalProperties: false
@@ -228,115 +339,4 @@ components:
           type:
           - string
           - 'null'
-    ApiPermissionTypes:
-      type: string
-      description: ''
-      x-enumNames:
-      - Sender
-      - Reporter
-      - EditCampaigns
-      - TemplateAdmin
-      - Contacts
-      - ReportDrillDown
-      - ContactExporter
-      - CanSendWithoutApproval
-      - Programs
-      - ManageAccount
-      - NotAvailableInThisVersion
-      enum:
-      - Sender
-      - Reporter
-      - EditCampaigns
-      - TemplateAdmin
-      - Contacts
-      - ReportDrillDown
-      - ContactExporter
-      - CanSendWithoutApproval
-      - Programs
-      - ManageAccount
-      - NotAvailableInThisVersion
-    ApiAccountProperty:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
-        value:
-          type:
-          - string
-          - 'null'
-    ApiManagedUser:
-      type: object
-      additionalProperties: false
-      required:
-      - email
-      - password
-      - permissions
-      properties:
-        email:
-          type: string
-          minLength: 1
-        password:
-          type: string
-          minLength: 1
-        permissions:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiPermissionTypes'
-        firstName:
-          type:
-          - string
-          - 'null'
-        lastName:
-          type:
-          - string
-          - 'null'
-        mobileNumber:
-          type:
-          - string
-          - 'null'
-    ApiTheme:
-      type: object
-      additionalProperties: false
-      required:
-      - primaryColor
-      - secondaryColor
-      - hyperlinkColor
-      - buttonColor
-      properties:
-        primaryColor:
-          type: string
-          minLength: 1
-          pattern: ^(\#[0-9a-f]{6})$
-        secondaryColor:
-          type: string
-          minLength: 1
-          pattern: ^(\#[0-9a-f]{6})$
-        hyperlinkColor:
-          type: string
-          minLength: 1
-          pattern: ^(\#[0-9a-f]{6})$
-        buttonColor:
-          type: string
-          minLength: 1
-          pattern: ^(\#[0-9a-f]{6})$
-    ApiAccount:
-      type: object
-      additionalProperties: false
-      required:
-      - properties
-      properties:
-        id:
-          type: integer
-          format: int32
-        properties:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiAccountProperty'
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

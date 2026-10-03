@@ -705,6 +705,357 @@ paths:
       - Contacts
 components:
   schemas:
+    contactBasicDetails:
+      required:
+      - contactId
+      - created
+      - identifiers
+      - status
+      - updated
+      type: object
+      properties:
+        contactId:
+          $ref: '#/components/schemas/contactId'
+        status:
+          $ref: '#/components/schemas/status'
+        created:
+          type: string
+          description: ISO 8601 UTC timestamp for when the contact was created
+          format: date-time
+        updated:
+          type: string
+          description: ISO 8601 UTC timestamp for when the contact was last updated
+          format: date-time
+        identifiers:
+          $ref: '#/components/schemas/identifiers'
+    errorResponse:
+      required:
+      - description
+      - errorCode
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: Unique error code
+        description:
+          type: string
+          description: Description of the issue
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/errorResponse_details'
+    baseContactRequest:
+      allOf:
+      - $ref: '#/components/schemas/baseContact'
+      - type: object
+        properties:
+          consentRecords:
+            $ref: '#/components/schemas/consentRecordsToBeInserted'
+    channelProperties:
+      type: object
+      properties:
+        channelProperties:
+          $ref: '#/components/schemas/channelProperties_channelProperties'
+    smsChannelStatus:
+      type: string
+      description: The current status for the SMS channel for this contact
+      example: subscribed
+      enum:
+      - noSubscription
+      - subscribed
+      - unsubscribed
+      - bounced
+      - deleted
+      - suppressed
+      - binned
+    consentRecord:
+      required:
+      - dateTimeConsented
+      - ipAddress
+      - text
+      - url
+      - userAgent
+      type: object
+      properties:
+        text:
+          minLength: 1
+          type: string
+          description: Consent text displayed to the contact
+          example: Yes, I would like to receive a monthly newsletter
+        dateTimeConsented:
+          type: string
+          description: ISO 8601 UTC timestamp for when the consent was obtained
+          format: date-time
+          example: '2023-01-26T21:29:00Z'
+        url:
+          type: string
+          description: URL the consent was obtained with
+          format: uri
+          example: http://www.example.com/signup
+        ipAddress:
+          oneOf:
+          - type: string
+            description: IPv4 address of the contact the consent was obtained for
+            format: ipv4
+            example: 129.168.0.2
+          - type: string
+            description: IPv6 address of the contact the consent was obtained for
+            format: ipv6
+            example: 2b01:1234:136:0:116f:3244:a476:d6b7
+        userAgent:
+          minLength: 1
+          type: string
+          description: User agent header of the browser used by the contact the consent was obtained for
+          example: Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36
+      additionalProperties: false
+      description: Marketing consent records to be associated with the contact
+    paginationLinks_next:
+      required:
+      - link
+      - marker
+      type: object
+      properties:
+        marker:
+          type: string
+          description: Pagination marker to be passed to API calls to retrieve this data page
+        link:
+          type: string
+          description: Link to retrieve the data page
+      description: Details for accessing the next pages worth of data
+    contact_channelProperties_email:
+      required:
+      - emailType
+      - optInType
+      - status
+      type: object
+      properties:
+        emailType:
+          type: string
+          description: The format the contact expects emails in.
+          example: Html
+          enum:
+          - PlainText
+          - Html
+        optInType:
+          $ref: '#/components/schemas/optInType'
+        status:
+          $ref: '#/components/schemas/emailChannelStatus'
+      additionalProperties: false
+    contact_lists:
+      required:
+      - id
+      - name
+      - status
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Immutable unique list ID
+          format: int32
+          example: 12345
+        name:
+          maxLength: 128
+          type: string
+          description: Name of the list
+          example: Top customers
+        status:
+          type: string
+          description: The list status for the contact
+          example: subscribed
+          enum:
+          - subscribed
+          - suppressed
+          - pending
+    inline_response_200_1:
+      required:
+      - deleteId
+      - status
+      type: object
+      properties:
+        deleteId:
+          type: string
+          description: The delete job request id
+          example: c4920aee-3add-44e4-b8c0-dcbfacbfee40
+        status:
+          type: string
+          enum:
+          - NotStarted
+          - NotFinished
+          - Finished
+          - Failed
+        summary:
+          $ref: '#/components/schemas/inline_response_200_1_summary'
+        deleted:
+          type: array
+          description: The contacts that were successfully deleted
+          items:
+            $ref: '#/components/schemas/contactIdentifier'
+        failures:
+          type: array
+          description: The contacts that failed to be deleted
+          items:
+            $ref: '#/components/schemas/inline_response_200_1_failures_1'
+    paginationLinks_prev:
+      required:
+      - link
+      - marker
+      type: object
+      properties:
+        marker:
+          type: string
+          description: Pagination marker to be passed to API calls to retrieve this data page
+        link:
+          type: string
+          description: Link to retrieve the data page
+      description: Details for accessing the previous pagea worth of data
+    channelStatusUpdate:
+      type: string
+      description: The subscription status for the channel; if not specified it remains unaltered for existing contacts, and for new contacts this defaults to values defined in _Settings > Contacts > Mobile subscription_
+      example: subscribed
+      enum:
+      - noSubscription
+      - subscribed
+      - unsubscribed
+      - suppressed
+    paginationLinks:
+      required:
+      - first
+      - self
+      type: object
+      properties:
+        self:
+          $ref: '#/components/schemas/paginationLinks_self'
+        first:
+          $ref: '#/components/schemas/paginationLinks_first'
+        prev:
+          $ref: '#/components/schemas/paginationLinks_prev'
+        next:
+          $ref: '#/components/schemas/paginationLinks_next'
+        last:
+          $ref: '#/components/schemas/paginationLinks_last'
+      description: Pagination links
+    replaceContactRequest:
+      allOf:
+      - required:
+        - identifiers
+        type: object
+        properties:
+          identifiers:
+            allOf:
+            - description: Identifiers this contact can be referenced by
+            - $ref: '#/components/schemas/identifiers'
+      - $ref: '#/components/schemas/baseContact'
+      - $ref: '#/components/schemas/channelPropertiesWithResubscribe'
+    identifiers:
+      type: object
+      properties:
+        email:
+          description: Contact email address
+          example: someone@emailsim.io
+        mobileNumber:
+          description: Contact phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164)
+          example: '447123123123'
+      additionalProperties:
+        type: string
+        description: Any additional custom identifiers. Property names must match one of the custom identifiers that exists in the account.
+      description: Identifiers this contact can be referenced by
+      example:
+        email: someone@emailsim.io
+        mobileNumber: '447123123123'
+        myCustomId: MYID_12345
+    channelPropertiesWithResubscribe_channelProperties_email_resubscribeOptions:
+      type: object
+      properties:
+        resubscribeWithNoChallenge:
+          type: boolean
+          description: If resubscribing the channel should we not send a resubscription confirmation email?
+          default: true
+        preferredLocale:
+          type: string
+          description: The language code for the language you would like the resubscribe request email to be sent to the contact in
+          enum:
+          - cs-CS
+          - da-DA
+          - de-DE
+          - el-EL
+          - en-EN
+          - es-ES
+          - es
+          - fi-FI
+          - fr-FR
+          - hu-HU
+          - it-IT
+          - nl-NL
+          - nb-NO
+          - pl-PL
+          - pt-PT
+          - ru-RU
+          - se-SE
+          - sk-SK
+          - tr-TR
+          - zh-CN
+        redirectUrlAfterChallenge:
+          type: string
+          description: The URL you would like to redirect challenged contacts to after they have completed their resubscription
+          format: uri
+          example: https://somedomain.io/some/page
+    contactId:
+      minimum: 0
+      type: integer
+      description: Immutable unique identifier for the contact
+      example: 35212311
+    emailChannelStatus:
+      type: string
+      description: Current status of the email channel for the contact
+      example: subscribed
+      enum:
+      - noSubscription
+      - subscribed
+      - unsubscribed
+      - softBounced
+      - hardBounced
+      - ispComplained
+      - pendingOptIn
+      - directComplaint
+      - spamTrap
+      - deleted
+      - blockedlocalpart
+      - sharedsuppression
+      - sharedDomainSuppression
+      - suppressed
+      - purchased
+      - knownComplainer
+      - knownLitigator
+      - binned
+      - domainSuppressed
+    channelPropertiesWithResubscribe_channelProperties_email:
+      type: object
+      properties:
+        resubscribeOptions:
+          $ref: '#/components/schemas/channelPropertiesWithResubscribe_channelProperties_email_resubscribeOptions'
+    updateContactRequest:
+      allOf:
+      - type: object
+        properties:
+          identifiers:
+            allOf:
+            - description: Identifiers this contact can be referenced by
+            - $ref: '#/components/schemas/identifiers'
+      - $ref: '#/components/schemas/baseContactRequest'
+      - $ref: '#/components/schemas/channelPropertiesWithResubscribe'
+    inline_response_200:
+      required:
+      - _items
+      - _links
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/paginationLinks'
+        _items:
+          type: array
+          description: Returned contacts
+          items:
+            $ref: '#/components/schemas/contact'
     inline_response_200_2:
       required:
       - importId
@@ -766,39 +1117,17 @@ components:
               description: The provided consent records could not be applied as they were incorrectly formatted
           items:
             $ref: '#/components/schemas/inline_response_200_2_failures_1'
-    inline_response_200_1_summary:
-      required:
-      - deletedContacts
-      - invalidEntries
-      - requestedContacts
-      - unknownContacts
+    channelProperties_channelProperties_whatsApp:
       type: object
       properties:
-        requestedContacts:
-          type: integer
-          description: The number of contacts requested to be deleted
-          format: int32
-          example: 100
-        deletedContacts:
-          type: integer
-          description: The number of contacts deleted
-          format: int32
-          example: 95
-        unknownContacts:
-          type: integer
-          description: The number of contacts that could not be identified
-          format: int32
-          example: 4
-        invalidEntries:
-          type: integer
-          description: The number of contacts that could not be processed
-          format: int32
-          example: 1
-    preferenceFull:
+        status:
+          $ref: '#/components/schemas/channelStatusUpdate'
+      additionalProperties: false
+      description: The channel properties for WhatsApp
+    preference:
       required:
       - id
       - isOptedIn
-      - name
       type: object
       properties:
         id:
@@ -808,179 +1137,24 @@ components:
           example: 1
         isOptedIn:
           type: boolean
-          description: Indicates whether the contact is opted into this preference
-        publicName:
-          type: string
-          description: Public name of the marketing preference
-          example: Mens fashion
-        privateName:
-          type: string
-          description: Private name of the marketing preference
-          example: mensFashion01
-    errorResponse:
-      required:
-      - description
-      - errorCode
+          description: Specify whether the contact is opted into this preference
+    inline_response_202:
       type: object
       properties:
-        errorCode:
+        deleteId:
           type: string
-          description: Unique error code
-        description:
-          type: string
-          description: Description of the issue
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/errorResponse_details'
-    contactReference:
-      required:
-      - contactId
-      - identifiers
+          example: c4920aee-3add-44e4-b8c0-dcbfacbfee40
+    contact_channelProperties:
       type: object
       properties:
-        contactId:
-          $ref: '#/components/schemas/contactId'
-        identifiers:
-          $ref: '#/components/schemas/identifiers'
-      description: Contact reference
-    inline_response_200_2_failures:
-      required:
-      - description
-      - failureCode
-      type: object
-      properties:
-        failureCode:
-          type: string
-          description: Unique failure code for this failure reason
-          example: invalidEmail
-        description:
-          type: string
-          description: Description of the reason for the failure
-          example: Invalid value for 'email'
-      description: A failure reason
-    paginationLinks_last:
-      required:
-      - link
-      - marker
-      type: object
-      properties:
-        marker:
-          type: string
-          description: Pagination marker to be passed to API calls to retrieve this data page
-        link:
-          type: string
-          description: Link to retrieve the data page
-      description: Details for accessing the last pages worth of data
-    inline_response_200:
-      required:
-      - _items
-      - _links
-      type: object
-      properties:
-        _links:
-          $ref: '#/components/schemas/paginationLinks'
-        _items:
-          type: array
-          description: Returned contacts
-          items:
-            $ref: '#/components/schemas/contact'
-    v3_import_body:
-      required:
-      - contacts
-      type: object
-      properties:
-        mergeOption:
-          type: string
-          description: Specify how the merging of new data with existing data is handled
-          example: overwrite
-          enum:
-          - overwrite
-          - overwriteIfNotEmpty
-          - overwriteIfEmpty
-          default: overwrite
-        contacts:
-          minItems: 1
-          type: array
-          items:
-            $ref: '#/components/schemas/contactRequest'
-    contactId:
-      minimum: 0
-      type: integer
-      description: Immutable unique identifier for the contact
-      example: 35212311
-    paginationLinks_self:
-      required:
-      - link
-      - marker
-      type: object
-      properties:
-        marker:
-          type: string
-          description: Pagination marker to be passed to API calls to retrieve this data page
-        link:
-          type: string
-          description: Link to retrieve the data page
-      description: Details for accessing this data page via pagination
-    smsChannelStatus:
-      type: string
-      description: The current status for the SMS channel for this contact
-      example: subscribed
-      enum:
-      - noSubscription
-      - subscribed
-      - unsubscribed
-      - bounced
-      - deleted
-      - suppressed
-      - binned
-    channelPropertiesWithResubscribe:
-      type: object
-      properties:
-        channelProperties:
-          $ref: '#/components/schemas/channelPropertiesWithResubscribe_channelProperties'
-    paginationLinks:
-      required:
-      - first
-      - self
-      type: object
-      properties:
-        self:
-          $ref: '#/components/schemas/paginationLinks_self'
-        first:
-          $ref: '#/components/schemas/paginationLinks_first'
-        prev:
-          $ref: '#/components/schemas/paginationLinks_prev'
-        next:
-          $ref: '#/components/schemas/paginationLinks_next'
-        last:
-          $ref: '#/components/schemas/paginationLinks_last'
-      description: Pagination links
-    contact_lists:
-      required:
-      - id
-      - name
-      - status
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Immutable unique list ID
-          format: int32
-          example: 12345
-        name:
-          maxLength: 128
-          type: string
-          description: Name of the list
-          example: Top customers
-        status:
-          type: string
-          description: The list status for the contact
-          example: subscribed
-          enum:
-          - subscribed
-          - suppressed
-          - pending
+        email:
+          $ref: '#/components/schemas/contact_channelProperties_email'
+        sms:
+          $ref: '#/components/schemas/contact_channelProperties_sms'
+        whatsApp:
+          $ref: '#/components/schemas/contact_channelProperties_whatsApp'
+      additionalProperties: false
+      description: Properties associated with each channel for a contact. For exmaple, message format or subscription status.
     channelProperties_channelProperties_email:
       type: object
       properties:
@@ -1009,53 +1183,120 @@ components:
           - suppressed
       additionalProperties: false
       description: The channel properties for email
-    channelProperties_channelProperties_whatsApp:
+    inline_response_200_3:
+      required:
+      - contactId
       type: object
       properties:
-        status:
-          $ref: '#/components/schemas/channelStatusUpdate'
-      additionalProperties: false
-      description: The channel properties for WhatsApp
-    contactRequest:
+        contactId:
+          $ref: '#/components/schemas/contactId'
+      description: The contact id of the deleted contact
+    preferenceFull:
+      required:
+      - id
+      - isOptedIn
+      - name
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of the preference
+          format: int32
+          example: 1
+        isOptedIn:
+          type: boolean
+          description: Indicates whether the contact is opted into this preference
+        publicName:
+          type: string
+          description: Public name of the marketing preference
+          example: Mens fashion
+        privateName:
+          type: string
+          description: Private name of the marketing preference
+          example: mensFashion01
+    createContactRequest:
       allOf:
       - required:
         - identifiers
-        - matchIdentifier
         type: object
         properties:
-          matchIdentifier:
-            type: string
-            description: Specify which identifier in the provided `identifiers` should be used to match the contact to an existing record. This can be a custom identifier or a contact identifier of contactId, email or mobileNumber.
-            example: mobileNumber
           identifiers:
             allOf:
             - description: Identifiers this contact can be referenced by
-            - $ref: '#/components/schemas/contactIdObject'
-        description: The contact data
-      - $ref: '#/components/schemas/updateContactRequest'
-    inline_response_202_1:
+            - $ref: '#/components/schemas/identifiers'
+      - $ref: '#/components/schemas/baseContactRequest'
+    errorResponse_details:
+      required:
+      - description
+      - item
       type: object
       properties:
-        importId:
+        item:
           type: string
-          example: d7de900d-d337-43f6-b1e1-c8ec73e1a434
-    identifiers:
+          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
+        description:
+          type: string
+          description: Description of the error
+    inline_response_200_1_summary:
+      required:
+      - deletedContacts
+      - invalidEntries
+      - requestedContacts
+      - unknownContacts
       type: object
       properties:
-        email:
-          description: Contact email address
-          example: someone@emailsim.io
-        mobileNumber:
-          description: Contact phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164)
-          example: '447123123123'
-      additionalProperties:
-        type: string
-        description: Any additional custom identifiers. Property names must match one of the custom identifiers that exists in the account.
-      description: Identifiers this contact can be referenced by
-      example:
-        email: someone@emailsim.io
-        mobileNumber: '447123123123'
-        myCustomId: MYID_12345
+        requestedContacts:
+          type: integer
+          description: The number of contacts requested to be deleted
+          format: int32
+          example: 100
+        deletedContacts:
+          type: integer
+          description: The number of contacts deleted
+          format: int32
+          example: 95
+        unknownContacts:
+          type: integer
+          description: The number of contacts that could not be identified
+          format: int32
+          example: 4
+        invalidEntries:
+          type: integer
+          description: The number of contacts that could not be processed
+          format: int32
+          example: 1
+    contactIdObject:
+      type: object
+      properties:
+        contactId:
+          minimum: 0
+          type: integer
+          description: Immutable unique identifier for the contact
+          example: 35212311
+    inline_response_200_1_failures:
+      required:
+      - description
+      - failureCode
+      type: object
+      properties:
+        failureCode:
+          type: string
+          description: The unique failure code for this failure reason
+          example: invalidEmail
+        description:
+          type: string
+          description: The English reason for the failure
+          example: Invalid value for 'email'
+      description: A failure reason
+    whatsAppChannelStatus:
+      type: string
+      description: The current status for the WhatsApp channel for this contact
+      example: subscribed
+      enum:
+      - noSubscription
+      - subscribed
+      - unsubscribed
+      - suppressed
     inline_response_200_1_failures_1:
       required:
       - failures
@@ -1075,344 +1316,40 @@ components:
           items:
             $ref: '#/components/schemas/inline_response_200_1_failures'
       description: Contact delete failure summary
-    consentRecord:
-      required:
-      - dateTimeConsented
-      - ipAddress
-      - text
-      - url
-      - userAgent
-      type: object
-      properties:
-        text:
-          minLength: 1
-          type: string
-          description: Consent text displayed to the contact
-          example: Yes, I would like to receive a monthly newsletter
-        dateTimeConsented:
-          type: string
-          description: ISO 8601 UTC timestamp for when the consent was obtained
-          format: date-time
-          example: '2023-01-26T21:29:00Z'
-        url:
-          type: string
-          description: URL the consent was obtained with
-          format: uri
-          example: http://www.example.com/signup
-        ipAddress:
-          oneOf:
-          - type: string
-            description: IPv4 address of the contact the consent was obtained for
-            format: ipv4
-            example: 129.168.0.2
-          - type: string
-            description: IPv6 address of the contact the consent was obtained for
-            format: ipv6
-            example: 2b01:1234:136:0:116f:3244:a476:d6b7
-        userAgent:
-          minLength: 1
-          type: string
-          description: User agent header of the browser used by the contact the consent was obtained for
-          example: Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36
-      additionalProperties: false
-      description: Marketing consent records to be associated with the contact
-    contactIdObject:
-      type: object
-      properties:
-        contactId:
-          minimum: 0
-          type: integer
-          description: Immutable unique identifier for the contact
-          example: 35212311
-    contact_channelProperties_email:
-      required:
-      - emailType
-      - optInType
-      - status
-      type: object
-      properties:
-        emailType:
-          type: string
-          description: The format the contact expects emails in.
-          example: Html
-          enum:
-          - PlainText
-          - Html
-        optInType:
-          $ref: '#/components/schemas/optInType'
-        status:
-          $ref: '#/components/schemas/emailChannelStatus'
-      additionalProperties: false
-    channelPropertiesWithResubscribe_channelProperties_email_resubscribeOptions:
-      type: object
-      properties:
-        resubscribeWithNoChallenge:
-          type: boolean
-          description: If resubscribing the channel should we not send a resubscription confirmation email?
-          default: true
-        preferredLocale:
-          type: string
-          description: The language code for the language you would like the resubscribe request email to be sent to the contact in
-          enum:
-          - cs-CS
-          - da-DA
-          - de-DE
-          - el-EL
-          - en-EN
-          - es-ES
-          - es
-          - fi-FI
-          - fr-FR
-          - hu-HU
-          - it-IT
-          - nl-NL
-          - nb-NO
-          - pl-PL
-          - pt-PT
-          - ru-RU
-          - se-SE
-          - sk-SK
-          - tr-TR
-          - zh-CN
-        redirectUrlAfterChallenge:
-          type: string
-          description: The URL you would like to redirect challenged contacts to after they have completed their resubscription
-          format: uri
-          example: https://somedomain.io/some/page
-    baseContact:
+    contact:
       allOf:
+      - $ref: '#/components/schemas/contactBasicDetails'
       - type: object
         properties:
           dataFields:
             type: object
             additionalProperties: true
-            description: Addtional data fields for the contact
+            description: Addtional data fields for the contact specified for the contact
             example:
               firstName: John
               lastName: Doe
               gender: male
-      - $ref: '#/components/schemas/channelProperties'
-      - type: object
-        properties:
+          channelProperties:
+            $ref: '#/components/schemas/contact_channelProperties'
           lists:
-            maxItems: 100
-            minItems: 1
             type: array
-            description: List IDs for the lists the contact should be added to
+            description: Lists the contact belongs to
             items:
-              type: integer
-              description: Unique list id
-              format: int32
-              example: 345579
+              $ref: '#/components/schemas/contact_lists'
           preferences:
             minItems: 1
             type: array
-            description: Preferences you want to opt the contact into. ***Note:** Only required for preferences and not preference categories*
+            description: Preferences the contact is opted-in to
             items:
-              $ref: '#/components/schemas/preference'
-    baseContactRequest:
-      allOf:
-      - $ref: '#/components/schemas/baseContact'
-      - type: object
-        properties:
+              $ref: '#/components/schemas/preferenceFull'
           consentRecords:
-            $ref: '#/components/schemas/consentRecordsToBeInserted'
-    consentRecordsToBeInserted:
-      maxItems: 5
-      minItems: 1
-      type: array
-      description: The marketing consent records to be associated with the contact
-      items:
-        $ref: '#/components/schemas/consentRecord'
-    channelProperties:
+            $ref: '#/components/schemas/consentRecords'
+        description: A contact
+    channelPropertiesWithResubscribe:
       type: object
       properties:
         channelProperties:
-          $ref: '#/components/schemas/channelProperties_channelProperties'
-    createContactRequest:
-      allOf:
-      - required:
-        - identifiers
-        type: object
-        properties:
-          identifiers:
-            allOf:
-            - description: Identifiers this contact can be referenced by
-            - $ref: '#/components/schemas/identifiers'
-      - $ref: '#/components/schemas/baseContactRequest'
-    inline_response_200_1_failures:
-      required:
-      - description
-      - failureCode
-      type: object
-      properties:
-        failureCode:
-          type: string
-          description: The unique failure code for this failure reason
-          example: invalidEmail
-        description:
-          type: string
-          description: The English reason for the failure
-          example: Invalid value for 'email'
-      description: A failure reason
-    paginationLinks_prev:
-      required:
-      - link
-      - marker
-      type: object
-      properties:
-        marker:
-          type: string
-          description: Pagination marker to be passed to API calls to retrieve this data page
-        link:
-          type: string
-          description: Link to retrieve the data page
-      description: Details for accessing the previous pagea worth of data
-    consentRecords:
-      type: array
-      description: Marketing consent records associated with the contact
-      items:
-        example:
-          text: Yes, I would like to receive a monthly newsletter
-          dateTimeConsented: '2023-01-26T21:29:00'
-          url: http://www.example.com/signup
-          ipAddress: 129.168.0.2
-          userAgent: Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36
-          dateTimeCreated: '2023-01-26T22:55:00'
-        allOf:
-        - $ref: '#/components/schemas/consentRecord'
-        - required:
-          - dateTimeCreated
-          type: object
-          properties:
-            dateTimeCreated:
-              type: string
-              description: ISO 8601 UTC timestamp for when the consent was created
-              format: date-time
-              example: '2023-01-26T22:55:00Z'
-    emailChannelStatus:
-      type: string
-      description: Current status of the email channel for the contact
-      example: subscribed
-      enum:
-      - noSubscription
-      - subscribed
-      - unsubscribed
-      - softBounced
-      - hardBounced
-      - ispComplained
-      - pendingOptIn
-      - directComplaint
-      - spamTrap
-      - deleted
-      - blockedlocalpart
-      - sharedsuppression
-      - sharedDomainSuppression
-      - suppressed
-      - purchased
-      - knownComplainer
-      - knownLitigator
-      - binned
-      - domainSuppressed
-    channelProperties_channelProperties:
-      type: object
-      properties:
-        email:
-          $ref: '#/components/schemas/channelProperties_channelProperties_email'
-        sms:
-          $ref: '#/components/schemas/channelProperties_channelProperties_sms'
-        whatsApp:
-          $ref: '#/components/schemas/channelProperties_channelProperties_whatsApp'
-      additionalProperties: false
-      description: Properties associated with each channel for a contact. For example, message format or subscription status
-    preference:
-      required:
-      - id
-      - isOptedIn
-      type: object
-      properties:
-        id:
-          type: integer
-          description: ID of the preference
-          format: int32
-          example: 1
-        isOptedIn:
-          type: boolean
-          description: Specify whether the contact is opted into this preference
-    contact_channelProperties:
-      type: object
-      properties:
-        email:
-          $ref: '#/components/schemas/contact_channelProperties_email'
-        sms:
-          $ref: '#/components/schemas/contact_channelProperties_sms'
-        whatsApp:
-          $ref: '#/components/schemas/contact_channelProperties_whatsApp'
-      additionalProperties: false
-      description: Properties associated with each channel for a contact. For exmaple, message format or subscription status.
-    inline_response_202:
-      type: object
-      properties:
-        deleteId:
-          type: string
-          example: c4920aee-3add-44e4-b8c0-dcbfacbfee40
-    channelPropertiesWithResubscribe_channelProperties:
-      type: object
-      properties:
-        email:
-          $ref: '#/components/schemas/channelPropertiesWithResubscribe_channelProperties_email'
-    channelPropertiesWithResubscribe_channelProperties_email:
-      type: object
-      properties:
-        resubscribeOptions:
-          $ref: '#/components/schemas/channelPropertiesWithResubscribe_channelProperties_email_resubscribeOptions'
-    channelProperties_channelProperties_sms:
-      type: object
-      properties:
-        status:
-          $ref: '#/components/schemas/channelStatusUpdate'
-      additionalProperties: false
-      description: The channel properties for SMS/MMS
-    errorResponse_details:
-      required:
-      - description
-      - item
-      type: object
-      properties:
-        item:
-          type: string
-          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
-        description:
-          type: string
-          description: Description of the error
-    inline_response_200_2_summary:
-      type: object
-      properties:
-        newContacts:
-          type: integer
-          description: Number of new contacts added
-          format: int32
-          example: 10
-        updatedContacts:
-          type: integer
-          description: Number of contacts updated
-          format: int32
-          example: 14
-        globallySuppressed:
-          type: integer
-          description: Number of contacts that are suppressed at the account level, so can't be updated
-          format: int32
-          example: 0
-        invalidEntries:
-          type: integer
-          description: Number of contacts with invalid data, so can't be updated or created
-          format: int32
-          example: 2
-        duplicateIdentifiers:
-          type: integer
-          description: Number of contacts with a duplicate identifier, so can't be updated or created
-          format: int32
-          example: 2
+          $ref: '#/components/schemas/channelPropertiesWithResubscribe_channelProperties'
     contactIdentifier:
       oneOf:
       - required:
@@ -1447,7 +1384,26 @@ components:
           type: string
           example: C00000000001
         description: Custom identifier to identify the contact. This custom identifier must exist in the account.
-    paginationLinks_first:
+    v3_import_body:
+      required:
+      - contacts
+      type: object
+      properties:
+        mergeOption:
+          type: string
+          description: Specify how the merging of new data with existing data is handled
+          example: overwrite
+          enum:
+          - overwrite
+          - overwriteIfNotEmpty
+          - overwriteIfEmpty
+          default: overwrite
+        contacts:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/contactRequest'
+    paginationLinks_last:
       required:
       - link
       - marker
@@ -1459,7 +1415,42 @@ components:
         link:
           type: string
           description: Link to retrieve the data page
-      description: Details for accessing the first page worth of data
+      description: Details for accessing the last pages worth of data
+    consentRecordsToBeInserted:
+      maxItems: 5
+      minItems: 1
+      type: array
+      description: The marketing consent records to be associated with the contact
+      items:
+        $ref: '#/components/schemas/consentRecord'
+    channelProperties_channelProperties:
+      type: object
+      properties:
+        email:
+          $ref: '#/components/schemas/channelProperties_channelProperties_email'
+        sms:
+          $ref: '#/components/schemas/channelProperties_channelProperties_sms'
+        whatsApp:
+          $ref: '#/components/schemas/channelProperties_channelProperties_whatsApp'
+      additionalProperties: false
+      description: Properties associated with each channel for a contact. For example, message format or subscription status
+    contactRequest:
+      allOf:
+      - required:
+        - identifiers
+        - matchIdentifier
+        type: object
+        properties:
+          matchIdentifier:
+            type: string
+            description: Specify which identifier in the provided `identifiers` should be used to match the contact to an existing record. This can be a custom identifier or a contact identifier of contactId, email or mobileNumber.
+            example: mobileNumber
+          identifiers:
+            allOf:
+            - description: Identifiers this contact can be referenced by
+            - $ref: '#/components/schemas/contactIdObject'
+        description: The contact data
+      - $ref: '#/components/schemas/updateContactRequest'
     contact_channelProperties_sms:
       required:
       - countryCode
@@ -1473,51 +1464,6 @@ components:
         status:
           $ref: '#/components/schemas/smsChannelStatus'
       additionalProperties: false
-    contactBasicDetails:
-      required:
-      - contactId
-      - created
-      - identifiers
-      - status
-      - updated
-      type: object
-      properties:
-        contactId:
-          $ref: '#/components/schemas/contactId'
-        status:
-          $ref: '#/components/schemas/status'
-        created:
-          type: string
-          description: ISO 8601 UTC timestamp for when the contact was created
-          format: date-time
-        updated:
-          type: string
-          description: ISO 8601 UTC timestamp for when the contact was last updated
-          format: date-time
-        identifiers:
-          $ref: '#/components/schemas/identifiers'
-    status:
-      type: string
-      description: The opt in status for the contact
-      example: subscribed
-      enum:
-      - subscribed
-      - unsubscribed
-      - pendingOptIn
-      - deleted
-      - suppressed
-      - binned
-      - noSubscription
-    updateContactRequest:
-      allOf:
-      - type: object
-        properties:
-          identifiers:
-            allOf:
-            - description: Identifiers this contact can be referenced by
-            - $ref: '#/components/schemas/identifiers'
-      - $ref: '#/components/schemas/baseContactRequest'
-      - $ref: '#/components/schemas/channelPropertiesWithResubscribe'
     inline_response_200_2_failures_1:
       required:
       - failures
@@ -1542,16 +1488,59 @@ components:
           items:
             $ref: '#/components/schemas/inline_response_200_2_failures'
       description: Contact import failure summary
-    whatsAppChannelStatus:
+    contact_channelProperties_whatsApp:
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/whatsAppChannelStatus'
+      additionalProperties: false
+    inline_response_200_2_failures:
+      required:
+      - description
+      - failureCode
+      type: object
+      properties:
+        failureCode:
+          type: string
+          description: Unique failure code for this failure reason
+          example: invalidEmail
+        description:
+          type: string
+          description: Description of the reason for the failure
+          example: Invalid value for 'email'
+      description: A failure reason
+    contactReference:
+      required:
+      - contactId
+      - identifiers
+      type: object
+      properties:
+        contactId:
+          $ref: '#/components/schemas/contactId'
+        identifiers:
+          $ref: '#/components/schemas/identifiers'
+      description: Contact reference
+    status:
       type: string
-      description: The current status for the WhatsApp channel for this contact
+      description: The opt in status for the contact
       example: subscribed
       enum:
-      - noSubscription
       - subscribed
       - unsubscribed
+      - pendingOptIn
+      - deleted
       - suppressed
-    paginationLinks_next:
+      - binned
+      - noSubscription
+    inline_response_202_1:
+      type: object
+      properties:
+        importId:
+          type: string
+          example: d7de900d-d337-43f6-b1e1-c8ec73e1a434
+    paginationLinks_self:
       required:
       - link
       - marker
@@ -1563,45 +1552,12 @@ components:
         link:
           type: string
           description: Link to retrieve the data page
-      description: Details for accessing the next pages worth of data
-    contact:
-      allOf:
-      - $ref: '#/components/schemas/contactBasicDetails'
-      - type: object
-        properties:
-          dataFields:
-            type: object
-            additionalProperties: true
-            description: Addtional data fields for the contact specified for the contact
-            example:
-              firstName: John
-              lastName: Doe
-              gender: male
-          channelProperties:
-            $ref: '#/components/schemas/contact_channelProperties'
-          lists:
-            type: array
-            description: Lists the contact belongs to
-            items:
-              $ref: '#/components/schemas/contact_lists'
-          preferences:
-            minItems: 1
-            type: array
-            description: Preferences the contact is opted-in to
-            items:
-              $ref: '#/components/schemas/preferenceFull'
-          consentRecords:
-            $ref: '#/components/schemas/consentRecords'
-        description: A contact
-    channelStatusUpdate:
-      type: string
-      description: The subscription status for the channel; if not specified it remains unaltered for existing contacts, and for new contacts this defaults to values defined in _Settings > Contacts > Mobile subscription_
-      example: subscribed
-      enum:
-      - noSubscription
-      - subscribed
-      - unsubscribed
-      - suppressed
+      description: Details for accessing this data page via pagination
+    channelPropertiesWithResubscribe_channelProperties:
+      type: object
+      properties:
+        email:
+          $ref: '#/components/schemas/channelPropertiesWithResubscribe_channelProperties_email'
     optInType:
       type: string
       description: Channel opt-in type for the contact
@@ -1611,63 +1567,107 @@ components:
       - Single
       - Double
       - VerifiedDouble
-    inline_response_200_3:
+    consentRecords:
+      type: array
+      description: Marketing consent records associated with the contact
+      items:
+        example:
+          text: Yes, I would like to receive a monthly newsletter
+          dateTimeConsented: '2023-01-26T21:29:00'
+          url: http://www.example.com/signup
+          ipAddress: 129.168.0.2
+          userAgent: Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36
+          dateTimeCreated: '2023-01-26T22:55:00'
+        allOf:
+        - $ref: '#/components/schemas/consentRecord'
+        - required:
+          - dateTimeCreated
+          type: object
+          properties:
+            dateTimeCreated:
+              type: string
+              description: ISO 8601 UTC timestamp for when the consent was created
+              format: date-time
+              example: '2023-01-26T22:55:00Z'
+    paginationLinks_first:
       required:
-      - contactId
+      - link
+      - marker
       type: object
       properties:
-        contactId:
-          $ref: '#/components/schemas/contactId'
-      description: The contact id of the deleted contact
-    contact_channelProperties_whatsApp:
-      required:
-      - status
-      type: object
-      properties:
-        status:
-          $ref: '#/components/schemas/whatsAppChannelStatus'
-      additionalProperties: false
-    inline_response_200_1:
-      required:
-      - deleteId
-      - status
-      type: object
-      properties:
-        deleteId:
+        marker:
           type: string
-          description: The delete job request id
-          example: c4920aee-3add-44e4-b8c0-dcbfacbfee40
-        status:
+          description: Pagination marker to be passed to API calls to retrieve this data page
+        link:
           type: string
-          enum:
-          - NotStarted
-          - NotFinished
-          - Finished
-          - Failed
-        summary:
-          $ref: '#/components/schemas/inline_response_200_1_summary'
-        deleted:
-          type: array
-          description: The contacts that were successfully deleted
-          items:
-            $ref: '#/components/schemas/contactIdentifier'
-        failures:
-          type: array
-          description: The contacts that failed to be deleted
-          items:
-            $ref: '#/components/schemas/inline_response_200_1_failures_1'
-    replaceContactRequest:
+          description: Link to retrieve the data page
+      description: Details for accessing the first page worth of data
+    inline_response_200_2_summary:
+      type: object
+      properties:
+        newContacts:
+          type: integer
+          description: Number of new contacts added
+          format: int32
+          example: 10
+        updatedContacts:
+          type: integer
+          description: Number of contacts updated
+          format: int32
+          example: 14
+        globallySuppressed:
+          type: integer
+          description: Number of contacts that are suppressed at the account level, so can't be updated
+          format: int32
+          example: 0
+        invalidEntries:
+          type: integer
+          description: Number of contacts with invalid data, so can't be updated or created
+          format: int32
+          example: 2
+        duplicateIdentifiers:
+          type: integer
+          description: Number of contacts with a duplicate identifier, so can't be updated or created
+          format: int32
+          example: 2
+    baseContact:
       allOf:
-      - required:
-        - identifiers
-        type: object
+      - type: object
         properties:
-          identifiers:
-            allOf:
-            - description: Identifiers this contact can be referenced by
-            - $ref: '#/components/schemas/identifiers'
-      - $ref: '#/components/schemas/baseContact'
-      - $ref: '#/components/schemas/channelPropertiesWithResubscribe'
+          dataFields:
+            type: object
+            additionalProperties: true
+            description: Addtional data fields for the contact
+            example:
+              firstName: John
+              lastName: Doe
+              gender: male
+      - $ref: '#/components/schemas/channelProperties'
+      - type: object
+        properties:
+          lists:
+            maxItems: 100
+            minItems: 1
+            type: array
+            description: List IDs for the lists the contact should be added to
+            items:
+              type: integer
+              description: Unique list id
+              format: int32
+              example: 345579
+          preferences:
+            minItems: 1
+            type: array
+            description: Preferences you want to opt the contact into. ***Note:** Only required for preferences and not preference categories*
+            items:
+              $ref: '#/components/schemas/preference'
+    channelProperties_channelProperties_sms:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/channelStatusUpdate'
+      additionalProperties: false
+      description: The channel properties for SMS/MMS
   securitySchemes:
     basicAuth:
       type: http

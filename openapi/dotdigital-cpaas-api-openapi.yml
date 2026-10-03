@@ -2862,75 +2862,6 @@ paths:
           description: The Dotdigital region id your account belongs to
 components:
   schemas:
-    AssignmentDetails:
-      required:
-      - teamId
-      type: object
-      properties:
-        teamId:
-          type: string
-          description: The id of the team
-        agentId:
-          type: string
-          description: The id of the agent to assign to (optional)
-    Participant:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The id of the chat participant's profile
-        role:
-          type: string
-          description: The role of the chat participant
-          enum:
-          - agent
-          - participant
-          default: participant
-    chatId_close_body:
-      type: object
-      properties:
-        bypassMessage:
-          type: boolean
-          description: When set to true, any close message in the team config will be ignored and not sent
-    ChatCreate:
-      required:
-      - channelId
-      - name
-      - teamId
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the chat
-        description:
-          type: string
-          description: The description of the chat
-        teamId:
-          type: string
-          description: The id of the team owning this chat
-        channelId:
-          type: string
-          description: The id of the channel initiating this chat
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant'
-        context:
-          $ref: '#/components/schemas/ChatContext'
-    ChatContext:
-      type: object
-      properties:
-        conversationId:
-          type: string
-          description: Optional conversationId, used to correlated messages on the channel used for the chat
-    chatId_form_body:
-      type: object
-      properties:
-        formTemplateId:
-          type: string
-          description: The id of a template to base the form being sent on
     Chat:
       type: object
       properties:
@@ -2983,6 +2914,12 @@ components:
           type: string
           description: The identity that created the chat
           readOnly: true
+    chatId_form_body:
+      type: object
+      properties:
+        formTemplateId:
+          type: string
+          description: The id of a template to base the form being sent on
     ChatUpdate:
       required:
       - name
@@ -2994,12 +2931,104 @@ components:
         description:
           type: string
           description: The description of the chat
+    Participant:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the chat participant's profile
+        role:
+          type: string
+          description: The role of the chat participant
+          enum:
+          - agent
+          - participant
+          default: participant
+    ChatContext:
+      type: object
+      properties:
+        conversationId:
+          type: string
+          description: Optional conversationId, used to correlated messages on the channel used for the chat
     chatId_channel_body:
       type: object
       properties:
         channelId:
           type: string
           description: Must be set to a configuration chat channel
+    AssignmentDetails:
+      required:
+      - teamId
+      type: object
+      properties:
+        teamId:
+          type: string
+          description: The id of the team
+        agentId:
+          type: string
+          description: The id of the agent to assign to (optional)
+    chatId_close_body:
+      type: object
+      properties:
+        bypassMessage:
+          type: boolean
+          description: When set to true, any close message in the team config will be ignored and not sent
+    ChatCreate:
+      required:
+      - channelId
+      - name
+      - teamId
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the chat
+        description:
+          type: string
+          description: The description of the chat
+        teamId:
+          type: string
+          description: The id of the team owning this chat
+        channelId:
+          type: string
+          description: The id of the channel initiating this chat
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
+        context:
+          $ref: '#/components/schemas/ChatContext'
+    workingHoursSingle:
+      required:
+      - days
+      - from
+      - to
+      type: object
+      properties:
+        days:
+          type: string
+          description: Days for which working hours are defined
+          enum:
+          - Monday
+          - Tuesday
+          - Wednesday
+          - Thursday
+          - Friday
+          - Saturday
+          - Sunday
+          - Weekend
+          - Monday to Friday
+        from:
+          pattern: ^([0-1]?[0-9]|2[0-3]):[0-5][0-9]
+          type: string
+          description: working hours start time
+        to:
+          pattern: ^([0-1]?[0-9]|2[0-3]):[0-5][0-9]
+          type: string
+          description: working hours stop time
+      description: The working hours configuration for the team
     configSingle:
       type: object
       properties:
@@ -3014,30 +3043,56 @@ components:
               $ref: '#/components/schemas/appMessagingConfig'
         settings:
           $ref: '#/components/schemas/settings'
-    settings:
+    appMessagingConfig:
+      required:
+      - replyAs
       type: object
       properties:
-        closeMessage:
+        welcomeMessage:
+          type: object
+          properties:
+            timeout:
+              type: integer
+              description: The welcome message timeout in seconds
+            text:
+              type: string
+              description: The welcome message text
+          description: The welcome message config
+        replyAs:
           type: string
-          description: The chat close message assigned to the team
-        avatarUrl:
-          type: string
-          description: The avatar assigned to the team
-        outOfHoursFormTemplateId:
-          type: string
-          description: The id of a form to send when out of hours
-        outOfHoursMessage:
-          type: string
-          description: The chat out of hours message assigned to the team
-        workingHours:
+          description: Indicates how replies should appear to the end user
+          default: team
+          enum:
+          - team
+          - individual
+      description: The App Messaging configuration for the team
+    configFull:
+      type: object
+      properties:
+        teams:
           type: array
           readOnly: true
           items:
-            $ref: '#/components/schemas/workingHoursSingle'
-        outOfHoursMessageEnabled:
-          type: boolean
-          description: define if out ouf hours message is enabled
-      description: The general settings for the team
+            $ref: '#/components/schemas/configSingle'
+        _createdOn:
+          type: string
+          description: The date (in UTC, ISO 8601 format) that the message was created
+          format: date-time
+          readOnly: true
+        _createdBy:
+          type: string
+          description: The identity that created the message
+          readOnly: true
+        _updatedOn:
+          type: string
+          description: The date (in UTC, ISO 8601 format) that the message was last updated
+          format: date-time
+          readOnly: true
+        _updatedBy:
+          type: string
+          description: The identity that created the message
+          readOnly: true
+      description: All chat configuration for the apiSpace.
     teamMembers:
       type: object
       properties:
@@ -3079,93 +3134,30 @@ components:
           description: The teams name
           readOnly: true
       description: The members of the chat team
-    appMessagingConfig:
-      required:
-      - replyAs
+    settings:
       type: object
       properties:
-        welcomeMessage:
-          type: object
-          properties:
-            timeout:
-              type: integer
-              description: The welcome message timeout in seconds
-            text:
-              type: string
-              description: The welcome message text
-          description: The welcome message config
-        replyAs:
+        closeMessage:
           type: string
-          description: Indicates how replies should appear to the end user
-          default: team
-          enum:
-          - team
-          - individual
-      description: The App Messaging configuration for the team
-    workingHoursSingle:
-      required:
-      - days
-      - from
-      - to
-      type: object
-      properties:
-        days:
+          description: The chat close message assigned to the team
+        avatarUrl:
           type: string
-          description: Days for which working hours are defined
-          enum:
-          - Monday
-          - Tuesday
-          - Wednesday
-          - Thursday
-          - Friday
-          - Saturday
-          - Sunday
-          - Weekend
-          - Monday to Friday
-        from:
-          pattern: ^([0-1]?[0-9]|2[0-3]):[0-5][0-9]
+          description: The avatar assigned to the team
+        outOfHoursFormTemplateId:
           type: string
-          description: working hours start time
-        to:
-          pattern: ^([0-1]?[0-9]|2[0-3]):[0-5][0-9]
+          description: The id of a form to send when out of hours
+        outOfHoursMessage:
           type: string
-          description: working hours stop time
-      description: The working hours configuration for the team
-    configFull:
-      type: object
-      properties:
-        teams:
+          description: The chat out of hours message assigned to the team
+        workingHours:
           type: array
           readOnly: true
           items:
-            $ref: '#/components/schemas/configSingle'
-        _createdOn:
-          type: string
-          description: The date (in UTC, ISO 8601 format) that the message was created
-          format: date-time
-          readOnly: true
-        _createdBy:
-          type: string
-          description: The identity that created the message
-          readOnly: true
-        _updatedOn:
-          type: string
-          description: The date (in UTC, ISO 8601 format) that the message was last updated
-          format: date-time
-          readOnly: true
-        _updatedBy:
-          type: string
-          description: The identity that created the message
-          readOnly: true
-      description: All chat configuration for the apiSpace.
-    MessageAlertPlatforms:
-      type: object
-      properties:
-        apns:
-          $ref: '#/components/schemas/MessageAlertApns'
-        fcm:
-          $ref: '#/components/schemas/MessageAlertFcm'
-      description: The platform specific details for the alert. If specified, these are set verbatim and alert.title / alert.body values are ignored
+            $ref: '#/components/schemas/workingHoursSingle'
+        outOfHoursMessageEnabled:
+          type: boolean
+          description: define if out ouf hours message is enabled
+      description: The general settings for the team
     MessagePostResult:
       required:
       - id
@@ -3178,80 +3170,6 @@ components:
           type: integer
           description: The id of the event corresponding to the send in the message stream for this chat
       description: The id of the message sent event recorded
-    MessageAlertFcmNotification:
-      type: object
-      properties:
-        title:
-          type: string
-          description: The title to display
-        body:
-          type: string
-          description: The body to display
-        icon:
-          type: string
-          description: The icon to display
-      description: Details of the notification to display
-    MessageAlertApns:
-      type: object
-      properties:
-        badge:
-          type: integer
-          description: The value to display on the application badge
-        sound:
-          type: string
-          description: The soundfile to play on the device when the notification arrived
-        alert:
-          type: string
-          description: The alert to display on the device when the notification arrives
-        payload:
-          type: object
-          properties: {}
-          description: The payload to send to the device
-      description: The APNS details for the alert
-    MessageStatusUpdate:
-      required:
-      - messageIds
-      - status
-      - timestamp
-      type: object
-      properties:
-        messageIds:
-          type: array
-          description: A list of message ids being updated
-          items:
-            type: string
-        status:
-          type: string
-          description: The status to update each message to
-          enum:
-          - delivered
-          - read
-        timestamp:
-          type: string
-          description: The date of the status update in ISO 8601 format
-          format: date-time
-    MessageContext:
-      type: object
-      properties:
-        from:
-          $ref: '#/components/schemas/MessageContextFrom'
-        chatId:
-          type: string
-          description: The id of the chat that the message was sent on
-        sentBy:
-          type: string
-          description: The message sender
-        sentOn:
-          type: string
-          description: The date the message was sent in ISO 8601 format
-          format: date-time
-        direction:
-          type: string
-          description: Indicates the direction of the message
-          enum:
-          - inbound
-          - outbound
-      description: Platform metadata relating to the message
     MessageComplete:
       type: object
       properties:
@@ -3277,25 +3195,6 @@ components:
           properties: {}
           description: Array of updates keyed by the profileId and a list of statues and the date the status was set
       description: Details of a message sent to a chat
-    MessagePart:
-      type: object
-      properties:
-        name:
-          type: string
-          description: A name for the part
-        type:
-          type: string
-          description: The mime type (if applicable) sof the part
-        url:
-          type: string
-          description: A url associated with the message part
-        data:
-          type: string
-          description: String representation (e.g. base64) of the message part
-        size:
-          type: integer
-          description: Size of the message part in bytes
-      description: Details of a single part that makes up the message
     MessagePost:
       required:
       - parts
@@ -3323,52 +3222,18 @@ components:
           type: boolean
           description: Indicates if a message was an automated send - will be ommitted from analytics
       description: Details of a message to post to the chat
-    MessageAlertFcm:
+    MessagePost_from:
+      required:
+      - profileId
       type: object
       properties:
-        collapse_key:
+        profileId:
           type: string
-          description: The collapse key to send to FCM
-        data:
-          type: object
-          properties: {}
-          description: The payload to send to the device
-        notification:
-          $ref: '#/components/schemas/MessageAlertFcmNotification'
-      description: The FCM details for the alert
-    MessageContextFrom:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The id of the profile the message was from
+          description: The id of the profile to send from
         name:
           type: string
-          description: The name for the profile that sent the message
-      description: Details of the sender of a message
-    MessageEvent:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The id of the event
-        data:
-          type: object
-          properties: {}
-          description: The event data
-      description: An event relating to a message
-    MessageAlert:
-      type: object
-      properties:
-        title:
-          type: string
-          description: Title for the notification to send to all platforms. Note that this is ignored if any details are set in platforms
-        body:
-          type: string
-          description: Body for the notification to send to all platforms. Note that this is ignored if any details are set in platforms
-        platforms:
-          $ref: '#/components/schemas/MessageAlertPlatforms'
-      description: Details of the alert to be displayed on receipt of the message
+          description: Name to display
+      description: Set of identifiers for the message sender.
     MessageResult:
       type: object
       properties:
@@ -3387,18 +3252,161 @@ components:
           items:
             $ref: '#/components/schemas/MessageEvent'
       description: A list of chat messages
-    MessagePost_from:
-      required:
-      - profileId
+    MessageEvent:
       type: object
       properties:
-        profileId:
+        id:
+          type: integer
+          description: The id of the event
+        data:
+          type: object
+          properties: {}
+          description: The event data
+      description: An event relating to a message
+    MessageContextFrom:
+      type: object
+      properties:
+        id:
           type: string
-          description: The id of the profile to send from
+          description: The id of the profile the message was from
         name:
           type: string
-          description: Name to display
-      description: Set of identifiers for the message sender.
+          description: The name for the profile that sent the message
+      description: Details of the sender of a message
+    MessageAlert:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title for the notification to send to all platforms. Note that this is ignored if any details are set in platforms
+        body:
+          type: string
+          description: Body for the notification to send to all platforms. Note that this is ignored if any details are set in platforms
+        platforms:
+          $ref: '#/components/schemas/MessageAlertPlatforms'
+      description: Details of the alert to be displayed on receipt of the message
+    MessageAlertFcm:
+      type: object
+      properties:
+        collapse_key:
+          type: string
+          description: The collapse key to send to FCM
+        data:
+          type: object
+          properties: {}
+          description: The payload to send to the device
+        notification:
+          $ref: '#/components/schemas/MessageAlertFcmNotification'
+      description: The FCM details for the alert
+    MessageAlertPlatforms:
+      type: object
+      properties:
+        apns:
+          $ref: '#/components/schemas/MessageAlertApns'
+        fcm:
+          $ref: '#/components/schemas/MessageAlertFcm'
+      description: The platform specific details for the alert. If specified, these are set verbatim and alert.title / alert.body values are ignored
+    MessageAlertApns:
+      type: object
+      properties:
+        badge:
+          type: integer
+          description: The value to display on the application badge
+        sound:
+          type: string
+          description: The soundfile to play on the device when the notification arrived
+        alert:
+          type: string
+          description: The alert to display on the device when the notification arrives
+        payload:
+          type: object
+          properties: {}
+          description: The payload to send to the device
+      description: The APNS details for the alert
+    MessageAlertFcmNotification:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title to display
+        body:
+          type: string
+          description: The body to display
+        icon:
+          type: string
+          description: The icon to display
+      description: Details of the notification to display
+    MessageContext:
+      type: object
+      properties:
+        from:
+          $ref: '#/components/schemas/MessageContextFrom'
+        chatId:
+          type: string
+          description: The id of the chat that the message was sent on
+        sentBy:
+          type: string
+          description: The message sender
+        sentOn:
+          type: string
+          description: The date the message was sent in ISO 8601 format
+          format: date-time
+        direction:
+          type: string
+          description: Indicates the direction of the message
+          enum:
+          - inbound
+          - outbound
+      description: Platform metadata relating to the message
+    MessagePart:
+      type: object
+      properties:
+        name:
+          type: string
+          description: A name for the part
+        type:
+          type: string
+          description: The mime type (if applicable) sof the part
+        url:
+          type: string
+          description: A url associated with the message part
+        data:
+          type: string
+          description: String representation (e.g. base64) of the message part
+        size:
+          type: integer
+          description: Size of the message part in bytes
+      description: Details of a single part that makes up the message
+    MessageStatusUpdate:
+      required:
+      - messageIds
+      - status
+      - timestamp
+      type: object
+      properties:
+        messageIds:
+          type: array
+          description: A list of message ids being updated
+          items:
+            type: string
+        status:
+          type: string
+          description: The status to update each message to
+          enum:
+          - delivered
+          - read
+        timestamp:
+          type: string
+          description: The date of the status update in ISO 8601 format
+          format: date-time
+    AppMsgPresence:
+      type: array
+      items:
+        $ref: '#/components/schemas/AppMsgProfilePresence'
+    Presence:
+      type: array
+      items:
+        $ref: '#/components/schemas/ProfilePresence'
     AppMsgProfilePresence:
       type: object
       properties:
@@ -3419,14 +3427,6 @@ components:
           type: string
           description: The time the profiles presence was created
           format: date-time
-    AppMsgPresence:
-      type: array
-      items:
-        $ref: '#/components/schemas/AppMsgProfilePresence'
-    Presence:
-      type: array
-      items:
-        $ref: '#/components/schemas/ProfilePresence'
     ProfilePresence:
       type: object
       properties:
@@ -3450,6 +3450,22 @@ components:
           type: string
           description: The time the profiles presence was last updated
           format: date-time
+    cpaas_content_body:
+      required:
+      - data
+      - name
+      - type
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the file
+        type:
+          type: string
+          description: The files MIME type
+        data:
+          type: string
+          description: The Base64 file data
     UploadedFile:
       type: object
       properties:
@@ -3488,23 +3504,41 @@ components:
           type: string
           description: The identity that created the content
           readOnly: true
-    cpaas_content_body:
+    ConversationUpdate:
       required:
-      - data
       - name
-      - type
+      - roles
       type: object
       properties:
         name:
           type: string
-          description: The name of the file
-        type:
+          description: The name of the conversation
+        description:
           type: string
-          description: The files MIME type
-        data:
+          description: The description of the conversation
+        roles:
+          $ref: '#/components/schemas/Roles'
+    Participant_2:
+      required:
+      - id
+      type: object
+      properties:
+        id:
           type: string
-          description: The Base64 file data
-    Conversation:
+          description: The id of the conversation participant's profile
+        role:
+          type: string
+          description: The role of the conversation participant
+          enum:
+          - owner
+          - participant
+          default: participant
+    ConversationCreate:
+      required:
+      - id
+      - isPublic
+      - name
+      - roles
       type: object
       properties:
         id:
@@ -3521,60 +3555,16 @@ components:
         isPublic:
           type: boolean
           description: Determines whether the conversation is publically visible
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant_2'
         messageScope:
           type: string
           description: Indicates if a conversation is A2P or P2P
           enum:
           - a2p
           - p2p
-        _createdOn:
-          type: string
-          description: The date (in UTC, ISO 8601 format) that the conversation was created
-          format: date-time
-          readOnly: true
-        _createdBy:
-          type: string
-          description: The identity that created the conversation
-        _updatedOn:
-          type: string
-          description: The date (in UTC, ISO 8601 format) that the conversation was last updated
-          format: date-time
-          readOnly: true
-        _updatedBy:
-          type: string
-          description: The identity that created the conversation
-          readOnly: true
-    Participant_2:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The id of the conversation participant's profile
-        role:
-          type: string
-          description: The role of the conversation participant
-          enum:
-          - owner
-          - participant
-          default: participant
-    Privileges:
-      required:
-      - canAddParticipants
-      - canRemoveParticipants
-      - canSend
-      type: object
-      properties:
-        canSend:
-          type: boolean
-          description: Determines whether the role assigned can send to the conversation
-        canAddParticipants:
-          type: boolean
-          description: Determines whether the role assigned can add participants to the conversation
-        canRemoveParticipants:
-          type: boolean
-          description: Determines whether the role assigned can remove participants from the conversation
     ConversationQueryResult:
       type: object
       properties:
@@ -3621,12 +3611,18 @@ components:
           type: string
           description: The identity that created the conversation
           readOnly: true
-    ConversationCreate:
+    Roles:
       required:
-      - id
-      - isPublic
-      - name
-      - roles
+      - owner
+      - participant
+      type: object
+      properties:
+        owner:
+          $ref: '#/components/schemas/Privileges'
+        participant:
+          $ref: '#/components/schemas/Privileges'
+      description: Describes the roles belonging to the conversation
+    Conversation:
       type: object
       properties:
         id:
@@ -3643,41 +3639,45 @@ components:
         isPublic:
           type: boolean
           description: Determines whether the conversation is publically visible
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant_2'
         messageScope:
           type: string
           description: Indicates if a conversation is A2P or P2P
           enum:
           - a2p
           - p2p
-    Roles:
+        _createdOn:
+          type: string
+          description: The date (in UTC, ISO 8601 format) that the conversation was created
+          format: date-time
+          readOnly: true
+        _createdBy:
+          type: string
+          description: The identity that created the conversation
+        _updatedOn:
+          type: string
+          description: The date (in UTC, ISO 8601 format) that the conversation was last updated
+          format: date-time
+          readOnly: true
+        _updatedBy:
+          type: string
+          description: The identity that created the conversation
+          readOnly: true
+    Privileges:
       required:
-      - owner
-      - participant
+      - canAddParticipants
+      - canRemoveParticipants
+      - canSend
       type: object
       properties:
-        owner:
-          $ref: '#/components/schemas/Privileges'
-        participant:
-          $ref: '#/components/schemas/Privileges'
-      description: Describes the roles belonging to the conversation
-    ConversationUpdate:
-      required:
-      - name
-      - roles
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the conversation
-        description:
-          type: string
-          description: The description of the conversation
-        roles:
-          $ref: '#/components/schemas/Roles'
+        canSend:
+          type: boolean
+          description: Determines whether the role assigned can send to the conversation
+        canAddParticipants:
+          type: boolean
+          description: Determines whether the role assigned can add participants to the conversation
+        canRemoveParticipants:
+          type: boolean
+          description: Determines whether the role assigned can remove participants from the conversation
     MessagePostResult_2:
       required:
       - id
@@ -3690,35 +3690,6 @@ components:
           type: integer
           description: The id of the event corresponding to the send in the message stream for this conversation
       description: The id of the message sent event recorded
-    MessageContext_2:
-      type: object
-      properties:
-        from:
-          $ref: '#/components/schemas/MessageContextFrom_2'
-        conversationId:
-          type: string
-          description: The id of the conversation that the message was sent on
-        sentBy:
-          type: string
-          description: The message sender
-        sentOn:
-          type: string
-          description: The date the message was sent in ISO 8601 format
-          format: date-time
-        scope:
-          type: string
-          description: Indicates if a conversation is A2P or P2P
-          enum:
-          - a2p
-          - p2p
-          default: p2p
-        direction:
-          type: string
-          description: Indicates the direction of the message (only applicable to a2p messages)
-          enum:
-          - inbound
-          - outbound
-      description: Platform metadata relating to the message
     MessageComplete_2:
       type: object
       properties:
@@ -3768,19 +3739,6 @@ components:
           - inbound
           - outbound
       description: Details of a message to post to the conversation
-    MessageContextFrom_2:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The id of the profile the message was from
-        name:
-          type: string
-          description: The name for the profile that sent the message
-        avatarUrl:
-          type: string
-          description: URL for an avatar to display with this message
-      description: Details of the sender of a message
     MessageResult_2:
       type: object
       properties:
@@ -3799,6 +3757,48 @@ components:
           items:
             $ref: '#/components/schemas/MessageEvent'
       description: A list of conversation messages
+    MessageContextFrom_2:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the profile the message was from
+        name:
+          type: string
+          description: The name for the profile that sent the message
+        avatarUrl:
+          type: string
+          description: URL for an avatar to display with this message
+      description: Details of the sender of a message
+    MessageContext_2:
+      type: object
+      properties:
+        from:
+          $ref: '#/components/schemas/MessageContextFrom_2'
+        conversationId:
+          type: string
+          description: The id of the conversation that the message was sent on
+        sentBy:
+          type: string
+          description: The message sender
+        sentOn:
+          type: string
+          description: The date the message was sent in ISO 8601 format
+          format: date-time
+        scope:
+          type: string
+          description: Indicates if a conversation is A2P or P2P
+          enum:
+          - a2p
+          - p2p
+          default: p2p
+        direction:
+          type: string
+          description: Indicates the direction of the message (only applicable to a2p messages)
+          enum:
+          - inbound
+          - outbound
+      description: Platform metadata relating to the message
     MessageHistoryEntry:
       required:
       - messageId
@@ -3878,23 +3878,6 @@ components:
           type: integer
           description: Size of the message part in bytes
       description: Details of a single part that makes up a message
-    InboundRuleConfiguration_actionData:
-      type: object
-      properties:
-        chatTeamId:
-          type: string
-          description: If action is startChat specify team id which should have this chat assigned
-        messageParts:
-          type: array
-          description: Additional message parts / attachments. If action is set to replayMessage
-          items:
-            $ref: '#/components/schemas/MessagePart_2'
-        profileUpdate:
-          type: array
-          description: If action is set to profileUpdate gives list of profile changes.
-          items:
-            $ref: '#/components/schemas/ProfileChange'
-      description: 'Defines options for picked action '
     InboundRuleConfiguration:
       type: object
       properties:
@@ -3927,6 +3910,23 @@ components:
           - profileUpdate
         actionData:
           $ref: '#/components/schemas/InboundRuleConfiguration_actionData'
+    InboundRuleConfiguration_actionData:
+      type: object
+      properties:
+        chatTeamId:
+          type: string
+          description: If action is startChat specify team id which should have this chat assigned
+        messageParts:
+          type: array
+          description: Additional message parts / attachments. If action is set to replayMessage
+          items:
+            $ref: '#/components/schemas/MessagePart_2'
+        profileUpdate:
+          type: array
+          description: If action is set to profileUpdate gives list of profile changes.
+          items:
+            $ref: '#/components/schemas/ProfileChange'
+      description: 'Defines options for picked action '
     ProfileExportOptions:
       required:
       - format
@@ -4019,6 +4019,26 @@ components:
           type: string
           description: The APNS token.
       description: The APNS push configuration for the session
+    sessionPushConfigFcm:
+      required:
+      - package
+      - registrationId
+      type: object
+      properties:
+        package:
+          type: string
+          description: The FCM package name.
+        registrationId:
+          type: string
+          description: The FCM registration id for the session.
+      description: The FCM push configuration for the session
+    sessionPushConfig:
+      type: object
+      properties:
+        apns:
+          $ref: '#/components/schemas/sessionPushConfigApns'
+        fcm:
+          $ref: '#/components/schemas/sessionPushConfigFcm'
     sessionFull:
       required:
       - deviceId
@@ -4078,26 +4098,29 @@ components:
           format: date-time
         push:
           $ref: '#/components/schemas/sessionPushConfig'
-    sessionPushConfig:
-      type: object
-      properties:
-        apns:
-          $ref: '#/components/schemas/sessionPushConfigApns'
-        fcm:
-          $ref: '#/components/schemas/sessionPushConfigFcm'
-    sessionPushConfigFcm:
+    templateCreate:
       required:
-      - package
-      - registrationId
+      - messageParts
+      - name
       type: object
       properties:
-        package:
+        id:
+          pattern: ^[a-zA-Z\d-_]
           type: string
-          description: The FCM package name.
-        registrationId:
+          description: The templates unique identifier, can only contain alpha numerics, hyphens and underscores
+        name:
           type: string
-          description: The FCM registration id for the session.
-      description: The FCM push configuration for the session
+          description: The name of the template. In the absence of an id, the name will be stripped of invalid characters and used as the id
+        description:
+          type: string
+          description: The description of the template.
+        messageParts:
+          type: array
+          description: MessageParts
+          items:
+            $ref: '#/components/schemas/messagePart'
+    messagePart:
+      type: object
     templateFull:
       type: object
       properties:
@@ -4152,29 +4175,6 @@ components:
           description: MessageParts
           items:
             $ref: '#/components/schemas/messagePart'
-    templateCreate:
-      required:
-      - messageParts
-      - name
-      type: object
-      properties:
-        id:
-          pattern: ^[a-zA-Z\d-_]
-          type: string
-          description: The templates unique identifier, can only contain alpha numerics, hyphens and underscores
-        name:
-          type: string
-          description: The name of the template. In the absence of an id, the name will be stripped of invalid characters and used as the id
-        description:
-          type: string
-          description: The description of the template.
-        messageParts:
-          type: array
-          description: MessageParts
-          items:
-            $ref: '#/components/schemas/messagePart'
-    messagePart:
-      type: object
   securitySchemes:
     basicAuth:
       type: http

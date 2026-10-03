@@ -263,17 +263,6 @@ paths:
                   $ref: '#/components/schemas/ApiAddressBook'
 components:
   schemas:
-    ApiAddressBookVisibility:
-      type: string
-      description: ''
-      x-enumNames:
-      - Private
-      - Public
-      - NotAvailableInThisVersion
-      enum:
-      - Private
-      - Public
-      - NotAvailableInThisVersion
     ApiAddressBook:
       type: object
       additionalProperties: false
@@ -291,4 +280,15 @@ components:
         contacts:
           type: integer
           format: int32
+    ApiAddressBookVisibility:
+      type: string
+      description: ''
+      x-enumNames:
+      - Private
+      - Public
+      - NotAvailableInThisVersion
+      enum:
+      - Private
+      - Public
+      - NotAvailableInThisVersion
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

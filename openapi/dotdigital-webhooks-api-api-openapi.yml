@@ -303,32 +303,40 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    WebhookConfiguration:
-      allOf:
-      - type: object
-        properties:
-          id:
-            pattern: ^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})|[a-f0-9]{32}$
+    AvailbleEvents:
+      type: array
+      items:
+        $ref: '#/components/schemas/AvailbleEvents_inner'
+    AvailbleEvents_inner:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Event type
+          example: message.delivered
+        description:
+          type: string
+          description: Description of event type
+          example: Details of any outbound message \"delivered\" status updates.
+        filters:
+          type: array
+          description: Filters for event
+          items:
+            $ref: '#/components/schemas/AvailableEventsFilters'
+    inline_response_200:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the events template
+        description:
+          type: string
+          description: Describes the template
+        events:
+          type: array
+          items:
             type: string
-            description: The Api Space's unique identifier
-          _createdOn:
-            type: string
-            description: The date (in UTC, ISO 8601 format) that the webhook was created
-            format: date-time
-            readOnly: true
-          _createdBy:
-            type: string
-            description: The identity that created the webhook
-          _updatedOn:
-            type: string
-            description: The date (in UTC, ISO 8601 format) that the webhook was last updated
-            format: date-time
-            readOnly: true
-          _updatedBy:
-            type: string
-            description: The identity that created the webhook
-            readOnly: true
-      - $ref: '#/components/schemas/WebhookConfigurationCreateUpdate'
+            description: The event id
     EventFilters:
       type: object
       properties:
@@ -340,10 +348,6 @@ components:
           type: string
           description: value to watch
           example: sms
-    AvailbleEvents:
-      type: array
-      items:
-        $ref: '#/components/schemas/AvailbleEvents_inner'
     WebhookConfigurationCreateUpdate:
       required:
       - name
@@ -383,6 +387,50 @@ components:
           type: number
           description: Maximum duration in seconds to wait before a batch is sent
           example: 60
+    AvailableEventsFilters:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of filter
+          example: channel
+        path:
+          type: string
+          description: Path of filter - used when type=path
+        required:
+          type: boolean
+          description: Is filter setting required
+          example: false
+        description:
+          type: string
+          description: Description of filter
+          example: Channel that the event relates to e.g `sms`
+    WebhookConfiguration:
+      allOf:
+      - type: object
+        properties:
+          id:
+            pattern: ^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})|[a-f0-9]{32}$
+            type: string
+            description: The Api Space's unique identifier
+          _createdOn:
+            type: string
+            description: The date (in UTC, ISO 8601 format) that the webhook was created
+            format: date-time
+            readOnly: true
+          _createdBy:
+            type: string
+            description: The identity that created the webhook
+          _updatedOn:
+            type: string
+            description: The date (in UTC, ISO 8601 format) that the webhook was last updated
+            format: date-time
+            readOnly: true
+          _updatedBy:
+            type: string
+            description: The identity that created the webhook
+            readOnly: true
+      - $ref: '#/components/schemas/WebhookConfigurationCreateUpdate'
     WebhookEvents:
       type: object
       properties:
@@ -408,54 +456,6 @@ components:
         filters: []
       - type: message.read
         filters: []
-    AvailbleEvents_inner:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Event type
-          example: message.delivered
-        description:
-          type: string
-          description: Description of event type
-          example: Details of any outbound message \"delivered\" status updates.
-        filters:
-          type: array
-          description: Filters for event
-          items:
-            $ref: '#/components/schemas/AvailableEventsFilters'
-    inline_response_200:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the events template
-        description:
-          type: string
-          description: Describes the template
-        events:
-          type: array
-          items:
-            type: string
-            description: The event id
-    AvailableEventsFilters:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of filter
-          example: channel
-        path:
-          type: string
-          description: Path of filter - used when type=path
-        required:
-          type: boolean
-          description: Is filter setting required
-          example: false
-        description:
-          type: string
-          description: Description of filter
-          example: Channel that the event relates to e.g `sms`
   securitySchemes:
     basicAuth:
       type: http
