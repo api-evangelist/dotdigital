@@ -115,20 +115,34 @@ paths:
         '500':
           description: Internal Server Error
 components:
-  responses:
-    subscriptionNotFound:
-      description: Subscription not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/errorResponse'
-          example:
-            errorCode: events:subscriptionNotFound
-            description: The following subscription could not be found
-            details:
-            - item: zf0f945b36ad8
-              description: Not found.
   schemas:
+    errorResponse_details:
+      required:
+      - description
+      - item
+      type: object
+      properties:
+        item:
+          type: string
+          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
+        description:
+          type: string
+          description: Description of the error
+    inline_response_200:
+      required:
+      - checkPoint
+      - events
+      type: object
+      properties:
+        checkPoint:
+          type: string
+          description: This is the value you should pass back with your subsequent call in the `checkPoint` query string to indicate you have received the previous page of events successfully.
+          example: fgfh63eu77
+        events:
+          type: array
+          description: Returned events
+          items:
+            $ref: '#/components/schemas/event'
     errorResponse:
       required:
       - description
@@ -145,18 +159,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/errorResponse_details'
-    errorResponse_details:
-      required:
-      - description
-      - item
-      type: object
-      properties:
-        item:
-          type: string
-          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
-        description:
-          type: string
-          description: Description of the error
     event:
       required:
       - accountId
@@ -201,21 +203,19 @@ components:
             timeStamp: '2025-02-07T16:23:33.123Z'
       additionalProperties: false
       description: An event
-    inline_response_200:
-      required:
-      - checkPoint
-      - events
-      type: object
-      properties:
-        checkPoint:
-          type: string
-          description: This is the value you should pass back with your subsequent call in the `checkPoint` query string to indicate you have received the previous page of events successfully.
-          example: fgfh63eu77
-        events:
-          type: array
-          description: Returned events
-          items:
-            $ref: '#/components/schemas/event'
+  responses:
+    subscriptionNotFound:
+      description: Subscription not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          example:
+            errorCode: events:subscriptionNotFound
+            description: The following subscription could not be found
+            details:
+            - item: zf0f945b36ad8
+              description: Not found.
   securitySchemes:
     basicAuth:
       type: http

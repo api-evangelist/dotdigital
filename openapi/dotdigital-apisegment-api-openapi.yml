@@ -80,21 +80,6 @@ paths:
                   $ref: '#/components/schemas/ApiSegment'
 components:
   schemas:
-    ApiSegmentRefreshStatuses:
-      type: string
-      description: ''
-      x-enumNames:
-      - NotStarted
-      - NotFinished
-      - Finished
-      - Failed
-      - NotAvailableInThisVersion
-      enum:
-      - NotStarted
-      - NotFinished
-      - Finished
-      - Failed
-      - NotAvailableInThisVersion
     ApiSegment:
       type: object
       additionalProperties: false
@@ -119,4 +104,19 @@ components:
           format: int32
         status:
           $ref: '#/components/schemas/ApiSegmentRefreshStatuses'
+    ApiSegmentRefreshStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - NotStarted
+      - NotFinished
+      - Finished
+      - Failed
+      - NotAvailableInThisVersion
+      enum:
+      - NotStarted
+      - NotFinished
+      - Finished
+      - Failed
+      - NotAvailableInThisVersion
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

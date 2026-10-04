@@ -172,17 +172,34 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiCampaignFromAddress:
+    ApiTransactionalEmailStatistics:
       type: object
       additionalProperties: false
       properties:
-        id:
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        numSent:
           type: integer
           format: int32
-        email:
-          type:
-          - string
-          - 'null'
+        numDelivered:
+          type: integer
+          format: int32
+        numOpens:
+          type: integer
+          format: int32
+        numClicks:
+          type: integer
+          format: int32
+        numIspComplaints:
+          type: integer
+          format: int32
+        numBounces:
+          type: integer
+          format: int32
     ApiPersonalizationValue:
       type: object
       additionalProperties: false
@@ -192,6 +209,37 @@ components:
           - string
           - 'null'
         value:
+          type:
+          - string
+          - 'null'
+    ApiCampaignReplyActions:
+      type: string
+      description: ''
+      x-enumNames:
+      - Unset
+      - WebMailForward
+      - Webmail
+      - Delete
+      - NotAvailableInThisVersion
+      enum:
+      - Unset
+      - WebMailForward
+      - Webmail
+      - Delete
+      - NotAvailableInThisVersion
+    ApiTransactionalEmailAttachment:
+      type: object
+      additionalProperties: false
+      properties:
+        fileName:
+          type:
+          - string
+          - 'null'
+        content:
+          type:
+          - string
+          - 'null'
+        mimeType:
           type:
           - string
           - 'null'
@@ -253,65 +301,17 @@ components:
           type:
           - string
           - 'null'
-    ApiTransactionalEmailAttachment:
+    ApiCampaignFromAddress:
       type: object
       additionalProperties: false
       properties:
-        fileName:
+        id:
+          type: integer
+          format: int32
+        email:
           type:
           - string
           - 'null'
-        content:
-          type:
-          - string
-          - 'null'
-        mimeType:
-          type:
-          - string
-          - 'null'
-    ApiTransactionalEmailStatistics:
-      type: object
-      additionalProperties: false
-      properties:
-        startDate:
-          type: string
-          format: date-time
-        endDate:
-          type: string
-          format: date-time
-        numSent:
-          type: integer
-          format: int32
-        numDelivered:
-          type: integer
-          format: int32
-        numOpens:
-          type: integer
-          format: int32
-        numClicks:
-          type: integer
-          format: int32
-        numIspComplaints:
-          type: integer
-          format: int32
-        numBounces:
-          type: integer
-          format: int32
-    ApiCampaignReplyActions:
-      type: string
-      description: ''
-      x-enumNames:
-      - Unset
-      - WebMailForward
-      - Webmail
-      - Delete
-      - NotAvailableInThisVersion
-      enum:
-      - Unset
-      - WebMailForward
-      - Webmail
-      - Delete
-      - NotAvailableInThisVersion
     ApiAggregationPeriod:
       type: string
       description: ''
@@ -327,6 +327,51 @@ components:
       - Week
       - Day
       - NotAvailableInThisVersion
+    ApiTransactionalEmailTriggeredCampaign:
+      type: object
+      additionalProperties: false
+      properties:
+        toAddresses:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        ccAddresses:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        bccAddresses:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        campaignId:
+          type: integer
+          format: int32
+        personalizationValues:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiPersonalizationValue'
+        metadata:
+          type:
+          - string
+          - 'null'
+        fromAddress:
+          type:
+          - string
+          - 'null'
+        attachments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiTransactionalEmailAttachment'
     ApiCampaignStatuses:
       type: string
       description: ''
@@ -397,51 +442,6 @@ components:
           items:
             type: string
         metadata:
-          type:
-          - string
-          - 'null'
-        attachments:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiTransactionalEmailAttachment'
-    ApiTransactionalEmailTriggeredCampaign:
-      type: object
-      additionalProperties: false
-      properties:
-        toAddresses:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        ccAddresses:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        bccAddresses:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        campaignId:
-          type: integer
-          format: int32
-        personalizationValues:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiPersonalizationValue'
-        metadata:
-          type:
-          - string
-          - 'null'
-        fromAddress:
           type:
           - string
           - 'null'

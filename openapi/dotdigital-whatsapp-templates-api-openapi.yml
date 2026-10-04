@@ -90,97 +90,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    whatsAppTemplate:
-      required:
-      - category
-      - components
-      - id
-      - language
-      - name
-      - parameter_format
-      - status
-      - sub_category
-      type: object
-      properties:
-        name:
-          type: string
-          description: The templates name.
-          example: 2025_april_promo
-        parameter_format:
-          type: string
-          description: Whether the parameters for the template use positonal references or named references.
-          example: POSITIONAL
-          enum:
-          - POSITIONAL
-          - NAMED
-        components:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/whatsAppComponent'
-            - title: Carousel card
-              required:
-              - cards
-              - type
-              type: object
-              properties:
-                type:
-                  type: string
-                  description: The type of the component.
-                  enum:
-                  - CAROUSEL
-                cards:
-                  minItems: 1
-                  type: array
-                  description: Cards for the carousel.
-                  items:
-                    required:
-                    - components
-                    type: object
-                    properties:
-                      components:
-                        $ref: '#/components/schemas/whatsAppComponent'
-              description: Carousel card content
-            - title: Other component
-              type: object
-              description: A different type of component.
-        language:
-          type: string
-          description: The language code for the template.
-          example: en_US
-        status:
-          type: string
-          description: The Meta review status of the template.
-          example: APPROVED
-          enum:
-          - PENDING
-          - APPROVED
-          - REJECTED
-          - PAUSED
-          - DISABLED
-        category:
-          type: string
-          description: The templates category.
-          example: MARKETING
-          enum:
-          - MARKETING
-          - UTILITY
-          - AUTHENTICATION
-        sub_category:
-          type: string
-          description: The sub category for the template.
-          example: CUSTOM
-        id:
-          type: string
-          description: The unique id for the template.
-          example: '920070352646140'
-      description: WhatsApp templates
-    inline_response_200_paging:
-      type: object
-      properties:
-        cursors:
-          $ref: '#/components/schemas/inline_response_200_paging_cursors'
-      description: Pagination cursors
     inline_response_200:
       required:
       - data
@@ -194,24 +103,12 @@ components:
             $ref: '#/components/schemas/whatsAppTemplate'
         paging:
           $ref: '#/components/schemas/inline_response_200_paging'
-    wabaId:
-      type: string
-      description: The unique WhatsApp Business Account (WABA) identifier.
-      example: '226114410888722'
-    inline_response_200_paging_cursors:
-      required:
-      - after
-      - before
+    inline_response_200_paging:
       type: object
       properties:
-        before:
-          type: string
-          description: Continuation token for the previous page.
-          example: QVFIU1pNYzBEY2dNM0pjNlQ5Mm0wS1FSNnRBbkJSS0hhcTdka1FXdDBCV1kxYmMyMS1DZADBZAMTd1aHhRaWEta0RXVFNSQXFKVENYQWhyVW50bndDMUEwbXhn
-        after:
-          type: string
-          description: Continuation token for the next page.
-          example: QVFIU2RLSVkwNzNaSkpGYjk0YnhGWE1iMHpJS0tTRzFpRzNMRzFhVUVfUHVjd0UwYUdOSFpCOC1qOGtlTWNlSnktTEk2enhyWnV6YWItSDZANV0xIbVJCVk1n
+        cursors:
+          $ref: '#/components/schemas/inline_response_200_paging_cursors'
+      description: Pagination cursors
     whatsAppComponent:
       title: WhatsApp template component
       type: object
@@ -497,6 +394,109 @@ components:
                     description: For `COPY_CODE` buttons provide the value to be copied.
                     example: 250FF
               additionalProperties: true
+    wabaId:
+      type: string
+      description: The unique WhatsApp Business Account (WABA) identifier.
+      example: '226114410888722'
+    whatsAppTemplate:
+      required:
+      - category
+      - components
+      - id
+      - language
+      - name
+      - parameter_format
+      - status
+      - sub_category
+      type: object
+      properties:
+        name:
+          type: string
+          description: The templates name.
+          example: 2025_april_promo
+        parameter_format:
+          type: string
+          description: Whether the parameters for the template use positonal references or named references.
+          example: POSITIONAL
+          enum:
+          - POSITIONAL
+          - NAMED
+        components:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/whatsAppComponent'
+            - title: Carousel card
+              required:
+              - cards
+              - type
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: The type of the component.
+                  enum:
+                  - CAROUSEL
+                cards:
+                  minItems: 1
+                  type: array
+                  description: Cards for the carousel.
+                  items:
+                    required:
+                    - components
+                    type: object
+                    properties:
+                      components:
+                        $ref: '#/components/schemas/whatsAppComponent'
+              description: Carousel card content
+            - title: Other component
+              type: object
+              description: A different type of component.
+        language:
+          type: string
+          description: The language code for the template.
+          example: en_US
+        status:
+          type: string
+          description: The Meta review status of the template.
+          example: APPROVED
+          enum:
+          - PENDING
+          - APPROVED
+          - REJECTED
+          - PAUSED
+          - DISABLED
+        category:
+          type: string
+          description: The templates category.
+          example: MARKETING
+          enum:
+          - MARKETING
+          - UTILITY
+          - AUTHENTICATION
+        sub_category:
+          type: string
+          description: The sub category for the template.
+          example: CUSTOM
+        id:
+          type: string
+          description: The unique id for the template.
+          example: '920070352646140'
+      description: WhatsApp templates
+    inline_response_200_paging_cursors:
+      required:
+      - after
+      - before
+      type: object
+      properties:
+        before:
+          type: string
+          description: Continuation token for the previous page.
+          example: QVFIU1pNYzBEY2dNM0pjNlQ5Mm0wS1FSNnRBbkJSS0hhcTdka1FXdDBCV1kxYmMyMS1DZADBZAMTd1aHhRaWEta0RXVFNSQXFKVENYQWhyVW50bndDMUEwbXhn
+        after:
+          type: string
+          description: Continuation token for the next page.
+          example: QVFIU2RLSVkwNzNaSkpGYjk0YnhGWE1iMHpJS0tTRzFpRzNMRzFhVUVfUHVjd0UwYUdOSFpCOC1qOGtlTWNlSnktTEk2enhyWnV6YWItSDZANV0xIbVJCVk1n
   securitySchemes:
     basicAuth:
       type: http

@@ -102,6 +102,19 @@ paths:
                 $ref: '#/components/schemas/ApiImage'
 components:
   schemas:
+    ApiFileMedia:
+      type: object
+      additionalProperties: false
+      properties:
+        fileName:
+          type:
+          - string
+          - 'null'
+        data:
+          type:
+          - string
+          - 'null'
+          format: byte
     ApiImage:
       type: object
       additionalProperties: false
@@ -117,19 +130,6 @@ components:
           type:
           - string
           - 'null'
-    ApiFileMedia:
-      type: object
-      additionalProperties: false
-      properties:
-        fileName:
-          type:
-          - string
-          - 'null'
-        data:
-          type:
-          - string
-          - 'null'
-          format: byte
     ApiImageFolder:
       type: object
       additionalProperties: false

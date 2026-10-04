@@ -1264,8 +1264,6 @@ apis:
   humanURL: https://marketing.developer.dotdigital.com/docs/mcp
   baseURL: https://marketing.developer.dotdigital.com/mcp
   tags:
-  - WhatsApp
-  tags_raw:
   - Whats App
   properties:
   - type: OpenAPI

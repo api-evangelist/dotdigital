@@ -495,15 +495,17 @@ paths:
                   $ref: '#/components/schemas/ApiContactWithPreferenceOptIn'
 components:
   schemas:
-    ApiContactData:
+    ApiContactIdAndEmail:
       type: object
       additionalProperties: false
       properties:
-        key:
+        id:
+          type: integer
+          format: int32
+        email:
           type:
           - string
           - 'null'
-        value: {}
     ApiMarketingPreferenceOptIn:
       type: object
       additionalProperties: false
@@ -519,40 +521,16 @@ components:
         dateModifed:
           type: string
           format: date-time
-    ApiContactStatuses:
+    ApiContactEmailTypes:
       type: string
       description: ''
       x-enumNames:
-      - Subscribed
-      - Unsubscribed
-      - SoftBounced
-      - HardBounced
-      - IspComplained
-      - MailBlocked
-      - PendingOptIn
-      - DirectComplaint
-      - Deleted
-      - SharedSuppression
-      - Suppressed
-      - NotAllowed
-      - DomainSuppression
-      - NoMxRecord
+      - PlainText
+      - Html
       - NotAvailableInThisVersion
       enum:
-      - Subscribed
-      - Unsubscribed
-      - SoftBounced
-      - HardBounced
-      - IspComplained
-      - MailBlocked
-      - PendingOptIn
-      - DirectComplaint
-      - Deleted
-      - SharedSuppression
-      - Suppressed
-      - NotAllowed
-      - DomainSuppression
-      - NoMxRecord
+      - PlainText
+      - Html
       - NotAvailableInThisVersion
     ApiContactOptInTypes:
       type: string
@@ -569,6 +547,19 @@ components:
       - Double
       - VerifiedDouble
       - NotAvailableInThisVersion
+    ApiContactWithPreferenceOptIn:
+      type: object
+      additionalProperties: false
+      properties:
+        contact:
+          oneOf:
+          - $ref: '#/components/schemas/ApiContact'
+        marketingPreferenceOptIns:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMarketingPreferenceOptIn'
     ApiContact:
       type: object
       additionalProperties: false
@@ -640,39 +631,48 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/ApiPreference'
-    ApiContactIdAndEmail:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: integer
-          format: int32
-        email:
-          type:
-          - string
-          - 'null'
-    ApiContactEmailTypes:
+    ApiContactStatuses:
       type: string
       description: ''
       x-enumNames:
-      - PlainText
-      - Html
+      - Subscribed
+      - Unsubscribed
+      - SoftBounced
+      - HardBounced
+      - IspComplained
+      - MailBlocked
+      - PendingOptIn
+      - DirectComplaint
+      - Deleted
+      - SharedSuppression
+      - Suppressed
+      - NotAllowed
+      - DomainSuppression
+      - NoMxRecord
       - NotAvailableInThisVersion
       enum:
-      - PlainText
-      - Html
+      - Subscribed
+      - Unsubscribed
+      - SoftBounced
+      - HardBounced
+      - IspComplained
+      - MailBlocked
+      - PendingOptIn
+      - DirectComplaint
+      - Deleted
+      - SharedSuppression
+      - Suppressed
+      - NotAllowed
+      - DomainSuppression
+      - NoMxRecord
       - NotAvailableInThisVersion
-    ApiContactWithPreferenceOptIn:
+    ApiContactData:
       type: object
       additionalProperties: false
       properties:
-        contact:
-          oneOf:
-          - $ref: '#/components/schemas/ApiContact'
-        marketingPreferenceOptIns:
+        key:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMarketingPreferenceOptIn'
+        value: {}
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

@@ -294,6 +294,19 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    channelOptions_appMessaging:
+      type: object
+      properties:
+        from:
+          $ref: '#/components/schemas/channelOptions_appMessaging_from'
+      description: Options for the app messaging send.
+    InboundMessage_channelData:
+      type: object
+      properties:
+        body:
+          type: object
+          additionalProperties: true
+          description: Data relating to the inbound message.
     customBody:
       type: object
       properties:
@@ -327,40 +340,6 @@ components:
           description: Specific details for the RCS channel
       additionalProperties: true
       description: 'Custom body for specific channels.  All values specified will be copied onto the payload at the point of sending. Profile data can be substituted anywhere by using the syntax {{profile.fieldName}} - example: {{profile.forename}}'
-    channelOptions_rcs:
-      type: object
-      properties:
-        agentId:
-          type: string
-          description: The agentId for the RCS Channel.
-      description: Options for the RCS channel
-    channelOptions_sms_unicodeConversion_customReplacements:
-      type: object
-      properties:
-        from:
-          type: string
-          description: Character that should be replaced
-        to:
-          type: string
-          description: Character that will be replaced
-    channelOptions_whatsApp:
-      type: object
-      properties:
-        phoneNumber:
-          type: string
-          description: The phoneNumber to send the message from. Default from channel configuration will be used if not specified.
-        enableUrlPreview:
-          type: boolean
-          description: If set for true and url provided in message body, WhatsApp will display url preview
-      description: Options for the WhatsApp channel
-    Message_overrides_appMessaging:
-      type: object
-      properties:
-        conversation:
-          type: object
-          additionalProperties: true
-          description: Overrides for any conversation created for the message send
-      description: Overrides for the app messaging send.
     MessageStatus:
       required:
       - channel
@@ -402,6 +381,139 @@ components:
         properties: {}
         description: Configuration for other channels.
       description: 'Configuration switches for specific channels. If a channel has a customBody as well as values in here, it will return a validation failure. Profile data can be substituted anywhere by using the syntax {{profile.fieldName}} - example: Hello {{profile.forename}}'
+    channelOptions_sms:
+      type: object
+      properties:
+        from:
+          minLength: 3
+          type: string
+          description: An alpha or long number to send from
+        allowUnicode:
+          type: boolean
+          description: Allows unicode characters to be sent over SMS
+        unicodeConversion:
+          $ref: '#/components/schemas/channelOptions_sms_unicodeConversion'
+      description: Options for the SMS channel
+    channelOptions_nativePush_data:
+      type: object
+      properties:
+        fcm:
+          type: object
+          properties: {}
+          description: Json object that will be sent in the push message for the app to use
+        apns:
+          type: object
+          properties: {}
+          description: Json object that will be sent in the push message for the app to use
+        isSilent:
+          type: boolean
+          description: Should the push message trigger UI notification on the device. The default is true.
+      description: Additional data passed to push message
+    InboundMessage:
+      required:
+      - channel
+      - from
+      type: object
+      properties:
+        messageId:
+          type: string
+          description: Unique id for this inbound message
+          readOnly: true
+        receivedOn:
+          type: string
+          description: Date/Time (in UTC, ISO 8601 format) that the message sent was received
+          format: date-time
+          readOnly: true
+        status:
+          type: string
+          description: Current status of the inbound message
+          readOnly: true
+          enum:
+          - received
+          - delivered
+          - read
+        from:
+          type: object
+          additionalProperties: true
+          description: Any id fields to help identify the sender (fbmessengerId, phoneNumber)
+        channel:
+          type: string
+          description: The id of the channel the inbound is being sent to.
+        to:
+          type: object
+          additionalProperties: true
+          description: Any id fields to help identify the recipient (pageId, phoneNumber)
+        title:
+          type: string
+          description: Optional title field for the message.
+        body:
+          type: string
+          description: A simple string representation of the message.
+        conversationId:
+          type: string
+          description: Optional string containing a correlation id for the message.
+        metadata:
+          type: object
+          additionalProperties: true
+          description: Custom metadata relating to the message.
+        channelData:
+          $ref: '#/components/schemas/InboundMessage_channelData'
+        messageParts:
+          type: array
+          description: Additional inbound message parts / attachments
+          items:
+            $ref: '#/components/schemas/MessagePart'
+        correlation:
+          $ref: '#/components/schemas/InboundMessage_correlation'
+        _createdOn:
+          type: string
+          description: The date (in UTC, ISO 8601 format) that the inbound message was created
+          format: date-time
+          readOnly: true
+        _createdBy:
+          type: string
+          description: The identity that created the inbound message
+        _updatedOn:
+          type: string
+          description: The date (in UTC, ISO 8601 format) that the inbound message was last updated
+          format: date-time
+          readOnly: true
+        _updatedBy:
+          type: string
+          description: The identity that created the inbound message
+          readOnly: true
+    MessagePart:
+      required:
+      - type
+      type: object
+      properties:
+        channels:
+          type: array
+          description: A list of channels to which this message part applies
+          items:
+            type: string
+        name:
+          type: string
+          description: A name for the part
+        type:
+          type: string
+          description: The mime type (if applicable) sof the part
+        url:
+          type: string
+          description: A url associated with the message part
+        data:
+          oneOf:
+          - title: Text based content
+            type: string
+          - title: Binary data in Base64
+            type: string
+            format: binary
+          - title: Object representing the content
+            type: object
+        size:
+          type: integer
+          description: Size of the message part in bytes
+      description: Details of a single part that makes up a message
     MessageBase:
       required:
       - rules
@@ -450,6 +562,60 @@ components:
         requireOptIn:
           type: boolean
           description: If requireOptIn is set to true, the message will be rejected if the target profile has not opted-in to any of the specified channels
+    inline_response_202:
+      required:
+      - index
+      - messageId
+      type: object
+      properties:
+        index:
+          type: number
+          description: The 0-based index of the message in the batch
+        messageId:
+          type: string
+          description: The id of the message
+    InboundMessage_correlation:
+      required:
+      - messageId
+      type: object
+      properties:
+        messageId:
+          type: string
+          description: The outbound message id
+        metadata:
+          type: object
+          additionalProperties: true
+          description: The outbound metadata
+          readOnly: true
+      description: Data relating to the outbound this inbound is in reply to
+    channelOptions_fbMessenger:
+      type: object
+      properties:
+        messageTag:
+          type: string
+          description: Send message with one of predefined tag specified by facebook
+        messagingType:
+          type: string
+          description: The Facebook messaging_type value
+      description: Options for the Facebook Messenger channel
+    channelOptions_nativePush_deepLink:
+      type: object
+      properties:
+        trackingLink:
+          type: string
+          description: URL to be called by the SDK to report push notification click.
+        fcm:
+          $ref: '#/components/schemas/channelOptions_nativePush_deepLink_fcm'
+        apns:
+          $ref: '#/components/schemas/channelOptions_nativePush_deepLink_fcm'
+      description: Deep link details
+    channelOptions_rcs:
+      type: object
+      properties:
+        agentId:
+          type: string
+          description: The agentId for the RCS Channel.
+      description: Options for the RCS channel
     channelOptions_nativePush_deepLink_fcm:
       required:
       - url
@@ -459,13 +625,23 @@ components:
           type: string
           description: Deep link URL that should be opened when the push notification is clicked
       description: ''
-    InboundMessage_channelData:
+    channelOptions_sms_unicodeConversion_customReplacements:
       type: object
       properties:
-        body:
-          type: object
-          additionalProperties: true
-          description: Data relating to the inbound message.
+        from:
+          type: string
+          description: Character that should be replaced
+        to:
+          type: string
+          description: Character that will be replaced
+    channelOptions_nativePush:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/channelOptions_nativePush_data'
+        deepLink:
+          $ref: '#/components/schemas/channelOptions_nativePush_deepLink'
+      description: Options for the native push channel
     Message:
       type: object
       properties:
@@ -548,108 +724,20 @@ components:
           description: (Additional) parts to be sent with the message, as native components where supported, or attachments / links.
           items:
             $ref: '#/components/schemas/MessagePart'
-    channelOptions_fbMessenger:
+    Message_overrides_appMessaging:
       type: object
       properties:
-        messageTag:
-          type: string
-          description: Send message with one of predefined tag specified by facebook
-        messagingType:
-          type: string
-          description: The Facebook messaging_type value
-      description: Options for the Facebook Messenger channel
-    InboundMessage_correlation:
-      required:
-      - messageId
-      type: object
-      properties:
-        messageId:
-          type: string
-          description: The outbound message id
-        metadata:
+        conversation:
           type: object
           additionalProperties: true
-          description: The outbound metadata
-          readOnly: true
-      description: Data relating to the outbound this inbound is in reply to
-    channelOptions_nativePush:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/channelOptions_nativePush_data'
-        deepLink:
-          $ref: '#/components/schemas/channelOptions_nativePush_deepLink'
-      description: Options for the native push channel
-    inline_response_202:
-      required:
-      - index
-      - messageId
-      type: object
-      properties:
-        index:
-          type: number
-          description: The 0-based index of the message in the batch
-        messageId:
-          type: string
-          description: The id of the message
-    channelOptions_nativePush_data:
-      type: object
-      properties:
-        fcm:
-          type: object
-          properties: {}
-          description: Json object that will be sent in the push message for the app to use
-        apns:
-          type: object
-          properties: {}
-          description: Json object that will be sent in the push message for the app to use
-        isSilent:
-          type: boolean
-          description: Should the push message trigger UI notification on the device. The default is true.
-      description: Additional data passed to push message
-    InboundMessageStatus:
-      required:
-      - timestamp
-      type: object
-      properties:
-        channelStatus:
-          type: object
-          additionalProperties: true
-          description: Status data from the receiving channel.
-        timestamp:
-          type: string
-          description: The date (in UTC, ISO 8601 format) of the inbound message status
-          format: date-time
-    channelOptions_nativePush_deepLink:
-      type: object
-      properties:
-        trackingLink:
-          type: string
-          description: URL to be called by the SDK to report push notification click.
-        fcm:
-          $ref: '#/components/schemas/channelOptions_nativePush_deepLink_fcm'
-        apns:
-          $ref: '#/components/schemas/channelOptions_nativePush_deepLink_fcm'
-      description: Deep link details
+          description: Overrides for any conversation created for the message send
+      description: Overrides for the app messaging send.
     Message_overrides:
       type: object
       properties:
         appMessaging:
           $ref: '#/components/schemas/Message_overrides_appMessaging'
       description: Details of any overrides allowed for the message send on any of the channels
-    channelOptions_appMessaging_from:
-      type: object
-      properties:
-        profileId:
-          type: string
-          description: The id of the profile to send from
-        name:
-          type: string
-          description: Name to display
-        avatarUrl:
-          type: string
-          description: URL for an avatar to display with this message
-      description: Set of identifiers for the message sender.
     channelOptions_sms_unicodeConversion:
       type: object
       properties:
@@ -662,38 +750,6 @@ components:
           items:
             $ref: '#/components/schemas/channelOptions_sms_unicodeConversion_customReplacements'
       description: Unicode conversion settings
-    channelOptions_appMessaging:
-      type: object
-      properties:
-        from:
-          $ref: '#/components/schemas/channelOptions_appMessaging_from'
-      description: Options for the app messaging send.
-    MessagePatchBase:
-      required:
-      - redact
-      type: object
-      properties:
-        redact:
-          type: boolean
-        redactSource:
-          type: string
-          description: The source of the message redacting
-          enum:
-          - message
-          - chat
-    channelOptions_sms:
-      type: object
-      properties:
-        from:
-          minLength: 3
-          type: string
-          description: An alpha or long number to send from
-        allowUnicode:
-          type: boolean
-          description: Allows unicode characters to be sent over SMS
-        unicodeConversion:
-          $ref: '#/components/schemas/channelOptions_sms_unicodeConversion'
-      description: Options for the SMS channel
     to:
       type: object
       properties:
@@ -712,79 +768,45 @@ components:
       additionalProperties:
         type: string
       description: Set of identifiers for the message recipient.
-    InboundMessage:
-      required:
-      - channel
-      - from
+    channelOptions_appMessaging_from:
       type: object
       properties:
-        messageId:
+        profileId:
           type: string
-          description: Unique id for this inbound message
-          readOnly: true
-        receivedOn:
+          description: The id of the profile to send from
+        name:
           type: string
-          description: Date/Time (in UTC, ISO 8601 format) that the message sent was received
+          description: Name to display
+        avatarUrl:
+          type: string
+          description: URL for an avatar to display with this message
+      description: Set of identifiers for the message sender.
+    InboundMessageStatus:
+      required:
+      - timestamp
+      type: object
+      properties:
+        channelStatus:
+          type: object
+          additionalProperties: true
+          description: Status data from the receiving channel.
+        timestamp:
+          type: string
+          description: The date (in UTC, ISO 8601 format) of the inbound message status
           format: date-time
-          readOnly: true
-        status:
+    MessagePatchBase:
+      required:
+      - redact
+      type: object
+      properties:
+        redact:
+          type: boolean
+        redactSource:
           type: string
-          description: Current status of the inbound message
-          readOnly: true
+          description: The source of the message redacting
           enum:
-          - received
-          - delivered
-          - read
-        from:
-          type: object
-          additionalProperties: true
-          description: Any id fields to help identify the sender (fbmessengerId, phoneNumber)
-        channel:
-          type: string
-          description: The id of the channel the inbound is being sent to.
-        to:
-          type: object
-          additionalProperties: true
-          description: Any id fields to help identify the recipient (pageId, phoneNumber)
-        title:
-          type: string
-          description: Optional title field for the message.
-        body:
-          type: string
-          description: A simple string representation of the message.
-        conversationId:
-          type: string
-          description: Optional string containing a correlation id for the message.
-        metadata:
-          type: object
-          additionalProperties: true
-          description: Custom metadata relating to the message.
-        channelData:
-          $ref: '#/components/schemas/InboundMessage_channelData'
-        messageParts:
-          type: array
-          description: Additional inbound message parts / attachments
-          items:
-            $ref: '#/components/schemas/MessagePart'
-        correlation:
-          $ref: '#/components/schemas/InboundMessage_correlation'
-        _createdOn:
-          type: string
-          description: The date (in UTC, ISO 8601 format) that the inbound message was created
-          format: date-time
-          readOnly: true
-        _createdBy:
-          type: string
-          description: The identity that created the inbound message
-        _updatedOn:
-          type: string
-          description: The date (in UTC, ISO 8601 format) that the inbound message was last updated
-          format: date-time
-          readOnly: true
-        _updatedBy:
-          type: string
-          description: The identity that created the inbound message
-          readOnly: true
+          - message
+          - chat
     channelOptions_mms:
       type: object
       properties:
@@ -798,38 +820,16 @@ components:
         unicodeConversion:
           $ref: '#/components/schemas/channelOptions_sms_unicodeConversion'
       description: Options for the MMS channel
-    MessagePart:
-      required:
-      - type
+    channelOptions_whatsApp:
       type: object
       properties:
-        channels:
-          type: array
-          description: A list of channels to which this message part applies
-          items:
-            type: string
-        name:
+        phoneNumber:
           type: string
-          description: A name for the part
-        type:
-          type: string
-          description: The mime type (if applicable) sof the part
-        url:
-          type: string
-          description: A url associated with the message part
-        data:
-          oneOf:
-          - title: Text based content
-            type: string
-          - title: Binary data in Base64
-            type: string
-            format: binary
-          - title: Object representing the content
-            type: object
-        size:
-          type: integer
-          description: Size of the message part in bytes
-      description: Details of a single part that makes up a message
+          description: The phoneNumber to send the message from. Default from channel configuration will be used if not specified.
+        enableUrlPreview:
+          type: boolean
+          description: If set for true and url provided in message body, WhatsApp will display url preview
+      description: Options for the WhatsApp channel
   securitySchemes:
     basicAuth:
       type: http

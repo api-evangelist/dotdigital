@@ -402,6 +402,55 @@ paths:
                 $ref: '#/components/schemas/ApiCampaignSplitTestResults'
 components:
   schemas:
+    ApiSplitTestResult:
+      type: object
+      additionalProperties: false
+      properties:
+        subjectLine:
+          type:
+          - string
+          - 'null'
+        fromName:
+          type:
+          - string
+          - 'null'
+        fromAddress:
+          type:
+          - string
+          - 'null'
+        htmlContent:
+          type:
+          - string
+          - 'null'
+        plainTextContent:
+          type:
+          - string
+          - 'null'
+        version:
+          type:
+          - string
+          - 'null'
+        winningVersion:
+          type: boolean
+        resultsActual:
+          type: number
+          format: decimal
+        resultsPercentage:
+          type: number
+          format: decimal
+    ApiSplitTestMetrics:
+      type: string
+      description: ''
+      x-enumNames:
+      - Opens
+      - Clicks
+      - ROI
+      - NotAvailableInThisVersion
+      enum:
+      - Opens
+      - Clicks
+      - ROI
+      - NotAvailableInThisVersion
     ApiSplitTestCampaign:
       type: object
       additionalProperties: false
@@ -458,14 +507,38 @@ components:
           type:
           - string
           - 'null'
-    ApiCampaignFromAddress:
+    ApiCampaignReplyActions:
+      type: string
+      description: ''
+      x-enumNames:
+      - Unset
+      - WebMailForward
+      - Webmail
+      - Delete
+      - NotAvailableInThisVersion
+      enum:
+      - Unset
+      - WebMailForward
+      - Webmail
+      - Delete
+      - NotAvailableInThisVersion
+    ApiCampaignSplitTestResults:
       type: object
       additionalProperties: false
       properties:
-        id:
-          type: integer
-          format: int32
-        email:
+        versions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiSplitTestResult'
+        splitTestWinnerMetric:
+          $ref: '#/components/schemas/ApiSplitTestMetrics'
+    ApiCampaignTag:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
           type:
           - string
           - 'null'
@@ -491,6 +564,76 @@ components:
             - string
             - 'null'
             format: date-time
+    ApiCampaignWithType:
+      allOf:
+      - $ref: '#/components/schemas/ApiCampaign'
+      - type: object
+        additionalProperties: false
+        properties:
+          type:
+            readOnly: true
+            oneOf:
+            - $ref: '#/components/schemas/ApiCampaignTypes'
+    ApiCampaign:
+      type: object
+      additionalProperties: false
+      required:
+      - name
+      - subject
+      - fromName
+      - htmlContent
+      - plainTextContent
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          maxLength: 255
+          minLength: 1
+        subject:
+          type: string
+          minLength: 1
+        fromName:
+          type: string
+          minLength: 1
+        fromAddress:
+          oneOf:
+          - $ref: '#/components/schemas/ApiCampaignFromAddress'
+        htmlContent:
+          type: string
+          minLength: 1
+        plainTextContent:
+          type: string
+          minLength: 1
+        replyAction:
+          $ref: '#/components/schemas/ApiCampaignReplyActions'
+        replyToAddress:
+          type:
+          - string
+          - 'null'
+        isSplitTest:
+          type: boolean
+          readOnly: true
+        status:
+          readOnly: true
+          oneOf:
+          - $ref: '#/components/schemas/ApiCampaignStatuses'
+        customReplyToAddress:
+          type:
+          - string
+          - 'null'
+    ApiCampaignFromAddress:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
     ApiCampaignTypes:
       type: string
       description: ''
@@ -502,80 +645,6 @@ components:
       - Standard
       - Triggered
       - NotAvailableInThisVersion
-    ApiSplitTestMetrics:
-      type: string
-      description: ''
-      x-enumNames:
-      - Opens
-      - Clicks
-      - ROI
-      - NotAvailableInThisVersion
-      enum:
-      - Opens
-      - Clicks
-      - ROI
-      - NotAvailableInThisVersion
-    ApiCampaignWithType:
-      allOf:
-      - $ref: '#/components/schemas/ApiCampaign'
-      - type: object
-        additionalProperties: false
-        properties:
-          type:
-            readOnly: true
-            oneOf:
-            - $ref: '#/components/schemas/ApiCampaignTypes'
-    ApiCampaignReplyActions:
-      type: string
-      description: ''
-      x-enumNames:
-      - Unset
-      - WebMailForward
-      - Webmail
-      - Delete
-      - NotAvailableInThisVersion
-      enum:
-      - Unset
-      - WebMailForward
-      - Webmail
-      - Delete
-      - NotAvailableInThisVersion
-    ApiSplitTestResult:
-      type: object
-      additionalProperties: false
-      properties:
-        subjectLine:
-          type:
-          - string
-          - 'null'
-        fromName:
-          type:
-          - string
-          - 'null'
-        fromAddress:
-          type:
-          - string
-          - 'null'
-        htmlContent:
-          type:
-          - string
-          - 'null'
-        plainTextContent:
-          type:
-          - string
-          - 'null'
-        version:
-          type:
-          - string
-          - 'null'
-        winningVersion:
-          type: boolean
-        resultsActual:
-          type: number
-          format: decimal
-        resultsPercentage:
-          type: number
-          format: decimal
     ApiCampaignStatuses:
       type: string
       description: ''
@@ -601,14 +670,6 @@ components:
       - RequiresWorkflowApproval
       - Triggered
       - NotAvailableInThisVersion
-    ApiCampaignTag:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
     ApiCampaignDetails:
       type: object
       additionalProperties: false
@@ -676,65 +737,4 @@ components:
           type:
           - string
           - 'null'
-    ApiCampaign:
-      type: object
-      additionalProperties: false
-      required:
-      - name
-      - subject
-      - fromName
-      - htmlContent
-      - plainTextContent
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-          maxLength: 255
-          minLength: 1
-        subject:
-          type: string
-          minLength: 1
-        fromName:
-          type: string
-          minLength: 1
-        fromAddress:
-          oneOf:
-          - $ref: '#/components/schemas/ApiCampaignFromAddress'
-        htmlContent:
-          type: string
-          minLength: 1
-        plainTextContent:
-          type: string
-          minLength: 1
-        replyAction:
-          $ref: '#/components/schemas/ApiCampaignReplyActions'
-        replyToAddress:
-          type:
-          - string
-          - 'null'
-        isSplitTest:
-          type: boolean
-          readOnly: true
-        status:
-          readOnly: true
-          oneOf:
-          - $ref: '#/components/schemas/ApiCampaignStatuses'
-        customReplyToAddress:
-          type:
-          - string
-          - 'null'
-    ApiCampaignSplitTestResults:
-      type: object
-      additionalProperties: false
-      properties:
-        versions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiSplitTestResult'
-        splitTestWinnerMetric:
-          $ref: '#/components/schemas/ApiSplitTestMetrics'
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

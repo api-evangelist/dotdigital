@@ -372,32 +372,18 @@ paths:
           $ref: '#/components/responses/subscriptionNotFound'
 components:
   schemas:
-    paginationLinksPrevNext:
+    errorResponse_details:
       required:
-      - first
-      - self
+      - description
+      - item
       type: object
       properties:
-        self:
-          $ref: '#/components/schemas/paginationLinksPrevNext_self'
-        prev:
-          $ref: '#/components/schemas/paginationLinksPrevNext_prev'
-        next:
-          $ref: '#/components/schemas/paginationLinksPrevNext_next'
-      description: Pagination links
-    paginationLinksPrevNext_prev:
-      required:
-      - link
-      - marker
-      type: object
-      properties:
-        marker:
+        item:
           type: string
-          description: Pagination marker to be passed to API calls to retrieve this data page
-        link:
+          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
+        description:
           type: string
-          description: Link to retrieve the data page
-      description: Details for accessing the previous pagea worth of data
+          description: Description of the error
     errorResponse:
       required:
       - description
@@ -414,19 +400,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/errorResponse_details'
-    errorResponse_details:
+    paginationLinksPrevNext:
       required:
-      - description
-      - item
+      - first
+      - self
       type: object
       properties:
-        item:
-          type: string
-          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
-        description:
-          type: string
-          description: Description of the error
-    paginationLinksPrevNext_self:
+        self:
+          $ref: '#/components/schemas/paginationLinksPrevNext_self'
+        prev:
+          $ref: '#/components/schemas/paginationLinksPrevNext_prev'
+        next:
+          $ref: '#/components/schemas/paginationLinksPrevNext_next'
+      description: Pagination links
+    subscriptionStatus:
+      type: string
+      description: The subscription status.
+      enum:
+      - active
+      - inactive
+      default: inactive
+    paginationLinksPrevNext_prev:
       required:
       - link
       - marker
@@ -438,7 +432,30 @@ components:
         link:
           type: string
           description: Link to retrieve the data page
-      description: Details for accessing this data page via pagination
+      description: Details for accessing the previous pagea worth of data
+    eventType:
+      required:
+      - eventType
+      type: object
+      properties:
+        eventType:
+          type: string
+          description: The  event type
+          example: email.read
+        filters:
+          maxItems: 5
+          minItems: 1
+          type: array
+          description: 'Capture only events that match these filters.
+
+
+            All filters will be accessed and **all must match for the event to be captured!**
+
+            '
+          items:
+            $ref: '#/components/schemas/filter'
+      additionalProperties: false
+      description: An event type and any inclusive filters that should be applied.
     subscriptionRequest:
       required:
       - alertsConfiguration
@@ -528,43 +545,6 @@ components:
                 example: alerts@emailsim.io
             description: Email and in-app alerts
       additionalProperties: false
-    subscription:
-      allOf:
-      - required:
-        - created
-        - id
-        - updated
-        type: object
-        properties:
-          id:
-            type: integer
-            description: The subscriptions unique identifier.
-            example: 95
-          created:
-            type: string
-            description: The UTC date time in ISO 8601 format when the subscription was created.
-            format: date-time
-            example: '2025-02-07T16:23:33.741Z'
-          updated:
-            type: string
-            description: The UTC date time in ISO 8601 format when the subscription was updated.
-            format: date-time
-            example: '2025-02-11T01:33:00Z'
-        additionalProperties: false
-      - $ref: '#/components/schemas/subscriptionRequest'
-    inline_response_200_1:
-      required:
-      - _items
-      - _links
-      type: object
-      properties:
-        _links:
-          $ref: '#/components/schemas/paginationLinksPrevNext'
-        _items:
-          type: array
-          description: Returned program extensions
-          items:
-            $ref: '#/components/schemas/subscription'
     paginationLinksPrevNext_next:
       required:
       - link
@@ -578,13 +558,6 @@ components:
           type: string
           description: Link to retrieve the data page
       description: Details for accessing the next pages worth of data
-    subscriptionStatus:
-      type: string
-      description: The subscription status.
-      enum:
-      - active
-      - inactive
-      default: inactive
     filter:
       required:
       - field
@@ -633,29 +606,56 @@ components:
       description: 'An inclusive filter that must be matched to include the event.
 
         '
-    eventType:
+    subscription:
+      allOf:
+      - required:
+        - created
+        - id
+        - updated
+        type: object
+        properties:
+          id:
+            type: integer
+            description: The subscriptions unique identifier.
+            example: 95
+          created:
+            type: string
+            description: The UTC date time in ISO 8601 format when the subscription was created.
+            format: date-time
+            example: '2025-02-07T16:23:33.741Z'
+          updated:
+            type: string
+            description: The UTC date time in ISO 8601 format when the subscription was updated.
+            format: date-time
+            example: '2025-02-11T01:33:00Z'
+        additionalProperties: false
+      - $ref: '#/components/schemas/subscriptionRequest'
+    paginationLinksPrevNext_self:
       required:
-      - eventType
+      - link
+      - marker
       type: object
       properties:
-        eventType:
+        marker:
           type: string
-          description: The  event type
-          example: email.read
-        filters:
-          maxItems: 5
-          minItems: 1
+          description: Pagination marker to be passed to API calls to retrieve this data page
+        link:
+          type: string
+          description: Link to retrieve the data page
+      description: Details for accessing this data page via pagination
+    inline_response_200_1:
+      required:
+      - _items
+      - _links
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/paginationLinksPrevNext'
+        _items:
           type: array
-          description: 'Capture only events that match these filters.
-
-
-            All filters will be accessed and **all must match for the event to be captured!**
-
-            '
+          description: Returned program extensions
           items:
-            $ref: '#/components/schemas/filter'
-      additionalProperties: false
-      description: An event type and any inclusive filters that should be applied.
+            $ref: '#/components/schemas/subscription'
   responses:
     subscriptionNotFound:
       description: Subscription not found

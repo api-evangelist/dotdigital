@@ -323,31 +323,49 @@ components:
           description: Filters for event
           items:
             $ref: '#/components/schemas/AvailableEventsFilters'
-    inline_response_200:
+    AvailableEventsFilters:
       type: object
       properties:
         name:
           type: string
-          description: Name of the events template
+          description: Name of filter
+          example: channel
+        path:
+          type: string
+          description: Path of filter - used when type=path
+        required:
+          type: boolean
+          description: Is filter setting required
+          example: false
         description:
           type: string
-          description: Describes the template
-        events:
-          type: array
-          items:
-            type: string
-            description: The event id
-    EventFilters:
+          description: Description of filter
+          example: Channel that the event relates to e.g `sms`
+    WebhookEvents:
       type: object
       properties:
-        name:
+        type:
           type: string
-          description: name of filter
-          example: channel
-        value:
-          type: string
-          description: value to watch
-          example: sms
+          description: type of event
+          example: message.delivered
+        filters:
+          type: array
+          description: Array of used filters
+          items:
+            $ref: '#/components/schemas/EventFilters'
+      example:
+      - type: message.sent
+        filters: []
+      - type: message.delivered
+        filters: []
+      - type: message.expired
+        filters: []
+      - type: message.failed
+        filters: []
+      - type: message.inbound
+        filters: []
+      - type: message.read
+        filters: []
     WebhookConfigurationCreateUpdate:
       required:
       - name
@@ -387,24 +405,6 @@ components:
           type: number
           description: Maximum duration in seconds to wait before a batch is sent
           example: 60
-    AvailableEventsFilters:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of filter
-          example: channel
-        path:
-          type: string
-          description: Path of filter - used when type=path
-        required:
-          type: boolean
-          description: Is filter setting required
-          example: false
-        description:
-          type: string
-          description: Description of filter
-          example: Channel that the event relates to e.g `sms`
     WebhookConfiguration:
       allOf:
       - type: object
@@ -431,31 +431,31 @@ components:
             description: The identity that created the webhook
             readOnly: true
       - $ref: '#/components/schemas/WebhookConfigurationCreateUpdate'
-    WebhookEvents:
+    EventFilters:
       type: object
       properties:
-        type:
+        name:
           type: string
-          description: type of event
-          example: message.delivered
-        filters:
+          description: name of filter
+          example: channel
+        value:
+          type: string
+          description: value to watch
+          example: sms
+    inline_response_200:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the events template
+        description:
+          type: string
+          description: Describes the template
+        events:
           type: array
-          description: Array of used filters
           items:
-            $ref: '#/components/schemas/EventFilters'
-      example:
-      - type: message.sent
-        filters: []
-      - type: message.delivered
-        filters: []
-      - type: message.expired
-        filters: []
-      - type: message.failed
-        filters: []
-      - type: message.inbound
-        filters: []
-      - type: message.read
-        filters: []
+            type: string
+            description: The event id
   securitySchemes:
     basicAuth:
       type: http

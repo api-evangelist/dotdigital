@@ -189,6 +189,71 @@ paths:
                 format: binary
 components:
   schemas:
+    ApiPermissionTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - Sender
+      - Reporter
+      - EditCampaigns
+      - TemplateAdmin
+      - Contacts
+      - ReportDrillDown
+      - ContactExporter
+      - CanSendWithoutApproval
+      - Programs
+      - ManageAccount
+      - NotAvailableInThisVersion
+      enum:
+      - Sender
+      - Reporter
+      - EditCampaigns
+      - TemplateAdmin
+      - Contacts
+      - ReportDrillDown
+      - ContactExporter
+      - CanSendWithoutApproval
+      - Programs
+      - ManageAccount
+      - NotAvailableInThisVersion
+    ApiUser:
+      type: object
+      additionalProperties: false
+      required:
+      - password
+      properties:
+        email:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        password:
+          type: string
+          minLength: 1
+        isTransactionalEmailUser:
+          type: boolean
+        isTieredRateLimitedApiUser:
+          type: boolean
+        description:
+          type:
+          - string
+          - 'null'
+    ApiAccountProperty:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
     ApiManagedUser:
       type: object
       additionalProperties: false
@@ -219,19 +284,33 @@ components:
           type:
           - string
           - 'null'
-    ApiAccountProperty:
+    ApiAccount:
       type: object
       additionalProperties: false
+      required:
+      - properties
       properties:
-        name:
+        id:
+          type: integer
+          format: int32
+        properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiAccountProperty'
+    ApiOAuthToken:
+      type: object
+      additionalProperties: false
+      required:
+      - redirectUri
+      properties:
+        redirectUri:
+          type: string
+          minLength: 1
+        clientId:
           type:
           - string
           - 'null'
-        type:
-          type:
-          - string
-          - 'null'
-        value:
+        secretKey:
           type:
           - string
           - 'null'
@@ -260,83 +339,4 @@ components:
           type: string
           minLength: 1
           pattern: ^(\#[0-9a-f]{6})$
-    ApiPermissionTypes:
-      type: string
-      description: ''
-      x-enumNames:
-      - Sender
-      - Reporter
-      - EditCampaigns
-      - TemplateAdmin
-      - Contacts
-      - ReportDrillDown
-      - ContactExporter
-      - CanSendWithoutApproval
-      - Programs
-      - ManageAccount
-      - NotAvailableInThisVersion
-      enum:
-      - Sender
-      - Reporter
-      - EditCampaigns
-      - TemplateAdmin
-      - Contacts
-      - ReportDrillDown
-      - ContactExporter
-      - CanSendWithoutApproval
-      - Programs
-      - ManageAccount
-      - NotAvailableInThisVersion
-    ApiAccount:
-      type: object
-      additionalProperties: false
-      required:
-      - properties
-      properties:
-        id:
-          type: integer
-          format: int32
-        properties:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiAccountProperty'
-    ApiUser:
-      type: object
-      additionalProperties: false
-      required:
-      - password
-      properties:
-        email:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        password:
-          type: string
-          minLength: 1
-        isTransactionalEmailUser:
-          type: boolean
-        isTieredRateLimitedApiUser:
-          type: boolean
-        description:
-          type:
-          - string
-          - 'null'
-    ApiOAuthToken:
-      type: object
-      additionalProperties: false
-      required:
-      - redirectUri
-      properties:
-        redirectUri:
-          type: string
-          minLength: 1
-        clientId:
-          type:
-          - string
-          - 'null'
-        secretKey:
-          type:
-          - string
-          - 'null'
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

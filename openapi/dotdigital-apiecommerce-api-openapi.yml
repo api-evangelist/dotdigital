@@ -110,28 +110,35 @@ paths:
                   $ref: '#/components/schemas/ApiOrder'
 components:
   schemas:
-    ApiOrderItem:
-      type: object
-      additionalProperties: false
-      properties:
-        sku:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        price:
-          type: number
-          format: decimal
-        quantity:
-          type: number
-          format: decimal
-        imagePath:
-          type:
-          - string
-          - 'null'
+    KpiMetricType:
+      type: string
+      description: ''
+      x-enumNames:
+      - TotalRevenue
+      - AverageOrderValue
+      - CustomerLifetimeValue
+      - TotalOrders
+      - AverageItemsPerOrder
+      - AverageDaysToSecondOrder
+      - Customers
+      - SinglePurchaseCustomers
+      - RepeatCustomers
+      - TotalDelay
+      - TotalRepeatOrders
+      - TotalItems
+      enum:
+      - TotalRevenue
+      - AverageOrderValue
+      - CustomerLifetimeValue
+      - TotalOrders
+      - AverageItemsPerOrder
+      - AverageDaysToSecondOrder
+      - Customers
+      - SinglePurchaseCustomers
+      - RepeatCustomers
+      - TotalDelay
+      - TotalRepeatOrders
+      - TotalItems
     ApiOrder:
       type: object
       additionalProperties: false
@@ -205,6 +212,43 @@ components:
         retailValue:
           type: number
           format: decimal
+    KpiMetricValue:
+      type: object
+      additionalProperties: false
+      properties:
+        initialTotalValue:
+          type: number
+          format: double
+        comparisonTotalValue:
+          type: number
+          format: double
+    KpiMetricSummary:
+      type: object
+      additionalProperties: false
+      properties:
+        metricType:
+          $ref: '#/components/schemas/KpiMetricType'
+        metricValues:
+          oneOf:
+          - $ref: '#/components/schemas/KpiMetricValue'
+        dateRange:
+          $ref: '#/components/schemas/EcommercePredefinedDateRanges'
+    ReportSummaryOfKpiMetricSummary:
+      type: object
+      additionalProperties: false
+      properties:
+        records:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/KpiMetricSummary'
+        dateRange:
+          oneOf:
+          - $ref: '#/components/schemas/EcommercePredefinedDateRanges'
+        asOfDate:
+          type: string
+          format: date-time
     ApiKpiMetricDateRange:
       type: string
       description: ''
@@ -232,17 +276,6 @@ components:
       - LastYearVsPrevious
       - AllTime
       - NotAvailableInThisVersion
-    KpiMetricSummary:
-      type: object
-      additionalProperties: false
-      properties:
-        metricType:
-          $ref: '#/components/schemas/KpiMetricType'
-        metricValues:
-          oneOf:
-          - $ref: '#/components/schemas/KpiMetricValue'
-        dateRange:
-          $ref: '#/components/schemas/EcommercePredefinedDateRanges'
     EcommercePredefinedDateRanges:
       type: string
       description: ''
@@ -270,40 +303,6 @@ components:
       - LastYearVsPrevious
       - AllTime
       - Custom
-    KpiMetricValue:
-      type: object
-      additionalProperties: false
-      properties:
-        initialTotalValue:
-          type: number
-          format: double
-        comparisonTotalValue:
-          type: number
-          format: double
-    ApiOrderAddress:
-      type: object
-      additionalProperties: false
-      properties:
-        address1:
-          type:
-          - string
-          - 'null'
-        address2:
-          type:
-          - string
-          - 'null'
-        city:
-          type:
-          - string
-          - 'null'
-        country:
-          type:
-          - string
-          - 'null'
-        postCode:
-          type:
-          - string
-          - 'null'
     ApiKpiMetricType:
       type: string
       description: ''
@@ -329,49 +328,50 @@ components:
       - SinglePurchaseCustomers
       - RepeatCustomers
       - NotAvailableInThisVersion
-    KpiMetricType:
-      type: string
-      description: ''
-      x-enumNames:
-      - TotalRevenue
-      - AverageOrderValue
-      - CustomerLifetimeValue
-      - TotalOrders
-      - AverageItemsPerOrder
-      - AverageDaysToSecondOrder
-      - Customers
-      - SinglePurchaseCustomers
-      - RepeatCustomers
-      - TotalDelay
-      - TotalRepeatOrders
-      - TotalItems
-      enum:
-      - TotalRevenue
-      - AverageOrderValue
-      - CustomerLifetimeValue
-      - TotalOrders
-      - AverageItemsPerOrder
-      - AverageDaysToSecondOrder
-      - Customers
-      - SinglePurchaseCustomers
-      - RepeatCustomers
-      - TotalDelay
-      - TotalRepeatOrders
-      - TotalItems
-    ReportSummaryOfKpiMetricSummary:
+    ApiOrderItem:
       type: object
       additionalProperties: false
       properties:
-        records:
+        sku:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/KpiMetricSummary'
-        dateRange:
-          oneOf:
-          - $ref: '#/components/schemas/EcommercePredefinedDateRanges'
-        asOfDate:
-          type: string
-          format: date-time
+        name:
+          type:
+          - string
+          - 'null'
+        price:
+          type: number
+          format: decimal
+        quantity:
+          type: number
+          format: decimal
+        imagePath:
+          type:
+          - string
+          - 'null'
+    ApiOrderAddress:
+      type: object
+      additionalProperties: false
+      properties:
+        address1:
+          type:
+          - string
+          - 'null'
+        address2:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        postCode:
+          type:
+          - string
+          - 'null'
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

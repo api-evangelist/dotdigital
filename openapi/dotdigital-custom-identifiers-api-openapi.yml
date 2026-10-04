@@ -151,6 +151,18 @@ components:
           description: ISO 8601 UTC timestamp for when the record was last updated.
           format: date-time
           example: '2024-05-21T12:34:56Z'
+    customIdentifierRequest:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          maxLength: 50
+          minLength: 1
+          pattern: (^[-A-Za-z0-9_]{1,50}$)
+          type: string
+          description: The unique custom identifier name.
+          example: crm-id
     errorResponse:
       required:
       - description
@@ -167,18 +179,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/errorResponse_details'
-    customIdentifierRequest:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          maxLength: 50
-          minLength: 1
-          pattern: (^[-A-Za-z0-9_]{1,50}$)
-          type: string
-          description: The unique custom identifier name.
-          example: crm-id
   securitySchemes:
     basicAuth:
       type: http

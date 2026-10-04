@@ -136,6 +136,21 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    sessionAnalytics:
+      type: object
+      properties:
+        date:
+          type: string
+          description: The start date and time for the period in the timezone passesd in
+        dateUtc:
+          type: string
+          description: The start date and time for the period in UTC
+        started:
+          $ref: '#/components/schemas/sessionAnalytics_started'
+        ended:
+          type: integer
+          description: The number of session that were explicitly ended in the period
+          format: int64
     conversationMessageAnalytics:
       type: object
       properties:
@@ -163,21 +178,6 @@ components:
         additionalProperties:
           type: string
       description: The number of sessions started in the period, broken down by platform and sdkType
-    sessionAnalytics:
-      type: object
-      properties:
-        date:
-          type: string
-          description: The start date and time for the period in the timezone passesd in
-        dateUtc:
-          type: string
-          description: The start date and time for the period in UTC
-        started:
-          $ref: '#/components/schemas/sessionAnalytics_started'
-        ended:
-          type: integer
-          description: The number of session that were explicitly ended in the period
-          format: int64
   securitySchemes:
     basicAuth:
       type: http

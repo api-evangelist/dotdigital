@@ -445,23 +445,15 @@ paths:
           description: The Dotdigital region id your account belongs to
 components:
   schemas:
-    smsTrackingAnalytics:
+    smsInboundAnalytics:
       type: object
       properties:
         date:
           type: string
           description: The start date and time for the period
-        sent:
+        received:
           type: integer
-          description: The number of trackings urls sent
-          format: int64
-        clicks:
-          type: integer
-          description: The number of clicks recorded for the url
-          format: int64
-        uniqueClicks:
-          type: integer
-          description: The number of clicks recorded by unique individuals
+          description: The number of messages received in the period
           format: int64
     smsOutboundAnalytics:
       type: object
@@ -485,6 +477,24 @@ components:
           type: integer
           description: The number of messages deemed undeliverable in the period
           format: int64
+    smsTrackingAnalytics:
+      type: object
+      properties:
+        date:
+          type: string
+          description: The start date and time for the period
+        sent:
+          type: integer
+          description: The number of trackings urls sent
+          format: int64
+        clicks:
+          type: integer
+          description: The number of clicks recorded for the url
+          format: int64
+        uniqueClicks:
+          type: integer
+          description: The number of clicks recorded by unique individuals
+          format: int64
     smsVerifyAnalytics:
       type: object
       properties:
@@ -506,16 +516,6 @@ components:
         locked:
           type: integer
           description: The number of verify calls that locked out
-          format: int64
-    smsInboundAnalytics:
-      type: object
-      properties:
-        date:
-          type: string
-          description: The start date and time for the period
-        received:
-          type: integer
-          description: The number of messages received in the period
           format: int64
   securitySchemes:
     basicAuth:

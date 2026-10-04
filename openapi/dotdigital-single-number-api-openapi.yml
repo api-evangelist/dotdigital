@@ -56,31 +56,6 @@ paths:
           content: {}
 components:
   schemas:
-    SingleValidation_networkDetails_roaming:
-      required:
-      - countryCode
-      - countryIdd
-      - countryName
-      - networkName
-      type: object
-      properties:
-        networkName:
-          type: string
-          description: The name of the network being used currently.
-          example: Vodafone UK
-        countryCode:
-          type: string
-          description: The country code of the country the phone is roaming within in ISO 3166-1 alpha-2 format.
-          example: GB
-        countryIdd:
-          type: string
-          description: The dialling code of the country the phone is roaming within.
-          example: '44'
-        countryName:
-          type: string
-          description: The name of the country the phone is roaming within.
-          example: United Kingdom
-      description: The roaming details, if the phone is currently roaming
     SingleValidation_networkDetails:
       required:
       - isPorted
@@ -138,6 +113,31 @@ components:
           example: '44'
         networkDetails:
           $ref: '#/components/schemas/SingleValidation_networkDetails'
+    SingleValidation_networkDetails_roaming:
+      required:
+      - countryCode
+      - countryIdd
+      - countryName
+      - networkName
+      type: object
+      properties:
+        networkName:
+          type: string
+          description: The name of the network being used currently.
+          example: Vodafone UK
+        countryCode:
+          type: string
+          description: The country code of the country the phone is roaming within in ISO 3166-1 alpha-2 format.
+          example: GB
+        countryIdd:
+          type: string
+          description: The dialling code of the country the phone is roaming within.
+          example: '44'
+        countryName:
+          type: string
+          description: The name of the country the phone is roaming within.
+          example: United Kingdom
+      description: The roaming details, if the phone is currently roaming
   securitySchemes:
     basicAuth:
       type: http

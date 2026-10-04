@@ -216,50 +216,19 @@ paths:
                 format: binary
 components:
   schemas:
-    ApiContactData:
+    ApiFileMedia:
       type: object
       additionalProperties: false
       properties:
-        key:
+        fileName:
           type:
           - string
           - 'null'
-        value: {}
-    ApiContactForBulkImport:
-      allOf:
-      - $ref: '#/components/schemas/ApiContact'
-      - type: object
-        additionalProperties: false
-        properties:
-          consentFields:
-            type:
-            - array
-            - 'null'
-            items:
-              $ref: '#/components/schemas/ApiContactData'
-          mobileNumberId:
-            type:
-            - string
-            - 'null'
-    ApiContactImportCollection:
-      type: object
-      additionalProperties: false
-      properties:
-        contacts:
+        data:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/ApiContactForBulkImport'
-        addressBookIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int32
-        mergeOption:
-          $ref: '#/components/schemas/ApiContactMergeOptionTypes'
+          format: byte
     ApiContactImportReport:
       type: object
       additionalProperties: false
@@ -309,6 +278,48 @@ components:
         suppressedContacts:
           type: integer
           format: int32
+    ApiContactEmailTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - PlainText
+      - Html
+      - NotAvailableInThisVersion
+      enum:
+      - PlainText
+      - Html
+      - NotAvailableInThisVersion
+    ApiContactForBulkImport:
+      allOf:
+      - $ref: '#/components/schemas/ApiContact'
+      - type: object
+        additionalProperties: false
+        properties:
+          consentFields:
+            type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ApiContactData'
+          mobileNumberId:
+            type:
+            - string
+            - 'null'
+    ApiContactOptInTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - Unknown
+      - Single
+      - Double
+      - VerifiedDouble
+      - NotAvailableInThisVersion
+      enum:
+      - Unknown
+      - Single
+      - Double
+      - VerifiedDouble
+      - NotAvailableInThisVersion
     ApiContactStatuses:
       type: string
       description: ''
@@ -344,34 +355,6 @@ components:
       - DomainSuppression
       - NoMxRecord
       - NotAvailableInThisVersion
-    ApiContactOptInTypes:
-      type: string
-      description: ''
-      x-enumNames:
-      - Unknown
-      - Single
-      - Double
-      - VerifiedDouble
-      - NotAvailableInThisVersion
-      enum:
-      - Unknown
-      - Single
-      - Double
-      - VerifiedDouble
-      - NotAvailableInThisVersion
-    ApiContactMergeOptionTypes:
-      type: string
-      description: ''
-      x-enumNames:
-      - Overwrite
-      - OnlyOverwriteIfNotEmpty
-      - OnlyOverwriteIfContactDataNotPopulated
-      - NotAvailableInThisVersion
-      enum:
-      - Overwrite
-      - OnlyOverwriteIfNotEmpty
-      - OnlyOverwriteIfContactDataNotPopulated
-      - NotAvailableInThisVersion
     ApiContact:
       type: object
       additionalProperties: false
@@ -398,15 +381,6 @@ components:
             $ref: '#/components/schemas/ApiContactData'
         status:
           $ref: '#/components/schemas/ApiContactStatuses'
-    ApiContactImport:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: string
-          format: guid
-        status:
-          $ref: '#/components/schemas/ApiContactImportStatuses'
     ApiContactImportStatuses:
       type: string
       description: ''
@@ -428,28 +402,54 @@ components:
       - Failed
       - ExceedsAllowedContactLimit
       - NotAvailableInThisVersion
-    ApiContactEmailTypes:
-      type: string
-      description: ''
-      x-enumNames:
-      - PlainText
-      - Html
-      - NotAvailableInThisVersion
-      enum:
-      - PlainText
-      - Html
-      - NotAvailableInThisVersion
-    ApiFileMedia:
+    ApiContactImport:
       type: object
       additionalProperties: false
       properties:
-        fileName:
+        id:
+          type: string
+          format: guid
+        status:
+          $ref: '#/components/schemas/ApiContactImportStatuses'
+    ApiContactData:
+      type: object
+      additionalProperties: false
+      properties:
+        key:
           type:
           - string
           - 'null'
-        data:
+        value: {}
+    ApiContactMergeOptionTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - Overwrite
+      - OnlyOverwriteIfNotEmpty
+      - OnlyOverwriteIfContactDataNotPopulated
+      - NotAvailableInThisVersion
+      enum:
+      - Overwrite
+      - OnlyOverwriteIfNotEmpty
+      - OnlyOverwriteIfContactDataNotPopulated
+      - NotAvailableInThisVersion
+    ApiContactImportCollection:
+      type: object
+      additionalProperties: false
+      properties:
+        contacts:
           type:
-          - string
+          - array
           - 'null'
-          format: byte
+          items:
+            $ref: '#/components/schemas/ApiContactForBulkImport'
+        addressBookIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+        mergeOption:
+          $ref: '#/components/schemas/ApiContactMergeOptionTypes'
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

@@ -68,22 +68,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    errorResponse:
-      required:
-      - description
-      - errorCode
-      type: object
-      properties:
-        errorCode:
-          type: string
-          description: Unique error code
-        description:
-          type: string
-          description: Description of the issue
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/errorResponse_details'
     errorResponse_details:
       required:
       - description
@@ -96,18 +80,6 @@ components:
         description:
           type: string
           description: Description of the error
-    eventsv3import_timelineDetails:
-      required:
-      - summary
-      type: object
-      properties:
-        summary:
-          maxLength: 160
-          minLength: 1
-          type: string
-          description: Optional description of the event for display in the timeline of the contact.
-          example: 'Search for travel desination: Bali'
-      description: The details to display in the contacts timeline; if omitted nothing will be shown.
     contactIdentifier:
       required:
       - identifier
@@ -124,6 +96,22 @@ components:
           - 'null'
           description: The unique value to identify the contact or the same type as the **identifier**
           example: fred.bloggs@emailsim.io
+    errorResponse:
+      required:
+      - description
+      - errorCode
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: Unique error code
+        description:
+          type: string
+          description: Description of the issue
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/errorResponse_details'
     v3_import_body:
       required:
       - contactIdentity
@@ -165,6 +153,18 @@ components:
             travelFromDate: '2025-07-03'
             flightsRequired: true
       description: An event
+    eventsv3import_timelineDetails:
+      required:
+      - summary
+      type: object
+      properties:
+        summary:
+          maxLength: 160
+          minLength: 1
+          type: string
+          description: Optional description of the event for display in the timeline of the contact.
+          example: 'Search for travel desination: Bali'
+      description: The details to display in the contacts timeline; if omitted nothing will be shown.
   securitySchemes:
     basicAuth:
       type: http

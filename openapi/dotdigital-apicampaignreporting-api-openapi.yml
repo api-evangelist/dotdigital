@@ -957,18 +957,7 @@ paths:
                   $ref: '#/components/schemas/ApiCampaignReportModelExtended'
 components:
   schemas:
-    ApiCampaignLinkGroup:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        dateCreated:
-          type: string
-          format: date-time
-    ApiCampaignContactOpen:
+    ApiCampaignContactReply:
       type: object
       additionalProperties: false
       properties:
@@ -979,29 +968,33 @@ components:
           type:
           - string
           - 'null'
-        mailClient:
+        fromAddress:
           type:
           - string
           - 'null'
-        mailClientVersion:
+        toAddress:
           type:
           - string
           - 'null'
-        ipAddress:
+        subject:
           type:
           - string
           - 'null'
-        userAgent:
+        message:
           type:
           - string
           - 'null'
         isHtml:
           type: boolean
-        isForward:
-          type: boolean
-        dateOpened:
+        dateReplied:
           type: string
           format: date-time
+        replyType:
+          $ref: '#/components/schemas/ApiCampaignReplyTypes'
+        customReplyToAddress:
+          type:
+          - string
+          - 'null'
     ApiCampaignContactClickWithGroups:
       type: object
       additionalProperties: false
@@ -1215,127 +1208,21 @@ components:
         numAssistedOrders:
           type: integer
           format: int32
-    ApiCampaignContactRoiDetail:
-      type: object
-      additionalProperties: false
-      properties:
-        contactId:
-          type: integer
-          format: int32
-        email:
-          type:
-          - string
-          - 'null'
-        markerName:
-          type:
-          - string
-          - 'null'
-        dataType:
-          $ref: '#/components/schemas/ApiRoiDetailDataTypes'
-        value: {}
-        dateEntered:
-          type: string
-          format: date-time
-    ApiCampaignContactSummary:
-      type: object
-      additionalProperties: false
-      properties:
-        contactId:
-          type: integer
-          format: int32
-        email:
-          type:
-          - string
-          - 'null'
-        numOpens:
-          type: integer
-          format: int32
-        numPageViews:
-          type: integer
-          format: int32
-        numClicks:
-          type: integer
-          format: int32
-        numForwards:
-          type: integer
-          format: int32
-        numEstimatedForwards:
-          type: integer
-          format: int32
-        numReplies:
-          type: integer
-          format: int32
-        dateSent:
-          type: string
-          format: date-time
-        dateFirstOpened:
-          type: string
-          format: date-time
-        dateLastOpened:
-          type: string
-          format: date-time
-        firstOpenIp:
-          type:
-          - string
-          - 'null'
-          description: "if the openip is null it doesn't get mapped so this defualt \nempty string is needed is required to maintain api usage."
-        unsubscribed:
-          type: boolean
-        softBounced:
-          type: boolean
-        hardBounced:
-          type: boolean
-    CampaignType:
+    ApiCampaignReplyTypes:
       type: string
       description: ''
       x-enumNames:
-      - Standard
-      - Triggered
-      - Template
-      - AiTemplate
+      - Reply
+      - AutoReply
+      - ChallengeResponse
+      - Unsafe
+      - NotAvailableInThisVersion
       enum:
-      - Standard
-      - Triggered
-      - Template
-      - AiTemplate
-    ApiCampaignContactReply:
-      type: object
-      additionalProperties: false
-      properties:
-        contactId:
-          type: integer
-          format: int32
-        email:
-          type:
-          - string
-          - 'null'
-        fromAddress:
-          type:
-          - string
-          - 'null'
-        toAddress:
-          type:
-          - string
-          - 'null'
-        subject:
-          type:
-          - string
-          - 'null'
-        message:
-          type:
-          - string
-          - 'null'
-        isHtml:
-          type: boolean
-        dateReplied:
-          type: string
-          format: date-time
-        replyType:
-          $ref: '#/components/schemas/ApiCampaignReplyTypes'
-        customReplyToAddress:
-          type:
-          - string
-          - 'null'
+      - Reply
+      - AutoReply
+      - ChallengeResponse
+      - Unsafe
+      - NotAvailableInThisVersion
     ApiCampaignRevenueAttributionDetail:
       type: object
       additionalProperties: false
@@ -1359,6 +1246,27 @@ components:
         conversionRate:
           type: number
           format: decimal
+    ApiCampaignContactRoiDetail:
+      type: object
+      additionalProperties: false
+      properties:
+        contactId:
+          type: integer
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+        markerName:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/ApiRoiDetailDataTypes'
+        value: {}
+        dateEntered:
+          type: string
+          format: date-time
     ApiCampaignContactSocialBookmarkView:
       type: object
       additionalProperties: false
@@ -1377,6 +1285,41 @@ components:
         numViews:
           type: integer
           format: int32
+    ApiContactStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - Subscribed
+      - Unsubscribed
+      - SoftBounced
+      - HardBounced
+      - IspComplained
+      - MailBlocked
+      - PendingOptIn
+      - DirectComplaint
+      - Deleted
+      - SharedSuppression
+      - Suppressed
+      - NotAllowed
+      - DomainSuppression
+      - NoMxRecord
+      - NotAvailableInThisVersion
+      enum:
+      - Subscribed
+      - Unsubscribed
+      - SoftBounced
+      - HardBounced
+      - IspComplained
+      - MailBlocked
+      - PendingOptIn
+      - DirectComplaint
+      - Deleted
+      - SharedSuppression
+      - Suppressed
+      - NotAllowed
+      - DomainSuppression
+      - NoMxRecord
+      - NotAvailableInThisVersion
     ApiRoiDetailDataTypes:
       type: string
       description: ''
@@ -1392,6 +1335,49 @@ components:
       - Date
       - Boolean
       - NotAvailableInThisVersion
+    ApiContactData:
+      type: object
+      additionalProperties: false
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        value: {}
+    ApiCampaignContactOpen:
+      type: object
+      additionalProperties: false
+      properties:
+        contactId:
+          type: integer
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+        mailClient:
+          type:
+          - string
+          - 'null'
+        mailClientVersion:
+          type:
+          - string
+          - 'null'
+        ipAddress:
+          type:
+          - string
+          - 'null'
+        userAgent:
+          type:
+          - string
+          - 'null'
+        isHtml:
+          type: boolean
+        isForward:
+          type: boolean
+        dateOpened:
+          type: string
+          format: date-time
     ApiContactOptInTypes:
       type: string
       description: ''
@@ -1433,80 +1419,6 @@ components:
             $ref: '#/components/schemas/ApiContactData'
         status:
           $ref: '#/components/schemas/ApiContactStatuses'
-    ApiCampaignContactClick:
-      type: object
-      additionalProperties: false
-      properties:
-        contactId:
-          type: integer
-          format: int32
-        email:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-        ipAddress:
-          type:
-          - string
-          - 'null'
-        userAgent:
-          type:
-          - string
-          - 'null'
-        dateClicked:
-          type: string
-          format: date-time
-        keyword:
-          type:
-          - string
-          - 'null'
-    ApiContactData:
-      type: object
-      additionalProperties: false
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        value: {}
-    ApiContactStatuses:
-      type: string
-      description: ''
-      x-enumNames:
-      - Subscribed
-      - Unsubscribed
-      - SoftBounced
-      - HardBounced
-      - IspComplained
-      - MailBlocked
-      - PendingOptIn
-      - DirectComplaint
-      - Deleted
-      - SharedSuppression
-      - Suppressed
-      - NotAllowed
-      - DomainSuppression
-      - NoMxRecord
-      - NotAvailableInThisVersion
-      enum:
-      - Subscribed
-      - Unsubscribed
-      - SoftBounced
-      - HardBounced
-      - IspComplained
-      - MailBlocked
-      - PendingOptIn
-      - DirectComplaint
-      - Deleted
-      - SharedSuppression
-      - Suppressed
-      - NotAllowed
-      - DomainSuppression
-      - NoMxRecord
-      - NotAvailableInThisVersion
     ApiCampaignReportModelExtended:
       type: object
       additionalProperties: false
@@ -1623,6 +1535,120 @@ components:
           - 'null'
         isSplitTest:
           type: boolean
+    ApiCampaignContactSummary:
+      type: object
+      additionalProperties: false
+      properties:
+        contactId:
+          type: integer
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+        numOpens:
+          type: integer
+          format: int32
+        numPageViews:
+          type: integer
+          format: int32
+        numClicks:
+          type: integer
+          format: int32
+        numForwards:
+          type: integer
+          format: int32
+        numEstimatedForwards:
+          type: integer
+          format: int32
+        numReplies:
+          type: integer
+          format: int32
+        dateSent:
+          type: string
+          format: date-time
+        dateFirstOpened:
+          type: string
+          format: date-time
+        dateLastOpened:
+          type: string
+          format: date-time
+        firstOpenIp:
+          type:
+          - string
+          - 'null'
+          description: "if the openip is null it doesn't get mapped so this defualt \nempty string is needed is required to maintain api usage."
+        unsubscribed:
+          type: boolean
+        softBounced:
+          type: boolean
+        hardBounced:
+          type: boolean
+    ApiCampaignLinkGroup:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        dateCreated:
+          type: string
+          format: date-time
+    CampaignType:
+      type: string
+      description: ''
+      x-enumNames:
+      - Standard
+      - Triggered
+      - Template
+      - AiTemplate
+      enum:
+      - Standard
+      - Triggered
+      - Template
+      - AiTemplate
+    ApiContactEmailTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - PlainText
+      - Html
+      - NotAvailableInThisVersion
+      enum:
+      - PlainText
+      - Html
+      - NotAvailableInThisVersion
+    ApiCampaignContactClick:
+      type: object
+      additionalProperties: false
+      properties:
+        contactId:
+          type: integer
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        ipAddress:
+          type:
+          - string
+          - 'null'
+        userAgent:
+          type:
+          - string
+          - 'null'
+        dateClicked:
+          type: string
+          format: date-time
+        keyword:
+          type:
+          - string
+          - 'null'
     ApiCampaignContactPageView:
       type: object
       additionalProperties: false
@@ -1641,30 +1667,4 @@ components:
         dateViewed:
           type: string
           format: date-time
-    ApiContactEmailTypes:
-      type: string
-      description: ''
-      x-enumNames:
-      - PlainText
-      - Html
-      - NotAvailableInThisVersion
-      enum:
-      - PlainText
-      - Html
-      - NotAvailableInThisVersion
-    ApiCampaignReplyTypes:
-      type: string
-      description: ''
-      x-enumNames:
-      - Reply
-      - AutoReply
-      - ChallengeResponse
-      - Unsafe
-      - NotAvailableInThisVersion
-      enum:
-      - Reply
-      - AutoReply
-      - ChallengeResponse
-      - Unsafe
-      - NotAvailableInThisVersion
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

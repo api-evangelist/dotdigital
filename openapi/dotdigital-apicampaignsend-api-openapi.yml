@@ -72,6 +72,56 @@ paths:
                 $ref: '#/components/schemas/ApiCampaignSend'
 components:
   schemas:
+    ApiSplitTestSendOptions:
+      type: object
+      additionalProperties: false
+      required:
+      - testMetric
+      - testPercentage
+      - testPeriodHours
+      properties:
+        testMetric:
+          $ref: '#/components/schemas/ApiSplitTestMetrics'
+        testPercentage:
+          type: integer
+          format: int32
+          maximum: 100.0
+          minimum: 1.0
+        testPeriodHours:
+          type: integer
+          format: int32
+          maximum: 2147483647.0
+          minimum: 1.0
+    ApiSplitTestMetrics:
+      type: string
+      description: ''
+      x-enumNames:
+      - Opens
+      - Clicks
+      - ROI
+      - NotAvailableInThisVersion
+      enum:
+      - Opens
+      - Clicks
+      - ROI
+      - NotAvailableInThisVersion
+    ApiCampaignSendStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - NotSent
+      - Scheduled
+      - Sending
+      - Sent
+      - Cancelled
+      - NotAvailableInThisVersion
+      enum:
+      - NotSent
+      - Scheduled
+      - Sending
+      - Sent
+      - Cancelled
+      - NotAvailableInThisVersion
     ApiCampaignSend:
       type: object
       additionalProperties: false
@@ -108,54 +158,4 @@ components:
           readOnly: true
           oneOf:
           - $ref: '#/components/schemas/ApiCampaignSendStatuses'
-    ApiCampaignSendStatuses:
-      type: string
-      description: ''
-      x-enumNames:
-      - NotSent
-      - Scheduled
-      - Sending
-      - Sent
-      - Cancelled
-      - NotAvailableInThisVersion
-      enum:
-      - NotSent
-      - Scheduled
-      - Sending
-      - Sent
-      - Cancelled
-      - NotAvailableInThisVersion
-    ApiSplitTestMetrics:
-      type: string
-      description: ''
-      x-enumNames:
-      - Opens
-      - Clicks
-      - ROI
-      - NotAvailableInThisVersion
-      enum:
-      - Opens
-      - Clicks
-      - ROI
-      - NotAvailableInThisVersion
-    ApiSplitTestSendOptions:
-      type: object
-      additionalProperties: false
-      required:
-      - testMetric
-      - testPercentage
-      - testPeriodHours
-      properties:
-        testMetric:
-          $ref: '#/components/schemas/ApiSplitTestMetrics'
-        testPercentage:
-          type: integer
-          format: int32
-          maximum: 100.0
-          minimum: 1.0
-        testPeriodHours:
-          type: integer
-          format: int32
-          maximum: 2147483647.0
-          minimum: 1.0
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

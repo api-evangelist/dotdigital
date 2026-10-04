@@ -66,6 +66,45 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
+    ApiBusinessObjectType:
+      type: string
+      description: ''
+      x-enumNames:
+      - Campaign
+      - Survey
+      - MicrositePage
+      - DynamicContent
+      - ContactLabel
+      - SurveyQuestion
+      - AddressBook
+      - DynamicContentRule
+      - CampaignLink
+      - CampaignTemplate
+      - NotAvailableInThisVersion
+      enum:
+      - Campaign
+      - Survey
+      - MicrositePage
+      - DynamicContent
+      - ContactLabel
+      - SurveyQuestion
+      - AddressBook
+      - DynamicContentRule
+      - CampaignLink
+      - CampaignTemplate
+      - NotAvailableInThisVersion
+    ApiDependencyResult:
+      type: object
+      additionalProperties: false
+      properties:
+        dependencies:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiDependency'
+        result:
+          type: boolean
     ApiDataField:
       type: object
       additionalProperties: false
@@ -80,6 +119,32 @@ components:
         visibility:
           $ref: '#/components/schemas/ApiDataFieldVisibility'
         defaultValue: {}
+    ApiDataTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - String
+      - Numeric
+      - Date
+      - Boolean
+      - NotAvailableInThisVersion
+      enum:
+      - String
+      - Numeric
+      - Date
+      - Boolean
+      - NotAvailableInThisVersion
+    ApiDataFieldVisibility:
+      type: string
+      description: ''
+      x-enumNames:
+      - Private
+      - Public
+      - NotAvailableInThisVersion
+      enum:
+      - Private
+      - Public
+      - NotAvailableInThisVersion
     ProblemDetails:
       type: object
       additionalProperties: {}
@@ -108,29 +173,6 @@ components:
         extensions:
           type: object
           additionalProperties: {}
-    ApiDependencyResult:
-      type: object
-      additionalProperties: false
-      properties:
-        dependencies:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiDependency'
-        result:
-          type: boolean
-    ApiDataFieldVisibility:
-      type: string
-      description: ''
-      x-enumNames:
-      - Private
-      - Public
-      - NotAvailableInThisVersion
-      enum:
-      - Private
-      - Public
-      - NotAvailableInThisVersion
     ApiDependency:
       type: object
       additionalProperties: false
@@ -140,46 +182,4 @@ components:
         objectId:
           type: integer
           format: int32
-    ApiDataTypes:
-      type: string
-      description: ''
-      x-enumNames:
-      - String
-      - Numeric
-      - Date
-      - Boolean
-      - NotAvailableInThisVersion
-      enum:
-      - String
-      - Numeric
-      - Date
-      - Boolean
-      - NotAvailableInThisVersion
-    ApiBusinessObjectType:
-      type: string
-      description: ''
-      x-enumNames:
-      - Campaign
-      - Survey
-      - MicrositePage
-      - DynamicContent
-      - ContactLabel
-      - SurveyQuestion
-      - AddressBook
-      - DynamicContentRule
-      - CampaignLink
-      - CampaignTemplate
-      - NotAvailableInThisVersion
-      enum:
-      - Campaign
-      - Survey
-      - MicrositePage
-      - DynamicContent
-      - ContactLabel
-      - SurveyQuestion
-      - AddressBook
-      - DynamicContentRule
-      - CampaignLink
-      - CampaignTemplate
-      - NotAvailableInThisVersion
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

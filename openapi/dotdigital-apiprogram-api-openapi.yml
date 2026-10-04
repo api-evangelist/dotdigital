@@ -161,20 +161,16 @@ paths:
                 $ref: '#/components/schemas/ApiProgramEnrolment'
 components:
   schemas:
-    ApiProgramStatus:
+    ApiProgramEnrolmentStatus:
       type: string
       description: ''
       x-enumNames:
-      - Draft
-      - Deactivated
-      - Active
-      - ReadOnly
+      - Processing
+      - Finished
       - NotAvailableInThisVersion
       enum:
-      - Draft
-      - Deactivated
-      - Active
-      - ReadOnly
+      - Processing
+      - Finished
       - NotAvailableInThisVersion
     ApiProgram:
       type: object
@@ -192,17 +188,6 @@ components:
         dateCreated:
           type: string
           format: date-time
-    ApiProgramEnrolmentStatus:
-      type: string
-      description: ''
-      x-enumNames:
-      - Processing
-      - Finished
-      - NotAvailableInThisVersion
-      enum:
-      - Processing
-      - Finished
-      - NotAvailableInThisVersion
     ApiProgramEnrolment:
       type: object
       additionalProperties: false
@@ -232,4 +217,19 @@ components:
           items:
             type: integer
             format: int32
+    ApiProgramStatus:
+      type: string
+      description: ''
+      x-enumNames:
+      - Draft
+      - Deactivated
+      - Active
+      - ReadOnly
+      - NotAvailableInThisVersion
+      enum:
+      - Draft
+      - Deactivated
+      - Active
+      - ReadOnly
+      - NotAvailableInThisVersion
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

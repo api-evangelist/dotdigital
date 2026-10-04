@@ -87,6 +87,11 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    PushCapabilitiesSummary:
+      type: array
+      description: Array with push capabilities for each queried profile
+      items:
+        $ref: '#/components/schemas/PushCapabilitiesSummary_inner'
     PushCapabilitiesSummary_inner:
       required:
       - id
@@ -109,11 +114,6 @@ components:
           description: <bundleId>.<environment> string for apns push tokens registered for this profile
           items:
             type: string
-    PushCapabilitiesSummary:
-      type: array
-      description: Array with push capabilities for each queried profile
-      items:
-        $ref: '#/components/schemas/PushCapabilitiesSummary_inner'
     push_validation_body:
       type: object
       properties:
