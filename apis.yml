@@ -723,6 +723,8 @@ apis:
   humanURL: https://marketing.developer.dotdigital.com/docs/getting-started-with-the-api
   baseURL: https://r1-api.dotdigital.com/v2
   tags:
+  - email-contacts
+  tags_raw:
   - Email contacts
   properties:
   - type: OpenAPI
@@ -1262,6 +1264,8 @@ apis:
   humanURL: https://marketing.developer.dotdigital.com/docs/mcp
   baseURL: https://marketing.developer.dotdigital.com/mcp
   tags:
+  - WhatsApp
+  tags_raw:
   - Whats App
   properties:
   - type: OpenAPI
