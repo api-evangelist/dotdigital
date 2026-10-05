@@ -1,0 +1,12 @@
+{
+ "url": "https://r2-api.dotdigital.com/swagger/v1/swagger.json",
+ "requested_url": "https://r2-api.dotdigital.com/swagger/v1/swagger.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 313126,
+ "sha256": "1d5cf95fbef9e15118816b3e714df842789600317a8de3767426db5a8e342f58",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
