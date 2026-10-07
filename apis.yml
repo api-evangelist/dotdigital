@@ -1279,6 +1279,8 @@ apis:
   - type: Documentation
     url: https://marketing.developer.dotdigital.com/reference/omnichannel-api
 common:
+  - type: Pricing
+    url: https://dotdigital.com/get-started/
   - type: CapabilityMap
     url: capabilities/dotdigital-capability-edges.yml
     name: Dotdigital Business Capability Map
