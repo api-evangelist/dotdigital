@@ -46,3 +46,16 @@ plan_count: 0
 plan_count_note: Dotdigital publishes no priced tiers. The pricing page routes every enquiry to a sales contact form for a personalized quote
   based on contact database size, send volume and channels. plan_count is 0 because zero PRICED plans are published, not because the page is missing.
 pricing_model: quote-only
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - negotiated
+  units: []
+  plans:
+  - name: Custom / Quote-Based
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
