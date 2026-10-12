@@ -1,0 +1,453 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/dotdigital/integrations
+checked:
+- https://composio.dev/toolkits/dotdigital
+- https://monid.ai/tools/dotdigital
+- https://n8n.io/integrations/dotdigital/
+- https://zapier.com/apps/dotdigital/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: dotdigital
+  url: https://zapier.com/apps/dotdigital/integrations
+  external_url: https://dotdigital.com/get-started/
+  partner_tier: SILVER
+  triggers:
+  - key: campaign_activity
+    label: Campaign Activity
+  - key: campaign_clicks
+    label: Campaign Clicks
+  - key: campaign_opens
+    label: Campaign Opens
+  - key: contact_created
+    label: Contact Created
+  - key: contact_modified
+    label: Contact Modified
+  - key: contact_suppressed
+    label: Contact Suppressed
+  - key: contact_unsubscribed
+    label: Contact Unsubscribed
+  - key: survey_response
+    label: New Survey Response
+  actions:
+  - key: address_book
+    label: Create a List
+  - key: contact
+    label: Create or Update Contact (Deprecated)
+  - key: contact_v2
+    label: Create or Update Contact
+  - key: data_field
+    label: Create Contact Data Field
+  - key: enrol_in_program
+    label: Enrol Contact in Program
+  - key: refresh_segment
+    label: Refresh Segment
+  - key: resubscribe
+    label: Resubscribe Contact
+  - key: send_campaign
+    label: Send Email Campaign
+  - key: send_sms
+    label: Send SMS
+  - key: transactional_email
+    label: Send Transactional Email
+  - key: transactional_sms
+    label: Send Transactional SMS
+  - key: unsubscribe
+    label: Unsubscribe Contact
+  searches: []
+edges:
+- partner_name: Ninja Forms
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/ninjaforms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://ninjaforms.com/extensions/zapier/
+- partner_name: Gravity Forms
+  partner: gravity-forms
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/gravity-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.gravityforms.com/?utm_campaign=partners&utm_source=zapier-listing-learn-more&utm_medium=free-placement
+- partner_name: Facebook Lead Ads
+  partner: facebook-lead-ads
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/facebook-lead-ads
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://www.facebook.com/business/ads/lead-ads
+- partner_name: Typeform
+  partner: typeform
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/typeform
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.typeform.com/signup?utm_medium=referral&utm_source=zapier&utm_campaign=zapier_integration&utm_content=marketplace
+- partner_name: Eventbrite
+  partner: eventbrite
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/eventbrite
+  direction: third-party
+  category: Event Management
+  partner_url: https://eventbrite.com/
+- partner_name: Formstack
+  partner: formstack
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/formstack
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://zpr.io/62HTX
+- partner_name: Unbounce
+  partner: unbounce
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/unbounce
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://unbounce.com/
+- partner_name: HubSpot
+  partner: hubspot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/hubspot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.hubspot.com/
+- partner_name: Facebook Lead Ads (for Business admins)
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/facebook-lead-ads-beta
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://facebook.com/
+- partner_name: LinkedIn Ads
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/linkedin-ads
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://www.linkedin.com/
+- partner_name: Google Ads
+  partner: google-ads
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/google-ads
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://ads.google.com/
+- partner_name: WPForms
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/wpforms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://wpforms.com/
+- partner_name: Shopify
+  partner: shopify
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/shopify
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.shopify.com/
+- partner_name: Zoom
+  partner: zoom
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/zoom
+  direction: third-party
+  category: Video Conferencing
+  partner_url: https://www.zoom.us/
+- partner_name: Magento 2.X
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/magento-v2
+  direction: third-party
+  category: eCommerce
+  partner_url: https://magento.com/
+- partner_name: MySQL
+  partner: mysql
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/mysql
+  direction: third-party
+  category: Databases
+  partner_url: https://www.mysql.com/
+- partner_name: Pipedrive
+  partner: pipedrive
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/pipedrive
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://pipedrive.com/
+- partner_name: ClickFunnels Classic
+  partner: clickfunnels
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/clickfunnels-classic
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.clickfunnels.com/
+- partner_name: Mailchimp
+  partner: mailchimp
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/mailchimp
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://mailchimp.com/
+- partner_name: FlippingBook
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/flippingbook
+  direction: third-party
+  category: Documents
+  partner_url: https://flippingbook.com/
+- partner_name: monday.com
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/monday
+  direction: third-party
+  category: Project Management
+  partner_url: https://monday.com/
+- partner_name: Getsitecontrol
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/getsitecontrol
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://getsitecontrol.com/
+- partner_name: Demio
+  partner: demio
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/demio
+  direction: third-party
+  category: Webinars
+  partner_url: https://demio.com/
+- partner_name: WooCommerce
+  partner: woocommerce
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/woocommerce
+  direction: third-party
+  category: eCommerce
+  partner_url: https://woocommerce.com/products/woocommerce-zapier/?utm_source=zapier&utm_medium=website&utm_campaign=integration
+- partner_name: Beacon
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/beacon
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.beaconcrm.org/
+- partner_name: Intercom
+  partner: intercom
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/intercom
+  direction: third-party
+  category: Customer Support
+  partner_url: https://www.intercom.com/welcome-to-intercom?utm_source=external-website&utm_medium=partner&utm_campaign=20220503_all_oc_all_global_gl_all_all_par_extmktplc&utm_term=zapier
+- partner_name: BigMarker
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/bigmarker
+  direction: third-party
+  category: Webinars
+  partner_url: http://www.bigmarker.com/
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: Instapage
+  partner: instapage
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/instapage
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://instapage.com/
+- partner_name: Pardot
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/pardot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.pardot.com/
+templates:
+- title: Create or update Dotdigital contacts from new Unbounce form submissions
+  url: https://zapier.com/apps/dotdigital/integrations/unbounce/255581881/create-or-update-dotdigital-contacts-from-new-unbounce-form-submissions
+  apps:
+  - unbounce
+  - dotdigital
+- title: Create or update Dotdigital contacts from new Jotform submissions
+  url: https://zapier.com/apps/dotdigital/integrations/jotform/1745800/create-or-update-dotdigital-contacts-from-new-jotform-submissions
+  apps:
+  - jotform
+  - dotdigital
+- title: Create Trello cards for new Dotdigital survey responses
+  url: https://zapier.com/apps/dotdigital/integrations/trello/1641391/create-trello-cards-for-new-dotdigital-survey-responses
+  apps:
+  - dotdigital
+  - trello
+- title: Share Dotdigital survey responses in Slack
+  url: https://zapier.com/apps/dotdigital/integrations/slack/17288/share-dotdigital-survey-responses-in-slack
+  apps:
+  - dotdigital
+  - slack
+- title: Send a Dotdigital campaign for new Salesforce outbound messages
+  url: https://zapier.com/apps/dotdigital/integrations/salesforce/17292/send-a-dotdigital-campaign-for-new-salesforce-outbound-messages
+  apps:
+  - salesforce
+  - dotdigital
+- title: Create Dotdigital data field for new Eventbrite events
+  url: https://zapier.com/apps/dotdigital/integrations/eventbrite/17316/create-dotdigital-data-field-for-new-eventbrite-events
+  apps:
+  - eventbrite
+  - dotdigital
+- title: Create Dotdigital address books from new Google Contact groups
+  url: https://zapier.com/apps/dotdigital/integrations/google-contacts/17320/create-dotdigital-address-books-from-new-google-contact-groups
+  apps:
+  - google-contacts
+  - dotdigital
+- title: Send Dotdigital transactional email for new PayPal payments
+  url: https://zapier.com/apps/dotdigital/integrations/paypal/17321/send-dotdigital-transactional-email-for-new-paypal-payments
+  apps:
+  - paypal
+  - dotdigital
+- title: Send FireText SMS messages when new survey responses are received on Dotdigital
+  url: https://zapier.com/apps/dotdigital/integrations/firetext/18835/send-firetext-sms-messages-when-new-survey-responses-are-received-on-dotdigital
+  apps:
+  - dotdigital
+  - firetext
+- title: Create accounts in Spotler CRM from new Dotdigital survey responses
+  url: https://zapier.com/apps/dotdigital/integrations/spotler-crm/34357/create-accounts-in-spotler-crm-from-new-dotdigital-survey-responses
+  apps:
+  - dotdigital
+  - spotler-crm
+- title: Send an email with Gmail for new Dotdigital survey responses
+  url: https://zapier.com/apps/dotdigital/integrations/gmail/1143555/send-an-email-with-gmail-for-new-dotdigital-survey-responses
+  apps:
+  - dotdigital
+  - gmail
+- title: Create a spreadsheet row in Google Sheets for new survey responses in Dotdigital
+  url: https://zapier.com/apps/dotdigital/integrations/google-sheets/1143682/create-a-spreadsheet-row-in-google-sheets-for-new-survey-responses-in-dotdigital
+  apps:
+  - dotdigital
+  - google-sheets
+template_total: 132
