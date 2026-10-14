@@ -5,6 +5,7 @@ source:
 checked:
 - https://composio.dev/toolkits/dotdigital
 - https://monid.ai/tools/dotdigital
+- https://mpl-pusa01.app.blackbaud.net/mktpl/v1/public/marketplace/applications
 - https://n8n.io/integrations/dotdigital/
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/dotdigital
 - https://zapier.com/apps/dotdigital/integrations
@@ -418,6 +419,31 @@ edges:
       - Track
   detected_by: sweep-cdp.py
   first_seen: '2026-10-14'
+- partner_name: Blackbaud (Blackbaud Marketplace)
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  partner_note: Blackbaud has no all/* repo (catalog gap); publisher side only
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: blackbaud-marketplace
+  evidence: https://app.blackbaud.com/marketplace/applications/4a160bb5-b464-4883-9099-96331883cff6
+  store: https://app.blackbaud.com/marketplace
+  store_api: https://mpl-pusa01.app.blackbaud.net/mktpl/v1/public/marketplace/applications
+  publisher: Dotdigital
+  publisher_match: domain
+  publisher_domain: dotdigital.com
+  apps:
+  - Dotdigital for Blackbaud Raiser's Edge NXT®
+  listing_count: 1
+  compatible_solutions:
+  - renxt
+  badges:
+  - Reviewed by Blackbaud
+  detected_by: sweep-nonprofit.py
+  detected: '2026-10-14'
 templates:
 - title: Create or update Dotdigital contacts from new Unbounce form submissions
   url: https://zapier.com/apps/dotdigital/integrations/unbounce/255581881/create-or-update-dotdigital-contacts-from-new-unbounce-form-submissions

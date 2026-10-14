@@ -370,3 +370,14 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: dotdigital-blackbaud-blackbaud-marketplace
+  label: Blackbaud (Blackbaud Marketplace)
+  partner_name: Blackbaud (Blackbaud Marketplace)
+  type: marketplace
+  marketplace: blackbaud-marketplace
+  channel: partner-built
+  evidence: https://app.blackbaud.com/marketplace/applications/4a160bb5-b464-4883-9099-96331883cff6
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
