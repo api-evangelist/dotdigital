@@ -468,23 +468,6 @@ edges:
     builder: unknown (not in the directory record)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
-- partner_name: WordPress (own)
-  partner: wordpress
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://wordpress.org/plugins/dotmailer-sign-up-widget/
-  mirror_of: wordpress/integrations/wordpress-integration-edges.yml
-  apps:
-  - Dotdigital for WordPress
-  listing_count: 1
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-  category: WordPress plugin
 - partner_name: UK G-Cloud 15 (Digital Marketplace)
   partner: null
   partner_match: register
@@ -510,6 +493,23 @@ edges:
     detected: '2026-10-15'
   detected_by: sweep-gov-cloud.py
   first_seen: '2026-10-15'
+- partner_name: WordPress (own)
+  partner: wordpress
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://wordpress.org/plugins/dotmailer-sign-up-widget/
+  mirror_of: wordpress/integrations/wordpress-integration-edges.yml
+  apps:
+  - Dotdigital for WordPress
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: WordPress plugin
 templates:
 - title: Create or update Dotdigital contacts from new Unbounce form submissions
   url: https://zapier.com/apps/dotdigital/integrations/unbounce/255581881/create-or-update-dotdigital-contacts-from-new-unbounce-form-submissions
