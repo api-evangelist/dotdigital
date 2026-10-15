@@ -10,6 +10,7 @@ checked:
 - https://n8n.io/integrations/dotdigital/
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/dotdigital
 - https://zapier.com/apps/dotdigital/integrations
+- wordpress/integrations/wordpress-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -438,6 +439,23 @@ edges:
   detected_by: mirror-platform-listings.py
   badges:
   - Reviewed by Blackbaud
+- partner_name: WordPress (own)
+  partner: wordpress
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://wordpress.org/plugins/dotmailer-sign-up-widget/
+  mirror_of: wordpress/integrations/wordpress-integration-edges.yml
+  apps:
+  - Dotdigital for WordPress
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: WordPress plugin
 templates:
 - title: Create or update Dotdigital contacts from new Unbounce form submissions
   url: https://zapier.com/apps/dotdigital/integrations/unbounce/255581881/create-or-update-dotdigital-contacts-from-new-unbounce-form-submissions
