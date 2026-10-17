@@ -68,18 +68,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    errorResponse_details:
-      required:
-      - description
-      - item
-      type: object
-      properties:
-        item:
-          type: string
-          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
-        description:
-          type: string
-          description: Description of the error
     contactIdentifier:
       required:
       - identifier
@@ -112,6 +100,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/errorResponse_details'
+    errorResponse_details:
+      required:
+      - description
+      - item
+      type: object
+      properties:
+        item:
+          type: string
+          description: Item the error is associated with, for example, field name, unique identifier for an entity or item in batch
+        description:
+          type: string
+          description: Description of the error
     v3_import_body:
       required:
       - contactIdentity

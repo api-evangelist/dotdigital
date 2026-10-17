@@ -179,24 +179,6 @@ paths:
           description: ''
 components:
   schemas:
-    ApiDocumentFolder:
-      type: object
-      additionalProperties: false
-      required:
-      - name
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-          minLength: 1
-        childFolders:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiDocumentFolder'
     ApiDocument:
       type: object
       additionalProperties: false
@@ -234,4 +216,22 @@ components:
           - string
           - 'null'
           format: byte
+    ApiDocumentFolder:
+      type: object
+      additionalProperties: false
+      required:
+      - name
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          minLength: 1
+        childFolders:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiDocumentFolder'
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

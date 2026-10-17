@@ -66,6 +66,30 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
+    ApiDataTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - String
+      - Numeric
+      - Date
+      - Boolean
+      - NotAvailableInThisVersion
+      enum:
+      - String
+      - Numeric
+      - Date
+      - Boolean
+      - NotAvailableInThisVersion
+    ApiDependency:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/ApiBusinessObjectType'
+        objectId:
+          type: integer
+          format: int32
     ApiBusinessObjectType:
       type: string
       description: ''
@@ -105,6 +129,17 @@ components:
             $ref: '#/components/schemas/ApiDependency'
         result:
           type: boolean
+    ApiDataFieldVisibility:
+      type: string
+      description: ''
+      x-enumNames:
+      - Private
+      - Public
+      - NotAvailableInThisVersion
+      enum:
+      - Private
+      - Public
+      - NotAvailableInThisVersion
     ApiDataField:
       type: object
       additionalProperties: false
@@ -119,32 +154,6 @@ components:
         visibility:
           $ref: '#/components/schemas/ApiDataFieldVisibility'
         defaultValue: {}
-    ApiDataTypes:
-      type: string
-      description: ''
-      x-enumNames:
-      - String
-      - Numeric
-      - Date
-      - Boolean
-      - NotAvailableInThisVersion
-      enum:
-      - String
-      - Numeric
-      - Date
-      - Boolean
-      - NotAvailableInThisVersion
-    ApiDataFieldVisibility:
-      type: string
-      description: ''
-      x-enumNames:
-      - Private
-      - Public
-      - NotAvailableInThisVersion
-      enum:
-      - Private
-      - Public
-      - NotAvailableInThisVersion
     ProblemDetails:
       type: object
       additionalProperties: {}
@@ -173,13 +182,4 @@ components:
         extensions:
           type: object
           additionalProperties: {}
-    ApiDependency:
-      type: object
-      additionalProperties: false
-      properties:
-        type:
-          $ref: '#/components/schemas/ApiBusinessObjectType'
-        objectId:
-          type: integer
-          format: int32
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

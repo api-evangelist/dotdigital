@@ -110,35 +110,6 @@ paths:
                   $ref: '#/components/schemas/ApiOrder'
 components:
   schemas:
-    KpiMetricType:
-      type: string
-      description: ''
-      x-enumNames:
-      - TotalRevenue
-      - AverageOrderValue
-      - CustomerLifetimeValue
-      - TotalOrders
-      - AverageItemsPerOrder
-      - AverageDaysToSecondOrder
-      - Customers
-      - SinglePurchaseCustomers
-      - RepeatCustomers
-      - TotalDelay
-      - TotalRepeatOrders
-      - TotalItems
-      enum:
-      - TotalRevenue
-      - AverageOrderValue
-      - CustomerLifetimeValue
-      - TotalOrders
-      - AverageItemsPerOrder
-      - AverageDaysToSecondOrder
-      - Customers
-      - SinglePurchaseCustomers
-      - RepeatCustomers
-      - TotalDelay
-      - TotalRepeatOrders
-      - TotalItems
     ApiOrder:
       type: object
       additionalProperties: false
@@ -212,27 +183,6 @@ components:
         retailValue:
           type: number
           format: decimal
-    KpiMetricValue:
-      type: object
-      additionalProperties: false
-      properties:
-        initialTotalValue:
-          type: number
-          format: double
-        comparisonTotalValue:
-          type: number
-          format: double
-    KpiMetricSummary:
-      type: object
-      additionalProperties: false
-      properties:
-        metricType:
-          $ref: '#/components/schemas/KpiMetricType'
-        metricValues:
-          oneOf:
-          - $ref: '#/components/schemas/KpiMetricValue'
-        dateRange:
-          $ref: '#/components/schemas/EcommercePredefinedDateRanges'
     ReportSummaryOfKpiMetricSummary:
       type: object
       additionalProperties: false
@@ -249,6 +199,92 @@ components:
         asOfDate:
           type: string
           format: date-time
+    ApiOrderAddress:
+      type: object
+      additionalProperties: false
+      properties:
+        address1:
+          type:
+          - string
+          - 'null'
+        address2:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        postCode:
+          type:
+          - string
+          - 'null'
+    KpiMetricType:
+      type: string
+      description: ''
+      x-enumNames:
+      - TotalRevenue
+      - AverageOrderValue
+      - CustomerLifetimeValue
+      - TotalOrders
+      - AverageItemsPerOrder
+      - AverageDaysToSecondOrder
+      - Customers
+      - SinglePurchaseCustomers
+      - RepeatCustomers
+      - TotalDelay
+      - TotalRepeatOrders
+      - TotalItems
+      enum:
+      - TotalRevenue
+      - AverageOrderValue
+      - CustomerLifetimeValue
+      - TotalOrders
+      - AverageItemsPerOrder
+      - AverageDaysToSecondOrder
+      - Customers
+      - SinglePurchaseCustomers
+      - RepeatCustomers
+      - TotalDelay
+      - TotalRepeatOrders
+      - TotalItems
+    KpiMetricSummary:
+      type: object
+      additionalProperties: false
+      properties:
+        metricType:
+          $ref: '#/components/schemas/KpiMetricType'
+        metricValues:
+          oneOf:
+          - $ref: '#/components/schemas/KpiMetricValue'
+        dateRange:
+          $ref: '#/components/schemas/EcommercePredefinedDateRanges'
+    ApiOrderItem:
+      type: object
+      additionalProperties: false
+      properties:
+        sku:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        price:
+          type: number
+          format: decimal
+        quantity:
+          type: number
+          format: decimal
+        imagePath:
+          type:
+          - string
+          - 'null'
     ApiKpiMetricDateRange:
       type: string
       description: ''
@@ -275,6 +311,41 @@ components:
       - ThisYearVsLast
       - LastYearVsPrevious
       - AllTime
+      - NotAvailableInThisVersion
+    KpiMetricValue:
+      type: object
+      additionalProperties: false
+      properties:
+        initialTotalValue:
+          type: number
+          format: double
+        comparisonTotalValue:
+          type: number
+          format: double
+    ApiKpiMetricType:
+      type: string
+      description: ''
+      x-enumNames:
+      - TotalRevenue
+      - AverageOrderValue
+      - CustomerLifetimeValue
+      - TotalOrders
+      - AverageItemsPerOrder
+      - AverageDaysToSecondOrder
+      - Customers
+      - SinglePurchaseCustomers
+      - RepeatCustomers
+      - NotAvailableInThisVersion
+      enum:
+      - TotalRevenue
+      - AverageOrderValue
+      - CustomerLifetimeValue
+      - TotalOrders
+      - AverageItemsPerOrder
+      - AverageDaysToSecondOrder
+      - Customers
+      - SinglePurchaseCustomers
+      - RepeatCustomers
       - NotAvailableInThisVersion
     EcommercePredefinedDateRanges:
       type: string
@@ -303,75 +374,4 @@ components:
       - LastYearVsPrevious
       - AllTime
       - Custom
-    ApiKpiMetricType:
-      type: string
-      description: ''
-      x-enumNames:
-      - TotalRevenue
-      - AverageOrderValue
-      - CustomerLifetimeValue
-      - TotalOrders
-      - AverageItemsPerOrder
-      - AverageDaysToSecondOrder
-      - Customers
-      - SinglePurchaseCustomers
-      - RepeatCustomers
-      - NotAvailableInThisVersion
-      enum:
-      - TotalRevenue
-      - AverageOrderValue
-      - CustomerLifetimeValue
-      - TotalOrders
-      - AverageItemsPerOrder
-      - AverageDaysToSecondOrder
-      - Customers
-      - SinglePurchaseCustomers
-      - RepeatCustomers
-      - NotAvailableInThisVersion
-    ApiOrderItem:
-      type: object
-      additionalProperties: false
-      properties:
-        sku:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        price:
-          type: number
-          format: decimal
-        quantity:
-          type: number
-          format: decimal
-        imagePath:
-          type:
-          - string
-          - 'null'
-    ApiOrderAddress:
-      type: object
-      additionalProperties: false
-      properties:
-        address1:
-          type:
-          - string
-          - 'null'
-        address2:
-          type:
-          - string
-          - 'null'
-        city:
-          type:
-          - string
-          - 'null'
-        country:
-          type:
-          - string
-          - 'null'
-        postCode:
-          type:
-          - string
-          - 'null'
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

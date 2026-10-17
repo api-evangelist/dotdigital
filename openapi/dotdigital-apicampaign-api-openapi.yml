@@ -402,274 +402,6 @@ paths:
                 $ref: '#/components/schemas/ApiCampaignSplitTestResults'
 components:
   schemas:
-    ApiSplitTestResult:
-      type: object
-      additionalProperties: false
-      properties:
-        subjectLine:
-          type:
-          - string
-          - 'null'
-        fromName:
-          type:
-          - string
-          - 'null'
-        fromAddress:
-          type:
-          - string
-          - 'null'
-        htmlContent:
-          type:
-          - string
-          - 'null'
-        plainTextContent:
-          type:
-          - string
-          - 'null'
-        version:
-          type:
-          - string
-          - 'null'
-        winningVersion:
-          type: boolean
-        resultsActual:
-          type: number
-          format: decimal
-        resultsPercentage:
-          type: number
-          format: decimal
-    ApiSplitTestMetrics:
-      type: string
-      description: ''
-      x-enumNames:
-      - Opens
-      - Clicks
-      - ROI
-      - NotAvailableInThisVersion
-      enum:
-      - Opens
-      - Clicks
-      - ROI
-      - NotAvailableInThisVersion
-    ApiSplitTestCampaign:
-      type: object
-      additionalProperties: false
-      required:
-      - name
-      - plainTextContents
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-          maxLength: 255
-          minLength: 1
-        subjects:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        fromNames:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        fromAddresses:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiCampaignFromAddress'
-        htmlContents:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        plainTextContents:
-          type: array
-          items:
-            type: string
-        replyAction:
-          $ref: '#/components/schemas/ApiCampaignReplyActions'
-        replyToAddress:
-          type:
-          - string
-          - 'null'
-        status:
-          readOnly: true
-          oneOf:
-          - $ref: '#/components/schemas/ApiCampaignStatuses'
-        customReplyToAddress:
-          type:
-          - string
-          - 'null'
-    ApiCampaignReplyActions:
-      type: string
-      description: ''
-      x-enumNames:
-      - Unset
-      - WebMailForward
-      - Webmail
-      - Delete
-      - NotAvailableInThisVersion
-      enum:
-      - Unset
-      - WebMailForward
-      - Webmail
-      - Delete
-      - NotAvailableInThisVersion
-    ApiCampaignSplitTestResults:
-      type: object
-      additionalProperties: false
-      properties:
-        versions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiSplitTestResult'
-        splitTestWinnerMetric:
-          $ref: '#/components/schemas/ApiSplitTestMetrics'
-    ApiCampaignTag:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-    ApiCampaignExtended:
-      allOf:
-      - $ref: '#/components/schemas/ApiCampaign'
-      - type: object
-        additionalProperties: false
-        properties:
-          type:
-            type: string
-          tags:
-            type: array
-            items:
-              type: string
-          sentDate:
-            type:
-            - string
-            - 'null'
-            format: date-time
-          scheduledDate:
-            type:
-            - string
-            - 'null'
-            format: date-time
-    ApiCampaignWithType:
-      allOf:
-      - $ref: '#/components/schemas/ApiCampaign'
-      - type: object
-        additionalProperties: false
-        properties:
-          type:
-            readOnly: true
-            oneOf:
-            - $ref: '#/components/schemas/ApiCampaignTypes'
-    ApiCampaign:
-      type: object
-      additionalProperties: false
-      required:
-      - name
-      - subject
-      - fromName
-      - htmlContent
-      - plainTextContent
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-          maxLength: 255
-          minLength: 1
-        subject:
-          type: string
-          minLength: 1
-        fromName:
-          type: string
-          minLength: 1
-        fromAddress:
-          oneOf:
-          - $ref: '#/components/schemas/ApiCampaignFromAddress'
-        htmlContent:
-          type: string
-          minLength: 1
-        plainTextContent:
-          type: string
-          minLength: 1
-        replyAction:
-          $ref: '#/components/schemas/ApiCampaignReplyActions'
-        replyToAddress:
-          type:
-          - string
-          - 'null'
-        isSplitTest:
-          type: boolean
-          readOnly: true
-        status:
-          readOnly: true
-          oneOf:
-          - $ref: '#/components/schemas/ApiCampaignStatuses'
-        customReplyToAddress:
-          type:
-          - string
-          - 'null'
-    ApiCampaignFromAddress:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: integer
-          format: int32
-        email:
-          type:
-          - string
-          - 'null'
-    ApiCampaignTypes:
-      type: string
-      description: ''
-      x-enumNames:
-      - Standard
-      - Triggered
-      - NotAvailableInThisVersion
-      enum:
-      - Standard
-      - Triggered
-      - NotAvailableInThisVersion
-    ApiCampaignStatuses:
-      type: string
-      description: ''
-      x-enumNames:
-      - Unsent
-      - Sending
-      - Sent
-      - Paused
-      - Cancelled
-      - RequiresSystemApproval
-      - RequiresSMSApproval
-      - RequiresWorkflowApproval
-      - Triggered
-      - NotAvailableInThisVersion
-      enum:
-      - Unsent
-      - Sending
-      - Sent
-      - Paused
-      - Cancelled
-      - RequiresSystemApproval
-      - RequiresSMSApproval
-      - RequiresWorkflowApproval
-      - Triggered
-      - NotAvailableInThisVersion
     ApiCampaignDetails:
       type: object
       additionalProperties: false
@@ -734,6 +466,274 @@ components:
           type: string
           format: date-time
         customReplyToAddress:
+          type:
+          - string
+          - 'null'
+    ApiCampaignSplitTestResults:
+      type: object
+      additionalProperties: false
+      properties:
+        versions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiSplitTestResult'
+        splitTestWinnerMetric:
+          $ref: '#/components/schemas/ApiSplitTestMetrics'
+    ApiCampaignWithType:
+      allOf:
+      - $ref: '#/components/schemas/ApiCampaign'
+      - type: object
+        additionalProperties: false
+        properties:
+          type:
+            readOnly: true
+            oneOf:
+            - $ref: '#/components/schemas/ApiCampaignTypes'
+    ApiCampaignReplyActions:
+      type: string
+      description: ''
+      x-enumNames:
+      - Unset
+      - WebMailForward
+      - Webmail
+      - Delete
+      - NotAvailableInThisVersion
+      enum:
+      - Unset
+      - WebMailForward
+      - Webmail
+      - Delete
+      - NotAvailableInThisVersion
+    ApiCampaignTypes:
+      type: string
+      description: ''
+      x-enumNames:
+      - Standard
+      - Triggered
+      - NotAvailableInThisVersion
+      enum:
+      - Standard
+      - Triggered
+      - NotAvailableInThisVersion
+    ApiSplitTestCampaign:
+      type: object
+      additionalProperties: false
+      required:
+      - name
+      - plainTextContents
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          maxLength: 255
+          minLength: 1
+        subjects:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        fromNames:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        fromAddresses:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiCampaignFromAddress'
+        htmlContents:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        plainTextContents:
+          type: array
+          items:
+            type: string
+        replyAction:
+          $ref: '#/components/schemas/ApiCampaignReplyActions'
+        replyToAddress:
+          type:
+          - string
+          - 'null'
+        status:
+          readOnly: true
+          oneOf:
+          - $ref: '#/components/schemas/ApiCampaignStatuses'
+        customReplyToAddress:
+          type:
+          - string
+          - 'null'
+    ApiCampaignTag:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+    ApiSplitTestResult:
+      type: object
+      additionalProperties: false
+      properties:
+        subjectLine:
+          type:
+          - string
+          - 'null'
+        fromName:
+          type:
+          - string
+          - 'null'
+        fromAddress:
+          type:
+          - string
+          - 'null'
+        htmlContent:
+          type:
+          - string
+          - 'null'
+        plainTextContent:
+          type:
+          - string
+          - 'null'
+        version:
+          type:
+          - string
+          - 'null'
+        winningVersion:
+          type: boolean
+        resultsActual:
+          type: number
+          format: decimal
+        resultsPercentage:
+          type: number
+          format: decimal
+    ApiCampaignStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - Unsent
+      - Sending
+      - Sent
+      - Paused
+      - Cancelled
+      - RequiresSystemApproval
+      - RequiresSMSApproval
+      - RequiresWorkflowApproval
+      - Triggered
+      - NotAvailableInThisVersion
+      enum:
+      - Unsent
+      - Sending
+      - Sent
+      - Paused
+      - Cancelled
+      - RequiresSystemApproval
+      - RequiresSMSApproval
+      - RequiresWorkflowApproval
+      - Triggered
+      - NotAvailableInThisVersion
+    ApiSplitTestMetrics:
+      type: string
+      description: ''
+      x-enumNames:
+      - Opens
+      - Clicks
+      - ROI
+      - NotAvailableInThisVersion
+      enum:
+      - Opens
+      - Clicks
+      - ROI
+      - NotAvailableInThisVersion
+    ApiCampaignExtended:
+      allOf:
+      - $ref: '#/components/schemas/ApiCampaign'
+      - type: object
+        additionalProperties: false
+        properties:
+          type:
+            type: string
+          tags:
+            type: array
+            items:
+              type: string
+          sentDate:
+            type:
+            - string
+            - 'null'
+            format: date-time
+          scheduledDate:
+            type:
+            - string
+            - 'null'
+            format: date-time
+    ApiCampaign:
+      type: object
+      additionalProperties: false
+      required:
+      - name
+      - subject
+      - fromName
+      - htmlContent
+      - plainTextContent
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          maxLength: 255
+          minLength: 1
+        subject:
+          type: string
+          minLength: 1
+        fromName:
+          type: string
+          minLength: 1
+        fromAddress:
+          oneOf:
+          - $ref: '#/components/schemas/ApiCampaignFromAddress'
+        htmlContent:
+          type: string
+          minLength: 1
+        plainTextContent:
+          type: string
+          minLength: 1
+        replyAction:
+          $ref: '#/components/schemas/ApiCampaignReplyActions'
+        replyToAddress:
+          type:
+          - string
+          - 'null'
+        isSplitTest:
+          type: boolean
+          readOnly: true
+        status:
+          readOnly: true
+          oneOf:
+          - $ref: '#/components/schemas/ApiCampaignStatuses'
+        customReplyToAddress:
+          type:
+          - string
+          - 'null'
+    ApiCampaignFromAddress:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        email:
           type:
           - string
           - 'null'

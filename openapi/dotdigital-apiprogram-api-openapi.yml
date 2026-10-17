@@ -172,6 +172,21 @@ components:
       - Processing
       - Finished
       - NotAvailableInThisVersion
+    ApiProgramStatus:
+      type: string
+      description: ''
+      x-enumNames:
+      - Draft
+      - Deactivated
+      - Active
+      - ReadOnly
+      - NotAvailableInThisVersion
+      enum:
+      - Draft
+      - Deactivated
+      - Active
+      - ReadOnly
+      - NotAvailableInThisVersion
     ApiProgram:
       type: object
       additionalProperties: false
@@ -217,19 +232,4 @@ components:
           items:
             type: integer
             format: int32
-    ApiProgramStatus:
-      type: string
-      description: ''
-      x-enumNames:
-      - Draft
-      - Deactivated
-      - Active
-      - ReadOnly
-      - NotAvailableInThisVersion
-      enum:
-      - Draft
-      - Deactivated
-      - Active
-      - ReadOnly
-      - NotAvailableInThisVersion
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

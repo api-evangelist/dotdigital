@@ -241,158 +241,6 @@ components:
       - Expired
       - SurveyFeatureDisabled
       - NotAvailableInThisVersion
-    ApiSurveyGivenAnswer:
-      type: object
-      additionalProperties: false
-      properties:
-        fieldId:
-          type: integer
-          format: int32
-        subFieldId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        value: {}
-    ApiSurveyQuestionChoice:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: integer
-          format: int32
-        text:
-          type:
-          - string
-          - 'null'
-    ApiSurveyField:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: integer
-          format: int32
-        type:
-          type:
-          - string
-          - 'null'
-        text:
-          type:
-          - string
-          - 'null'
-        isRequired:
-          type: boolean
-        defaultValue:
-          type:
-          - string
-          - 'null'
-        mode:
-          type:
-          - string
-          - 'null'
-        choices:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiSurveyQuestionChoice'
-        subFields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiSurveyField'
-        hasOtherOption:
-          type: boolean
-        otherOptionChoiceId:
-          type: integer
-          format: int32
-        otherOptionSubFieldId:
-          type: integer
-          format: int32
-        otherOptionTextFieldId:
-          type: integer
-          format: int32
-        isAssignedToContactDataField:
-          type: boolean
-        assignedContactDataFieldName:
-          type:
-          - string
-          - 'null'
-        assignedContactDataExistsAction:
-          $ref: '#/components/schemas/ApiAssignedContactDataExistsAction'
-    ApiSurveyResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: integer
-          format: int32
-        email:
-          type:
-          - string
-          - 'null'
-        started:
-          type: boolean
-        dateStarted:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        complete:
-          type: boolean
-        dateCompleted:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        givenAnswers:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiSurveyGivenAnswer'
-    ApiSurveyPage:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type:
-          - string
-          - 'null'
-        fields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiSurveyField'
-    ApiRespondentNotificationType:
-      type: string
-      description: ''
-      x-enumNames:
-      - None
-      - Basic
-      - Campaign
-      - NotAvailableInThisVersion
-      enum:
-      - None
-      - Basic
-      - Campaign
-      - NotAvailableInThisVersion
-    ApiAssignedContactDataExistsAction:
-      type: string
-      description: ''
-      x-enumNames:
-      - OverwriteData
-      - HideField
-      - NotAvailableInThisVersion
-      enum:
-      - OverwriteData
-      - HideField
-      - NotAvailableInThisVersion
     ApiSurveySubmissionMode:
       type: string
       description: ''
@@ -403,17 +251,6 @@ components:
       enum:
       - Single
       - Multiple
-      - NotAvailableInThisVersion
-    ApiSurveyAssignedAddressBookTarget:
-      type: string
-      description: ''
-      x-enumNames:
-      - AllContacts
-      - SpecificAddressBook
-      - NotAvailableInThisVersion
-      enum:
-      - AllContacts
-      - SpecificAddressBook
       - NotAvailableInThisVersion
     ApiSurvey:
       type: object
@@ -550,4 +387,167 @@ components:
         sourceOtherTotal:
           type: integer
           format: int32
+    ApiSurveyAssignedAddressBookTarget:
+      type: string
+      description: ''
+      x-enumNames:
+      - AllContacts
+      - SpecificAddressBook
+      - NotAvailableInThisVersion
+      enum:
+      - AllContacts
+      - SpecificAddressBook
+      - NotAvailableInThisVersion
+    ApiSurveyGivenAnswer:
+      type: object
+      additionalProperties: false
+      properties:
+        fieldId:
+          type: integer
+          format: int32
+        subFieldId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        value: {}
+    ApiSurveyPage:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiSurveyField'
+    ApiRespondentNotificationType:
+      type: string
+      description: ''
+      x-enumNames:
+      - None
+      - Basic
+      - Campaign
+      - NotAvailableInThisVersion
+      enum:
+      - None
+      - Basic
+      - Campaign
+      - NotAvailableInThisVersion
+    ApiSurveyField:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        type:
+          type:
+          - string
+          - 'null'
+        text:
+          type:
+          - string
+          - 'null'
+        isRequired:
+          type: boolean
+        defaultValue:
+          type:
+          - string
+          - 'null'
+        mode:
+          type:
+          - string
+          - 'null'
+        choices:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiSurveyQuestionChoice'
+        subFields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiSurveyField'
+        hasOtherOption:
+          type: boolean
+        otherOptionChoiceId:
+          type: integer
+          format: int32
+        otherOptionSubFieldId:
+          type: integer
+          format: int32
+        otherOptionTextFieldId:
+          type: integer
+          format: int32
+        isAssignedToContactDataField:
+          type: boolean
+        assignedContactDataFieldName:
+          type:
+          - string
+          - 'null'
+        assignedContactDataExistsAction:
+          $ref: '#/components/schemas/ApiAssignedContactDataExistsAction'
+    ApiSurveyQuestionChoice:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        text:
+          type:
+          - string
+          - 'null'
+    ApiAssignedContactDataExistsAction:
+      type: string
+      description: ''
+      x-enumNames:
+      - OverwriteData
+      - HideField
+      - NotAvailableInThisVersion
+      enum:
+      - OverwriteData
+      - HideField
+      - NotAvailableInThisVersion
+    ApiSurveyResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+        started:
+          type: boolean
+        dateStarted:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        complete:
+          type: boolean
+        dateCompleted:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        givenAnswers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiSurveyGivenAnswer'
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

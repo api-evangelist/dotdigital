@@ -445,6 +445,28 @@ paths:
           description: The Dotdigital region id your account belongs to
 components:
   schemas:
+    smsVerifyAnalytics:
+      type: object
+      properties:
+        date:
+          type: string
+          description: The start date and time for the period
+        notVerifed:
+          type: integer
+          description: The number of verify calls that were not verified
+          format: int64
+        verified:
+          type: integer
+          description: The number of verify calls that were successfully verified
+          format: int64
+        expired:
+          type: integer
+          description: The number of verify calls that expired
+          format: int64
+        locked:
+          type: integer
+          description: The number of verify calls that locked out
+          format: int64
     smsInboundAnalytics:
       type: object
       properties:
@@ -494,28 +516,6 @@ components:
         uniqueClicks:
           type: integer
           description: The number of clicks recorded by unique individuals
-          format: int64
-    smsVerifyAnalytics:
-      type: object
-      properties:
-        date:
-          type: string
-          description: The start date and time for the period
-        notVerifed:
-          type: integer
-          description: The number of verify calls that were not verified
-          format: int64
-        verified:
-          type: integer
-          description: The number of verify calls that were successfully verified
-          format: int64
-        expired:
-          type: integer
-          description: The number of verify calls that expired
-          format: int64
-        locked:
-          type: integer
-          description: The number of verify calls that locked out
           format: int64
   securitySchemes:
     basicAuth:

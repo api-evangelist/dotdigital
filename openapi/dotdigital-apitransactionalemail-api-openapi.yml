@@ -172,6 +172,21 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ApiCampaignReplyActions:
+      type: string
+      description: ''
+      x-enumNames:
+      - Unset
+      - WebMailForward
+      - Webmail
+      - Delete
+      - NotAvailableInThisVersion
+      enum:
+      - Unset
+      - WebMailForward
+      - Webmail
+      - Delete
+      - NotAvailableInThisVersion
     ApiTransactionalEmailStatistics:
       type: object
       additionalProperties: false
@@ -200,6 +215,145 @@ components:
         numBounces:
           type: integer
           format: int32
+    ApiTransactionalEmail:
+      type: object
+      additionalProperties: false
+      properties:
+        toAddresses:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        ccAddresses:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        bccAddresses:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        subject:
+          type:
+          - string
+          - 'null'
+        fromAddress:
+          type:
+          - string
+          - 'null'
+        htmlContent:
+          type:
+          - string
+          - 'null'
+        plainTextContent:
+          type:
+          - string
+          - 'null'
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        metadata:
+          type:
+          - string
+          - 'null'
+        attachments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiTransactionalEmailAttachment'
+    ApiCampaignStatuses:
+      type: string
+      description: ''
+      x-enumNames:
+      - Unsent
+      - Sending
+      - Sent
+      - Paused
+      - Cancelled
+      - RequiresSystemApproval
+      - RequiresSMSApproval
+      - RequiresWorkflowApproval
+      - Triggered
+      - NotAvailableInThisVersion
+      enum:
+      - Unsent
+      - Sending
+      - Sent
+      - Paused
+      - Cancelled
+      - RequiresSystemApproval
+      - RequiresSMSApproval
+      - RequiresWorkflowApproval
+      - Triggered
+      - NotAvailableInThisVersion
+    ApiAggregationPeriod:
+      type: string
+      description: ''
+      x-enumNames:
+      - AllTime
+      - Month
+      - Week
+      - Day
+      - NotAvailableInThisVersion
+      enum:
+      - AllTime
+      - Month
+      - Week
+      - Day
+      - NotAvailableInThisVersion
+    ApiTransactionalEmailTriggeredCampaign:
+      type: object
+      additionalProperties: false
+      properties:
+        toAddresses:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        ccAddresses:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        bccAddresses:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        campaignId:
+          type: integer
+          format: int32
+        personalizationValues:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiPersonalizationValue'
+        metadata:
+          type:
+          - string
+          - 'null'
+        fromAddress:
+          type:
+          - string
+          - 'null'
+        attachments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiTransactionalEmailAttachment'
     ApiPersonalizationValue:
       type: object
       additionalProperties: false
@@ -212,21 +366,6 @@ components:
           type:
           - string
           - 'null'
-    ApiCampaignReplyActions:
-      type: string
-      description: ''
-      x-enumNames:
-      - Unset
-      - WebMailForward
-      - Webmail
-      - Delete
-      - NotAvailableInThisVersion
-      enum:
-      - Unset
-      - WebMailForward
-      - Webmail
-      - Delete
-      - NotAvailableInThisVersion
     ApiTransactionalEmailAttachment:
       type: object
       additionalProperties: false
@@ -312,143 +451,4 @@ components:
           type:
           - string
           - 'null'
-    ApiAggregationPeriod:
-      type: string
-      description: ''
-      x-enumNames:
-      - AllTime
-      - Month
-      - Week
-      - Day
-      - NotAvailableInThisVersion
-      enum:
-      - AllTime
-      - Month
-      - Week
-      - Day
-      - NotAvailableInThisVersion
-    ApiTransactionalEmailTriggeredCampaign:
-      type: object
-      additionalProperties: false
-      properties:
-        toAddresses:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        ccAddresses:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        bccAddresses:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        campaignId:
-          type: integer
-          format: int32
-        personalizationValues:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiPersonalizationValue'
-        metadata:
-          type:
-          - string
-          - 'null'
-        fromAddress:
-          type:
-          - string
-          - 'null'
-        attachments:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiTransactionalEmailAttachment'
-    ApiCampaignStatuses:
-      type: string
-      description: ''
-      x-enumNames:
-      - Unsent
-      - Sending
-      - Sent
-      - Paused
-      - Cancelled
-      - RequiresSystemApproval
-      - RequiresSMSApproval
-      - RequiresWorkflowApproval
-      - Triggered
-      - NotAvailableInThisVersion
-      enum:
-      - Unsent
-      - Sending
-      - Sent
-      - Paused
-      - Cancelled
-      - RequiresSystemApproval
-      - RequiresSMSApproval
-      - RequiresWorkflowApproval
-      - Triggered
-      - NotAvailableInThisVersion
-    ApiTransactionalEmail:
-      type: object
-      additionalProperties: false
-      properties:
-        toAddresses:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        ccAddresses:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        bccAddresses:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        subject:
-          type:
-          - string
-          - 'null'
-        fromAddress:
-          type:
-          - string
-          - 'null'
-        htmlContent:
-          type:
-          - string
-          - 'null'
-        plainTextContent:
-          type:
-          - string
-          - 'null'
-        tags:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        metadata:
-          type:
-          - string
-          - 'null'
-        attachments:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiTransactionalEmailAttachment'
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))

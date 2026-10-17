@@ -303,69 +303,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    AvailbleEvents:
-      type: array
-      items:
-        $ref: '#/components/schemas/AvailbleEvents_inner'
-    AvailbleEvents_inner:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Event type
-          example: message.delivered
-        description:
-          type: string
-          description: Description of event type
-          example: Details of any outbound message \"delivered\" status updates.
-        filters:
-          type: array
-          description: Filters for event
-          items:
-            $ref: '#/components/schemas/AvailableEventsFilters'
-    AvailableEventsFilters:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of filter
-          example: channel
-        path:
-          type: string
-          description: Path of filter - used when type=path
-        required:
-          type: boolean
-          description: Is filter setting required
-          example: false
-        description:
-          type: string
-          description: Description of filter
-          example: Channel that the event relates to e.g `sms`
-    WebhookEvents:
-      type: object
-      properties:
-        type:
-          type: string
-          description: type of event
-          example: message.delivered
-        filters:
-          type: array
-          description: Array of used filters
-          items:
-            $ref: '#/components/schemas/EventFilters'
-      example:
-      - type: message.sent
-        filters: []
-      - type: message.delivered
-        filters: []
-      - type: message.expired
-        filters: []
-      - type: message.failed
-        filters: []
-      - type: message.inbound
-        filters: []
-      - type: message.read
-        filters: []
     WebhookConfigurationCreateUpdate:
       required:
       - name
@@ -405,6 +342,45 @@ components:
           type: number
           description: Maximum duration in seconds to wait before a batch is sent
           example: 60
+    WebhookEvents:
+      type: object
+      properties:
+        type:
+          type: string
+          description: type of event
+          example: message.delivered
+        filters:
+          type: array
+          description: Array of used filters
+          items:
+            $ref: '#/components/schemas/EventFilters'
+      example:
+      - type: message.sent
+        filters: []
+      - type: message.delivered
+        filters: []
+      - type: message.expired
+        filters: []
+      - type: message.failed
+        filters: []
+      - type: message.inbound
+        filters: []
+      - type: message.read
+        filters: []
+    inline_response_200:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the events template
+        description:
+          type: string
+          description: Describes the template
+        events:
+          type: array
+          items:
+            type: string
+            description: The event id
     WebhookConfiguration:
       allOf:
       - type: object
@@ -442,20 +418,44 @@ components:
           type: string
           description: value to watch
           example: sms
-    inline_response_200:
+    AvailableEventsFilters:
       type: object
       properties:
         name:
           type: string
-          description: Name of the events template
+          description: Name of filter
+          example: channel
+        path:
+          type: string
+          description: Path of filter - used when type=path
+        required:
+          type: boolean
+          description: Is filter setting required
+          example: false
         description:
           type: string
-          description: Describes the template
-        events:
+          description: Description of filter
+          example: Channel that the event relates to e.g `sms`
+    AvailbleEvents:
+      type: array
+      items:
+        $ref: '#/components/schemas/AvailbleEvents_inner'
+    AvailbleEvents_inner:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Event type
+          example: message.delivered
+        description:
+          type: string
+          description: Description of event type
+          example: Details of any outbound message \"delivered\" status updates.
+        filters:
           type: array
+          description: Filters for event
           items:
-            type: string
-            description: The event id
+            $ref: '#/components/schemas/AvailableEventsFilters'
   securitySchemes:
     basicAuth:
       type: http
