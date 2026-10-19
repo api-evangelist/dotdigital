@@ -1,0 +1,12 @@
+{
+ "url": "https://marketing.developer.dotdigital.com/openapi/analytics-api.json",
+ "requested_url": "https://marketing.developer.dotdigital.com/openapi/analytics-api.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 29638,
+ "sha256": "f4b70eb19675a0fe9fdf842cbcc1c1a9076a5001672aacbf1c54f700d8d221e7",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}

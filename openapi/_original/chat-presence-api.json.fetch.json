@@ -1,0 +1,12 @@
+{
+ "url": "https://marketing.developer.dotdigital.com/openapi/chat-presence-api.json",
+ "requested_url": "https://marketing.developer.dotdigital.com/openapi/chat-presence-api.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 2917,
+ "sha256": "c0ac823fb0253f04c8b4294c26129ffd783c385bc1426d90b2bc000f4aa54d6d",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}

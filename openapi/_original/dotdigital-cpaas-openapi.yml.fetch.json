@@ -1,0 +1,12 @@
+{
+ "url": "https://marketing.developer.dotdigital.com/openapi/cpaas-api.json",
+ "requested_url": "https://marketing.developer.dotdigital.com/openapi/cpaas-api.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 4324,
+ "sha256": "afa358b94c2544d44246e9f906c8e5ba87cbcfe39404ca828efd33ba8e94c96b",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}

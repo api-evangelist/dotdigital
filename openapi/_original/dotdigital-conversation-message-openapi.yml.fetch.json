@@ -1,0 +1,12 @@
+{
+ "url": "https://marketing.developer.dotdigital.com/openapi/conversation-message-api.json",
+ "requested_url": "https://marketing.developer.dotdigital.com/openapi/conversation-message-api.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 10445,
+ "sha256": "2259ccfbfc2e647bb56e41066a0ab81791e23ea1688f74555c555dbe83f17780",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
