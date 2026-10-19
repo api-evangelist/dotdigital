@@ -458,3 +458,61 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: dotdigital-npm-registry
+  label: npm registry
+  partner: npm
+  partner_name: npm registry
+  category: official SDK (JavaScript/TypeScript)
+  type: register
+  channel: package-registry
+  evidence: https://www.npmjs.com/package/@dotdigital/pwa-studio-chat
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@dotdigital/pwa-studio-chat'
+      version: 1.0.3
+      released: '2023-06-07'
+      released_field: modified
+      lapsed: true
+      page: https://www.npmjs.com/package/@dotdigital/pwa-studio-chat
+      repo_leg: github-org:dotmailer
+      publisher_leg: email:dotdigital.com
+      matched_by: domain
+    - name: '@dotdigital/pwa-studio-email-capture'
+      version: 1.0.2
+      released: '2023-06-07'
+      released_field: modified
+      lapsed: true
+      page: https://www.npmjs.com/package/@dotdigital/pwa-studio-email-capture
+      repo_leg: github-org:dotmailer
+      publisher_leg: email:dotdigital.com
+      matched_by: domain
+    - name: '@dotdigital/pwa-studio-page-builder'
+      version: 1.0.1
+      released: '2023-06-07'
+      released_field: modified
+      lapsed: true
+      page: https://www.npmjs.com/package/@dotdigital/pwa-studio-page-builder
+      repo_leg: github-org:dotmailer
+      publisher_leg: email:dotdigital.com
+      matched_by: domain
+    - name: '@dotdigital/pwa-studio-tracking'
+      version: 1.1.1
+      released: '2023-06-07'
+      released_field: modified
+      lapsed: true
+      page: https://www.npmjs.com/package/@dotdigital/pwa-studio-tracking
+      repo_leg: github-org:dotmailer
+      publisher_leg: email:dotdigital.com
+      matched_by: domain
+    current: false
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
