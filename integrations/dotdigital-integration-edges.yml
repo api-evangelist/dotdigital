@@ -4,6 +4,7 @@ source:
 - https://zapier.com/apps/dotdigital/integrations
 checked:
 - blackbaud/integrations/blackbaud-integration-edges.yml
+- gorgias/integrations/gorgias-integration-edges.yml
 - https://api.nuget.org/v3
 - https://composio.dev/toolkits/dotdigital
 - https://crates.io/api/v1
@@ -405,52 +406,6 @@ edges:
   direction: third-party
   category: Marketing Automation
   partner_url: http://www.pardot.com/
-- partner_name: Twilio Segment
-  partner: segment
-  partner_match: aggregator
-  marketplace: segment-partner-destinations
-  channel: partner-built
-  direction: third-party
-  type: marketplace
-  relationship: platform-app
-  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/dotdigital
-  coverage_role:
-  - destination
-  cdp_signals:
-    destination:
-      catalog_entries:
-      - dotdigital
-      status: PUBLIC_BETA
-      partner_owned: true
-      connection_modes:
-      - cloud:server
-      - cloud:web
-      accepted_methods:
-      - Alias
-      - Group
-      - Identify
-      - Page
-      - Track
-  detected_by: sweep-cdp.py
-  first_seen: '2026-10-14'
-- partner_name: Blackbaud (blackbaud-marketplace)
-  partner: blackbaud
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: blackbaud-marketplace
-  evidence: https://app.blackbaud.com/marketplace/applications/4a160bb5-b464-4883-9099-96331883cff6
-  mirror_of: blackbaud/integrations/blackbaud-integration-edges.yml
-  apps:
-  - Dotdigital for Blackbaud Raiser's Edge NXT®
-  listing_count: 1
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-  badges:
-  - Reviewed by Blackbaud
 - partner_name: Zapier
   partner: zapier
   partner_match: aggregator
@@ -476,65 +431,6 @@ edges:
     builder: unknown (not in the directory record)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
-- partner_name: UK G-Cloud 15 (Digital Marketplace)
-  partner: null
-  partner_match: register
-  type: marketplace
-  marketplace: g-cloud
-  channel: distribution
-  relationship: distribution-channel
-  direction: third-party
-  evidence: https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud-15/supplier/703952
-  category: UK public-sector procurement framework
-  contract_reference:
-    register: UK G-Cloud 15 supplier list (Digital Marketplace)
-    spec_file: null
-    role: g-cloud-supplier
-    registered_name: Dotdigital
-    register_id: '703952'
-    matched_domain: dotdigital.com
-    matched_by: domain
-    domain_source: contact-email
-    signal_note: a framework award is distribution (selling to the public sector), not an integration; kept out
-      of position shares
-    detected_by: sweep-gov-cloud.py
-    detected: '2026-10-15'
-  detected_by: sweep-gov-cloud.py
-  first_seen: '2026-10-15'
-- partner_name: WordPress (own)
-  partner: wordpress
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://wordpress.org/plugins/dotmailer-sign-up-widget/
-  mirror_of: wordpress/integrations/wordpress-integration-edges.yml
-  apps:
-  - Dotdigital for WordPress
-  listing_count: 1
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-  category: WordPress plugin
-- partner_name: Zoom (own)
-  partner: zoom
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://marketplace.zoom.us/apps/r1LUy1aJQNuQ7jAyxHBfaQ
-  mirror_of: zoom/integrations/zoom-integration-edges.yml
-  apps:
-  - Dotdigital
-  listing_count: 1
-  detected: '2026-10-18'
-  detected_by: mirror-platform-listings.py
-  category: Zoom app
 - partner_name: npm registry
   partner: npm
   partner_match: register
@@ -592,6 +488,127 @@ edges:
     detected: '2026-10-18'
   detected_by: sweep-official-sdks.py
   first_seen: '2026-10-18'
+- partner_name: Twilio Segment
+  partner: segment
+  partner_match: aggregator
+  marketplace: segment-partner-destinations
+  channel: partner-built
+  direction: third-party
+  type: marketplace
+  relationship: platform-app
+  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/dotdigital
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - dotdigital
+      status: PUBLIC_BETA
+      partner_owned: true
+      connection_modes:
+      - cloud:server
+      - cloud:web
+      accepted_methods:
+      - Alias
+      - Group
+      - Identify
+      - Page
+      - Track
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: UK G-Cloud 15 (Digital Marketplace)
+  partner: null
+  partner_match: register
+  type: marketplace
+  marketplace: g-cloud
+  channel: distribution
+  relationship: distribution-channel
+  direction: third-party
+  evidence: https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud-15/supplier/703952
+  category: UK public-sector procurement framework
+  contract_reference:
+    register: UK G-Cloud 15 supplier list (Digital Marketplace)
+    spec_file: null
+    role: g-cloud-supplier
+    registered_name: Dotdigital
+    register_id: '703952'
+    matched_domain: dotdigital.com
+    matched_by: domain
+    domain_source: contact-email
+    signal_note: a framework award is distribution (selling to the public sector), not an integration; kept out
+      of position shares
+    detected_by: sweep-gov-cloud.py
+    detected: '2026-10-15'
+  detected_by: sweep-gov-cloud.py
+  first_seen: '2026-10-15'
+- partner_name: Blackbaud (blackbaud-marketplace)
+  partner: blackbaud
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: blackbaud-marketplace
+  evidence: https://app.blackbaud.com/marketplace/applications/4a160bb5-b464-4883-9099-96331883cff6
+  mirror_of: blackbaud/integrations/blackbaud-integration-edges.yml
+  apps:
+  - Dotdigital for Blackbaud Raiser's Edge NXT®
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  badges:
+  - Reviewed by Blackbaud
+- partner_name: Gorgias (own)
+  partner: gorgias
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.gorgias.com/apps/dotdigital
+  mirror_of: gorgias/integrations/gorgias-integration-edges.yml
+  apps:
+  - Dotdigital
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+- partner_name: WordPress (own)
+  partner: wordpress
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://wordpress.org/plugins/dotmailer-sign-up-widget/
+  mirror_of: wordpress/integrations/wordpress-integration-edges.yml
+  apps:
+  - Dotdigital for WordPress
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: WordPress plugin
+- partner_name: Zoom (own)
+  partner: zoom
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.zoom.us/apps/r1LUy1aJQNuQ7jAyxHBfaQ
+  mirror_of: zoom/integrations/zoom-integration-edges.yml
+  apps:
+  - Dotdigital
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Zoom app
 templates:
 - title: Create or update Dotdigital contacts from new Unbounce form submissions
   url: https://zapier.com/apps/dotdigital/integrations/unbounce/255581881/create-or-update-dotdigital-contacts-from-new-unbounce-form-submissions

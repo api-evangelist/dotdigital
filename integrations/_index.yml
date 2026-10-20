@@ -358,30 +358,6 @@
   source: edge
   status: pending-partner-spec
   arazzo: null
-- slug: dotdigital-twilio-segment
-  label: Twilio Segment
-  partner: segment
-  partner_name: Twilio Segment
-  type: marketplace
-  marketplace: segment-partner-destinations
-  channel: partner-built
-  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/dotdigital
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: dotdigital-blackbaud-blackbaud-marketplace
-  label: Blackbaud (blackbaud-marketplace)
-  partner: blackbaud
-  partner_name: Blackbaud (blackbaud-marketplace)
-  type: marketplace
-  marketplace: blackbaud-marketplace
-  channel: partner-built
-  evidence: https://app.blackbaud.com/marketplace/applications/4a160bb5-b464-4883-9099-96331883cff6
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: dotdigital-zapier
   label: Zapier
   partner: zapier
@@ -405,57 +381,6 @@
     app_slug: dotdigital
     beta: false
     builder: unknown (not in the directory record)
-  status: not-a-workflow
-  arazzo: null
-- slug: dotdigital-uk-g-cloud-15-digital-marketplace
-  label: UK G-Cloud 15 (Digital Marketplace)
-  partner_name: UK G-Cloud 15 (Digital Marketplace)
-  category: UK public-sector procurement framework
-  type: marketplace
-  marketplace: g-cloud
-  channel: distribution
-  evidence: https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud-15/supplier/703952
-  source: edge
-  relationship: distribution-channel
-  contract_reference:
-    register: UK G-Cloud 15 supplier list (Digital Marketplace)
-    spec_file: null
-    role: g-cloud-supplier
-    registered_name: Dotdigital
-    register_id: '703952'
-    matched_domain: dotdigital.com
-    matched_by: domain
-    domain_source: contact-email
-    signal_note: a framework award is distribution (selling to the public sector), not an integration; kept out
-      of position shares
-    detected_by: sweep-gov-cloud.py
-    detected: '2026-10-15'
-  status: not-a-workflow
-  arazzo: null
-- slug: dotdigital-wordpress-own
-  label: WordPress (own)
-  partner: wordpress
-  partner_name: WordPress (own)
-  category: WordPress plugin
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://wordpress.org/plugins/dotmailer-sign-up-widget/
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: dotdigital-zoom-own
-  label: Zoom (own)
-  partner: zoom
-  partner_name: Zoom (own)
-  category: Zoom app
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://marketplace.zoom.us/apps/r1LUy1aJQNuQ7jAyxHBfaQ
-  source: edge
-  relationship: platform-app
   status: not-a-workflow
   arazzo: null
 - slug: dotdigital-npm-registry
@@ -514,5 +439,92 @@
       24 months'
     detected_by: sweep-official-sdks.py
     detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: dotdigital-twilio-segment
+  label: Twilio Segment
+  partner: segment
+  partner_name: Twilio Segment
+  type: marketplace
+  marketplace: segment-partner-destinations
+  channel: partner-built
+  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/dotdigital
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: dotdigital-uk-g-cloud-15-digital-marketplace
+  label: UK G-Cloud 15 (Digital Marketplace)
+  partner_name: UK G-Cloud 15 (Digital Marketplace)
+  category: UK public-sector procurement framework
+  type: marketplace
+  marketplace: g-cloud
+  channel: distribution
+  evidence: https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud-15/supplier/703952
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: UK G-Cloud 15 supplier list (Digital Marketplace)
+    spec_file: null
+    role: g-cloud-supplier
+    registered_name: Dotdigital
+    register_id: '703952'
+    matched_domain: dotdigital.com
+    matched_by: domain
+    domain_source: contact-email
+    signal_note: a framework award is distribution (selling to the public sector), not an integration; kept out
+      of position shares
+    detected_by: sweep-gov-cloud.py
+    detected: '2026-10-15'
+  status: not-a-workflow
+  arazzo: null
+- slug: dotdigital-blackbaud-blackbaud-marketplace
+  label: Blackbaud (blackbaud-marketplace)
+  partner: blackbaud
+  partner_name: Blackbaud (blackbaud-marketplace)
+  type: marketplace
+  marketplace: blackbaud-marketplace
+  channel: partner-built
+  evidence: https://app.blackbaud.com/marketplace/applications/4a160bb5-b464-4883-9099-96331883cff6
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: dotdigital-gorgias-own
+  label: Gorgias (own)
+  partner: gorgias
+  partner_name: Gorgias (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.gorgias.com/apps/dotdigital
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: dotdigital-wordpress-own
+  label: WordPress (own)
+  partner: wordpress
+  partner_name: WordPress (own)
+  category: WordPress plugin
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://wordpress.org/plugins/dotmailer-sign-up-widget/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: dotdigital-zoom-own
+  label: Zoom (own)
+  partner: zoom
+  partner_name: Zoom (own)
+  category: Zoom app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.zoom.us/apps/r1LUy1aJQNuQ7jAyxHBfaQ
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null
