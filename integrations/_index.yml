@@ -15,6 +15,7 @@
   evidence: https://zapier.com/apps/dotdigital/integrations/unbounce/255581881/create-or-update-dotdigital-contacts-from-new-unbounce-form-submissions
   template: https://zapier.com/apps/dotdigital/integrations/unbounce/255581881/create-or-update-dotdigital-contacts-from-new-unbounce-form-submissions
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: dotdigital-create-dotdigital-data-field-for-new-eventbrite-events
@@ -29,6 +30,7 @@
   evidence: https://zapier.com/apps/dotdigital/integrations/eventbrite/17316/create-dotdigital-data-field-for-new-eventbrite-events
   template: https://zapier.com/apps/dotdigital/integrations/eventbrite/17316/create-dotdigital-data-field-for-new-eventbrite-events
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: dotdigital-create-a-spreadsheet-row-in-google-sheets-for-new-survey-responses-in-dotdigita
@@ -43,320 +45,8 @@
   evidence: https://zapier.com/apps/dotdigital/integrations/google-sheets/1143682/create-a-spreadsheet-row-in-google-sheets-for-new-survey-responses-in-dotdigital
   template: https://zapier.com/apps/dotdigital/integrations/google-sheets/1143682/create-a-spreadsheet-row-in-google-sheets-for-new-survey-responses-in-dotdigital
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
-  arazzo: null
-- slug: dotdigital-ninja-forms
-  label: Ninja Forms
-  partner_name: Ninja Forms
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/ninjaforms
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: dotdigital-gravity-forms
-  label: Gravity Forms
-  partner: gravity-forms
-  partner_name: Gravity Forms
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/gravity-forms
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: dotdigital-facebook-lead-ads
-  label: Facebook Lead Ads
-  partner: facebook-lead-ads
-  partner_name: Facebook Lead Ads
-  category: Ads & Conversion
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/facebook-lead-ads
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: dotdigital-typeform
-  label: Typeform
-  partner: typeform
-  partner_name: Typeform
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/typeform
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: dotdigital-formstack
-  label: Formstack
-  partner: formstack
-  partner_name: Formstack
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/formstack
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: dotdigital-hubspot
-  label: HubSpot
-  partner: hubspot
-  partner_name: HubSpot
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/hubspot
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: dotdigital-facebook-lead-ads-for-business-admins
-  label: Facebook Lead Ads (for Business admins)
-  partner_name: Facebook Lead Ads (for Business admins)
-  category: Ads & Conversion
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/facebook-lead-ads-beta
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: dotdigital-linkedin-ads
-  label: LinkedIn Ads
-  partner_name: LinkedIn Ads
-  category: Ads & Conversion
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/linkedin-ads
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: dotdigital-google-ads
-  label: Google Ads
-  partner: google-ads
-  partner_name: Google Ads
-  category: Ads & Conversion
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/google-ads
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: dotdigital-wpforms
-  label: WPForms
-  partner_name: WPForms
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/wpforms
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: dotdigital-shopify
-  label: Shopify
-  partner: shopify
-  partner_name: Shopify
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/shopify
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: dotdigital-zoom
-  label: Zoom
-  partner: zoom
-  partner_name: Zoom
-  category: Video Conferencing
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/zoom
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: dotdigital-magento-2-x
-  label: Magento 2.X
-  partner_name: Magento 2.X
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/magento-v2
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: dotdigital-mysql
-  label: MySQL
-  partner: mysql
-  partner_name: MySQL
-  category: Databases
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/mysql
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: dotdigital-pipedrive
-  label: Pipedrive
-  partner: pipedrive
-  partner_name: Pipedrive
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/pipedrive
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: dotdigital-clickfunnels-classic
-  label: ClickFunnels Classic
-  partner: clickfunnels
-  partner_name: ClickFunnels Classic
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/clickfunnels-classic
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: dotdigital-mailchimp
-  label: Mailchimp
-  partner: mailchimp
-  partner_name: Mailchimp
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/mailchimp
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: dotdigital-flippingbook
-  label: FlippingBook
-  partner_name: FlippingBook
-  category: Documents
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/flippingbook
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: dotdigital-monday-com
-  label: monday.com
-  partner_name: monday.com
-  category: Project Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/monday
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: dotdigital-getsitecontrol
-  label: Getsitecontrol
-  partner_name: Getsitecontrol
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/getsitecontrol
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: dotdigital-demio
-  label: Demio
-  partner: demio
-  partner_name: Demio
-  category: Webinars
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/demio
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: dotdigital-woocommerce
-  label: WooCommerce
-  partner: woocommerce
-  partner_name: WooCommerce
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/woocommerce
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: dotdigital-beacon
-  label: Beacon
-  partner_name: Beacon
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/beacon
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: dotdigital-intercom
-  label: Intercom
-  partner: intercom
-  partner_name: Intercom
-  category: Customer Support
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/intercom
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: dotdigital-bigmarker
-  label: BigMarker
-  partner_name: BigMarker
-  category: Webinars
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/bigmarker
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: dotdigital-instapage
-  label: Instapage
-  partner: instapage
-  partner_name: Instapage
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/instapage
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: dotdigital-pardot
-  label: Pardot
-  partner_name: Pardot
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotdigital/integrations/pardot
-  source: edge
-  status: pending-partner-spec
   arazzo: null
 - slug: dotdigital-zapier
   label: Zapier
@@ -557,4 +247,347 @@
     detected_by: sweep-compliance-assurance.py
     detected: '2026-10-20'
   status: not-a-workflow
+  arazzo: null
+- slug: dotdigital-ninja-forms
+  label: Ninja Forms
+  partner_name: Ninja Forms
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/ninjaforms
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: dotdigital-gravity-forms
+  label: Gravity Forms
+  partner: gravity-forms
+  partner_name: Gravity Forms
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/gravity-forms
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: dotdigital-facebook-lead-ads
+  label: Facebook Lead Ads
+  partner: facebook-lead-ads
+  partner_name: Facebook Lead Ads
+  category: Ads & Conversion
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/facebook-lead-ads
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: dotdigital-typeform
+  label: Typeform
+  partner: typeform
+  partner_name: Typeform
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/typeform
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: dotdigital-formstack
+  label: Formstack
+  partner: formstack
+  partner_name: Formstack
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/formstack
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: dotdigital-hubspot
+  label: HubSpot
+  partner: hubspot
+  partner_name: HubSpot
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/hubspot
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: dotdigital-facebook-lead-ads-for-business-admins
+  label: Facebook Lead Ads (for Business admins)
+  partner: facebook-lead-ads
+  partner_name: Facebook Lead Ads (for Business admins)
+  category: Ads & Conversion
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/facebook-lead-ads-beta
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: dotdigital-linkedin-ads
+  label: LinkedIn Ads
+  partner: linkedin-ads
+  partner_name: LinkedIn Ads
+  category: Ads & Conversion
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/linkedin-ads
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: dotdigital-google-ads
+  label: Google Ads
+  partner: google-ads
+  partner_name: Google Ads
+  category: Ads & Conversion
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/google-ads
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: dotdigital-wpforms
+  label: WPForms
+  partner_name: WPForms
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/wpforms
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: dotdigital-shopify
+  label: Shopify
+  partner: shopify
+  partner_name: Shopify
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/shopify
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: dotdigital-zoom
+  label: Zoom
+  partner: zoom
+  partner_name: Zoom
+  category: Video Conferencing
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/zoom
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: dotdigital-magento-2-x
+  label: Magento 2.X
+  partner_name: Magento 2.X
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/magento-v2
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: dotdigital-mysql
+  label: MySQL
+  partner: mysql
+  partner_name: MySQL
+  category: Databases
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/mysql
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: dotdigital-clickfunnels-classic
+  label: ClickFunnels Classic
+  partner: clickfunnels
+  partner_name: ClickFunnels Classic
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/clickfunnels-classic
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: dotdigital-mailchimp
+  label: Mailchimp
+  partner: mailchimp
+  partner_name: Mailchimp
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/mailchimp
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: dotdigital-flippingbook
+  label: FlippingBook
+  partner_name: FlippingBook
+  category: Documents
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/flippingbook
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: dotdigital-monday-com
+  label: monday.com
+  partner: monday-com
+  partner_name: monday.com
+  category: Project Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/monday
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: dotdigital-pipedrive
+  label: Pipedrive
+  partner: pipedrive
+  partner_name: Pipedrive
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/pipedrive
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: dotdigital-getsitecontrol
+  label: Getsitecontrol
+  partner_name: Getsitecontrol
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/getsitecontrol
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: dotdigital-demio
+  label: Demio
+  partner: demio
+  partner_name: Demio
+  category: Webinars
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/demio
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: dotdigital-woocommerce
+  label: WooCommerce
+  partner: woocommerce
+  partner_name: WooCommerce
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/woocommerce
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: dotdigital-beacon
+  label: Beacon
+  partner_name: Beacon
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/beacon
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: dotdigital-intercom
+  label: Intercom
+  partner: intercom
+  partner_name: Intercom
+  category: Customer Support
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/intercom
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: dotdigital-bigmarker
+  label: BigMarker
+  partner_name: BigMarker
+  category: Webinars
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/bigmarker
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: dotdigital-instapage
+  label: Instapage
+  partner: instapage
+  partner_name: Instapage
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/instapage
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: dotdigital-pardot
+  label: Pardot
+  partner_name: Pardot
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/dotdigital/integrations/pardot
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
   arazzo: null
