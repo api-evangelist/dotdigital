@@ -168,56 +168,6 @@
     detected: '2026-10-15'
   status: not-a-workflow
   arazzo: null
-- slug: dotdigital-blackbaud-blackbaud-marketplace
-  label: Blackbaud (blackbaud-marketplace)
-  partner: blackbaud
-  partner_name: Blackbaud (blackbaud-marketplace)
-  type: marketplace
-  marketplace: blackbaud-marketplace
-  channel: partner-built
-  evidence: https://app.blackbaud.com/marketplace/applications/4a160bb5-b464-4883-9099-96331883cff6
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: dotdigital-gorgias-own
-  label: Gorgias (own)
-  partner: gorgias
-  partner_name: Gorgias (own)
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://www.gorgias.com/apps/dotdigital
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: dotdigital-wordpress-own
-  label: WordPress (own)
-  partner: wordpress
-  partner_name: WordPress (own)
-  category: WordPress plugin
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://wordpress.org/plugins/dotmailer-sign-up-widget/
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: dotdigital-zoom-own
-  label: Zoom (own)
-  partner: zoom
-  partner_name: Zoom (own)
-  category: Zoom app
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://marketplace.zoom.us/apps/r1LUy1aJQNuQ7jAyxHBfaQ
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: dotdigital-cloud-security-alliance-star-registry
   label: Cloud Security Alliance STAR Registry
   partner_name: Cloud Security Alliance STAR Registry
@@ -590,4 +540,67 @@
   source: edge
   relationship: ipaas-bridge
   status: pending-partner-spec
+  arazzo: null
+- slug: dotdigital-blackbaud-blackbaud-marketplace
+  label: Blackbaud (blackbaud-marketplace)
+  partner: blackbaud
+  partner_name: Blackbaud (blackbaud-marketplace)
+  type: marketplace
+  marketplace: blackbaud-marketplace
+  channel: partner-built
+  evidence: https://app.blackbaud.com/marketplace/applications/4a160bb5-b464-4883-9099-96331883cff6
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: dotdigital-gorgias-own
+  label: Gorgias (own)
+  partner: gorgias
+  partner_name: Gorgias (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.gorgias.com/apps/dotdigital
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: dotdigital-wordpress-own
+  label: WordPress (own)
+  partner: wordpress
+  partner_name: WordPress (own)
+  category: WordPress plugin
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://wordpress.org/plugins/dotmailer-sign-up-widget/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: dotdigital-zoom-own
+  label: Zoom (own)
+  partner: zoom
+  partner_name: Zoom (own)
+  category: Zoom app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.zoom.us/apps/r1LUy1aJQNuQ7jAyxHBfaQ
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: dotdigital-bigcommerce-own
+  label: BigCommerce (own)
+  partner: bigcommerce
+  partner_name: BigCommerce (own)
+  category: Marketing, Email Marketing
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.bigcommerce.com/apps/dotdigital-marketing/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
   arazzo: null
