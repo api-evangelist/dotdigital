@@ -604,3 +604,29 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: dotdigital-salesforce-own
+  label: Salesforce (own)
+  partner: salesforce
+  partner_name: Salesforce (own)
+  category: marketingAutomation
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3000000B4kPeEAJ
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: dotdigital-salesforce-commerce-cloud-own
+  label: Salesforce Commerce Cloud (own)
+  partner: salesforce-commerce-cloud
+  partner_name: Salesforce Commerce Cloud (own)
+  category: campaignManagement
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=adb5261d-4be4-4d1f-9dc6-4c1adaf61133
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null

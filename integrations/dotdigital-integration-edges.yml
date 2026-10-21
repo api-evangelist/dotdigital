@@ -27,6 +27,8 @@ checked:
 - wordpress/integrations/wordpress-integration-edges.yml
 - zoom/integrations/zoom-integration-edges.yml
 - bigcommerce/integrations/bigcommerce-integration-edges.yml
+- salesforce-commerce-cloud/integrations/salesforce-commerce-cloud-integration-edges.yml
+- salesforce/integrations/salesforce-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -690,6 +692,40 @@ edges:
   detected: '2026-10-20'
   detected_by: mirror-platform-listings.py
   category: Marketing, Email Marketing
+- partner_name: Salesforce (own)
+  partner: salesforce
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3000000B4kPeEAJ
+  mirror_of: salesforce/integrations/salesforce-integration-edges.yml
+  apps:
+  - Dotdigital for Salesforce
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: marketingAutomation
+- partner_name: Salesforce Commerce Cloud (own)
+  partner: salesforce-commerce-cloud
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=adb5261d-4be4-4d1f-9dc6-4c1adaf61133
+  mirror_of: salesforce-commerce-cloud/integrations/salesforce-commerce-cloud-integration-edges.yml
+  apps:
+  - Dotdigital Cross-Channel Marketing Automation Cartridge for B2C Commerce
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: campaignManagement
 templates:
 - title: Create or update Dotdigital contacts from new Unbounce form submissions
   url: https://zapier.com/apps/dotdigital/integrations/unbounce/255581881/create-or-update-dotdigital-contacts-from-new-unbounce-form-submissions
