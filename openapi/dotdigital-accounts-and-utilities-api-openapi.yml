@@ -198,3 +198,9 @@ x-samples-languages:
 - python
 - php
 - ruby
+x-provenance:
+  method: harvested
+  publisher: Dotdigital
+  source: https://marketing.developer.dotdigital.com/openapi/accounts-and-utilities.yaml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)

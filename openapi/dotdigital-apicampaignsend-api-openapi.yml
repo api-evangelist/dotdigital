@@ -159,3 +159,9 @@ components:
       - Cancelled
       - NotAvailableInThisVersion
 x-generator: NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))
+x-provenance:
+  method: harvested
+  publisher: Dotdigital
+  source: https://r2-api.dotdigital.com/swagger/v1/swagger.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
